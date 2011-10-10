@@ -173,7 +173,8 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
-                                                        "width": 114,
+                                                        "id": "GridPlayerName",
+                                                        "width": 152,
                                                         "layout": "fit",
                                                         "dataIndex": "name",
                                                         "fixed": true,
@@ -193,6 +194,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "width": 152,
                                                         "dataIndex": "fan_points",
                                                         "text": "Dynasty Rank",
                                                         "designer|userClassName": "MyNumberColumn8"
@@ -207,6 +209,7 @@
                                                     },
                                                     "codeClass": null,
                                                     "userConfig": {
+                                                        "width": 160,
                                                         "dataIndex": "rating",
                                                         "text": "Rating",
                                                         "designer|userClassName": "MyColumn3"
@@ -222,6 +225,7 @@
                                                     "codeClass": null,
                                                     "userConfig": {
                                                         "id": "Salary",
+                                                        "width": 149,
                                                         "dataIndex": "salary",
                                                         "text": "Salary",
                                                         "designer|userClassName": "MyNumberColumn10"
@@ -606,6 +610,7 @@
                                     "userConfig": {
                                         "width": 250,
                                         "maintainFlex": true,
+                                        "autoDestroy": false,
                                         "layout": "vbox",
                                         "closable": true,
                                         "closeAction": "hide",
@@ -615,9 +620,11 @@
                                         "frameHeader": false,
                                         "headerPosition": "left",
                                         "title": "DRAFT TOOLBOX",
+                                        "titleCollapse": true,
                                         "designer|userClassName": "MyPanel9",
                                         "container|align": "stretch",
                                         "layout|collapseMode": "header",
+                                        "layout|floatable": false,
                                         "layout|region": "east",
                                         "layout|split": true
                                     },
