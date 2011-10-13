@@ -9,3 +9,4 @@ dynastyowner.tmproj
 .idea/dynastyowner.iml
 
 tmp
+*.sqlite3
