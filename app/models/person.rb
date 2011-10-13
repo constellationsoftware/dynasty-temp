@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-  has_polymorphic_as_table
+#has_polymorphic_as_table
   has_one :display_name, :as => :entity
   has_many :person_phases
   has_many :positions, :through => :person_phases

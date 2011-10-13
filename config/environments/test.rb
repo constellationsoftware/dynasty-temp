@@ -1,6 +1,9 @@
 Dynasty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
-
+  require 'active_record'
+  require 'active_record/associations'
+  require 'active_record/associations/through_association_scope'
+  require 'polymorphic_as_table'
   # The test environment is used exclusively to run your application's
   # test suite.  You never need to work with it otherwise.  Remember that
   # your test database is "scratch space" for the test suite and is wiped
