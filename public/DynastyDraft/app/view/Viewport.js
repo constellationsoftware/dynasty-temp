@@ -6,8 +6,6 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.ShoutBoxContainer',
     ],
 
-    padding: 10,
-
     layout: {
         type: 'border'
     },
@@ -18,13 +16,14 @@ Ext.define('DynastyDraft.view.Viewport', {
              * HEADER PANEL
              */
             {
-                xtype: 'panel',
+                xtype: 'container',
                 region: 'north',
                 layout: {
                     align: 'stretch',
                     type: 'hbox',
                 },
                 height: 120,
+                style: 'background-color: #FFF',
 
                 items: [
                     {
@@ -35,11 +34,6 @@ Ext.define('DynastyDraft.view.Viewport', {
                         xtype: 'container',
                         flex: 1,
                     },
-                    /*{
-                        xtype: 'textareafield',
-                        margin: 0,
-                        width: 400,
-                    },*/
                     {
                         xtype: 'shoutboxcontainer',
                         width: 400,

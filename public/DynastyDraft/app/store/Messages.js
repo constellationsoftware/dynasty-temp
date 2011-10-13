@@ -4,12 +4,7 @@ Ext.define('DynastyDraft.store.Messages', {
     autoLoad: true,
 
     data: {
-        messages: [
-            {
-                user: 'test',
-                message: 'Test Message.',
-            },
-        ],
+        messages: [],
     },
 
     proxy: {

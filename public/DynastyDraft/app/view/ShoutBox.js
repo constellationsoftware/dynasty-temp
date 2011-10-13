@@ -4,7 +4,9 @@ Ext.define('DynastyDraft.view.ShoutBox', {
     alias: 'widget.shoutbox',
     store: 'Messages',
     itemSelector: 'div.shoutbox_message',
- 
+    emptyText: 'No messages to display.',
+    //style: 'overflow: auto;',
+
     initComponent: function() {
         this.tpl = this.getTemplate();
         this.callParent();

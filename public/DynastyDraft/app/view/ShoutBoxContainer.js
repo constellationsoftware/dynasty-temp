@@ -3,27 +3,52 @@ Ext.define('DynastyDraft.view.ShoutBoxContainer', {
     requires: [ 'DynastyDraft.view.ShoutBox' ],
 
     alias: 'widget.shoutboxcontainer',
-    activeItem: 0,
     layout: {
-        type: 'absolute'
+        align: 'stretch',
+        type: 'vbox',
     },
 
     initComponent: function() {
+        var _this = this;
         this.items = [
             {
                 xtype: 'shoutbox',
-                anchor: '100%',
-                x: 0,
-                y: 0,
+                flex: 1,
             },
             {
-                xtype: 'textfield',
-                emptyText: 'Send a message...',
-                anchor: '-5',
-                x: 5,
-                y: 5,
+                xtype: 'form',
+                id: 'shoutbox_text_entry',
+                border: 0,
+                items: [
+                    {
+                        xtype: 'textfield',
+                        emptyText: 'Type some profanity and hit ENTER',
+                        margin: 0,
+                        padding: 0,
+                        enableKeyEvents: true,
+                        //allowBlank: false,
+                        anchor: '-2',
+                  },
+                ],
+
+                /*
+                buttons: [
+                    {
+                        text: 'Submit',
+                        formBind: true, //only enabled once the form is valid
+                        disabled: true,
+                        handler: function() {
+                            var form = this.up('form').getForm();
+                            if (form.isValid()) {
+                                console.log("hi");
+                            }
+                        }
+                    },
+                ],
+                */
             },
         ];
+
         this.callParent();
     }
 });

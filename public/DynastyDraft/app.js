@@ -26,6 +26,9 @@ Ext.application({
     ],
 
     launch: function() {
-        Ext.QuickTips.init();
+        Ext.tip.QuickTipManager.init();
+        Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
+            showDelay: 50      // Show 50ms after entering target
+        });
     }
 });

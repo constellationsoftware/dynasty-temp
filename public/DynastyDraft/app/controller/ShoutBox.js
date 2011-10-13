@@ -1,20 +1,42 @@
+/**
+ * @TODO: Wrap the PUBNUB stuff in an Ext.util.Observable.
+ *        Use the wrapper at https://github.com/mrsunshine/Mobile-Chat-with-Sencha-Touch---node.js---socket.io-/blob/master/js/lib/App.util.Socketio.js
+ *        as an example.
+ *        Also use proper user models when those are avaiable
+ */
+
+var PUBNUB_CHANNEL = 'dynasty_test';
+
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
     stores: [ 'Messages' ],
+    username: null,
 
     init: function() {
-        this.control({
-            /*'shoutbox': {
-                
-            }*/
-        });
-
-        /**
-         * Add custom event listener
-         */
-        this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
-        
         var _this = this;
+
+        this.username = "Dynasty-User" + Math.floor(Math.random() * 10000);
+        
+        this.control({
+            '#shoutbox_text_entry > textfield': {
+                specialkey: function(field, e) { 
+                    if(e.getKey() == e.ENTER) { 
+                        var form = field.up('form').getForm();
+                        if (form.isValid() && field.getValue()) {
+                            // get a store instance and add the message to it
+                            var message = this.createMessage(field.getValue());
+                            PUBNUB.publish({
+                                channel: PUBNUB_CHANNEL,
+                                message: message,
+                            });
+                            field.reset();
+                        }
+                    } 
+                }
+            }
+        });
+        //this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
+        
         // LISTEN FOR PUSH MESSAGES
         PUBNUB.subscribe({
             // CONNECT TO THIS CHANNEL
@@ -27,37 +49,45 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
 
             // RECEIVED A MESSAGE
             callback: function(message) {
-                _this.onMessageReceived.call(_this, message);
+                // add it to the store
+                _this.onReceiveMessage.call(_this, message);
             },
             
             // CONNECTION ESTABLISHED
             connect: function() {
                 // SEND MESSAGE
-                var message = {
-                    user: "Dynasty User",
-                    message: "has joined",
-                    action: true
-                };
-                for (i = 0; i < 10; i++) {
+                var message = _this.createMessage("has joined", true);
+
                 PUBNUB.publish({
-                    channel: "dynasty_test",
+                    channel: PUBNUB_CHANNEL,
                     message: message
                 });
-                }
             }
         });
     },
 
-    onMessageReceived: function(message) {
-        // get a store instance and add the message to it
-        this.getMessagesStore().add(message);
-    },
-
+    /*
     onStoreUpdate: function() {
         var views = Ext.ComponentQuery.query('shoutbox');
         try {
             var view = views[0];
             view.scrollToBottom.call(view);
         } catch(e) {};
-    }
+    },
+    */
+
+    onReceiveMessage: function(message) {
+        // get a store instance and add the message to it
+        this.getMessagesStore().add(message);
+    },
+
+    createMessage: function(messageText, action) {
+        var message = {
+            user: this.username,
+            message: messageText,
+            action: action,
+        };
+
+        return message;
+    },
 });
