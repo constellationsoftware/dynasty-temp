@@ -3,10 +3,18 @@ source 'http://rubygems.org'
 gem 'rails', '3.1.0'
 gem 'activesupport', '~> 3.1.0'
 
+
+group :production do
+  gem 'pg'
+end
+group :development, :test do
+  gem 'mysql2'
+end
+
+
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
 gem 'polymorphic_as_table'
 gem 'haml'
 
