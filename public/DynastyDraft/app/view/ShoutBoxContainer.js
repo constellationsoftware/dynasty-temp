@@ -6,6 +6,7 @@ Ext.define('DynastyDraft.view.ShoutBoxContainer', {
     layout: {
         align: 'stretch',
         type: 'vbox',
+        padding: '0 0 2 0',
     },
 
     initComponent: function() {

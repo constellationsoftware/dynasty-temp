@@ -35,7 +35,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                 }
             }
         });
-        //this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
+        this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
         
         // LISTEN FOR PUSH MESSAGES
         PUBNUB.subscribe({
@@ -66,7 +66,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         });
     },
 
-    /*
     onStoreUpdate: function() {
         var views = Ext.ComponentQuery.query('shoutbox');
         try {
@@ -74,7 +73,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
             view.scrollToBottom.call(view);
         } catch(e) {};
     },
-    */
 
     onReceiveMessage: function(message) {
         // get a store instance and add the message to it

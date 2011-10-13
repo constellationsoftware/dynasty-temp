@@ -5,7 +5,7 @@ Ext.define('DynastyDraft.view.ShoutBox', {
     store: 'Messages',
     itemSelector: 'div.shoutbox_message',
     emptyText: 'No messages to display.',
-    //style: 'overflow: auto;',
+    autoScroll: true,
 
     initComponent: function() {
         this.tpl = this.getTemplate();
@@ -27,7 +27,7 @@ Ext.define('DynastyDraft.view.ShoutBox', {
     },
 
     scrollToBottom: function() {
-        list.scroller.updateBoundary();
-        list.scroller.scrollTo({x: 0, y:list.scroller.size.height}, true);
+        var e = this.getEl().dom;
+        e.scrollTop = e.scrollHeight;
     }
 });
