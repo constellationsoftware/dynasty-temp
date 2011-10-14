@@ -8,8 +8,8 @@ class PeopleController < ApplicationController
     data[:players] = []
     people.each do |p|
       data[:players] << [
-          "#{p.display_name.full_name}",
-          "#{p.person_phases.last.position.name if p.person_phases.last}",
+          "#{p.display_name.inspect}",
+          "#{p.person_phases.last.position.inspect if p.person_phases.last}",
           "#{p.salary.inspect if p.salary}",
           "#{p.person_scores.last.inspect if p.person_scores.last}"
       ]
