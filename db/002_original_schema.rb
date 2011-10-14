@@ -1,7 +1,7 @@
 class OriginalDatabaseMigration < ActiveRecord::Migration
   def self.up
 
-ActiveRecord::Schema.define(:version => 2011101384737) do
+ActiveRecord::Schema.define(:version => 20110824232623) do
 
   create_table :locations do |t|
     t.column :city, :string, :limit => 100
