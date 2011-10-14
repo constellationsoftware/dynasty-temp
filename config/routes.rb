@@ -1,5 +1,6 @@
 Dynasty::Application.routes.draw do
   resources :people
+  resources :persons
 
   resources :drafts
 
