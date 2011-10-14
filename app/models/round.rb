@@ -1,5 +1,5 @@
 class Round < ActiveRecord::Base
-  is_timed
+ # is_timed
 
   belongs_to :draft
   has_one :league, :through => :draft
@@ -7,8 +7,8 @@ class Round < ActiveRecord::Base
   has_many :picks
   has_many :picking_orders
 
-  requires :association, :draft
-  locks :association, :draft
+#  requires :association, :draft
+#  locks :association, :draft
 
   def current_user_team
     picking_orders.where(

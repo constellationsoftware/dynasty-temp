@@ -3,5 +3,5 @@ class League < ActiveRecord::Base
   has_many :user_teams
   has_many :users, :through => :user_teams
   has_many :drafts
-  requires :attribute, :name, :size
+#  requires :attribute, :name, :size
 end
