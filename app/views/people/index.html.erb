@@ -1,0 +1,21 @@
+<h1>Listing people</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @people.each do |p| %>
+  <tr>
+    <td><%= p.display_name.full_name %> <%= p.person_phases.last.position %> <%= p.person_phases.last %> <%= link_to 'Show', p %></td>
+    <td><%= link_to 'Edit', edit_person_path(p) %></td>
+    <td><%= link_to 'Destroy', p, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Person', new_person_path %>

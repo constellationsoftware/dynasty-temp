@@ -1,5 +1,5 @@
 class Draft < ActiveRecord::Base
-  is_timed
+  #is_timed
   #Note: Drafts will have a fixed # of rounds (still determining, probably low 20s) and each user must pick in each round.
 
   belongs_to :league
@@ -8,9 +8,9 @@ class Draft < ActiveRecord::Base
   has_many :rounds
   has_many :picks, :through => :rounds
 
-  requires :association, :league
-  requires :attribute, :number_of_rounds
-  locks :association, :league
+ # requires :association, :league
+ # requires :attribute, :number_of_rounds
+ # locks :association, :league
 
   def self.current(league)
     find_by_league_id_and_started_and_finished(
