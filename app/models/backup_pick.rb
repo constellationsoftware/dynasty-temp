@@ -5,7 +5,7 @@ class BackupPick < ActiveRecord::Base
   #requires :association, :user, :person
   #requires :attribute, :preference
 
-  locks :association, :user
+  #locks :association, :user
 
   validates_uniqueness_of :person_id, :scope => :user_id
   validates_numericality_of :preference
