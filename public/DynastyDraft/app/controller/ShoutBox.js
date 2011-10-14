@@ -9,6 +9,8 @@ var PUBNUB_CHANNEL = 'dynasty_test';
 
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
+    require: [ 'DynastyDraft.view.ShoutBox' ],
+
     stores: [ 'Messages' ],
     username: null,
 
@@ -66,17 +68,30 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         });
     },
 
-    onStoreUpdate: function() {
-        var views = Ext.ComponentQuery.query('shoutbox');
+    // routines to run before the store is updated
+    // @TODO: Create an event on this store to do this
+    beforeStoreUpdate: function() {
+        // find the view for this controller
+        /*var result = Ext.ComponentQuery.query('shoutbox');
         try {
-            var view = views[0];
+            var view = result[0];
+            view.rememberScrollHeight.call(view);
+        } catch(e) {};*/
+    },
+
+    onStoreUpdate: function() {
+        var result = Ext.ComponentQuery.query('shoutbox');
+        try {
+            var view = result[0];
             view.scrollToBottom.call(view);
         } catch(e) {};
     },
 
     onReceiveMessage: function(message) {
         // get a store instance and add the message to it
-        this.getMessagesStore().add(message);
+        var store = this.getMessagesStore();
+        this.beforeStoreUpdate();
+        store.add(message);
     },
 
     createMessage: function(messageText, action) {

@@ -6,6 +6,14 @@ Ext.define('DynastyDraft.view.ShoutBox', {
     itemSelector: 'div.shoutbox_message',
     emptyText: 'No messages to display.',
     autoScroll: true,
+    /*listeners: {
+        render: {
+            element: 'el',
+            fn: this.onRenderDone,
+        }
+    },*/
+
+    _lastScrollHeight: 0,
 
     initComponent: function() {
         this.tpl = this.getTemplate();
@@ -29,5 +37,11 @@ Ext.define('DynastyDraft.view.ShoutBox', {
     scrollToBottom: function() {
         var e = this.getEl().dom;
         e.scrollTop = e.scrollHeight;
-    }
+    },
+
+    /*rememberScrollHeight: function() {
+        var e = this.getEl().dom;
+        console.log(this._lastScrollHeight, this.getHeight());
+        this._lastScrollHeight = e.scrollHeight - e.scrollTop;
+    },*/
 });
