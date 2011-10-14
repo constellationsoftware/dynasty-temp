@@ -7,8 +7,8 @@ class Pick < ActiveRecord::Base
 
   belongs_to :person
 
-  requires :association, :user_team, :round, :person
-  locks :association, :round, :person
+ # requires :association, :user_team, :round, :person
+ # locks :association, :round, :person
 
   validate :one_person_per_draft, :on => :create
 
