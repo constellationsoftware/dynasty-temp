@@ -1,5 +1,4 @@
 class PersonPhase < ActiveRecord::Base
-  is_polymorphic_as_table
   belongs_to :person
   belongs_to :membership, :polymorphic => true
   belongs_to :position, :foreign_key => "regular_position_id"

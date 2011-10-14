@@ -1,5 +1,4 @@
 class Team < ActiveRecord::Base
-  has_polymorphic_as_table
   has_many :american_football_action_plays
   has_one :display_name, :as => :entity
   has_many :person_phases, :as => :membership, :order => "regular_position_depth ASC, regular_position_id ASC"

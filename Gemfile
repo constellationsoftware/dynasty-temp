@@ -3,7 +3,6 @@ source 'http://gems.github.com'
 
 gem 'rails', '3.1.0'
 gem 'activesupport', '~> 3.1.0'
-gem 'polymorphic_as_table'
 gem 'haml'
 
 group :production do
@@ -11,6 +10,7 @@ group :production do
 end
 group :development, :test do
   gem 'mysql2'
+  gem 'rack', '1.3.3'
 end
 
 

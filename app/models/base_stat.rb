@@ -1,6 +1,5 @@
 class BaseStat < ActiveRecord::Base
   self.abstract_class = true
-  has_polymorphic_as_table
   has_one :stat, :as => :stat_repository
 
   # subclasses should implement this method, which should return the

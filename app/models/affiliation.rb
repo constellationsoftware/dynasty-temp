@@ -1,5 +1,4 @@
 class Affiliation < ActiveRecord::Base
-  has_polymorphic_as_table
   has_one :display_name, :as => :entity
   has_many :affiliation_phases
   belongs_to :sport
