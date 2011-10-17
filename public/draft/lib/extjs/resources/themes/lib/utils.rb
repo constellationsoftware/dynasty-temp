@@ -55,12 +55,23 @@ module ExtJS4
           else
             relative = false
           end
-          
+
           if relative
             image_path = File.join(relative_path, theme, path)
           else
             images_path = File.join($ext_path, 'resources', 'themes', 'images', theme)
             image_path = File.join(images_path, path)
+          end
+
+          #added to theme_image
+          s = Sass::Script::String
+          b = Sass::Script::Bool
+
+          if theme_image_exists(s.new(image_path)) == b.new(false)
+            fallback_path = File.join($ext_path, 'resources', 'themes', 'images', 'default', path) 
+            if theme_image_exists(s.new(fallback_path))
+                image_path = fallback_path 
+            end
           end
           
           if !without_url
@@ -74,13 +85,17 @@ module ExtJS4
 
         def theme_image_exists(path)
           result = false
-
-          where_to_look = path.value.gsub('../../resources', 'resources')
+          path = path.value
+          where_to_look = path
 
           if where_to_look && FileTest.exists?("#{where_to_look}")
             result = true
+          else
+            where_to_look = File.join($sass_path, path)
+            if where_to_look && FileTest.exists?("#{where_to_look}")
+              result = true
+            end
           end
-
           return Sass::Script::Bool.new(result)
         end
       end

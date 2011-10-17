@@ -6,23 +6,12 @@
  * be true. 
  */
 @function theme-background-image($theme-name, $path, $without-url: false, $relative: false) {
-    $exists_image: theme-image($theme-name, $path, true, false);
-    
-    @if $exists_image {
-        $exists: theme_image_exists($exists_image);
+    $exists: theme_image_exists($path);
 
-        @if $exists == true {
-            @return theme-image($theme-name, $path, $without-url, $relative);
-        }
-        @else {
-            @warn "@theme-background-image: Theme image not found: #{$exists_image}";
+    @if $exists == false {
+        @warn "@theme-background-image: Theme image not found: #{$path}";
+        @if $include-missing-images == false { @return "" }
+    }
 
-            @if $include-missing-images {
-                @return theme-image($theme-name, $path, $without-url, $relative);
-            }
-        }
-    }
-    @else {
-        @warn "@theme-background-image: No arguments passed";
-    }
+    @return theme-image($theme-name, $path, $without-url, $relative);
 }

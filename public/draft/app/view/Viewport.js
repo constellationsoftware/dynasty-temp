@@ -17,21 +17,19 @@ Ext.define('DynastyDraft.view.Viewport', {
              */
             {
                 xtype: 'container',
+                id: 'header_container',
                 region: 'north',
                 layout: {
                     align: 'stretch',
                     type: 'hbox',
                 },
                 height: 120,
-                style: 'background-color: #FFF',
 
                 items: [
                     {
-                        xtype: 'image',
-                        src: 'resources/images/dynasty_logo.png',
-                    },
-                    {
                         xtype: 'container',
+                        id: 'header_spacer',
+                        style: 'background: transparent;',
                         flex: 1,
                     },
                     {
