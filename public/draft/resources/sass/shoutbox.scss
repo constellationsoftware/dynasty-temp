@@ -1,0 +1,23 @@
+@mixin shoutbox {
+    .shoutbox_message {
+        color: #666;
+        margin-bottom: 3px;
+
+        .user_id {
+            font-weight: bold;
+            color: blue;
+            width: 120px;
+            float: left;
+        }
+
+        & > .action {
+            font-style: italic;
+            color: #BBB;
+            float: none;
+        }
+    }
+}
+
+#some_other_crap {
+    color: brown;
+}

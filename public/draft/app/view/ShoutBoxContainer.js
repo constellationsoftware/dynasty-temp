@@ -27,8 +27,7 @@ Ext.define('DynastyDraft.view.ShoutBoxContainer', {
                         margin: 0,
                         padding: 0,
                         enableKeyEvents: true,
-                        //allowBlank: false,
-                        anchor: '-2',
+                        anchor: '-2 0',
                   },
                 ],
 

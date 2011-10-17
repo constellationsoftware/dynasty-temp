@@ -10499,16 +10499,43 @@ textarea.x-form-invalid-field {
   height: 100%;
 }
 
+/* line 21, ../sass/shoutbox.scss */
+#some_other_crap {
+  color: brown;
+}
+
 /********************************************************************************
  * HEADER
  *******************************************************************************/
-/* line 50, ../sass/dynasty_theme.scss */
+/* line 54, ../sass/dynasty_theme.scss */
 #header_container {
   background-image: url('../themes/images/dynasty/logo.png');
   background-color: #FFF;
 }
 
-/* line 55, ../sass/dynasty_theme.scss */
+/* line 59, ../sass/dynasty_theme.scss */
 #header_spacer {
   background: transparent;
+}
+
+/********************************************************************************
+ * SHOUTBOX
+ *******************************************************************************/
+/* line 2, ../sass/shoutbox.scss */
+.shoutbox_message {
+  color: #666;
+  margin-bottom: 3px;
+}
+/* line 6, ../sass/shoutbox.scss */
+.shoutbox_message .user_id {
+  font-weight: bold;
+  color: blue;
+  width: 120px;
+  float: left;
+}
+/* line 13, ../sass/shoutbox.scss */
+.shoutbox_message > .action {
+  font-style: italic;
+  color: #BBB;
+  float: none;
 }
