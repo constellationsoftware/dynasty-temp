@@ -2,16 +2,16 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    people = Person.find(:all, :limit => 100)
-
+    people = Person.includes(:display_name).limit(100)
+    @people = Person.joins(:display_name)
     data = {}
     data[:players] = []
     people.each do |p|
       data[:players] << [
-          "#{p.display_name.inspect}",
-          "#{p.person_phases.last.position.inspect if p.person_phases.last}",
-          "#{p.salary.inspect if p.salary}",
-          "#{p.person_scores.last.inspect if p.person_scores.last}"
+          "#{p.to_yaml}"#,
+          #"#{p.person_phases.last.position.inspect if p.person_phases.last}",
+          #"#{p.salary.inspect if p.salary}",
+          #"#{p.person_scores.last.inspect if p.person_scores.last}"
       ]
     end
 

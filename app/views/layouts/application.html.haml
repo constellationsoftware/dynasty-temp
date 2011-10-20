@@ -1,0 +1,11 @@
+!!! 5
+%html
+    %head
+        %title Dynasty Owner
+        = stylesheet_link_tag 'application'
+        = javascript_include_tag 'application'
+        = yield :head
+        = csrf_meta_tag
+    %body
+        #wrap
+        = yield
