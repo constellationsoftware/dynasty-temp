@@ -2,7 +2,8 @@ class Person < ActiveRecord::Base
   set_table_name "persons"
 
   has_one :display_name, :as => :entity
-  has_many :person_phases
+  has_one :person_phase
+  has_one :person_score
   has_many :positions, :through => :person_phases
   has_many :stats, :as => :stat_holder
 
@@ -51,5 +52,6 @@ class Person < ActiveRecord::Base
   has_many :user_teams, :through => :user_team_persons
 
   Person.joins(:stats, :american_football_defensive_stats, :american_football_offensive_stats, :american_football_rushing_stats, :stat_repository, :person_phases, :position, :display_name)
+
 
 end

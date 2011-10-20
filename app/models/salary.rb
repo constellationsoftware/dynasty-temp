@@ -10,5 +10,8 @@ class Salary < ActiveRecord::Base
     end
   end
 
+  def self.has_contract
+  	where("contract_amount > ?", 0 )
+  end
 
 end

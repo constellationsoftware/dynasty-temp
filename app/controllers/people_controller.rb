@@ -2,14 +2,19 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    people = Person.includes(:display_name).limit(100)
-    @people = Person.joins(:display_name)
+    people = Person.joins(:display_name, :person_phase, :salary).merge(PersonPhase.draftable).merge(Salary.has_contract)
+    @people = Person.joins(:display_name, :person_phase, :salary).merge(PersonPhase.draftable).merge(Salary.has_contract)
     data = {}
     data[:players] = []
     people.each do |p|
       data[:players] << [
-          "#{p.to_yaml}"#,
-          #"#{p.person_phases.last.position.inspect if p.person_phases.last}",
+          "id: #{p.id}",
+          "player_key: #{p.person_key}",
+          "full_name: #{p.display_name.full_name}",
+          "position: #{p.person_phase.position.name}",
+          "position_depth: #{p.person_phase.regular_position_depth}",
+          "score: #{p.person_score.score}",
+          "salary: #{p.salary.contract_amount}"
           #"#{p.salary.inspect if p.salary}",
           #"#{p.person_scores.last.inspect if p.person_scores.last}"
       ]
