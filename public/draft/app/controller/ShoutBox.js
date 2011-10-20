@@ -9,18 +9,22 @@ var PUBNUB_CHANNEL = 'dynasty_test';
 
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
-    require: [ 'DynastyDraft.view.ShoutBox' ],
 
     stores: [ 'Messages' ],
+    views: [ 'ShoutBox' ],
+    refs: [{
+        ref: 'container',
+        selector: 'shoutboxcontainer',
+    }],
+
     username: null,
 
     init: function() {
         var _this = this;
-
         this.username = "Dynasty-User" + Math.floor(Math.random() * 10000);
         
         this.control({
-            '#shoutbox_text_entry > textfield': {
+            'textfield': {
                 specialkey: function(field, e) { 
                     if(e.getKey() == e.ENTER) { 
                         var form = field.up('form').getForm();
@@ -80,11 +84,8 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
     },
 
     onStoreUpdate: function() {
-        var result = Ext.ComponentQuery.query('shoutbox');
-        try {
-            var view = result[0];
-            view.scrollToBottom.call(view);
-        } catch(e) {};
+        var view = this.getContainer().down('shoutbox');
+        view.scrollToBottom.call(view);
     },
 
     onReceiveMessage: function(message) {
