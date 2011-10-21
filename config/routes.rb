@@ -9,7 +9,7 @@ Dynasty::Application.routes.draw do
 
   resources(:person_scores, :events, :dynasty_dollars, :positions, :trades,
             :user_teams, :leagues, :users, :person_phases, :display_names,
-            :stats, :fix, :draft)
+            :stats, :fix, :draft, :draftable_players)
 
   resources :teams do
     resources :display_name

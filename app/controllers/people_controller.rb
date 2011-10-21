@@ -26,6 +26,10 @@ class PeopleController < ApplicationController
     end
   end
 
+  def draftable
+    @draftable = DraftablePlayer.all
+  end
+
   # GET /people/1
   # GET /people/1.json
   def show

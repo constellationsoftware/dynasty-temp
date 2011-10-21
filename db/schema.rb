@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110824232622) do
+ActiveRecord::Schema.define(:version => 20110823061803) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -384,11 +384,14 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
     t.integer "date_coverage_id"
   end
 
-  create_table "backup_picks", :force => true do |t|
-    t.integer "user_id"
-    t.integer "person_id"
+  create_table "backup_picks", :id => false, :force => true do |t|
+    t.integer "user_id",    :null => false
+    t.integer "person_id",  :null => false
     t.integer "preference"
   end
+
+  add_index "backup_picks", ["person_id"], :name => "index_backup_picks_person"
+  add_index "backup_picks", ["user_id"], :name => "index_backup_picks_user"
 
   create_table "baseball_defensive_group", :force => true do |t|
   end
@@ -548,14 +551,29 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
   add_index "documents_media", ["media_caption_id"], :name => "FK_doc_med_med_cap_id__med_cap_id"
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
+  create_table "draftable_players", :id => false, :force => true do |t|
+    t.integer "id",                                              :null => false
+    t.string  "full_name",       :limit => 50,                   :null => false
+    t.string  "position",        :limit => 10
+    t.date    "dob"
+    t.string  "college",         :limit => 50
+    t.integer "contract_start"
+    t.integer "contract_length"
+    t.integer "contract_amount",               :default => 0
+    t.string  "free_agent",                    :default => "NO", :null => false
+    t.integer "person_id",                     :default => 0,    :null => false
+  end
+
   create_table "drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
     t.boolean  "started",          :default => false
     t.boolean  "finished",         :default => false
-    t.integer  "league_id"
+    t.integer  "league_id",                           :null => false
     t.integer  "number_of_rounds", :default => 30,    :null => false
   end
+
+  add_index "drafts", ["league_id"], :name => "index_drafts_league"
 
   create_table "dynasty_dollars", :force => true do |t|
     t.integer "team_id", :null => false
@@ -729,8 +747,8 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
   add_index "latest_revisions", ["revision_id"], :name => "IDX_latest_revisions_1"
 
   create_table "leagues", :force => true do |t|
-    t.string  "name", :null => false
-    t.integer "size", :null => false
+    t.string  "name", :limit => 50,                 :null => false
+    t.integer "size",               :default => 15, :null => false
   end
 
   create_table "locations", :force => true do |t|
@@ -967,17 +985,26 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
   add_index "persons_media", ["media_id"], :name => "FK_per_med_med_id__med_id"
   add_index "persons_media", ["person_id"], :name => "FK_per_med_per_id__per_id"
 
-  create_table "picking_orders", :force => true do |t|
-    t.integer "round_id"
-    t.integer "user_team_id"
-    t.integer "position",     :null => false
+  create_table "picking_orders", :id => false, :force => true do |t|
+    t.integer "round_id",            :null => false
+    t.integer "position",            :null => false
+    t.integer "user_team_league_id", :null => false
+    t.integer "user_team_user_id",   :null => false
   end
 
-  create_table "picks", :force => true do |t|
-    t.integer "user_team_id"
-    t.integer "round_id"
-    t.integer "person_id"
+  add_index "picking_orders", ["round_id"], :name => "index_picking_orders_round"
+  add_index "picking_orders", ["user_team_league_id", "user_team_user_id"], :name => "index_picking_orders_user_team"
+
+  create_table "picks", :id => false, :force => true do |t|
+    t.integer "round_id",            :null => false
+    t.integer "person_id",           :null => false
+    t.integer "user_team_league_id", :null => false
+    t.integer "user_team_user_id",   :null => false
   end
+
+  add_index "picks", ["person_id"], :name => "index_picks_person"
+  add_index "picks", ["round_id"], :name => "index_picks_round"
+  add_index "picks", ["user_team_league_id", "user_team_user_id"], :name => "index_picks_user_team"
 
   create_table "positions", :force => true do |t|
     t.integer "affiliation_id",                :null => false
@@ -1029,17 +1056,19 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
   add_index "roles", ["role_key"], :name => "IDX_roles_1"
 
   create_table "rounds", :force => true do |t|
-    t.integer  "draft_id"
+    t.integer  "draft_id",                       :null => false
     t.datetime "started_at"
     t.datetime "finished_at"
-    t.boolean  "started",     :default => false
-    t.boolean  "finished",    :default => false
+    t.boolean  "started",     :default => false, :null => false
+    t.boolean  "finished",    :default => false, :null => false
   end
+
+  add_index "rounds", ["draft_id"], :name => "index_rounds_draft"
 
   create_table "salaries", :id => false, :force => true do |t|
     t.integer "id",                                              :null => false
     t.string  "full_name",       :limit => 50,                   :null => false
-    t.string  "position",        :limit => 25
+    t.string  "position",        :limit => 10
     t.date    "dob"
     t.string  "college",         :limit => 50
     t.integer "contract_start"
@@ -1047,8 +1076,6 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
     t.integer "contract_amount",               :default => 0
     t.string  "free_agent",                    :default => "NO", :null => false
     t.integer "person_id",                     :default => 0,    :null => false
-    t.integer "yearly"
-    t.integer "score",                         :default => 0,    :null => false
   end
 
   create_table "seasons", :force => true do |t|
@@ -1178,10 +1205,12 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
   end
 
   add_index "team_phases", ["affiliation_id"], :name => "FK_tea_aff_pha_aff_id__aff_id"
+  add_index "team_phases", ["affiliation_id"], :name => "index_team_phases_affiliation"
   add_index "team_phases", ["end_season_id"], :name => "FK_tea_aff_pha_end_sea_id__sea_id"
   add_index "team_phases", ["role_id"], :name => "FK_tea_aff_pha_rol_id__rol_id"
   add_index "team_phases", ["start_season_id"], :name => "FK_tea_aff_pha_sta_sea_id__sea_id"
   add_index "team_phases", ["team_id"], :name => "FK_tea_aff_pha_tea_id__tea_id"
+  add_index "team_phases", ["team_id"], :name => "index_team_phases_team"
 
   create_table "teams", :force => true do |t|
     t.string  "team_key",     :limit => 100, :null => false
@@ -1220,11 +1249,14 @@ ActiveRecord::Schema.define(:version => 20110824232622) do
     t.integer "person_id"
   end
 
-  create_table "user_teams", :force => true do |t|
-    t.integer "league_id", :null => false
-    t.string  "name",      :null => false
-    t.integer "user_id",   :null => false
+  create_table "user_teams", :id => false, :force => true do |t|
+    t.integer "league_id",               :null => false
+    t.string  "name",      :limit => 50, :null => false
+    t.integer "user_id",                 :null => false
   end
+
+  add_index "user_teams", ["league_id"], :name => "index_user_teams_league"
+  add_index "user_teams", ["user_id"], :name => "index_user_teams_user"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                                :null => false
