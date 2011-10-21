@@ -71,18 +71,18 @@ For more on {@link Ext.data.Store Store}s see the [Data Guide](#/guide/data).
 ## The Node Interface
 In the above examples we set a couple of different properties on tree nodes. But what are nodes exactly? As mentioned before, the Tree Panel is bound to a {@link Ext.data.TreeStore TreeStore}. A Store in Ext JS manages a collection of {@link Ext.data.Model Model} instances. Tree nodes are simply Model instances that are decorated with a {@link Ext.data.NodeInterface NodeInterface}.  Decorating a Model with a NodeInterface gives the Model the fields, methods and properties that are required for it to be used in a tree.  The following is a screenshot that shows the structure of a node in the developer tools.
 
-![A model instance decorated with the NodeInterface](nodeinterface.png)
+{@img nodeinterface.png A model instance decorated with the NodeInterface}
 
 In order to see the full set of fields, methods and properties available on nodes, see the API documentation for the {@link Ext.data.NodeInterface NodeInterface} class.
 
 ## Visually changing your tree
 Let's try something simple. When you set the {@link Ext.tree.Panel#useArrows useArrows} configuration to true, the Tree Panel hides the lines and uses arrows as expand and collapse icons.
 
-![Arrows](arrows.png)
+{@img arrows.png Arrows}
 
 Setting the {@link Ext.tree.Panel#rootVisible rootVisible} property to false visually removes the root node. By doing this, the root node will automatically be expanded. The following image shows the same tree with `rootVisible` set to false and {@link Ext.tree.Panel#lines lines} set to false.
 
-![Root not visible and no lines](root-lines.png)
+{@img root-lines.png Root not visible and no lines}
 
 ## Multiple columns
 Since {@link Ext.tree.Panel Tree Panel} extends from the same base class as {@link Ext.grid.Panel Grid Panel} adding more columns is very easy to do.
@@ -162,7 +162,7 @@ Although this is useful for very small trees with only a few static nodes, most 
 
 Every node that is not a leaf node has an {@link Ext.data.NodeInterface#appendChild appendChild} method which accepts a Node, or a config object for a Node as its first parameter, and returns the Node that was appended. The above example also calls the {@link Ext.data.NodeInterface#expand expand} method to expand the newly created parent.
 
-![Appending to the tree](append-children.png)
+{@img append-children.png Appending to the tree}
 
 Also useful is the ability to define children inline when creating the new parent nodes. The following code gives us the same result.
 
@@ -189,7 +189,7 @@ Sometimes we want to insert a node into a specific location in the tree instead 
 
 The `insertChild` method expects an index at which the child will be inserted. The `insertBefore` method expects a reference node. The new node will be inserted before the reference node.
 
-![Inserting children into the tree](insert-children.png)
+{@img insert-children.png Inserting children into the tree}
 
 NodeInterface also provides several more properties on nodes that can be used to reference other nodes.
 

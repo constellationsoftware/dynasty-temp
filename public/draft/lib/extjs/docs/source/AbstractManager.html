@@ -55,6 +55,14 @@ Ext.define('Ext.AbstractManager', {
      * @param {Object} item The item to register
      */
     register: function(item) {
+        //&lt;debug&gt;
+        var all = this.all,
+            key = all.getKey(item);
+            
+        if (all.containsKey(key)) {
+            Ext.Error.raise('Registering duplicate id &quot;' + key + '&quot; with this manager');
+        }
+        //&lt;/debug&gt;
         this.all.add(item);
     },
 
@@ -97,7 +105,7 @@ Ext.define('Ext.AbstractManager', {
             Constructor = this.types[type];
 
         //&lt;debug&gt;
-        if (Constructor == undefined) {
+        if (Constructor === undefined) {
             Ext.Error.raise(&quot;The '&quot; + type + &quot;' type has not been registered with this manager&quot;);
         }
         //&lt;/debug&gt;

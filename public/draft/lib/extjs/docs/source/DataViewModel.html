@@ -164,6 +164,11 @@ Ext.define('Ext.selection.DataViewModel', {
                 me.fireEvent(eventName, me, record);
             }
         }
+    },
+    
+    destroy: function(){
+        Ext.destroy(this.keyNav);
+        this.callParent();
     }
 });
 </pre>

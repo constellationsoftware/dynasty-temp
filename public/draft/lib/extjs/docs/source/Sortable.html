@@ -157,9 +157,8 @@ Ext.define(&quot;Ext.util.Sortable&quot;, {
         }
 
         if (doSort !== false) {
-            if (doSort !== false) {
-                me.onBeforeSort(newSorters);
-            }
+            me.onBeforeSort(newSorters);
+            
             sorters = me.sorters.items;
             if (sorters.length) {
                 //construct an amalgamated sorter function which combines all of the Sorters passed

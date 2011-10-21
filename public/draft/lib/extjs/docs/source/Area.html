@@ -184,7 +184,7 @@ Ext.define('Ext.chart.series.Area', {
     getBounds: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             areas = [].concat(me.yField),
             areasLen = areas.length,
             xValues = [],
@@ -277,7 +277,7 @@ Ext.define('Ext.chart.series.Area', {
     getPaths: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             first = true,
             bounds = me.getBounds(),
             bbox = bounds.bbox,
@@ -364,7 +364,7 @@ Ext.define('Ext.chart.series.Area', {
     drawSeries: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             surface = chart.surface,
             animate = chart.animate,
             group = me.group,
@@ -916,7 +916,7 @@ Ext.define('Ext.chart.series.Area', {
     getBounds: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             areas = [].concat(me.yField),
             areasLen = areas.length,
             xValues = [],
@@ -1009,7 +1009,7 @@ Ext.define('Ext.chart.series.Area', {
     getPaths: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             first = true,
             bounds = me.getBounds(),
             bbox = bounds.bbox,
@@ -1096,7 +1096,7 @@ Ext.define('Ext.chart.series.Area', {
     drawSeries: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             surface = chart.surface,
             animate = chart.animate,
             group = me.group,

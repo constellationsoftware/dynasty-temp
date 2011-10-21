@@ -3,12 +3,12 @@ ______________________________________________
 
 The data package is what loads and saves all of the data in your application and consists of 41 classes, but there are three that are more important than all the others - {@link Ext.data.Model Model}, {@link Ext.data.Store Store} and {@link Ext.data.proxy.Proxy}. These are used by almost every application, and are supported by a number of satellite classes:
 
-![Data package overview](data-package.png)
+{@img data-package.png Data package overview}
 
 ### Models and Stores
 The centerpiece of the data package is Ext.data.Model. A Model represents some type of data in an application - for example an e-commerce app might have models for Users, Products and Orders. At its simplest a Model is just a set of fields and their data. We’re going to look at four of the principal parts of Model — {@link Ext.data.Field Fields}, {@link Ext.data.proxy.Proxy Proxies}, {@link Ext.data.Association Associations} and {@link Ext.data.validations Validations}.
 
-![Model architecture](model.png)
+{@img model.png Model architecture}
 
 Let's look at how we create a model now:
 

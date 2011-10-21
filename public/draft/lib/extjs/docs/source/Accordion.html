@@ -107,10 +107,10 @@ Ext.define('Ext.layout.container.Accordion', {
     animate : true,
 <span id='Ext-layout-container-Accordion-cfg-activeOnTop'>    /**
 </span>     * @cfg {Boolean} activeOnTop
-     * Only valid when {@link #multi} is `false`.
+     * Only valid when {@link #multi} is `false` and {@link #animate} is `false`.
      *
      * True to swap the position of each panel as it is expanded so that it becomes the first item in the container,
-     * false to keep the panels in the rendered order. &lt;b&gt;This is NOT compatible with &quot;animate:true&quot;&lt;/b&gt;.
+     * false to keep the panels in the rendered order.
      */
     activeOnTop : false,
 <span id='Ext-layout-container-Accordion-cfg-multi'>    /**
@@ -297,6 +297,21 @@ Ext.define('Ext.layout.container.Accordion', {
             siblingCollapsed = child.collapsed;
         }
     },
+    
+    animCallback: function(){
+        Ext.Array.forEach(this.toCollapse, function(comp){
+            comp.fireEvent('collapse', comp);
+        });
+        
+        Ext.Array.forEach(this.toExpand, function(comp){
+            comp.fireEvent('expand', comp);
+        });    
+    },
+    
+    setupEvents: function(){
+        this.toCollapse = [];
+        this.toExpand = [];    
+    },
 
     // When a Component expands, adjust the heights of the other Components to be just enough to accommodate
     // their headers.
@@ -308,6 +323,7 @@ Ext.define('Ext.layout.container.Accordion', {
             i = 0,
             comp;
 
+        me.setupEvents();
         for (; i &lt; len; i++) {
             comp = it[i];
             if (comp === toExpand &amp;&amp; comp.collapsed) {
@@ -318,7 +334,12 @@ Ext.define('Ext.layout.container.Accordion', {
         }
 
         me.animate = me.initialAnimate;
-        me.layout();
+        if (me.activeOnTop) {
+            // insert will trigger a layout
+            me.owner.insert(0, toExpand); 
+        } else {
+            me.layout();
+        }
         me.animate = false;
         return false;
     },
@@ -328,6 +349,7 @@ Ext.define('Ext.layout.container.Accordion', {
             toExpand = comp.next() || comp.prev(),
             expanded = me.multi ? me.owner.query('&gt;panel:not([collapsed])') : [];
 
+        me.setupEvents();
         // If we are allowing multi, and the &quot;toCollapse&quot; component is NOT the only expanded Component,
         // then ask the box layout to collapse it to its header.
         if (me.multi) {
@@ -376,7 +398,11 @@ Ext.define('Ext.layout.container.Accordion', {
         comp.el.setHeight(comp.height);
         comp.collapsed = true;
         delete comp.flex;
-        comp.fireEvent('collapse', comp);
+        if (this.initialAnimate) {
+            this.toCollapse.push(comp);
+        } else {
+            comp.fireEvent('collapse', comp);
+        }
         if (comp.collapseTool) {
             comp.collapseTool.setType('expand-' + comp.getOppositeDirection(comp.collapseDirection));
         }
@@ -403,7 +429,11 @@ Ext.define('Ext.layout.container.Accordion', {
         comp.flex = 1;
         comp.removeCls(comp.collapsedCls);
         comp.header.removeCls(comp.collapsedHeaderCls);
-        comp.fireEvent('expand', comp);
+         if (this.initialAnimate) {
+            this.toExpand.push(comp);
+        } else {
+            comp.fireEvent('expand', comp);
+        }
         if (comp.collapseTool) {
             comp.collapseTool.setType('collapse-' + comp.collapseDirection);
         }

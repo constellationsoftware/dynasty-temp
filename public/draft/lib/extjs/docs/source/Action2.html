@@ -112,7 +112,7 @@ Ext.define('Ext.form.action.Action', {
 </span>     * @cfg {Boolean} submitEmptyText If set to &lt;tt&gt;true&lt;/tt&gt;, the emptyText value will be sent with the form
      * when it is submitted. Defaults to &lt;tt&gt;true&lt;/tt&gt;.
      */
-
+    submitEmptyText : true,
 <span id='Ext-form-action-Action-property-type'>    /**
 </span>     * @property type
      * The type of action this Action instance performs.
@@ -285,7 +285,7 @@ buttons: [{
     },
 
     statics: {
-<span id='Ext-form-action-Action-property-CLIENT_INVALID'>        /**
+<span id='Ext-form-action-Action-static-property-CLIENT_INVALID'>        /**
 </span>         * @property CLIENT_INVALID
          * Failure type returned when client side validation of the Form fails
          * thus aborting a submit action. Client side validation is performed unless
@@ -295,7 +295,7 @@ buttons: [{
          */
         CLIENT_INVALID: 'client',
 
-<span id='Ext-form-action-Action-property-SERVER_INVALID'>        /**
+<span id='Ext-form-action-Action-static-property-SERVER_INVALID'>        /**
 </span>         * @property SERVER_INVALID
          * &lt;p&gt;Failure type returned when server side processing fails and the {@link #result}'s
          * &lt;tt&gt;success&lt;/tt&gt; property is set to &lt;tt&gt;false&lt;/tt&gt;.&lt;/p&gt;
@@ -306,7 +306,7 @@ buttons: [{
          */
         SERVER_INVALID: 'server',
 
-<span id='Ext-form-action-Action-property-CONNECT_FAILURE'>        /**
+<span id='Ext-form-action-Action-static-property-CONNECT_FAILURE'>        /**
 </span>         * @property CONNECT_FAILURE
          * Failure type returned when a communication error happens when attempting
          * to send a request to the remote server. The {@link #response} may be examined to
@@ -316,7 +316,7 @@ buttons: [{
          */
         CONNECT_FAILURE: 'connect',
 
-<span id='Ext-form-action-Action-property-LOAD_FAILURE'>        /**
+<span id='Ext-form-action-Action-static-property-LOAD_FAILURE'>        /**
 </span>         * @property LOAD_FAILURE
          * Failure type returned when the response's &lt;tt&gt;success&lt;/tt&gt;
          * property is set to &lt;tt&gt;false&lt;/tt&gt;, or no field values are returned in the response's

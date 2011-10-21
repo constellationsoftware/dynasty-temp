@@ -199,9 +199,24 @@ Ext.define('Ext.AbstractComponent', {
      * internal structure.
      *
      * Upon rendering, any created child elements may be automatically imported into object properties using the
-     * {@link #renderSelectors} option.
+     * {@link #renderSelectors} and {@link #childEls} options.
      */
     renderTpl: null,
+
+<span id='Ext-AbstractComponent-cfg-renderData'>    /**
+</span>     * @cfg {Object} renderData
+     *
+     * The data used by {@link #renderTpl} in addition to the following property values of the component:
+     *
+     * - id
+     * - ui
+     * - uiCls
+     * - baseCls
+     * - componentCls
+     * - frame
+     *
+     * See {@link #renderSelectors} and {@link #childEls} for usage examples.
+     */
 
 <span id='Ext-AbstractComponent-cfg-renderSelectors'>    /**
 </span>     * @cfg {Object} renderSelectors
@@ -211,47 +226,68 @@ Ext.define('Ext.AbstractComponent', {
      * After the Component's internal structure is rendered according to the {@link #renderTpl}, this object is iterated through,
      * and the found Elements are added as properties to the Component using the `renderSelector` property name.
      *
-     * For example, a Component which rendered an image, and description into its element might use the following properties
-     * coded into its prototype:
+     * For example, a Component which renderes a title and description into its element:
      *
-     *     renderTpl: '&lt;img src=&quot;{imageUrl}&quot; class=&quot;x-image-component-img&quot;&gt;&lt;div class=&quot;x-image-component-desc&quot;&gt;{description}&lt;/div&gt;',
-     *
-     *     renderSelectors: {
-     *         image: 'img.x-image-component-img',
-     *         descEl: 'div.x-image-component-desc'
-     *     }
-     *
-     * After rendering, the Component would have a property `image` referencing its child `img` Element, and a property `descEl`
-     * referencing the `div` Element which contains the description.
+     *     Ext.create('Ext.Component', {
+     *         renderTo: Ext.getBody(),
+     *         renderTpl: [
+     *             '&lt;h1 class=&quot;title&quot;&gt;{title}&lt;/h1&gt;',
+     *             '&lt;p&gt;{desc}&lt;/p&gt;'
+     *         ],
+     *         renderData: {
+     *             title: &quot;Error&quot;,
+     *             desc: &quot;Something went wrong&quot;
+     *         },
+     *         renderSelectors: {
+     *             titleEl: 'h1.title',
+     *             descEl: 'p'
+     *         },
+     *         listeners: {
+     *             afterrender: function(cmp){
+     *                 // After rendering the component will have a titleEl and descEl properties
+     *                 cmp.titleEl.setStyle({color: &quot;red&quot;});
+     *             }
+     *         }
+     *     });
      *
      * For a faster, but less flexible, alternative that achieves the same end result (properties for child elements on the
      * Component after render), see {@link #childEls} and {@link #addChildEls}.
      */
 
-<span id='Ext-AbstractComponent-cfg-childEls'>     /**
-</span>      * @cfg {Object[]} childEls
-      * An array describing the child elements of the Component. Each member of the array
-      * is an object with these properties:
-      *
-      * - `name` - The property name on the Component for the child element.
-      * - `itemId` - The id to combine with the Component's id that is the id of the child element.
-      * - `id` - The id of the child element.
-      *
-      * If the array member is a string, it is equivalent to `{ name: m, itemId: m }`.
-      *
-      * For example, a Component which renders two nested div's:
-      *
-      *     renderTpl: '&lt;div id=&quot;{id}-foo&quot;&gt;&lt;div id=&quot;{id}-bar&quot;&gt;{description}&lt;/div&gt;&lt;/div&gt;',
-      *
-      *     childEls: [ 'foo', 'bar' ]
-      *
-      * After rendering, the Component will have `foo` and `bar` properties that refer to the
-      * child elements. The key is that the rendered elements have id's equal to this component's
-      * id and the given name (separated by a '-'). For example, &quot;mycmp-foo&quot; and &quot;mycmp-bar&quot;
-      * are the element id's given a component id of &quot;mycmp&quot;.
-      *
-      * A more flexible, but somewhat slower, approach is {@link #renderSelectors}.
-      */
+<span id='Ext-AbstractComponent-cfg-childEls'>    /**
+</span>     * @cfg {Object[]} childEls
+     * An array describing the child elements of the Component. Each member of the array
+     * is an object with these properties:
+     *
+     * - `name` - The property name on the Component for the child element.
+     * - `itemId` - The id to combine with the Component's id that is the id of the child element.
+     * - `id` - The id of the child element.
+     *
+     * If the array member is a string, it is equivalent to `{ name: m, itemId: m }`.
+     *
+     * For example, a Component which renders a title and body text:
+     *
+     *     Ext.create('Ext.Component', {
+     *         renderTo: Ext.getBody(),
+     *         renderTpl: [
+     *             '&lt;h1 id=&quot;{id}-title&quot;&gt;{title}&lt;/h1&gt;',
+     *             '&lt;p&gt;{msg}&lt;/p&gt;',
+     *         ],
+     *         renderData: {
+     *             title: &quot;Error&quot;,
+     *             msg: &quot;Something went wrong&quot;
+     *         },
+     *         childEls: [&quot;title&quot;],
+     *         listeners: {
+     *             afterrender: function(cmp){
+     *                 // After rendering the component will have a title property
+     *                 cmp.title.setStyle({color: &quot;red&quot;});
+     *             }
+     *         }
+     *     });
+     *
+     * A more flexible, but somewhat slower, approach is {@link #renderSelectors}.
+     */
 
 <span id='Ext-AbstractComponent-cfg-renderTo'>    /**
 </span>     * @cfg {String/HTMLElement/Ext.Element} renderTo
@@ -601,9 +637,9 @@ Ext.define('Ext.AbstractComponent', {
 
 <span id='Ext-AbstractComponent-cfg-autoRender'>    /**
 </span>     * @cfg {Boolean/String/HTMLElement/Ext.Element} autoRender
-     * This config is intended mainly for {@link #floating} Components which may or may not be shown. Instead of using
+     * This config is intended mainly for non-{@link #floating} Components which may or may not be shown. Instead of using
      * {@link #renderTo} in the configuration, and rendering upon construction, this allows a Component to render itself
-     * upon first _{@link #show}_.
+     * upon first _{@link #show}_. If {@link #floating} is true, the value of this config is omited as if it is `true`.
      *
      * Specify as `true` to have this Component render to the document body upon first show.
      *
@@ -3224,6 +3260,9 @@ Ext.define('Ext.AbstractComponent', {
                 }
             }
         }
+        delete me.rendered;
+        delete me.el;
+        delete me.frameBody;
     },
 
 <span id='Ext-AbstractComponent-method-destroy'>    /**

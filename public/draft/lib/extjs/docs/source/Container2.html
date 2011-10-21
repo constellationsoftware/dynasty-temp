@@ -198,6 +198,20 @@ Ext.define('Ext.grid.header.Container', {
         Ext.destroy(this.resizer, this.reorderer);
         this.callParent();
     },
+    
+    applyDefaults: function(config){
+        /*
+         * Ensure header.Container defaults don't get applied to a RowNumberer 
+         * if an xtype is supplied. This isn't an ideal solution however it's 
+         * much more likely that a RowNumberer with no options will be created, 
+         * wanting to use the defaults specified on the class as opposed to 
+         * those setup on the Container.
+         */
+        if (config &amp;&amp; !config.isComponent &amp;&amp; config.xtype == 'rownumberer') {
+            return config;
+        }
+        return this.callParent([config]);
+    },
 
     applyColumnsState: function(columns) {
         if (!columns || !columns.length) {
@@ -318,7 +332,7 @@ Ext.define('Ext.grid.header.Container', {
 
     },
 
-    onHeaderShow: function(header) {
+    onHeaderShow: function(header, preventLayout) {
         // Pass up to the GridSection
         var me = this,
             gridSection = me.ownerCt,
@@ -369,7 +383,20 @@ Ext.define('Ext.grid.header.Container', {
         me.fireEvent('columnshow', me, header);
 
         // The header's own hide suppresses cascading layouts, so lay the headers out now
-        me.doLayout();
+        if (preventLayout !== true) {
+            me.doLayout();
+        }
+    },
+
+    doComponentLayout: function(){
+        var me = this;
+        if (me.view &amp;&amp; me.view.saveScrollState) {
+            me.view.saveScrollState();
+        }
+        me.callParent(arguments);
+        if (me.view &amp;&amp; me.view.restoreScrollState) {
+            me.view.restoreScrollState();
+        }
     },
 
     onHeaderHide: function(header, suppressLayout) {
@@ -527,7 +554,7 @@ Ext.define('Ext.grid.header.Container', {
         var me = this,
             gridSection = me.ownerCt;
 
-        if (gridSection) {
+        if (gridSection &amp;&amp; gridSection.onHeaderMove) {
             gridSection.onHeaderMove(me, header, fromIdx, toIdx);
         }
         me.fireEvent(&quot;columnmove&quot;, me, header, fromIdx, toIdx);
@@ -670,7 +697,7 @@ Ext.define('Ext.grid.header.Container', {
         for (; i &lt; headersLn; i++) {
             header = headers[i];
 
-            if (header.hidden) {
+            if (header.hidden || header.up('headercontainer[hidden=true]')) {
                 width = 0;
             } else {
                 width = header.getDesiredWidth();

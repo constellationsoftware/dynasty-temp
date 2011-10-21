@@ -45,14 +45,14 @@
  *         store: store,
  *         axes: [{
  *             type: 'Numeric',
- *             position: 'bottom',
- *             fields: ['data1', 'data2', 'data3'],
+ *             position: 'left',
+ *             fields: ['data2', 'data3'],
  *             title: 'Sample Values',
  *             grid: true,
  *             minimum: 0
  *         }, {
  *             type: 'Category',
- *             position: 'left',
+ *             position: 'bottom',
  *             fields: ['name'],
  *             title: 'Sample Metrics'
  *         }],
@@ -148,7 +148,7 @@ Ext.define('Ext.chart.series.Scatter', {
     getBounds: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             axes = [].concat(me.axis),
             bbox, xScale, yScale, ln, minX, minY, maxX, maxY, i, axis, ends;
 
@@ -219,7 +219,7 @@ Ext.define('Ext.chart.series.Scatter', {
         var me = this,
             chart = me.chart,
             enableShadows = chart.shadow,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             group = me.group,
             bounds = me.bounds = me.getBounds(),
             bbox = me.bbox,
@@ -247,10 +247,10 @@ Ext.define('Ext.chart.series.Scatter', {
                 return;
             }
             // Ensure a value
-            if (typeof xValue == 'string' || typeof xValue == 'object') {
+            if (typeof xValue == 'string' || typeof xValue == 'object' &amp;&amp; !Ext.isDate(xValue)) {
                 xValue = i;
             }
-            if (typeof yValue == 'string' || typeof yValue == 'object') {
+            if (typeof yValue == 'string' || typeof yValue == 'object' &amp;&amp; !Ext.isDate(yValue)) {
                 yValue = i;
             }
             x = boxX + (xValue - minX) * xScale;
@@ -376,7 +376,7 @@ Ext.define('Ext.chart.series.Scatter', {
     drawSeries: function() {
         var me = this,
             chart = me.chart,
-            store = chart.substore || chart.store,
+            store = chart.getChartStore(),
             group = me.group,
             enableShadows = chart.shadow,
             shadowGroups = me.shadowGroups,

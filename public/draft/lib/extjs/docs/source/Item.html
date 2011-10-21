@@ -46,6 +46,11 @@ Ext.define('Ext.menu.Item', {
      * Whether or not this item is currently activated
      */
 
+<span id='Ext-menu-Item-property-parentMenu'>    /**
+</span>     * @property {Ext.menu.Menu} parentMenu
+     * The parent Menu of this item.
+     */
+
 <span id='Ext-menu-Item-cfg-activeCls'>    /**
 </span>     * @cfg {String} activeCls
      * The CSS class added to the menu item when the item is activated (focused/mouseover).
@@ -162,7 +167,7 @@ Ext.define('Ext.menu.Item', {
                 '&lt;img id=&quot;{id}-iconEl&quot; src=&quot;{icon}&quot; class=&quot;' + Ext.baseCSSPrefix + 'menu-item-icon {iconCls}&quot; /&gt;',
                 '&lt;span id=&quot;{id}-textEl&quot; class=&quot;' + Ext.baseCSSPrefix + 'menu-item-text&quot; &lt;tpl if=&quot;menu&quot;&gt;style=&quot;margin-right: 17px;&quot;&lt;/tpl&gt; &gt;{text}&lt;/span&gt;',
                 '&lt;tpl if=&quot;menu&quot;&gt;',
-                    '&lt;img id=&quot;{id}-arrowEl&quot; src=&quot;' + Ext.BLANK_IMAGE_URL + '&quot; class=&quot;' + Ext.baseCSSPrefix + 'menu-item-arrow&quot; /&gt;',
+                    '&lt;img id=&quot;{id}-arrowEl&quot; src=&quot;{blank}&quot; class=&quot;' + Ext.baseCSSPrefix + 'menu-item-arrow&quot; /&gt;',
                 '&lt;/tpl&gt;',
             '&lt;/a&gt;',
         '&lt;/tpl&gt;'
@@ -351,16 +356,18 @@ Ext.define('Ext.menu.Item', {
     },
 
     onRender: function(ct, pos) {
-        var me = this;
+        var me = this,
+            blank = Ext.BLANK_IMAGE_URL;
 
         Ext.applyIf(me.renderData, {
             href: me.href || '#',
             hrefTarget: me.hrefTarget,
-            icon: me.icon || Ext.BLANK_IMAGE_URL,
+            icon: me.icon || blank,
             iconCls: me.iconCls + (me.checkChangeDisabled ? ' ' + me.disabledCls : ''),
             menu: Ext.isDefined(me.menu),
             plain: me.plain,
-            text: me.text
+            text: me.text,
+            blank: blank
         });
 
         me.addChildEls('itemEl', 'iconEl', 'textEl', 'arrowEl');

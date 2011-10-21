@@ -21,7 +21,9 @@
  * @class Ext.Base
  *
  * The root of all classes created with {@link Ext#define}.
- * All prototype and static members of this class are inherited by any other class
+ *
+ * Ext.Base is the building block of all Ext classes. All classes in Ext inherit from Ext.Base.
+ * All prototype and static members of this class are inherited by all other classes.
  */
 (function(flexSetter) {
 
@@ -345,7 +347,7 @@ var Base = Ext.Base = function() {};
 
     // These static properties will be copied to every newly created class with {@link Ext#define}
     Ext.apply(Ext.Base, {
-<span id='Ext-Base-method-create'>        /**
+<span id='Ext-Base-static-method-create'>        /**
 </span>         * Create a new instance of this Class.
          *
          *     Ext.define('My.cool.Class', {
@@ -407,7 +409,7 @@ var Base = Ext.Base = function() {};
             this.prototype[name] = fn;
         },
 
-<span id='Ext-Base-method-addStatics'>        /**
+<span id='Ext-Base-static-method-addStatics'>        /**
 </span>         * Add / override static properties of this class.
          *
          *     Ext.define('My.cool.Class', {
@@ -477,7 +479,7 @@ var Base = Ext.Base = function() {};
             return this;
         },
 
-<span id='Ext-Base-method-implement'>        /**
+<span id='Ext-Base-static-method-implement'>        /**
 </span>         * Add methods / properties to the prototype of this class.
          *
          *     Ext.define('My.awesome.Cat', {
@@ -538,7 +540,7 @@ var Base = Ext.Base = function() {};
             }
         },
 
-<span id='Ext-Base-method-borrow'>        /**
+<span id='Ext-Base-static-method-borrow'>        /**
 </span>         * Borrow another class' members to the prototype of this class.
          *
          *     Ext.define('Bank', {
@@ -580,7 +582,7 @@ var Base = Ext.Base = function() {};
             return this;
         },
 
-<span id='Ext-Base-method-override'>        /**
+<span id='Ext-Base-static-method-override'>        /**
 </span>         * Override prototype members of this class. Overridden methods can be invoked via
          * {@link Ext.Base#callOverridden}
          *
@@ -726,7 +728,7 @@ var Base = Ext.Base = function() {};
         },
         //&lt;/feature&gt;
 
-<span id='Ext-Base-method-getName'>        /**
+<span id='Ext-Base-static-method-getName'>        /**
 </span>         * Get the current class' name in string format.
          *
          *     Ext.define('My.cool.Class', {
@@ -745,7 +747,7 @@ var Base = Ext.Base = function() {};
             return Ext.getClassName(this);
         },
 
-<span id='Ext-Base-method-createAlias'>        /**
+<span id='Ext-Base-static-method-createAlias'>        /**
 </span>         * Create aliases for existing prototype methods. Example:
          *
          *     Ext.define('My.cool.Class', {

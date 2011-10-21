@@ -46,7 +46,7 @@
 (function() {
 
 // Current core version
-var version = '4.0.6', Version;
+var version = '4.0.7', Version;
     Ext.Version = Version = Ext.extend(Object, {
 
 <span id='Ext-Version-method-constructor'>        /**
@@ -215,7 +215,7 @@ var version = '4.0.6', Version;
             'pl': -1
         },
 
-<span id='Ext-Version-method-getComponentValue'>        /**
+<span id='Ext-Version-static-method-getComponentValue'>        /**
 </span>         * Converts a version component to a comparable value
          *
          * @static
@@ -226,7 +226,7 @@ var version = '4.0.6', Version;
             return !value ? 0 : (isNaN(value) ? this.releaseValueMap[value] || value : parseInt(value, 10));
         },
 
-<span id='Ext-Version-method-compare'>        /**
+<span id='Ext-Version-static-method-compare'>        /**
 </span>         * Compare 2 specified versions, starting from left to right. If a part contains special version strings,
          * they are handled in the following order:
          * 'dev' &lt; 'alpha' = 'a' &lt; 'beta' = 'b' &lt; 'RC' = 'rc' &lt; '#' &lt; 'pl' = 'p' &lt; 'anything else'

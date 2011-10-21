@@ -123,7 +123,7 @@ Ext.onReady(function () {
             series: [{
                 type: 'line',
                 smooth: false,
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 xField: 'date',
                 yField: 'visits',
                 label: {
@@ -138,7 +138,7 @@ Ext.onReady(function () {
                 }
             },{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 smooth: false,
                 xField: 'date',
                 yField: 'views',
@@ -154,7 +154,7 @@ Ext.onReady(function () {
                 }
             },{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 smooth: false,
                 xField: 'date',
                 yField: 'users',

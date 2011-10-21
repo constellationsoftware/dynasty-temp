@@ -151,7 +151,7 @@ Ext.define('Ext.draw.Surface', {
     separatorRe: /[, ]+/,
 
     statics: {
-<span id='Ext-draw-Surface-method-create'>        /**
+<span id='Ext-draw-Surface-static-method-create'>        /**
 </span>         * Creates and returns a new concrete Surface instance appropriate for the current environment.
          * @param {Object} config Initial configuration for the Surface instance
          * @param {String[]} enginePriority (Optional) order of implementations to use; the first one that is
@@ -290,7 +290,12 @@ Ext.define('Ext.draw.Surface', {
     renderItems: Ext.emptyFn,
 
     // @private
-    setViewBox: Ext.emptyFn,
+    setViewBox: function (x, y, width, height) {
+        if (isFinite(x) &amp;&amp; isFinite(y) &amp;&amp; isFinite(width) &amp;&amp; isFinite(height)) {
+            this.viewBox = {x: x, y: y, width: width, height: height};
+            this.applyViewBox();
+        }
+    },
 
 <span id='Ext-draw-Surface-method-addCls'>    /**
 </span>     * Adds one or more CSS classes to the element. Duplicate classes are automatically filtered out.
@@ -412,6 +417,7 @@ Ext.define('Ext.draw.Surface', {
                 hidden: false
             }, true);
         }
+        this.applyViewBox();
     },
 
     // @private
@@ -656,6 +662,52 @@ Ext.define('Ext.draw.Surface', {
     onRemove: Ext.emptyFn,
 
     onDestroy: Ext.emptyFn,
+
+<span id='Ext-draw-Surface-method-applyViewBox'>    /**
+</span>     * @private Using the current viewBox property and the surface's width and height, calculate the
+     * appropriate viewBoxShift that will be applied as a persistent transform to all sprites.
+     */
+    applyViewBox: function() {
+        var me = this,
+            viewBox = me.viewBox,
+            width = me.width,
+            height = me.height,
+            viewBoxX, viewBoxY, viewBoxWidth, viewBoxHeight,
+            relativeHeight, relativeWidth, size;
+
+        if (viewBox &amp;&amp; (width || height)) {
+            viewBoxX = viewBox.x;
+            viewBoxY = viewBox.y;
+            viewBoxWidth = viewBox.width;
+            viewBoxHeight = viewBox.height;
+            relativeHeight = height / viewBoxHeight;
+            relativeWidth = width / viewBoxWidth;
+
+            if (viewBoxWidth * relativeHeight &lt; width) {
+                viewBoxX -= (width - viewBoxWidth * relativeHeight) / 2 / relativeHeight;
+            }
+            if (viewBoxHeight * relativeWidth &lt; height) {
+                viewBoxY -= (height - viewBoxHeight * relativeWidth) / 2 / relativeWidth;
+            }
+
+            size = 1 / Math.min(viewBoxWidth, relativeHeight);
+
+            me.viewBoxShift = {
+                dx: -viewBoxX,
+                dy: -viewBoxY,
+                scale: size
+            };
+        }
+    },
+
+    transformToViewBox: function (x, y) {
+        if (this.viewBoxShift) {
+            var me = this, shift = me.viewBoxShift;
+            return [x * shift.scale - shift.dx, y * shift.scale - shift.dy];
+        } else {
+            return [x, y];
+        }
+    },
 
     // @private
     applyTransformations: function(sprite) {

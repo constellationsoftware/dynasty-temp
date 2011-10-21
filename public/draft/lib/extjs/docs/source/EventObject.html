@@ -488,7 +488,7 @@ Ext.define('Ext.EventObjectImpl', {
      */
     correctWheelDelta : function (delta) {
         var scale = this.WHEEL_SCALE,
-            ret = Math.round(delta / scale + 0.5);
+            ret = Math.round(delta / scale);
 
         if (!ret &amp;&amp; delta) {
             ret = (delta &lt; 0) ? -1 : 1; // don't allow non-zero deltas to go to zero!

@@ -131,7 +131,7 @@ map.addBinding({
 
         if (Ext.isString(keyCode)) {
             keys = [];
-            keyString = keyCode.toLowerCase();
+            keyString = keyCode.toUpperCase();
 
             for (i = 0, len = keyString.length; i &lt; len; ++i){
                 keys.push(keyString.charCodeAt(i));
@@ -148,7 +148,7 @@ map.addBinding({
             for (i = 0, len = keyCode.length; i &lt; len; ++i) {
                 key = keyCode[i];
                 if (Ext.isString(key)) {
-                    keyCode[i] = key.toLowerCase().charCodeAt(0);
+                    keyCode[i] = key.toUpperCase().charCodeAt(0);
                 }
             }
         }
@@ -282,9 +282,11 @@ map.addBinding({
 </span>     * Enables this KeyMap
      */
     enable: function(){
-        if(!this.enabled){
-            this.el.on(this.eventName, this.handleKeyDown, this);
-            this.enabled = true;
+        var me = this;
+        
+        if (!me.enabled) {
+            me.el.on(me.eventName, me.handleKeyDown, me);
+            me.enabled = true;
         }
     },
 
@@ -292,9 +294,11 @@ map.addBinding({
 </span>     * Disable this KeyMap
      */
     disable: function(){
-        if(this.enabled){
-            this.el.removeListener(this.eventName, this.handleKeyDown, this);
-            this.enabled = false;
+        var me = this;
+        
+        if (me.enabled) {
+            me.el.removeListener(me.eventName, me.handleKeyDown, me);
+            me.enabled = false;
         }
     },
 

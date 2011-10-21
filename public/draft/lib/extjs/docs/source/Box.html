@@ -609,6 +609,8 @@ Ext.define('Ext.layout.container.Box', {
         me.updateChildBoxes(boxes);
         me.handleTargetOverflow(targetSize);
     },
+    
+    animCallback: Ext.emptyFn,
 
 <span id='Ext-layout-container-Box-method-updateChildBoxes'>    /**
 </span>     * Resizes and repositions each child component
@@ -700,6 +702,7 @@ Ext.define('Ext.layout.container.Box', {
                 // When we've animated all changed boxes into position, clear our busy flag and call the callback.
                 length -= 1;
                 if (!length) {
+                    me.animCallback(anim);
                     me.layoutBusy = false;
                     if (Ext.isFunction(animCallback)) {
                         animCallback();

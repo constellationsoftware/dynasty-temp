@@ -217,8 +217,9 @@ Ext.define('Ext.data.reader.Json', {
 
     //inherit docs
     getResponseData: function(response) {
+        var data;
         try {
-            var data = Ext.decode(response.responseText);
+            data = Ext.decode(response.responseText);
         }
         catch (ex) {
             Ext.Error.raise({
@@ -266,6 +267,11 @@ Ext.define('Ext.data.reader.Json', {
 
         if (recordName) {
             length = root.length;
+            
+            if (!length &amp;&amp; Ext.isObject(root)) {
+                length = 1;
+                root = [root];
+            }
 
             for (i = 0; i &lt; length; i++) {
                 data[i] = root[i][recordName];

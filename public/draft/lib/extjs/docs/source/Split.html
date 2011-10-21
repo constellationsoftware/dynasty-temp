@@ -100,22 +100,14 @@ Ext.define('Ext.button.Split', {
         e.preventDefault();
         if (!me.disabled) {
             if (me.overMenuTrigger) {
-                if (me.menu &amp;&amp; !me.menu.isVisible() &amp;&amp; !me.ignoreNextClick) {
-                    me.showMenu();
-                }
+                me.maybeShowMenu();
                 me.fireEvent(&quot;arrowclick&quot;, me, e);
                 if (me.arrowHandler) {
                     me.arrowHandler.call(me.scope || me, me, e);
                 }
             } else {
-                if (me.enableToggle) {
-                    me.toggle();
-                }
-                me.fireEvent(&quot;click&quot;, me, e);
-                if (me.handler) {
-                    me.handler.call(me.scope || me, me, e);
-                }
-                me.onBlur();
+                me.doToggle();
+                me.fireHandler();
             }
         }
     }

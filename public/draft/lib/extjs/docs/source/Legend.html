@@ -209,9 +209,9 @@ Ext.define('Ext.chart.Legend', {
      */
     create: function() {
         var me = this;
+        me.createBox();
         me.createItems();
         if (!me.created &amp;&amp; me.isDisplayed()) {
-            me.createBox();
             me.created = true;
 
             // Listen for changes to series titles to trigger regeneration of the legend
@@ -329,13 +329,20 @@ Ext.define('Ext.chart.Legend', {
      */
     createBox: function() {
         var me = this,
-            box = me.boxSprite = me.chart.surface.add(Ext.apply({
-                type: 'rect',
-                stroke: me.boxStroke,
-                &quot;stroke-width&quot;: me.boxStrokeWidth,
-                fill: me.boxFill,
-                zIndex: me.boxZIndex
-            }, me.getBBox()));
+            box;
+
+        if (me.boxSprite) {
+            me.boxSprite.destroy();
+        }
+        
+        box = me.boxSprite = me.chart.surface.add(Ext.apply({
+            type: 'rect',
+            stroke: me.boxStroke,
+            &quot;stroke-width&quot;: me.boxStrokeWidth,
+            fill: me.boxFill,
+            zIndex: me.boxZIndex
+        }, me.getBBox()));
+
         box.redraw();
     },
 
@@ -392,6 +399,7 @@ Ext.define('Ext.chart.Legend', {
             me.boxSprite.setAttributes(me.getBBox(), true);
         }
     }
-});</pre>
+});
+</pre>
 </body>
 </html>

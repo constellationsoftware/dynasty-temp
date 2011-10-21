@@ -157,7 +157,16 @@ Ext.define('Ext.ZIndexManager', {
     _showModalMask: function(comp) {
         var zIndex = comp.el.getStyle('zIndex') - 4,
             maskTarget = comp.floatParent ? comp.floatParent.getTargetEl() : Ext.get(comp.getEl().dom.parentNode),
-            parentBox = maskTarget.getBox();
+            parentBox;
+        
+        if (!maskTarget) {
+            //&lt;debug&gt;
+            Ext.global.console &amp;&amp; Ext.global.console.warn &amp;&amp; Ext.global.console.warn('mask target could not be found. Mask cannot be shown');
+            //&lt;/debug&gt;
+            return;
+        }
+        
+        parentBox = maskTarget.getBox();
 
         if (!this.mask) {
             this.mask = Ext.getBody().createChild({

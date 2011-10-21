@@ -20,193 +20,15 @@
  * @docauthor Jacky Nguyen &lt;jacky@sencha.com&gt;
  * @class Ext.Class
  *
- * Handles class creation throughout the whole framework. Note that most of the time {@link Ext#define Ext.define} should
- * be used instead, since it's a higher level wrapper that aliases to {@link Ext.ClassManager#create}
- * to enable namespacing and dynamic dependency resolution.
+ * Handles class creation throughout the framework. This is a low level factory that is used by Ext.ClassManager and generally
+ * should not be used directly. If you choose to use Ext.Class you will lose out on the namespace, aliasing and depency loading
+ * features made available by Ext.ClassManager. The only time you would use Ext.Class directly is to create an anonymous class.
  *
- * # Basic syntax:
+ * If you wish to create a class you should use {@link Ext#define Ext.define} which aliases
+ * {@link Ext.ClassManager#create Ext.ClassManager.create} to enable namespacing and dynamic dependency resolution.
  *
- *     Ext.define(className, properties);
- *
- * in which `properties` is an object represent a collection of properties that apply to the class. See
- * {@link Ext.ClassManager#create} for more detailed instructions.
- *
- *     Ext.define('Person', {
- *          name: 'Unknown',
- *
- *          constructor: function(name) {
- *              if (name) {
- *                  this.name = name;
- *              }
- *
- *              return this;
- *          },
- *
- *          eat: function(foodType) {
- *              alert(&quot;I'm eating: &quot; + foodType);
- *
- *              return this;
- *          }
- *     });
- *
- *     var aaron = new Person(&quot;Aaron&quot;);
- *     aaron.eat(&quot;Sandwich&quot;); // alert(&quot;I'm eating: Sandwich&quot;);
- *
- * Ext.Class has a powerful set of extensible {@link Ext.Class#registerPreprocessor pre-processors} which takes care of
- * everything related to class creation, including but not limited to inheritance, mixins, configuration, statics, etc.
- *
- * # Inheritance:
- *
- *     Ext.define('Developer', {
- *          extend: 'Person',
- *
- *          constructor: function(name, isGeek) {
- *              this.isGeek = isGeek;
- *
- *              // Apply a method from the parent class' prototype
- *              this.callParent([name]);
- *
- *              return this;
- *
- *          },
- *
- *          code: function(language) {
- *              alert(&quot;I'm coding in: &quot; + language);
- *
- *              this.eat(&quot;Bugs&quot;);
- *
- *              return this;
- *          }
- *     });
- *
- *     var jacky = new Developer(&quot;Jacky&quot;, true);
- *     jacky.code(&quot;JavaScript&quot;); // alert(&quot;I'm coding in: JavaScript&quot;);
- *                               // alert(&quot;I'm eating: Bugs&quot;);
- *
- * See {@link Ext.Base#callParent} for more details on calling superclass' methods
- *
- * # Mixins:
- *
- *     Ext.define('CanPlayGuitar', {
- *          playGuitar: function() {
- *             alert(&quot;F#...G...D...A&quot;);
- *          }
- *     });
- *
- *     Ext.define('CanComposeSongs', {
- *          composeSongs: function() { ... }
- *     });
- *
- *     Ext.define('CanSing', {
- *          sing: function() {
- *              alert(&quot;I'm on the highway to hell...&quot;)
- *          }
- *     });
- *
- *     Ext.define('Musician', {
- *          extend: 'Person',
- *
- *          mixins: {
- *              canPlayGuitar: 'CanPlayGuitar',
- *              canComposeSongs: 'CanComposeSongs',
- *              canSing: 'CanSing'
- *          }
- *     })
- *
- *     Ext.define('CoolPerson', {
- *          extend: 'Person',
- *
- *          mixins: {
- *              canPlayGuitar: 'CanPlayGuitar',
- *              canSing: 'CanSing'
- *          },
- *
- *          sing: function() {
- *              alert(&quot;Ahem....&quot;);
- *
- *              this.mixins.canSing.sing.call(this);
- *
- *              alert(&quot;[Playing guitar at the same time...]&quot;);
- *
- *              this.playGuitar();
- *          }
- *     });
- *
- *     var me = new CoolPerson(&quot;Jacky&quot;);
- *
- *     me.sing(); // alert(&quot;Ahem...&quot;);
- *                // alert(&quot;I'm on the highway to hell...&quot;);
- *                // alert(&quot;[Playing guitar at the same time...]&quot;);
- *                // alert(&quot;F#...G...D...A&quot;);
- *
- * # Config:
- *
- *     Ext.define('SmartPhone', {
- *          config: {
- *              hasTouchScreen: false,
- *              operatingSystem: 'Other',
- *              price: 500
- *          },
- *
- *          isExpensive: false,
- *
- *          constructor: function(config) {
- *              this.initConfig(config);
- *
- *              return this;
- *          },
- *
- *          applyPrice: function(price) {
- *              this.isExpensive = (price &gt; 500);
- *
- *              return price;
- *          },
- *
- *          applyOperatingSystem: function(operatingSystem) {
- *              if (!(/^(iOS|Android|BlackBerry)$/i).test(operatingSystem)) {
- *                  return 'Other';
- *              }
- *
- *              return operatingSystem;
- *          }
- *     });
- *
- *     var iPhone = new SmartPhone({
- *          hasTouchScreen: true,
- *          operatingSystem: 'iOS'
- *     });
- *
- *     iPhone.getPrice(); // 500;
- *     iPhone.getOperatingSystem(); // 'iOS'
- *     iPhone.getHasTouchScreen(); // true;
- *     iPhone.hasTouchScreen(); // true
- *
- *     iPhone.isExpensive; // false;
- *     iPhone.setPrice(600);
- *     iPhone.getPrice(); // 600
- *     iPhone.isExpensive; // true;
- *
- *     iPhone.setOperatingSystem('AlienOS');
- *     iPhone.getOperatingSystem(); // 'Other'
- *
- * # Statics:
- *
- *     Ext.define('Computer', {
- *          statics: {
- *              factory: function(brand) {
- *                 // 'this' in static methods refer to the class itself
- *                  return new this(brand);
- *              }
- *          },
- *
- *          constructor: function() { ... }
- *     });
- *
- *     var dellComputer = Computer.factory('Dell');
- *
- * Also see {@link Ext.Base#statics} and {@link Ext.Base#self} for more details on accessing
- * static properties within class methods
- *
+ * Ext.Class is the factory and **not** the superclass of everything. For the base class that **all** Ext classes inherit
+ * from, see {@link Ext.Base}.
  */
 (function() {
 
@@ -311,7 +133,7 @@
 <span id='Ext-Class-property-preprocessors'>        /** @private */
 </span>        preprocessors: {},
 
-<span id='Ext-Class-method-registerPreprocessor'>        /**
+<span id='Ext-Class-static-method-registerPreprocessor'>        /**
 </span>         * Register a new pre-processor to be used during the class creation process
          *
          * @member Ext.Class
@@ -334,7 +156,7 @@
          * regardless of whether the processing is synchronous or aynchronous
          *
          * @return {Ext.Class} this
-         * @markdown
+         * @static
          */
         registerPreprocessor: function(name, fn, always) {
             this.preprocessors[name] = {
@@ -346,11 +168,12 @@
             return this;
         },
 
-<span id='Ext-Class-method-getPreprocessor'>        /**
+<span id='Ext-Class-static-method-getPreprocessor'>        /**
 </span>         * Retrieve a pre-processor callback function by its name, which has been registered before
          *
          * @param {String} name
          * @return {Function} preprocessor
+         * @static
          */
         getPreprocessor: function(name) {
             return this.preprocessors[name];
@@ -360,20 +183,22 @@
             return this.preprocessors;
         },
 
-<span id='Ext-Class-method-getDefaultPreprocessors'>        /**
+<span id='Ext-Class-static-method-getDefaultPreprocessors'>        /**
 </span>         * Retrieve the array stack of default pre-processors
          *
          * @return {Function[]} defaultPreprocessors
+         * @static
          */
         getDefaultPreprocessors: function() {
             return this.defaultPreprocessors || [];
         },
 
-<span id='Ext-Class-method-setDefaultPreprocessors'>        /**
+<span id='Ext-Class-static-method-setDefaultPreprocessors'>        /**
 </span>         * Set the default array stack of default pre-processors
          *
          * @param {Function/Function[]} preprocessors
          * @return {Ext.Class} this
+         * @static
          */
         setDefaultPreprocessors: function(preprocessors) {
             this.defaultPreprocessors = Ext.Array.from(preprocessors);
@@ -381,7 +206,7 @@
             return this;
         },
 
-<span id='Ext-Class-method-setDefaultPreprocessorPosition'>        /**
+<span id='Ext-Class-static-method-setDefaultPreprocessorPosition'>        /**
 </span>         * Inserts this pre-processor at a specific position in the stack, optionally relative to
          * any existing pre-processor. For example:
          *
@@ -391,7 +216,7 @@
          *         if (fn) {
          *             fn.call(this, cls, data);
          *         }
-         *     }).insertDefaultPreprocessor('debug', 'last');
+         *     }).setDefaultPreprocessorPosition('debug', 'last');
          *
          * @param {String} name The pre-processor name. Note that it needs to be registered with
          * {@link #registerPreprocessor registerPreprocessor} before this
@@ -399,6 +224,7 @@
          * 'first', 'last', or: 'before', 'after' (relative to the name provided in the third argument)
          * @param {String} relativeName
          * @return {Ext.Class} this
+         * @static
          */
         setDefaultPreprocessorPosition: function(name, offset, relativeName) {
             var defaultPreprocessors = this.defaultPreprocessors,

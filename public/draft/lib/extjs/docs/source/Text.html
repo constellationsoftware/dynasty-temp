@@ -310,7 +310,7 @@ Ext.define('Ext.form.field.Text', {
      * Override. Treat undefined and null values as equal to an empty string value.
      */
     isEqual: function(value1, value2) {
-        return String(Ext.value(value1, '')) === String(Ext.value(value2, ''));
+        return this.isEqualAsString(value1, value2);
     },
 
 <span id='Ext-form-field-Text-method-onChange'>    /**

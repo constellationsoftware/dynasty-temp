@@ -67,6 +67,19 @@ Ext.define('Ext.data.Connection', {
      */
     disableCaching: true,
 
+<span id='Ext-data-Connection-cfg-withCredentials'>    /**
+</span>     * @cfg {Boolean} withCredentials
+     * True to set `withCredentials = true` on the XHR object
+     */
+    withCredentials: false,
+
+<span id='Ext-data-Connection-cfg-cors'>    /**
+</span>     * @cfg {Boolean} cors
+     * True to enable CORS support on the XHR object. Currently the only effect of this option
+     * is to use the XDomainRequest object instead of XMLHttpRequest if the browser is IE8 or above.
+     */
+    cors: false,
+
 <span id='Ext-data-Connection-cfg-disableCachingParam'>    /**
 </span>     * @cfg {String} disableCachingParam
      * Change the parameter which is sent went disabling caching through a cache buster.
@@ -190,7 +203,7 @@ Ext.define('Ext.data.Connection', {
      * @param {Number} options.timeout The timeout in milliseconds to be used for this request.
      * Defaults to 30 seconds.
      *
-     * @param {Element/HTMLElement/String} options.form The `&lt;form&gt;` Element or the id of the `&lt;form&gt;`
+     * @param {Ext.Element/HTMLElement/String} options.form The `&lt;form&gt;` Element or the id of the `&lt;form&gt;`
      * to pull parameters from.
      *
      * @param {Boolean} options.isUpload **Only meaningful when used with the `form` option.**
@@ -230,6 +243,8 @@ Ext.define('Ext.data.Connection', {
      *
      * @param {Boolean} options.disableCaching True to add a unique cache-buster param to GET requests.
      *
+     * @param {Boolean} options.withCredentials True to add the withCredentials property to the XHR object
+     *
      * @return {Object} The request object. This may be used to cancel the request.
      */
     request : function(options) {
@@ -259,7 +274,12 @@ Ext.define('Ext.data.Connection', {
             }
 
             // create a connection object
-            xhr = this.getXhrInstance();
+
+            if ((options.cors === true || me.cors === true) &amp;&amp; Ext.isIE &amp;&amp; Ext.ieVersion &gt;= 8) {
+                xhr = new XDomainRequest();
+            } else {
+                xhr = this.getXhrInstance();
+            }
 
             async = options.async !== false ? (options.async || me.async) : false;
 
@@ -268,6 +288,10 @@ Ext.define('Ext.data.Connection', {
                 xhr.open(requestOptions.method, requestOptions.url, async, username, password);
             } else {
                 xhr.open(requestOptions.method, requestOptions.url, async);
+            }
+
+            if (options.withCredentials === true || me.withCredentials === true) {
+                xhr.withCredentials = true;
             }
 
             headers = me.setupHeaders(xhr, options, requestOptions.data, requestOptions.params);
@@ -285,10 +309,16 @@ Ext.define('Ext.data.Connection', {
                 }, options.timeout || me.timeout)
             };
             me.requests[request.id] = request;
-
+            me.latestId = request.id;
             // bind our statechange listener
             if (async) {
                 xhr.onreadystatechange = Ext.Function.bind(me.onStateChange, me, [request]);
+            }
+
+            if ((options.cors === true || me.cors === true) &amp;&amp; Ext.isIE &amp;&amp; Ext.ieVersion &gt;= 8) {
+                xhr.onload = function() {
+                    me.onComplete(request);
+                }
             }
 
             // start the request!
@@ -310,7 +340,7 @@ Ext.define('Ext.data.Connection', {
      * @param {String} params Any extra parameters to pass
      * @param {Object} options The initial options
      */
-    upload: function(form, url, params, options){
+    upload: function(form, url, params, options) {
         form = Ext.getDom(form);
         options = options || {};
 
@@ -376,7 +406,13 @@ Ext.define('Ext.data.Connection', {
         });
     },
 
-    onUploadComplete: function(frame, options){
+<span id='Ext-data-Connection-method-onUploadComplete'>    /**
+</span>     * @private
+     * Callback handler for the upload function. After we've submitted the form via the iframe this creates a bogus
+     * response object to simulate an XHR and populates its responseText from the now-loaded iframe's document body
+     * (or a textarea inside the body). We then clean up by removing the iframe
+     */
+    onUploadComplete: function(frame, options) {
         var me = this,
             // bogus response object
             response = {
@@ -385,7 +421,7 @@ Ext.define('Ext.data.Connection', {
             }, doc, firstChild;
 
         try {
-            doc = frame.contentWindow.document || frame.contentDocument || window.frames[id].document;
+            doc = frame.contentWindow.document || frame.contentDocument || window.frames[frame.id].document;
             if (doc) {
                 if (doc.body) {
                     if (/textarea/i.test((firstChild = doc.body.firstChild || {}).tagName)) { // json response wrapped in textarea
@@ -523,6 +559,7 @@ Ext.define('Ext.data.Connection', {
 
 <span id='Ext-data-Connection-method-setupUrl'>    /**
 </span>     * Template method for overriding url
+     * @template
      * @private
      * @param {Object} options
      * @param {String} url
@@ -539,6 +576,7 @@ Ext.define('Ext.data.Connection', {
 
 <span id='Ext-data-Connection-method-setupParams'>    /**
 </span>     * Template method for overriding params
+     * @template
      * @private
      * @param {Object} options
      * @param {String} params
@@ -556,6 +594,7 @@ Ext.define('Ext.data.Connection', {
 
 <span id='Ext-data-Connection-method-setupMethod'>    /**
 </span>     * Template method for overriding method
+     * @template
      * @private
      * @param {Object} options
      * @param {String} method
@@ -647,10 +686,13 @@ Ext.define('Ext.data.Connection', {
 
 <span id='Ext-data-Connection-method-isLoading'>    /**
 </span>     * Determines whether this object has a request outstanding.
-     * @param {Object} [request] defaults to the last transaction
+     * @param {Object} [request] Defaults to the last transaction
      * @return {Boolean} True if there is an outstanding request.
      */
     isLoading : function(request) {
+        if (!request) {
+            request = this.getLatest();
+        }
         if (!(request &amp;&amp; request.xhr)) {
             return false;
         }
@@ -660,13 +702,15 @@ Ext.define('Ext.data.Connection', {
     },
 
 <span id='Ext-data-Connection-method-abort'>    /**
-</span>     * Aborts any outstanding request.
-     * @param {Object} [request] defaults to the last request
+</span>     * Aborts an active request.
+     * @param {Object} [request] Defaults to the last request
      */
     abort : function(request) {
-        var me = this,
-            requests = me.requests,
-            id;
+        var me = this;
+
+        if (!request) {
+            request = me.getLatest();
+        }
 
         if (request &amp;&amp; me.isLoading(request)) {
             /*
@@ -682,13 +726,36 @@ Ext.define('Ext.data.Connection', {
             }
             me.onComplete(request);
             me.cleanup(request);
-        } else if (!request) {
-            for(id in requests) {
-                if (requests.hasOwnProperty(id)) {
-                    me.abort(requests[id]);
-                }
+        }
+    },
+
+<span id='Ext-data-Connection-method-abortAll'>    /**
+</span>     * Aborts all active requests
+     */
+    abortAll: function(){
+        var requests = this.requests,
+            id;
+
+        for (id in requests) {
+            if (requests.hasOwnProperty(id)) {
+                this.abort(requests[id]);
             }
         }
+    },
+
+<span id='Ext-data-Connection-method-getLatest'>    /**
+</span>     * Gets the most recent request
+     * @private
+     * @return {Object} The request. Null if there is no recent request
+     */
+    getLatest: function(){
+        var id = this.latestId,
+            request;
+
+        if (id) {
+            request = this.requests[id];
+        }
+        return request || null;
     },
 
 <span id='Ext-data-Connection-method-onStateChange'>    /**
@@ -804,7 +871,7 @@ Ext.define('Ext.data.Connection', {
     createResponse : function(request) {
         var xhr = request.xhr,
             headers = {},
-            lines = xhr.getAllResponseHeaders().replace(/\r\n/g, '\n').split('\n'),
+            lines = xhr.getAllResponseHeaders ? xhr.getAllResponseHeaders().replace(/\r\n/g, '\n').split('\n') : [],
             count = lines.length,
             line, index, key, value, response;
 

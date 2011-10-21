@@ -869,7 +869,7 @@ Ext.onReady(function() {
                         xtype: 'checkboxgroup',
                         columns: [100,100],
                         items: [
-                            {boxLabel: 'Foo', checked: true,id:'fooChk',inputId:'fooChkInput'},
+                            {boxLabel: 'Foo', checked: true,id:'fooChk1',inputId:'fooChkInput1'},
                             {boxLabel: 'Bar'}
                         ]
                     },

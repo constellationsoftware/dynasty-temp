@@ -122,7 +122,7 @@ Ext.define('Ext.chart.axis.Numeric', {
 
     roundToDecimal: function(v, dec) {
         var val = Math.pow(10, dec || 0);
-        return ((v * val) &gt;&gt; 0) / val;
+        return Math.floor(v * val) / val;
     },
 
 <span id='Ext-chart-axis-Numeric-property-minimum'>    /**
@@ -150,9 +150,10 @@ Ext.define('Ext.chart.axis.Numeric', {
 
 <span id='Ext-chart-axis-Numeric-property-scale'>    /**
 </span>     * The scaling algorithm to use on this axis. May be &quot;linear&quot; or
-     * &quot;logarithmic&quot;.
+     * &quot;logarithmic&quot;.  Currently only linear scale is implemented.
      *
      * @property {String} scale
+     * @private
      */
     scale: &quot;linear&quot;,
 

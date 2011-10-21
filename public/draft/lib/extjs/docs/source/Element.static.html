@@ -32,7 +32,7 @@ Ext.applyIf(Ext.Element, {
     // Reference the prototype's version of the method. Signatures are identical.
     addUnits : Ext.Element.prototype.addUnits,
 
-<span id='Ext-Element-method-parseBox'>    /**
+<span id='Ext-Element-static-method-parseBox'>    /**
 </span>     * Parses a number or string representing margin sizes into an object. Supports CSS-style margin declarations
      * (e.g. 10, &quot;10&quot;, &quot;10 10&quot;, &quot;10 10 10&quot; and &quot;10 10 10 10&quot; are all valid options and would return the same result)
      * @static
@@ -75,7 +75,7 @@ Ext.applyIf(Ext.Element, {
         
     },
     
-<span id='Ext-Element-method-unitizeBox'>    /**
+<span id='Ext-Element-static-method-unitizeBox'>    /**
 </span>     * Parses a number or string representing margin sizes into an object. Supports CSS-style margin declarations
      * (e.g. 10, &quot;10&quot;, &quot;10 10&quot;, &quot;10 10 10&quot; and &quot;10 10 10 10&quot; are all valid options and would return the same result)
      * @static
@@ -99,7 +99,7 @@ Ext.applyIf(Ext.Element, {
         return a.charAt(1).toUpperCase();
     },
 
-<span id='Ext-Element-method-normalize'>    /**
+<span id='Ext-Element-static-method-normalize'>    /**
 </span>     * Normalizes CSS property keys from dash delimited to camel case JavaScript Syntax.
      * For example:
      * &lt;ul&gt;
@@ -117,7 +117,7 @@ Ext.applyIf(Ext.Element, {
         return this.propertyCache[prop] || (this.propertyCache[prop] = prop.replace(this.camelRe, this.camelReplaceFn));
     },
 
-<span id='Ext-Element-method-getDocumentHeight'>    /**
+<span id='Ext-Element-static-method-getDocumentHeight'>    /**
 </span>     * Retrieves the document height
      * @static
      * @return {Number} documentHeight
@@ -126,7 +126,7 @@ Ext.applyIf(Ext.Element, {
         return Math.max(!Ext.isStrict ? document.body.scrollHeight : document.documentElement.scrollHeight, this.getViewportHeight());
     },
 
-<span id='Ext-Element-method-getDocumentWidth'>    /**
+<span id='Ext-Element-static-method-getDocumentWidth'>    /**
 </span>     * Retrieves the document width
      * @static
      * @return {Number} documentWidth
@@ -135,7 +135,7 @@ Ext.applyIf(Ext.Element, {
         return Math.max(!Ext.isStrict ? document.body.scrollWidth : document.documentElement.scrollWidth, this.getViewportWidth());
     },
 
-<span id='Ext-Element-method-getViewportHeight'>    /**
+<span id='Ext-Element-static-method-getViewportHeight'>    /**
 </span>     * Retrieves the viewport height of the window.
      * @static
      * @return {Number} viewportHeight
@@ -144,7 +144,7 @@ Ext.applyIf(Ext.Element, {
         return window.innerHeight;
     },
 
-<span id='Ext-Element-method-getViewportWidth'>    /**
+<span id='Ext-Element-static-method-getViewportWidth'>    /**
 </span>     * Retrieves the viewport width of the window.
      * @static
      * @return {Number} viewportWidth
@@ -153,7 +153,7 @@ Ext.applyIf(Ext.Element, {
         return window.innerWidth;
     },
 
-<span id='Ext-Element-method-getViewSize'>    /**
+<span id='Ext-Element-static-method-getViewSize'>    /**
 </span>     * Retrieves the viewport size of the window.
      * @static
      * @return {Object} object containing width and height properties
@@ -165,7 +165,7 @@ Ext.applyIf(Ext.Element, {
         };
     },
 
-<span id='Ext-Element-method-getOrientation'>    /**
+<span id='Ext-Element-static-method-getOrientation'>    /**
 </span>     * Retrieves the current orientation of the window. This is calculated by
      * determing if the height is greater than the width.
      * @static
@@ -179,7 +179,7 @@ Ext.applyIf(Ext.Element, {
         return (window.innerHeight &gt; window.innerWidth) ? 'portrait' : 'landscape';
     },
 
-<span id='Ext-Element-method-fromPoint'>    /** 
+<span id='Ext-Element-static-method-fromPoint'>    /** 
 </span>     * Returns the top Element that is located at the passed coordinates
      * @static
      * @param {Number} x The x coordinate
@@ -190,7 +190,7 @@ Ext.applyIf(Ext.Element, {
         return Ext.get(document.elementFromPoint(x, y));
     },
     
-<span id='Ext-Element-method-parseStyles'>    /**
+<span id='Ext-Element-static-method-parseStyles'>    /**
 </span>     * Converts a CSS string into an object with a property for each style.
      * &lt;p&gt;
      * The sample code below would return an object with 2 properties, one

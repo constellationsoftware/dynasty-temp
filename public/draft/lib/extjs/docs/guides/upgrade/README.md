@@ -87,7 +87,7 @@ Ext 3 class system. The main new features are:
   - Statics
   - New config option for Automatic setter / getter generation
 
-![Ext 4 Class System](ext4-class-system.jpg)
+{@img ext4-class-system.jpg Ext 4 Class System}
 
 #### Class Definition
 
@@ -412,7 +412,7 @@ regardless of the underlying charting engine in use.
 
  - [SenchaCon Overview (video)][16]
  - [SenchaCon Overview (slides)][17]
- - ![Working with Charts](working-with-charts.gif)
+ - {@img working-with-charts.gif Working with Charts}
 
 ### Fx
 

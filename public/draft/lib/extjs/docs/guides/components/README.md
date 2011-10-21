@@ -12,7 +12,7 @@ structure that is referred to as the Component hierarchy.  Containers are respon
 sizing and positioning, and destruction. A typical application's Component hierarchy starts with a {@link Ext.container.Viewport Viewport} at the top,
 which has other Containers and/or Components nested within it:
 
-![Component Hierarchy](component_hierarchy.png)
+{@img component_hierarchy.png Component Hierarchy}
 
 Child Components are added to a Container using the Container's {@link Ext.container.Container#cfg-items items} configuration property.  This example uses {@link Ext#create Ext.create}
 to instantiate two {@link Ext.panel.Panel Panel}s, then adds those Panels as child Components of a Viewport:
@@ -85,12 +85,12 @@ Each tab has an event listener that displays an alert when the tab is rendered.
 Running this code results in an immediate alert for the first tab. This happens because it is the default active tab,
 and so its Container Tab Panel instantiates and renders it immediately.
 
-![Lazy Render 1](lazy_render1.png)
+{@img lazy_render1.png Lazy Render 1}
 
 The alert for the second tab does not get displayed until the tab is clicked on. This shows that the tab was not rendered until
 needed, since the `{@link Ext.Component#render render}` event did not fire until the tab was activated.
 
-![Lazy Render 2](lazy_render2.png)
+{@img lazy_render2.png Lazy Render 2}
 
 For a working demo see the [Lazy Instantiation Example](guides/components/examples/lazy_instantiation/index.html)
 
@@ -178,7 +178,7 @@ The `render` method is called (This is done by a Container’s layout manager). 
 It calls `this.onRender` which is the implementation within the current subclass (if implemented).
 This calls the superclass version which calls its superclass version etc. Eventually, each class has contributed its functionality, and control returns to the `render` function.
 
-![Template Pattern](template_pattern.png)
+{@img template_pattern.png Template Pattern}
 
 Here is an example of a Component subclass that implements the `onRender` method:
 

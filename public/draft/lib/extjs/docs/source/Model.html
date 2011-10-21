@@ -376,7 +376,7 @@ Ext.define('Ext.data.Model', {
     },
 
     inheritableStatics: {
-<span id='Ext-data-Model-method-setProxy'>        /**
+<span id='Ext-data-Model-static-method-setProxy'>        /**
 </span>         * Sets the Proxy to use for this model. Accepts any options that can be accepted by
          * {@link Ext#createByAlias Ext.createByAlias}.
          * @param {String/Object/Ext.data.proxy.Proxy} proxy The proxy
@@ -400,7 +400,7 @@ Ext.define('Ext.data.Model', {
             return proxy;
         },
 
-<span id='Ext-data-Model-method-getProxy'>        /**
+<span id='Ext-data-Model-static-method-getProxy'>        /**
 </span>         * Returns the configured Proxy for this Model
          * @return {Ext.data.proxy.Proxy} The proxy
          * @static
@@ -410,7 +410,7 @@ Ext.define('Ext.data.Model', {
             return this.proxy;
         },
 
-<span id='Ext-data-Model-method-load'>        /**
+<span id='Ext-data-Model-static-method-load'>        /**
 </span>         * Asynchronously loads a model instance by id. Sample usage:
          *
          *     MyApp.User = Ext.define('User', {
@@ -473,7 +473,7 @@ Ext.define('Ext.data.Model', {
         REJECT : 'reject',
         COMMIT : 'commit',
 
-<span id='Ext-data-Model-method-id'>        /**
+<span id='Ext-data-Model-static-method-id'>        /**
 </span>         * Generates a sequential id. This method is typically called when a record is {@link Ext#create
          * create}d and {@link #constructor no id has been specified}. The id will automatically be assigned to the
          * record. The returned id takes the form: {PREFIX}-{AUTO_ID}.
