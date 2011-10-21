@@ -1,5 +1,0 @@
-<script type="text/javascript" src="app/view/ui/DynastyViewport.js"></script>
-<script type="text/javascript" src="app/view/DynastyViewport.js"></script>
-<script type="text/javascript" src="app/store/PlayerStore.js"></script>
-<script type="text/javascript" src="app/store/PlayerStoreCharts.js"></script>
-<script type="text/javascript" src="app/store/DropStore.js"></script>

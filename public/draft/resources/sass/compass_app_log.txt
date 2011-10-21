@@ -1,0 +1,82 @@
+2011-10-17 16:13:54 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:14:00 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:20:50 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:20:56 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:21:06 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:48:28 identical ../css/dynasty_theme.css 
+2011-10-17 16:56:09 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:56:51 identical ../css/dynasty_theme.css 
+2011-10-17 16:57:17 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:57:29 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:57:44 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:57:52 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:59:12 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:59:25 overwrite ../css/dynasty_theme.css 
+2011-10-17 16:59:35 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:00:07 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:00:15 identical ../css/dynasty_theme.css 
+2011-10-17 17:00:20 identical ../css/dynasty_theme.css 
+2011-10-17 17:00:37 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:00:47 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:01:04 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:01:19 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:01:36 identical ../css/dynasty_theme.css 
+2011-10-17 17:01:55 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:02:07 identical ../css/dynasty_theme.css 
+2011-10-17 17:03:17 identical ../css/dynasty_theme.css 
+2011-10-17 17:19:13     error dynasty_theme.scss (Line 53: Invalid CSS after "...**************/": expected selector or at-rule, was "#header_contain...")
+2011-10-17 17:19:13 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:19:31     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:19:31 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:28:19     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:28:19 identical ../css/dynasty_theme.css 
+2011-10-17 17:28:30     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:28:30 identical ../css/dynasty_theme.css 
+2011-10-17 17:28:54     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:28:55 identical ../css/dynasty_theme.css 
+2011-10-17 17:48:16    create ../css/shoutbox.css 
+2011-10-17 17:49:02 identical ../css/shoutbox.css 
+2011-10-17 17:50:12 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:50:43     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:50:43 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:51:23     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:51:23 identical ../css/dynasty_theme.css 
+2011-10-17 17:51:53    create ../css/shoutbox.css 
+2011-10-17 17:52:11 identical ../css/shoutbox.css 
+2011-10-17 17:53:12     error dynasty_theme.scss (Line 46: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:53:12 identical ../css/dynasty_theme.css 
+2011-10-17 17:55:06     error dynasty_theme.scss (Line 63: Undefined mixin '_shoutbox'.)
+2011-10-17 17:55:06 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:55:19 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:56:10 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:56:10    create ../css/shoutbox.css 
+2011-10-17 17:58:14     error dynasty_theme.scss (Line 22: Invalid CSS after "    }": expected selector or at-rule, was "}")
+2011-10-17 17:58:14 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:58:14 identical ../css/shoutbox.css 
+2011-10-17 17:58:32     error dynasty_theme.scss (Line 47: Undefined mixin 'dynasty-shoutbox'.)
+2011-10-17 17:58:32 overwrite ../css/dynasty_theme.css 
+2011-10-17 17:58:32 identical ../css/shoutbox.css 
+2011-10-17 17:58:52 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:01:09     error dynasty_theme.scss (Line 3: Invalid CSS after "        color:": expected pseudoclass or pseudoelement, was " #666;")
+2011-10-17 18:01:09 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:01:09 identical ../css/shoutbox.css 
+2011-10-17 18:01:09 identical ../css/shoutbox.css 
+2011-10-17 18:01:23     error dynasty_theme.scss (Line 65: Undefined mixin 'shoutbox'.)
+2011-10-17 18:01:23    create ../css/dynasty_theme.css 
+2011-10-17 18:01:23    create ../css/shoutbox.css 
+2011-10-17 18:02:02     error dynasty_theme.scss (Line 3: Invalid CSS after "        color:": expected pseudoclass or pseudoelement, was " #666;")
+2011-10-17 18:02:02 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:02:02 identical ../css/shoutbox.css 
+2011-10-17 18:02:36 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:02:36 identical ../css/shoutbox.css 
+2011-10-17 18:06:06 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:06:06 identical ../css/shoutbox.css 
+2011-10-17 18:06:42 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:06:42    create ../css/shoutbox.css 
+2011-10-17 18:06:44 identical ../css/dynasty_theme.css 
+2011-10-17 18:06:51 identical ../css/dynasty_theme.css 
+2011-10-17 18:07:11 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:07:11 identical ../css/shoutbox.css 
+2011-10-17 18:08:57 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:09:31 overwrite ../css/dynasty_theme.css 
+2011-10-17 18:09:31 overwrite ../css/shoutbox.css 

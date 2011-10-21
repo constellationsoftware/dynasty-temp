@@ -1,12 +1,3 @@
-.bundle
-.DS_Store
-.rspec
-db/*.sqlite3
-log/*.log
-tmp/
-dynastyowner.tmproj
-.idea/workspace.xml
-.idea/dynastyowner.iml
-
-tmp
-*.sqlite3
+*/compass_app.log.txt
+log/*
+public/draft/resources/sass/.sass-cache/*
