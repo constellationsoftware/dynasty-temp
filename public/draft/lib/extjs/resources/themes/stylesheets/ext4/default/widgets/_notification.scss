@@ -1,0 +1,45 @@
+@mixin extjs-notification-window-ui(
+    $ui,
+    $textAlignment: center,
+    $padding: 15px 5px 15px 5px,
+    $width: 200px,
+    $bodyBackgroundColor: #FFFFFF,
+    $windowBackgroundColor: #FFFFFF,
+    $headerBackgroundColor: null,
+    $bodyBorder: null,
+    $windowImage: null,
+    $headerBorder: null
+){
+    @if $ui == null {
+        $ui: "";
+    }
+    @else {
+        $ui: -#{$ui};
+    }
+    .ux-notification-window .x-window-body#{$ui}{
+        text-align: $textAlignment;
+        padding: $padding;
+        width: $width;
+        background-color: $bodyBackgroundColor;
+        border: $bodyBorder;
+    }
+    .ux-notification-icon-information{
+        background-image: theme-background-image($theme-name, 'window/notification/icon_info.png');    }
+    .ux-notification-icon-error{
+        background-image: theme-background-image($theme-name, 'window/notification/icon_error.png');    }
+    .x-window-header#{$ui}-top{
+        background-color: $headerBackgroundColor;
+        border: $headerBorder;
+    }
+    body .ux-notification-window{
+        background-color: $windowBackgroundColor;
+        background-image: theme-background-image($theme-name, 'window/notification/' + $windowImage);
+    }
+    .x-nlg .x-window-header#{$ui}-top-mc, .x-nlg .x-window#{$ui}-mc{
+        background-color: $windowBackgroundColor;
+    }
+    .x-nlg .x-window#{$ui}-mc{
+        background-color: $bodyBackgroundColor;
+        background-image: theme-background-image($theme-name, 'window/notification/' + $windowImage);
+    }
+}

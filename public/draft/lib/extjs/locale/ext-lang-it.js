@@ -187,9 +187,11 @@ Ext.onReady(function(){
 
     if(Ext.form.field.ComboBox){
        Ext.apply(Ext.form.field.ComboBox.prototype, {
-          loadingText       : "Caricamento in corso...",
           valueNotFoundText : undefined
        });
+        Ext.apply(Ext.form.field.ComboBox.prototype.defaultListConfig, {
+            loadingText       : "Caricamento in corso..."
+        });
     }
 
     if(Ext.form.field.VTypes){

@@ -90,6 +90,46 @@ Ext.define('Ext.form.field.ComboBox', {
      */
     triggerCls: Ext.baseCSSPrefix + 'form-arrow-trigger',
 
+<span id='Ext-form-field-ComboBox-cfg-hiddenDataCls'>    /**
+</span>     * @private
+     * @cfg {String}
+     * CSS class used to find the {@link #hiddenDataEl}
+     */
+    hiddenDataCls: Ext.baseCSSPrefix + 'hide-display ' + Ext.baseCSSPrefix + 'form-data-hidden',
+
+<span id='Ext-form-field-ComboBox-property-fieldSubTpl'>    /**
+</span>     * @override
+     */
+    fieldSubTpl: [
+        '&lt;div class=&quot;{hiddenDataCls}&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;',
+        '&lt;input id=&quot;{id}&quot; type=&quot;{type}&quot; ',
+            '&lt;tpl if=&quot;size&quot;&gt;size=&quot;{size}&quot; &lt;/tpl&gt;',
+            '&lt;tpl if=&quot;tabIdx&quot;&gt;tabIndex=&quot;{tabIdx}&quot; &lt;/tpl&gt;',
+            'class=&quot;{fieldCls} {typeCls}&quot; autocomplete=&quot;off&quot; /&gt;',
+        '&lt;div id=&quot;{cmpId}-triggerWrap&quot; class=&quot;{triggerWrapCls}&quot; role=&quot;presentation&quot;&gt;',
+            '{triggerEl}',
+            '&lt;div class=&quot;{clearCls}&quot; role=&quot;presentation&quot;&gt;&lt;/div&gt;',
+        '&lt;/div&gt;',
+        {
+            compiled: true,
+            disableFormats: true
+        }
+    ],
+
+    getSubTplData: function(){
+        var me = this;
+        Ext.applyIf(me.subTplData, {
+            hiddenDataCls: me.hiddenDataCls
+        });
+        return me.callParent(arguments);
+    },
+
+    afterRender: function(){
+        var me = this;
+        me.callParent(arguments);
+        me.setHiddenValue(me.value);
+    },
+
 <span id='Ext-form-field-ComboBox-cfg-store'>    /**
 </span>     * @cfg {Ext.data.Store/Array} store
      * The data source to which this combo is bound. Acceptable values for this property are:
@@ -355,6 +395,10 @@ Ext.define('Ext.form.field.ComboBox', {
             transform = me.transform,
             transformSelect, isLocalMode;
 
+        Ext.applyIf(me.renderSelectors, {
+            hiddenDataEl: '.' + me.hiddenDataCls.split(' ').join('.')
+        });
+        
         //&lt;debug&gt;
         if (me.typeAhead &amp;&amp; me.multiSelect) {
             Ext.Error.raise('typeAhead and multiSelect are mutually exclusive options -- please remove one of them.');
@@ -1055,6 +1099,7 @@ Ext.define('Ext.form.field.ComboBox', {
         if (me.store.loading) {
             // Called while the Store is loading. Ensure it is processed by the onLoad method.
             me.value = value;
+            me.setHiddenValue(me.value);
             return me;
         }
 
@@ -1089,6 +1134,7 @@ Ext.define('Ext.form.field.ComboBox', {
         }
 
         // Set the value of this field. If we are multiselecting, then that is an array.
+        me.setHiddenValue(processedValue);
         me.value = me.multiSelect ? processedValue : processedValue[0];
         if (!Ext.isDefined(me.value)) {
             me.value = null;
@@ -1110,6 +1156,41 @@ Ext.define('Ext.form.field.ComboBox', {
         me.applyEmptyText();
 
         return me;
+    },
+
+<span id='Ext-form-field-ComboBox-method-setHiddenValue'>    /**
+</span>     * @private
+     * Set the value of {@link #hiddenDataEl}
+     * Dynamically adds and removes input[type=hidden] elements
+     */
+    setHiddenValue: function(values){
+        var me = this, i;
+        if (!me.hiddenDataEl) {
+            return;
+        }
+        values = Ext.Array.from(values);
+        var dom = me.hiddenDataEl.dom,
+            childNodes = dom.childNodes,
+            input = childNodes[0],
+            valueCount = values.length,
+            childrenCount = childNodes.length;
+        
+        if (!input &amp;&amp; valueCount &gt; 0) {
+            me.hiddenDataEl.update(Ext.DomHelper.markup({tag:'input', type:'hidden', name:me.name}));
+            childrenCount = 1;
+            input = dom.firstChild;
+        }
+        while (childrenCount &gt; valueCount) {
+            dom.removeChild(childNodes[0]);
+            -- childrenCount;
+        }
+        while (childrenCount &lt; valueCount) {
+            dom.appendChild(input.cloneNode(true));
+            ++ childrenCount;
+        }
+        for (i = 0; i &lt; valueCount; i++) {
+            childNodes[i].value = values[i];
+        }
     },
 
 <span id='Ext-form-field-ComboBox-method-getDisplayValue'>    /**

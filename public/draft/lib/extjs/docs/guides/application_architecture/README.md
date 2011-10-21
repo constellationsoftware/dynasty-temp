@@ -22,7 +22,7 @@ The application architecture is as much about providing structure and consistenc
 
 Ext JS 4 applications follow a unified directory structure that is the same for every app. Please check out the [Getting Started guide](#/guide/getting_started) for a detailed explanation on the basic file structure of an application. In MVC layout, all classes are placed into the `app` folder, which in turn contains sub-folders to namespace your models, views, controllers and stores. Here is how the folder structure for the simple example app will look when we're done:
 
-![Folder Structure](folderStructure.png)
+{@img folderStructure.png Folder Structure}
 
 In this example, we are encapsulating the whole application inside one folder called '`account_manager`'. Essential files from the [Ext JS 4 SDK](http://www.sencha.com/products/extjs/) are wrapped inside `ext-4.0` folder. Hence the content of our `index.html` looks like this:
 
@@ -66,7 +66,7 @@ Let's create a simple Account Manager app that will help us manage User accounts
 
 There are a few things going on here. First we invoked `Ext.application` to create a new instance of Application class, to which we passed the name "`AM`". This automatically sets up a global variable `AM` for us, and registers the namespace to `Ext.Loader`, with the corresponding path of '`app`' set via the `appFolder` config option. We also provided a simple launch function that just creates a [Viewport](#/api/Ext.container.Viewport) which contains a single [Panel](#/api/Ext.panel.Panel) that will fill the screen.
 
-![Initial view with a simple Panel](panelView.png)
+{@img panelView.png Initial view with a simple Panel}
 
 ## Defining a Controller
 
@@ -118,7 +118,7 @@ In our init function above we supplied `'viewport > panel'`, which translates to
 
 When we run our application now we see the following:
 
-![Controller listener](firstControllerListener.png)
+{@img firstControllerListener.png Controller listener}
 
 Not exactly the most exciting application ever, but it shows how easy it is to get started with organized code. Let's flesh the app out a little now by adding a grid.
 
@@ -185,7 +185,7 @@ And then render it inside the main viewport by modifying the launch method in `a
 
 The only other thing to note here is that we specified `'user.List'` inside the views array. This tells the application to load that file automatically so that we can use it when we launch. The application uses Ext JS 4's new dynamic loading system to automatically pull this file from the server. Here's what we see when we refresh the page now:
 
-![Our first View](firstView.png)
+{@img firstView.png Our first View}
 
 ## Controlling the grid
 
@@ -215,7 +215,7 @@ At the moment, the listeners we add to this selector will actually be called for
 
 Note that we changed the ComponentQuery selector (to simply `'userlist'`), the event name (to `'itemdblclick'`) and the handler function name (to `'editUser'`). For now we're just logging out the name of the User we double clicked:
 
-![Double click handler](doubleClickHandler.png)
+{@img doubleClickHandler.png Double click handler}
 
 Logging to the console is all well and good but we really want to edit our Users. Let's do that now, starting with a new view in `app/view/user/Edit.js`:
 
@@ -289,7 +289,7 @@ First we created the view using the convenient method `Ext.widget`, which is equ
 
 Double clicking a row in our grid now yields something like this:
 
-![Loading the form](loadedForm.png)
+{@img loadedForm.png Loading the form}
 
 ## Creating a Model and a Store
 
@@ -361,7 +361,7 @@ That's all we need to do to define our Model, now we'll just update our Store to
 
 Our refactoring will make the next section easier but should not have affected the application's current behavior. If we reload the page now and double click on a row we see that the edit User window still appears as expected. Now it's time to finish the editing functionality:
 
-![Loading the form](loadedForm.png)
+{@img loadedForm.png Loading the form}
 
 ## Saving data with the Model
 
@@ -388,7 +388,7 @@ We added a second ComponentQuery selector to our `this.control` call - this time
 
 We can satisfy ourselves that the `updateUser` function is called when we click the Save button:
 
-![Seeing the save handler](saveHandler.png)
+{@img saveHandler.png Seeing the save handler}
 
 Now that we've seen our handler is correctly attached to the Save button's click event, let's fill in the real logic for the `updateUser` function. In this function we need to get the data out of the form, update our User with it and then save that back to the Users store we created above. Let's see how we might do that:
 
@@ -406,7 +406,7 @@ Let's break down what's going on here. Our click event gave us a reference to th
 
 After that we simply fetch the record that's currently loaded into the form and update it with whatever the user has typed into the form. Finally we close the window to bring attention back to the grid. Here's what we see when we run our app again, change the name field to `'Ed Spencer'` and click save:
 
-![The record in the grid has been updated](updatedGridRecord.png)
+{@img updatedGridRecord.png The record in the grid has been updated}
 
 ### Saving to the server
 
@@ -472,7 +472,7 @@ We're still reading the data from `users.json`, but any updates will be sent to 
 
 Now we can run through our full example and make sure that everything works. We'll edit a row, hit the Save button and see that the request is correctly sent to `updateUser.json`
 
-![The record in the grid has been updated](postUpdatesToServer.png)
+{@img postUpdatesToServer.png The record in the grid has been updated}
 
 ## Deployment
 

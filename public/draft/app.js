@@ -8,21 +8,19 @@ Ext.application({
     autoCreateViewport: true,
 
     models: [
-        'Person',
-        'Player',
         'Message',
     ],
 
     stores: [
-        'Players',
-        'PlayerQueue',
         'PlayerStoreCharts',
         'Messages',
     ],
 
     controllers: [
         'PlayerGrid',
+        'PicksGrid',
         'ShoutBox',
+        'Timer',
     ],
 
     launch: function() {

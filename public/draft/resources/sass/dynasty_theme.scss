@@ -1,39 +1,25 @@
-$include-default: false; // DO NOT CHANGE
+$include-default: true; // DO NOT CHANGE
 $theme-name: 'dynasty';
 
 // Insert your custom variables here.
 // $base-color: #aa0000
+$font-family: 'Droid Sans', sans-serif;
 
 @import 'ext4/default/all';
 
-// You may remove any of the following modules that you
-// do not use in order to create a smaller css file.
-@include extjs-boundlist;
-@include extjs-button;
-@include extjs-btn-group;
-@include extjs-datepicker;
-@include extjs-colorpicker;
-@include extjs-menu;
-@include extjs-grid;
-@include extjs-form;
-    @include extjs-form-field;
-    @include extjs-form-fieldset;
-    @include extjs-form-checkboxfield;
-    @include extjs-form-checkboxgroup;
-    @include extjs-form-triggerfield;
-    @include extjs-form-htmleditor;
-@include extjs-panel;
-@include extjs-qtip;
-@include extjs-slider;
-@include extjs-progress;
-@include extjs-toolbar;
-@include extjs-window;
-@include extjs-messagebox;
-@include extjs-tabbar;
-@include extjs-tab;
-@include extjs-tree;
-@include extjs-drawcomponent;
-@include extjs-viewport;
+@include extjs-notification-window-ui(null,center,15px 5px 15px 5px,200px,null,null,null,null,null);
+@include extjs-notification-window-ui("light",center,15px 5px 18px 5px,200px,transparent,#FFFFFF,transparent,0px solid white,"fader.png",0px none transparent);
+@include extjs-window-ui(
+    $ui-label: "light",
+    $ui-border-radius: $window-border-radius,
+    $ui-border-color: $window-border-color,
+    $ui-inner-border-color: $window-inner-border-color,
+    $ui-header-color: $window-header-color,
+    $ui-body-border-color: $window-body-border-color,
+    $ui-body-background-color: $window-body-background-color,
+    $ui-body-color: $window-body-color,
+    $ui-background-color: #FFFFFF
+);
 
 // This line changes the location of your images when creating UIs to be relative instead of within the ExtJS directory.
 // You MUST set this to true/string value if you are creating new UIs + supporting legacy browsers.
@@ -58,6 +44,12 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
 
 #header_spacer {
     background: transparent;
+}
+
+
+
+.timer-display {
+    font-size: 69px;
 }
 
 

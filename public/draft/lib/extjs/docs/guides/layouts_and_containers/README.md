@@ -7,7 +7,7 @@ The layout system is one of the most powerful parts of Ext JS. It handles the si
 
 An Ext JS application UI is made up of {@link Ext.Component Component}s (See the [Components Guide](#/guide/components) for more on Components.  A {@link Ext.container.Container Container} is a special type of Component that can contain other Components. A typical Ext JS application is made up of several layers of nested Components
 
-![Component Architecture](component_architecture.png)
+{@img component_architecture.png Component Architecture}
 
 The most commonly used Container is {@link Ext.panel.Panel Panel}.  Let's take a look at how being a Container allows a Panel to contain other Components:
 

@@ -264,7 +264,7 @@ using:
 The following configuration will produce minor ticks in the left axis
 for the line series:
 
-![Series Image](Ticks.jpg)
+{@img Ticks.jpg Series Image}
 
 
 ### Gradients
@@ -483,7 +483,7 @@ Creates a Stacked Area Chart. The stacked area chart is useful when displaying m
 As with all other series, the Area Series must be appended in the *series* Chart array configuration.
 
 
-![Series Image](Area.jpg)
+{@img Area.jpg Series Image}
 
 
 A typical configuration object for the area series could be:
@@ -550,7 +550,7 @@ As with all other series, the Bar Series must be appended in the *series* Chart 
 documentation for more information.
 
 
-![Series Image](Bar.jpg)
+{@img Bar.jpg Series Image}
 
 
 A typical configuration object for the bar series could be:
@@ -600,7 +600,7 @@ As with all other series, the Line Series must be appended in the *series* Chart
 documentation for more information.
 
 
-![Series Image](Line.jpg)
+{@img Line.jpg Series Image}
 
 
 A typical configuration object for the line series could be:
@@ -665,7 +665,7 @@ As with all other series, the Pie Series must be appended in the *series* Chart 
 documentation for more information. A typical configuration object for the pie series could be:
 
 
-![Series Image](Pie.jpg)
+{@img Pie.jpg Series Image}
 
 
 A typical configuration object for the pie series could be:
@@ -708,7 +708,7 @@ a constrained number of categories.
 As with all other series, the Radar series must be appended in the *series* Chart array configuration. See the Chart
 documentation for more information.
 
-![Series Image](Radar.jpg)
+{@img Radar.jpg Series Image}
 
 A typical configuration object for the radar series could be:
 
@@ -766,7 +766,7 @@ These variables can be mapped into x, y coordinates and also to an element's rad
 As with all other series, the Scatter Series must be appended in the *series* Chart array configuration. See the Chart
 documentation for more information on creating charts.
 
-![Series Image](Scatter.jpg)
+{@img Scatter.jpg Series Image}
 
 A typical configuration object for the scatter series could be:
 
@@ -820,7 +820,7 @@ Creates a Gauge Chart. Gauge Charts are used to show progress in a certain varia
 One is setting a store element into the Gauge and selecting the field to be used from that store. Another one is instantiating the
  visualization and using the `setValue` method to adjust the value you want.
 
-![Series Image](Gauge.jpg)
+{@img Gauge.jpg Series Image}
 
 A chart/series configuration for the Gauge visualization could look like this:
 

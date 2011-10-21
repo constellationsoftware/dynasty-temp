@@ -325,16 +325,19 @@ Ext.define('Ext.view.AbstractView', {
     },
 
     onMaskBeforeShow: function(){
-        var me = this;
-        me.getSelectionModel().deselectAll();
-        if (me.loadingHeight) {
-            me.setCalculatedSize(undefined, me.loadingHeight);
+        var loadingHeight = this.loadingHeight;
+        
+        this.getSelectionModel().deselectAll();
+        if (loadingHeight) {
+            this.setCalculatedSize(undefined, loadingHeight);
         }
     },
 
     onMaskHide: function(){
-        if (!this.destroying &amp;&amp; this.loadingHeight) {
-            this.setHeight(this.height);
+        var me = this;
+        
+        if (!me.destroying &amp;&amp; me.loadingHeight) {
+            me.setHeight(me.height);
         }
     },
 
@@ -488,14 +491,15 @@ Ext.define('Ext.view.AbstractView', {
 
         if (index &gt; -1){
             node = me.bufferRender([record], index)[0];
-
-            me.all.replaceElement(index, node, true);
-            me.updateIndexes(index, index);
-
-            // Maintain selection after update
-            // TODO: Move to approriate event handler.
-            me.selModel.refresh();
-            me.fireEvent('itemupdate', record, index, node);
+            // ensure the node actually exists in the DOM
+            if (me.getNode(record)) {
+                me.all.replaceElement(index, node, true);
+                me.updateIndexes(index, index);
+                // Maintain selection after update
+                // TODO: Move to approriate event handler.
+                me.selModel.refresh();
+                me.fireEvent('itemupdate', record, index, node);
+            }
         }
 
     },
@@ -523,8 +527,7 @@ Ext.define('Ext.view.AbstractView', {
 
         if (index &lt; all.getCount()) {
             all.item(index).insertSibling(nodes, 'before', true);
-        }
-        else {
+        } else {
             all.last().insertSibling(nodes, 'after', true);
         }
 
@@ -558,10 +561,12 @@ Ext.define('Ext.view.AbstractView', {
     // private
     updateIndexes : function(startIndex, endIndex) {
         var ns = this.all.elements,
-            records = this.store.getRange();
+            records = this.store.getRange(),
+            i;
+            
         startIndex = startIndex || 0;
         endIndex = endIndex || ((endIndex === 0) ? 0 : (ns.length - 1));
-        for(var i = startIndex; i &lt;= endIndex; i++){
+        for(i = startIndex; i &lt;= endIndex; i++){
             ns[i].viewIndex = i;
             ns[i].viewRecordId = records[i].internalId;
             if (!ns[i].boundView) {
@@ -746,8 +751,8 @@ Ext.define('Ext.view.AbstractView', {
 <span id='Ext-view-AbstractView-method-select'>    /**
 </span>     * Selects a record instance by record instance or index.
      * @param {Ext.data.Model[]/Number} records An array of records or an index
-     * @param {Boolean} keepExisting
-     * @param {Boolean} suppressEvent Set to false to not fire a select event
+     * @param {Boolean} [keepExisting] True to keep existing selections
+     * @param {Boolean} [suppressEvent] Set to true to not fire a select event
      */
     select: function(records, keepExisting, suppressEvent) {
         this.selModel.select(records, keepExisting, suppressEvent);
@@ -756,7 +761,7 @@ Ext.define('Ext.view.AbstractView', {
 <span id='Ext-view-AbstractView-method-deselect'>    /**
 </span>     * Deselects a record instance by record instance or index.
      * @param {Ext.data.Model[]/Number} records An array of records or an index
-     * @param {Boolean} suppressEvent Set to false to not fire a deselect event
+     * @param {Boolean} [suppressEvent] Set to true to not fire a deselect event
      */
     deselect: function(records, suppressEvent) {
         this.selModel.deselect(records, suppressEvent);
@@ -852,13 +857,19 @@ Ext.define('Ext.view.AbstractView', {
     // invoked by the selection model to maintain visual UI cues
     onItemSelect: function(record) {
         var node = this.getNode(record);
-        Ext.fly(node).addCls(this.selectedItemCls);
+        
+        if (node) {
+            Ext.fly(node).addCls(this.selectedItemCls);
+        }
     },
 
     // invoked by the selection model to maintain visual UI cues
     onItemDeselect: function(record) {
         var node = this.getNode(record);
-        Ext.fly(node).removeCls(this.selectedItemCls);
+        
+        if (node) {
+            Ext.fly(node).removeCls(this.selectedItemCls);
+        }
     },
 
     getItemSelector: function() {

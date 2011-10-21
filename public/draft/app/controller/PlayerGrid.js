@@ -1,10 +1,14 @@
 Ext.define('DynastyDraft.controller.PlayerGrid', {
     extend: 'Ext.app.Controller',
 
+    stores: [ 'Players' ],
+    models: [ 'Player' ],
+    views: [ 'PlayerGrid' ],
+
     init: function() {
         this.control({
             'playergrid': {
-                itemdblclick: this.onRowDblClick
+                itemdblclick: this.onRowDblClick,
             },
         });
     },

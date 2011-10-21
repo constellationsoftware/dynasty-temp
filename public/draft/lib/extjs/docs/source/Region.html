@@ -28,7 +28,7 @@ Ext.define('Ext.util.Region', {
     requires: ['Ext.util.Offset'],
 
     statics: {
-<span id='Ext-util-Region-method-getRegion'>        /**
+<span id='Ext-util-Region-static-method-getRegion'>        /**
 </span>         * @static
          * Retrieves an Ext.util.Region for a particular element.
          * @param {String/HTMLElement/Ext.Element} el An element ID, htmlElement or Ext.Element representing an element in the document.
@@ -38,7 +38,7 @@ Ext.define('Ext.util.Region', {
             return Ext.fly(el).getPageBox(true);
         },
 
-<span id='Ext-util-Region-method-from'>        /**
+<span id='Ext-util-Region-static-method-from'>        /**
 </span>         * @static
          * Creates a Region from a &quot;box&quot; Object which contains four numeric properties `top`, `right`, `bottom` and `left`.
          * @param {Object} o An object with `top`, `right`, `bottom` and `left` properties.

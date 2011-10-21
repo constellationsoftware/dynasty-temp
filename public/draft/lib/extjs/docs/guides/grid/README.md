@@ -4,7 +4,7 @@ The {@link Ext.grid.Panel Grid Panel} is one of the centerpieces of Ext JS. It's
 
 ## Basic Grid Panel
 
-![Simple Grid](simple_grid.png)
+{@img simple_grid.png Simple Grid}
 
 Let's get started by creating a basic {@link Ext.grid.Panel Grid Panel} .  Here's all you need to know to get a simple grid up and running:
 
@@ -93,7 +93,7 @@ See the [Renderers Example](guides/grid/examples/renderers/index.html) for a liv
 
 ## Grouping
 
-![Grouping Grid](grouping.png)
+{@img grouping.png Grouping Grid}
 
 Organizing the rows in a {@link Ext.grid.Panel Grid Panel} into groups is easy, first we specify a {@link Ext.data.Store#groupField groupField} property on our store:
 
@@ -192,7 +192,7 @@ Finally, to enable editing we need to configure the {@link Ext.grid.Panel Grid P
 
 And that's all it takes to create an editable grid using cell editing. See [Cell Editing](guides/grid/examples/cell_editing) for a working example.
 
-![Cell Editing Grid](cell_editing.png)
+{@img cell_editing.png Cell Editing Grid}
 
 ### Row Editing
 
@@ -210,7 +210,7 @@ Row editing enables you to edit an entire row at a time, rather than editing cel
 
 [Row Editing - Live Example](guides/grid/examples/row_editing)
 
-![Row Editing Grid](row_editing.png)
+{@img row_editing.png Row Editing Grid}
 
 ## Paging
 
@@ -265,7 +265,7 @@ Now that we've setup our {@link Ext.data.Store Store} to support paging, all tha
         }]
     });
 
-![Paging Toolbar](paging_toolbar.png)
+{@img paging_toolbar.png Paging Toolbar}
 
 [Paging Toolbar Example](guides/grid/examples/paging_toolbar/index.html)
 

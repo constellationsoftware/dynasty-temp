@@ -24,7 +24,7 @@
  *
  * | Shortcut | xtype         | Class                         | Description
  * |:---------|:--------------|:------------------------------|:---------------------------------------------------
- * | `-&gt;`     | `tbspacer`    | {@link Ext.toolbar.Fill}      | begin using the right-justified button container
+ * | `-&gt;`     | `tbfill`      | {@link Ext.toolbar.Fill}      | begin using the right-justified button container
  * | `-`      | `tbseparator` | {@link Ext.toolbar.Separator} | add a vertical separator bar between toolbar items
  * | ` `      | `tbspacer`    | {@link Ext.toolbar.Spacer}    | add horiztonal space between elements
  *
@@ -242,6 +242,12 @@ Ext.define('Ext.toolbar.Toolbar', {
      */
     enableOverflow: false,
 
+<span id='Ext-toolbar-Toolbar-cfg-menuTriggerCls'>    /**
+</span>     * @cfg {String} menuTriggerCls
+     * Configure the icon class of the overflow button.
+     */
+    menuTriggerCls: Ext.baseCSSPrefix + 'toolbar-more-icon',
+    
     // private
     trackMenus: true,
 

@@ -92,8 +92,11 @@
      */
 
     initComponent : function(){
-        var me = this;
+        var me = this,
+            cfg = Ext.apply({}, me.initialConfig);
 
+        // Ensure we don't get duplicate listeners
+        delete cfg.listeners;
         Ext.apply(me, {
             plain: true,
             showSeparator: false,
@@ -101,7 +104,7 @@
                 cls: Ext.baseCSSPrefix + 'menu-color-item',
                 id: me.pickerId,
                 xtype: 'colorpicker'
-            }, me.initialConfig)
+            }, cfg)
         });
 
         me.callParent(arguments);

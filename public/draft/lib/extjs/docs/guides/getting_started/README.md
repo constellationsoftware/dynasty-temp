@@ -111,7 +111,7 @@ Now open your browser and navigate to [http://localhost/helloext/index.html](htt
 
 Open the Chrome Developer Tools and click on the Console option.  Now refresh the Hello Ext application.  You should see a warning in the console that looks like this:
 
-![testing](loader-warning-viewport.png)
+{@img loader-warning-viewport.png testing}
 
 Ext JS 4 comes with a system for dynamically loading only the JavaScript resources necessary to run your app.
 In our example `Ext.create` creates an instance of `Ext.container.Viewport`.  When `Ext.create` is called the loader will first check to see if `Ext.container.Viewport` has been defined.

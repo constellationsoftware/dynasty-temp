@@ -654,7 +654,7 @@
             }
 
             // Size set to a value which means &quot;auto&quot;
-            if (size === &quot;&quot; || size == &quot;auto&quot; || size === undefined || size === null) {
+            if (size === &quot;&quot; || size == &quot;auto&quot; || size == null) {
                 return size || '';
             }
 
@@ -816,7 +816,7 @@
     var unitPattern = /\d+(px|em|%|en|ex|pt|in|cm|mm|pc)$/i,
     docEl;
 
-<span id='Ext-Element-method-get'>    /**
+<span id='Ext-Element-static-method-get'>    /**
 </span>     * Retrieves Ext.Element objects. {@link Ext#get} is an alias for {@link Ext.Element#get}.
      *
      * **This method does not retrieve {@link Ext.Component Component}s.** This method retrieves Ext.Element
@@ -1028,7 +1028,7 @@
     El.Flyweight.prototype.isFlyweight = true;
     El._flyweights = {};
 
-<span id='Ext-Element-method-fly'>    /**
+<span id='Ext-Element-static-method-fly'>    /**
 </span>     * Gets the globally shared flyweight Element, with the passed node as the active element. Do not store a reference
      * to this element - the dom node can be overwritten by other code. {@link Ext#fly} is alias for
      * {@link Ext.Element#fly}.

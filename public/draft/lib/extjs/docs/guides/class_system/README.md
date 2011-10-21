@@ -274,7 +274,7 @@ Ext JS 4 includes some useful features that will help you with debugging and err
 
 - When an error is thrown in any method of any class defined using `Ext.define()`, you should see the method and class names in the call stack if you are using a WebKit based browser (Chrome or Safari).  For example, here is what it would look like in Chrome:
 
-![Call Stack](call-stack.png)
+{@img call-stack.png Call Stack}
 
 [prototype-oriented]: http://en.wikipedia.org/wiki/Prototype-based_programming
 [class-based]: http://en.wikipedia.org/wiki/Class-based_programming

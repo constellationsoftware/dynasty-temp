@@ -71,11 +71,11 @@ Ext JS has built in support for validation on any type of Field, and some Fields
 For example if a value is entered into a {@link Ext.form.field.Date Date Field} and that value cannot be converted into a `Date`, the Field will have the `x-form-invalid-field` CSS class added to its HTML element.
 If necessary, this CSS class can be changed using the {@link Ext.form.field.Base#invalidCls invalidCls} configuration. In the default [theme](#/guide/theming), adding the `invalidCls` adds a red "invalid underline":
 
-![Invalid Field](invalid_field.png)
+{@img invalid_field.png Invalid Field}
 
 A Field containing invalid data will also display an error message. By default this message displays as a tool tip:
 
-![Invalid Field Hover](invalid_field_hover.png)
+{@img invalid_field_hover.png Invalid Field Hover}
 
 It's easy to change the location of a Field's error message using the {@link Ext.form.Labelable#msgTarget msgTarget} configuration, and the {@link Ext.form.field.Base#invalidText invalidText} configuration changes the error message.
 Each Field provides its own implementation of `invalidText`, and many support token replacement in the error message.
@@ -90,7 +90,7 @@ The following code demonstrates placing the error message directly under the Fie
         invalidText: '"{0}" bad. "{1}" good.' // custom error message text
     }
 
-![Custom Error Message](custom_error_message.png)
+{@img custom_error_message.png Custom Error Message}
 
 #### 2. Custom Validations
 

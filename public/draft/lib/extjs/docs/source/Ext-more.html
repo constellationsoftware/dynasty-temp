@@ -48,8 +48,6 @@ Ext.apply(Ext, {
     userAgent: navigator.userAgent.toLowerCase(),
     cache: {},
     idSeed: 1000,
-    BLANK_IMAGE_URL : 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
-    isStrict: document.compatMode == &quot;CSS1Compat&quot;,
     windowId: 'ext-window',
     documentId: 'ext-document',
 
@@ -269,6 +267,7 @@ Opera 11.11 - Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11
     var check = function(regex){
             return regex.test(Ext.userAgent);
         },
+        isStrict = document.compatMode == &quot;CSS1Compat&quot;,
         version = function (is, regex) {
             var m;
             return (is &amp;&amp; (m = regex.exec(Ext.userAgent))) ? parseFloat(m[1]) : 0;
@@ -447,7 +446,7 @@ Opera 11.11 - Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11
     };
     //&lt;/debug&gt;
 
-    Ext.setVersion('extjs', '4.0.6');
+    Ext.setVersion('extjs', '4.0.7');
     Ext.apply(Ext, {
 <span id='Ext-property-SSL_SECURE_URL'>        /**
 </span>         * URL to a blank file used by Ext when in secure mode for iframe src and onReady src to prevent
@@ -561,6 +560,10 @@ function(el){
                 delete Ext.cache[n.id];
             }
         },
+
+        isStrict: isStrict,
+
+        isIEQuirks: isIE &amp;&amp; !isStrict,
 
 <span id='Ext-property-isOpera'>        /**
 </span>         * True if the detected browser is Opera.
@@ -759,7 +762,7 @@ function(el){
          * @type Number
          */
         webKitVersion: webKitVersion,
-        
+
 <span id='Ext-property-isSecure'>        /**
 </span>         * True if the page is running over SSL
          * @type Boolean
@@ -772,7 +775,7 @@ function(el){
          * For other browsers it uses an inline data URL.
          * @type String
          */
-        BLANK_IMAGE_URL : (isIE6 || isIE7) ? 'http:/' + '/www.sencha.com/s.gif' : 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
+        BLANK_IMAGE_URL : (isIE6 || isIE7) ? '/' + '/www.sencha.com/s.gif' : 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==',
 
 <span id='Ext-method-value'>        /**
 </span>         * &lt;p&gt;Utility method for returning a default value if the passed value is empty.&lt;/p&gt;

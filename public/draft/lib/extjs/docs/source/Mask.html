@@ -50,6 +50,7 @@
  * 
  */
 Ext.define('Ext.chart.Mask', {
+    require: ['Ext.chart.MaskLayer'],
 <span id='Ext-chart-Mask-method-constructor'>    /**
 </span>     * Creates new Mask.
      * @param {Object} config (optional) Config object.
@@ -196,12 +197,7 @@ Ext.define('Ext.chart.Mask', {
                 width: abs(width),
                 height: abs(height)
             };
-            me.mask.updateBox({
-                x: posX - abs(width),
-                y: posY - abs(height),
-                width: abs(width),
-                height: abs(height)
-            });
+            me.mask.updateBox(me.maskSelection);
             me.mask.show();
             me.maskSprite.setAttributes({
                 hidden: true    

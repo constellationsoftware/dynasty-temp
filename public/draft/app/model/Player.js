@@ -1,5 +1,4 @@
 Ext.define('DynastyDraft.model.Player', {
-    require: 'DynastyDraft.model.Person',
     extend: 'DynastyDraft.model.Person',
 
     fields: [
@@ -23,15 +22,25 @@ Ext.define('DynastyDraft.model.Player', {
             name: 'salary',
             type: 'int',
             defaultValue: 0,
-        }
+        },
+        /*{
+            name: 'empty',
+            type: 'boolean',
+            defaultValue: false,
+        }*/
     ],
 
-    proxy: {
-        type: 'ajax',
-        url: 'data/players.json',
-        reader: {
-            type: 'json',
-            root: 'results'
+    validations: [
+        {
+            type: 'inclusion',
+            field: 'position',
+            list: [
+                "Quarterback",
+                "Running Back",
+                "Wide Receiver",
+                "Kicker",
+                "Bench",
+            ],
         }
-    },
+    ],
 });

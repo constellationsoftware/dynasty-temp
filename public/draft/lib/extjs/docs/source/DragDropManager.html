@@ -515,7 +515,7 @@ Ext.define('Ext.dd.DragDropManager', {
      */
     handleMouseUp: function(e) {
 
-        if(Ext.tip.QuickTipManager){
+        if(Ext.tip &amp;&amp; Ext.tip.QuickTipManager){
             Ext.tip.QuickTipManager.ddEnable();
         }
         if (! this.dragCurrent) {

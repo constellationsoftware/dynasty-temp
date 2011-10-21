@@ -89,7 +89,7 @@
  */
 Ext.Error = Ext.extend(Error, {
     statics: {
-<span id='Ext-Error-property-ignore'>        /**
+<span id='Ext-Error-static-property-ignore'>        /**
 </span>         * @property {Boolean} ignore
          * Static flag that can be used to globally disable error reporting to the browser if set to true
          * (defaults to false). Note that if you ignore Ext errors it's likely that some other code may fail
@@ -104,7 +104,7 @@ Ext.Error = Ext.extend(Error, {
          */
         ignore: false,
 
-<span id='Ext-Error-property-notify'>        /**
+<span id='Ext-Error-static-property-notify'>        /**
 </span>         * @property {Boolean} notify
          * Static flag that can be used to globally control error notification to the user. Unlike
          * Ex.Error.ignore, this does not effect exceptions. They are still thrown. This value can be
@@ -123,7 +123,7 @@ Ext.Error = Ext.extend(Error, {
          */
         //notify: Ext.isIE6 || Ext.isIE7,
 
-<span id='Ext-Error-method-raise'>        /**
+<span id='Ext-Error-static-method-raise'>        /**
 </span>         * Raise an error that can include additional data and supports automatic console logging if available.
          * You can pass a string error message or an object with the `msg` attribute which will be used as the
          * error message. The object can contain any other name-value attributes (or objects) to be logged
@@ -186,7 +186,7 @@ Ext.Error = Ext.extend(Error, {
             }
         },
 
-<span id='Ext-Error-method-handle'>        /**
+<span id='Ext-Error-static-method-handle'>        /**
 </span>         * Globally handle any Ext errors that may be raised, optionally providing custom logic to
          * handle different errors individually. Return true from the function to bypass throwing the
          * error to the browser, otherwise the error will be thrown and execution will halt.

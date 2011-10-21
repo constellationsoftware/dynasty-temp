@@ -121,7 +121,7 @@ Ext.onReady(function () {
             }],
             series: [{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 xField: 'date',
                 yField: 'visits',
                 label: {
@@ -136,7 +136,7 @@ Ext.onReady(function () {
                 }
             },{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 xField: 'date',
                 yField: 'views',
                 label: {
@@ -151,7 +151,7 @@ Ext.onReady(function () {
                 }
             },{
                 type: 'line',
-                axis: 'left',
+                axis: ['left', 'bottom'],
                 xField: 'date',
                 yField: 'veins',
                 label: {

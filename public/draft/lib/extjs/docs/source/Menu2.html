@@ -72,6 +72,11 @@ Ext.define('Ext.menu.Menu', {
         'Ext.menu.Separator'
     ],
 
+<span id='Ext-menu-Menu-property-parentMenu'>    /**
+</span>     * @property {Ext.menu.Menu} parentMenu
+     * The parent Menu of this Menu.
+     */
+
 <span id='Ext-menu-Menu-cfg-allowOtherMenus'>    /**
 </span>     * @cfg {Boolean} allowOtherMenus
      * True to allow multiple menus to be displayed at the same time.
@@ -300,6 +305,10 @@ Ext.define('Ext.menu.Menu', {
             }
             me.el.setWidth(newWidth);
         }
+    },
+    
+    getBubbleTarget: function(){
+        return this.parentMenu || this.callParent();
     },
 
 <span id='Ext-menu-Menu-method-canActivateItem'>    /**
