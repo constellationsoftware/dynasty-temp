@@ -1,0 +1,42 @@
+= PolymorphicAsTable
+
+I wrote this out of the need to deal with a legacy database that had the correct
+schema for utlizing ActiveRecord[http://ar.rubyonrails.org/]'s polymorphic
+associations, but required that the "type" columns contain the value of the
+tablename they pointed to as opposed to the class name they resolved to.
+
+There are probably bugs and cases where it will break that I haven't
+found. _Please_ open bug reports to let me know about them, preferably with code
+demonstrating the behaviour if possible, on the
+bugtracker[https://github.com/jdodds/polymorphic_as_table/issues] on github.
+
+In addition, I'm not exactly a Ruby or ActiveRecord guru. If I'm doing something
+wrong, feel free to send a pull request. If you lend an explanation, I'll love
+you forever.
+
+
+= Usage
+
+    class MyPolymorphicModel < ActiveRecord::Base
+      is_polymorphic_as_table
+      belongs_to :entity, :polymorphic => true
+    end
+
+    class MyOtherModel < ActiveRecord::Base
+      has_polymorphic_as_table
+      has_many :my_polymorphic_models, :as => :entity
+    end
+
+
+If you're testing with rspec-rails, you'll need to put the following at the top
+of +config/environments/test.rb+ :
+
+    require 'active_record'
+    require 'active_record/associations'
+    require 'active_record/associations/through_association_scope'
+
+This is due to ActiveRecord's use of autoload, and the way rspec-rails
+initializes itself, I think. :/
+
+
+Copyright (c) 2011 Jeremiah Dodds <jeremiah.dodds@gmail.com>, released under the MIT license

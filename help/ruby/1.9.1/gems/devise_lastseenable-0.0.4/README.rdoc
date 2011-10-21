@@ -1,0 +1,23 @@
+= devise_lastseenable
+
+This ensures that devise[http://github.com/plataformatec/devise] will update a last_seen flag on the model whenever you check if a user is authed.
+
+== Usage
+
+rails g devise_lastseenable
+
+In your model, add :lastseenable as such:
+
+class User < ActiveRecord::Base
+  devise ..., :lastseenable
+end
+
+== Thanks to
+
+Thanks to devise_traceable[https://github.com/shenoudab/devise_traceable] for essentially operating as the base for this gem!
+
+== Copyright
+
+Copyright (c) 2011 ctide. See LICENSE.txt for
+further details.
+

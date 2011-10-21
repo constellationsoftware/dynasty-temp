@@ -1,0 +1,2 @@
+class DraftablePlayersController < ApplicationController
+end

@@ -1,0 +1,2 @@
+module DraftablePlayersHelper
+end

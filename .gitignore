@@ -1,2 +1,12 @@
+.bundle
+.DS_Store
+.rspec
+db/*.sqlite3
 log/*
+tmp/
+dynastyowner.tmproj
+.idea/workspace.xml
+.idea/dynastyowner.iml
 
+tmp
+*.sqlite3
