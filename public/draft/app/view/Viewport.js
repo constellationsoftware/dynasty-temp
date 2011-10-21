@@ -22,17 +22,17 @@ Ext.define('DynastyDraft.view.Viewport', {
             },
             height: 120,
 
-            items: [
-                {
-                    xtype: 'container',
-                    id: 'header_spacer',
-                    flex: 1,
-                },
-                {
-                    xtype: 'shoutboxcontainer',
-                    width: 400,
-                },
-            ],
+            items: [{
+                xtype: 'timer',
+                width: 200,
+                margin: '10, 5',
+            }, {
+                xtype: 'tbspacer',
+                flex: 1,
+            }, {
+                xtype: 'shoutboxcontainer',
+                width: 400,
+            }],
         },
         
 

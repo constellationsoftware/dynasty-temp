@@ -20,6 +20,7 @@ Ext.application({
         'PlayerGrid',
         'PicksGrid',
         'ShoutBox',
+        'Timer',
     ],
 
     launch: function() {
