@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: d5256364238d10c06d18f1a35f04ae7a200919f5
+  specs:
+    devise (1.5.0.dev)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.0.3)
+
 GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
@@ -43,10 +52,6 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     daemons (1.1.4)
-    devise (1.4.8)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      warden (~> 1.0.3)
     devise_lastseenable (0.0.4)
       devise
       devise
@@ -138,7 +143,7 @@ DEPENDENCIES
   activesupport (~> 3.1.0)
   bcrypt-ruby (>= 2.1.4)
   coffee-rails (~> 3.1.0)
-  devise (>= 1.4.2)
+  devise!
   devise_lastseenable (>= 0.0.3)
   haml
   jquery-rails

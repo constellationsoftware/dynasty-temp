@@ -4,8 +4,13 @@ $theme-name: 'dynasty';
 // Insert your custom variables here.
 // $base-color: #aa0000
 $font-family: 'Droid Sans', sans-serif;
-
+$base-color: #aa0000;
+$base-font-size: 24px;
+$base-line-height: 36px;
+$window-border-radius: 50px;
 @import 'ext4/default/all';
+
+
 
 @include extjs-notification-window-ui(null,center,15px 5px 15px 5px,200px,null,null,null,null,null);
 @include extjs-notification-window-ui("light",center,15px 5px 18px 5px,200px,transparent,#FFFFFF,transparent,0px solid white,"fader.png",0px none transparent);

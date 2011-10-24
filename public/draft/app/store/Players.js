@@ -49,7 +49,7 @@ Ext.define('DynastyDraft.store.Players', {
 
     proxy: {
         type: 'ajax',
-        url: 'data/players.json',
+        url: '/draft/data/players.json',
         reader: {
             type: 'json',
             root: 'results'

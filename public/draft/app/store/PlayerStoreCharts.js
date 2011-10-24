@@ -27,7 +27,7 @@ Ext.define('DynastyDraft.store.PlayerStoreCharts', {
             remoteSort: true,
             proxy: {
                 type: 'ajax',
-                url: 'data/top5.json',
+                url: '/draft/data/top5.json',
                 reader: {
                     type: 'json',
                     root: 'dynastyui/data'

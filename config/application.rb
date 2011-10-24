@@ -44,5 +44,8 @@ module Dynasty
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Disable asset initialization on precompile for heroku deployment w/ devise authentication
+    config.assets.initialize_on_precompile = false
   end
 end

@@ -4,7 +4,7 @@ Ext.Loader.setConfig({
 
 Ext.application({
     name: 'DynastyDraft',
-    appFolder: 'app',
+    appFolder: '/draft/app',
     autoCreateViewport: true,
 
     models: [

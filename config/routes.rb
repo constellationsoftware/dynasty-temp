@@ -1,4 +1,6 @@
 Dynasty::Application.routes.draw do
+  devise_for :users
+
   resources :people
   resources :persons
 
