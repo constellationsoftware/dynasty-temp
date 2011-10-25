@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+#require 'rails-extjs-direct'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -44,5 +45,8 @@ module Dynasty
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # set up a custom provider for the direct RPC root URL
+    #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"
   end
 end

@@ -384,7 +384,7 @@ input, textarea, select {
   width: 6px;
   height: 6px;
   float: left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/shadow.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/shadow.png');
 }
 
 /* line 160, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
@@ -393,14 +393,14 @@ input, textarea, select {
   width: 6px;
   float: left;
   height: 100%;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/shadow-lr.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/shadow-lr.png');
 }
 
 /* line 170, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-frame-shadow .xsmc {
   float: left;
   height: 100%;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/shadow-c.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/shadow-c.png');
 }
 
 /* line 180, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
@@ -488,28 +488,28 @@ input, textarea, select {
 
 /* line 250, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-tl {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/corners.gif');
 }
 
 /* line 254, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-tc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/tb.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/tb.gif');
 }
 
 /* line 258, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-tr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/corners.gif');
 }
 
 /* line 262, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-ml {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/l.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/l.gif');
 }
 
 /* line 266, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-mc {
   background-color: #eee;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/tb.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/tb.gif');
   font-family: "Myriad Pro","Myriad Web","Tahoma","Helvetica","Arial",sans-serif;
   color: #393939;
   font-size: 15px;
@@ -523,32 +523,32 @@ input, textarea, select {
 
 /* line 279, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/r.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/r.gif');
 }
 
 /* line 283, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-bl {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/corners.gif');
 }
 
 /* line 287, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/tb.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/tb.gif');
 }
 
 /* line 291, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-br {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/corners.gif');
 }
 
 /* line 295, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-blue .x-box-bl, .x-box-blue .x-box-br, .x-box-blue .x-box-tl, .x-box-blue .x-box-tr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/corners-blue.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/corners-blue.gif');
 }
 
 /* line 299, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-blue .x-box-bc, .x-box-blue .x-box-mc, .x-box-blue .x-box-tc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/tb-blue.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/tb-blue.gif');
 }
 
 /* line 303, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
@@ -563,12 +563,12 @@ input, textarea, select {
 
 /* line 311, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-blue .x-box-ml {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/l-blue.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/l-blue.gif');
 }
 
 /* line 315, ../../lib/extjs/resources/themes/stylesheets/ext4/default/core/_core.scss */
 .x-box-blue .x-box-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/box/r-blue.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/box/r-blue.gif');
 }
 
 /* line 1, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_focus.scss */
@@ -684,7 +684,7 @@ input, textarea, select {
 /* line 40, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_loadmask.scss */
 .x-mask-msg div {
   padding: 5px 10px 5px 25px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/loading.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/loading.gif');
   background-repeat: no-repeat;
   background-position: 5px center;
   cursor: wait;
@@ -929,7 +929,7 @@ input, textarea, select {
 
 /* line 180, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-btn-arrow {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/arrow.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/arrow.gif');
   display: block;
 }
 
@@ -937,7 +937,7 @@ input, textarea, select {
 .x-btn-split-right,
 .x-btn-over .x-btn-split-right {
   background: transparent no-repeat right center;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow.gif');
   padding-right: 14px !important;
 }
 
@@ -945,19 +945,19 @@ input, textarea, select {
 .x-btn-split-bottom,
 .x-btn-over .x-btn-split-bottom {
   background: transparent no-repeat center bottom;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow-b.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow-b.gif');
   padding-bottom: 14px;
 }
 
 /* line 201, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-toolbar .x-btn-split-right {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow-noline.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow-noline.gif');
   padding-right: 12px !important;
 }
 
 /* line 206, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-toolbar .x-btn-split-bottom {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow-b-noline.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow-b-noline.gif');
 }
 
 /* line 210, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -978,12 +978,12 @@ input, textarea, select {
 
 /* line 223, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-btn-over .x-btn-split-right {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow-o.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow-o.gif');
 }
 
 /* line 224, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-btn-over .x-btn-split-bottom {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow-bo.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow-bo.gif');
 }
 
 /* line 615, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -1014,7 +1014,7 @@ input, textarea, select {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-small-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-bg.gif');
   background-color: white;
 }
 
@@ -1041,13 +1041,13 @@ input, textarea, select {
 .x-nbr .x-btn-default-small-ml,
 .x-nbr .x-btn-default-small-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-small-ml,
 .x-nbr .x-btn-default-small-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -1248,17 +1248,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-small-over .x-frame-br,
 .x-nbr .x-btn-default-small-over .x-frame-tc,
 .x-nbr .x-btn-default-small-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-over-corners.gif');
 }
 /* line 872, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-over .x-frame-ml,
 .x-nbr .x-btn-default-small-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-over-sides.gif');
 }
 /* line 875, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-over .x-frame-mc {
   background-color: #e4f3ff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-over-bg.gif');
 }
 /* line 889, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-focus .x-frame-tl,
@@ -1267,17 +1267,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-small-focus .x-frame-br,
 .x-nbr .x-btn-default-small-focus .x-frame-tc,
 .x-nbr .x-btn-default-small-focus .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-focus-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-focus-corners.gif');
 }
 /* line 893, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-focus .x-frame-ml,
 .x-nbr .x-btn-default-small-focus .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-focus-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-focus-sides.gif');
 }
 /* line 896, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-focus .x-frame-mc {
   background-color: #e4f3ff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-focus-bg.gif');
 }
 /* line 911, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-menu-active .x-frame-tl,
@@ -1292,20 +1292,20 @@ input, textarea, select {
 .x-nbr .x-btn-default-small-pressed .x-frame-br,
 .x-nbr .x-btn-default-small-pressed .x-frame-tc,
 .x-nbr .x-btn-default-small-pressed .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-pressed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-pressed-corners.gif');
 }
 /* line 915, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-menu-active .x-frame-ml,
 .x-nbr .x-btn-default-small-menu-active .x-frame-mr,
 .x-nbr .x-btn-default-small-pressed .x-frame-ml,
 .x-nbr .x-btn-default-small-pressed .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-pressed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-pressed-sides.gif');
 }
 /* line 918, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-menu-active .x-frame-mc,
 .x-nbr .x-btn-default-small-pressed .x-frame-mc {
   background-color: #b6cbe4;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-pressed-bg.gif');
 }
 /* line 932, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-disabled .x-frame-tl,
@@ -1314,48 +1314,48 @@ input, textarea, select {
 .x-nbr .x-btn-default-small-disabled .x-frame-br,
 .x-nbr .x-btn-default-small-disabled .x-frame-tc,
 .x-nbr .x-btn-default-small-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-disabled-corners.gif');
 }
 /* line 936, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-disabled .x-frame-ml,
 .x-nbr .x-btn-default-small-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-disabled-sides.gif');
 }
 /* line 939, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-small-disabled .x-frame-mc {
   background-color: #f7f7f7;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-disabled-bg.gif');
 }
 
 /* line 952, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-small {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-bg.gif');
 }
 
 /* line 961, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-small-over {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-over-bg.gif');
 }
 
 /* line 970, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-small-focus {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-focus-bg.gif');
 }
 
 /* line 980, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-small-menu-active,
 .x-nlg .x-btn-default-small-pressed {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-pressed-bg.gif');
 }
 
 /* line 989, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-small-disabled {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-small-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-disabled-bg.gif');
 }
 
 /* line 615, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -1386,7 +1386,7 @@ input, textarea, select {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-medium-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-bg.gif');
   background-color: white;
 }
 
@@ -1413,13 +1413,13 @@ input, textarea, select {
 .x-nbr .x-btn-default-medium-ml,
 .x-nbr .x-btn-default-medium-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-medium-ml,
 .x-nbr .x-btn-default-medium-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -1620,17 +1620,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-medium-over .x-frame-br,
 .x-nbr .x-btn-default-medium-over .x-frame-tc,
 .x-nbr .x-btn-default-medium-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-over-corners.gif');
 }
 /* line 872, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-over .x-frame-ml,
 .x-nbr .x-btn-default-medium-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-over-sides.gif');
 }
 /* line 875, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-over .x-frame-mc {
   background-color: #e4f3ff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-over-bg.gif');
 }
 /* line 889, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-focus .x-frame-tl,
@@ -1639,17 +1639,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-medium-focus .x-frame-br,
 .x-nbr .x-btn-default-medium-focus .x-frame-tc,
 .x-nbr .x-btn-default-medium-focus .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-focus-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-focus-corners.gif');
 }
 /* line 893, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-focus .x-frame-ml,
 .x-nbr .x-btn-default-medium-focus .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-focus-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-focus-sides.gif');
 }
 /* line 896, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-focus .x-frame-mc {
   background-color: #e4f3ff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-focus-bg.gif');
 }
 /* line 911, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-menu-active .x-frame-tl,
@@ -1664,20 +1664,20 @@ input, textarea, select {
 .x-nbr .x-btn-default-medium-pressed .x-frame-br,
 .x-nbr .x-btn-default-medium-pressed .x-frame-tc,
 .x-nbr .x-btn-default-medium-pressed .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-pressed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-pressed-corners.gif');
 }
 /* line 915, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-menu-active .x-frame-ml,
 .x-nbr .x-btn-default-medium-menu-active .x-frame-mr,
 .x-nbr .x-btn-default-medium-pressed .x-frame-ml,
 .x-nbr .x-btn-default-medium-pressed .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-pressed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-pressed-sides.gif');
 }
 /* line 918, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-menu-active .x-frame-mc,
 .x-nbr .x-btn-default-medium-pressed .x-frame-mc {
   background-color: #b6cbe4;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-pressed-bg.gif');
 }
 /* line 932, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-disabled .x-frame-tl,
@@ -1686,48 +1686,48 @@ input, textarea, select {
 .x-nbr .x-btn-default-medium-disabled .x-frame-br,
 .x-nbr .x-btn-default-medium-disabled .x-frame-tc,
 .x-nbr .x-btn-default-medium-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-disabled-corners.gif');
 }
 /* line 936, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-disabled .x-frame-ml,
 .x-nbr .x-btn-default-medium-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-disabled-sides.gif');
 }
 /* line 939, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-medium-disabled .x-frame-mc {
   background-color: #f7f7f7;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-disabled-bg.gif');
 }
 
 /* line 952, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-medium {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-bg.gif');
 }
 
 /* line 961, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-medium-over {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-over-bg.gif');
 }
 
 /* line 970, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-medium-focus {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-focus-bg.gif');
 }
 
 /* line 980, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-medium-menu-active,
 .x-nlg .x-btn-default-medium-pressed {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-pressed-bg.gif');
 }
 
 /* line 989, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-medium-disabled {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-medium-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-disabled-bg.gif');
 }
 
 /* line 615, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -1758,7 +1758,7 @@ input, textarea, select {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-large-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-bg.gif');
   background-color: white;
 }
 
@@ -1785,13 +1785,13 @@ input, textarea, select {
 .x-nbr .x-btn-default-large-ml,
 .x-nbr .x-btn-default-large-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-large-ml,
 .x-nbr .x-btn-default-large-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -1992,17 +1992,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-large-over .x-frame-br,
 .x-nbr .x-btn-default-large-over .x-frame-tc,
 .x-nbr .x-btn-default-large-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-over-corners.gif');
 }
 /* line 872, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-over .x-frame-ml,
 .x-nbr .x-btn-default-large-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-over-sides.gif');
 }
 /* line 875, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-over .x-frame-mc {
   background-color: #e4f3ff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-over-bg.gif');
 }
 /* line 889, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-focus .x-frame-tl,
@@ -2011,17 +2011,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-large-focus .x-frame-br,
 .x-nbr .x-btn-default-large-focus .x-frame-tc,
 .x-nbr .x-btn-default-large-focus .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-focus-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-focus-corners.gif');
 }
 /* line 893, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-focus .x-frame-ml,
 .x-nbr .x-btn-default-large-focus .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-focus-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-focus-sides.gif');
 }
 /* line 896, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-focus .x-frame-mc {
   background-color: #e4f3ff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-focus-bg.gif');
 }
 /* line 911, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-menu-active .x-frame-tl,
@@ -2036,20 +2036,20 @@ input, textarea, select {
 .x-nbr .x-btn-default-large-pressed .x-frame-br,
 .x-nbr .x-btn-default-large-pressed .x-frame-tc,
 .x-nbr .x-btn-default-large-pressed .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-pressed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-pressed-corners.gif');
 }
 /* line 915, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-menu-active .x-frame-ml,
 .x-nbr .x-btn-default-large-menu-active .x-frame-mr,
 .x-nbr .x-btn-default-large-pressed .x-frame-ml,
 .x-nbr .x-btn-default-large-pressed .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-pressed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-pressed-sides.gif');
 }
 /* line 918, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-menu-active .x-frame-mc,
 .x-nbr .x-btn-default-large-pressed .x-frame-mc {
   background-color: #b6cbe4;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-pressed-bg.gif');
 }
 /* line 932, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-disabled .x-frame-tl,
@@ -2058,48 +2058,48 @@ input, textarea, select {
 .x-nbr .x-btn-default-large-disabled .x-frame-br,
 .x-nbr .x-btn-default-large-disabled .x-frame-tc,
 .x-nbr .x-btn-default-large-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-disabled-corners.gif');
 }
 /* line 936, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-disabled .x-frame-ml,
 .x-nbr .x-btn-default-large-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-disabled-sides.gif');
 }
 /* line 939, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-large-disabled .x-frame-mc {
   background-color: #f7f7f7;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-disabled-bg.gif');
 }
 
 /* line 952, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-large {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-bg.gif');
 }
 
 /* line 961, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-large-over {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-over-bg.gif');
 }
 
 /* line 970, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-large-focus {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-focus-bg.gif');
 }
 
 /* line 980, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-large-menu-active,
 .x-nlg .x-btn-default-large-pressed {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-pressed-bg.gif');
 }
 
 /* line 989, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-large-disabled {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-large-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-disabled-bg.gif');
 }
 
 /* line 615, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -2346,17 +2346,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-small-over .x-frame-br,
 .x-nbr .x-btn-default-toolbar-small-over .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-small-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-over-corners.gif');
 }
 /* line 872, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-over .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-small-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-over-sides.gif');
 }
 /* line 875, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-over .x-frame-mc {
   background-color: #dbeeff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-over-bg.gif');
 }
 /* line 889, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-tl,
@@ -2365,17 +2365,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-br,
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-focus-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-focus-corners.gif');
 }
 /* line 893, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-focus-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-focus-sides.gif');
 }
 /* line 896, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-focus .x-frame-mc {
   background-color: #dbeeff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-focus-bg.gif');
 }
 /* line 911, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-menu-active .x-frame-tl,
@@ -2390,20 +2390,20 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-small-pressed .x-frame-br,
 .x-nbr .x-btn-default-toolbar-small-pressed .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-small-pressed .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-pressed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-pressed-corners.gif');
 }
 /* line 915, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-menu-active .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-small-menu-active .x-frame-mr,
 .x-nbr .x-btn-default-toolbar-small-pressed .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-small-pressed .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-pressed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-pressed-sides.gif');
 }
 /* line 918, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-menu-active .x-frame-mc,
 .x-nbr .x-btn-default-toolbar-small-pressed .x-frame-mc {
   background-color: #bccfe5;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-pressed-bg.gif');
 }
 /* line 932, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-tl,
@@ -2412,12 +2412,12 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-br,
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-disabled-corners.gif');
 }
 /* line 936, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-disabled-sides.gif');
 }
 /* line 939, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-small-disabled .x-frame-mc {
@@ -2427,20 +2427,20 @@ input, textarea, select {
 /* line 961, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-small-over {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-over-bg.gif');
 }
 
 /* line 970, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-small-focus {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-focus-bg.gif');
 }
 
 /* line 980, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-small-menu-active,
 .x-nlg .x-btn-default-toolbar-small-pressed {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-small-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-small-pressed-bg.gif');
 }
 
 /* line 615, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -2687,17 +2687,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-medium-over .x-frame-br,
 .x-nbr .x-btn-default-toolbar-medium-over .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-medium-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-over-corners.gif');
 }
 /* line 872, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-over .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-medium-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-over-sides.gif');
 }
 /* line 875, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-over .x-frame-mc {
   background-color: #dbeeff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-over-bg.gif');
 }
 /* line 889, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-tl,
@@ -2706,17 +2706,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-br,
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-focus-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-focus-corners.gif');
 }
 /* line 893, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-focus-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-focus-sides.gif');
 }
 /* line 896, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-focus .x-frame-mc {
   background-color: #dbeeff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-focus-bg.gif');
 }
 /* line 911, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-menu-active .x-frame-tl,
@@ -2731,20 +2731,20 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-medium-pressed .x-frame-br,
 .x-nbr .x-btn-default-toolbar-medium-pressed .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-medium-pressed .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-pressed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-pressed-corners.gif');
 }
 /* line 915, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-menu-active .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-medium-menu-active .x-frame-mr,
 .x-nbr .x-btn-default-toolbar-medium-pressed .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-medium-pressed .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-pressed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-pressed-sides.gif');
 }
 /* line 918, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-menu-active .x-frame-mc,
 .x-nbr .x-btn-default-toolbar-medium-pressed .x-frame-mc {
   background-color: #bccfe5;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-pressed-bg.gif');
 }
 /* line 932, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-tl,
@@ -2753,12 +2753,12 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-br,
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-disabled-corners.gif');
 }
 /* line 936, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-disabled-sides.gif');
 }
 /* line 939, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-medium-disabled .x-frame-mc {
@@ -2768,20 +2768,20 @@ input, textarea, select {
 /* line 961, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-medium-over {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-over-bg.gif');
 }
 
 /* line 970, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-medium-focus {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-focus-bg.gif');
 }
 
 /* line 980, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-medium-menu-active,
 .x-nlg .x-btn-default-toolbar-medium-pressed {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-medium-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-medium-pressed-bg.gif');
 }
 
 /* line 615, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -3028,17 +3028,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-large-over .x-frame-br,
 .x-nbr .x-btn-default-toolbar-large-over .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-large-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-over-corners.gif');
 }
 /* line 872, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-over .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-large-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-over-sides.gif');
 }
 /* line 875, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-over .x-frame-mc {
   background-color: #dbeeff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-over-bg.gif');
 }
 /* line 889, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-tl,
@@ -3047,17 +3047,17 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-br,
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-focus-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-focus-corners.gif');
 }
 /* line 893, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-focus-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-focus-sides.gif');
 }
 /* line 896, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-focus .x-frame-mc {
   background-color: #dbeeff;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-focus-bg.gif');
 }
 /* line 911, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-menu-active .x-frame-tl,
@@ -3072,20 +3072,20 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-large-pressed .x-frame-br,
 .x-nbr .x-btn-default-toolbar-large-pressed .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-large-pressed .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-pressed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-pressed-corners.gif');
 }
 /* line 915, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-menu-active .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-large-menu-active .x-frame-mr,
 .x-nbr .x-btn-default-toolbar-large-pressed .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-large-pressed .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-pressed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-pressed-sides.gif');
 }
 /* line 918, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-menu-active .x-frame-mc,
 .x-nbr .x-btn-default-toolbar-large-pressed .x-frame-mc {
   background-color: #bccfe5;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-pressed-bg.gif');
 }
 /* line 932, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-tl,
@@ -3094,12 +3094,12 @@ input, textarea, select {
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-br,
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-tc,
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-disabled-corners.gif');
 }
 /* line 936, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-ml,
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-disabled-sides.gif');
 }
 /* line 939, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nbr .x-btn-default-toolbar-large-disabled .x-frame-mc {
@@ -3109,20 +3109,20 @@ input, textarea, select {
 /* line 961, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-large-over {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-over-bg.gif');
 }
 
 /* line 970, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-large-focus {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-focus-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-focus-bg.gif');
 }
 
 /* line 980, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
 .x-nlg .x-btn-default-toolbar-large-menu-active,
 .x-nlg .x-btn-default-toolbar-large-pressed {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn/btn-default-toolbar-large-pressed-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-toolbar-large-pressed-bg.gif');
 }
 
 /* line 553, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_button.scss */
@@ -3198,13 +3198,13 @@ input, textarea, select {
 .x-nbr .x-btn-group-default-framed-ml,
 .x-nbr .x-btn-group-default-framed-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn-group/btn-group-default-framed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn-group/btn-group-default-framed-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-group-default-framed-ml,
 .x-nbr .x-btn-group-default-framed-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/btn-group/btn-group-default-framed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/btn-group/btn-group-default-framed-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -3320,7 +3320,7 @@ input, textarea, select {
 }
 /* line 68, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
 .x-datepicker-next a {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/right-btn.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/right-btn.gif');
 }
 
 /* line 73, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
@@ -3329,7 +3329,7 @@ input, textarea, select {
 }
 /* line 76, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
 .x-datepicker-prev a {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/left-btn.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/left-btn.gif');
 }
 
 /* line 82, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
@@ -3365,7 +3365,7 @@ input, textarea, select {
 /* line 108, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
 .x-datepicker-month .x-btn-split-right {
   background: no-repeat right center !important;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/button/s-arrow-light.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/button/s-arrow-light.gif');
   padding-right: 12px;
 }
 
@@ -3570,7 +3570,7 @@ table.x-datepicker-inner .x-datepicker-disabled a {
 }
 /* line 329, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
 .x-monthpicker-yearnav button {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tools/tool-sprites.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tools/tool-sprites.gif');
   height: 15px;
   width: 15px;
   padding: 0;
@@ -3640,14 +3640,14 @@ table.x-datepicker-inner .x-datepicker-disabled a {
 
 /* line 405, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
 .x-nlg .x-datepicker-header {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/datepicker/datepicker-header-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/datepicker/datepicker-header-bg.gif');
   background-repeat: repeat-x;
   background-position: top left;
 }
 /* line 414, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_datepicker.scss */
 .x-nlg .x-datepicker-footer,
 .x-nlg .x-monthpicker-buttons {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/datepicker/datepicker-footer-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/datepicker/datepicker-footer-bg.gif');
   background-repeat: repeat-x;
   background-position: top left;
 }
@@ -3787,16 +3787,16 @@ table.x-datepicker-inner .x-datepicker-disabled a {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
 .x-menu-item-checked .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/menu/checked.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/menu/checked.gif');
 }
 /* line 94, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
 .x-menu-item-checked .x-menu-group-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/menu/group-checked.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/menu/group-checked.gif');
 }
 
 /* line 100, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
 .x-menu-item-unchecked .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/menu/unchecked.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/menu/unchecked.gif');
 }
 /* line 103, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
 .x-menu-item-unchecked .x-menu-group-icon {
@@ -3820,7 +3820,7 @@ table.x-datepicker-inner .x-datepicker-disabled a {
   top: 9px;
   right: 0px;
   background: no-repeat center center;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/menu/menu-parent.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/menu/menu-parent.gif');
 }
 
 /* line 126, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
@@ -3888,7 +3888,7 @@ table.x-datepicker-inner .x-datepicker-disabled a {
 /* line 181, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
 .x-nlg .x-menu-item-active .x-menu-item-link {
   background: #d9e8fb repeat-x left top;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/menu/menu-item-active-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/menu/menu-item-active-bg.gif');
 }
 
 /* line 188, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_menu.scss */
@@ -4037,14 +4037,14 @@ table.x-datepicker-inner .x-datepicker-disabled a {
 .x-nlg .x-grid-header-ct,
 .x-nlg .x-column-header {
   background: repeat-x 0 top;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/column-header-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/column-header-bg.gif');
 }
 /* line 137, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-nlg .x-column-header-over,
 .x-nlg .x-column-header-sort-ASC,
 .x-nlg .x-column-header-sort-DESC {
   background: #ebf3fd repeat-x 0 top;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/column-header-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/column-header-over-bg.gif');
 }
 
 /* line 144, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4054,7 +4054,7 @@ table.x-datepicker-inner .x-datepicker-disabled a {
   width: 14px;
   background: no-repeat left center;
   background-color: #c3daf9;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/grid3-hd-btn.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/grid3-hd-btn.gif');
   position: absolute;
   right: 0;
   top: 0;
@@ -4091,14 +4091,14 @@ table.x-datepicker-inner .x-datepicker-disabled a {
 .x-column-header-sort-ASC .x-column-header-text {
   padding-right: 16px;
   background: no-repeat right 6px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/sort_asc.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/sort_asc.gif');
 }
 
 /* line 185, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-column-header-sort-DESC .x-column-header-text {
   padding-right: 16px;
   background: no-repeat right 6px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/sort_desc.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/sort_desc.gif');
 }
 
 /* line 192, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4261,7 +4261,7 @@ browsers will do whacky things with it.
 
 /* line 337, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-dirty-cell {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/dirty.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/dirty.gif');
   background-position: 0 0;
   background-repeat: no-repeat;
 }
@@ -4279,12 +4279,12 @@ browsers will do whacky things with it.
 /* line 355, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-nlg .x-grid-row .x-grid-cell-special,
 .x-nlg .x-grid-row-over .x-grid-cell-special {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/cell-special-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/cell-special-bg.gif');
 }
 /* line 361, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-nlg .x-grid-row-focused .x-grid-cell-special,
 .x-nlg .x-grid-row-selected .x-grid-cell-special {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/cell-special-selected-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/cell-special-selected-bg.gif');
 }
 
 /* line 368, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4306,7 +4306,7 @@ browsers will do whacky things with it.
 .x-property-grid .x-grid-row .x-grid-property-name .x-grid-cell-inner,
 .x-property-grid .x-grid-row-over .x-grid-property-name .x-grid-cell-inner {
   padding-left: 12px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/property-cell-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/property-cell-bg.gif');
   background-repeat: no-repeat;
   background-position: -16px 1px;
 }
@@ -4353,7 +4353,7 @@ browsers will do whacky things with it.
 
 /* line 432, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-row-expander {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-collapse.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-collapse.gif');
   background-color: transparent;
   width: 9px;
   height: 13px;
@@ -4364,7 +4364,7 @@ browsers will do whacky things with it.
 
 /* line 446, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-row-collapsed .x-grid-row-expander {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-expand.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-expand.gif');
 }
 
 /* line 451, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4392,12 +4392,12 @@ browsers will do whacky things with it.
 
 /* line 473, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .col-move-top {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/col-move-top.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/col-move-top.gif');
 }
 
 /* line 477, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .col-move-bottom {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/col-move-bottom.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/col-move-bottom.gif');
 }
 
 /* line 482, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4429,7 +4429,7 @@ browsers will do whacky things with it.
 /* line 509, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-group-title {
   background: transparent no-repeat 0 -1px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-collapse.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-collapse.gif');
   color: #3764a0;
   font: bold 11px "Droid Sans", sans-serif;
   padding: 0 0 0 14px;
@@ -4437,7 +4437,7 @@ browsers will do whacky things with it.
 
 /* line 520, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-group-hd-collapsed .x-grid-group-title {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-expand.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-expand.gif');
 }
 
 /* line 525, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4447,17 +4447,17 @@ browsers will do whacky things with it.
 
 /* line 529, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-group-collapsed .x-grid-group-title {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-expand.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-expand.gif');
 }
 
 /* line 533, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-group-by-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-by.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-by.gif');
 }
 
 /* line 537, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-show-groups-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-by.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-by.gif');
 }
 
 /* line 541, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4475,7 +4475,7 @@ browsers will do whacky things with it.
 .x-column-header-checkbox .x-column-header-text {
   height: 14px;
   width: 14px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/unchecked.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/unchecked.gif');
   background-position: -1px -1px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -4503,7 +4503,7 @@ browsers will do whacky things with it.
 
 /* line 584, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-hd-checker-on .x-column-header-text {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/checked.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/checked.gif');
 }
 
 /* line 588, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4515,88 +4515,88 @@ browsers will do whacky things with it.
 /* line 595, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-row-selected .x-grid-row-checker,
 .x-grid-row-checked .x-grid-row-checker {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/checked.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/checked.gif');
 }
 
 /* line 600, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-tbar-page-first {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-first.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-first.gif') !important;
 }
 
 /* line 604, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-tbar-loading {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/refresh.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/refresh.gif') !important;
 }
 
 /* line 608, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-tbar-page-last {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-last.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-last.gif') !important;
 }
 
 /* line 612, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-tbar-page-next {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-next.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-next.gif') !important;
 }
 
 /* line 616, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-tbar-page-prev {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-prev.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-prev.gif') !important;
 }
 
 /* line 621, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-item-disabled .x-tbar-loading {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/refresh-disabled.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/refresh-disabled.gif') !important;
 }
 /* line 625, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-item-disabled .x-tbar-page-first {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-first-disabled.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-first-disabled.gif') !important;
 }
 /* line 629, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-item-disabled .x-tbar-page-last {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-last-disabled.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-last-disabled.gif') !important;
 }
 /* line 633, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-item-disabled .x-tbar-page-next {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-next-disabled.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-next-disabled.gif') !important;
 }
 /* line 637, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-item-disabled .x-tbar-page-prev {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/page-prev-disabled.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/page-prev-disabled.gif') !important;
 }
 
 /* line 643, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-hmenu-sort-asc .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/hmenu-asc.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/hmenu-asc.gif');
 }
 
 /* line 647, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-hmenu-sort-desc .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/hmenu-desc.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/hmenu-desc.gif');
 }
 
 /* line 651, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-hmenu-lock .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/hmenu-lock.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/hmenu-lock.gif');
 }
 
 /* line 655, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-hmenu-unlock .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/hmenu-unlock.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/hmenu-unlock.gif');
 }
 
 /* line 659, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-group-by-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-by.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-by.gif');
 }
 
 /* line 663, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-cols-icon .x-menu-item-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/columns.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/columns.gif');
 }
 
 /* line 667, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-show-groups-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/group-by.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/group-by.gif');
 }
 
 /* line 672, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4612,7 +4612,7 @@ browsers will do whacky things with it.
   position: absolute;
   top: -8px;
   left: -12px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/dd-insert-arrow-right.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/dd-insert-arrow-right.png');
   height: 16px;
   width: 16px;
 }
@@ -4621,18 +4621,18 @@ browsers will do whacky things with it.
   position: absolute;
   top: -8px;
   right: -11px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/dd-insert-arrow-left.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/dd-insert-arrow-left.png');
   height: 16px;
   width: 16px;
 }
 
 /* line 699, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-ie6 .x-grid-drop-indicator-left {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/dd-insert-arrow-right.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/dd-insert-arrow-right.gif');
 }
 /* line 703, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-ie6 .x-grid-drop-indicator-right {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/dd-insert-arrow-left.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/dd-insert-arrow-left.gif');
 }
 
 /* line 709, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
@@ -4693,7 +4693,7 @@ browsers will do whacky things with it.
   width: 4px;
   height: 4px;
   bottom: 0px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel/panel-default-framed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel/panel-default-framed-corners.gif');
 }
 /* line 774, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
 .x-grid-row-editor-buttons-bl {
@@ -4798,7 +4798,7 @@ browsers will do whacky things with it.
   font: normal 11px "Droid Sans", sans-serif;
   line-height: 16px;
   background: no-repeat 0 2px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/exclamation.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/exclamation.gif');
 }
 
 /* line 57, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_all.scss */
@@ -4811,7 +4811,7 @@ browsers will do whacky things with it.
   left: 0;
   top: 0;
   background: no-repeat 2px 3px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/exclamation.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/exclamation.gif');
 }
 /* line 70, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_all.scss */
 .x-form-invalid-icon ul {
@@ -4835,7 +4835,7 @@ textarea.x-form-field {
   background: repeat-x 0 0;
   border: 1px solid;
   background-color: white;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/text-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/text-bg.gif');
   border-color: #b5b8c8;
 }
 
@@ -4866,7 +4866,7 @@ textarea.x-form-field {
   line-height: normal;
   background: repeat-x 0 0;
   background-color: white;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/text-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/text-bg.gif');
   resize: none;
 }
 
@@ -4890,7 +4890,7 @@ textarea.x-form-focus {
 .x-form-invalid-field,
 textarea.x-form-invalid-field {
   background-color: white;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/invalid_line.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/invalid_line.gif');
   background-repeat: repeat-x;
   background-position: bottom;
   border-color: #cc3300;
@@ -5090,7 +5090,7 @@ textarea.x-form-invalid-field {
   width: 13px;
   height: 13px;
   background: no-repeat;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/checkbox.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/checkbox.gif');
   overflow: hidden;
   padding: 0;
   border: 0;
@@ -5129,7 +5129,7 @@ textarea.x-form-invalid-field {
 /* Radios */
 /* line 51, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_checkbox.scss */
 .x-form-radio {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/radio.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/radio.gif');
 }
 
 /* boxLabel */
@@ -5147,7 +5147,7 @@ textarea.x-form-invalid-field {
 .x-form-invalid .x-form-checkboxgroup-body {
   border: 1px solid #c30;
   background: #fff repeat-x bottom;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/grid/invalid_line.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/grid/invalid_line.gif');
   padding: 2px 3px;
 }
 
@@ -5173,7 +5173,7 @@ textarea.x-form-invalid-field {
 
 /* line 6, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-form-trigger {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/trigger.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/trigger.gif');
   background-position: 0 0;
   width: 17px;
   height: 21px;
@@ -5270,18 +5270,18 @@ textarea.x-form-invalid-field {
 
 /* line 83, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-form-arrow-trigger .x-form-trigger-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/boundlist/trigger-arrow.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/boundlist/trigger-arrow.png');
 }
 
 /* line 88, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-form-date-trigger {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/date-trigger.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/date-trigger.gif');
 }
 
 /* line 95, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-form-trigger-wrap .x-form-spinner-up,
 .x-form-trigger-wrap .x-form-spinner-down {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/spinner.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/spinner.gif');
   width: 17px !important;
   height: 11px !important;
   font-size: 0;
@@ -5316,7 +5316,7 @@ textarea.x-form-invalid-field {
 /* line 127, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-field-default-toolbar .x-form-trigger-wrap .x-form-spinner-up,
 .x-field-default-toolbar .x-form-trigger-wrap .x-form-spinner-down {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/spinner-small.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/spinner-small.gif');
   height: 10px !important;
 }
 /* line 131, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
@@ -5348,12 +5348,12 @@ textarea.x-form-invalid-field {
 
 /* line 156, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-form-clear-trigger {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/clear-trigger.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/clear-trigger.gif');
 }
 
 /* line 159, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_triggerfield.scss */
 .x-form-search-trigger {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/search-trigger.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/search-trigger.gif');
 }
 
 /* line 2, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
@@ -5374,105 +5374,105 @@ textarea.x-form-invalid-field {
 /* line 16, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-btn-text {
   background: transparent no-repeat;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 22, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-bold,
 .x-menu-item img.x-edit-bold {
   background-position: 0 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 28, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-italic,
 .x-menu-item img.x-edit-italic {
   background-position: -16px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 34, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-underline,
 .x-menu-item img.x-edit-underline {
   background-position: -32px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 40, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-forecolor,
 .x-menu-item img.x-edit-forecolor {
   background-position: -160px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 46, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-backcolor,
 .x-menu-item img.x-edit-backcolor {
   background-position: -176px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 52, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-justifyleft,
 .x-menu-item img.x-edit-justifyleft {
   background-position: -112px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-justifycenter,
 .x-menu-item img.x-edit-justifycenter {
   background-position: -128px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 64, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-justifyright,
 .x-menu-item img.x-edit-justifyright {
   background-position: -144px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 70, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-insertorderedlist,
 .x-menu-item img.x-edit-insertorderedlist {
   background-position: -80px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 76, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-insertunorderedlist,
 .x-menu-item img.x-edit-insertunorderedlist {
   background-position: -96px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 82, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-increasefontsize,
 .x-menu-item img.x-edit-increasefontsize {
   background-position: -48px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 88, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-decreasefontsize,
 .x-menu-item img.x-edit-decreasefontsize {
   background-position: -64px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 94, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-sourceedit,
 .x-menu-item img.x-edit-sourceedit {
   background-position: -192px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 100, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
 .x-html-editor-tb .x-edit-createlink,
 .x-menu-item img.x-edit-createlink {
   background-position: -208px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/editor/tb-sprite.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/editor/tb-sprite.gif');
 }
 
 /* line 105, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/form/_htmleditor.scss */
@@ -5665,22 +5665,22 @@ textarea.x-form-invalid-field {
 
 /* line 271, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-top {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-top-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-top-bg.gif');
 }
 
 /* line 275, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-bottom {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-bottom-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-bottom-bg.gif');
 }
 
 /* line 279, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-left {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-left-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-left-bg.gif');
 }
 
 /* line 283, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-right {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-right-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-right-bg.gif');
 }
 
 /* line 290, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
@@ -5869,22 +5869,22 @@ textarea.x-form-invalid-field {
 
 /* line 271, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-framed-top {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-top-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-top-bg.gif');
 }
 
 /* line 275, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-framed-bottom {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-bottom-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-bottom-bg.gif');
 }
 
 /* line 279, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-framed-left {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-left-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-left-bg.gif');
 }
 
 /* line 283, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
 .x-nlg .x-panel-header-default-framed-right {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-right-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-right-bg.gif');
 }
 
 /* line 290, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_panel.scss */
@@ -5970,13 +5970,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-default-framed-ml,
 .x-nbr .x-panel-default-framed-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel/panel-default-framed-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel/panel-default-framed-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-default-framed-ml,
 .x-nbr .x-panel-default-framed-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel/panel-default-framed-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel/panel-default-framed-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -6026,7 +6026,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-top-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-top-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-top-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6053,13 +6053,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-top-ml,
 .x-nbr .x-panel-header-default-framed-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-top-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-top-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-top-ml,
 .x-nbr .x-panel-header-default-framed-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-top-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-top-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -6108,7 +6108,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-right-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-right-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-right-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6135,13 +6135,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-right-ml,
 .x-nbr .x-panel-header-default-framed-right-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-right-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-right-corners.gif');
 }
 /* line 157, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-right-tc,
 .x-nbr .x-panel-header-default-framed-right-bc {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-right-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-right-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-x;
 }
@@ -6191,7 +6191,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-bottom-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-bottom-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-bottom-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6218,13 +6218,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-bottom-ml,
 .x-nbr .x-panel-header-default-framed-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-bottom-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-bottom-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-bottom-ml,
 .x-nbr .x-panel-header-default-framed-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-bottom-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-bottom-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -6273,7 +6273,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-left-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-left-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-left-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6300,13 +6300,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-left-ml,
 .x-nbr .x-panel-header-default-framed-left-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-left-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-left-corners.gif');
 }
 /* line 157, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-left-tc,
 .x-nbr .x-panel-header-default-framed-left-bc {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-left-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-left-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-x;
 }
@@ -6423,7 +6423,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-top-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-top-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-top-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6450,13 +6450,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-collapsed-top-ml,
 .x-nbr .x-panel-header-default-framed-collapsed-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-top-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-top-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-top-ml,
 .x-nbr .x-panel-header-default-framed-collapsed-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-top-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-top-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -6505,7 +6505,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-right-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-right-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-right-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6532,13 +6532,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-collapsed-right-ml,
 .x-nbr .x-panel-header-default-framed-collapsed-right-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-right-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-right-corners.gif');
 }
 /* line 157, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-right-tc,
 .x-nbr .x-panel-header-default-framed-collapsed-right-bc {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-right-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-right-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-x;
 }
@@ -6588,7 +6588,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-bottom-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-bottom-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-bottom-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6615,13 +6615,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-collapsed-bottom-ml,
 .x-nbr .x-panel-header-default-framed-collapsed-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-bottom-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-bottom-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-bottom-ml,
 .x-nbr .x-panel-header-default-framed-collapsed-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-bottom-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-bottom-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -6670,7 +6670,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-left-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-left-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-left-bg.gif');
   background-color: #cbddf3;
 }
 
@@ -6697,13 +6697,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-panel-header-default-framed-collapsed-left-ml,
 .x-nbr .x-panel-header-default-framed-collapsed-left-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-left-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-left-corners.gif');
 }
 /* line 157, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-left-tc,
 .x-nbr .x-panel-header-default-framed-collapsed-left-bc {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/panel-header/panel-header-default-framed-collapsed-left-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-left-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-x;
 }
@@ -6791,13 +6791,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tip-ml,
 .x-nbr .x-tip-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tip/tip-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tip/tip-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-tip-ml,
 .x-nbr .x-tip-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tip/tip-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tip/tip-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -6921,7 +6921,7 @@ textarea.x-form-invalid-field {
 /* line 142, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_qtip.scss */
 .x-form-invalid-tip-body {
   background: 1px 1px no-repeat;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/exclamation.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/exclamation.gif');
   padding-left: 22px;
 }
 /* line 147, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_qtip.scss */
@@ -6975,13 +6975,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-form-invalid-tip-default-ml,
 .x-nbr .x-form-invalid-tip-default-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form-invalid-tip/form-invalid-tip-default-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form-invalid-tip/form-invalid-tip-default-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-form-invalid-tip-default-ml,
 .x-nbr .x-form-invalid-tip-default-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form-invalid-tip/form-invalid-tip-default-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form-invalid-tip/form-invalid-tip-default-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -7110,45 +7110,45 @@ textarea.x-form-invalid-field {
 .x-slider-horz,
 .x-slider-horz .x-slider-end,
 .x-slider-horz .x-slider-inner {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-bg.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-bg.png');
 }
 
 /* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-slider-horz .x-slider-thumb {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-thumb.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-thumb.png');
 }
 
 /* line 110, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-slider-vert,
 .x-slider-vert .x-slider-end,
 .x-slider-vert .x-slider-inner {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-v-bg.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-v-bg.png');
 }
 
 /* line 114, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-slider-vert .x-slider-thumb {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-v-thumb.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-v-thumb.png');
 }
 
 /* line 122, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-ie6 .x-slider-horz,
 .x-ie6 .x-slider-horz .x-slider-end,
 .x-ie6 .x-slider-horz .x-slider-inner {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-bg.gif');
 }
 /* line 126, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-ie6 .x-slider-horz .x-slider-thumb {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-thumb.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-thumb.gif');
 }
 /* line 132, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-ie6 .x-slider-vert,
 .x-ie6 .x-slider-vert .x-slider-end,
 .x-ie6 .x-slider-vert .x-slider-inner {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-v-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-v-bg.gif');
 }
 /* line 136, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_slider.scss */
 .x-ie6 .x-slider-vert .x-slider-thumb {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/slider/slider-v-thumb.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/slider/slider-v-thumb.gif');
 }
 
 /* line 2, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_progress-bar.scss */
@@ -7232,7 +7232,7 @@ textarea.x-form-invalid-field {
 /* line 110, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_progress-bar.scss */
 .x-nlg .x-progress-default .x-progress-bar {
   background: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/progress/progress-default-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/progress/progress-default-bg.gif');
 }
 
 /* line 2, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_toolbar.scss */
@@ -7334,7 +7334,7 @@ textarea.x-form-invalid-field {
 
 /* line 103, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_toolbar.scss */
 .x-toolbar-more-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/toolbar/more.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/toolbar/more.gif') !important;
   background-position: 2px center !important;
   background-repeat: no-repeat;
 }
@@ -7354,7 +7354,7 @@ textarea.x-form-invalid-field {
 
 /* line 151, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_toolbar.scss */
 .x-nlg .x-toolbar-default {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/toolbar/toolbar-default-bg.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/toolbar/toolbar-default-bg.gif') !important;
   background-repeat: repeat-x;
 }
 
@@ -7520,13 +7520,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-window-default-ml,
 .x-nbr .x-window-default-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/window-default-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/window-default-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-default-ml,
 .x-nbr .x-window-default-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/window-default-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/window-default-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -7618,13 +7618,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-window-header-default-top-ml,
 .x-nbr .x-window-header-default-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-top-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-top-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-top-ml,
 .x-nbr .x-window-header-default-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-top-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-top-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -7693,13 +7693,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-window-header-default-right-ml,
 .x-nbr .x-window-header-default-right-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-right-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-right-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-right-ml,
 .x-nbr .x-window-header-default-right-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-right-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-right-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -7768,13 +7768,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-window-header-default-bottom-ml,
 .x-nbr .x-window-header-default-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-bottom-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-bottom-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-bottom-ml,
 .x-nbr .x-window-header-default-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-bottom-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-bottom-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -7843,13 +7843,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-window-header-default-left-ml,
 .x-nbr .x-window-header-default-left-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-left-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-left-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-left-ml,
 .x-nbr .x-window-header-default-left-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-default-left-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-default-left-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -7932,27 +7932,27 @@ textarea.x-form-invalid-field {
 
 /* line 31, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_messagebox.scss */
 .x-message-box .x-msg-box-wait {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/blue-loading.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/blue-loading.gif');
 }
 
 /* line 35, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_messagebox.scss */
 .x-message-box .ext-mb-info {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/icon-info.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/icon-info.gif');
 }
 
 /* line 39, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_messagebox.scss */
 .x-message-box .ext-mb-warning {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/icon-warning.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/icon-warning.gif');
 }
 
 /* line 43, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_messagebox.scss */
 .x-message-box .ext-mb-question {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/icon-question.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/icon-question.gif');
 }
 
 /* line 47, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_messagebox.scss */
 .x-message-box .ext-mb-error {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/shared/icon-error.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/shared/icon-error.gif');
 }
 
 /* line 5, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
@@ -7972,7 +7972,7 @@ textarea.x-form-invalid-field {
 
 /* line 12, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-nlg .x-tab-bar {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab-bar/tab-bar-default-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab-bar/tab-bar-default-bg.gif');
 }
 
 /* line 17, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
@@ -8159,7 +8159,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-tab-default-top-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-bg.gif');
   background-color: #deecfd;
 }
 
@@ -8186,13 +8186,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-default-top-ml,
 .x-nbr .x-tab-default-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-tab-default-top-ml,
 .x-nbr .x-tab-default-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -8241,7 +8241,7 @@ textarea.x-form-invalid-field {
 
 /* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-tab-default-bottom-mc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-bg.gif');
   background-color: #deecfd;
 }
 
@@ -8268,13 +8268,13 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-default-bottom-ml,
 .x-nbr .x-tab-default-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-tab-default-bottom-ml,
 .x-nbr .x-tab-default-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-sides.gif');
   background-position: 0 0;
 }
 /* line 200, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
@@ -8575,35 +8575,35 @@ textarea.x-form-invalid-field {
 
 /* line 326, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-top {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-bg.gif');
 }
 /* line 327, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-bottom {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-bg.gif');
 }
 /* line 331, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-top-over {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-over-bg.gif');
 }
 /* line 332, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-bottom-over {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-over-bg.gif');
 }
 /* line 336, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-top-active {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-active-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-active-bg.gif');
 }
 /* line 337, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-bottom-active {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-active-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-active-bg.gif');
 }
 /* line 341, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-top-disabled {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-disabled-bg.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-disabled-bg.gif') !important;
 }
 /* line 342, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nlg .x-tab-bottom-disabled {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-disabled-bg.gif') !important;
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-disabled-bg.gif') !important;
 }
 
 /* line 347, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
@@ -8622,7 +8622,7 @@ textarea.x-form-invalid-field {
   line-height: 0;
   text-indent: -999px;
   background: no-repeat;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-close.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-close.gif');
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
   opacity: 0.6;
 }
@@ -8640,18 +8640,18 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-top-over .x-frame-br,
 .x-nbr .x-tab-top-over .x-frame-tc,
 .x-nbr .x-tab-top-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-over-corners.gif');
 }
 /* line 380, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-over .x-frame-ml,
 .x-nbr .x-tab-top-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-over-sides.gif');
 }
 /* line 384, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-over .x-frame-mc {
   background-color: #e8f2ff;
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-over-bg.gif');
 }
 /* line 398, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-over .x-frame-tl,
@@ -8660,18 +8660,18 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-bottom-over .x-frame-br,
 .x-nbr .x-tab-bottom-over .x-frame-tc,
 .x-nbr .x-tab-bottom-over .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-over-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-over-corners.gif');
 }
 /* line 402, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-over .x-frame-ml,
 .x-nbr .x-tab-bottom-over .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-over-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-over-sides.gif');
 }
 /* line 406, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-over .x-frame-mc {
   background-color: #e8f2ff;
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-over-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-over-bg.gif');
 }
 /* line 420, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-active .x-frame-tl,
@@ -8680,18 +8680,18 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-top-active .x-frame-br,
 .x-nbr .x-tab-top-active .x-frame-tc,
 .x-nbr .x-tab-top-active .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-active-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-active-corners.gif');
 }
 /* line 424, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-active .x-frame-ml,
 .x-nbr .x-tab-top-active .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-active-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-active-sides.gif');
 }
 /* line 428, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-active .x-frame-mc {
   background-color: #deecfd;
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-active-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-active-bg.gif');
 }
 /* line 442, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-active .x-frame-tl,
@@ -8700,18 +8700,18 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-bottom-active .x-frame-br,
 .x-nbr .x-tab-bottom-active .x-frame-tc,
 .x-nbr .x-tab-bottom-active .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-active-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-active-corners.gif');
 }
 /* line 446, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-active .x-frame-ml,
 .x-nbr .x-tab-bottom-active .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-active-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-active-sides.gif');
 }
 /* line 450, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-active .x-frame-mc {
   background-color: #deecfd;
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-active-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-active-bg.gif');
 }
 /* line 464, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-disabled .x-frame-tl,
@@ -8720,17 +8720,17 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-top-disabled .x-frame-br,
 .x-nbr .x-tab-top-disabled .x-frame-tc,
 .x-nbr .x-tab-top-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-disabled-corners.gif');
 }
 /* line 468, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-disabled .x-frame-ml,
 .x-nbr .x-tab-top-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-disabled-sides.gif');
 }
 /* line 472, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-top-disabled .x-frame-mc {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-top-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-disabled-bg.gif');
 }
 /* line 485, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-disabled .x-frame-tl,
@@ -8739,17 +8739,17 @@ textarea.x-form-invalid-field {
 .x-nbr .x-tab-bottom-disabled .x-frame-br,
 .x-nbr .x-tab-bottom-disabled .x-frame-tc,
 .x-nbr .x-tab-bottom-disabled .x-frame-bc {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-disabled-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-disabled-corners.gif');
 }
 /* line 489, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-disabled .x-frame-ml,
 .x-nbr .x-tab-bottom-disabled .x-frame-mr {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-disabled-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-disabled-sides.gif');
 }
 /* line 493, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tab.scss */
 .x-nbr .x-tab-bottom-disabled .x-frame-mc {
   background-repeat: repeat-x;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab/tab-default-bottom-disabled-bg.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-disabled-bg.gif');
 }
 
 /* line 2, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
@@ -8836,42 +8836,42 @@ textarea.x-form-invalid-field {
 
 /* line 73, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-tree-elbow {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow.gif');
 }
 /* line 77, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-tree-elbow-end {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-end.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-end.gif');
 }
 /* line 81, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-tree-elbow-plus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-plus.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-plus.gif');
 }
 /* line 85, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-tree-elbow-end-plus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-end-plus.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-end-plus.gif');
 }
 /* line 89, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-grid-tree-node-expanded .x-tree-elbow-plus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-minus.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-minus.gif');
 }
 /* line 93, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-grid-tree-node-expanded .x-tree-elbow-end-plus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-end-minus.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-end-minus.gif');
 }
 /* line 97, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-lines .x-tree-elbow-line {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-line.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-line.gif');
 }
 
 /* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-no-lines .x-tree-elbow-plus,
 .x-tree-no-lines .x-tree-elbow-end-plus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-plus-nl.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-plus-nl.gif');
 }
 /* line 109, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-no-lines .x-grid-tree-node-expanded .x-tree-elbow-plus,
 .x-tree-no-lines .x-grid-tree-node-expanded .x-tree-elbow-end-plus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/elbow-end-minus-nl.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/elbow-end-minus-nl.gif');
 }
 
 /* line 118, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
@@ -8879,7 +8879,7 @@ textarea.x-form-invalid-field {
 .x-tree-arrows .x-tree-elbow-minus,
 .x-tree-arrows .x-tree-elbow-end-plus,
 .x-tree-arrows .x-tree-elbow-end-minus {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/arrows.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/arrows.gif');
 }
 
 /* line 123, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
@@ -8901,18 +8901,18 @@ textarea.x-form-invalid-field {
 /* line 137, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-icon-leaf {
   width: 16px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/leaf.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/leaf.gif');
 }
 
 /* line 142, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-icon-parent {
   width: 16px;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/folder.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/folder.gif');
 }
 
 /* line 147, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-grid-tree-node-expanded .x-tree-icon-parent {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/folder-open.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/folder-open.gif');
 }
 
 /* line 151, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
@@ -8953,7 +8953,7 @@ textarea.x-form-invalid-field {
   width: 13px;
   height: 13px;
   background: no-repeat;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/form/checkbox.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/form/checkbox.gif');
   overflow: hidden;
   padding: 0;
   border: 0;
@@ -9013,27 +9013,27 @@ textarea.x-form-invalid-field {
 
 /* line 242, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-drop-ok-append .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/drop-append.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/drop-append.gif');
 }
 
 /* line 246, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-drop-ok-above .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/drop-above.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/drop-above.gif');
 }
 
 /* line 250, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-drop-ok-below .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/drop-below.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/drop-below.gif');
 }
 
 /* line 254, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-tree-drop-ok-between .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/drop-between.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/drop-between.gif');
 }
 
 /* line 258, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
 .x-grid-tree-loading .x-tree-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tree/loading.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tree/loading.gif');
 }
 
 /* line 262, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tree.scss */
@@ -9191,17 +9191,17 @@ textarea.x-form-invalid-field {
 
 /* line 65, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_dragdrop.scss */
 .x-dd-drop-nodrop .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/dd/drop-no.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/dd/drop-no.gif');
 }
 
 /* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_dragdrop.scss */
 .x-dd-drop-ok .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/dd/drop-yes.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/dd/drop-yes.gif');
 }
 
 /* line 73, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_dragdrop.scss */
 .x-dd-drop-ok-add .x-dd-drop-icon {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/dd/drop-add.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/dd/drop-add.gif');
 }
 
 /* line 2, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_resizable.scss */
@@ -9383,7 +9383,7 @@ textarea.x-form-invalid-field {
 .x-resizable-pinned .x-resizable-handle-east,
 .x-resizable-pinned .x-resizable-handle-west {
   background-position: left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/sizer/e-handle.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/sizer/e-handle.gif');
 }
 /* line 197, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_resizable.scss */
 .x-resizable-over .x-resizable-handle-south,
@@ -9391,31 +9391,31 @@ textarea.x-form-invalid-field {
 .x-resizable-pinned .x-resizable-handle-south,
 .x-resizable-pinned .x-resizable-handle-north {
   background-position: top;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/sizer/s-handle.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/sizer/s-handle.gif');
 }
 /* line 202, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_resizable.scss */
 .x-resizable-over .x-resizable-handle-southeast,
 .x-resizable-pinned .x-resizable-handle-southeast {
   background-position: top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/sizer/se-handle.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/sizer/se-handle.gif');
 }
 /* line 207, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_resizable.scss */
 .x-resizable-over .x-resizable-handle-northwest,
 .x-resizable-pinned .x-resizable-handle-northwest {
   background-position: bottom right;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/sizer/nw-handle.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/sizer/nw-handle.gif');
 }
 /* line 212, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_resizable.scss */
 .x-resizable-over .x-resizable-handle-northeast,
 .x-resizable-pinned .x-resizable-handle-northeast {
   background-position: bottom left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/sizer/ne-handle.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/sizer/ne-handle.gif');
 }
 /* line 217, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_resizable.scss */
 .x-resizable-over .x-resizable-handle-southwest,
 .x-resizable-pinned .x-resizable-handle-southwest {
   background-position: top right;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/sizer/sw-handle.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/sizer/sw-handle.gif');
 }
 
 /* line 3, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
@@ -9447,46 +9447,46 @@ textarea.x-form-invalid-field {
 /* line 33, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-layout-split-left {
   background: no-repeat top right;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-left.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-left.gif');
 }
 
 /* line 38, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-layout-split-right {
   background: no-repeat top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-right.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-right.gif');
 }
 
 /* line 43, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-layout-split-top {
   background: no-repeat top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-top.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-top.gif');
 }
 
 /* line 48, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-layout-split-bottom {
   background: no-repeat top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-bottom.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-bottom.gif');
 }
 
 /* line 54, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-splitter-collapsed .x-layout-split-left {
   background: no-repeat top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-right.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-right.gif');
 }
 /* line 59, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-splitter-collapsed .x-layout-split-right {
   background: no-repeat top right;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-left.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-left.gif');
 }
 /* line 64, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-splitter-collapsed .x-layout-split-top {
   background: no-repeat top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-bottom.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-bottom.gif');
 }
 /* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
 .x-splitter-collapsed .x-layout-split-bottom {
   background: no-repeat top left;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/util/splitter/mini-top.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/util/splitter/mini-top.gif');
 }
 
 /* line 75, ../../lib/extjs/resources/themes/stylesheets/ext4/default/util/_splitter.scss */
@@ -9746,7 +9746,7 @@ textarea.x-form-invalid-field {
   cursor: pointer;
   height: 20px;
   background: transparent no-repeat -18px 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab-bar/scroll-left.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab-bar/scroll-left.gif');
 }
 /* line 193, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-left .x-toolbar-scroll-left-hover {
@@ -9762,7 +9762,7 @@ textarea.x-form-invalid-field {
 }
 /* line 204, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-left .x-toolbar-scroll-left {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/toolbar/scroll-left.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/toolbar/scroll-left.gif');
   background-position: -14px 0;
 }
 /* line 208, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
@@ -9799,7 +9799,7 @@ textarea.x-form-invalid-field {
   cursor: pointer;
   height: 20px;
   background: transparent no-repeat 0 0;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tab-bar/scroll-right.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tab-bar/scroll-right.gif');
 }
 /* line 241, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-right .x-toolbar-scroll-right-hover {
@@ -9815,7 +9815,7 @@ textarea.x-form-invalid-field {
 }
 /* line 252, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-right .x-toolbar-scroll-right {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/toolbar/scroll-right.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/toolbar/scroll-right.gif');
 }
 /* line 255, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-right .x-toolbar-scroll-right-hover {
@@ -9840,7 +9840,7 @@ textarea.x-form-invalid-field {
 /* line 276, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-top .x-menu-scroll-top {
   background: transparent no-repeat center center;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/layout/mini-top.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/layout/mini-top.gif');
   height: 8px;
   cursor: pointer;
 }
@@ -9853,7 +9853,7 @@ textarea.x-form-invalid-field {
 /* line 288, ../../lib/extjs/resources/themes/stylesheets/ext4/default/layout/_layout.scss */
 .x-box-scroller-bottom .x-menu-scroll-bottom {
   background: transparent no-repeat center center;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/layout/mini-bottom.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/layout/mini-bottom.gif');
   height: 8px;
   cursor: pointer;
 }
@@ -9887,7 +9887,7 @@ textarea.x-form-invalid-field {
   cursor: pointer;
   background-color: transparent;
   background-repeat: no-repeat;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/tools/tool-sprites.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/tools/tool-sprites.gif');
   margin: 0;
 }
 
@@ -10539,12 +10539,12 @@ textarea.x-form-invalid-field {
 
 /* line 26, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 .ux-notification-icon-information {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/icon_info.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/icon_info.png');
 }
 
 /* line 28, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 .ux-notification-icon-error {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/icon_error.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/icon_error.png');
 }
 
 /* line 30, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
@@ -10556,7 +10556,7 @@ textarea.x-form-invalid-field {
 /* line 34, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 body .ux-notification-window {
   background-color: null;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/null');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/null');
 }
 
 /* line 38, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
@@ -10567,7 +10567,7 @@ body .ux-notification-window {
 /* line 41, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 .x-nlg .x-window-mc {
   background-color: null;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/null');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/null');
 }
 
 /* line 19, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
@@ -10581,12 +10581,12 @@ body .ux-notification-window {
 
 /* line 26, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 .ux-notification-icon-information {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/icon_info.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/icon_info.png');
 }
 
 /* line 28, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 .ux-notification-icon-error {
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/icon_error.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/icon_error.png');
 }
 
 /* line 30, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
@@ -10598,7 +10598,7 @@ body .ux-notification-window {
 /* line 34, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 body .ux-notification-window {
   background-color: white;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/fader.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/fader.png');
 }
 
 /* line 38, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
@@ -10609,7 +10609,7 @@ body .ux-notification-window {
 /* line 41, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_notification.scss */
 .x-nlg .x-window-light-mc {
   background-color: transparent;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/notification/fader.png');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/notification/fader.png');
 }
 
 /* line 113, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_window.scss */
@@ -10687,13 +10687,13 @@ body .ux-notification-window {
 .x-nbr .x-window-light-ml,
 .x-nbr .x-window-light-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/window-light-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/window-light-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-light-ml,
 .x-nbr .x-window-light-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window/window-light-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window/window-light-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -10785,13 +10785,13 @@ body .ux-notification-window {
 .x-nbr .x-window-header-light-top-ml,
 .x-nbr .x-window-header-light-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-top-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-top-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-top-ml,
 .x-nbr .x-window-header-light-top-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-top-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-top-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -10860,13 +10860,13 @@ body .ux-notification-window {
 .x-nbr .x-window-header-light-right-ml,
 .x-nbr .x-window-header-light-right-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-right-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-right-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-right-ml,
 .x-nbr .x-window-header-light-right-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-right-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-right-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -10935,13 +10935,13 @@ body .ux-notification-window {
 .x-nbr .x-window-header-light-bottom-ml,
 .x-nbr .x-window-header-light-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-bottom-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-bottom-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-bottom-ml,
 .x-nbr .x-window-header-light-bottom-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-bottom-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-bottom-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }
@@ -11010,13 +11010,13 @@ body .ux-notification-window {
 .x-nbr .x-window-header-light-left-ml,
 .x-nbr .x-window-header-light-left-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-left-corners.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-left-corners.gif');
 }
 /* line 168, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-left-ml,
 .x-nbr .x-window-header-light-left-mr {
   zoom: 1;
-  background-image: url('../../lib/extjs/resources/themes/images/dynasty/window-header/window-header-light-left-sides.gif');
+  background-image: url('../../lib/extjs/resources/themes/images/default/window-header/window-header-light-left-sides.gif');
   background-position: 0 0;
   background-repeat: repeat-y;
 }

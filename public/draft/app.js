@@ -7,6 +7,10 @@ Ext.application({
     appFolder: 'app',
     autoCreateViewport: true,
 
+    requires: [
+        'Ext.direct.Manager',
+        'Ext.direct.RemotingProvider',
+    ],
     models: [
         'Message',
     ],
@@ -14,6 +18,7 @@ Ext.application({
     stores: [
         'PlayerStoreCharts',
         'Messages',
+        'Salaries',
     ],
 
     controllers: [

@@ -1,4 +1,8 @@
 class Salary < ActiveRecord::Base
+  #include Sencha::Model
+  class << self; attr_accessor :default_sort end
+  @default_sort = 'contract_amount DESC'
+
   belongs_to :person
 
   # Match salaries to persons through displayname
@@ -14,4 +18,10 @@ class Salary < ActiveRecord::Base
   	where("contract_amount > ?", 0 )
   end
 
+  def self.default_sort
+    DisplayName.order("contract_amount DESC")
+  end
+
+  # Sencha model fields
+  #sencha_fields :exclude => [ :player_id ]
 end
