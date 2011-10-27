@@ -4,10 +4,12 @@ $theme-name: 'dynasty';
 // Insert your custom variables here.
 // $base-color: #aa0000
 $font-family: 'Droid Sans', sans-serif;
-$base-color: #aa0000;
-$base-font-size: 24px;
-$base-line-height: 36px;
-$window-border-radius: 50px;
+$base-color: #ffffff;
+//$base-font-size: 18px;
+//$base-line-height: 36px;
+//$font-size  : 24px !default;
+//$window-border-radius: 50px;
+
 @import 'ext4/default/all';
 
 
@@ -62,3 +64,10 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
  * SHOUTBOX
  *******************************************************************************/
 @include shoutbox;
+
+/********************************************************************************
+ * WRAP
+ *******************************************************************************/
+ #wrap {
+     margin: 50px;
+ }

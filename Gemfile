@@ -8,6 +8,8 @@ gem "devise", :git => "git://github.com/plataformatec/devise.git"
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
 
+gem 'pubnub-ruby'
+
 group :production do
   gem 'pg'
 end
@@ -25,7 +27,7 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
+  gem 'sass-rails', " ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'thin'
@@ -34,7 +36,7 @@ end
 gem 'jquery-rails'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

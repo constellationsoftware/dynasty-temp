@@ -10,9 +10,11 @@ class UserTeamsController < ApplicationController
     
     respond_to do |format|
       format.html # index.html.erb
-      format.xml { render :xml => @user_teams }
+      format.json { render :json => @user_teams }
     end
   end
+
+
 
     # GET /user_teams/1
     # GET /user_teams/1.xml
@@ -25,7 +27,7 @@ class UserTeamsController < ApplicationController
     
     respond_to do |format|
       format.html # show.html.erb
-      format.xml { render :xml => @user_team }
+      format.json { render :json => @team }
     end
   end
 

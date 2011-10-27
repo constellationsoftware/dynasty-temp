@@ -50,6 +50,7 @@ class DraftsController < ApplicationController
   end
 
   def index
+    @draft = Draft.all
     user = current_user
     user_team = user.user_team
     league = user_team.league
@@ -60,6 +61,7 @@ class DraftsController < ApplicationController
     @picks = current_draft.picks
     @available_players = current_draft.available_players
     current_round = current_draft.current_round
+    @current_round = current_round
     #@current_user_team = current_round.current_user_team
     @current_user_team = user_team
     @my_turn = @current_user_team == user_team
@@ -69,6 +71,8 @@ class DraftsController < ApplicationController
     @logged_in_at = session
     respond_to do |format|
       format.html
+      format.json { render json: @draft }
+
     end
   end
 
