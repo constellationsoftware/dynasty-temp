@@ -1,16 +1,13 @@
 class UserTeamsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
   def index
-    
-    @user = current_user
-    league = @user.user_team.league
-    @team = @user.user_team
-    @players = @team.picks
-    @user_teams = league.user_teams        
+    @user_teams = UserTeam.all
+
+    #@user_teams = league.user_teams        
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @user_teams }
+      format.json { render :json =>{ :results => @user_teams }}
     end
   end
 

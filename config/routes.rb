@@ -1,9 +1,9 @@
 Dynasty::Application.routes.draw do
-<<<<<<< HEAD
+
   devise_for :users
-=======
+
   resources :salaries
->>>>>>> release/v0.1
+
 
   resources :people
   resources :persons
@@ -14,7 +14,7 @@ Dynasty::Application.routes.draw do
   # first created -> highest priority.
 
   resources(:person_scores, :events, :dynasty_dollars, :positions, :trades,
-            :user_teams, :leagues, :users, :person_phases, :display_names,
+            :user_teams, :user_team_person, :leagues, :users, :person_phases, :display_names,
             :stats, :fix, :draft, :draftable_players)
 
   resources :teams do

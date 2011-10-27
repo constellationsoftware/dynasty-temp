@@ -36,10 +36,6 @@ class Salary < ActiveRecord::Base
   	where("contract_amount > ?", 0 )
   end
 
-  def self.default_sort
-    DisplayName.order("contract_amount DESC")
-  end
-
 
 
   # Sencha model fields

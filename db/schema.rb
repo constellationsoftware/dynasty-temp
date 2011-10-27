@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111021211346) do
+ActiveRecord::Schema.define(:version => 20110823061803) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -396,11 +396,6 @@ ActiveRecord::Schema.define(:version => 20111021211346) do
   create_table "baseball_defensive_group", :force => true do |t|
   end
 
-  create_table "bloodfarts", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "bookmakers", :force => true do |t|
     t.string  "bookmaker_key", :limit => 100
     t.integer "publisher_id",                 :null => false
@@ -556,9 +551,17 @@ ActiveRecord::Schema.define(:version => 20111021211346) do
   add_index "documents_media", ["media_caption_id"], :name => "FK_doc_med_med_cap_id__med_cap_id"
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
-  create_table "draftable_players", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "draftable_players", :id => false, :force => true do |t|
+    t.integer "id",                                              :null => false
+    t.string  "full_name",       :limit => 50,                   :null => false
+    t.string  "position",        :limit => 10
+    t.date    "dob"
+    t.string  "college",         :limit => 50
+    t.integer "contract_start"
+    t.integer "contract_length"
+    t.integer "contract_amount",               :default => 0
+    t.string  "free_agent",                    :default => "NO", :null => false
+    t.integer "person_id",                     :default => 0,    :null => false
   end
 
   create_table "drafts", :force => true do |t|
@@ -1062,11 +1065,17 @@ ActiveRecord::Schema.define(:version => 20111021211346) do
 
   add_index "rounds", ["draft_id"], :name => "index_rounds_draft"
 
-  create_table "salaries", :force => true do |t|
-    t.string  "full_name",       :limit => 50,                 :null => false
-    t.string  "position",        :limit => 10, :default => "", :null => false
-    t.integer "contract_amount",               :default => 0,  :null => false
-    t.integer "person_id",                     :default => 0,  :null => false
+  create_table "salaries", :id => false, :force => true do |t|
+    t.integer "id",                                              :null => false
+    t.string  "full_name",       :limit => 50,                   :null => false
+    t.string  "position",        :limit => 10
+    t.date    "dob"
+    t.string  "college",         :limit => 50
+    t.integer "contract_start"
+    t.integer "contract_length"
+    t.integer "contract_amount",               :default => 0
+    t.string  "free_agent",                    :default => "NO", :null => false
+    t.integer "person_id",                     :default => 0,    :null => false
   end
 
   create_table "seasons", :force => true do |t|
@@ -1240,7 +1249,7 @@ ActiveRecord::Schema.define(:version => 20111021211346) do
     t.integer "person_id"
   end
 
-  create_table "user_teams", :id => false, :force => true do |t|
+  create_table "user_teams", :force => true do |t|
     t.integer "league_id",               :null => false
     t.string  "name",      :limit => 50, :null => false
     t.integer "user_id",                 :null => false
