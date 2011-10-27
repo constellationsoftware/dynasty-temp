@@ -10,6 +10,10 @@ Ext.define('DynastyDraft.view.Timer', {
     styleHtmlCls: 'timer-display',
 
     updateTimer: function(minutes, seconds) {
+        if (minutes === 0 && seconds === 0) {
+            minutes = seconds = '--';
+        }
+
         var data = {
             minutes: minutes,
             seconds: seconds
@@ -19,8 +23,14 @@ Ext.define('DynastyDraft.view.Timer', {
     },
 
     getTimeSeparator: function() { return ':'; },
-    formatMinutes: function(minutes) { return minutes > 0 ? minutes : '0'; },
-    formatSeconds: function(seconds) { return Ext.util.Format.leftPad(seconds, 2, '0'); },
+    formatMinutes: function(minutes) {
+        if (isNaN(minutes)) { return minutes; }
+        else { return minutes > 0 ? minutes : '0'; }
+    },
+    formatSeconds: function(seconds) {
+        if (isNaN(seconds)) { return seconds; }
+        else { return Ext.util.Format.leftPad(seconds, 2, '0'); }
+    },
 
     getCountdownTpl: function() {
         return [

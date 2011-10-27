@@ -7,6 +7,12 @@ gem 'haml'
 gem "devise", :git => "git://github.com/plataformatec/devise.git" 
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
+#gem 'rails-extjs-direct'
+#gem 'sencha-model'
+gem 'responders'
+gem 'has_scope'
+gem 'inherited_resources'
+gem 'kaminari'
 
 gem 'pubnub-ruby'
 
@@ -27,7 +33,12 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
+<<<<<<< HEAD
   gem 'sass-rails', " ~> 3.1.0"
+=======
+  gem 'sass', '3.1.7'
+  gem 'sass-rails', "  ~> 3.1.0"
+>>>>>>> release/v0.1
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'thin'

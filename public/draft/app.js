@@ -1,5 +1,6 @@
 Ext.Loader.setConfig({
-    enabled: true
+    enabled: true,
+    disableCaching: true,
 });
 
 Ext.application({
@@ -7,6 +8,10 @@ Ext.application({
     appFolder: '/draft/app',
     autoCreateViewport: true,
 
+    requires: [
+        'Ext.direct.Manager',
+        'Ext.direct.RemotingProvider',
+    ],
     models: [
         'Message',
     ],
@@ -14,13 +19,15 @@ Ext.application({
     stores: [
         'PlayerStoreCharts',
         'Messages',
+        'Salaries',
     ],
 
     controllers: [
         'PlayerGrid',
-        'PicksGrid',
+        'PlayerQueue',
         'ShoutBox',
         'Timer',
+        'Roster',
     ],
 
     launch: function() {

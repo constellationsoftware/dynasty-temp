@@ -3,12 +3,16 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
 
     alias: 'widget.playergrid',
     title: 'Players',
-    store: 'Players',
+    store: 'Salaries',
     columnLines: true,
     selModel: {
         mode: "MULTI",
     },
+    verticalScrollerType: 'paginggridscroller',
+    loadMask: true,
+    invalidateScrollerOnRefresh: false,
     viewConfig: {
+        trackOver: false,
         plugins: [
             {
                 ptype: 'gridviewdragdrop',
@@ -22,13 +26,13 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
     columns: [
         {
             text: 'Name',
-            dataIndex: 'name',
+            dataIndex: 'full_name',
             xtype: 'gridcolumn',
             hideable: false,
             groupable: true,
             flex: 1,
         },
-        {
+        /*{
             text: 'Dynasty Rank',
             dataIndex: 'fan_points',
             xtype: 'numbercolumn',
@@ -41,11 +45,10 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
             xtype: 'numbercolumn',
             align: 'right',
             format: '0.00',
-        },
+        },*/
         {
             text: 'Salary',
-            dataIndex: 'salary',
-            id: 'Salary',
+            dataIndex: 'contract_amount',
             xtype: 'numbercolumn',
             align: 'right',
             format: '0,000',
@@ -53,6 +56,14 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
                 return Ext.util.Format.currency(value, null, 2);
             },*/
         },
+        {
+            text: 'Position',
+            dataIndex: 'position',
+            xtype: 'gridcolumn',
+            align: 'right',
+            width: 50,
+            sortable: false,
+        }
     ],
 
     features: [

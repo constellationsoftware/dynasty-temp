@@ -1,5 +1,9 @@
 Dynasty::Application.routes.draw do
+<<<<<<< HEAD
   devise_for :users
+=======
+  resources :salaries
+>>>>>>> release/v0.1
 
   resources :people
   resources :persons
