@@ -49,7 +49,6 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
         {
             text: 'Salary',
             dataIndex: 'contract_amount',
-            id: 'Salary',
             xtype: 'numbercolumn',
             align: 'right',
             format: '0,000',
@@ -57,6 +56,14 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
                 return Ext.util.Format.currency(value, null, 2);
             },*/
         },
+        {
+            text: 'Position',
+            dataIndex: 'position',
+            xtype: 'gridcolumn',
+            align: 'right',
+            width: 50,
+            sortable: false,
+        }
     ],
 
     features: [

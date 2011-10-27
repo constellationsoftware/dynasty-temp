@@ -23,9 +23,28 @@ Ext.define('DynastyDraft.store.Salaries', {
         },
         // sends single sort as multi parameter
         simpleSortMode: false,
+        extraParams: {
+            'by_position': true,
+            'offense': true
+        }
     },
 
     sorters: [{
+        property: 'position',
+        direction: 'ASC',
+        transform: function(value) {
+            var positions = [
+                'QB',
+                'WR',
+                'RB',
+                'TE',
+                'K'
+            ];
+            var index = positions.indexOf(position);
+            return index !== -1 ? index : 999;
+        }
+    },
+    {
         property: 'contract_amount',
         direction: 'DESC'
     }]

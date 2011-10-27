@@ -3,6 +3,24 @@ class Salary < ActiveRecord::Base
   class << self; attr_accessor :default_sort end
   @default_sort = 'contract_amount DESC'
 
+  POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'K']
+
+  # Returns a case statement for ordering by a particular set of strings
+  # Note that the SQL is built by hand and therefore injection is possible,
+  # however since we're declaring the priorities in a constant above it's
+  # safe.
+  def self.order_by_position_priority
+    ret = "CASE"
+    POSITION_PRIORITIES.each_with_index do |p, i|
+      ret << " WHEN SUBSTRING(position, 1, 2) = '#{p}' THEN #{i}"
+    end
+    ret << " END ASC"
+  end
+
+  #scopes
+  scope :offense, where("SUBSTRING(position, 1, 2) IN (?)", POSITION_PRIORITIES)
+  scope :by_position, order(order_by_position_priority)
+
   belongs_to :person
 
   # Match salaries to persons through displayname
@@ -21,6 +39,8 @@ class Salary < ActiveRecord::Base
   def self.default_sort
     DisplayName.order("contract_amount DESC")
   end
+
+
 
   # Sencha model fields
   #sencha_fields :exclude => [ :player_id ]

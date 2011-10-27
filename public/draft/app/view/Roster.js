@@ -1,30 +1,21 @@
-Ext.define('DynastyDraft.view.PicksGrid', {
+Ext.define('DynastyDraft.view.Roster', {
     extend: 'Ext.grid.Panel',
     // uncomment to enable empty grouping
     // WARNING: does not work entirely
     //requires: [ 'DynastyDraft.grid.feature.Grouping' ],
 
-    alias: 'widget.picksgrid',
-    title: 'Draft Queue',
-    store: 'PlayerQueue',
+    alias: 'widget.rostergrid',
+    title: 'Roster',
+    store: 'Roster',
     columnLines: true,
     selModel: {
         mode: "MULTI",
-    },
-    viewConfig: {
-        plugins: [
-            {
-                ptype: 'gridviewdragdrop',
-                dragText: 'Drag to reorder your queue',
-                ddGroup: 'PlayerGridDD',
-           },
-        ],
     },
 
     columns: [
         {
             text: 'Name',
-            dataIndex: 'name',
+            dataIndex: 'full_name',
             xtype: 'gridcolumn',
             hideable: false,
             groupable: true,
@@ -32,8 +23,10 @@ Ext.define('DynastyDraft.view.PicksGrid', {
         },
         {
             text: 'Salary',
-            xtype: 'gridcolumn',
-            dataIndex: 'salary',
+            dataIndex: 'contract_amount',
+            xtype: 'numbercolumn',
+            align: 'right',
+            format: '0,000',
         },
     ],
 

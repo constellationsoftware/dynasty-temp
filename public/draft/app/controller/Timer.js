@@ -21,30 +21,13 @@ Ext.define('DynastyDraft.controller.Timer', {
         // stop the timer
         this.taskRunner.stop(this.countdown);
 
-        Ext.create('Ext.ux.window.Notification', {
-            corner: 'br',
-            ui: 'light',
-            closable: false,
-            title: 'Your queue is empty!',
-            stickOnClick: true,
-            resizable: false,
-            shadow: true,
-            autoDestroyDelay: 4000,
-            slideInDelay: 400,
-            slideInAnimation: 'easeOut',
-            slideDownDelay: 600,
-            slideDownAnimation: 'ghost',
-
-            iconCls: 'ux-notification-icon-information',
-            html: '<p>A pick was made automatically for you.</p><p>Add some players to your queue!</p>'
-        }).show();
+        // notify listeners that the timer ran out
+        this.application.fireEvent("timerfinish");
 
         this.taskRunner.start(this.countdown);
     },
 
-    onViewRender: function(view) {
-        this.view = view;
-        
+    start: function() {
         // init the timer countdown task
         this.countdown = {
             run: function(iterations) {
@@ -54,6 +37,8 @@ Ext.define('DynastyDraft.controller.Timer', {
                 // split seconds into minutes and seconds
                 var minutes = Math.floor(count / 60);
                 var seconds = count % 60;
+
+                // update the view to show the remaining time
                 this.view.updateTimer(minutes, seconds);
 
                 // when the timer times out
@@ -67,8 +52,10 @@ Ext.define('DynastyDraft.controller.Timer', {
         this.taskRunner.start(this.countdown);
     },
 
+    onViewRender: function(view) { this.view = view; this.view.updateTimer(); this.start() },
+
     statics: {
         // how long the user has to make their pick (in seconds)
-        TURN_LENGTH: 15,
+        TURN_LENGTH: 120,
     },
 });

@@ -3,7 +3,7 @@ Ext.define('DynastyDraft.view.Viewport', {
 
     requires: [
         'DynastyDraft.view.PlayerGrid',
-        'DynastyDraft.view.PicksGrid',
+        'DynastyDraft.view.PlayerQueueGrid',
         'DynastyDraft.view.ShoutBoxContainer',
     ],
 
@@ -51,8 +51,8 @@ Ext.define('DynastyDraft.view.Viewport', {
                     title: 'Players'
                 },
                 {
-                    xtype: 'panel',
-                    title: 'Roster Review',
+                    xtype: 'rostergrid',
+                    title: 'Roster',
                 },
                 {
                     xtype: 'panel',
@@ -85,7 +85,7 @@ Ext.define('DynastyDraft.view.Viewport', {
             },
             items: [
                 {
-                    xtype: 'picksgrid',
+                    xtype: 'playerqueuegrid',
                 },
             ],
         },

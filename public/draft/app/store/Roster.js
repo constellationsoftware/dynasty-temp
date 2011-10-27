@@ -1,15 +1,17 @@
-Ext.define('DynastyDraft.store.PlayerQueue', {
+Ext.define('DynastyDraft.store.Roster', {
     extend: 'DynastyDraft.store.Salaries',
     
+    groupField: 'position',
+
     data: {
-        playerqueue: []
+        picks: []
     },
 
     proxy: {
         type: 'memory',
         reader: {
             type: 'json',
-            root: 'playerqueue',
+            root: 'picks',
         }
     },
 });
