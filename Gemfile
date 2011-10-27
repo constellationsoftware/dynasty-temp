@@ -33,12 +33,9 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-<<<<<<< HEAD
+
   gem 'sass-rails', " ~> 3.1.0"
-=======
   gem 'sass', '3.1.7'
-  gem 'sass-rails', "  ~> 3.1.0"
->>>>>>> release/v0.1
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
   gem 'thin'
