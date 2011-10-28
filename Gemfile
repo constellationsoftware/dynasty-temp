@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
+gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'haml'
 gem "devise", :git => "git://github.com/plataformatec/devise.git" 
@@ -20,7 +21,6 @@ group :production do
   gem 'pg'
 end
 group :development, :test do
-  gem 'mysql2'
   gem 'rack', '1.3.3'
 end
 
