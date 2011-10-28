@@ -17,7 +17,7 @@ gem 'kaminari'
 gem 'pubnub-ruby'
 
 group :production do
-  gem 'pg'
+  gem 'mysql2'
 end
 group :development, :test do
   gem 'mysql2'
