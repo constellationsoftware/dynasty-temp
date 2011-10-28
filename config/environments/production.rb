@@ -7,7 +7,8 @@ Dynasty::Application.configure do
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = true # set to true for fake dev mode
   config.action_controller.perform_caching = false # set to false for fake dev mode
-
+# Log error messages when you accidentally call methods on nil.
+  config.whiny_nils = true
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 

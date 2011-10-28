@@ -14,9 +14,10 @@ gem 'kaminari'
 gem 'pubnub-ruby'
 
 group :production do
-  gem 'pg'
+  gem 'mysql2', :git => 'http://github.com/brianmario/mysql2.git'
 end
 group :development, :test do
+  gem 'mysql2', :git => 'http://github.com/brianmario/mysql2.git'
   gem 'rack', '1.3.3'
 end
 
