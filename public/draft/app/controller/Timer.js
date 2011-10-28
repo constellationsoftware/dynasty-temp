@@ -56,10 +56,8 @@ Ext.define('DynastyDraft.controller.Timer', {
 
     statics: {
         // how long the user has to make their pick (in seconds)
-<<<<<<< HEAD
-        TURN_LENGTH: 180,
-=======
-        TURN_LENGTH: 120,
->>>>>>> release/v0.1
+
+        TURN_LENGTH: 10,
+
     },
 });

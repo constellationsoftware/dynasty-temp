@@ -32,9 +32,9 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
             groupable: true,
             flex: 1,
         },
-        /*{
-            text: 'Dynasty Rank',
-            dataIndex: 'fan_points',
+        {
+            text: 'Points',
+            dataIndex: 'points',
             xtype: 'numbercolumn',
             align: 'right',
             format: '0.00',
@@ -45,7 +45,14 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
             xtype: 'numbercolumn',
             align: 'right',
             format: '0.00',
-        },*/
+        },
+        {
+            text: 'Consistency',
+            dataIndex: 'consistency',
+            xtype: 'numbercolumn',
+            align: 'right',
+            format: '0.00',
+        },
         {
             text: 'Salary',
             dataIndex: 'contract_amount',

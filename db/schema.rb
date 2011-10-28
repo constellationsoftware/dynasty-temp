@@ -1065,17 +1065,13 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
 
   add_index "rounds", ["draft_id"], :name => "index_rounds_draft"
 
-  create_table "salaries", :id => false, :force => true do |t|
-    t.integer "id",                                              :null => false
-    t.string  "full_name",       :limit => 50,                   :null => false
+  create_table "salaries", :force => true do |t|
+    t.string  "full_name",       :limit => 50, :null => false
     t.string  "position",        :limit => 10
-    t.date    "dob"
-    t.string  "college",         :limit => 50
-    t.integer "contract_start"
-    t.integer "contract_length"
-    t.integer "contract_amount",               :default => 0
-    t.string  "free_agent",                    :default => "NO", :null => false
-    t.integer "person_id",                     :default => 0,    :null => false
+    t.integer "contract_amount"
+    t.integer "points"
+    t.integer "rating"
+    t.float   "consistency",     :limit => 4
   end
 
   create_table "seasons", :force => true do |t|

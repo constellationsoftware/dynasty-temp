@@ -45,7 +45,7 @@ Ext.define('DynastyDraft.store.Salaries', {
         }
     },
     {
-        property: 'contract_amount',
+        property: 'rating',
         direction: 'DESC'
     }]
 });
