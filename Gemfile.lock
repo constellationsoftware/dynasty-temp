@@ -7,12 +7,6 @@ GIT
       orm_adapter (~> 0.0.3)
       warden (~> 1.0.3)
 
-GIT
-  remote: http://github.com/brianmario/mysql2.git
-  revision: 88b63306e6123ffb54f02706cd6f59c6974a812c
-  specs:
-    mysql2 (0.3.7)
-
 GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
@@ -87,6 +81,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.3)
+    mysql2 (0.2.13)
     orm_adapter (0.0.5)
     polyglot (0.3.2)
     pubnub-ruby (0.0.5)
@@ -162,7 +157,7 @@ DEPENDENCIES
   inherited_resources
   jquery-rails
   kaminari
-  mysql2!
+  mysql2 (< 0.3)
   pubnub-ruby
   rack (= 1.3.3)
   rails (= 3.1.1)
