@@ -2,19 +2,15 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
-gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'haml'
 gem "devise", :git => "git://github.com/plataformatec/devise.git" 
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
-#gem 'rails-extjs-direct'
-#gem 'sencha-model'
 gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
-
 gem 'pubnub-ruby'
 
 group :production do
