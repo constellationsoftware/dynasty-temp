@@ -12,9 +12,11 @@ gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
 gem 'pubnub-ruby'
-gem 'mysql2'
+gem 'mysql2', '> 0.3'
 
 group :production do
+gem 'mysql2', '> 0.3'
+
 end
 group :development, :test do
   gem 'rack', '1.3.3'
