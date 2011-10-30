@@ -11,21 +11,13 @@ gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
-<<<<<<< HEAD
-=======
 gem 'thin'
->>>>>>> feature/rails-backend
 gem 'pubnub-ruby'
 
 
 group :production do
-<<<<<<< HEAD
-gem 'pg'
-
-=======
   gem 'pg'
   gem 'newrelic_rpm'
->>>>>>> feature/rails-backend
 end
 
 group :development, :test do
