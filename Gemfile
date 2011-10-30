@@ -12,6 +12,7 @@ gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
 gem 'thin'
+gem 'mysql2'
 gem 'pubnub-ruby'
 
 
