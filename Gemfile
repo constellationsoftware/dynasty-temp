@@ -13,12 +13,14 @@ gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
-
+gem 'thin'
 gem 'pubnub-ruby'
 
 group :production do
   gem 'pg'
+  gem 'newrelic_rpm'
 end
+
 group :development, :test do
   gem 'mysql2'
   gem 'rack', '1.3.3'
