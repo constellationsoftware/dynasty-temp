@@ -12,7 +12,7 @@ gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
 gem 'pubnub-ruby'
-gem 'mysql2', '> 0.3'
+
 
 group :production do
 gem 'pg'
