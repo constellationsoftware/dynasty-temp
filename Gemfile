@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
+gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'haml'
 gem "devise", :git => "git://github.com/plataformatec/devise.git" 
@@ -12,7 +13,6 @@ gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
 gem 'thin'
-gem 'mysql2'
 gem 'pubnub-ruby'
 
 
