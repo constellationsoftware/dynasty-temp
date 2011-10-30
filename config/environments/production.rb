@@ -2,26 +2,23 @@ Dynasty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
-  config.cache_classes = false
+  config.cache_classes = true
 
   # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = true # set to true for fake dev mode
-  config.action_controller.perform_caching = false # set to false for fake dev mode
+  config.consider_all_requests_local       = false # set to true for fake dev mode
+  config.action_controller.perform_caching = true # set to false for fake dev mode
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  config.assets.compress = false
+  config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
   config.assets.compile = false
 
   # Generate digests for assets URLs
   config.assets.digest = true
-
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
