@@ -13,7 +13,7 @@ Ext.define('DynastyDraft.view.PlayerQueueGrid', {
     },
     tbar: [{
         xtype: 'button',
-        text: 'Force Pick',
+        text: 'Confirm Pick',
     }],
 
     viewConfig: {
