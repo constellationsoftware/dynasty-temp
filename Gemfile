@@ -14,6 +14,7 @@ gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
 gem 'pusher'
+gem 'em-http-request' # required for async pusher requests
 
 group :production do
   gem 'pg'

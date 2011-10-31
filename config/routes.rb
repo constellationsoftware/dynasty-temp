@@ -15,7 +15,7 @@ Dynasty::Application.routes.draw do
 
   resources(:person_scores, :events, :dynasty_dollars, :positions, :trades,
             :user_teams, :user_team_person, :leagues, :users, :person_phases, :display_names,
-            :stats, :fix, :draft, :draftable_players, :api)
+            :stats, :fix, :draft, :draftable_players)
 
   resources :teams do
     resources :display_name
@@ -25,6 +25,9 @@ Dynasty::Application.routes.draw do
   resources :persons do
     resources :display_name
   end
+
+  match 'api/:action', :controller => 'api'
+  resources :api
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
