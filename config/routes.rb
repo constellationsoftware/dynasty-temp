@@ -1,5 +1,7 @@
 Dynasty::Application.routes.draw do
 
+  resources :picks
+
   devise_for :users
 
   resources :salaries
@@ -25,6 +27,8 @@ Dynasty::Application.routes.draw do
   resources :persons do
     resources :display_name
   end
+
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
