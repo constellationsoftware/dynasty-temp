@@ -30,7 +30,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                         var form = field.up('form').getForm();
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
-                            var message = this.createMessage(field.getValue());
+                            var message = this.createMessage(user.email, field.getValue());
                             Ext.ux.data.Socket.request('post_message', {
                                 message: message.message
                             });
@@ -62,7 +62,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
 
     onPick: function(data) {
         console.log(data);
-        var message = this.createMessage("has picked " + data.player.full_name, true);
+        var message = this.createMessage(data.user.email, "has picked " + data.player.full_name, true);
         var store = this.getMessagesStore();
         store.add(message);
     },
@@ -103,9 +103,9 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         view.scrollToBottom.call(view);
     },
 
-    createMessage: function(messageText, action) {
+    createMessage: function(user_id, messageText, action) {
         var message = {
-            user: user.email,
+            user: user_id,
             message: messageText,
             action: action,
         };

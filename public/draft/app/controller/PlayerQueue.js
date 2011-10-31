@@ -21,8 +21,23 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
     },
 
     forcePick: function() {
-        this.application.fireEvent("timerstop");
-        this.doPick();
+        var grid = this.view.getView();
+        if (this.getPlayerQueueStore().count() > 0) {
+            var firstRow = grid.getNode(0);
+            record = grid.getRecord(firstRow);
+
+            Ext.Msg.show({
+                title: 'Confirm pick?',
+                msg: 'Do you want to add ' + record.get('full_name') + ' to your roster?',
+                buttons: Ext.Msg.YESNO,
+                icon: Ext.Msg.QUESTION,
+                fn: function() {
+                    this.application.fireEvent("timerstop");
+                    this.doPick();
+                },
+                scope: this
+            });
+        }
     },
 
     doPick: function() {
