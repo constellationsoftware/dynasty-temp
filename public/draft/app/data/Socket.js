@@ -67,8 +67,12 @@ Ext.define('DynastyDraft.data.Socket', {
         return channel;
     },
 
-    request: function() {
-        
+    request: function(action, data) {
+        // for now, just fire off an ajax call
+        Ext.Ajax.request({
+            url: '/api/' + action,
+            params: data
+        });
     },
 
     // states = {previous: 'oldState', current: 'newState'}

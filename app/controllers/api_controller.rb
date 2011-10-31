@@ -1,12 +1,22 @@
 class ApiController < ApplicationController
   #before_filter :authenticate_user!
 
+  def pick
+    player = Salary.find(params[:id])
+    payload = {
+      :user => current_user,
+      :player => player
+    }
+    Rails.logger.info payload.inspect
+    Pusher['presence-test'].trigger('pick', payload)
+    render :text => "sent"
+  end
+
   def post_message
-    chat = 'presence-test'
     message = params[:message]
     payload = { :user => current_user.email, :message => message }
     Rails.logger.info payload.inspect
-    Pusher[chat].trigger('send_message', payload)
+    Pusher['presence-test'].trigger('send_message', payload)
     render :text => "sent"
   end
 

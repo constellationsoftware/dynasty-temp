@@ -18,7 +18,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
     }],
 
     channel: null,
-    username: null,
 
     init: function() {
         var _this = this;
@@ -32,13 +31,8 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
                             var message = this.createMessage(field.getValue());
-                            
-                            // for now, just fire off an ajax call
-                            Ext.Ajax.request({
-                                url: '/api/post_message',
-                                params: {
-                                    message: message.message
-                                }
+                            Ext.ux.data.Socket.request('post_message', {
+                                message: message.message
                             });
 
                             field.reset();
@@ -52,6 +46,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
             'pusher:subscription_succeeded': this.onSubscribe,
             'send_message': this.onMessageReceived,
+            'pick': this.onPick,
         }, this);
 
         /* 
@@ -63,6 +58,13 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         } else {
             
         }
+    },
+
+    onPick: function(data) {
+        console.log(data);
+        var message = this.createMessage("has picked " + data.player.full_name, true);
+        var store = this.getMessagesStore();
+        store.add(message);
     },
 
     joinChat: function() {
@@ -103,7 +105,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
 
     createMessage: function(messageText, action) {
         var message = {
-            user: this.username,
+            user: user.email,
             message: messageText,
             action: action,
         };

@@ -1,12 +1,23 @@
-!!! 5
+!!!
 %html
-    %head
-        %title Dynasty Owner Product Demo v0.1
-        = stylesheet_link_tag 'application'
-        = javascript_include_tag 'application'
-        = yield :head
-        = csrf_meta_tag
-    %body
-        = content_tag(:div, flash.notice, :class => "notice") if flash.notice
-        = content_tag(:div, flash.alert, :class => "alert") if flash.alert
-        = yield
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title Dynasty Draft Demo
+    = csrf_meta_tag
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+    :javascript
+      var user = #{@user.to_json};
+    = stylesheet_link_tag "/draft/resources/css/dynasty_theme"
+    %script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
+    = javascript_include_tag "/draft/lib/extjs/ext-debug"
+    = javascript_include_tag "/draft/app"
+  %body
+    = content_tag(:div, flash.notice, :class => "notice") if flash.notice
+    = content_tag(:div, flash.alert, :class => "alert") if flash.alert
+    = yield
+    /
+      <h1>Logged in as: <haml:loud> @user.email </haml:loud></h1>
+      <p>Your Team: <haml:loud> @your_team.name </haml:loud></p>
+      <p>Session Data: <haml:loud> session </haml:loud></p>
+      <p>User Data: <haml:loud> @user.inspect </haml:loud></p>
+      <p>Current round: <haml:loud> @current_round.inspect </haml:loud></p>

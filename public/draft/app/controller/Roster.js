@@ -19,6 +19,10 @@ Ext.define('DynastyDraft.controller.Roster', {
 
     onPlayerPicked: function(player) {
         this.getRosterStore().add(player);
+        console.log(player);
+        Ext.ux.data.Socket.request('pick', {
+            id: player.get('id')
+        });
     },
 
     onViewRender: function(view) { this.view = view; },
