@@ -1,5 +1,6 @@
 class DraftsController < ApplicationController
   before_filter :authenticate_user!
+  
 
   def pick
     user = current_user
@@ -24,7 +25,12 @@ class DraftsController < ApplicationController
         "#{p.person.display_name.full_name}",
         "#{p.user_team.name}"
       ]
+
+    respond_to do |format|
+      format.html
+      format.json { render json: data[:picks] }
     end
+  end
 
     data[:available_players] = []
     current_draft.available_players.each do |p|

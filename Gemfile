@@ -15,6 +15,10 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
+gem 'pubnub-ruby'
+gem 'dalli'
+gem 'pusher'
+
 
 
 group :production do

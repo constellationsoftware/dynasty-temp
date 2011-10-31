@@ -1,5 +1,7 @@
 Dynasty::Application.routes.draw do
 
+  resources :picks
+
   devise_for :users
 
   resources :salaries
@@ -25,6 +27,7 @@ Dynasty::Application.routes.draw do
   resources :persons do
     resources :display_name
   end
+
 
   match 'api/:action', :controller => 'api'
   resources :api
@@ -75,7 +78,7 @@ Dynasty::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   #root :to => 'drafts#index'
 
   # See how all your routes lay out with "rake routes"
 
