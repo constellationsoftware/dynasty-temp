@@ -3,7 +3,7 @@ class SalariesController < InheritedResources::Base
   respond_to :html, :json
   has_scope :offense, :type => :boolean, :default => true, :only => :index
   has_scope :by_position, :type => :boolean, :default => true, :only => :index
-  caches_action :index
+
   def index
     total = end_of_association_chain.count()
 
