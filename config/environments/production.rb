@@ -3,6 +3,7 @@ Dynasty::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
+  config.cache_store = :dalli_store
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false # set to true for fake dev mode

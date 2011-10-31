@@ -14,7 +14,8 @@ gem 'inherited_resources'
 gem 'kaminari'
 gem 'thin'
 gem 'pubnub-ruby'
-
+gem 'dalli'
+gem 'pusher'
 
 group :production do
   gem 'pg'
