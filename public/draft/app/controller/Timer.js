@@ -16,6 +16,7 @@ Ext.define('DynastyDraft.controller.Timer', {
 
         this.taskRunner = new Ext.util.TaskRunner();
         this.application.addListener("timerstop", this.stop, this);
+        this.application.addListener("timerstart", this.start, this);
     },
 
     stop: function() {
@@ -59,7 +60,14 @@ Ext.define('DynastyDraft.controller.Timer', {
         this.taskRunner.start(this.countdown);
     },
 
-    onViewRender: function(view) { this.view = view; this.view.updateTimer(); this.start() },
+    onViewRender: function(view) {
+        this.view = view;
+        this.view.updateTimer(0, 0);
+
+        if (user.id == 2) {
+            this.start();
+        }
+    },
 
     statics: {
         // how long the user has to make their pick (in seconds)

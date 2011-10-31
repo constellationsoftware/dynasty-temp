@@ -19,9 +19,26 @@ Ext.define('DynastyDraft.controller.Roster', {
 
     onPlayerPicked: function(player) {
         this.getRosterStore().add(player);
-        console.log(player);
+        
+        // hardcode next user in line
+        var next;
+        switch (user.id) {
+        case 1: // ben
+            next = 2;
+            break;
+        case 2: // nick
+            next = 1;
+            break;
+        case 3: // paul
+            next = 2;
+            break;
+        default:
+            next = 2;
+        }
+
         Ext.ux.data.Socket.request('pick', {
-            id: player.get('id')
+            id: player.get('id'),
+            next: next,
         });
     },
 

@@ -65,6 +65,11 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         var message = this.createMessage(data.user.email, "has picked " + data.player.full_name, true);
         var store = this.getMessagesStore();
         store.add(message);
+
+        // start the clock for the next guy
+        if (data.next == user.id) {
+            this.application.fireEvent('timerstart');
+        }
     },
 
     joinChat: function() {
