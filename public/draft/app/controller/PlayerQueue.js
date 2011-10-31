@@ -10,14 +10,22 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
     init: function() {
         this.control({
             'playerqueuegrid': {
-                render: this.onViewRender
+                render: this.onViewRender,
+            },
+            'playerqueuegrid button': {
+                click: this.forcePick,
             },
         });
 
-        this.application.addListener("timerfinish", this.onTimerFinish, this);
+        this.application.addListener("timerfinish", this.doPick, this);
     },
 
-    onTimerFinish: function() {
+    forcePick: function() {
+        this.application.fireEvent("timerstop");
+        this.doPick();
+    },
+
+    doPick: function() {
         var record,
             grid = this.view.getView(); // inner grid view
 
@@ -29,11 +37,11 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
             this.getPlayerQueueStore().remove(record);
         } else {
             // throw up a notification that a pick was made from the main grid
-            this.notify('A pick was made automatically for you.\nYou should add some players to your queue!');
+            /*this.notify('A pick was made automatically for you.\nYou should add some players to your queue!');
 
             var playerGrid = Ext.ComponentQuery.query('playergrid')[0];
             var firstRow = playerGrid.getView().getNode(0);
-            record = playerGrid.getView().getRecord(firstRow);
+            record = playerGrid.getView().getRecord(firstRow);*/
         }
 
         if (record) {

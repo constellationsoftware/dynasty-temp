@@ -15,16 +15,23 @@ Ext.define('DynastyDraft.controller.Timer', {
         });
 
         this.taskRunner = new Ext.util.TaskRunner();
+        this.application.addListener("timerstop", this.stop, this);
+    },
+
+    stop: function() {
+        // stop the timer
+        this.taskRunner.stop(this.countdown);
+        this.view.updateTimer(0, 0);
     },
 
     onTimeout: function() {
         // stop the timer
-        this.taskRunner.stop(this.countdown);
+        this.stop();
 
         // notify listeners that the timer ran out
         this.application.fireEvent("timerfinish");
 
-        this.taskRunner.start(this.countdown);
+        //this.taskRunner.start(this.countdown);
     },
 
     start: function() {
@@ -57,7 +64,6 @@ Ext.define('DynastyDraft.controller.Timer', {
     statics: {
         // how long the user has to make their pick (in seconds)
 
-        TURN_LENGTH: 10,
-
+        TURN_LENGTH: 120
     },
 });

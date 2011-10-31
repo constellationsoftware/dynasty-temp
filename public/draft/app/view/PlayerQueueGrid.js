@@ -11,6 +11,11 @@ Ext.define('DynastyDraft.view.PlayerQueueGrid', {
     selModel: {
         mode: "MULTI",
     },
+    tbar: [{
+        xtype: 'button',
+        text: 'Force Pick',
+    }],
+
     viewConfig: {
         plugins: [
             {
