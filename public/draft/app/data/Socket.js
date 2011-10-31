@@ -21,6 +21,7 @@ Ext.define('DynastyDraft.data.Socket', {
             me.self.STATE_FAILED
         );
 
+        Pusher.channel_auth_endpoint = '/api/auth';
         me.socket = new Pusher(me.self.API_KEY);
         
         // listen for state changes from pusher

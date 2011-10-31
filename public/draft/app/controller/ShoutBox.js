@@ -44,7 +44,8 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
 
         Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
-            'user_join': this.onUserJoined,
+            //'user_join': this.onUserJoined,
+            'presence-test': this.onReceievePresence
         }, this);
 
         /* 
@@ -88,6 +89,10 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
 
     joinChat: function() {
         
+    },
+
+    onReceievePresence: function(data) {
+        console.log(data);
     },
 
     onUserJoined: function(data) {
