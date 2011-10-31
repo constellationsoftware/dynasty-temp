@@ -13,8 +13,7 @@ gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
-
-gem 'pubnub-ruby'
+gem 'pusher'
 
 group :production do
   gem 'pg'
