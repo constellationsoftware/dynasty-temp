@@ -5,7 +5,8 @@ class ApiController < ApplicationController
     player = Salary.find(params[:id])
     payload = {
       :user => current_user,
-      :player => player
+      :player => player,
+      :next => params[:next]
     }
     Rails.logger.info payload.inspect
     Pusher['presence-test'].trigger('pick', payload)
