@@ -4,14 +4,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>Dynasty Draft Demo</title>
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="/draft/resources/css/dynasty_theme.css">
-        <script type="text/javascript" src="/draft/lib/extjs/ext-debug.js"></script>
-        <script type="text/javascript" src="/draft/app.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="/draft/resources/css/dynasty_theme.css">-->
+        <%= stylesheet_link_tag "/draft/resources/css/dynasty_theme" %>
+        <!-- <script type="text/javascript" src="/draft/lib/extjs/ext-debug.js"></script>-->
+        <%= javascript_include_tag "/draft/lib/extjs/ext-debug" %>
+        <!-- <script type="text/javascript" src="/draft/app.js"></script> -->
+        <%= javascript_include_tag "/draft/app" %>
+
     </head>
 <body>
     <div pub-key="pub-fb4dbf08-55b4-4c73-a401-8bfa84b459e5" sub-key="sub-92c8bd6b-cde8-11e0-8532-190f3ed4faac" ssl="off" origin="pubsub.pubnub.com" id="pubnub"></div>
     <script src="http://cdn.pubnub.com/pubnub-3.1.min.js"></script>
+<<<<<<< HEAD
     <h1>Logged in as: <%= @user.email %></h1>
+=======
+    
+   <!-- <h1>Logged in as: <%= @user.email %></h1>
+>>>>>>> 6b43b72ec77acdd7fddf37e220b1515ec9e358fa
     <p>Your Team: <%= @your_team.name %></p>
     <p>Session Data: <%= session %></p>
     <p>User Data: <%= @user.inspect %></p>

@@ -1,3 +1,5 @@
+log/*
+Icon\r
 .bundle
 .DS_Store
 .rspec

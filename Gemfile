@@ -1,26 +1,28 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.1.1'
+gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'haml'
 gem "devise", :git => "git://github.com/plataformatec/devise.git" 
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
-#gem 'rails-extjs-direct'
-#gem 'sencha-model'
 gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
+gem 'thin'
+
 
 group :production do
   gem 'pg'
+  gem 'newrelic_rpm'
 end
+
 group :development, :test do
-  gem 'mysql2'
   gem 'rack', '1.3.3'
 end
 
