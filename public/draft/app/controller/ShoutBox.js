@@ -9,7 +9,7 @@ var PUBNUB_CHANNEL = 'dynasty_test';
 
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
-
+    requires: [ 'Ext.ux.data.Socket' ],
     stores: [ 'Messages' ],
     views: [ 'ShoutBox' ],
     refs: [{
@@ -42,9 +42,23 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
             }
         });
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
+
+        Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
+            'user_join': this.onUserJoined,
+        }, this);
+
+        /* 
+         * check if connected to socket
+         * if so, trigger a join, otherwise defer it until connected
+         */
+        if (Ext.ux.data.Socket.isConnected()) {
+            this.joinChat();
+        } else {
+            
+        }
         
         // LISTEN FOR PUSH MESSAGES
-        PUBNUB.subscribe({
+        /*PUBNUB.subscribe({
             // CONNECT TO THIS CHANNEL
             channel: "dynasty_test",
 
@@ -69,7 +83,15 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                     message: message
                 });
             }
-        });
+        });*/
+    },
+
+    joinChat: function() {
+        
+    },
+
+    onUserJoined: function(data) {
+        console.log(data);
     },
 
     // routines to run before the store is updated
@@ -103,5 +125,9 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         };
 
         return message;
+    },
+
+    statics: {
+        CHAT_CHANNEL: 'shoutbox',
     },
 });

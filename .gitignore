@@ -1,4 +1,3 @@
-
 log/*
 Icon\r
 .bundle
@@ -13,4 +12,3 @@ dynastyowner.tmproj
 
 tmp
 *.sqlite3
->>>>>>> release/v0.1
