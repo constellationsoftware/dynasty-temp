@@ -12,10 +12,16 @@ gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
+gem 'pusher'
+gem 'em-http-request' # required for async pusher requests
 gem 'thin'
+<<<<<<< HEAD
 gem 'pubnub-ruby'
 gem 'dalli'
 gem 'pusher'
+=======
+
+>>>>>>> d071421ec2ec21c96f8638eb2ce127118ffa9b14
 
 group :production do
   gem 'pg'

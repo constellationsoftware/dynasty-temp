@@ -7,7 +7,7 @@ Dynasty::Application.routes.draw do
 
   resources :people
   resources :persons
-
+  
   resources :drafts
 
   # The priority is based upon order of creation:
@@ -25,6 +25,10 @@ Dynasty::Application.routes.draw do
   resources :persons do
     resources :display_name
   end
+
+  match 'api/:action', :controller => 'api'
+  resources :api
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

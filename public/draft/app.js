@@ -1,6 +1,7 @@
 Ext.Loader.setConfig({
     enabled: true,
     disableCaching: true,
+    //paths: { '<appName>': '.', 'Ext': '/draft/lib/extjs/src', 'Ext.ux': '/draft/lib/extjs/ux' }
 });
 
 Ext.application({
@@ -8,10 +9,8 @@ Ext.application({
     appFolder: '/draft/app',
     autoCreateViewport: true,
 
-    requires: [
-        'Ext.direct.Manager',
-        'Ext.direct.RemotingProvider',
-    ],
+    requires: [ 'DynastyDraft.data.Socket' ],
+
     models: [
         'Message',
     ],
