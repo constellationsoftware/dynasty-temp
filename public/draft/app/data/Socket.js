@@ -21,6 +21,7 @@ Ext.define('DynastyDraft.data.Socket', {
             me.self.STATE_FAILED
         );
 
+        Pusher.channel_auth_endpoint = '/api/auth';
         me.socket = new Pusher(me.self.API_KEY);
         
         // listen for state changes from pusher
@@ -36,29 +37,32 @@ Ext.define('DynastyDraft.data.Socket', {
         scope = scope || null;
 
         // error checking stuff
-        if (!channel || Ext.isString(channel)) {
+        if (!channel || !Ext.isString(channel)) {
             throw new Error('Channel name invalid; expected a non-empty string.');
         }
-        if (!events || Ext.isObject(events)) {
+        if (!events || !Ext.isObject(events)) {
             throw new Error('Channel event list invalid; expected an object containing event names as keys and event specification objects as values.')
         }
 
         var channel = this.socket.subscribe(channel);
         // iterate through the events object and bind the events to this channel
-        events.each(function(eventName, callback) {
-            // if no callback was provided
-            if (!callback || !Ext.isFunction(callback)) {
-                throw new Error('Event callback missing or invalid.');
-                continue;
-            }
+        for (eventName in events) {
+            if (events.hasOwnProperty(eventName)) {
+                var callback = events[eventName];
+                // if no callback was provided
+                if (!callback || !Ext.isFunction(callback)) {
+                    throw new Error('Event callback missing or invalid.');
+                    continue;
+                }
 
-            // if an execution scope was provided
-            if (Ext.isObject(scope)) {
-                channel.bind(eventName, callback.apply(scope));
-            } else {
-                channel.bind(eventName, callback);
+                // if an execution scope was provided
+                if (Ext.isObject(scope)) {
+                    channel.bind(eventName, callback.apply(scope));
+                } else {
+                    channel.bind(eventName, callback);
+                }
             }
-        }, this);
+        }
 
         return this;
     },
@@ -72,7 +76,7 @@ Ext.define('DynastyDraft.data.Socket', {
         console.log("Socket status: " + state.current);
 
         // change the cached connection status
-        this._connected = state.current === STATE_CONNECTED;
+        this._connected = state.current === this.self.STATE_CONNECTED;
 
         // notify listeners of the state change
         this.fireEvent('changeState', state.current, state.previous);
