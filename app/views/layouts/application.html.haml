@@ -11,4 +11,9 @@
         = content_tag(:div, flash.alert, :class => "alert") if flash.alert
         #wrap
             #innerwrap
+                %h2 current_user
+                %p= current_user.inspect.to_json
+                %h2 Session:
+                %p= session.inspect.to_json
+    
             = yield
