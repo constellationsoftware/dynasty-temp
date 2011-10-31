@@ -9,6 +9,6 @@ tmp/
 dynastyowner.tmproj
 .idea/workspace.xml
 .idea/dynastyowner.iml
-
+Dynasty.esproj/
 tmp
 *.sqlite3
