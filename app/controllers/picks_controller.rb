@@ -1,2 +1,2 @@
-class PicksController < InheritedResources::Base
+class PicksController < ApplicationController
 end
