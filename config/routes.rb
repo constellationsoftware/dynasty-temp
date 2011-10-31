@@ -30,7 +30,6 @@ Dynasty::Application.routes.draw do
 
 
   match 'api/:action', :controller => 'api'
-  resources :api
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

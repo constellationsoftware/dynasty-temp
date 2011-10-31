@@ -17,6 +17,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         selector: 'shoutboxcontainer',
     }],
 
+    channel: null,
     username: null,
 
     init: function() {
@@ -31,10 +32,15 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
                             var message = this.createMessage(field.getValue());
-                            PUBNUB.publish({
-                                channel: PUBNUB_CHANNEL,
-                                message: message,
+                            
+                            // for now, just fire off an ajax call
+                            Ext.Ajax.request({
+                                url: '/api/post_message',
+                                params: {
+                                    message: message.message
+                                }
                             });
+
                             field.reset();
                         }
                     } 
@@ -43,8 +49,9 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         });
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
 
-        Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
-            'pusher:member_added': this.onMemberAdded
+        var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
+            'pusher:subscription_succeeded': this.onSubscribe,
+            'send_message': this.onMessageReceived,
         }, this);
 
         /* 
@@ -56,42 +63,22 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         } else {
             
         }
-        
-        // LISTEN FOR PUSH MESSAGES
-        /*PUBNUB.subscribe({
-            // CONNECT TO THIS CHANNEL
-            channel: "dynasty_test",
-
-            // LOST CONNECTION (auto reconnects)
-            error: function() {
-                alert("Lost connection with the chat server.\nTrying to reconnect...");
-            },
-
-            // RECEIVED A MESSAGE
-            callback: function(message) {
-                // add it to the store
-                _this.onReceiveMessage.call(_this, message);
-            },
-            
-            // CONNECTION ESTABLISHED
-            connect: function() {
-                // SEND MESSAGE
-                var message = _this.createMessage("has joined", true);
-
-                PUBNUB.publish({
-                    channel: PUBNUB_CHANNEL,
-                    message: message
-                });
-            }
-        });*/
     },
 
     joinChat: function() {
         
     },
 
-    onMemberAdded: function(data) {
-        console.log(data);
+    onSubscribe: function(data) {
+        console.log("subscribed!", data);
+    },
+
+    onMessageReceived: function(data) {
+        console.log("message received!", data);
+        // get a store instance and add the message to it
+        var store = this.getMessagesStore();
+        this.beforeStoreUpdate();
+        store.add(data);
     },
 
     onUserJoined: function(data) {
@@ -112,13 +99,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
     onStoreUpdate: function() {
         var view = this.getContainer().down('shoutbox');
         view.scrollToBottom.call(view);
-    },
-
-    onReceiveMessage: function(message) {
-        // get a store instance and add the message to it
-        var store = this.getMessagesStore();
-        this.beforeStoreUpdate();
-        store.add(message);
     },
 
     createMessage: function(messageText, action) {

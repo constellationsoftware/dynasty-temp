@@ -57,14 +57,14 @@ Ext.define('DynastyDraft.data.Socket', {
 
                 // if an execution scope was provided
                 if (Ext.isObject(scope)) {
-                    channel.bind(eventName, callback.apply(scope));
+                    channel.bind(eventName, Ext.Function.bind(callback, scope, null, true));
                 } else {
                     channel.bind(eventName, callback);
                 }
             }
         }
 
-        return this;
+        return channel;
     },
 
     request: function() {
