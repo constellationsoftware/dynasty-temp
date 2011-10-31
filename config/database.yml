@@ -15,12 +15,13 @@
 development:
   adapter: mysql2
   encoding: utf8
-  database: sportsdb
-  host: localhost
-  port: 3306
+  database: app1455111
+  host: 50.16.184.114
+  port: 3365
   pool: 5
-  username: root
+  username: app1455111
   socket: /tmp/mysql.sock
+  password: eSwWReno
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have

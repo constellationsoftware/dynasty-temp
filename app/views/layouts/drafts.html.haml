@@ -1,0 +1,14 @@
+!!! 5
+%html
+    %head
+        %title DRAFT! Dynasty Owner Product Demo v0.1
+        = stylesheet_link_tag 'application'
+        = javascript_include_tag 'application'
+        = yield :head
+        = csrf_meta_tag
+    %body
+        = content_tag(:div, flash.notice, :class => "notice") if flash.notice
+        = content_tag(:div, flash.alert, :class => "alert") if flash.alert
+        #wrap
+            #innerwrap
+            = yield
