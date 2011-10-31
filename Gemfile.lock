@@ -61,18 +61,21 @@ GEM
       rails (>= 3.0.4)
       warden
       warden
-    em-http-request (0.3.0)
-      addressable (>= 2.0.0)
-      escape_utils
-      eventmachine (>= 0.12.9)
+    em-http-request (1.0.0)
+      addressable (>= 2.2.3)
+      em-socksify
+      eventmachine (>= 1.0.0.beta.3)
+      http_parser.rb (>= 0.5.2)
+    em-socksify (0.1.0)
+      eventmachine
     erubis (2.7.0)
-    escape_utils (0.2.4)
-    eventmachine (0.12.10)
+    eventmachine (1.0.0.beta.4)
     execjs (1.2.9)
       multi_json (~> 1.0)
     haml (3.1.3)
     has_scope (0.5.1)
     hike (1.2.1)
+    http_parser.rb (0.5.3)
     i18n (0.6.0)
     inherited_resources (1.3.0)
       has_scope (~> 0.5.0)
@@ -94,11 +97,8 @@ GEM
     orm_adapter (0.0.5)
     pg (0.11.0)
     polyglot (0.3.2)
-<<<<<<< HEAD
     pubnub-ruby (0.0.5)
       json
-=======
->>>>>>> d071421ec2ec21c96f8638eb2ce127118ffa9b14
     pusher (0.8.4)
       crack (~> 0.1.0)
       multi_json (~> 1.0)
@@ -183,10 +183,7 @@ DEPENDENCIES
   mysql2 (< 0.3.7)
   newrelic_rpm
   pg
-<<<<<<< HEAD
   pubnub-ruby
-=======
->>>>>>> d071421ec2ec21c96f8638eb2ce127118ffa9b14
   pusher
   rack (= 1.3.3)
   rails (= 3.1.1)

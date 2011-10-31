@@ -1,6 +1,6 @@
 class DraftsController < ApplicationController
   before_filter :authenticate_user!
-  stream
+  
 
   def pick
     user = current_user
