@@ -21,18 +21,17 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
 
     init: function() {
         var _this = this;
-        this.username = "Dynasty-User" + Math.floor(Math.random() * 10000);
         
         this.control({
             'textfield': {
-                specialkey: function(field, e) { 
+                specialkey: function(field, e) {
                     if(e.getKey() == e.ENTER) { 
                         var form = field.up('form').getForm();
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
                             var message = this.createMessage(user.email, field.getValue());
                             Ext.ux.data.Socket.request('post_message', {
-                                message: message.message
+                                message: message.message,
                             });
 
                             field.reset();
@@ -44,9 +43,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
 
         var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
-            'pusher:subscription_succeeded': this.onSubscribe,
             'send_message': this.onMessageReceived,
-            'pick': this.onPick,
         }, this);
 
         /* 
@@ -65,11 +62,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         var message = this.createMessage(data.user.email, "has picked " + data.player.full_name, true);
         var store = this.getMessagesStore();
         store.add(message);
-
-        // start the clock for the next guy
-        if (data.next == user.id) {
-            this.application.fireEvent('timerstart');
-        }
     },
 
     joinChat: function() {
@@ -119,6 +111,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
     },
 
     statics: {
-        CHAT_CHANNEL: 'presence-test',
+        CHAT_CHANNEL: 'presence-shoutbox',
     },
 });

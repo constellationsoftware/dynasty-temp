@@ -1,8 +1,5 @@
 class Salary < ActiveRecord::Base
   #include Sencha::Model
-  class << self; attr_accessor :default_sort end
-  @default_sort = 'contract_amount DESC'
-
   POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'K']
 
   # Returns a case statement for ordering by a particular set of strings

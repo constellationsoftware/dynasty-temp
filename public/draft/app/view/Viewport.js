@@ -3,7 +3,7 @@ Ext.define('DynastyDraft.view.Viewport', {
 
     requires: [
         'DynastyDraft.view.PlayerGrid',
-        'DynastyDraft.view.PlayerQueueGrid',
+        'DynastyDraft.view.PlayerQueue',
         'DynastyDraft.view.ShoutBoxContainer',
     ],
 
@@ -85,7 +85,7 @@ Ext.define('DynastyDraft.view.Viewport', {
             },
             items: [
                 {
-                    xtype: 'playerqueuegrid',
+                    xtype: 'playerqueue',
                 },
             ],
         },

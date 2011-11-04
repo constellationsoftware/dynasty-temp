@@ -14,7 +14,7 @@ Ext.define('DynastyDraft.controller.Roster', {
             },
         });
 
-        this.application.addListener("playerpick", this.onPlayerPicked, this);
+        this.application.addListener(this.application.STATUS_PICKED, this.onPlayerPicked, this);
     },
 
     onPlayerPicked: function(player) {
@@ -35,11 +35,6 @@ Ext.define('DynastyDraft.controller.Roster', {
         default:
             next = 2;
         }
-
-        Ext.ux.data.Socket.request('pick', {
-            id: player.get('id'),
-            next: next,
-        });
     },
 
     onViewRender: function(view) { this.view = view; },

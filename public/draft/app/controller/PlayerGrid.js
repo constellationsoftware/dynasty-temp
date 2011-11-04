@@ -14,6 +14,20 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
                 render: this.onRender,
             },
         });
+
+        // append a "disabled" class to the row when it's picked
+        this.application.addListener(this.application.STATUS_PICKED, this.onPick, this);
+        this.application.addListener(this.application.LEAGUE_PICK, this.onPick, this);
+    },
+
+    onPick: function(player) {
+        this.view.getView().refresh();
+        var store = this.getPlayersStore(),
+            record = store.getById(player.id);
+        if (record !== null) {
+            console.log(record);
+            record.set('valid', false);
+        }
     },
 
     onRowDblClick: function(e, item) {

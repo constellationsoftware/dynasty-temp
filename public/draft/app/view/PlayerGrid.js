@@ -12,7 +12,11 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
     loadMask: true,
     invalidateScrollerOnRefresh: false,
     viewConfig: {
+        copy: true,
         trackOver: false,
+        getRowClass: function(record, rowIndex, rowParams, store) {
+            if (!record.get('valid')) { return 'row-invalid'; }
+        },
         plugins: [
             {
                 ptype: 'gridviewdragdrop',

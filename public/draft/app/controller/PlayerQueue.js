@@ -3,21 +3,38 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
 
     stores: [ 'PlayerQueue' ],
     models: [ 'Player' ],
-    views: [ 'PlayerQueueGrid' ],
+    views: [ 'PlayerQueue' ],
 
     view: null,
 
+    refs: [{
+        ref: 'view',
+        selector: 'playerqueue'
+    }, {
+        ref: 'pickButton',
+        selector: 'playerqueue button'
+    }],
+
     init: function() {
         this.control({
-            'playerqueuegrid': {
+            'playerqueue': {
                 render: this.onViewRender,
             },
-            'playerqueuegrid button': {
+            'playerqueue button': {
                 click: this.forcePick,
             },
         });
 
-        this.application.addListener("timerfinish", this.doPick, this);
+        this.application.addListener(this.application.TIMEOUT, this.getPick, this);
+        this.application.addListener(this.application.LEAGUE_PICK, this.onLeaguePick, this);
+
+        // enable/disable pick button on app status
+        this.application.addListener(this.application.STATUS_PICKING, function() {
+            this.getPickButton().setDisabled(false);
+        }, this);
+        this.application.addListener(this.application.STATUS_WAITING, function() {
+            this.getPickButton().setDisabled(true);
+        }, this);
     },
 
     forcePick: function() {
@@ -31,16 +48,13 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
                 msg: 'Do you want to add ' + record.get('full_name') + ' to your roster?',
                 buttons: Ext.Msg.YESNO,
                 icon: Ext.Msg.QUESTION,
-                fn: function() {
-                    this.application.fireEvent("timerstop");
-                    this.doPick();
-                },
+                fn: this.getPick,
                 scope: this
             });
         }
     },
 
-    doPick: function() {
+    getPick: function() {
         var record,
             grid = this.view.getView(); // inner grid view
 
@@ -61,7 +75,26 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
 
         if (record) {
             // notify listeners that pick was made
-            this.application.fireEvent('playerpick', record);
+            this.fireEvent('picked', record);
+        } else {
+            // notify listeners that pick was made
+            this.fireEvent('pickfailed');
+        }
+    },
+
+    onLeaguePick: function(player) {
+        var store = this.getPlayerQueueStore(),
+            record = store.getById(player.id);
+        if (record !== null) {
+            Ext.Msg.show({
+                title: 'AWW HELL NAW',
+                msg: 'Someone just stole ' + record.get('full_name'),
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+
+            // remove the record from the store
+            store.remove(record);
         }
     },
 

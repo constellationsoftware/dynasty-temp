@@ -1,10 +1,10 @@
-Ext.define('DynastyDraft.view.PlayerQueueGrid', {
+Ext.define('DynastyDraft.view.PlayerQueue', {
     extend: 'Ext.grid.Panel',
     // uncomment to enable empty grouping
     // WARNING: does not work entirely
     //requires: [ 'DynastyDraft.grid.feature.Grouping' ],
 
-    alias: 'widget.playerqueuegrid',
+    alias: 'widget.playerqueue',
     title: 'Draft Queue',
     store: 'PlayerQueue',
     columnLines: true,
@@ -14,6 +14,7 @@ Ext.define('DynastyDraft.view.PlayerQueueGrid', {
     tbar: [{
         xtype: 'button',
         text: 'Confirm Pick',
+        disabled: true,
     }],
 
     viewConfig: {
@@ -22,7 +23,7 @@ Ext.define('DynastyDraft.view.PlayerQueueGrid', {
                 ptype: 'gridviewdragdrop',
                 dragText: 'Drag to reorder your queue',
                 ddGroup: 'PlayerGridDD',
-           },
+            },
         ],
     },
 

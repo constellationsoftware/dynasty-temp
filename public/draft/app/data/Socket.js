@@ -4,33 +4,38 @@ Ext.define('DynastyDraft.data.Socket', {
     mixins: { observable: 'Ext.util.Observable' },
 
     socket: null,
-    _connected: false,
+    connected: false,
 
-    config: {},
-
-    constructor: function(config) {
-        var me = this;
-        me.initConfig(config);
-
-        me.addEvents(
+    constructor: function() {
+        this.addEvents(
             'changeState',
-            me.self.STATE_CONNECTING,
-            me.self.STATE_CONNECTED,
-            me.self.STATE_DISCONNECTED,
-            me.self.STATE_UNAVAILABLE,
-            me.self.STATE_FAILED
+            this.self.STATE_CONNECTING,
+            this.self.STATE_CONNECTED,
+            this.self.STATE_DISCONNECTED,
+            this.self.STATE_UNAVAILABLE,
+            this.self.STATE_FAILED
         );
 
         Pusher.channel_auth_endpoint = '/api/auth';
-        me.socket = new Pusher(me.self.API_KEY);
-        
-        // listen for state changes from pusher
-        me.socket.connection.bind('state_change',
-            function() { // bind "this" to our callbacks
-                me.onStateChange.apply(me, arguments);
-                return this;
-            }
-        );
+        Pusher.isReady = false;
+
+        if (SOCKET_APP_KEY) {
+            // create the socket instance
+            this.socket = new Pusher(SOCKET_APP_KEY);
+            
+            // listen for state changes from pusher
+            this.socket.connection.bind('state_change',
+                Ext.Function.bind(this.onStateChange, this, null, true));
+        } else {
+            Ext.Error.raise('Configuration error: Socket key not found!');
+        }
+    },
+
+    /**
+     * When the socket is inited, start connecting
+     */
+    init: function() {
+        Pusher.ready();
     },
 
     subscribe: function(channel, events, scope) {
@@ -68,6 +73,9 @@ Ext.define('DynastyDraft.data.Socket', {
     },
 
     request: function(action, data) {
+        // append the socket ID
+        data.socket_id = this.getId();
+
         // for now, just fire off an ajax call
         Ext.Ajax.request({
             url: '/api/' + action,
@@ -77,10 +85,8 @@ Ext.define('DynastyDraft.data.Socket', {
 
     // states = {previous: 'oldState', current: 'newState'}
     onStateChange: function(state) {
-        console.log("Socket status: " + state.current);
-
         // change the cached connection status
-        this._connected = state.current === this.self.STATE_CONNECTED;
+        this.connected = state.current === this.self.STATE_CONNECTED;
 
         // notify listeners of the state change
         this.fireEvent('changeState', state.current, state.previous);
@@ -91,13 +97,15 @@ Ext.define('DynastyDraft.data.Socket', {
     },
 
     isConnected: function() {
-        return this._connected;
+        return this.connected;
+    },
+
+    getId: function() {
+        return this.socket.connection.socket_id;
     },
 
     statics: {
-        API_KEY: '64db7a76d407adc40ff3',
-
-        /** socket connection states */
+        /* socket connection states */
         STATE_CONNECTING: 'connecting',
         STATE_CONNECTED: 'connected',
         STATE_DISCONNECTED: 'disconnected',

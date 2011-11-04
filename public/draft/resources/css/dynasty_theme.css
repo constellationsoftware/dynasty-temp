@@ -9063,7 +9063,7 @@ textarea.x-form-invalid-field {
   vertical-align: middle;
   *vertical-align: auto;
 }
-/* line 7, ../../../../../../../../Applications/compass.app/Contents/Resources/ruby/compass_0.11/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+/* line 7, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails_3_1/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
 .x-surface {
   *display: inline;
 }
@@ -11060,18 +11060,18 @@ body .ux-notification-window {
 /********************************************************************************
  * HEADER
  *******************************************************************************/
-/* line 47, ../sass/dynasty_theme.scss */
+/* line 48, ../sass/dynasty_theme.scss */
 #header_container {
   background-image: url('../themes/images/dynasty/logo.png');
   background-color: #FFF;
 }
 
-/* line 52, ../sass/dynasty_theme.scss */
+/* line 53, ../sass/dynasty_theme.scss */
 #header_spacer {
   background: transparent;
 }
 
-/* line 58, ../sass/dynasty_theme.scss */
+/* line 59, ../sass/dynasty_theme.scss */
 .timer-display {
   font-size: 69px;
 }
@@ -11101,7 +11101,15 @@ body .ux-notification-window {
 /********************************************************************************
  * WRAP
  *******************************************************************************/
-/* line 71, ../sass/dynasty_theme.scss */
+/* line 72, ../sass/dynasty_theme.scss */
 #wrap {
   margin: 50px;
+}
+
+/********************************************************************************
+ * GRID STUFF
+ *******************************************************************************/
+/* line 79, ../sass/dynasty_theme.scss */
+.row-invalid {
+  color: #cccccc;
 }

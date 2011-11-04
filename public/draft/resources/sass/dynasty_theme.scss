@@ -9,6 +9,7 @@ $base-color: #ffffff;
 //$base-line-height: 36px;
 //$font-size  : 24px !default;
 //$window-border-radius: 50px;
+$row-disabled-color: #CCC;
 
 @import 'ext4/default/all';
 
@@ -68,6 +69,13 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
 /********************************************************************************
  * WRAP
  *******************************************************************************/
- #wrap {
-     margin: 50px;
- }
+#wrap {
+    margin: 50px;
+}
+
+/********************************************************************************
+ * GRID STUFF
+ *******************************************************************************/
+.row-invalid {
+    color: $row-disabled-color;
+}
