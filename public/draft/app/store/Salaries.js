@@ -5,7 +5,7 @@ Ext.define('DynastyDraft.store.Salaries', {
 
     // allow the grid to interact with the paging scroller by buffering
     buffered: true,
-    pageSize: 200,
+    pageSize: 50,
     remoteSort: true,
 
     //groupField: 'position',

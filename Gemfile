@@ -5,7 +5,8 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'haml'
-gem "devise", :git => "git://github.com/plataformatec/devise.git" 
+gem "devise", :git => "git://github.com/plataformatec/devise.git"
+gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
 gem 'responders'
@@ -18,7 +19,6 @@ gem 'thin'
 gem 'pubnub-ruby'
 gem 'dalli'
 gem 'pusher'
-
 
 
 group :production do

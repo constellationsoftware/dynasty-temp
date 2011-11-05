@@ -17,12 +17,15 @@ Ext.define('DynastyDraft.model.Player', {
         {
             name: 'fan_points',
             type: 'float',
-        },
-        {
+        }, {
             name: 'salary',
             type: 'int',
             defaultValue: 0,
-        },
+        }, {
+            name: 'valid',
+            type: 'boolean',
+            defaultValue: 'false',
+        }
         /*{
             name: 'empty',
             type: 'boolean',
@@ -30,7 +33,7 @@ Ext.define('DynastyDraft.model.Player', {
         }*/
     ],
 
-    validations: [
+    /*validations: [
         {
             type: 'inclusion',
             field: 'position',
@@ -42,5 +45,5 @@ Ext.define('DynastyDraft.model.Player', {
                 "Bench",
             ],
         }
-    ],
+    ],*/
 });
