@@ -14,6 +14,14 @@ ActiveAdmin::Dashboards.build do
   #       end
   #     end
   #   end
+
+      section "Leagues" do
+        ul do
+          League.all.collect do |league|
+            li link_to(league.name, admin_league_path(league))
+          end
+        end
+      end
   
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can

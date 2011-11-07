@@ -52,5 +52,9 @@ module Dynasty
     # set up a custom provider for the direct RPC root URL
     #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"
 
+    config.generators do |g|
+        g.template_engine :haml
+    end
+
   end
 end
