@@ -19,3 +19,8 @@ output_style = :expanded
 
 # We need to load in the Ext4 themes folder, which includes all it's default styling, images, variables and mixins
 load File.join(File.dirname(__FILE__), $ext_path, 'resources', 'themes')
+
+sass_options = {:debug_info=>true} # by Compass.app 
+
+
+output_style = :compressed # by Compass.app 

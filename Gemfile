@@ -19,6 +19,7 @@ gem 'thin'
 gem 'pubnub-ruby'
 gem 'dalli'
 gem 'pusher'
+gem 'activeadmin'
 
 
 group :production do
