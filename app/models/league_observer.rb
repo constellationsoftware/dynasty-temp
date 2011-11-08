@@ -1,8 +1,8 @@
 class LeagueObserver < ActiveRecord::Observer
-	def after_create(league)
-	
-    #league.size.times do
-    #  UserTeam.create
+	#def after_create(model)
+    #    1.times do
+	#       model.drafts.create
+    #       model.teams.picks.update
+    #    end  
     #end
-  end
 end

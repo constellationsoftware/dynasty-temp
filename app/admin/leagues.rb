@@ -1,9 +1,14 @@
 ActiveAdmin.register League do
-    # form do |f|
-    #    f.inputs "Details" do
-    #        f.input :name
-    #        f.input :size
-    #        f.buttons
-    #    end
-    #end
+    show do
+        panel "Teams" do
+            table_for league.teams do
+                column "name" do |team|
+                    team.name
+                end
+                column "user" do |team|
+                    team.user.name
+                end
+            end
+        end
+    end
 end

@@ -4,7 +4,7 @@ class CreatePicks < ActiveRecord::Migration
 	    t.integer  "person_id"
 	    t.integer  "draft_id",	 :null => false
 	    t.integer  "team_id",	 :null => false
-	    t.integer  "pick_order", :null => false
+	    t.integer  "pick_order", :null => false, :default => 0
 	    t.datetime "picked_at"
 	  end
   end
