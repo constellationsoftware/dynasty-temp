@@ -23,12 +23,9 @@ class Draft < ActiveRecord::Base
     d
   end
 
-  def current_round
-    r = rounds.where(:started => true, :finished => false).first
-    if r.nil?
-    r = rounds.create(:started => true, :finished => false)
-    end
-    r
+  def current_pick
+    p = self.picks.where(:picked_at == nil).first
+    p.pick_order
   end
 
   def number_of_started_rounds
