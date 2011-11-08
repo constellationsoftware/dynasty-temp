@@ -1,5 +1,4 @@
 Dynasty::Application.routes.draw do
-
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -8,24 +7,16 @@ Dynasty::Application.routes.draw do
 
   devise_for :users
 
-  resources :salaries
-
-
-  resources :people
-  resources :persons
-  
-  resources :drafts
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources(:person_scores, :events, :dynasty_dollars, :positions, :trades,
-            :user_teams, :user_team_person, :leagues, :users, :person_phases, :display_names,
-            :stats, :fix, :draft, :draftable_players)
+  resources :person_scores, :events, :dynasty_dollars, :positions, :trades,
+            :user_teams, :user_team_person, :users, :person_phases, :display_names,
+            :stats, :fix, :draft, :draftable_players, :picks, :salaries,
+            :persons, :drafts, :leagues
 
   resources :teams do
-    resources :display_name
-    resources :person_phases
+    resources :display_name, :person_phases
   end
 
   resources :persons do

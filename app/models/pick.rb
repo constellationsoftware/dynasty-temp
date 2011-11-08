@@ -1,16 +1,14 @@
 class Pick < ActiveRecord::Base
-  belongs_to :user_team
+  belongs_to :team, :class_name => 'UserTeam'
+  belongs_to :player, :class_name => 'Person',
   has_one :user, :through => :user_team
 
-  belongs_to :round
-  has_one :draft, :through => :round
-
-  belongs_to :person
+  belongs_to :draft, :inverse_of => :drafts
 
  # requires :association, :user_team, :round, :person
  # locks :association, :round, :person
 
-  validate :one_person_per_draft, :on => :create
+  #validate :one_person_per_draft, :on => :create
 
   private
   def one_person_per_draft

@@ -3,10 +3,8 @@ class Draft < ActiveRecord::Base
   #Note: Drafts will have a fixed # of rounds (still determining, probably low 20s) and each user must pick in each round.
 
   belongs_to :league
-  has_many :user_teams, :through => :league
-
-  has_many :rounds
-  has_many :picks, :through => :rounds
+  has_many :teams, :through => :league
+  has_many :picks
 
  # requires :association, :league
  # requires :attribute, :number_of_rounds
