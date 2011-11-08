@@ -20,7 +20,7 @@ gem 'thin'
 gem 'pubnub-ruby'
 gem 'dalli'
 gem 'pusher'
-gem 'activeadmin'
+
 
 
 group :production do
@@ -64,3 +64,6 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+# activeadmin down here to load after assets
+gem 'activeadmin'

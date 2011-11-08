@@ -14,6 +14,11 @@ class UsersController < ApplicationController
 
     # GET /Users/1
     # GET /Users/1.json
+
+  def home
+    @user = current_user
+  end
+  
   def show
     @user    = User.find(params[:id])
   #  @players = @user.person_phases.find(:all, :include => :position)

@@ -1,5 +1,5 @@
 class DraftsController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!
   
 
   def pick
@@ -56,31 +56,35 @@ class DraftsController < ApplicationController
   end
 
   def index
-    @draft = Draft.all
+    #@drafts = Draft.all
+  end
+
+  def show
+    @draft  = Draft.find(params[:id])
     user = current_user
     user_team = user.user_team
-    league = user_team.league
-    @user = user
-    current_draft = Draft.current_or_new(league)
+    league = @draft.league
+  # @user = user
+  # current_draft = Draft.current_or_new(league)
 
-    @round_number = current_draft.number_of_started_rounds
-    @picks = current_draft.picks
-    @available_players = current_draft.available_players
-    current_round = current_draft.current_round
-    @current_round = current_round
-    #@current_user_team = current_round.current_user_team
-    @current_user_team = user_team
-    @my_turn = @current_user_team == user_team
-    @your_team = user_team
+  # @round_number = current_draft.number_of_started_rounds
+  # @picks = current_draft.picks
+  # @available_players = current_draft.available_players
+  # current_round = current_draft.current_round
+  # @current_round = current_round
+  # #@current_user_team = current_round.current_user_team
+  # @current_user_team = user_team
+  # @my_turn = @current_user_team == user_team
+  # @your_team = user_team
 
-    #session[:data] = user
-    @logged_in_at = session
+  # #session[:data] = user
+  # @logged_in_at = session
     respond_to do |format|
       format.html
       format.json { render json: @draft }
-
-    end
+  
   end
+end
 
   def updates
     user = current_user

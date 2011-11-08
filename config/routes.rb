@@ -13,7 +13,7 @@ Dynasty::Application.routes.draw do
   resources :person_scores, :events, :dynasty_dollars, :positions, :trades,
             :user_teams, :user_team_person, :users, :person_phases, :display_names,
             :stats, :fix, :draft, :draftable_players, :picks, :salaries,
-            :persons, :drafts, :leagues
+            :persons, :drafts, :leagues, :admin_dashboard
 
   resources :teams do
     resources :display_name, :person_phases
@@ -72,7 +72,7 @@ Dynasty::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   #root :to => 'drafts#index'
+  root :to => "admin/dashboard#index"
 
   # See how all your routes lay out with "rake routes"
 

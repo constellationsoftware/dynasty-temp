@@ -22,6 +22,15 @@ ActiveAdmin::Dashboards.build do
           end
         end
       end
+
+    #  section "Drafts" do
+    #    ul do
+    #      Draft.all.collect do |draft|
+    #        li link_to(draft.name, admin_draft_path(draft))
+    #      end
+    #    end
+    # end
+        
   
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can
