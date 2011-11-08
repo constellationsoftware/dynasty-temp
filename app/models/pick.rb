@@ -1,9 +1,12 @@
 class Pick < ActiveRecord::Base
   belongs_to :team, :class_name => 'UserTeam'
-  belongs_to :player, :class_name => 'Person',
+  belongs_to :player, :class_name => 'Salary'
   has_one :user, :through => :user_team
 
-  belongs_to :draft, :inverse_of => :drafts
+  belongs_to :draft#, :through => :team#, :inverse_of => :drafts
+
+
+  
 
  # requires :association, :user_team, :round, :person
  # locks :association, :round, :person

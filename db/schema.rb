@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108162325) do
+ActiveRecord::Schema.define(:version => 20111108172602) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(:version => 20111108162325) do
 
   create_table "picks", :force => true do |t|
     t.integer  "person_id"
-    t.integer  "draft_id",   :null => false
-    t.integer  "team_id",    :null => false
-    t.integer  "pick_order", :null => false
+    t.integer  "draft_id",   :default => 0, :null => false
+    t.integer  "team_id",                   :null => false
+    t.integer  "pick_order", :default => 0, :null => false
     t.datetime "picked_at"
   end
 
@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20111108162325) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.datetime "last_seen"
-    t.integer  "league_id"
     t.string   "name"
   end
 
