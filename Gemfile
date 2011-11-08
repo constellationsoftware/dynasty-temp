@@ -5,6 +5,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'haml'
+gem 'hpricot'
 gem "devise", :git => "git://github.com/plataformatec/devise.git"
 gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
