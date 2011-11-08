@@ -12,13 +12,6 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
 #  attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  has_many :picking_orders
-  has_one :user_team
-  has_many :picks
-  has_many :backup_picks
-
-
-
-
-
+  has_many :user_team
+  has_many :leagues, :foreign_key => 'manager_id'
 end

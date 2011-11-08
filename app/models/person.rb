@@ -1,4 +1,4 @@
-class Person < ActiveRecord::Base
+class Person < AbstractPlayerData
   set_table_name "persons"
 
   has_one :display_name, :as => :entity
@@ -48,10 +48,10 @@ class Person < ActiveRecord::Base
   has_many :person_scores
   has_one :salary
 
-  has_many :user_team_persons
-  has_many :user_teams, :through => :user_team_persons
+  has_many :players
+  has_many :user_teams, :through => :players
 
   Person.joins(:stats, :american_football_defensive_stats, :american_football_offensive_stats, :american_football_rushing_stats, :stat_repository, :person_phases, :position, :display_name)
 
-
+  has_many :picks
 end

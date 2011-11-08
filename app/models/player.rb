@@ -1,5 +1,4 @@
-class UserTeamPerson < ActiveRecord::Base
-	set_table_name "user_team_persons"
+class Player < ActiveRecord::Base
   belongs_to :user_team
   belongs_to :person
 
