@@ -11,7 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111108160628) do
+ActiveRecord::Schema.define(:version => 20111108172602) do
+
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -48,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20111108160628) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
-    t.string   "slug",       :limit => 50,                 :null => false
+    t.string   "slug"
   end
 
   add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -125,6 +126,7 @@ ActiveRecord::Schema.define(:version => 20111108160628) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.datetime "last_seen"
+    t.integer  "league_id"
     t.string   "name"
   end
 
