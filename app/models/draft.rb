@@ -23,6 +23,11 @@ class Draft < ActiveRecord::Base
     Salary.find(@picked)
   end
 
+  # make a pick from the front-end
+  def make_pick
+
+  end
+
   # automatically picking the best available player  
   def auto_pick
     p = self.current_pick
@@ -31,7 +36,7 @@ class Draft < ActiveRecord::Base
     p.save!
   end
 
-  # this will make all the picks automatically
+  # DANGER! this will make all the picks automatically DANGER!
   def draft_auto_pick
     self.picks.count
     while self.current_pick.pick_order < self.picks.count
