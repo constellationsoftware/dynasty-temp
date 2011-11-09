@@ -4,7 +4,7 @@ Ext.define('User', {
 
     proxy: {
         type: 'rest',
-        url : '/users'
+        url : '/draft/users'
         reader: {
         	type: 'json',
         	root: 'users'

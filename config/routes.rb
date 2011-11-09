@@ -25,8 +25,27 @@ Dynasty::Application.routes.draw do
     resources :display_name
   end
 
+  resources :drafts do
+    member do
+      get 'push_available_players'
+    end
+    member do
+      get 'auto_pick'
+    end
+    member do
+      get 'draft_auto_pick'
+    end
+    member do
+      get 'users'
+    end
+    member do
+      get 'available_players'
+    end
+  end
+
 
   match 'api/:action', :controller => 'api'
+
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

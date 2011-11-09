@@ -13,7 +13,7 @@ Ext.define('DynastyDraft.store.Salaries', {
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '../salaries',
+        url: '/salaries',
         /*extraParams: {
             total: 50000
         },*/
