@@ -23,25 +23,43 @@ class Draft < ActiveRecord::Base
     d
   end
 
+  # finding the current user_team up to pick
+
   def current_pick
-    p = self.picks.where(:picked_at == nil).first
-    p.pick_order
+    p = self.picks.where(:person_id => nil).first
+
   end
+
+  # seeing what players have been picked
+  def already_picked
+    @picked = self.picks.where("person_id >= ?", 1).map(&:person_id)
+    Salary.find(@picked)
+  end
+
+  # automatically picking the best available player
+  
+  def auto_pick
+    p = self.current_pick
+    already_picked = self.picks.where(:person_id != nil)
+    available_players = Salary.all
+    best_available = available_players.first
+    p.person_id = best_available.id
+    p.picked_at = Time.now
+    p.save!
+
+  end
+
+
 
   def number_of_started_rounds
     rounds.where(:started => true).count
   end
 
   def available_players
-    person_ids = picks.map(&:person_id)
-    if person_ids.empty?
-      Person.find(:all)
-    else
-      Person.find(
-        :all,
-        :conditions => ['id not in (?)', picks.map(&:person_id)],
-        :include => :display_name)
-    end
+    picked = self.already_picked
+    all_players = Salary.all
+    available_players = all_players - picked
+
   end
 
 

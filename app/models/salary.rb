@@ -1,4 +1,5 @@
 class Salary < ActiveRecord::Base
+  has_many :picks
   #include Sencha::Model
   POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'K']
 
