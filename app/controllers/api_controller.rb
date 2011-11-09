@@ -56,7 +56,7 @@ class ApiController < ApplicationController
     payload = {
       :user_id => current_user.id,
       :user_info => { # => optional - for example
-        :team_name => current_user.user_team.name,
+        :team_name => current_user.teams.name,
         :email => current_user.email,
         #:league => current_user.user_team.league_id
       }

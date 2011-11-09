@@ -61,10 +61,7 @@ class DraftsController < ApplicationController
 
   def show
     @draft  = Draft.find(params[:id])
-    user = current_user
-    user_team = user.user_team
-    league = @draft.league
-  # @user = user
+    @user = current_user
   # current_draft = Draft.current_or_new(league)
 
   # @round_number = current_draft.number_of_started_rounds

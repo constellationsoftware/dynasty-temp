@@ -17,10 +17,9 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
-gem 'pubnub-ruby'
 gem 'dalli'
 gem 'pusher'
-
+gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
 
 
 group :production do
