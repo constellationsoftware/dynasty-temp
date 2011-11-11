@@ -11,10 +11,41 @@ class Draft < ActiveRecord::Base
   # locks :association, :league
 
   # scopes for draft status with scopes
+  scope :pending, where(:started => 0)
   scope :started, where(:started => 1)
   scope :unfinished, where(:finished => 0)
-  scope :finished, self.started.where(:finished => 1)
-  scope :active, self.started.unfinished
+  scope :finished, started.where(:finished => 1)
+  scope :active, started.unfinished
+
+
+  # start the draft
+  def start
+    unless self.started
+      self.started = 1
+      self.started_at = Time.now
+    end
+  end
+
+  # end the draft
+  def finish
+    if self.started
+      self.finished = 1
+      self.finished_at = Time.now
+    end
+  end
+
+  # reset the draft
+  def reset
+    if self.started
+        self.finished = 0
+        self.started = 0
+        self.started_at = nil
+        self.finished_at = nil
+        current_pick = nil
+    end
+  end
+
+  #
 
 
   # push the draft status
