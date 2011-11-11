@@ -44,7 +44,7 @@ Dynasty::Application.routes.draw do
   end
 
 
-  match 'api/:action', :controller => 'api'
+  match 'api/:action(/:draft_id)', :controller => 'api'
 
 
   # Sample of regular route:

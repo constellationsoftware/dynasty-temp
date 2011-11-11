@@ -42,6 +42,7 @@ Ext.application({
         events['draft:pick:user_' + user.id] = this.myTurnToPick;
         // subscribe to a "draft events" channel
         DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL, events, this);
+        DynastyDraft.data.Socket.subscribe('presence-draft-' + DRAFT_ID);
 
         // initialize the socket service
         DynastyDraft.data.Socket.init();

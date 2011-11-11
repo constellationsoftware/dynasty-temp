@@ -19,7 +19,9 @@ gem 'em-http-request' # required for async pusher requests
 gem 'thin'
 gem 'dalli'
 gem 'pusher'
+gem 'pusher-client', :git => "git://github.com/logankoester/pusher-client.git"
 gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
+gem 'delayed_job'
 
 
 group :production do

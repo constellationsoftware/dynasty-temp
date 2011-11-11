@@ -10,6 +10,8 @@ class Draft < ActiveRecord::Base
   # requires :attribute, :number_of_rounds
   # locks :association, :league
 
+  scope :active, where('drafts.started = 1 AND drafts.finished != 1')
+
   # push the draft status
   def push_draft_status
     payload = {
@@ -120,8 +122,4 @@ class Draft < ActiveRecord::Base
   def best_player
     best = self.available_players.first
   end
-
-
-
-
 end

@@ -16,7 +16,7 @@ Ext.define('DynastyDraft.data.Socket', {
             this.self.STATE_FAILED
         );
 
-        Pusher.channel_auth_endpoint = '/api/auth';
+        Pusher.channel_auth_endpoint = '/api/auth/'+DRAFT_ID;
         Pusher.isReady = false;
 
         if (SOCKET_APP_KEY) {
@@ -45,7 +45,7 @@ Ext.define('DynastyDraft.data.Socket', {
         if (!channel || !Ext.isString(channel)) {
             throw new Error('Channel name invalid; expected a non-empty string.');
         }
-        if (!events || !Ext.isObject(events)) {
+        if (events && !Ext.isObject(events)) {
             throw new Error('Channel event list invalid; expected an object containing event names as keys and event specification objects as values.')
         }
 

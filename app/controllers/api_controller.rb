@@ -55,15 +55,17 @@ class ApiController < ApplicationController
   end
 
   def auth
-    @user = User.find(current_user.id)
+    user = User.find(current_user.id)
+    team = UserTeam.joins(:user, :league => :drafts)
+      .merge(Draft.active)
+      .where('user_id = ?', user.id)
+      .where('drafts.id = ?', params[:draft_id])
+      .limit(1)
+      .first
+    puts team.to_json
     payload = {
       :user_id => current_user.id,
-      :user_info => { # => optional - for example
-        :name => @user.name,
-        :email => @user.email
-        #:league => current_user.team.league_id
-
-      }
+      :team_id => team.id
     }
 
     response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)

@@ -20,6 +20,8 @@ module Dynasty
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
+    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -57,6 +59,21 @@ module Dynasty
     config.generators do |g|
         g.template_engine :haml
     end
-
   end
+end
+
+module Kernel
+  def print_stacktrace
+    raise
+  rescue
+      puts $!.backtrace[1..-1].join("\n")
+  end
+end
+
+#
+# After thin boots, run this shit
+#
+EM.next_tick do
+    # cause the job to be instantiated and therefore queued
+    Pusher::Job.instance
 end

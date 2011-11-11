@@ -1,5 +1,6 @@
 :javascript
   var user = #{@user.to_json};
+  var DRAFT_ID = #{@draft.id};
   var SOCKET_APP_KEY = '#{Pusher.key}';
 = stylesheet_link_tag "/draft/resources/css/dynasty_theme"
 %script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
