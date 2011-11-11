@@ -10,7 +10,7 @@ class Draft < ActiveRecord::Base
   # requires :attribute, :number_of_rounds
   # locks :association, :league
 
-  # scopes for draft status with scopes
+  # scopes for draft status 
   scope :pending, where(:started => 0)
   scope :started, where(:started => 1)
   scope :unfinished, where(:finished => 0)
@@ -18,11 +18,14 @@ class Draft < ActiveRecord::Base
   scope :active, started.unfinished
 
 
-  # start the draft
+  # start the draft 
   def start
     unless self.started
       self.started = 1
       self.started_at = Time.now
+      current_pick = 1
+      self.save!
+      
     end
   end
 
@@ -31,6 +34,7 @@ class Draft < ActiveRecord::Base
     if self.started
       self.finished = 1
       self.finished_at = Time.now
+      self.save!
     end
   end
 
@@ -41,11 +45,17 @@ class Draft < ActiveRecord::Base
         self.started = 0
         self.started_at = nil
         self.finished_at = nil
-        current_pick = nil
+        self.current_pick = 1
+        self.save!
     end
   end
 
-  #
+# what users/teams are online in the draft
+def online
+  user_teams = self.teams.online
+end
+
+
 
 
   # push the draft status
@@ -97,7 +107,7 @@ class Draft < ActiveRecord::Base
  end
 
 
-  # finding the current user_team up to pick
+  # finding the current user_team up to pick 
   def current_pick
     self.picks.where(:person_id => nil).first
   end
@@ -132,11 +142,13 @@ class Draft < ActiveRecord::Base
   # automatically picking the best available player  
   def auto_pick
     p = self.current_pick
-    p.person_id = self.best_player.id
-    p.picked_at = Time.now
-    p.save!
+    unless p.team.is_online?
+      p.person_id = self.best_player.id
+      p.picked_at = Time.now
+      p.save!
+      #self.push_pick_update
+    end
     self.push_pick_update
-
   end
 
   # DANGER! this will make all the picks automatically DANGER!

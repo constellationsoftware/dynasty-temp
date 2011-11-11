@@ -55,11 +55,11 @@ class ApiController < ApplicationController
   end
 
   def auth
-    user = User.find(current_user.id)
-    team = user.teams
-      .merge(Draft.active)
-      .where('user_id = ?', user.id)
-      .where('drafts.id = ?', params[:draft_id])
+    #user = User.find(current_user.id)
+    puts current_user
+    draft = Draft.find(params[:draft_id])
+    team = current_user.teams
+      .where('league_id = ?', draft.league_id)
       .limit(1)
       .first
     puts team.to_json
