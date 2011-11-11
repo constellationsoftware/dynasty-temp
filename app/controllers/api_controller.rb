@@ -56,7 +56,7 @@ class ApiController < ApplicationController
 
   def auth
     user = User.find(current_user.id)
-    team = UserTeam.joins(:user, :league => :drafts)
+    team = user.teams
       .merge(Draft.active)
       .where('user_id = ?', user.id)
       .where('drafts.id = ?', params[:draft_id])

@@ -10,7 +10,12 @@ class Draft < ActiveRecord::Base
   # requires :attribute, :number_of_rounds
   # locks :association, :league
 
-  scope :active, where('drafts.started = 1 AND drafts.finished != 1')
+  # scopes for draft status with scopes
+  scope :started, where(:started => 1)
+  scope :unfinished, where(:finished => 0)
+  scope :finished, self.started.where(:finished => 1)
+  scope :active, self.started.unfinished
+
 
   # push the draft status
   def push_draft_status
