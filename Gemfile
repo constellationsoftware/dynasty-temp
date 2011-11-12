@@ -4,6 +4,8 @@ source 'http://gems.github.com'
 gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
+gem 'heroku'
+gem 'compass'
 gem 'haml'
 gem 'hpricot'
 gem "devise", :git => "git://github.com/plataformatec/devise.git"
@@ -22,8 +24,8 @@ gem 'pusher'
 gem 'pusher-client', :git => "git://github.com/logankoester/pusher-client.git"
 gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
 gem 'delayed_job'
-gem 'kumade'
-
+gem 'kumade'  
+gem 'activeadmin'
 
 group :production do
   gem 'pg'
@@ -67,5 +69,3 @@ group :test do
   gem 'turn', :require => false
 end
 
-# activeadmin down here to load after assets
-gem 'activeadmin'
