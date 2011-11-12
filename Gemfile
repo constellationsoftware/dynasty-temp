@@ -30,6 +30,7 @@ gem 'kumade'
 gem 'activeadmin'
 
 group :production do
+  gem 'production'
   gem 'pg'
   gem 'newrelic_rpm'
 end
