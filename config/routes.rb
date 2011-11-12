@@ -1,7 +1,8 @@
 Dynasty::Application.routes.draw do
   ActiveAdmin.routes(self)
 
-  match '/' => 'leagues#show', :constraints => { :subdomain => /[\w]+/ }
+  # Wildcard Subdomain Routing - Commented out til we figure out how to handle this on heroku. 
+  # match '/' => 'leagues#show', :constraints => { :subdomain => /[\w]+/ }
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
