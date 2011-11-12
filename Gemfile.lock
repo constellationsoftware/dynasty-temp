@@ -1,4 +1,21 @@
 GIT
+  remote: git://github.com/chriseppstein/compass.git
+  revision: 730acb62f4f132a360ef5454c6815fd3f307367a
+  specs:
+    compass (0.12.alpha.0.730acb6)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+
+GIT
+  remote: git://github.com/koppen/hassle.git
+  revision: bb49cd8b37f5369d08398897caf1b687eaa80458
+  specs:
+    hassle (0.0.1)
+      haml
+      rack
+
+GIT
   remote: git://github.com/logankoester/pusher-client.git
   revision: bbee02734423e067f4f38e6185b823334754cacb
   specs:
@@ -71,10 +88,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.3)
-    compass (0.11.5)
-      chunky_png (~> 1.2)
-      fssm (>= 0.2.7)
-      sass (~> 3.1)
     crack (0.1.8)
     daemons (1.1.4)
     dalli (1.1.3)
@@ -227,7 +240,7 @@ DEPENDENCIES
   bcrypt-ruby (>= 2.1.4)
   cancan
   coffee-rails (~> 3.1.0)
-  compass
+  compass!
   dalli
   delayed_job
   devise!
@@ -236,6 +249,7 @@ DEPENDENCIES
   friendly_id (~> 4.0.0.beta14)
   haml
   has_scope
+  hassle!
   heroku
   hpricot
   inherited_resources

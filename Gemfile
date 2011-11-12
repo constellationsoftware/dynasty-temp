@@ -5,7 +5,9 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'heroku'
-gem 'compass'
+gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
+gem 'sass-rails', "  ~> 3.1.0"
+gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'haml'
 gem 'hpricot'
 gem "devise", :git => "git://github.com/plataformatec/devise.git"
@@ -45,8 +47,6 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-
-  gem 'sass-rails', " ~> 3.1.0"
   gem 'sass', '3.1.7'
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
