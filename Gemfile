@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
-gem 'mysql2', '< 0.3.7'
+gem 'mysql2', '< 0.3'
 gem 'activesupport', '~> 3.1.0'
 gem 'heroku'
 gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
