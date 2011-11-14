@@ -10,6 +10,5 @@ $config = YAML.load_file(Rails.root + 'config' + 'database.yml')
 	      :password => "eSwWReno",
 	      :database => "app1455111"
 	    )
-	    end
 	end
 end
