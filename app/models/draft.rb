@@ -22,10 +22,32 @@ class Draft < ActiveRecord::Base
   def start
     unless self.started
       self.started = 1
-      self.started_at = Time.now
-      current_pick = 1
-      self.save!
       
+
+      i = 0
+      round = 0
+      teams = self.league.teams
+
+      self.number_of_rounds.times do
+        round += 1
+        if round.odd?
+           roundsort = teams.sort
+        else
+           roundsort = teams.sort.reverse
+        end
+        roundsort.each do |team|
+           i += 1
+           @pick = Pick.new
+           @pick.draft_id = self.id
+           @pick.team_id = team.id
+           @pick.pick_order = i
+           @pick.save!
+       end
+    end
+    self.started_at = Time.now
+    self.current_pick = 1
+    self.save!
+
     end
   end
 
@@ -62,10 +84,10 @@ end
   def push_draft_status
     payload = {
       :draft => self,
-      :current_pick => self.current_pick,
+      :current_pick => self.open_pick,
       :teams => self.teams.inspect,
-      :league => self.league.inspect,
-      :users => self.users.inspect
+      :league => self.league,
+      :users => self.users
 
     }
     Pusher['presence-draft'].trigger_async('draft:status:received', payload)
@@ -96,25 +118,34 @@ end
     payload = {
      :draft => self,
      :player_picked => self.last_player_picked,
-     :current_pick => self.current_pick,
-     :active_user => self.current_pick.team.user
+     :current_pick => self.open_pick,
+     :active_user => self.open_pick.team.user
     }
     Pusher['presence-draft'].trigger_async('draft:pick_update:received', payload)
 
     # send app the new current user
-    event_name = 'draft:pick:user_' + self.current_pick.team.user.id.to_s
+    event_name = 'draft:pick:user_' + self.open_pick.team.user.id.to_s
     Pusher['presence-draft'].trigger_async(event_name, payload)
+    self.check_next_pick
  end
 
+  def check_next_pick
+    @next_pick = self.open_pick
+    unless @next_pick.team.is_online
+      auto_pick
+    end
+  end
 
   # finding the current user_team up to pick 
-  def current_pick
-    self.picks.where(:person_id => nil).first
+  def open_pick
+    p = self.picks.where(:person_id => nil).first
+    self.current_pick = p.pick_order
+    p
   end
 
   # most recent pick
   def last_pick_made
-    p = self.current_pick.pick_order - 1
+    p = self.open_pick.pick_order - 1
     self.picks.find_by_pick_order(p)
   end
 
@@ -141,21 +172,18 @@ end
 
   # automatically picking the best available player  
   def auto_pick
-    p = self.current_pick
-    unless p.team.is_online?
-      p.person_id = self.best_player.id
-      p.picked_at = Time.now
-      p.save!
-      #self.push_pick_update
-    end
+    p = self.open_pick
+    p.person_id = self.best_player.id
+    p.picked_at = Time.now
+    p.save!
     self.push_pick_update
   end
 
   # DANGER! this will make all the picks automatically DANGER!
   def draft_auto_pick
     self.picks.count
-    while self.current_pick.pick_order < self.picks.count  
-      self.auto_pick
+    while open_pick.pick_order < self.picks.count  
+      auto_pick
     end
   end
 
@@ -164,10 +192,11 @@ end
     picked = self.already_picked
     all_players = Salary.all
     available_players = all_players - picked
+    
   end
 
   # the supposedly best pick
   def best_player
-    best = self.available_players.first
+    best = available_players.first
   end
 end

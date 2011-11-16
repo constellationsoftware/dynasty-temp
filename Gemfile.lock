@@ -230,6 +230,9 @@ GEM
       multi_json (>= 1.0.2)
     warden (1.1.0)
       rack (>= 1.0)
+    zurb-foundation (2.0.3.2)
+      jquery-rails (~> 1.0)
+      rails (~> 3.1.0)
 
 PLATFORMS
   ruby
@@ -256,6 +259,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   kumade
+  meta_search (>= 1.1.0.pre)
   mysql2 (< 0.3.7)
   newrelic_rpm
   pg
@@ -269,3 +273,4 @@ DEPENDENCIES
   thin
   turn
   uglifier
+  zurb-foundation

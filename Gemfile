@@ -28,6 +28,8 @@ gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
 gem 'delayed_job'
 gem 'kumade'  
 gem 'activeadmin'
+gem "zurb-foundation"
+gem 'meta_search', '>= 1.1.0.pre'
 
 group :production do
   gem 'pg'

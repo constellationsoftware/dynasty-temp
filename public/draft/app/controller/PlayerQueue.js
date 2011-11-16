@@ -66,11 +66,11 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
             this.getPlayerQueueStore().remove(record);
         } else {
             // throw up a notification that a pick was made from the main grid
-            /*this.notify('A pick was made automatically for you.\nYou should add some players to your queue!');
+            this.notify('A pick was made automatically for you.\nYou should add some players to your queue!');
 
             var playerGrid = Ext.ComponentQuery.query('playergrid')[0];
             var firstRow = playerGrid.getView().getNode(0);
-            record = playerGrid.getView().getRecord(firstRow);*/
+            record = playerGrid.getView().getRecord(firstRow);
         }
 
         if (record) {

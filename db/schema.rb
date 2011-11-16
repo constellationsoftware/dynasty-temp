@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111110215137) do
+ActiveRecord::Schema.define(:version => 20111115171729) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -108,6 +108,12 @@ ActiveRecord::Schema.define(:version => 20111110215137) do
     t.integer "person_id"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "salaries", :force => true do |t|
     t.string  "full_name",       :limit => 50, :null => false
     t.string  "position",        :limit => 10
@@ -162,6 +168,8 @@ ActiveRecord::Schema.define(:version => 20111110215137) do
     t.string   "authentication_token"
     t.datetime "last_seen"
     t.string   "name"
+    t.string   "role"
+    t.integer  "roles_mask"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

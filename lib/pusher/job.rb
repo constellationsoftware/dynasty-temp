@@ -9,7 +9,7 @@ module Pusher
 
 		def initialize
 			# create the socket and start the connection process
-			#PusherClient.logger = Logger.new(STDOUT)
+			PusherClient.logger = Logger.new(STDOUT)
 			self.socket = PusherClient::Socket.new(Pusher.key, { :secret => Pusher.secret })
 			self.socket.connect(true)
 
@@ -66,7 +66,7 @@ module Pusher
 				team = UserTeam.find(team_id)
 				team.is_online = true
 				team.save()
-				#puts "MEMBER JOINED: " + data['user_info']['name'].to_s
+				puts "MEMBER JOINED: " + data['user_info']['name'].to_s
 			end
 
 			def on_member_leave(data)
@@ -75,7 +75,7 @@ module Pusher
 				team.is_online = false
 				team.save()
 
-				#puts "MEMBER JOINED: " + data['user_info']['name'].to_s
+				puts "MEMBER JOINED: " + data['user_info']['name'].to_s
 			end
 	end
 end

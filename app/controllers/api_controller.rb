@@ -4,7 +4,11 @@ class ApiController < ApplicationController
 
   def pick
     player = Salary.find(params[:player_id])
-
+    draft = Draft.last
+    pick = Pick.find(draft.open_pick)
+    pick.person_id = player.id
+    pick.picked_at = Time.now
+    pick.save!
 
     payload = {
       :user_id => current_user[:id],
@@ -24,13 +28,14 @@ class ApiController < ApplicationController
 
     # figure out the next user in the draft
     # hardcode this for now
-    #next_user_id =  current_user[:id]
+    next_user_id =  draft.open_pick.team.user_id
     #  when 2 then 2
     #  else 2
     #end
-    #event_name = 'draft:pick:user_' + next_user_id.to_s
-    #Pusher['presence-draft'].trigger_async(event_name, payload)
+    event_name = 'draft:pick:user_' + next_user_id.to_s
+    Pusher['presence-draft'].trigger_async(event_name, payload)
     render :text => "sent"
+    draft.check_next_pick
   end
 
   def post_message
@@ -62,6 +67,8 @@ class ApiController < ApplicationController
       .where('league_id = ?', draft.league_id)
       .limit(1)
       .first
+    team.is_online = 1
+    team.save!
     puts team.to_json
     payload = {
       :user_id => current_user.id,
@@ -69,6 +76,8 @@ class ApiController < ApplicationController
     }
 
     response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)
+    event_name = 'draft:pick:user_' + draft.open_pick.team.user.id.to_s
+    Pusher['presence-draft'].trigger_async(event_name, payload)
     render :json => response
   end
 

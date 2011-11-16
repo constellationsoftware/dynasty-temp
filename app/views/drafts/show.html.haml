@@ -1,14 +1,56 @@
+
+
+= stylesheet_link_tag "/draft/resources/css/dynasty_theme"
+%script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
 :javascript
   var user = #{@user.to_json};
   var DRAFT_ID = #{@draft.id};
   var SOCKET_APP_KEY = '#{Pusher.key}';
-= stylesheet_link_tag "/draft/resources/css/dynasty_theme"
-%script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
+  var CURRENT_PICK = '#{@draft.open_pick.pick_order}';
+
+
 = javascript_include_tag "/draft/lib/extjs/ext-debug"
 = javascript_include_tag "/draft/app"
 %body
 = content_tag(:div, flash.notice, :class => "notice") if flash.notice
 = content_tag(:div, flash.alert, :class => "alert") if flash.alert
+%div#statusbar
+  %p 
+    Draft Object
+    
+  %p 
+    Currently Logged in as: 
+    = "#{@team.user.name}"
+    User ID: 
+    = "#{@team.user.id}"
+    | Team Name: 
+    = "#{@team.name}"
+    
+  %p
+    League: 
+    = "#{@draft.league.name}"
+  %p
+    Draft #:
+    = @draft.id
+  %p
+    Draft 
+    Pick #
+    = "#{@draft.current_pick}"
+  %p 
+    Who's Up?
+    = @draft.open_pick.team.name
+    User ID
+    = @draft.open_pick.team.user.id
+  %p 
+    Online Teams:
+    - @draft.league.teams.online.each do |o|
+      = o.name
+  %p
+    Offline Teams:
+    - @draft.league.teams.offline.each do |o|
+      = o.name
+
+
 
 /
   <h1>Logged in as: <haml:loud> @user.email </haml:loud></h1>

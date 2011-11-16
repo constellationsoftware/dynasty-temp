@@ -4,6 +4,8 @@ Ext.Loader.setConfig({
     //paths: { '<appName>': '.', 'Ext': '/draft/lib/extjs/src', 'Ext.ux': '/draft/lib/extjs/ux' }
 });
 
+
+
 Ext.application({
     name: 'DynastyDraft',
     appFolder: '/draft/app',
@@ -13,12 +15,15 @@ Ext.application({
 
     models: [
         'Message',
+        'Update'
+
     ],
 
     stores: [
         //'PlayerStoreCharts',
         'Messages',
         'Salaries',
+        'Roster',
     ],
 
     controllers: [

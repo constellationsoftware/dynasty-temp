@@ -15,24 +15,30 @@ class Salary < ActiveRecord::Base
     ret << " END ASC"
   end
 
+  def self.available
+    @draft = Draft.last 
+    @pickmap = @draft.picks.where("person_id >= ?", 1).map(&:person_id)
+    @picked = Salary.find(@pickmap)
+    Salary.all - @picked
+  end
   #scopes
   scope :offense, where("SUBSTRING(position, 1, 2) IN (?)", POSITION_PRIORITIES)
   scope :by_position, order(order_by_position_priority)
 
-  belongs_to :person
+  #belongs_to :person
 
   # Match salaries to persons through displayname
-  def matcher
-    if DisplayName.exists?(:full_name => self.full_name)
-      @dn            = DisplayName.find_by_full_name(self.full_name)
-      self.person_id = @dn.entity_id
-      self.save
-    end
-  end
+  #def matcher
+  #  if DisplayName.exists?(:full_name => self.full_name)
+  #    @dn            = DisplayName.find_by_full_name(self.full_name)
+  #    self.person_id = @dn.entity_id
+  #    self.save
+  #  end
+  #end
 
-  def self.has_contract
-  	where("contract_amount > ?", 0 )
-  end
+  #def self.has_contract
+  #	where("contract_amount > ?", 0 )
+  #end
 
 
 

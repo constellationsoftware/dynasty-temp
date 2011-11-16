@@ -31,6 +31,12 @@ Dynasty::Application.routes.draw do
       get 'push_available_players'
     end
     member do
+      get 'push_draft_status'
+    end
+    member do
+      get 'roster'
+    end
+    member do
       get 'auto_pick'
     end
     member do
@@ -41,6 +47,9 @@ Dynasty::Application.routes.draw do
     end
     member do
       get 'available_players'
+    end
+    member do
+      get 'status'
     end
   end
 

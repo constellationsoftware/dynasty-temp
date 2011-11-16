@@ -1,17 +1,14 @@
 Ext.define('DynastyDraft.store.Roster', {
     extend: 'DynastyDraft.store.Salaries',
-    
+    model: 'DynastyDraft.model.Salary',
     groupField: 'position',
 
-    data: {
-        picks: []
-    },
 
     proxy: {
-        type: 'memory',
-        reader: {
-            type: 'json',
-            root: 'picks',
-        }
+        type: 'rest',
+        format: 'json',
+        url: 'roster',
+        root: 'results'
+        
     },
 });

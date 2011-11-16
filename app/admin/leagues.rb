@@ -11,4 +11,6 @@ ActiveAdmin.register League do
             end
         end
     end
+
+    menu :label => "Manage Leagues"
 end
