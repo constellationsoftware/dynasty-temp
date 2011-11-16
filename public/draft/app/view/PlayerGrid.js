@@ -15,7 +15,7 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
         copy: true,
         trackOver: false,
         getRowClass: function(record, rowIndex, rowParams, store) {
-            if (!record.get('valid')) { return 'row-invalid'; }
+            if (!record.get('is_valid')) { return 'row-invalid'; }
         },
         plugins: [
             {

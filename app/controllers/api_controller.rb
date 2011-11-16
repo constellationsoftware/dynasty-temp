@@ -71,17 +71,4 @@ class ApiController < ApplicationController
     response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)
     render :json => response
   end
-
-
-  protected
-    # wraps pusher's 'trigger' method so we can automatically append the
-    # socket id if available
-    def trigger(channel, event, payload)
-      Rails.logger.info channel
-      Rails.logger.info event
-      Rails.logger.info payload
-
-      socket_id = payload.delete('socket_id')
-      return Pusher[channel].trigger_async(event, payload, socket_id)
-    end 
 end

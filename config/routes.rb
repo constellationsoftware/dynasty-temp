@@ -1,7 +1,13 @@
 Dynasty::Application.routes.draw do
   ActiveAdmin.routes(self)
 
-  match '/' => 'leagues#show', :constraints => { :subdomain => /[\w]+/ }
+  scope(:constraints => { :subdomain => /[\w]+/ }) do
+    match '/draft(/:action(.:format))',
+      :controller => 'draft',
+      :action => 'show',
+      :format => 'html'
+  end
+    
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
@@ -14,7 +20,7 @@ Dynasty::Application.routes.draw do
 
   resources :person_scores, :events, :dynasty_dollars, :positions, :trades,
             :user_teams, :user_team_person, :users, :person_phases, :display_names,
-            :stats, :fix, :draft, :draftable_players, :picks, :salaries,
+            :stats, :fix, :draftable_players, :picks, :salaries,
             :persons, :drafts, :leagues, :admin_dashboard
 
   resources :teams do
@@ -42,9 +48,6 @@ Dynasty::Application.routes.draw do
       get 'available_players'
     end
   end
-
-
-  match 'api/:action(/:draft_id)', :controller => 'api'
 
 
   # Sample of regular route:

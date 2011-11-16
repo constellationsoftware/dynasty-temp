@@ -26,7 +26,7 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
         });
 
         this.application.addListener(this.application.TIMEOUT, this.getPick, this);
-        this.application.addListener(this.application.LEAGUE_PICK, this.onLeaguePick, this);
+        this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
 
         // enable/disable pick button on app status
         this.application.addListener(this.application.STATUS_PICKING, function() {
@@ -75,6 +75,7 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
 
         if (record) {
             // notify listeners that pick was made
+            console.log(record);
             this.fireEvent('picked', record);
         } else {
             // notify listeners that pick was made
@@ -82,9 +83,9 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
         }
     },
 
-    onLeaguePick: function(player) {
+    onPickUpdate: function(pick_id) {
         var store = this.getPlayerQueueStore(),
-            record = store.getById(player.id);
+            record = store.getById(pick_id);
         if (record !== null) {
             Ext.Msg.show({
                 title: 'AWW HELL NAW',

@@ -34,15 +34,14 @@ Ext.application({
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
             showDelay: 50      // Show 50ms after entering target
         });
-
+        
+        // subscribe to a global "draft events" channel
         var events = {
             'pusher:subscription_succeeded': this.onDraftJoin,
-            'draft:pick:received': this.onPickReceived
+            'draft:pick:update': this.onPickUpdate
         };
-        events['draft:pick:user_' + user.id] = this.myTurnToPick;
-        // subscribe to a "draft events" channel
-        DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL, events, this);
-        DynastyDraft.data.Socket.subscribe('presence-draft-' + DRAFT_ID);
+        events['draft:pick:start-' + USER_ID] = this.myTurnToPick;
+        DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL_PREFIX + this.getSubDomain(), events, this);
 
         // initialize the socket service
         DynastyDraft.data.Socket.init();
@@ -53,8 +52,8 @@ Ext.application({
     },
 
     onPlayerPicked: function(player) {
-        console.log('player pick succeeded', this);
-        this.fireEvent(this.STATUS_PICKED, player);
+        console.log('player pick succeeded', player);
+        this.fireEvent(this.STATUS_PICKED, player.get('id'));
         Ext.ux.data.Socket.request('pick', { player_id: player.get('id') });
         this.fireEvent(this.STATUS_WAITING);
     },
@@ -67,10 +66,10 @@ Ext.application({
     /*
      * When a pick event originated from someone else is received
      */
-    onPickReceived: function(data) {
-        console.log("pick received", data);
-        var player = data.player;
-        this.fireEvent(this.LEAGUE_PICK, player);
+    onPickUpdate: function(data) {
+        console.log("pick update received", data);
+        var pick_id = data.player_id;
+        this.fireEvent(this.PICK_UPDATE, pick_id);
     },
 
     onTimeout: function() {
@@ -78,13 +77,19 @@ Ext.application({
     },
 
     onDraftJoin: function(member_list) {
-        Ext.ux.data.Socket.request('ready', { id: user.id });
+        console.log('Joined draft sucessfully');
+        //Ext.ux.data.Socket.request('ready', { id: user.id });
     },
 
     myTurnToPick: function() {
         console.log("my turn to pick YAY");
         this.fireEvent(this.STATUS_BEFORE_PICKING);
         this.fireEvent(this.STATUS_PICKING);
+    },
+
+    getSubDomain: function() {
+        var a = window.location.host.split('.');
+        return a[0];
     },
 
     //statics: {
@@ -95,9 +100,7 @@ Ext.application({
 
         TIMEOUT:                'timeout',
 
-        LEAGUE_CHANNEL:         'presence-draft',
-        LEAGUE_BEFORE_PICK:     'before_remote_pick',
-        LEAGUE_PICK:            'remote_pick',
-        LEAGUE_AFTER_PICK:      'after_remote_pick',
+        LEAGUE_CHANNEL_PREFIX:  'presence-draft-',
+        PICK_UPDATE:            'pick_update',
     //}
 });

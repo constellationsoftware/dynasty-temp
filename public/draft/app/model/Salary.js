@@ -17,15 +17,10 @@ Ext.define('DynastyDraft.model.Salary', {
             }
         },
         {"name":"contract_amount","allowBlank":false,"type":"int","defaultValue":0},
-        {"name":"person_id","allowBlank":false,"type":"int","defaultValue":0},
         {"name":"points","allowBlank":false,"type":"int","defaultValue":0},
         {"name":"rating","allowBlank":false,"type":"int","defaultValue":0},
         {"name":"consistency","allowBlank":false,"type":"int","defaultValue":0},
-        {
-            name: 'valid',
-            type: 'boolean',
-            defaultValue: true,
-        }
+        {"name":"is_valid","allowBlank":true,"type":"int","defaultValue":1},
     ],
 
     "idProperty": "id",

@@ -1,4 +1,5 @@
 class DraftObserver < ActiveRecord::Observer
+=begin
   def after_save(model)
     i = 0
     round = 0
@@ -19,10 +20,9 @@ class DraftObserver < ActiveRecord::Observer
             @pick.pick_order = i
             @pick.save!
         end
-        
-
     end
   end
+=end
 end
 
 
