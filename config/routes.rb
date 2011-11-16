@@ -7,7 +7,6 @@ Dynasty::Application.routes.draw do
       :action => 'show',
       :format => 'html'
   end
-    
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
