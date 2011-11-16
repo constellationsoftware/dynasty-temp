@@ -1,3 +1,4 @@
+=begin
 class DraftController < ApplicationController
   before_filter :authenticate_user!
 
@@ -167,3 +168,4 @@ class DraftController < ApplicationController
     render :json => data
   end
 end
+=end

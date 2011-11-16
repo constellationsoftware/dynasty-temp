@@ -1,11 +1,10 @@
 class Pick < ActiveRecord::Base
   belongs_to :team, :class_name => 'UserTeam'
-  # commented out player association for the moment 
-  #belongs_to :player, :class_name => 'Person'
-  belongs_to :salary, :foreign_key => 'person_id' #:class_name => 'Person', 
-  has_one :user, :through => :user_team
+  has_one :user, :through => :team
+  belongs_to :player, :class_name => 'Salary', :foreign_key => 'person_id'
+  belongs_to :draft, :inverse_of => :drafts
 
-  belongs_to :draft#, :inverse_of => :drafts
+  default_scope :order => 'pick_order ASC'
 
  # requires :association, :user_team, :round, :person
  # locks :association, :round, :person

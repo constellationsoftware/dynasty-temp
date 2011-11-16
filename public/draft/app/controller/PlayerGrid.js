@@ -1,13 +1,16 @@
+var pgstore;
 Ext.define('DynastyDraft.controller.PlayerGrid', {
     extend: 'Ext.app.Controller',
 
-    stores: [ 'Players' ],
-    models: [ 'Player' ],
+    stores: [ 'Salaries' ],
+    models: [ 'Salary' ],
     views: [ 'PlayerGrid' ],
 
     view: null,
 
     init: function() {
+        pgstore = this.getSalariesStore();
+
         this.control({
             'playergrid': {
                 itemdblclick: this.onRowDblClick,
@@ -16,17 +19,19 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
         });
 
         // append a "disabled" class to the row when it's picked
-        this.application.addListener(this.application.STATUS_PICKED, this.onPick, this);
-        this.application.addListener(this.application.LEAGUE_PICK, this.onPick, this);
+        this.application.addListener(this.application.STATUS_PICKED, this.onPickUpdate, this);
+        this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
     },
 
-    onPick: function(player) {
-        this.view.getView().refresh();
-        var store = this.getPlayersStore(),
-            record = store.getById(player.id);
+    onPickUpdate: function(pick_id) {
+        //this.view.getView().refresh();
+        var store = this.getSalariesStore(),
+            record = store.getById(pick_id);
         if (record !== null) {
             console.log(record);
-            record.set('valid', false);
+            record.set('is_valid', false);
+        } else {
+            console.log('player with id '+pick_id+' not found');
         }
     },
 

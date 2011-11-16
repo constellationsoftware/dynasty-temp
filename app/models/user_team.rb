@@ -5,30 +5,31 @@ class UserTeam < ActiveRecord::Base
   has_many :picks, :foreign_key => 'team_id'
   has_many :players
 
-  scope :online, self.where(:is_online => 1)
-  scope :offline, self.where(:is_online => 0)
+  scope :online, self.where(:is_online => true)
+  scope :offline, self.where(:is_online => false)
+
+  before_create :generate_uuid
 
   def is_offline
   	self.offline
   end
 
-  def roster
-  	ld = self.league.drafts.last.picks.where("team_id = ?", self.id).map(&:person_id)
-  	salaries = Salary.find(ld)
-    salaries
+  def uuid
+    (self[:uuid].empty?) ? nil : UUIDTools::UUID.parse_raw(self[:uuid]).to_s
   end
 
-  def payroll
-  	payroll = 0
-  	salaries = self.roster
-  	salaries.each do |salary|
-  		payroll += salary.contract_amount
-  	end
-  	payroll = payroll.to_f / 1000000
-  	payroll
-  	payroll = "$" + payroll.to_s + "MM"
+  def self.find_by_uuid(uuid_s)
+    uuid = UUIDTools::UUID.parse(uuid_s)
+    raw = uuid.raw
+    super(raw)
   end
 
  # requires :association, :user, :league
  # requires :attribute, :name
+ 	
+ 	private
+ 		def generate_uuid
+ 			uuid = UUIDTools::UUID.timestamp_create
+ 			self.uuid = uuid.raw
+ 		end
 end

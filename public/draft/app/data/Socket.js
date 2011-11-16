@@ -16,7 +16,7 @@ Ext.define('DynastyDraft.data.Socket', {
             this.self.STATE_FAILED
         );
 
-        Pusher.channel_auth_endpoint = '/api/auth/'+DRAFT_ID;
+        Pusher.channel_auth_endpoint = '/draft/auth';
         Pusher.isReady = false;
 
         if (SOCKET_APP_KEY) {
@@ -78,8 +78,13 @@ Ext.define('DynastyDraft.data.Socket', {
 
         // for now, just fire off an ajax call
         Ext.Ajax.request({
-            url: '/api/' + action,
-            params: data
+            url: '/draft/' + action,
+            method: 'POST',
+            params: data,
+            success: function(response){
+                var text = response.responseText;
+                console.log(text);
+            }
         });
     },
 

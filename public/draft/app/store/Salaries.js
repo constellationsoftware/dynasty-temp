@@ -24,8 +24,9 @@ Ext.define('DynastyDraft.store.Salaries', {
         // sends single sort as multi parameter
         simpleSortMode: false,
         extraParams: {
-            'by_position': true,
-            'offense': true
+            by_position: true,
+            offense: true,
+            with_valid: true,
         }
     },
 

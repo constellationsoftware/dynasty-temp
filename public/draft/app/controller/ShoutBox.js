@@ -25,7 +25,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         this.control({
             'textfield': {
                 specialkey: function(field, e) {
-                    if(e.getKey() == e.ENTER) { 
+                    if(e.getKey() == e.ENTER) {
                         var form = field.up('form').getForm();
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
@@ -42,7 +42,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         });
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
 
-        var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL, {
+        var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL_PREFIX + this.application.getSubDomain(), {
             'send_message': this.onMessageReceived,
         }, this);
 
@@ -111,6 +111,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
     },
 
     statics: {
-        CHAT_CHANNEL: 'presence-shoutbox',
+        CHAT_CHANNEL_PREFIX: 'presence-shoutbox-',
     },
 });

@@ -9,20 +9,14 @@ module Pusher
 
 		def initialize
 			# create the socket and start the connection process
-			PusherClient.logger = Logger.new(STDOUT)
+			#PusherClient.logger = Logger.new(STDOUT)
 			self.socket = PusherClient::Socket.new(Pusher.key, { :secret => Pusher.secret })
 			self.socket.connect(true)
 
-			# Bind to a global event (can occur on either channel1 or channel2)
-			self.socket.bind('globalevent') do |data|
-				puts "GLOBAL EVENT!"
-			  puts data
-			end
-
 			self.socket.bind('pusher_internal:member_added') do |result|
 				# ignore anything from the default user id
-
 				data = parse(result)
+				puts data.to_json
 				on_member_join(data) #unless data[:user_id] != DEFAULT_USER_ID
 			end
 
@@ -30,17 +24,15 @@ module Pusher
 				# ignore anything from the default user id
 
 				data = parse(result)
+				puts data.to_json
 				on_member_leave(data) #unless data[:user_id] != DEFAULT_USER_ID
 			end
 
 			# subscribe to all active drafts
-			Draft.active.each do |draft|
-				channel_name = 'presence-draft-' + draft.id.to_s
+			drafts = Draft.active.find(:all, :include => :league)
+			drafts.each do |draft|
+				channel_name = Draft::CHANNEL_PREFIX + draft.league.slug
 				self.socket.subscribe(channel_name, DEFAULT_USER_ID)
-			end
-
-			loop do
-			  sleep(1) # Keep your main thread running
 			end
 		end
 		handle_asynchronously :initialize
@@ -50,32 +42,31 @@ module Pusher
 		end
 
 		def parse(s)
-      begin
-        return JSON.parse(s)
-      rescue => err
-        PusherClient.logger.warn(err)
-        PusherClient.logger.warn("Pusher : data attribute not valid JSON - you may wish to implement your own Pusher::Client.parser")
-        return s
-      end
-  	end
+			begin
+				return JSON.parse(s)
+			rescue => err
+				PusherClient.logger.warn(err)
+				PusherClient.logger.warn("Pusher : data attribute not valid JSON - you may wish to implement your own Pusher::Client.parser")
+				return s
+			end
+		end
 
 
 		protected
 			def on_member_join(data)
-				team_id = data['team_id']
-				team = UserTeam.find(team_id)
+				uuid = data['user_info']['team_id'].to_s
+				team = UserTeam.find_by_uuid(uuid)
 				team.is_online = true
 				team.save()
-				puts "MEMBER JOINED: " + data['user_info']['name'].to_s
+				#puts "MEMBER JOINED: " + data['user_info']['name'].to_s
 			end
 
 			def on_member_leave(data)
-				team_id = data['team_id']
-				team = UserTeam.find(team_id)
+				uuid = data['user_info']['team_id'].to_s
+				team = UserTeam.find_by_uuid(uuid)
 				team.is_online = false
 				team.save()
-
-				puts "MEMBER JOINED: " + data['user_info']['name'].to_s
+				#puts "MEMBER JOINED: " + data['user_info']['name'].to_s
 			end
 	end
 end
