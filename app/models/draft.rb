@@ -22,10 +22,6 @@ class Draft < ActiveRecord::Base
   scope :unfinished, where(:finished => 0)
   scope :finished, started.where(:finished => 1)
   scope :active, started.unfinished
-  scope :by_league_slug, lambda { |subdomain|
-    includes(:league)
-    where('leagues.slug = ?', subdomain)
-  }
 
   # start the draft
   def start

@@ -1,18 +1,11 @@
 Dynasty::Application.routes.draw do
   ActiveAdmin.routes(self)
 
-  scope(:constraints => { :subdomain => /[\w]+/ }) do
-    match '/draft(/:action(.:format))',
-      :controller => 'draft',
-      :action => 'show',
-      :format => 'html'
-  end
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
-  resources :picks
-
   devise_for :users
+
+  scope :league, :module => 'league', :as => 'league', :constraints => SubdomainConstraint do
+    resource :draft
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

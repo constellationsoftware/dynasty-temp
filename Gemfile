@@ -29,6 +29,7 @@ gem 'delayed_job'
 gem 'uuidtools'
 gem 'kumade'  
 gem 'activeadmin'
+gem 'squeel'
 
 group :production do
   gem 'pg'

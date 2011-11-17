@@ -1,24 +1,22 @@
-class DraftController < InheritedResources::Base
+class League::DraftsController < SubdomainController
+  layout 'drafts'
+
   before_filter :authenticate_user!
+  before_filter :get_team!
 
-  #defaults :resource_class => Draft, :instance_name => 'draft'
-  respond_to :html, :only => :show
-  #respond_to :json, :only => :auth
-
-  #has_scope :by_league_slug, :using => request.subdomain
-
-  def show
-    @draft = self.resource
-    team = @draft.teams.first
-    @user_id = team.uuid
-    show!
+  def get_team!
+    @team = UserTeam.where(:league, @league).where(:user, @current_user)
   end
 
-  def resource
-    @draft = Draft.active.includes(:league, :teams)
-      .where('leagues.slug = ?', request.subdomain)
-      .where('user_teams.user_id = ?', current_user.id)
-      .first
+  respond_to :html, :only => :show
+  respond_to :json, :only => :auth
+
+  belongs_to :league, :singleton => true
+
+  def show
+    show! do
+      puts @team.to_json
+    end
   end
 
   # starts the draft

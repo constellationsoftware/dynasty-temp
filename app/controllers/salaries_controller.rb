@@ -1,9 +1,20 @@
 class SalariesController < InheritedResources::Base
+  before_filter :inject_slug
+
+  def inject_slug
+    params[:slug] = request.subdomain
+  end
+
   #include Rails::ExtJS::Direct::Controller
   respond_to :html, :json
   has_scope :offense, :type => :boolean, :default => true, :only => :index
   has_scope :by_position, :type => :boolean, :default => true, :only => :index
   has_scope :with_valid, :type => :boolean, :default => false, :only => :index
+
+  def show
+    puts params[:slug]
+    show!
+  end
 
   def index
     total = end_of_association_chain.count()
