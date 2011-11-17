@@ -1,10 +1,20 @@
-:javascript
-  var USER_ID = '#{@user_id}';
-  var SOCKET_APP_KEY = '#{Pusher.key}';
-= stylesheet_link_tag "/draft/resources/css/dynasty_theme"
-%script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
-= javascript_include_tag "/draft/lib/extjs/ext-debug"
-= javascript_include_tag "/draft/app"
-%body
-= content_tag(:div, flash.notice, :class => "notice") if flash.notice
-= content_tag(:div, flash.alert, :class => "alert") if flash.alert
+!!! 
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %title 
+      = @draft.inspect
+    = csrf_meta_tag
+    %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+    %script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
+    :javascript
+      var USER_ID = '#{@user_id}';
+      var SOCKET_APP_KEY = '#{Pusher.key}';
+    = stylesheet_link_tag "/draft/resources/css/dynasty_theme"
+    = javascript_include_tag "/draft/lib/extjs/ext-debug"
+    = javascript_include_tag "/draft/app"
+    %body
+      = content_tag(:div, flash.notice, :class => "notice") if flash.notice
+      = content_tag(:div, flash.alert, :class => "alert") if flash.alert
+      = yield
+

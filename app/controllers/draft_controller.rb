@@ -15,7 +15,7 @@ class DraftController < InheritedResources::Base
   end
 
   def resource
-    @draft = Draft.active.includes(:league, :teams)
+    @draft = Draft.includes(:league, :teams)
       .where('leagues.slug = ?', request.subdomain)
       .where('user_teams.user_id = ?', current_user.id)
       .first

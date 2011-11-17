@@ -29,12 +29,13 @@ gem 'delayed_job'
 gem 'uuidtools'
 gem 'kumade'  
 gem 'activeadmin'
-gem "zurb-foundation"
 gem 'squeel'
 gem 'redcarpet'
 gem 'mustache'
 gem 'rocco'
 gem 'meta_search', '>= 1.1.0.pre'
+gem 'slim-rails'
+gem 'compass_twitter_bootstrap'
 
 group :production do
   gem 'pg'

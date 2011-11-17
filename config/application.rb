@@ -46,6 +46,10 @@ module Dynasty
 
     # Enable the asset pipeline
     config.assets.enabled = true
+        
+    # Compass integration
+    config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
+    config.sass.load_paths << Compass::Frameworks['twitter_bootstrap'].stylesheets_directory
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
@@ -60,6 +64,7 @@ module Dynasty
 
     config.generators do |g|
         g.template_engine :haml
+
     end
   end
 end
@@ -71,6 +76,8 @@ module Kernel
       puts $!.backtrace[1..-1].join("\n")
   end
 end
+
+
 
 #
 # After thin boots, run this shit

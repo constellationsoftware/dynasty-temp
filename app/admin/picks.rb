@@ -1,7 +1,7 @@
 ActiveAdmin.register Pick do
   
     index do
-        column "Player", :salary
+        column "Player", :player
         column :draft_id
         column :picked_at
         column :pick_order
