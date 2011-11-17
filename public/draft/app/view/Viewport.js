@@ -28,10 +28,9 @@ Ext.define('DynastyDraft.view.Viewport', {
                 width: 200,
                 margin: '10, 5',
             }, {
-                xtype: 'panel',
-                contentEl: 'statusbar',
+                xtype: 'container',
                 flex: 1,
-            },{
+            }, {
                 xtype: 'shoutboxcontainer',
                 width: 400,
             }],

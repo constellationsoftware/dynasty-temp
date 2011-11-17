@@ -1,23 +1,9 @@
 class League::DraftsController < SubdomainController
   layout 'drafts'
-
   before_filter :authenticate_user!
-  before_filter :get_team!
-
-  def get_team!
-    @team = UserTeam.where(:league, @league).where(:user, @current_user)
-  end
-
-  respond_to :html, :only => :show
-  respond_to :json, :only => :auth
+  before_filter :get_team!, :except => [:edit, :update, :destroy]
 
   belongs_to :league, :singleton => true
-
-  def show
-    show! do
-      puts @team.to_json
-    end
-  end
 
   # starts the draft
   def start
@@ -89,4 +75,9 @@ class League::DraftsController < SubdomainController
     response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)
     render :json => response
   end
+
+  private
+      def get_team!
+        @team = UserTeam.where{(league = @league) & (user = @current_user)}.first
+      end
 end

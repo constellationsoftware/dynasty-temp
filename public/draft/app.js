@@ -45,7 +45,7 @@ Ext.application({
             'pusher:subscription_succeeded': this.onDraftJoin,
             'draft:pick:update': this.onPickUpdate
         };
-        events['draft:pick:start-' + USER_ID] = this.myTurnToPick;
+        events['draft:pick:start-' + CLIENT_ID] = this.myTurnToPick;
         DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL_PREFIX + this.getSubDomain(), events, this);
 
         // initialize the socket service

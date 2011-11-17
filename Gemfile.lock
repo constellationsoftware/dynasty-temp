@@ -289,10 +289,7 @@ DEPENDENCIES
   rocco
   sass (= 3.1.7)
   sass-rails (~> 3.1.0)
-<<<<<<< HEAD
-=======
   slim-rails
->>>>>>> cd50f3e352d3945f38a92bbab1e3b20723792e44
   squeel
   thin
   turn

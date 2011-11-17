@@ -4,7 +4,12 @@ Dynasty::Application.routes.draw do
   devise_for :users
 
   scope :league, :module => 'league', :as => 'league', :constraints => SubdomainConstraint do
-    resource :draft
+    resource :draft do
+      member do
+        post 'auth'
+        get 'start'
+      end
+    end
   end
 
   # The priority is based upon order of creation:
@@ -26,26 +31,12 @@ Dynasty::Application.routes.draw do
   resources :drafts do
     member do
       get 'push_available_players'
-    end
-    member do
       get 'push_draft_status'
-    end
-    member do
       get 'roster'
-    end
-    member do
       get 'auto_pick'
-    end
-    member do
       get 'draft_auto_pick'
-    end
-    member do
       get 'users'
-    end
-    member do
       get 'available_players'
-    end
-    member do
       get 'status'
     end
   end
