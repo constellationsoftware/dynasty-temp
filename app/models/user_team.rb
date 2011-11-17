@@ -9,12 +9,38 @@ class UserTeam < ActiveRecord::Base
   scope :offline, self.where(:is_online => false)
 
   before_create :generate_uuid
+ 
+
+=begin
+  def roster
+    ld = self.league.drafts.last.picks.where("team_id = ?", self.id).map(&:person_id)
+    salaries = Salary.find(ld)
+    salaries
+  end
+ 
+  def payroll
+    payroll = 0
+    salaries = self.roster
+    salaries.each do |salary|
+      payroll += salary.contract_amount
+    end
+    payroll = payroll.to_f / 1000000
+    payroll
+    payroll = "$" + payroll.to_s + "MM"
+  end
+=end
 
   def is_offline
   	self.offline
   end
 
+  # use uuid as a string 
   def uuid
+    parse_uuid_to_s
+  end
+
+  # convert a uuid to string
+  def parse_uuid_to_s
     (self[:uuid].empty?) ? nil : UUIDTools::UUID.parse_raw(self[:uuid]).to_s
   end
 
@@ -32,4 +58,7 @@ class UserTeam < ActiveRecord::Base
  			uuid = UUIDTools::UUID.timestamp_create
  			self.uuid = uuid.raw
  		end
+
+
+
 end

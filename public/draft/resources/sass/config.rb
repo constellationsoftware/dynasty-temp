@@ -23,4 +23,4 @@ load File.join(File.dirname(__FILE__), $ext_path, 'resources', 'themes')
 sass_options = {:debug_info=>true} # by Compass.app 
 
 
-output_style = :compressed # by Compass.app 
+output_style = :expanded # by Compass.app 
