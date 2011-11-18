@@ -2,7 +2,6 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
-gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'heroku'
 gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
@@ -45,6 +44,7 @@ end
 
 group :development, :test do
   gem 'rack', '1.3.3'
+  gem 'mysql2', '< 0.3.7'
 end
 
 
