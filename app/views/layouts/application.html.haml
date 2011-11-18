@@ -15,7 +15,8 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title= content_for?(:title) ? yield(:title) : "Untitled"
+  %title Dynasty Owner
+    
 
   -# Included CSS Files
   = stylesheet_link_tag "application"
@@ -41,9 +42,17 @@
                 = link_to 'My Teams'
               %li 
                 = link_to 'Account'
-            %p.pull-right Logged in as USERRNAME
-
-    .container-fluid
-      .sidebar
-      .content
-        = yield
+            .secondary_nav
+              %p.pull-right
+                - if user_signed_in?
+                  %p.pull-right
+                    Signed in as #{current_user.name} 
+                    = link_to "Sign Out", destroy_user_session_path, :method => :delete, :class =>  "btn "
+                - else
+                  
+                  %p.pull-right
+                    = link_to "Sign Up", new_user_registration_path, :class => "btn"
+                    or 
+                    = link_to "Sign In", new_user_session_path, :class => "btn"
+    .container
+      =yield

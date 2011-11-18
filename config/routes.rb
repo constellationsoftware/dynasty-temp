@@ -24,6 +24,10 @@ Dynasty::Application.routes.draw do
     resources :display_name, :person_phases
   end
 
+  resources :users do
+    get 'home'
+  end
+
   resources :persons do
     resources :display_name
   end
@@ -88,7 +92,7 @@ Dynasty::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "admin/dashboard#index"
+  root :to => "users#index"
 
   # See how all your routes lay out with "rake routes"
 

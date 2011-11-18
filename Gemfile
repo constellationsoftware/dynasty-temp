@@ -21,6 +21,7 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
+gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => "git://github.com/logankoester/pusher-client.git"
@@ -37,9 +38,9 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'slim-rails'
 gem 'compass_twitter_bootstrap'
 
+
 group :production do
   gem 'pg'
-  gem 'newrelic_rpm'
 end
 
 group :development, :test do
