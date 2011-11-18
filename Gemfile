@@ -3,6 +3,7 @@ source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
 gem 'activesupport', '~> 3.1.0'
+gem 'taps'
 gem 'heroku'
 gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
 gem 'sass-rails', "  ~> 3.1.0"
@@ -75,6 +76,6 @@ gem 'jquery-rails'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  #gem 'turn', :require => false
 end
 

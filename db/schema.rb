@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20111115171729) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
-    t.string   "slug"
+    t.string   "slug",       :limit => 50,                 :null => false
   end
 
   add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -131,7 +131,7 @@ ActiveRecord::Schema.define(:version => 20111115171729) do
 
   add_index "user_teams", ["league_id"], :name => "index_user_teams_league"
   add_index "user_teams", ["user_id"], :name => "index_user_teams_user"
-  add_index "user_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
+  add_index "user_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>"16"}
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

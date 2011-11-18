@@ -13,7 +13,7 @@
 # gem 'pg'
 #
 player_data:
-  adapter: mysql2
+  adapter: mysql
   database: sportsdb
   host: localhost
   username: root
@@ -22,14 +22,13 @@ player_data:
   encoding: utf8
 
 development:
-  socket: /tmp/mysql.sock
   pool: 5
   encoding: utf8
-  adapter: mysql2
-
+  adapter: mysql
   database: dynasty_dev
   host: localhost
   username: root
+  socket: /tmp/mysql.sock
 
   #database: app1455111
   #host: 50.16.184.114
@@ -63,12 +62,4 @@ test:
   username: dynastyDB
   password:
 
-production:
-  socket: /tmp/mysql.sock
-  pool: 5
-  encoding: utf8
-  adapter: mysql2
 
-  database: dynasty_prod
-  host: localhost
-  username: root
