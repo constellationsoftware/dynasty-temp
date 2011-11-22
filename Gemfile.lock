@@ -6,20 +6,12 @@ GIT
 
 GIT
   remote: git://github.com/chriseppstein/compass.git
-  revision: db61efc78f0f32e0d77818fa3efc18cd3b3b8749
+  revision: 79d94647f9a00b06c4a83db02e86f5d404569baf
   specs:
-    compass (0.12.alpha.1.db61efc)
+    compass (0.12.alpha.1.79d9464)
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-
-GIT
-  remote: git://github.com/koppen/hassle.git
-  revision: bb49cd8b37f5369d08398897caf1b687eaa80458
-  specs:
-    hassle (0.0.1)
-      haml
-      rack
 
 GIT
   remote: git://github.com/logankoester/pusher-client.git
@@ -31,9 +23,9 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 582f00ed95a7a226634d477b9950f5b8fb10451c
+  revision: 99040535d7e13433f206fce6643c9f7d8d9347b3
   specs:
-    devise (1.5.0)
+    devise (1.5.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       warden (~> 1.1)
@@ -80,12 +72,12 @@ GEM
     activesupport (3.1.1)
       multi_json (~> 1.0)
     addressable (2.2.6)
+    ansi (1.4.1)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
     cancan (1.6.7)
     chunky_png (1.2.5)
-    cocaine (0.2.0)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -144,11 +136,6 @@ GEM
     kaminari (0.12.4)
       rails (>= 3.0.0)
     kgio (2.6.0)
-    kumade (0.8.1)
-      cocaine (>= 0.2.0)
-      heroku (~> 2.0)
-      rails (>= 2)
-      rake (>= 0.8.7)
     launchy (2.0.5)
       addressable (~> 2.2.6)
     libwebsocket (0.1.1)
@@ -163,7 +150,6 @@ GEM
       polyamorous (~> 0.5.0)
     mime-types (1.17.2)
     multi_json (1.0.3)
-    mustache (0.99.4)
     mysql2 (0.3.6)
     orm_adapter (0.0.5)
     pg (0.11.0)
@@ -203,14 +189,12 @@ GEM
     rake (0.9.2.2)
     rdoc (3.11)
       json (~> 1.4)
-    redcarpet (1.17.2)
     responders (0.6.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rocco (0.8.2)
-      mustache
-      redcarpet
     ruby-hmac (0.4.0)
+    ruby_parser (2.3.1)
+      sexp_processor (~> 3.0)
     rubyzip (0.9.4)
     sass (3.1.7)
     sass-rails (3.1.4)
@@ -219,34 +203,17 @@ GEM
       sass (>= 3.1.4)
       sprockets (~> 2.0.0)
       tilt (~> 1.3.2)
-    sequel (3.20.0)
+    sexp_processor (3.0.8)
     signature (0.1.2)
       ruby-hmac
-    sinatra (1.0)
-      rack (>= 1.0)
-    slim (1.0.4)
-      temple (~> 0.3.4)
-      tilt (~> 1.3.2)
-    slim-rails (0.2.1)
-      slim (>= 0.9.2)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sqlite3 (1.3.4)
-    sqlite3-ruby (1.3.3)
-      sqlite3 (>= 1.3.3)
     squeel (0.9.3)
       activerecord (~> 3.0)
       activesupport (~> 3.0)
       polyamorous (~> 0.5.0)
-    taps (0.3.23)
-      rack (>= 1.0.1)
-      rest-client (>= 1.4.0, < 1.7.0)
-      sequel (~> 3.20.0)
-      sinatra (~> 1.0.0)
-      sqlite3-ruby (~> 1.2)
-    temple (0.3.4)
     term-ansicolor (1.0.7)
     thin (1.3.1)
       daemons (>= 1.0.9)
@@ -257,6 +224,8 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
+    turn (0.8.3)
+      ansi
     tzinfo (0.3.31)
     uglifier (1.1.0)
       execjs (>= 0.3.0)
@@ -286,33 +255,29 @@ DEPENDENCIES
   devise_lastseenable (>= 0.0.3)
   em-http-request
   enum_simulator!
+  execjs
   friendly_id (~> 4.0.0.beta14)
   haml
   has_scope
-  hassle!
   heroku
   hpricot
   inherited_resources
   jquery-rails
   kaminari
-  kumade
   meta_search (>= 1.1.0.pre)
-  mustache
   mysql2 (< 0.3.7)
   pg
   pusher
   pusher-client!
   rack (= 1.3.3)
   rails (= 3.1.1)
-  redcarpet
   responders
-  rocco
+  ruby_parser
   sass (= 3.1.7)
   sass-rails (~> 3.1.0)
-  slim-rails
   squeel
-  taps
   thin
+  turn
   uglifier
   unicorn
   uuidtools

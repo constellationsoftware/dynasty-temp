@@ -1,4 +1,3 @@
-# TODO: clean up unused methods and scrutinize performance of existing ones dealing with queries
 class Draft < ActiveRecord::Base
   include EnumSimulator
 

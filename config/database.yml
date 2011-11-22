@@ -24,7 +24,7 @@ player_data:
 development:
   pool: 5
   encoding: utf8
-  adapter: mysql
+  adapter: mysql2
   database: dynasty_dev
   host: localhost
   username: root
