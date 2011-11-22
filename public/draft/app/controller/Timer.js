@@ -39,7 +39,9 @@ Ext.define('DynastyDraft.controller.Timer', {
 
     reset: function() {
         // stop the timer
-        this.taskRunner.stop(this.countdown);
+        try {
+            this.taskRunner.stop(this.countdown);
+        } catch (e) {}
         this.view.updateTimer(0, 0);
     },
 

@@ -3,20 +3,22 @@ class League::DraftsController < SubdomainController
   before_filter :authenticate_user!
   before_filter :get_team!, :except => [:edit, :update, :destroy]
 
-  belongs_to :league, :singleton => true
+  singleton_belongs_to :league
+  custom_actions :resource => [:start, :reset, :pick]
 
   # starts the draft
   def start
-    if !(@draft.status === :finished)
-      @draft.start
-
-      # trigger the pick request for the user for the current_pick
-      pick_user_id = @draft.current_pick.team.uuid
-      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
-
-      render :text => 'Draft started!', :status => 200
+    start! do |format|
+      if !(@draft.status === :finished)
+        puts @draft.inspect
+        @draft.start
+        # trigger the pick request for the user for the current_pick
+        pick_user_id = @draft.current_pick.team.uuid
+        Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
+        format.text { render :text => "Starting draft for #{@league.name}" }  
     else
-      render :text => 'Could not start the draft because it\'s already finished. Call "reset" before starting again.', :status => 403
+        raise 'A finished draft must be reset before it can be started.'
+      end
     end
   end
 
@@ -64,43 +66,48 @@ class League::DraftsController < SubdomainController
 =end
 
   def reset
-    @draft.reset
-    payload = {
-      :user_id => current_user.id,
-      :user_info => {
-        :name => current_user.name
+    reset! do |format|
+      @draft.reset
+      payload = {
+        :user_id => current_user.id,
+        :user_info => {
+          :name => current_user.name
+        }
       }
-    }
-    Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:reset', payload)
-    render :text => 'success'
+      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:reset', payload)
+      
+      format.text { render :text => "Resetting draft for #{@league.name}" }  
+    end
   end
 
   # commits a pick made from the frontend
   def pick
-    player = Salary.find(params[:player_id])
+    pick! do |format|
+      player = Salary.find(params[:player_id])
 
-    # make sure the user making the pick is "up" and if player is found
-    if @draft.current_pick.user === current_user and player
-      pick = @draft.make_pick(player)
+      # make sure the user making the pick is "up" and if player is found
+      if @draft.current_pick.user === current_user and player
+        pick = @draft.make_pick(player)
 
-      # notify clients of the pick
-      payload = { :player_id => pick.player.id, :user_id => pick.user.id }
-      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:update', payload, params[:socket_id])
+        # notify clients of the pick
+        payload = { :player_id => pick.player.id, :user_id => pick.user.id }
+        Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:update', payload, params[:socket_id])
 
-      # advance the draft
-      @draft.advance
+        # advance the draft
+        @draft.advance
 
-      if !(@draft.status === :finished)
-        puts 'triggering start event for ' + @draft.current_pick.team.name + '(' + @draft.current_pick.team.uuid + ')'
-        puts Draft::CHANNEL_PREFIX + @draft.league.slug
-        # trigger the pick request for the user for the current_pick
-        pick_user_id = @draft.current_pick.team.uuid
-        Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
+        if !(@draft.status === :finished)
+          puts 'triggering start event for ' + @draft.current_pick.team.name + '(' + @draft.current_pick.team.uuid + ')'
+          puts Draft::CHANNEL_PREFIX + @draft.league.slug
+          # trigger the pick request for the user for the current_pick
+          pick_user_id = @draft.current_pick.team.uuid
+          Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
+        end
+
+        format.text { render :text => "#{pick.user.name} picked #{pick.player.full_name}" }  
+      else
+        raise 'Request parameters invalid.'
       end
-
-      render :text => 'success'
-    else
-      render :text => 'fail'
     end
   end
 
@@ -108,7 +115,6 @@ class League::DraftsController < SubdomainController
     puts event_name, payload, socket_id
     Pusher[channel].trigger(event_name, payload, socket_id)
   end
-  handle_asynchronously :dispatch_push_event
 
   def auth
     payload = {
@@ -124,7 +130,6 @@ class League::DraftsController < SubdomainController
 
   private
     def get_team!
-      @draft = @league.draft
       @team = UserTeam.where{(league = @league) & (user = @current_user)}.first
     end
 end

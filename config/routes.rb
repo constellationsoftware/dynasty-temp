@@ -4,16 +4,16 @@ Dynasty::Application.routes.draw do
   devise_for :users
 
   scope :league, :module => 'league', :as => 'league', :constraints => SubdomainConstraint do
-    resource :draft do
+    resource :draft, :defaults => { :format => 'html' } do
       resources :picks
 
       member do
         post 'auth'
-        post 'start'
-        post 'pick'
+        post 'start', :format => 'text'
+        post 'pick', :format => 'text'
         #post 'halt'
         #post 'resume'
-        post 'reset'
+        post 'reset', :format => 'text'
       end
     end
   end
