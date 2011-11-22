@@ -2,8 +2,8 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
-gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
+gem 'taps'
 gem 'heroku'
 gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
 gem 'sass-rails', "  ~> 3.1.0"
@@ -21,6 +21,7 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
+gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => "git://github.com/logankoester/pusher-client.git"
@@ -38,13 +39,14 @@ gem 'slim-rails'
 gem 'compass_twitter_bootstrap'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
+
 group :production do
   gem 'pg'
-  gem 'newrelic_rpm'
 end
 
 group :development, :test do
   gem 'rack', '1.3.3'
+  gem 'mysql2', '< 0.3.7'
 end
 
 
@@ -75,6 +77,6 @@ gem 'jquery-rails'
 
 group :test do
   # Pretty printed test output
-  gem 'turn', :require => false
+  #gem 'turn', :require => false
 end
 
