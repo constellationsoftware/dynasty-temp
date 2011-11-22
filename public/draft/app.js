@@ -16,7 +16,6 @@ Ext.application({
     models: [
         'Message',
         'Update'
-
     ],
 
     stores: [
@@ -32,6 +31,7 @@ Ext.application({
         'ShoutBox',
         'Timer',
         'Roster',
+        'AdminControls',
     ],
 
     launch: function() {
@@ -43,9 +43,14 @@ Ext.application({
         // subscribe to a global "draft events" channel
         var events = {
             'pusher:subscription_succeeded': this.onDraftJoin,
-            'draft:pick:update': this.onPickUpdate
+            'draft:pick:update': this.onPickUpdate,
+            //'draft:pause': this.onDraftPaused,
+            //'draft:resume': this.onDraftResumed,
+            'draft:reset': this.onDraftReset,
         };
-        events['draft:pick:start-' + CLIENT_ID] = this.myTurnToPick;
+        events['draft:pick:start-' + CLIENT_ID] = this.startPicking;
+        events['draft:pick:resume-' + CLIENT_ID] = this.resumePicking;
+
         DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL_PREFIX + this.getSubDomain(), events, this);
 
         // initialize the socket service
@@ -54,6 +59,42 @@ Ext.application({
         this.getController('Timer').addListener('timeout', this.onTimeout, this);
         this.getController('PlayerQueue').addListener('picked', this.onPlayerPicked, this);
         this.getController('PlayerQueue').addListener('pickfailed', this.onPlayerPickFailed, this);
+        this.getController('AdminControls').addListener('click', this.onAdminControlsClicked, this);
+    },
+
+    onAdminControlsClicked: function(button) {
+        console.log(button);
+        switch (button.getItemId()) {
+        case 'start':
+            Ext.ux.data.Socket.request('start');
+            break;
+        case 'pause':
+            if (button.getText() === 'Stop Countdown') {
+                this.fireEvent(this.STATUS_PAUSED);
+                //Ext.ux.data.Socket.request('halt');
+            } else {
+                this.fireEvent(this.STATUS_RESUMED);
+                //Ext.ux.data.Socket.request('resume');
+            }
+            break;
+        case 'reset':
+            Ext.ux.data.Socket.request('reset');
+            break;
+        }
+    },
+
+    /*
+    onDraftPaused: function(data) {
+        this.fireEvent(this.STATUS_PAUSED);
+    },
+
+    onDraftResumed: function(data) {
+        this.fireEvent(this.STATUS_RESUMED);
+    },
+    */
+    
+    onDraftReset: function(data) {
+        this.fireEvent(this.STATUS_RESET);
     },
 
     onPlayerPicked: function(player) {
@@ -86,11 +127,17 @@ Ext.application({
         //Ext.ux.data.Socket.request('ready', { id: user.id });
     },
 
-    myTurnToPick: function() {
+    startPicking: function() {
         console.log("my turn to pick YAY");
         this.fireEvent(this.STATUS_BEFORE_PICKING);
         this.fireEvent(this.STATUS_PICKING);
     },
+
+    resumePicking: function() {
+        console.log("my turn to pick YAY");
+        this.fireEvent(this.STATUS_RESUMED);
+    },
+
 
     getSubDomain: function() {
         var a = window.location.host.split('.');
@@ -98,10 +145,14 @@ Ext.application({
     },
 
     //statics: {
+        STATUS_STARTED:         'started',
         STATUS_BEFORE_PICKING:  'beforepick',
         STATUS_PICKING:         'picking',
         STATUS_PICKED:          'picked',
         STATUS_WAITING:         'waiting',
+        STATUS_PAUSED:          'paused',
+        STATUS_RESUMED:         'resumed',
+        STATUS_RESET:           'reset',
 
         TIMEOUT:                'timeout',
 

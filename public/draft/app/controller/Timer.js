@@ -22,6 +22,19 @@ Ext.define('DynastyDraft.controller.Timer', {
             setTimeout(Ext.Function.bind(this.start, this, null, true), this.self.BREAK_LENGTH * 1000);
         }, this);
         this.application.addListener(this.application.STATUS_PICKED, this.reset, this);
+        this.application.addListener(this.application.STATUS_PAUSED, this.pause, this);
+        this.application.addListener(this.application.STATUS_RESUMED, this.resume, this);
+        this.application.addListener(this.application.STATUS_RESET, this.reset, this);
+    },
+
+    pause: function() {
+        console.log(this.countdown);
+        this.taskRunner.stop(this.countdown);
+    },
+
+    resume: function() {
+        console.log("resuming");
+        this.taskRunner.start(this.countdown);
     },
 
     reset: function() {
@@ -46,7 +59,7 @@ Ext.define('DynastyDraft.controller.Timer', {
             run: function(iterations) {
                 // stop the task when the timer reaches 0
                 var count = this.self.TURN_LENGTH - ((iterations - 1) % (this.self.TURN_LENGTH + 1));
-
+                
                 // split seconds into minutes and seconds
                 var minutes = Math.floor(count / 60);
                 var seconds = count % 60;

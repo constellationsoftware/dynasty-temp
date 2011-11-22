@@ -11,6 +11,6 @@ class League < ActiveRecord::Base
 
   # gets the active draft (if any)
   def draft
-    self.drafts.active.first
+    self.drafts.first
   end
 end

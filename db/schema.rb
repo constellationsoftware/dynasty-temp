@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111115171729) do
+ActiveRecord::Schema.define(:version => 20111121151410) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -46,14 +46,14 @@ ActiveRecord::Schema.define(:version => 20111115171729) do
   create_table "drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
-    t.boolean  "started",                       :default => false
-    t.boolean  "finished",                      :default => false
-    t.integer  "league_id",                                        :null => false
-    t.integer  "number_of_rounds",              :default => 30,    :null => false
+    t.integer  "league_id",                                     :null => false
+    t.integer  "number_of_rounds",              :default => 30, :null => false
     t.integer  "current_pick_id",  :limit => 2
+    t.string   "status"
   end
 
   add_index "drafts", ["league_id"], :name => "index_drafts_league"
+  add_index "drafts", ["status"], :name => "index_drafts_on_status"
 
   create_table "dynasty_dollars", :force => true do |t|
     t.integer "team_id", :null => false

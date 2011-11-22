@@ -1,12 +1,3 @@
-/**
- * @TODO: Wrap the PUBNUB stuff in an Ext.util.Observable.
- *        Use the wrapper at https://github.com/mrsunshine/Mobile-Chat-with-Sencha-Touch---node.js---socket.io-/blob/master/js/lib/App.util.Socketio.js
- *        as an example.
- *        Also use proper user models when those are avaiable
- */
-
-var PUBNUB_CHANNEL = 'dynasty_test';
-
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
     requires: [ 'DynastyDraft.data.Socket' ],

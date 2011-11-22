@@ -1,4 +1,3 @@
-var pgstore;
 Ext.define('DynastyDraft.controller.PlayerGrid', {
     extend: 'Ext.app.Controller',
 
@@ -9,8 +8,6 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
     view: null,
 
     init: function() {
-        pgstore = this.getSalariesStore();
-
         this.control({
             'playergrid': {
                 itemdblclick: this.onRowDblClick,

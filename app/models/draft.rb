@@ -1,5 +1,7 @@
 # TODO: clean up unused methods and scrutinize performance of existing ones dealing with queries
 class Draft < ActiveRecord::Base
+  include EnumSimulator
+
   #constants
   # TODO: put this in the controller, probably
   CHANNEL_PREFIX = 'presence-draft-'
@@ -12,21 +14,17 @@ class Draft < ActiveRecord::Base
   has_many :picks
   belongs_to :current_pick, :class_name => 'Pick'
 
-  # requires :association, :league
-  # requires :attribute, :number_of_rounds
-  # locks :association, :league
+  default_scope order("ISNULL(drafts.finished_at) DESC, id DESC, finished_at DESC")
+  scope :active, where{status.not_eq 'finished'}
+  scope :paused, where{status.eq 'paused'}
+  scope :finished, where{status.eq 'finished'}
 
-  # scopes for draft status 
-  scope :pending, where(:started => 0)
-  scope :started, where(:started => 1)
-  scope :unfinished, where(:finished => 0)
-  scope :finished, started.where(:finished => 1)
-  scope :active, started.unfinished
+  enum :status, [:started, :finished, :paused]
 
   # start the draft
   def start
     # if the draft isn't started, start it. otherwise, pick up where we left off
-    if !self.started
+    if !(self.status === :started)
       # generate picks
       i = 0
       round = 0
@@ -49,7 +47,7 @@ class Draft < ActiveRecord::Base
         end
       end
 
-      self.started = 1
+      self.status = :started
       self.started_at = Time.now
       self.save!
     end
@@ -59,8 +57,8 @@ class Draft < ActiveRecord::Base
 
   # end the draft
   def finish
-    if self.started
-      self.finished = 1
+    if !(self.status === :finished)
+      self.status = :finished
       self.finished_at = Time.now
       self.save!
     end
@@ -68,17 +66,14 @@ class Draft < ActiveRecord::Base
 
   # reset the draft
   def reset
-    if self.started
-         # destroy picks
-        Pick.destroy_all(:draft_id => self.id)
+     # destroy picks
+    Pick.destroy_all(:draft_id => self.id)
 
-        self.finished = 0
-        self.started = 0
-        self.started_at = nil
-        self.finished_at = nil
-        self.current_pick = nil
-        self.save!
-    end
+    self.status = nil
+    self.started_at = nil
+    self.finished_at = nil
+    self.current_pick = nil
+    self.save!
   end
 
   # commits a user pick
@@ -111,16 +106,16 @@ class Draft < ActiveRecord::Base
       payload = { :player_id => autopick_player.id, :user_id => self.current_pick.user.id }
       Pusher[CHANNEL_PREFIX + self.league.slug].delay.trigger('draft:pick:update', payload)
 
-      puts '(sleeping 3 seconds)'
       # 3 second delay
-      sleep(3)
+      #puts '(sleeping 3 seconds)'
+      #sleep(3)
 
       self.current_pick = self.get_current_pick
     end
 
     # if no more picks can be made, the draft is over!
     if self.current_pick.nil?
-      self.finished = 1
+      self.status = :finished
       self.finished_at = Time.now
     end
 

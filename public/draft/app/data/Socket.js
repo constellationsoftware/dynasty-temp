@@ -73,6 +73,8 @@ Ext.define('DynastyDraft.data.Socket', {
     },
 
     request: function(action, data) {
+        data = data || {};
+        
         // append the socket ID
         data.socket_id = this.getId();
 

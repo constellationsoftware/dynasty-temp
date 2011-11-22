@@ -7,28 +7,76 @@ class League::DraftsController < SubdomainController
 
   # starts the draft
   def start
-    @draft = self.resource
-
-    # check to see if there are any participants online
-    if @draft.online.size > 0
+    if !(@draft.status === :finished)
       @draft.start
 
-      if !@draft.finished
-        # trigger the pick request for the user for the current_pick
-        pick_user_id = @draft.current_pick.team.uuid
-        Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
-      end
+      # trigger the pick request for the user for the current_pick
+      pick_user_id = @draft.current_pick.team.uuid
+      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
 
-      render :text => 'Draft started!'
+      render :text => 'Draft started!', :status => 200
     else
-      render :text => 'Could not start draft because no one was online!'
+      render :text => 'Could not start the draft because it\'s already finished. Call "reset" before starting again.', :status => 403
     end
+  end
+
+=begin
+  def halt
+    puts @draft.status
+    if @draft.status === :started
+      @draft.status = :paused
+      @draft.save()
+
+      payload = {
+        :user_id => current_user.id,
+        :user_info => {
+          :name => current_user.name
+        }
+      }
+      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pause', payload)
+      render :text => 'success'
+    else
+      render :text => 'failed'
+    end
+  end
+
+  def resume
+    if @draft.status === :paused
+      @draft.status = :started
+      @draft.save()
+
+      # trigger the pick request for the user for the current_pick
+      pick_user_id = @draft.current_pick.team.uuid
+      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:resume-' + pick_user_id, {})
+
+      payload = {
+        :user_id => current_user.id,
+        :user_info => {
+          :name => current_user.name
+        }
+      }
+      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:resume', payload, params[:socket_id])
+      render :text => 'success'
+    else
+      render :text => 'failed'
+    end
+  end
+=end
+
+  def reset
+    @draft.reset
+    payload = {
+      :user_id => current_user.id,
+      :user_info => {
+        :name => current_user.name
+      }
+    }
+    Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:reset', payload)
+    render :text => 'success'
   end
 
   # commits a pick made from the frontend
   def pick
-    @draft = self.resource
-    team = @draft.teams.first
     player = Salary.find(params[:player_id])
 
     # make sure the user making the pick is "up" and if player is found
@@ -42,7 +90,7 @@ class League::DraftsController < SubdomainController
       # advance the draft
       @draft.advance
 
-      if !@draft.finished
+      if !(@draft.status === :finished)
         puts 'triggering start event for ' + @draft.current_pick.team.name + '(' + @draft.current_pick.team.uuid + ')'
         puts Draft::CHANNEL_PREFIX + @draft.league.slug
         # trigger the pick request for the user for the current_pick
@@ -63,12 +111,10 @@ class League::DraftsController < SubdomainController
   handle_asynchronously :dispatch_push_event
 
   def auth
-    draft = self.resource
-    team = draft.teams.first
     payload = {
       :user_id => current_user.id,
       :user_info => {
-        :team_id => team.uuid
+        :team_id => @team.uuid
       }
     }
 
@@ -77,7 +123,8 @@ class League::DraftsController < SubdomainController
   end
 
   private
-      def get_team!
-        @team = UserTeam.where{(league = @league) & (user = @current_user)}.first
-      end
+    def get_team!
+      @draft = @league.draft
+      @team = UserTeam.where{(league = @league) & (user = @current_user)}.first
+    end
 end

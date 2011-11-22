@@ -36,6 +36,7 @@ gem 'rocco'
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'slim-rails'
 gem 'compass_twitter_bootstrap'
+gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
 group :production do
   gem 'pg'

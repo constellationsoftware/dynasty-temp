@@ -5,6 +5,7 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.PlayerGrid',
         'DynastyDraft.view.PlayerQueue',
         'DynastyDraft.view.ShoutBoxContainer',
+        'DynastyDraft.view.AdminControls',
     ],
 
     layout: 'border',
@@ -46,24 +47,16 @@ Ext.define('DynastyDraft.view.Viewport', {
             activeTab: 0,
             flex: 1,
 
-            items: [
-                {
-                    xtype: 'playergrid',
-                    title: 'Players'
-                },
-                {
-                    xtype: 'rostergrid',
-                    title: 'Roster',
-                },
-                {
-                    xtype: 'panel',
-                    title: 'Recommendation',
-                },
-                {
-                    xtype: 'panel',
-                    title: 'Rules',
-                },
-            ],
+            items: [{
+                xtype: 'playergrid',
+                title: 'Players'
+            }, {
+                xtype: 'rostergrid',
+                title: 'Roster',
+            }, {
+                xtype: 'admincontrols',
+                title: 'Draft Tools',
+            }],
         },
 
 
@@ -84,11 +77,9 @@ Ext.define('DynastyDraft.view.Viewport', {
             defaults: {
                 autoScroll: true,
             },
-            items: [
-                {
-                    xtype: 'playerqueue',
-                },
-            ],
-        },
+            items: [{
+                xtype: 'playerqueue',
+            }],
+        }
     ],
 });

@@ -5,9 +5,15 @@ Dynasty::Application.routes.draw do
 
   scope :league, :module => 'league', :as => 'league', :constraints => SubdomainConstraint do
     resource :draft do
+      resources :picks
+
       member do
         post 'auth'
-        get 'start'
+        post 'start'
+        post 'pick'
+        #post 'halt'
+        #post 'resume'
+        post 'reset'
       end
     end
   end
