@@ -20,4 +20,4 @@ http_path = "/"
 # preferred_syntax = :sass
 # and then run:
 # sass-convert -R --from scss --to sass app/stylesheets scss && rm -rf sass && mv scss sass
-require 'compass_twitter_bootstrap'
+require 'compass-foundation'

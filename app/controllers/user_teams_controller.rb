@@ -19,8 +19,7 @@ class UserTeamsController < ApplicationController
     @team = UserTeam.find(params[:id])
     @players = @team.picks
     @user = current_user
-    league = @user.user_team.league
-    @user_teams = league.user_teams
+
     
     respond_to do |format|
       format.html # show.html.erb

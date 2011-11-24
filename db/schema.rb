@@ -114,7 +114,7 @@ ActiveRecord::Schema.define(:version => 20111121151410) do
     t.integer "contract_amount"
     t.integer "points"
     t.integer "rating"
-    t.float   "consistency"
+    t.float   "consistency",     :limit => 4
   end
 
   create_table "sessions", :force => true do |t|

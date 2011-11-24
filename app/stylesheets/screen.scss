@@ -4,5 +4,8 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
-@import "compass_twitter_bootstrap";
-body {padding-top: 40px;}
+
+
+#wrap {margin-top: 50px;
+       padding-top: 50px;}
+$font-color             : #339;
