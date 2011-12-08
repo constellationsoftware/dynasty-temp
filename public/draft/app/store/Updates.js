@@ -1,7 +1,7 @@
 Ext.define('DynastyDraft.store.Updates', {
     extend: 'Ext.data.Store',
 
-    model: 'DynastyDraft.model.Update',
+    model: 'Update',
 
     autoLoad: true,
 

@@ -4,5 +4,3 @@ class DraftObserver < ActiveRecord::Observer
  #end
 
 end
-
-

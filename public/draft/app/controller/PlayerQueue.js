@@ -2,7 +2,6 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
     extend: 'Ext.app.Controller',
 
     stores: [ 'PlayerQueue' ],
-    models: [ 'Player' ],
     views: [ 'PlayerQueue' ],
 
     view: null,
@@ -75,7 +74,6 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
 
         if (record) {
             // notify listeners that pick was made
-            console.log(record);
             this.fireEvent('picked', record);
         } else {
             // notify listeners that pick was made

@@ -1,8 +1,8 @@
 Ext.define('DynastyDraft.store.Roster', {
-    extend: 'DynastyDraft.store.Salaries',
-    model: 'DynastyDraft.model.Salary',
-    groupField: 'position',
+    extend: 'DynastyDraft.store.Players',
 
+    model: 'DynastyDraft.model.Player',
+    groupField: 'position',
 
     proxy: {
         type: 'rest',

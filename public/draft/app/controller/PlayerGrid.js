@@ -1,8 +1,7 @@
 Ext.define('DynastyDraft.controller.PlayerGrid', {
     extend: 'Ext.app.Controller',
 
-    stores: [ 'Salaries' ],
-    models: [ 'Salary' ],
+    stores: [ 'Players' ],
     views: [ 'PlayerGrid' ],
 
     view: null,
@@ -22,13 +21,12 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
 
     onPickUpdate: function(pick_id) {
         //this.view.getView().refresh();
-        var store = this.getSalariesStore(),
+        var store = this.getPlayersStore(),
             record = store.getById(pick_id);
         if (record !== null) {
-            console.log(record);
             record.set('is_valid', false);
         } else {
-            console.log('player with id '+pick_id+' not found');
+            console.log('Player with id '+pick_id+' not found in cache. No cause for alarm.');
         }
     },
 

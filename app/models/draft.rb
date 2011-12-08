@@ -14,12 +14,17 @@ class Draft < ActiveRecord::Base
   has_many :picks
   belongs_to :current_pick, :class_name => 'Pick'
 
-  default_scope order("ISNULL(drafts.finished_at) DESC, id DESC, finished_at DESC")
+  default_scope order("ISNULL(drafts.finished_at) DESC, drafts.id DESC, drafts.finished_at DESC")
   scope :active, where{status.not_eq 'finished'}
   scope :paused, where{status.eq 'paused'}
   scope :finished, where{status.eq 'finished'}
 
   enum :status, [:started, :finished, :paused]
+
+  def current_pick
+    pick = Pick.find(self.current_pick_id)
+    return pick unless !pick
+  end
 
   # start the draft
   def start
@@ -27,11 +32,10 @@ class Draft < ActiveRecord::Base
     if !(self.status === :started)
       # generate picks
       i = 0
-      round = 0
+      round = 1
       teams = self.league.teams
 
       self.number_of_rounds.times do
-        round += 1
         if round.odd?
             roundsort = teams.sort
         else
@@ -43,8 +47,10 @@ class Draft < ActiveRecord::Base
             pick.draft_id = self.id
             pick.team_id = team.id
             pick.pick_order = i
+            pick.round = round
             pick.save!
         end
+        round += 1
       end
 
       self.status = :started
@@ -80,7 +86,6 @@ class Draft < ActiveRecord::Base
   def make_pick(player)
     pick = self.current_pick
     pick.player = player
-    pick.picked_at = Time.now
     pick.save!
     return pick
   end
@@ -94,6 +99,7 @@ class Draft < ActiveRecord::Base
     
     # this loop iterates through eligible pick slots, autopicking for offline
     # users and returning when a pick for an online user is reached
+    autopick_iterations = 1
     while !self.current_pick.nil? and !self.current_pick.team.is_online
       puts self.current_pick.team.name + ' IS SLEEPING!'
       # make the "auto-pick"
@@ -103,20 +109,16 @@ class Draft < ActiveRecord::Base
       # notify clients of the pick
       # TODO: figure out a better place to put this, maybe as a callback from the controller
       puts 'pushing pick update to channel: ' + CHANNEL_PREFIX + self.league.slug
-      payload = { :player_id => autopick_player.id, :user_id => self.current_pick.user.id }
-      Pusher[CHANNEL_PREFIX + self.league.slug].delay.trigger('draft:pick:update', payload)
-
-      # 3 second delay
-      #puts '(sleeping 3 seconds)'
-      #sleep(3)
+      Pusher[CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:update', self.current_pick)
 
       self.current_pick = self.get_current_pick
+      autopick_iterations += 1
     end
 
-    # if no more picks can be made, the draft is over!
-    if self.current_pick.nil?
-      self.status = :finished
-      self.finished_at = Time.now
+    # if the draft isn't over, then the "current pick" is for a live user
+    if !(self.status === :finished)
+      pick_user_id = self.current_pick.team.uuid
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, {})
     end
 
     self.save!

@@ -1,3 +1,6 @@
+/********************************************************************************
+ * COLORS
+ *******************************************************************************/
 /**
  * @var {string} $prefix 
  * The prefix to be applied to all CSS selectors. If this is changed, it must also be changed in your 
@@ -11060,18 +11063,18 @@ body .ux-notification-window {
 /********************************************************************************
  * HEADER
  *******************************************************************************/
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000352}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000359}}
 #header_container {
   #background-image: url('../themes/images/dynasty/logo.png');
   background-color: #FFF;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000357}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000364}}
 #header_spacer {
   background: transparent;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000363}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000370}}
 .timer-display {
   font-size: 69px;
 }
@@ -11101,7 +11104,7 @@ body .ux-notification-window {
 /********************************************************************************
  * WRAP
  *******************************************************************************/
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000376}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000383}}
 #wrap {
   margin: 50px;
 }
@@ -11109,7 +11112,51 @@ body .ux-notification-window {
 /********************************************************************************
  * GRID STUFF
  *******************************************************************************/
-@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000383}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000390}}
 .row-invalid {
   color: #cccccc;
+}
+
+/********************************************************************************
+ * PICK SCROLLER STUFF
+ *******************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\0000397}}
+.gradient-mask {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 200px;
+  background-color: white;
+  -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(black), to(rgba(0, 0, 0, 0)));
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\00003107}}
+#picks_scroller ul {
+  display: table-row;
+  overflow: hidden;
+  width: 2500px;
+  height: 120px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\00003115}}
+div.pick {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  margin: 0;
+  padding: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\00003122}}
+div.pick div.team_pic {
+  margin: 0 auto;
+  height: 80px;
+  width: 80px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\00003130}}
+div.pick div.round p {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
 }

@@ -16,6 +16,7 @@ Ext.define('DynastyDraft.data.Socket', {
             this.self.STATE_FAILED
         );
 
+        //Pusher.log = function(m) { console.log(m); };
         Pusher.channel_auth_endpoint = '/draft/auth';
         Pusher.isReady = false;
 
@@ -29,6 +30,8 @@ Ext.define('DynastyDraft.data.Socket', {
         } else {
             Ext.Error.raise('Configuration error: Socket key not found!');
         }
+
+        return this;
     },
 
     /**
@@ -83,7 +86,7 @@ Ext.define('DynastyDraft.data.Socket', {
             url: '/draft/' + action,
             method: 'POST',
             params: data,
-            success: function(response){
+            success: function(response) {
                 var text = response.responseText;
                 console.log(text);
             }
@@ -100,7 +103,7 @@ Ext.define('DynastyDraft.data.Socket', {
 
         // see if the state matches one of the defined states and fire that as well
         var stateEvent = 'STATE_' + state.current.toUpperCase();
-        if (this.self[stateEvent]) { this.fireEvent(stateEvent); }
+        if (this.self[stateEvent]) { this.fireEvent(this.self[stateEvent]); }
     },
 
     isConnected: function() {
