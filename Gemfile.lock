@@ -12,15 +12,6 @@ GIT
       eventmachine (~> 0.12.10)
       libwebsocket (~> 0.1.0)
 
-GIT
-  remote: git://github.com/plataformatec/devise.git
-  revision: 99040535d7e13433f206fce6643c9f7d8d9347b3
-  specs:
-    devise (1.5.1)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      warden (~> 1.1)
-
 GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
@@ -88,6 +79,10 @@ GEM
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
+    devise (1.5.2)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.1)
     devise_lastseenable (0.0.4)
       devise
       devise
@@ -251,7 +246,7 @@ DEPENDENCIES
   compass-foundation
   dalli
   delayed_job
-  devise!
+  devise
   devise_lastseenable (>= 0.0.3)
   em-http-request
   enum_simulator!

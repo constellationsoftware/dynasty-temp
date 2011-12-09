@@ -1,0 +1,55 @@
+#person
+  %h2
+    = @person.display_name.full_name
+  %h4
+    = @person.person_phases.current_phase.first.membership.display_name.full_name
+    Position:
+    = @person.current_position.position.name
+    Uniform #
+    = @person.person_phases.current_phase.first.uniform_number
+  %h3
+    Statistics
+    = @person.stat_event_ids
+  %ul
+  - @person.stat_events.each do |event|
+    %li
+      .week
+        Week
+        = event.week
+        .passing_stats
+          %h5
+            Passing - Fantasy Points Earned:
+            //= event.event_passing_stats(params[:id]).score_modifier
+          %p
+            Attempts:
+            = event.event_passing_stats(params[:id]).passes_attempts
+            Completions:
+            = event.event_passing_stats(params[:id]).passes_completions
+            Percentage:
+            = event.event_passing_stats(params[:id]).passes_percentage
+            \%
+            //Passing Yards:
+            //= event.event_passing_stats(params[:id]).passes_yards_net
+            //Receiving Yards:
+            //= event.event_passing_stats(params[:id]).receptions_yards
+            //Touchdowns:
+            //= event.event_passing_stats(params[:id]).passes_touchdowns
+            //Interceptions:
+            //= event.event_passing_stats(params[:id]).passes_interceptions
+            //Passer Rating:
+            //= event.event_passing_stats(params[:id]).passer_rating
+        .rushing_stats
+          %h5
+            Rushing - Fantasy Points Earned:
+            = event.event_rushing_stats(params[:id]).score_modifier
+          %p
+            Rushing Yards:
+            = event.event_rushing_stats(params[:id]).rushes_yards
+            Rushing TD's:
+            = event.event_rushing_stats(params[:id]).rushes_touchdowns
+        .defensive-stats
+          %h5
+            Defense - Fantasy Points Earned: <BLANK>
+          %p
+            Tackles (Solo):
+            // = event.event_defensive_stats(params[:id], :tackles_solo).inspect

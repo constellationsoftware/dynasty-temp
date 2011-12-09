@@ -1,11 +1,25 @@
 #people
-	- @people.each do |person|
-		.person
-		%h1.id= person.display_name.full_name
-		%h2.position= person.person_phase.position.name
-		%p.inspect= person.person_key
-		%p.phase= person.person_phase.regular_position_depth
-		\%p.person= person.attributes
-		\%p.person.stats= person.stats
-		%p.person.score= person.person_score.score
-		%p.person.salary= person.salary.contract_amount
+    - @teams.each do |team|
+        .team.two_columns
+            %ul
+                %li
+                    %h2
+                        = link_to team.display_name.full_name, team
+                        = team.person_phases.current_phase.count
+                        Players
+
+
+        - team.person_phases.current_phase.each do |p|
+            .person
+            %ul
+                %li
+                    = link_to p.person.display_name.full_name, p.person
+                    %strong
+                        Status:
+                    = link_to p.phase_status, p.phase_status
+                    %strong
+                        Position:
+                    = link_to p.position.abbreviation, p.position
+                    %strong
+                        Uniform #:
+                    = p.uniform_number

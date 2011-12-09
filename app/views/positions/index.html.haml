@@ -1,0 +1,7 @@
+#positions
+  %ul
+  - @positions.each do |position|
+    %li
+      = position.id
+      = position.abbreviation
+      = position.person_phases.current_phase.count

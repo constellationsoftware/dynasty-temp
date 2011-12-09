@@ -4,14 +4,14 @@ source 'http://gems.github.com'
 gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
-gem "compass", ">= 0.11.5"
-gem 'sass-rails', "  ~> 3.1.0"
+gem 'compass', '>= 0.11.5'
+gem 'sass-rails',  '~> 3.1.0'
 gem 'heroku'
 # gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'haml'
 gem 'hpricot'
 gem 'ruby_parser'
-gem "devise", :git => 'git://github.com/plataformatec/devise.git'
+gem 'devise'
 gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
@@ -58,7 +58,7 @@ end
 # in production environments by default.
 group :assets do
   gem 'sass', '3.1.7'
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
   gem 'thin'
 end

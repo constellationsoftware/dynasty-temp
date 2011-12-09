@@ -19,7 +19,7 @@ class PersonsController < ApplicationController
     # GET /persons/1.xml
   def show
     @person = Person.find(params[:id])
-    @stats        = @person.stats.all
+    @stats        = @person.stats.order
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
     respond_to do |format|
