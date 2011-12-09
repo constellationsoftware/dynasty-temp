@@ -762,7 +762,7 @@ ActiveRecord::Schema.define(:version => 20111206220936) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
-    t.string   "slug"
+    t.string   "slug",       :limit => 50,                 :null => false
   end
 
   add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -1014,7 +1014,7 @@ ActiveRecord::Schema.define(:version => 20111206220936) do
   create_table "positions", :force => true do |t|
     t.integer "affiliation_id",                :null => false
     t.string  "abbreviation",   :limit => 100, :null => false
-    t.string  "name",   :limit => 20, :null => true
+    t.string  "name",           :limit => 20,  :null => false
   end
 
   add_index "positions", ["abbreviation"], :name => "IDX_positions_1"
