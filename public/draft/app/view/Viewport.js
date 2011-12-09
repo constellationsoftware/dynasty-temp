@@ -6,6 +6,7 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.PlayerQueue',
         'DynastyDraft.view.ShoutBoxContainer',
         'DynastyDraft.view.AdminControls',
+        'DynastyDraft.view.Picks',
     ],
 
     layout: 'border',
@@ -23,17 +24,29 @@ Ext.define('DynastyDraft.view.Viewport', {
             },
             height: 120,
 
-
             items: [{
                 xtype: 'timer',
                 width: 200,
-                margin: '10, 5',
+            }, {
+                xtype: 'panel',
+                border: false,
+                minWidth: 380,
+                flex: 1,
+                id: 'picks-scroller-container',
+                items: [{
+                    xtype: 'picks',
+                    width: 2500,
+                }, {
+                    xtype: 'container',
+                    cls: 'gradient-mask',
+                    height: '100%'
+                }]
             }, {
                 xtype: 'container',
-                flex: 1,
+                width: 30,
             }, {
                 xtype: 'shoutboxcontainer',
-                width: 400,
+                width: 350,
             }],
         },
         

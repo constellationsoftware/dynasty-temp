@@ -6,7 +6,7 @@ class SubdomainController < InheritedResources::Base
 			@league = League.find_by_slug!(request.subdomain)
 		end
 
-		def begin_of_association_chain
-			@league
-		end
+		#def begin_of_association_chain
+		#	@league
+		#end
 end

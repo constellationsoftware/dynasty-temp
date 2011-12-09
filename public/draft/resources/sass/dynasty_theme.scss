@@ -2,14 +2,21 @@ $include-default: true; // DO NOT CHANGE
 $theme-name: 'dynasty';
 
 // Insert your custom variables here.
-// $base-color: #aa0000
 $font-family: 'Droid Sans', sans-serif;
+
+
+/********************************************************************************
+ * COLORS
+ *******************************************************************************/
+
+//$base-color: #aa0000
 //$base-color: #111111;
 //$base-font-size: 18px;
 //$base-line-height: 36px;
 //$font-size  : 24px !default;
 //$window-border-radius: 50px;
 $row-disabled-color: #CCC;
+$picks-scroller-mask-color: #FFF;
 
 //$grid-row-padding: 10px !default;
 //$grid-row-padding: 15px !default;
@@ -82,4 +89,47 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
  *******************************************************************************/
 .row-invalid {
     color: $row-disabled-color;
+}
+
+/********************************************************************************
+ * PICK SCROLLER STUFF
+ *******************************************************************************/
+.gradient-mask {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    width: 200px;
+    background-color: $picks-scroller-mask-color;
+    -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+
+#picks_scroller {
+    ul {
+        display: table-row;
+        overflow: hidden;
+        width: 2500px;
+        height: 120px;
+    }
+}
+
+div.pick {
+    position: absolute;
+    height: 120px;
+    width: 120px;
+    margin: 0;
+    padding: 10px;
+
+    div.team_pic {
+        margin: 0 auto;
+        height: 80px;
+        width: 80px;
+        border: 1px solid black;
+        margin-bottom: 5px;
+    }
+
+    div.round p {
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+    }
 }

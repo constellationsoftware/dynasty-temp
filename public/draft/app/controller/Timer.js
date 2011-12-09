@@ -17,10 +17,7 @@ Ext.define('DynastyDraft.controller.Timer', {
         this.addEvents('timeout');
 
         this.taskRunner = new Ext.util.TaskRunner();
-        this.application.addListener(this.application.STATUS_PICKING, function() {
-            console.log("Starting in " + this.self.BREAK_LENGTH + " seconds.");
-            setTimeout(Ext.Function.bind(this.start, this, null, true), this.self.BREAK_LENGTH * 1000);
-        }, this);
+        this.application.addListener(this.application.STATUS_PICKING, this.start, this);
         this.application.addListener(this.application.STATUS_PICKED, this.reset, this);
         this.application.addListener(this.application.STATUS_PAUSED, this.pause, this);
         this.application.addListener(this.application.STATUS_RESUMED, this.resume, this);
@@ -28,7 +25,6 @@ Ext.define('DynastyDraft.controller.Timer', {
     },
 
     pause: function() {
-        console.log(this.countdown);
         this.taskRunner.stop(this.countdown);
     },
 
@@ -39,7 +35,9 @@ Ext.define('DynastyDraft.controller.Timer', {
 
     reset: function() {
         // stop the timer
-        this.taskRunner.stop(this.countdown);
+        try {
+            this.taskRunner.stop(this.countdown);
+        } catch (e) {}
         this.view.updateTimer(0, 0);
     },
 
@@ -86,8 +84,5 @@ Ext.define('DynastyDraft.controller.Timer', {
     statics: {
         // how long the user has to make their pick (in seconds)
         TURN_LENGTH: 180,
-
-        // how long the intermission between picks
-        BREAK_LENGTH: 3
     },
 });

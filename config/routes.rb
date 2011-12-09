@@ -1,19 +1,20 @@
 Dynasty::Application.routes.draw do
   ActiveAdmin.routes(self)
-
   devise_for :users
 
-  scope :league, :module => 'league', :as => 'league', :constraints => SubdomainConstraint do
-    resource :draft do
-      resources :picks
-
+  scope :league, :module => 'league', :constraints => SubdomainConstraint do
+    resource :draft, :defaults => { :format => 'html' } do
       member do
         post 'auth'
-        post 'start'
-        post 'pick'
-        #post 'halt'
-        #post 'resume'
-        post 'reset'
+        post 'start', :format => 'text'
+        post 'pick', :format => 'text'
+        post 'reset', :format => 'text'
+        get 'data', :format => :json
+      end
+
+      defaults :format => 'json' do
+        resources :picks
+        resources :teams
       end
     end
   end

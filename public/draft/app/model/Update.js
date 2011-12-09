@@ -1,4 +1,4 @@
-Ext.define('Update', {
+Ext.define('DynastyDraft.model.Update', {
     extend: 'Ext.data.Model',
     fields: ['id', 'current_pick', 'league_id'],
 

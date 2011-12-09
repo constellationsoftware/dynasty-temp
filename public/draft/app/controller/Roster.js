@@ -2,7 +2,6 @@ Ext.define('DynastyDraft.controller.Roster', {
     extend: 'Ext.app.Controller',
 
     stores: [ 'Roster' ],
-    models: [ 'Player' ],
     views: [ 'Roster' ],
 
     view: null,

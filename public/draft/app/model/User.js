@@ -1,4 +1,4 @@
-Ext.define('User', {
+Ext.define('DynastyDraft.model.User', {
     extend: 'Ext.data.Model',
     fields: ['id', 'email'],
 

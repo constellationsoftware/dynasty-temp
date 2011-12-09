@@ -3,7 +3,7 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
 
     alias: 'widget.playergrid',
     title: 'Players',
-    store: 'Salaries',
+    store: 'Players',
     columnLines: true,
     selModel: {
         mode: "MULTI",

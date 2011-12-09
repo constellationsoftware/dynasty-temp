@@ -5,7 +5,7 @@ Ext.Loader.setConfig({
 });
 
 
-
+var APP;
 Ext.application({
     name: 'DynastyDraft',
     appFolder: '/draft/app',
@@ -21,8 +21,9 @@ Ext.application({
     stores: [
         //'PlayerStoreCharts',
         'Messages',
-        'Salaries',
         'Roster',
+        'Players',
+        'Picks',
     ],
 
     controllers: [
@@ -32,9 +33,12 @@ Ext.application({
         'Timer',
         'Roster',
         'AdminControls',
+        'Picks',
     ],
 
     launch: function() {
+        APP = this;
+
         Ext.tip.QuickTipManager.init();
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
             showDelay: 50      // Show 50ms after entering target
@@ -63,7 +67,6 @@ Ext.application({
     },
 
     onAdminControlsClicked: function(button) {
-        console.log(button);
         switch (button.getItemId()) {
         case 'start':
             Ext.ux.data.Socket.request('start');
@@ -100,7 +103,7 @@ Ext.application({
     onPlayerPicked: function(player) {
         console.log('player pick succeeded', player);
         this.fireEvent(this.STATUS_PICKED, player.get('id'));
-        Ext.ux.data.Socket.request('pick', { player_id: player.get('id') });
+        //Ext.ux.data.Socket.request('pick', { player_id: player.get('id') });
         this.fireEvent(this.STATUS_WAITING);
     },
 
@@ -113,9 +116,9 @@ Ext.application({
      * When a pick event originated from someone else is received
      */
     onPickUpdate: function(data) {
-        console.log("pick update received", data);
-        var pick_id = data.player_id;
-        this.fireEvent(this.PICK_UPDATE, pick_id);
+        var player_id = data.person_id;
+        this.fireEvent(this.PICK_UPDATE, player_id);
+        this.getController('Picks').onPickUpdate(data);
     },
 
     onTimeout: function() {
@@ -128,16 +131,13 @@ Ext.application({
     },
 
     startPicking: function() {
-        console.log("my turn to pick YAY");
         this.fireEvent(this.STATUS_BEFORE_PICKING);
         this.fireEvent(this.STATUS_PICKING);
     },
 
     resumePicking: function() {
-        console.log("my turn to pick YAY");
         this.fireEvent(this.STATUS_RESUMED);
     },
-
 
     getSubDomain: function() {
         var a = window.location.host.split('.');

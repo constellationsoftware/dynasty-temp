@@ -1,49 +1,31 @@
 Ext.define('DynastyDraft.model.Player', {
-    extend: 'DynastyDraft.model.Person',
+    extend: 'Ext.data.Model',
 
     fields: [
-        { name: 'position' },
-        { name: 'comp' },
-        { name: 'pass_yards' },
-        { name: 'pass_td' },
+        {"name":"id","allowBlank":true,"type":"int","defaultValue":null},
+        {"name":"full_name","allowBlank":false,"type":"string","defaultValue":null},
         {
-            name: 'rating',
-            type: 'float',
+            "name":"position",
+            "allowBlank":false,
+            "type":"string",
+            "defaultValue":"",
+            convert: function(value) {
+                var slashPos = value.indexOf('/');
+                // if position is compound, use only the primary
+                var position = (slashPos === -1) ? value : value.substring(0, slashPos);
+                return position;
+            }
         },
-        { name: 'interceptions' },
-        { name: 'sacks' },
-        { name: 'rush_yards' },
-        { name: 'rush_td' },
-        {
-            name: 'fan_points',
-            type: 'float',
-        }, {
-            name: 'salary',
-            type: 'int',
-            defaultValue: 0,
-        }, {
-            name: 'valid',
-            type: 'boolean',
-            defaultValue: 'false',
-        }
-        /*{
-            name: 'empty',
-            type: 'boolean',
-            defaultValue: false,
-        }*/
+        {"name":"contract_amount","allowBlank":false,"type":"int","defaultValue":0},
+        {"name":"points","allowBlank":false,"type":"int","defaultValue":0},
+        {"name":"rating","allowBlank":false,"type":"int","defaultValue":0},
+        {"name":"consistency","allowBlank":false,"type":"int","defaultValue":0},
+        {"name":"is_valid","allowBlank":true,"type":"int","defaultValue":1},
     ],
 
-    /*validations: [
-        {
-            type: 'inclusion',
-            field: 'position',
-            list: [
-                "Quarterback",
-                "Running Back",
-                "Wide Receiver",
-                "Kicker",
-                "Bench",
-            ],
-        }
-    ],*/
+    belongsTo: {
+        model: 'DynastyDraft.model.Pick',
+        name: 'pick',
+    },
+    idProperty: 'id',
 });

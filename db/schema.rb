@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121151410) do
+ActiveRecord::Schema.define(:version => 20111206220936) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -762,7 +762,7 @@ ActiveRecord::Schema.define(:version => 20111121151410) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
-    t.string   "slug",       :limit => 50,                 :null => false
+    t.string   "slug"
   end
 
   add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -1003,6 +1003,7 @@ ActiveRecord::Schema.define(:version => 20111121151410) do
     t.integer  "team_id",                   :null => false
     t.integer  "pick_order", :default => 0, :null => false
     t.datetime "picked_at"
+    t.integer  "round",                     :null => false
   end
 
   create_table "players", :force => true do |t|
@@ -1229,11 +1230,12 @@ ActiveRecord::Schema.define(:version => 20111121151410) do
   end
 
   create_table "user_teams", :force => true do |t|
-    t.integer "league_id",                                   :null => false
-    t.string  "name",      :limit => 50,                     :null => false
-    t.integer "user_id",                                     :null => false
-    t.boolean "is_online",                :default => false, :null => false
-    t.binary  "uuid",      :limit => 255
+    t.integer "league_id",                                        :null => false
+    t.string  "name",           :limit => 50,                     :null => false
+    t.integer "user_id",                                          :null => false
+    t.boolean "is_online",                     :default => false, :null => false
+    t.binary  "uuid",           :limit => 255
+    t.string  "last_socket_id"
   end
 
   add_index "user_teams", ["league_id"], :name => "index_user_teams_league"
