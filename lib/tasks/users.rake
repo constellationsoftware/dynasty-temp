@@ -12,4 +12,18 @@ namespace :users do
 		end
 		puts 'Modified ' + num_changed.to_s + ' rows.'
 	end
+
+	desc 'Sets user balances to 0 for users without a balance record'
+	task :create_balance => :environment do
+		num_changed = 0
+		UserTeam.all.each do |team|
+			if team.balance.nil?
+				balance = UserTeamBalance.new
+				team.balance = balance
+				team.save
+ 				num_changed += 1
+			end
+		end
+		puts 'Modified ' + num_changed.to_s + ' rows.'
+	end
 end

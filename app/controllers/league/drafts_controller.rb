@@ -25,13 +25,7 @@ class League::DraftsController < SubdomainController
   def reset
     reset! do |format|
       @draft.reset
-      payload = {
-        :user_id => current_user.id,
-        :user_info => {
-          :name => current_user.name
-        }
-      }
-      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:reset', payload)
+      Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:reset', {})
       
       format.text { render :text => "Resetting draft for #{@league.name}" }  
     end
@@ -45,9 +39,10 @@ class League::DraftsController < SubdomainController
     payload = {
       :user_id => current_user.id,
       :user_info => {
+        :name => current_user.name,
+        :team_name => @team.name,
         :team_id => @team.uuid
-      },
-      :current_pick_id => @team.league.draft.current_pick_id
+      }
     }
 
     response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)

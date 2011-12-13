@@ -133,3 +133,10 @@ div.pick {
         font-weight: bold;
     }
 }
+
+div#balance {
+    font-weight: bold;
+    .deficit {
+        color: red;
+    }
+}

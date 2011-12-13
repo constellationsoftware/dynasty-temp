@@ -11160,3 +11160,12 @@ div.pick div.round p {
   text-align: center;
   font-weight: bold;
 }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\00003137}}
+div#balance {
+  font-weight: bold;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/Users\/Nick\/Sites\/dynasty\/public\/draft\/resources\/sass\/dynasty_theme\.scss}line{font-family:\00003139}}
+div#balance .deficit {
+  color: red;
+}

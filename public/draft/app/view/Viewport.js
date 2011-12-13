@@ -62,7 +62,26 @@ Ext.define('DynastyDraft.view.Viewport', {
 
             items: [{
                 xtype: 'playergrid',
-                title: 'Players'
+                title: 'Players',
+                bbar: [{
+                    xtype: 'tbfill'
+                }, {
+                    xtype: 'tbtext',
+                    data: USER_BALANCE,
+                    id: 'balance',
+                    tpl: Ext.create('Ext.XTemplate',
+                        '<tpl for=".">',
+                            'Total: ',
+                            '<span class="balance {[values < 0 ? "deficit" : ""]}">',
+                                '{[this.formatMoney(values)]}',
+                            '</span>',
+                        '</tpl>',
+                    {
+                        formatMoney: function(value) {
+                            return Ext.util.Format.usMoney(value);
+                        }   
+                    }),
+                }]
             }, {
                 xtype: 'rostergrid',
                 title: 'Roster',

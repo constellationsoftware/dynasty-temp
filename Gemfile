@@ -38,6 +38,8 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'slim-rails'
 gem 'compass_twitter_bootstrap'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
+gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 
 group :production do
