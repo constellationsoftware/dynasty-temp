@@ -1,0 +1,13 @@
+/*= require "foundation" */
+td {
+    text-align: center;
+    font-size: 10px;
+    !important
+}
+
+.row {
+    width: 100%;
+    max-width: 100%;
+    min-width: 727px;
+    margin: 0 auto;
+}

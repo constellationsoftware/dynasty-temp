@@ -17,9 +17,10 @@ figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
   margin: 0;
-  padding: 0;
+  padding: 5;
   border: 0;
   font-size: 100%;
+  color: #777777;
   font: inherit;
   vertical-align: baseline;
 }
@@ -65,10 +66,4 @@ a img {
 /* line 114, ../../../../.rvm/gems/ruby-1.9.2-p290@dynasty/gems/compass-0.11.5/frameworks/compass/stylesheets/compass/reset/_utilities.scss */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
   display: block;
-}
-
-/* line 9, ../../app/stylesheets/screen.scss */
-#wrap {
-  margin-top: 50px;
-  padding-top: 50px;
 }

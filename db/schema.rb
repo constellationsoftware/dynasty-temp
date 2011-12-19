@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111206220936) do
+ActiveRecord::Schema.define(:version => 20111219171416) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -692,6 +692,29 @@ ActiveRecord::Schema.define(:version => 20111206220936) do
   add_index "events", ["publisher_id"], :name => "IDX_FK_eve_pub_id__pub_id"
   add_index "events", ["site_id"], :name => "IDX_FK_eve_sit_id__sit_id"
 
+  create_table "events_copy", :force => true do |t|
+    t.string   "event_key",             :limit => 100, :null => false
+    t.integer  "publisher_id",                         :null => false
+    t.datetime "start_date_time"
+    t.integer  "site_id"
+    t.string   "site_alignment",        :limit => 100
+    t.string   "event_status",          :limit => 100
+    t.string   "duration",              :limit => 100
+    t.string   "attendance",            :limit => 100
+    t.datetime "last_update"
+    t.string   "event_number",          :limit => 32
+    t.string   "round_number",          :limit => 32
+    t.string   "time_certainty",        :limit => 100
+    t.string   "broadcast_listing"
+    t.datetime "start_date_time_local"
+    t.string   "medal_event",           :limit => 100
+    t.string   "series_index",          :limit => 40
+  end
+
+  add_index "events_copy", ["event_key"], :name => "IDX_events_1"
+  add_index "events_copy", ["publisher_id"], :name => "IDX_FK_eve_pub_id__pub_id"
+  add_index "events_copy", ["site_id"], :name => "IDX_FK_eve_sit_id__sit_id"
+
   create_table "events_documents", :id => false, :force => true do |t|
     t.integer "event_id",    :null => false
     t.integer "document_id", :null => false
@@ -763,6 +786,7 @@ ActiveRecord::Schema.define(:version => 20111206220936) do
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug",       :limit => 50,                 :null => false
+    t.datetime "clock"
   end
 
   add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -1003,7 +1027,7 @@ ActiveRecord::Schema.define(:version => 20111206220936) do
     t.integer  "team_id",                   :null => false
     t.integer  "pick_order", :default => 0, :null => false
     t.datetime "picked_at"
-    t.integer  "round",                     :null => false
+    t.integer  "round",      :default => 0, :null => false
   end
 
   create_table "players", :force => true do |t|
@@ -1139,16 +1163,17 @@ ActiveRecord::Schema.define(:version => 20111206220936) do
   add_index "standings", ["sub_season_id"], :name => "FK_sta_sub_sea_id__sub_sea_id"
 
   create_table "stats", :force => true do |t|
-    t.string  "stat_repository_type", :limit => 100
-    t.integer "stat_repository_id",                  :null => false
-    t.string  "stat_holder_type",     :limit => 100
-    t.integer "stat_holder_id"
-    t.string  "stat_coverage_type",   :limit => 100
-    t.integer "stat_coverage_id"
-    t.string  "stat_membership_type", :limit => 40
-    t.integer "stat_membership_id"
-    t.string  "context",              :limit => 40,  :null => false
-    t.string  "scope"
+    t.string   "stat_repository_type", :limit => 100
+    t.integer  "stat_repository_id",                  :null => false
+    t.string   "stat_holder_type",     :limit => 100
+    t.integer  "stat_holder_id"
+    t.string   "stat_coverage_type",   :limit => 100
+    t.integer  "stat_coverage_id"
+    t.string   "stat_membership_type", :limit => 40
+    t.integer  "stat_membership_id"
+    t.string   "context",              :limit => 40,  :null => false
+    t.string   "scope"
+    t.datetime "start_date_time"
   end
 
   add_index "stats", ["context"], :name => "IDX_stats_7"

@@ -29,16 +29,15 @@ gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
 gem 'delayed_job'
 gem 'uuidtools'
-# gem 'kumade'  
 gem 'activeadmin'
 gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
-# gem 'compass_twitter_bootstrap'
-gem 'foundation-sass'
-gem 'compass-foundation'
-gem 'zurb-foundation'
+gem 'zurb-foundation', :group => :assets
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+gem 'andand'
+gem 'coffee-filter'
+gem 'timecop'
 
 group :production do
   gem 'pg'

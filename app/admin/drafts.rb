@@ -4,9 +4,21 @@ ActiveAdmin.register Draft do
   index do 
   	column :id
   	column :league
-  	column :started_at
-  	column :started 
-  	column :current_pick
+
   	default_actions
+  end
+
+  show do
+    h3 draft.league.name
+
+  end
+
+  form do |f|
+    f.inputs  do
+
+      f.input :league
+
+    end
+    f.buttons
   end
 end

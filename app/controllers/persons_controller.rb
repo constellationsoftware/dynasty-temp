@@ -18,8 +18,9 @@ class PersonsController < ApplicationController
     # GET /persons/1
     # GET /persons/1.xml
   def show
+    Timecop.freeze(2011,10,15)
     @person = Person.find(params[:id])
-    @stats        = @person.stats.order
+    @stats        = @person.stats.current.event_stat
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
     respond_to do |format|

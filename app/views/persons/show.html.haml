@@ -1,55 +1,85 @@
 #person
-  %h2
-    = @person.display_name.full_name
-  %h4
-    = @person.person_phases.current_phase.first.membership.display_name.full_name
-    Position:
-    = @person.current_position.position.name
-    Uniform #
-    = @person.person_phases.current_phase.first.uniform_number
-  %h3
-    Statistics
-    = @person.stat_event_ids
-  %ul
+  .row.rounded
+    .two.columns
+      %img{:src => "/assets/images/headshot_sml.png", :class => "photo"}
+    .eight.columns
+      %h2
+        = @person.display_name.full_name
+
+      %h4
+        = @person.person_phases.current_phase.first.membership.display_name.full_name
+        Position:
+        = @person.current_position.position.name
+        Uniform #
+        = @person.person_phases.current_phase.first.uniform_number
+
+
+
+  - if @person.current_position.position.name == "Quarterback"
+    = render :partial => "quarterback"
+
   - @person.stat_events.each do |event|
     %li
       .week
         Week
-        = event.week
-        .passing_stats
-          %h5
-            Passing - Fantasy Points Earned:
-            //= event.event_passing_stats(params[:id]).score_modifier
-          %p
-            Attempts:
-            = event.event_passing_stats(params[:id]).passes_attempts
-            Completions:
-            = event.event_passing_stats(params[:id]).passes_completions
-            Percentage:
-            = event.event_passing_stats(params[:id]).passes_percentage
-            \%
-            //Passing Yards:
-            //= event.event_passing_stats(params[:id]).passes_yards_net
-            //Receiving Yards:
-            //= event.event_passing_stats(params[:id]).receptions_yards
-            //Touchdowns:
-            //= event.event_passing_stats(params[:id]).passes_touchdowns
-            //Interceptions:
-            //= event.event_passing_stats(params[:id]).passes_interceptions
-            //Passer Rating:
-            //= event.event_passing_stats(params[:id]).passer_rating
-        .rushing_stats
-          %h5
-            Rushing - Fantasy Points Earned:
-            = event.event_rushing_stats(params[:id]).score_modifier
-          %p
-            Rushing Yards:
-            = event.event_rushing_stats(params[:id]).rushes_yards
-            Rushing TD's:
-            = event.event_rushing_stats(params[:id]).rushes_touchdowns
-        .defensive-stats
-          %h5
-            Defense - Fantasy Points Earned: <BLANK>
-          %p
-            Tackles (Solo):
-            // = event.event_defensive_stats(params[:id], :tackles_solo).inspect
+        - if event.event_passing_stats(params[:id])
+          .passing_stats
+            %h5
+              Passing - Fantasy Points Earned:
+              = event.event_passing_stats(params[:id]).stat_repository.score_modifier
+            %p
+              Attempts:
+
+              Completions:
+
+              Percentage:
+
+              \%
+              Passing Yards:
+
+              Receiving Yards:
+              = event.event_passing_stats(params[:id]).stat_repository.receptions_yards
+              Touchdowns:
+
+              Interceptions:
+              = event.event_passing_stats(params[:id]).stat_repository.passes_interceptions
+              Passer Rating:
+              = event.event_passing_stats(params[:id]).stat_repository.passer_rating
+        - if event.event_rushing_stats(params[:id])
+          .rushing_stats
+            %h5
+              Rushing - Fantasy Points Earned:
+              = event.event_rushing_stats(params[:id]).stat_repository.score_modifier
+            %p
+              Rushing Yards:
+
+              Rushing TD's:
+              = event.event_rushing_stats(params[:id]).stat_repository.rushes_touchdowns
+        - if event.event_defensive_stats(params[:id])
+          .defensive-stats
+            %h5
+              Defense - Fantasy Points Earned:
+              = event.event_fumbles_stats(params[:id]).stat_repository.score_modifier
+            %p
+              Tackles (Solo):
+              = event.event_defensive_stats(params[:id]).stat_repository.tackles_solo
+        - if event.event_fumbles_stats(params[:id])
+          .fumbles_stats
+            %h5
+              Fumbles - Fantasy Points Lost:
+              = event.event_fumbles_stats(params[:id]).stat_repository.score_modifier
+            %p
+              Fumbles Committed:
+
+        - if event.event_sacks_stats(params[:id])
+          .sacks_stats
+            %h5
+              Sacks Stats
+        - if event.event_scoring_stats(params[:id])
+          .scoring_stats
+            %h5
+              Scoring Stats
+        - if event.event_special_teams_stats(params[:id])
+          .special_teams_stats
+            %h5
+              Special Teams Stats
