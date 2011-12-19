@@ -12,15 +12,38 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-development:
+sportsdb:
   adapter: mysql2
-  encoding: utf8
   database: sportsdb
   host: localhost
-  port: 3306
-  pool: 5
   username: root
   socket: /tmp/mysql.sock
+  pool: 5
+  encoding: utf8
+
+development:
+  pool: 5
+  encoding: utf8
+  adapter: mysql2
+  database: dynasty_dev
+  host: localhost
+  username: root
+  socket: /tmp/mysql.sock
+
+production:
+  pool: 5
+  encoding: utf8
+  adapter: mysql2
+  database: dynasty_dev
+  host: localhost
+  username: root
+  socket: /tmp/mysql.sock
+
+  #database: app1455111
+  #host: 50.16.184.114
+  #port: 3365
+  #username: app1455111
+  #password: eSwWReno
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -48,10 +71,4 @@ test:
   username: dynastyDB
   password:
 
-production:
-  adapter: postgresql
-  encoding: unicode
-  database: dynastyDB_production
-  pool: 5
-  username: dynastyDB
-  password:
+

@@ -1,15 +1,6 @@
-/**
- * @TODO: Wrap the PUBNUB stuff in an Ext.util.Observable.
- *        Use the wrapper at https://github.com/mrsunshine/Mobile-Chat-with-Sencha-Touch---node.js---socket.io-/blob/master/js/lib/App.util.Socketio.js
- *        as an example.
- *        Also use proper user models when those are avaiable
- */
-
-var PUBNUB_CHANNEL = 'dynasty_test';
-
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
-
+    requires: [ 'DynastyDraft.data.Socket' ],
     stores: [ 'Messages' ],
     views: [ 'ShoutBox' ],
     refs: [{
@@ -17,24 +8,23 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         selector: 'shoutboxcontainer',
     }],
 
-    username: null,
+    channel: null,
 
     init: function() {
         var _this = this;
-        this.username = "Dynasty-User" + Math.floor(Math.random() * 10000);
         
         this.control({
             'textfield': {
-                specialkey: function(field, e) { 
-                    if(e.getKey() == e.ENTER) { 
+                specialkey: function(field, e) {
+                    if(e.getKey() == e.ENTER) {
                         var form = field.up('form').getForm();
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
-                            var message = this.createMessage(field.getValue());
-                            PUBNUB.publish({
-                                channel: PUBNUB_CHANNEL,
-                                message: message,
+                            var message = this.createMessage(user.email, field.getValue());
+                            Ext.ux.data.Socket.request('post_message', {
+                                message: message.message,
                             });
+
                             field.reset();
                         }
                     } 
@@ -42,34 +32,47 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
             }
         });
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
-        
-        // LISTEN FOR PUSH MESSAGES
-        PUBNUB.subscribe({
-            // CONNECT TO THIS CHANNEL
-            channel: "dynasty_test",
 
-            // LOST CONNECTION (auto reconnects)
-            error: function() {
-                alert("Lost connection with the chat server.\nTrying to reconnect...");
-            },
+        var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL_PREFIX + this.application.getSubDomain(), {
+            'send_message': this.onMessageReceived,
+        }, this);
 
-            // RECEIVED A MESSAGE
-            callback: function(message) {
-                // add it to the store
-                _this.onReceiveMessage.call(_this, message);
-            },
+        /* 
+         * check if connected to socket
+         * if so, trigger a join, otherwise defer it until connected
+         */
+        if (Ext.ux.data.Socket.isConnected()) {
+            this.joinChat();
+        } else {
             
-            // CONNECTION ESTABLISHED
-            connect: function() {
-                // SEND MESSAGE
-                var message = _this.createMessage("has joined", true);
+        }
+    },
 
-                PUBNUB.publish({
-                    channel: PUBNUB_CHANNEL,
-                    message: message
-                });
-            }
-        });
+    onPick: function(data) {
+        console.log(data);
+        var message = this.createMessage(data.user.email, "has picked " + data.player.full_name, true);
+        var store = this.getMessagesStore();
+        store.add(message);
+    },
+
+    joinChat: function() {
+        
+    },
+
+    onSubscribe: function(data) {
+        console.log("subscribed!", data);
+    },
+
+    onMessageReceived: function(data) {
+        console.log("message received!", data);
+        // get a store instance and add the message to it
+        var store = this.getMessagesStore();
+        this.beforeStoreUpdate();
+        store.add(data);
+    },
+
+    onUserJoined: function(data) {
+        console.log(data);
     },
 
     // routines to run before the store is updated
@@ -88,20 +91,17 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         view.scrollToBottom.call(view);
     },
 
-    onReceiveMessage: function(message) {
-        // get a store instance and add the message to it
-        var store = this.getMessagesStore();
-        this.beforeStoreUpdate();
-        store.add(message);
-    },
-
-    createMessage: function(messageText, action) {
+    createMessage: function(user_id, messageText, action) {
         var message = {
-            user: this.username,
+            user: user_id,
             message: messageText,
             action: action,
         };
 
         return message;
+    },
+
+    statics: {
+        CHAT_CHANNEL_PREFIX: 'presence-shoutbox-',
     },
 });

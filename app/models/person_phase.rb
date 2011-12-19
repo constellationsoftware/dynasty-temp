@@ -12,15 +12,23 @@ class PersonPhase < ActiveRecord::Base
   	where("phase_status = ?", 'active')
   end
 
-  scope :activasted, activated
+  scope :activated, activated
 
   def self.positioned 
   	where("regular_position_id IS NOT NULL")
   end
 
+  def self.current
+    where("membership_type = ?", 'Team')
+  end
+
+  def self.current_phase
+    positioned.current.where("phase_status != ?", 'inactive')
+  end
 
   scope :positioned, positioned
 
   scope :draftable, positioned.activated
 
+  scope :current_phase, current_phase
 end

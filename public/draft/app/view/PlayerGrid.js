@@ -3,7 +3,7 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
 
     alias: 'widget.playergrid',
     title: 'Players',
-    store: 'Salaries',
+    store: 'Players',
     columnLines: true,
     selModel: {
         mode: "MULTI",
@@ -12,7 +12,11 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
     loadMask: true,
     invalidateScrollerOnRefresh: false,
     viewConfig: {
+        copy: true,
         trackOver: false,
+        getRowClass: function(record, rowIndex, rowParams, store) {
+            if (!record.get('is_valid')) { return 'row-invalid'; }
+        },
         plugins: [
             {
                 ptype: 'gridviewdragdrop',

@@ -1,16 +1,15 @@
-
-log/*
-Icon\r
+tmp/
+Dynasty.esproj/
+bundler_stubs/
+.bundle/
 .bundle
 .DS_Store
 .rspec
 db/*.sqlite3
 log/*
-tmp/
 dynastyowner.tmproj
 .idea/workspace.xml
 .idea/dynastyowner.iml
-
 tmp
 *.sqlite3
->>>>>>> release/v0.1
+database.yml

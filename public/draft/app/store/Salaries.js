@@ -5,7 +5,7 @@ Ext.define('DynastyDraft.store.Salaries', {
 
     // allow the grid to interact with the paging scroller by buffering
     buffered: true,
-    pageSize: 200,
+    pageSize: 50,
     remoteSort: true,
 
     //groupField: 'position',
@@ -13,7 +13,7 @@ Ext.define('DynastyDraft.store.Salaries', {
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '../salaries',
+        url: '/salaries',
         /*extraParams: {
             total: 50000
         },*/
@@ -24,8 +24,9 @@ Ext.define('DynastyDraft.store.Salaries', {
         // sends single sort as multi parameter
         simpleSortMode: false,
         extraParams: {
-            'by_position': true,
-            'offense': true
+            by_position: true,
+            offense: true,
+            with_valid: true,
         }
     },
 

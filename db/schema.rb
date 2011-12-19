@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110823061803) do
+ActiveRecord::Schema.define(:version => 20111219171416) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -36,6 +51,18 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "addresses", ["location_id"], :name => "IDX_FK_add_loc_id__loc_id"
   add_index "addresses", ["postal_code"], :name => "IDX_addresses_3"
   add_index "addresses", ["region"], :name => "IDX_addresses_2"
+
+  create_table "admin_notes", :force => true do |t|
+    t.integer  "resource_id",     :null => false
+    t.string   "resource_type",   :null => false
+    t.integer  "admin_user_id"
+    t.string   "admin_user_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "affiliation_phases", :force => true do |t|
     t.integer  "affiliation_id",          :null => false
@@ -112,6 +139,10 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.string  "drive_result",                     :limit => 100
     t.integer "points"
     t.string  "comment",                          :limit => 512
+    t.string  "recipient_type",                   :limit => 100
+    t.string  "penalty_side",                     :limit => 100
+    t.string  "penalty_level",                    :limit => 100
+    t.integer "penalty_yards"
   end
 
   add_index "american_football_action_plays", ["american_football_event_state_id"], :name => "IDX_FK_ame_foo_act_pla_ame_foo_eve_sta_id__ame_foo_eve_sta_id"
@@ -170,6 +201,10 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.integer "passes_against_longest"
     t.decimal "passes_against_rating",                                         :precision => 5, :scale => 2
     t.decimal "interceptions_percentage",                                      :precision => 5, :scale => 2
+    t.integer "defense_rank"
+    t.integer "defense_rank_pass"
+    t.integer "defense_rank_rush"
+    t.integer "turnovers_takeaway"
   end
 
   create_table "american_football_down_progress_stats", :force => true do |t|
@@ -187,7 +222,7 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
 
   create_table "american_football_event_states", :force => true do |t|
     t.integer "event_id",                             :null => false
-    t.integer "current_state"
+    t.integer "current_state",         :limit => 2
     t.integer "sequence_number"
     t.integer "period_value"
     t.string  "period_time_elapsed",   :limit => 100
@@ -251,28 +286,30 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.string  "turnovers_giveaway",                :limit => 100
     t.integer "tackles"
     t.integer "tackles_assists"
+    t.integer "offensive_rank"
   end
 
   create_table "american_football_passing_stats", :force => true do |t|
-    t.string "passes_attempts",                 :limit => 100
-    t.string "passes_completions",              :limit => 100
-    t.string "passes_percentage",               :limit => 100
-    t.string "passes_yards_gross",              :limit => 100
-    t.string "passes_yards_net",                :limit => 100
-    t.string "passes_yards_lost",               :limit => 100
-    t.string "passes_touchdowns",               :limit => 100
-    t.string "passes_touchdowns_percentage",    :limit => 100
-    t.string "passes_interceptions",            :limit => 100
-    t.string "passes_interceptions_percentage", :limit => 100
-    t.string "passes_longest",                  :limit => 100
-    t.string "passes_average_yards_per",        :limit => 100
-    t.string "passer_rating",                   :limit => 100
-    t.string "receptions_total",                :limit => 100
-    t.string "receptions_yards",                :limit => 100
-    t.string "receptions_touchdowns",           :limit => 100
-    t.string "receptions_first_down",           :limit => 100
-    t.string "receptions_longest",              :limit => 100
-    t.string "receptions_average_yards_per",    :limit => 100
+    t.string  "passes_attempts",                 :limit => 100
+    t.string  "passes_completions",              :limit => 100
+    t.string  "passes_percentage",               :limit => 100
+    t.string  "passes_yards_gross",              :limit => 100
+    t.string  "passes_yards_net",                :limit => 100
+    t.string  "passes_yards_lost",               :limit => 100
+    t.string  "passes_touchdowns",               :limit => 100
+    t.string  "passes_touchdowns_percentage",    :limit => 100
+    t.string  "passes_interceptions",            :limit => 100
+    t.string  "passes_interceptions_percentage", :limit => 100
+    t.string  "passes_longest",                  :limit => 100
+    t.string  "passes_average_yards_per",        :limit => 100
+    t.string  "passer_rating",                   :limit => 100
+    t.string  "receptions_total",                :limit => 100
+    t.string  "receptions_yards",                :limit => 100
+    t.string  "receptions_touchdowns",           :limit => 100
+    t.string  "receptions_first_down",           :limit => 100
+    t.string  "receptions_longest",              :limit => 100
+    t.string  "receptions_average_yards_per",    :limit => 100
+    t.integer "passing_rank"
   end
 
   create_table "american_football_penalties_stats", :force => true do |t|
@@ -282,12 +319,13 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   end
 
   create_table "american_football_rushing_stats", :force => true do |t|
-    t.string "rushes_attempts",           :limit => 100
-    t.string "rushes_yards",              :limit => 100
-    t.string "rushes_touchdowns",         :limit => 100
-    t.string "rushing_average_yards_per", :limit => 100
-    t.string "rushes_first_down",         :limit => 100
-    t.string "rushes_longest",            :limit => 100
+    t.string  "rushes_attempts",           :limit => 100
+    t.string  "rushes_yards",              :limit => 100
+    t.string  "rushes_touchdowns",         :limit => 100
+    t.string  "rushing_average_yards_per", :limit => 100
+    t.string  "rushes_first_down",         :limit => 100
+    t.string  "rushes_longest",            :limit => 100
+    t.integer "rushing_rank"
   end
 
   create_table "american_football_sacks_against_stats", :force => true do |t|
@@ -384,18 +422,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.integer "date_coverage_id"
   end
 
-  create_table "backup_picks", :id => false, :force => true do |t|
-    t.integer "user_id",    :null => false
-    t.integer "person_id",  :null => false
-    t.integer "preference"
-  end
-
-  add_index "backup_picks", ["person_id"], :name => "index_backup_picks_person"
-  add_index "backup_picks", ["user_id"], :name => "index_backup_picks_user"
-
-  create_table "baseball_defensive_group", :force => true do |t|
-  end
-
   create_table "bookmakers", :force => true do |t|
     t.string  "bookmaker_key", :limit => 100
     t.integer "publisher_id",                 :null => false
@@ -404,11 +430,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
 
   add_index "bookmakers", ["location_id"], :name => "FK_boo_loc_id__loc_id"
   add_index "bookmakers", ["publisher_id"], :name => "FK_boo_pub_id__pub_id"
-
-  create_table "conferences", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "core_stats", :force => true do |t|
     t.string  "score",                     :limit => 100
@@ -423,6 +444,8 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.string  "events_played",             :limit => 40
     t.string  "events_started",            :limit => 40
     t.integer "position_id"
+    t.integer "series_score"
+    t.integer "series_score_opposing"
   end
 
   create_table "db_info", :id => false, :force => true do |t|
@@ -430,6 +453,21 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   end
 
   add_index "db_info", ["version"], :name => "IDX_db_info_1"
+
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
   create_table "display_names", :force => true do |t|
     t.string  "language",     :limit => 100, :null => false
@@ -449,11 +487,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "display_names", ["entity_id"], :name => "IDX_display_names_1"
   add_index "display_names", ["entity_type"], :name => "IDX_display_names_2"
 
-  create_table "divisions", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "document_classes", :force => true do |t|
     t.string "name", :limit => 100
   end
@@ -469,11 +502,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   end
 
   add_index "document_contents", ["document_id"], :name => "IDX_FK_doc_con_doc_id__doc_id"
-
-  create_table "document_fixture_events", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "document_fixtures", :force => true do |t|
     t.string  "fixture_key",       :limit => 100
@@ -496,11 +524,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "document_fixtures_events", ["document_fixture_id"], :name => "IDX_FK_doc_fix_eve_doc_fix_id__doc_fix_id"
   add_index "document_fixtures_events", ["event_id"], :name => "IDX_FK_doc_fix_eve_eve_id__eve_id"
   add_index "document_fixtures_events", ["latest_document_id"], :name => "IDX_FK_doc_fix_eve_lat_doc_id__doc_id"
-
-  create_table "document_package_entries", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "document_package_entry", :force => true do |t|
     t.integer "document_package_id",                :null => false
@@ -551,29 +574,17 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "documents_media", ["media_caption_id"], :name => "FK_doc_med_med_cap_id__med_cap_id"
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
-  create_table "draftable_players", :id => false, :force => true do |t|
-    t.integer "id",                                              :null => false
-    t.string  "full_name",       :limit => 50,                   :null => false
-    t.string  "position",        :limit => 10
-    t.date    "dob"
-    t.string  "college",         :limit => 50
-    t.integer "contract_start"
-    t.integer "contract_length"
-    t.integer "contract_amount",               :default => 0
-    t.string  "free_agent",                    :default => "NO", :null => false
-    t.integer "person_id",                     :default => 0,    :null => false
-  end
-
   create_table "drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
-    t.boolean  "started",          :default => false
-    t.boolean  "finished",         :default => false
-    t.integer  "league_id",                           :null => false
-    t.integer  "number_of_rounds", :default => 30,    :null => false
+    t.integer  "league_id",                                     :null => false
+    t.integer  "number_of_rounds",              :default => 30, :null => false
+    t.integer  "current_pick_id",  :limit => 2
+    t.string   "status"
   end
 
   add_index "drafts", ["league_id"], :name => "index_drafts_league"
+  add_index "drafts", ["status"], :name => "index_drafts_on_status"
 
   create_table "dynasty_dollars", :force => true do |t|
     t.integer "team_id", :null => false
@@ -681,6 +692,29 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "events", ["publisher_id"], :name => "IDX_FK_eve_pub_id__pub_id"
   add_index "events", ["site_id"], :name => "IDX_FK_eve_sit_id__sit_id"
 
+  create_table "events_copy", :force => true do |t|
+    t.string   "event_key",             :limit => 100, :null => false
+    t.integer  "publisher_id",                         :null => false
+    t.datetime "start_date_time"
+    t.integer  "site_id"
+    t.string   "site_alignment",        :limit => 100
+    t.string   "event_status",          :limit => 100
+    t.string   "duration",              :limit => 100
+    t.string   "attendance",            :limit => 100
+    t.datetime "last_update"
+    t.string   "event_number",          :limit => 32
+    t.string   "round_number",          :limit => 32
+    t.string   "time_certainty",        :limit => 100
+    t.string   "broadcast_listing"
+    t.datetime "start_date_time_local"
+    t.string   "medal_event",           :limit => 100
+    t.string   "series_index",          :limit => 40
+  end
+
+  add_index "events_copy", ["event_key"], :name => "IDX_events_1"
+  add_index "events_copy", ["publisher_id"], :name => "IDX_FK_eve_pub_id__pub_id"
+  add_index "events_copy", ["site_id"], :name => "IDX_FK_eve_sit_id__sit_id"
+
   create_table "events_documents", :id => false, :force => true do |t|
     t.integer "event_id",    :null => false
     t.integer "document_id", :null => false
@@ -702,7 +736,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.integer "sub_season_id", :null => false
   end
 
-  add_index "events_sub_seasons", ["event_id"], :name => "FK_eve_sub_sea_eve_id__eve_id"
   add_index "events_sub_seasons", ["sub_season_id"], :name => "FK_eve_sub_sea_sub_sea_id__sub_sea_id"
 
   create_table "injury_phases", :force => true do |t|
@@ -747,9 +780,17 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "latest_revisions", ["revision_id"], :name => "IDX_latest_revisions_1"
 
   create_table "leagues", :force => true do |t|
-    t.string  "name", :limit => 50,                 :null => false
-    t.integer "size",               :default => 15, :null => false
+    t.string   "name",       :limit => 50,                 :null => false
+    t.integer  "size",                     :default => 15, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "manager_id"
+    t.string   "slug",       :limit => 50,                 :null => false
+    t.datetime "clock"
   end
+
+  add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
+  add_index "leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
   create_table "locations", :force => true do |t|
     t.string "city",         :limit => 100
@@ -869,11 +910,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.integer "value"
   end
 
-  create_table "people", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "periods", :force => true do |t|
     t.integer "participant_event_id",                :null => false
     t.string  "period_value",         :limit => 100
@@ -908,9 +944,9 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "person_event_metadata", ["team_id"], :name => "IDX_FK_teams_person_event_metadata"
 
   create_table "person_phases", :force => true do |t|
-    t.integer  "person_id",                                                 :null => false
-    t.string   "membership_type",        :limit => 40,  :default => "Team", :null => false
-    t.integer  "membership_id",                                             :null => false
+    t.integer  "person_id",                             :null => false
+    t.string   "membership_type",        :limit => 40,  :null => false
+    t.integer  "membership_id",                         :null => false
     t.integer  "role_id"
     t.string   "role_status",            :limit => 40
     t.string   "phase_status",           :limit => 40
@@ -985,32 +1021,24 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "persons_media", ["media_id"], :name => "FK_per_med_med_id__med_id"
   add_index "persons_media", ["person_id"], :name => "FK_per_med_per_id__per_id"
 
-  create_table "picking_orders", :id => false, :force => true do |t|
-    t.integer "round_id",            :null => false
-    t.integer "position",            :null => false
-    t.integer "user_team_league_id", :null => false
-    t.integer "user_team_user_id",   :null => false
+  create_table "picks", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "draft_id",   :default => 0, :null => false
+    t.integer  "team_id",                   :null => false
+    t.integer  "pick_order", :default => 0, :null => false
+    t.datetime "picked_at"
+    t.integer  "round",      :default => 0, :null => false
   end
 
-  add_index "picking_orders", ["round_id"], :name => "index_picking_orders_round"
-  add_index "picking_orders", ["user_team_league_id", "user_team_user_id"], :name => "index_picking_orders_user_team"
-
-  create_table "picks", :id => false, :force => true do |t|
-    t.integer "round_id",            :null => false
-    t.integer "person_id",           :null => false
-    t.integer "user_team_league_id", :null => false
-    t.integer "user_team_user_id",   :null => false
+  create_table "players", :force => true do |t|
+    t.integer "user_team_id"
+    t.integer "person_id"
   end
-
-  add_index "picks", ["person_id"], :name => "index_picks_person"
-  add_index "picks", ["round_id"], :name => "index_picks_round"
-  add_index "picks", ["user_team_league_id", "user_team_user_id"], :name => "index_picks_user_team"
 
   create_table "positions", :force => true do |t|
     t.integer "affiliation_id",                :null => false
     t.string  "abbreviation",   :limit => 100, :null => false
-    t.string  "teamtype",       :limit => 15,  :null => false
-    t.string  "name",           :limit => 25,  :null => false
+    t.string  "name",           :limit => 20,  :null => false
   end
 
   add_index "positions", ["abbreviation"], :name => "IDX_positions_1"
@@ -1048,22 +1076,18 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   end
 
   create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles_copy", :force => true do |t|
     t.string "role_key",  :limit => 100, :null => false
     t.string "role_name", :limit => 100
     t.string "comment",   :limit => 100
   end
 
-  add_index "roles", ["role_key"], :name => "IDX_roles_1"
-
-  create_table "rounds", :force => true do |t|
-    t.integer  "draft_id",                       :null => false
-    t.datetime "started_at"
-    t.datetime "finished_at"
-    t.boolean  "started",     :default => false, :null => false
-    t.boolean  "finished",    :default => false, :null => false
-  end
-
-  add_index "rounds", ["draft_id"], :name => "index_rounds_draft"
+  add_index "roles_copy", ["role_key"], :name => "IDX_roles_1"
 
   create_table "salaries", :force => true do |t|
     t.string  "full_name",       :limit => 50, :null => false
@@ -1106,16 +1130,6 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "sites", ["publisher_id"], :name => "IDX_FK_sit_pub_id__pub_id"
   add_index "sites", ["site_key"], :name => "IDX_sites_1"
 
-  create_table "sports", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "sports_properties", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "sports_property", :force => true do |t|
     t.string  "sports_property_type", :limit => 100
     t.integer "sports_property_id"
@@ -1149,15 +1163,17 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   add_index "standings", ["sub_season_id"], :name => "FK_sta_sub_sea_id__sub_sea_id"
 
   create_table "stats", :force => true do |t|
-    t.string  "stat_repository_type", :limit => 100
-    t.integer "stat_repository_id",                  :null => false
-    t.string  "stat_holder_type",     :limit => 100
-    t.integer "stat_holder_id"
-    t.string  "stat_coverage_type",   :limit => 100
-    t.integer "stat_coverage_id"
-    t.string  "stat_membership_type", :limit => 40
-    t.integer "stat_membership_id"
-    t.string  "context",              :limit => 40,  :null => false
+    t.string   "stat_repository_type", :limit => 100
+    t.integer  "stat_repository_id",                  :null => false
+    t.string   "stat_holder_type",     :limit => 100
+    t.integer  "stat_holder_id"
+    t.string   "stat_coverage_type",   :limit => 100
+    t.integer  "stat_coverage_id"
+    t.string   "stat_membership_type", :limit => 40
+    t.integer  "stat_membership_id"
+    t.string   "context",              :limit => 40,  :null => false
+    t.string   "scope"
+    t.datetime "start_date_time"
   end
 
   add_index "stats", ["context"], :name => "IDX_stats_7"
@@ -1201,12 +1217,10 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
   end
 
   add_index "team_phases", ["affiliation_id"], :name => "FK_tea_aff_pha_aff_id__aff_id"
-  add_index "team_phases", ["affiliation_id"], :name => "index_team_phases_affiliation"
   add_index "team_phases", ["end_season_id"], :name => "FK_tea_aff_pha_end_sea_id__sea_id"
   add_index "team_phases", ["role_id"], :name => "FK_tea_aff_pha_rol_id__rol_id"
   add_index "team_phases", ["start_season_id"], :name => "FK_tea_aff_pha_sta_sea_id__sea_id"
   add_index "team_phases", ["team_id"], :name => "FK_tea_aff_pha_tea_id__tea_id"
-  add_index "team_phases", ["team_id"], :name => "index_team_phases_team"
 
   create_table "teams", :force => true do |t|
     t.string  "team_key",     :limit => 100, :null => false
@@ -1240,44 +1254,44 @@ ActiveRecord::Schema.define(:version => 20110823061803) do
     t.integer "second_team_id",  :null => false
   end
 
-  create_table "user_team_persons", :force => true do |t|
-    t.integer "user_team_id"
-    t.integer "person_id"
-  end
-
   create_table "user_teams", :force => true do |t|
-    t.integer "league_id",               :null => false
-    t.string  "name",      :limit => 50, :null => false
-    t.integer "user_id",                 :null => false
+    t.integer "league_id",                                        :null => false
+    t.string  "name",           :limit => 50,                     :null => false
+    t.integer "user_id",                                          :null => false
+    t.boolean "is_online",                     :default => false, :null => false
+    t.binary  "uuid",           :limit => 255
+    t.string  "last_socket_id"
   end
 
   add_index "user_teams", ["league_id"], :name => "index_user_teams_league"
   add_index "user_teams", ["user_id"], :name => "index_user_teams_user"
+  add_index "user_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                :null => false
-    t.string   "encrypted_password",     :limit => 128,                :null => false
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.binary   "note"
-    t.integer  "experience"
-    t.datetime "reset_password_sent_at"
+    t.string   "authentication_token"
     t.datetime "last_seen"
+    t.integer  "league_id"
+    t.string   "name"
+    t.string   "role"
+    t.integer  "roles_mask"
   end
 
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "wagering_moneylines", :force => true do |t|
     t.integer  "bookmaker_id",                :null => false

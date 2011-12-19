@@ -2,7 +2,6 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
     extend: 'Ext.app.Controller',
 
     stores: [ 'Players' ],
-    models: [ 'Player' ],
     views: [ 'PlayerGrid' ],
 
     view: null,
@@ -14,6 +13,21 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
                 render: this.onRender,
             },
         });
+
+        // append a "disabled" class to the row when it's picked
+        this.application.addListener(this.application.STATUS_PICKED, this.onPickUpdate, this);
+        this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
+    },
+
+    onPickUpdate: function(pick_id) {
+        //this.view.getView().refresh();
+        var store = this.getPlayersStore(),
+            record = store.getById(pick_id);
+        if (record !== null) {
+            record.set('is_valid', false);
+        } else {
+            console.log('Player with id '+pick_id+' not found in cache. No cause for alarm.');
+        }
     },
 
     onRowDblClick: function(e, item) {

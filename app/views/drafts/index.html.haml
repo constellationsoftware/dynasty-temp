@@ -1,0 +1,14 @@
+%body
+  = content_tag(:div, flash.notice, :class => "notice") if flash.notice
+  = content_tag(:div, flash.alert, :class => "alert") if flash.alert
+#wrap
+  #innerwrap
+  %h1= current_user.name
+  %h3 Your Teams:
+  %ul
+    - @teams.each do |team|
+      %li
+        %h4= team.league.name
+        %h5= team.name 
+        
+      

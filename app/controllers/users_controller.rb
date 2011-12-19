@@ -2,9 +2,14 @@ class UsersController < ApplicationController
   # GET /Users
   # GET /Users.json
   def index
-    @users = User.all
-
-
+    @time = Time.now
+    Thread.new do
+      100.times {
+        sleep 1
+        Pusher['chrono-channel'].trigger('update', Time.now)
+      }
+    end
+    @user = current_user
     respond_to do |format|
       format.html # index.html.erb
 
@@ -14,6 +19,11 @@ class UsersController < ApplicationController
 
     # GET /Users/1
     # GET /Users/1.json
+
+  def home
+    @user = current_user
+  end
+  
   def show
     @user    = User.find(params[:id])
   #  @players = @user.person_phases.find(:all, :include => :position)

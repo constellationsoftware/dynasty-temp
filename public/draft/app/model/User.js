@@ -1,10 +1,10 @@
-Ext.define('User', {
+Ext.define('DynastyDraft.model.User', {
     extend: 'Ext.data.Model',
     fields: ['id', 'email'],
 
     proxy: {
         type: 'rest',
-        url : '/users'
+        url : '/draft/users'
         reader: {
         	type: 'json',
         	root: 'users'

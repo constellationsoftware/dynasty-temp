@@ -3,8 +3,10 @@ Ext.define('DynastyDraft.view.Viewport', {
 
     requires: [
         'DynastyDraft.view.PlayerGrid',
-        'DynastyDraft.view.PlayerQueueGrid',
+        'DynastyDraft.view.PlayerQueue',
         'DynastyDraft.view.ShoutBoxContainer',
+        'DynastyDraft.view.AdminControls',
+        'DynastyDraft.view.Picks',
     ],
 
     layout: 'border',
@@ -25,13 +27,26 @@ Ext.define('DynastyDraft.view.Viewport', {
             items: [{
                 xtype: 'timer',
                 width: 200,
-                margin: '10, 5',
             }, {
-                xtype: 'tbspacer',
+                xtype: 'panel',
+                border: false,
+                minWidth: 380,
                 flex: 1,
+                id: 'picks-scroller-container',
+                items: [{
+                    xtype: 'picks',
+                    width: 2500,
+                }, {
+                    xtype: 'container',
+                    cls: 'gradient-mask',
+                    height: '100%'
+                }]
+            }, {
+                xtype: 'container',
+                width: 30,
             }, {
                 xtype: 'shoutboxcontainer',
-                width: 400,
+                width: 350,
             }],
         },
         
@@ -45,24 +60,16 @@ Ext.define('DynastyDraft.view.Viewport', {
             activeTab: 0,
             flex: 1,
 
-            items: [
-                {
-                    xtype: 'playergrid',
-                    title: 'Players'
-                },
-                {
-                    xtype: 'rostergrid',
-                    title: 'Roster',
-                },
-                {
-                    xtype: 'panel',
-                    title: 'Recommendation',
-                },
-                {
-                    xtype: 'panel',
-                    title: 'Rules',
-                },
-            ],
+            items: [{
+                xtype: 'playergrid',
+                title: 'Players'
+            }, {
+                xtype: 'rostergrid',
+                title: 'Roster',
+            }, {
+                xtype: 'admincontrols',
+                title: 'Draft Tools',
+            }],
         },
 
 
@@ -83,11 +90,9 @@ Ext.define('DynastyDraft.view.Viewport', {
             defaults: {
                 autoScroll: true,
             },
-            items: [
-                {
-                    xtype: 'playerqueuegrid',
-                },
-            ],
-        },
+            items: [{
+                xtype: 'playerqueue',
+            }],
+        }
     ],
 });

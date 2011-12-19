@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Dynasty Draft Demo</title>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="resources/css/dynasty_theme.css">
+        <script src="http://js.pusherapp.com/1.9/pusher.min.js"></script>
+        <script type="text/javascript" src="lib/extjs/ext-debug.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+<body>    
+</body>
+</html>

@@ -2,7 +2,6 @@ Ext.define('DynastyDraft.controller.Roster', {
     extend: 'Ext.app.Controller',
 
     stores: [ 'Roster' ],
-    models: [ 'Player' ],
     views: [ 'Roster' ],
 
     view: null,
@@ -14,7 +13,7 @@ Ext.define('DynastyDraft.controller.Roster', {
             },
         });
 
-        this.application.addListener("playerpick", this.onPlayerPicked, this);
+        this.application.addListener(this.application.STATUS_PICKED, this.onPlayerPicked, this);
     },
 
     onPlayerPicked: function(player) {

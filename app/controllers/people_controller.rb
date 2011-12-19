@@ -1,28 +1,31 @@
 class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
+  before_filter :authenticate_user!
   def index
-    people = Person.joins(:display_name, :person_phase, :salary).merge(PersonPhase.draftable).merge(Salary.has_contract)
-    @people = Person.joins(:display_name, :person_phase, :salary).merge(PersonPhase.draftable).merge(Salary.has_contract)
-    data = {}
-    data[:players] = []
-    people.each do |p|
-      data[:players] << [
-          "id: #{p.id}",
-          "player_key: #{p.person_key}",
-          "full_name: #{p.display_name.full_name}",
-          "position: #{p.person_phase.position.name}",
-          "position_depth: #{p.person_phase.regular_position_depth}",
-          "score: #{p.person_score.score}",
-          "salary: #{p.salary.contract_amount}"
+    @teams = Team.all
+    @positions = Position.all
+    #people = Person.all
+    @people = PersonPhase.current_phase.joins(:person)
+    #data = {}
+    #data[:players] = []
+    #people.each do |p|
+      #data[:players] << [
+          #"id: #{p.id}",
+          #"player_key: #{p.person_key}",
+          #"full_name: #{p.display_name.full_name}",
+          #"position: #{p.person_phase.position}",
+          #"position_depth: #{p.person_phase.regular_position_depth}",
+          #"score: #{p.person_score.score}",
+          #"salary: #{p.salary.contract_amount}"
           #"#{p.salary.inspect if p.salary}",
           #"#{p.person_scores.last.inspect if p.person_scores.last}"
-      ]
-    end
+      #]
+    #end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: data }
+      format.json { render json: @people }
     end
   end
 

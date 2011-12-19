@@ -1,0 +1,12 @@
+#events
+  -@events.each do |event|
+    %ul
+      %li
+        = event.gameday.to_date.strftime("%A, %B %d, %Y")
+        | Week:
+        = event.gameday.strftime("%U").to_i - 36
+        = event.winner.display_name.full_name
+        vs.
+        = event.loser.display_name.full_name
+
+

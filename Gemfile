@@ -4,21 +4,43 @@ source 'http://gems.github.com'
 gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
+gem 'compass', '>= 0.11.5'
+gem 'sass-rails',  '~> 3.1.0'
+gem 'heroku'
+# gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'haml'
-gem "devise", :git => "git://github.com/plataformatec/devise.git" 
+gem 'hpricot'
+gem 'ruby_parser'
+gem 'devise'
+gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
 gem 'responders'
 gem 'has_scope'
 gem 'inherited_resources'
 gem 'kaminari'
+gem 'pusher'
+gem 'em-http-request' # required for async pusher requests
 gem 'thin'
-gem 'pubnub-ruby'
-
+gem 'unicorn'
+gem 'dalli'
+gem 'pusher'
+gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
+gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
+gem 'delayed_job'
+gem 'uuidtools'
+gem 'activeadmin'
+gem 'squeel'
+gem 'meta_search', '>= 1.1.0.pre'
+gem 'zurb-foundation', :group => :assets
+gem 'execjs'
+gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+gem 'andand'
+gem 'coffee-filter'
+gem 'timecop'
 
 group :production do
   gem 'pg'
-  gem 'newrelic_rpm'
 end
 
 group :development, :test do
@@ -34,10 +56,8 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-
-  gem 'sass-rails', " ~> 3.1.0"
   gem 'sass', '3.1.7'
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
   gem 'thin'
 end
@@ -57,3 +77,4 @@ group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+

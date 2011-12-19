@@ -1,30 +1,58 @@
 Dynasty::Application.routes.draw do
-
+  ActiveAdmin.routes(self)
   devise_for :users
 
-  resources :salaries
+  scope :league, :module => 'league', :constraints => SubdomainConstraint do
+    resource :draft, :defaults => { :format => 'html' } do
+      member do
+        post 'auth'
+        post 'start', :format => 'text'
+        post 'pick', :format => 'text'
+        post 'reset', :format => 'text'
+        get 'data', :format => :json
+      end
 
-
-  resources :people
-  resources :persons
-
-  resources :drafts
+      defaults :format => 'json' do
+        resources :picks
+        resources :teams
+      end
+    end
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources(:person_scores, :events, :dynasty_dollars, :positions, :trades,
-            :user_teams, :user_team_person, :leagues, :users, :person_phases, :display_names,
-            :stats, :fix, :draft, :draftable_players)
+  resources :person_scores, :events, :dynasty_dollars, :positions, :trades,
+            :user_teams, :user_team_person, :users, :person_phases, :display_names,
+            :stats, :fix, :draftable_players, :picks, :salaries,
+            :persons, :people, :drafts, :leagues, :admin_dashboard
 
   resources :teams do
-    resources :display_name
-    resources :person_phases
+    resources :display_name, :person_phases
+  end
+
+  resources :users do
+    get 'home'
   end
 
   resources :persons do
     resources :display_name
   end
+
+  resources :drafts do
+    member do
+      get 'push_available_players'
+      get 'push_draft_status'
+      get 'roster'
+      get 'auto_pick'
+      get 'draft_auto_pick'
+      get 'users'
+      get 'available_players'
+      get 'status'
+    end
+  end
+
+
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
@@ -71,7 +99,7 @@ Dynasty::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => "users#index"
 
   # See how all your routes lay out with "rake routes"
 

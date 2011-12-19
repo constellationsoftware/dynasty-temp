@@ -2,22 +2,58 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
     extend: 'Ext.app.Controller',
 
     stores: [ 'PlayerQueue' ],
-    models: [ 'Player' ],
-    views: [ 'PlayerQueueGrid' ],
+    views: [ 'PlayerQueue' ],
 
     view: null,
 
+    refs: [{
+        ref: 'view',
+        selector: 'playerqueue'
+    }, {
+        ref: 'pickButton',
+        selector: 'playerqueue button'
+    }],
+
     init: function() {
         this.control({
-            'playerqueuegrid': {
-                render: this.onViewRender
+            'playerqueue': {
+                render: this.onViewRender,
+            },
+            'playerqueue button': {
+                click: this.forcePick,
             },
         });
 
-        this.application.addListener("timerfinish", this.onTimerFinish, this);
+        this.application.addListener(this.application.TIMEOUT, this.getPick, this);
+        this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
+
+        // enable/disable pick button on app status
+        this.application.addListener(this.application.STATUS_PICKING, function() {
+            this.getPickButton().setDisabled(false);
+        }, this);
+        this.application.addListener(this.application.STATUS_WAITING, function() {
+            this.getPickButton().setDisabled(true);
+        }, this);
     },
 
-    onTimerFinish: function() {
+    forcePick: function() {
+        var grid = this.view.getView();
+        if (this.getPlayerQueueStore().count() > 0) {
+            var firstRow = grid.getNode(0);
+            record = grid.getRecord(firstRow);
+
+            Ext.Msg.show({
+                title: 'Confirm pick?',
+                msg: 'Do you want to add ' + record.get('full_name') + ' to your roster?',
+                buttons: Ext.Msg.YESNO,
+                icon: Ext.Msg.QUESTION,
+                fn: this.getPick,
+                scope: this
+            });
+        }
+    },
+
+    getPick: function() {
         var record,
             grid = this.view.getView(); // inner grid view
 
@@ -38,7 +74,26 @@ Ext.define('DynastyDraft.controller.PlayerQueue', {
 
         if (record) {
             // notify listeners that pick was made
-            this.application.fireEvent('playerpick', record);
+            this.fireEvent('picked', record);
+        } else {
+            // notify listeners that pick was made
+            this.fireEvent('pickfailed');
+        }
+    },
+
+    onPickUpdate: function(pick_id) {
+        var store = this.getPlayerQueueStore(),
+            record = store.getById(pick_id);
+        if (record !== null) {
+            Ext.Msg.show({
+                title: 'AWW HELL NAW',
+                msg: 'Someone just stole ' + record.get('full_name'),
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+
+            // remove the record from the store
+            store.remove(record);
         }
     },
 

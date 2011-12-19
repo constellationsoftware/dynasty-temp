@@ -36,7 +36,7 @@ Ext.define('DynastyDraft.view.Roster', {
         },
         {
             ftype: 'grouping',
-            groupHeaderTpl: '{name} ({rows.length} Player{[values.rows.length > 1 ? "s" : ""]})',
+            groupHeaderTpl: '{name} ({rows.length} Salary{[values.rows.length > 1 ? "s" : ""]})',
             hideGroupedHeader: false,
             enableGroupingMenu: false,
             startCollapsed: false,

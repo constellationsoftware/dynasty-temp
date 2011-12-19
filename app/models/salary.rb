@@ -1,9 +1,8 @@
 class Salary < ActiveRecord::Base
-  #include Sencha::Model
-  class << self; attr_accessor :default_sort end
-  @default_sort = 'contract_amount DESC'
-
   POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'K']
+
+  has_many :picks
+  belongs_to :person
 
   # Returns a case statement for ordering by a particular set of strings
   # Note that the SQL is built by hand and therefore injection is possible,
@@ -20,8 +19,10 @@ class Salary < ActiveRecord::Base
   #scopes
   scope :offense, where("SUBSTRING(position, 1, 2) IN (?)", POSITION_PRIORITIES)
   scope :by_position, order(order_by_position_priority)
-
-  belongs_to :person
+  scope :with_valid, lambda {
+    select('DISTINCT salaries.*, p.id IS NULL AS is_valid')
+      .joins('LEFT OUTER JOIN picks p ON salaries.id = p.person_id')
+  }
 
   # Match salaries to persons through displayname
   def matcher
@@ -36,7 +37,10 @@ class Salary < ActiveRecord::Base
   	where("contract_amount > ?", 0 )
   end
 
-
+  def valid
+    raise "Missing attribute" unless has_attribute?(:valid)
+    !!read_attribute(:valid)
+  end
 
   # Sencha model fields
   #sencha_fields :exclude => [ :player_id ]
