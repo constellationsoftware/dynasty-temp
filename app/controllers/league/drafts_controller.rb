@@ -27,7 +27,7 @@ class League::DraftsController < SubdomainController
       @draft.reset
       Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:reset', {})
       
-      format.text { render :text => "Resetting draft for #{@league.name}" }  
+      format.text { render :text => "Resetting draft for #{@league.name}" }
     end
   end
 

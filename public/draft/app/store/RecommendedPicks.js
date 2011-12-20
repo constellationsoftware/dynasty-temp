@@ -1,12 +1,10 @@
-Ext.define('DynastyDraft.store.Players', {
+Ext.define('DynastyDraft.store.RecommendedPicks', {
     extend: 'Ext.data.Store',
 
     model: 'DynastyDraft.model.Player',
-
-    // allow the grid to interact with the paging scroller by buffering
-    buffered: true,
-    pageSize: 50,
     remoteSort: true,
+    remoteFilter: true,
+    autoLoad: true,
 
     proxy: {
         type: 'rest',
@@ -14,16 +12,19 @@ Ext.define('DynastyDraft.store.Players', {
         url: '/draft/players',
         reader: {
             type: 'json',
-            root: 'players',
-            totalProperty: 'total'
+            root: 'players'
         },
+        // sends single sort as multi parameter
+        simpleSortMode: false,
         extraParams: {
             available: true,
             by_rating: true,
-            by_position: true
+            by_position: true,
+            page: 1,
+            limit: 5
         }
     },
-
+    /*
     sorters: [{
         property: 'position',
         direction: 'ASC',
@@ -42,4 +43,5 @@ Ext.define('DynastyDraft.store.Players', {
         property: 'rating',
         direction: 'DESC'
     }]
+    */
 });

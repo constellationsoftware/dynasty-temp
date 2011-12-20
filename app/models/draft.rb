@@ -118,7 +118,10 @@ class Draft < ActiveRecord::Base
     # if the draft isn't over, then the "current pick" is for a live user
     if !(self.status === :finished)
       pick_user_id = self.current_pick.team.uuid
-      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, {})
+      payload = {
+        :players => Salary.by_rating.by_position.available.limit(5)
+      }
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, payload)
     end
 
     self.save!

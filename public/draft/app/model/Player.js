@@ -2,13 +2,13 @@ Ext.define('DynastyDraft.model.Player', {
     extend: 'Ext.data.Model',
 
     fields: [
-        {"name":"id","allowBlank":true,"type":"int","defaultValue":null},
-        {"name":"full_name","allowBlank":false,"type":"string","defaultValue":null},
+        { name: 'id', allowBlank: true,type: 'int', defaultValue: null },
+        { name: 'full_name', allowBlank: false,type: 'string', defaultValue: null },
         {
-            "name":"position",
-            "allowBlank":false,
-            "type":"string",
-            "defaultValue":"",
+            name: 'position',
+            allowBlank: false,
+            type: 'string',
+            defaultValue: '',
             convert: function(value) {
                 var slashPos = value.indexOf('/');
                 // if position is compound, use only the primary
@@ -16,11 +16,11 @@ Ext.define('DynastyDraft.model.Player', {
                 return position;
             }
         },
-        {"name":"contract_amount","allowBlank":false,"type":"int","defaultValue":0},
-        {"name":"points","allowBlank":false,"type":"int","defaultValue":0},
-        {"name":"rating","allowBlank":false,"type":"int","defaultValue":0},
-        {"name":"consistency","allowBlank":false,"type":"int","defaultValue":0},
-        {"name":"is_valid","allowBlank":true,"type":"int","defaultValue":1},
+        { name: 'contract_amount', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'points', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'rating', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'consistency', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'is_valid', allowBlank: true, type: 'int', defaultValue: 1 },
     ],
 
     belongsTo: {
@@ -28,4 +28,12 @@ Ext.define('DynastyDraft.model.Player', {
         name: 'pick',
     },
     idProperty: 'id',
+    /*proxy: {
+        type: 'rest',
+        url: '/draft/players',
+        reader: {
+            type: 'json',
+            root: 'players'
+        }
+    }*/
 });

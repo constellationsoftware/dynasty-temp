@@ -4,21 +4,20 @@ Ext.define('DynastyDraft.controller.Roster', {
     stores: [ 'Roster' ],
     views: [ 'Roster' ],
 
-    view: null,
+    refs: [{
+        ref: 'rosterView',
+        selector: 'viewport roster',
+    }],
 
     init: function() {
         this.control({
-            'rostergrid': {
-                render: this.onViewRender
-            },
+            'viewport roster': {},
         });
 
-        this.application.addListener(this.application.STATUS_PICKED, this.onPlayerPicked, this);
+        this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSuccess, this);
     },
 
-    onPlayerPicked: function(player) {
-        this.getRosterStore().add(player);
-    },
-
-    onViewRender: function(view) { this.view = view; },
+    onPickSuccess: function() {
+        this.getRosterStore().load();
+    }
 });

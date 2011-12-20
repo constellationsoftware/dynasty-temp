@@ -1,8 +1,7 @@
 Ext.define('DynastyDraft.view.Picks', {
     extend: 'Ext.ux.DataView.Animated',
-    alias: 'widget.picks',
-    id: 'picks',
 
+    alias: 'widget.picks',
     deferInitialRefresh: true,
     autoScroll: false,
     duration: 400,
@@ -19,7 +18,6 @@ Ext.define('DynastyDraft.view.Picks', {
             '</div>',
         '</tpl>'
     ),
-
     itemSelector: '.pick',
-    overItemCls : 'pick-hover',
+    overItemCls : 'pick-hover'
 });
