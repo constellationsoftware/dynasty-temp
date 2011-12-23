@@ -23,5 +23,14 @@
                     %strong
                         Uniform #:
                     = p.uniform_number
+                %li
+                    Total Stats:
+                    = p.person.stats.count
+                    Event Stats:
+                    = p.person.stats.event_stat.count
+                    SubSeason Stats:
+                    = p.person.stats.subseason_stat.count
+                    Affiliation Stats:
+                    = p.person.stats.affiliation_stat.count
 
 

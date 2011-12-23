@@ -38,6 +38,7 @@ gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'andand'
 gem 'coffee-filter'
 gem 'timecop'
+gem 'jbuilder'
 
 group :production do
   gem 'pg'

@@ -23,9 +23,12 @@ class PersonsController < ApplicationController
     @stats        = @person.stats.current.event_stat
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
+
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @person }
+      format.json { render :json => @person.stats, :include => :stat_repository}
     end
   end
 
