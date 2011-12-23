@@ -11152,10 +11152,10 @@ body .ux-notification-window {
   -webkit-transition-property: background-color;
   -o-transition-property: background-color;
   transition-property: background-color;
-  -moz-transition-duration: 1s;
-  -webkit-transition-duration: 1s;
-  -o-transition-duration: 1s;
-  transition-duration: 1s;
+  -moz-transition-duration: 0.4s;
+  -webkit-transition-duration: 0.4s;
+  -o-transition-duration: 0.4s;
+  transition-duration: 0.4s;
   -moz-transition-timing-function: cubic-bezier(0, 0.42, 0.57, 0.88);
   -webkit-transition-timing-function: cubic-bezier(0, 0.42, 0.57, 0.88);
   -o-transition-timing-function: cubic-bezier(0, 0.42, 0.57, 0.88);
@@ -11207,7 +11207,7 @@ body .ux-notification-window {
   margin-left: 10em;
 }
 /* line 156, ../sass/dynasty_theme.scss */
-.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .position, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
+.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   float: left;
   width: 50%;
   margin: 0;
@@ -11217,36 +11217,52 @@ body .ux-notification-window {
   margin-bottom: 0.5em;
 }
 /* line 165, ../sass/dynasty_theme.scss */
+.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .edit, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .edit {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  margin-left: 1em;
+}
+/* line 171, ../sass/dynasty_theme.scss */
+.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .edit div, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .edit div {
+  font-size: 16px;
+  height: 100%;
+}
+/* line 177, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   text-align: right;
 }
-/* line 167, ../sass/dynasty_theme.scss */
+/* line 178, ../sass/dynasty_theme.scss */
+.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats {
+  clear: both;
+}
+/* line 180, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats dd {
   display: inline-block;
   width: 75px;
   margin-right: 20px;
 }
-/* line 172, ../sass/dynasty_theme.scss */
+/* line 185, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats dd span {
   float: right;
   color: #CCCCCC;
 }
-/* line 175, ../sass/dynasty_theme.scss */
+/* line 188, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats dd span.pos {
   color: green;
 }
-/* line 176, ../sass/dynasty_theme.scss */
+/* line 189, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats dd span.neg {
   color: red;
 }
-/* line 182, ../sass/dynasty_theme.scss */
+/* line 195, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .footer {
   clear: both;
   width: 100%;
   text-align: center;
 }
 
-/* line 189, ../sass/dynasty_theme.scss */
+/* line 202, ../sass/dynasty_theme.scss */
 .selected {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #cfe2f6), color-stop(6%, #b2d7ff), color-stop(100%, #cfe2f6));
   background-image: -webkit-linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
@@ -11259,7 +11275,7 @@ body .ux-notification-window {
 /********************************************************************************
  * PICK SCROLLER STUFF
  *******************************************************************************/
-/* line 195, ../sass/dynasty_theme.scss */
+/* line 208, ../sass/dynasty_theme.scss */
 .gradient-mask {
   position: absolute;
   right: 0px;
@@ -11269,7 +11285,7 @@ body .ux-notification-window {
   -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(black), to(rgba(0, 0, 0, 0)));
 }
 
-/* line 205, ../sass/dynasty_theme.scss */
+/* line 218, ../sass/dynasty_theme.scss */
 #picks_scroller ul {
   display: table-row;
   overflow: hidden;
@@ -11277,7 +11293,7 @@ body .ux-notification-window {
   height: 120px;
 }
 
-/* line 213, ../sass/dynasty_theme.scss */
+/* line 226, ../sass/dynasty_theme.scss */
 div.pick {
   position: absolute;
   height: 120px;
@@ -11285,7 +11301,7 @@ div.pick {
   margin: 0;
   padding: 10px;
 }
-/* line 220, ../sass/dynasty_theme.scss */
+/* line 233, ../sass/dynasty_theme.scss */
 div.pick div.team_pic {
   margin: 0 auto;
   height: 80px;
@@ -11293,19 +11309,19 @@ div.pick div.team_pic {
   border: 1px solid black;
   margin-bottom: 5px;
 }
-/* line 228, ../sass/dynasty_theme.scss */
+/* line 241, ../sass/dynasty_theme.scss */
 div.pick div.round p {
   width: 100%;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 235, ../sass/dynasty_theme.scss */
+/* line 248, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 238, ../sass/dynasty_theme.scss */
+/* line 251, ../sass/dynasty_theme.scss */
 #user-balance.deficit {
   color: red;
 }

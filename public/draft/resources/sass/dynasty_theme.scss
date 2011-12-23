@@ -113,7 +113,7 @@ $recommended_pick_bio_min-height: 8em;
         @include min-height($recommended_pick_bio_min-height);
         padding: 0.5em 0.7em;
         @include transition-property(background-color);
-        @include transition-duration(1s);
+        @include transition-duration(0.4s);
         @include transition-timing-function(cubic-bezier(0, 0.42, 0.57, 0.88));
 
         &:hover { background-color: $recommended_pick_background_color_hover; }
@@ -153,7 +153,7 @@ $recommended_pick_bio_min-height: 8em;
             .stats_content {
                 margin-left: $recommended_pick_bio_width;
 
-                .position, .salary {
+                .title, .salary {
                     float: left;
                     width: 50%;
                     margin: 0;
@@ -161,9 +161,22 @@ $recommended_pick_bio_min-height: 8em;
                     font-weight: bold;
                     font-size: 2em;
                     margin-bottom: 0.5em;
+
+                    .edit {
+                        display: inline-block;
+                        margin: 0;
+                        padding: 0;
+                        margin-left: 1em;
+
+                        div {
+                            font-size: 16px;
+                            height: 100%;
+                        }
+                    }
                 }
                 .salary { text-align: right; }
                 .stats {
+                    clear: both; 
                     dd {
                         display: inline-block;
                         width: 75px;

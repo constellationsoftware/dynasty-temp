@@ -23,25 +23,5 @@ Ext.define('DynastyDraft.store.RecommendedPicks', {
             page: 1,
             limit: 5
         }
-    },
-    /*
-    sorters: [{
-        property: 'position',
-        direction: 'ASC',
-        transform: function(value) {
-            var positions = [
-                'QB',
-                'WR',
-                'RB',
-                'TE',
-                'K'
-            ];
-            var index = positions.indexOf(position);
-            return index !== -1 ? index : 999;
-        }
-    }, {
-        property: 'rating',
-        direction: 'DESC'
-    }]
-    */
+    }
 });

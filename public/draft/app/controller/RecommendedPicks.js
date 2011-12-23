@@ -2,7 +2,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     extend: 'Ext.app.Controller',
 
     stores: [ 'RecommendedPicks' ],
-    views: [ 'RecommendedPicks' ],
+    views: [ 'RecommendedPicks', 'NewPlayerDialog' ],
 
     refs: [{
         ref: 'dataView',
@@ -13,6 +13,9 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     }, {
         ref: 'submitButton',
         selector: '#recommendedpickwrap button#submit'
+    }, {
+        ref: 'editWindow',
+        selector: '#recommended-pick-edit-window'
     }],
 
     init: function() {
@@ -20,11 +23,14 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
 
         this.control({
             'viewport recommendedpicks': {
-                beforerender: this.onBeforeViewRender,
-                datachanged: this.onDataChanged,
+                beforerender: this.onBeforeRender,
                 selectionchange: this.onSelectionChange,
+                itemclick: this.onItemClick,
                 itemdblclick: this.onSubmit,
-                itemkeydown: this.onItemKeyDown
+                itemkeydown: this.onItemKeyDown,
+                itemmouseenter: this.onItemRollover,
+                itemmouseleave: this.onItemRollout,
+                itemupdate: this.onItemUpdate
             },
 
             '#recommendedpickwrap button#submit': {
@@ -33,6 +39,10 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
 
             '#recommendedpickwrap combo#filter': {
                 change: this.onFilterChanged
+            },
+
+            '#recommended-pick-edit-window': {
+                submit: this.onItemEditSubmit
             }
         });
 
@@ -43,7 +53,6 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         this.application.addListener(this.application.TIMEOUT, function() { this.makePick(true); }, this);
         // enable/disable pick button on app status
         this.application.addListener(this.application.STATUS_PICKING, function(data) {
-            console.log(data);
             this.getRecommendedPicksStore().loadRawData(data);
             this.getSubmitButton().setDisabled(false);
         }, this);
@@ -52,22 +61,85 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         }, this);
     },
 
-    onBeforeViewRender: function(view) {
+    onBeforeRender: function(view) {
         // bind the view's store instance to this one
         view.bindStore(this.getRecommendedPicksStore());
     },
 
     onRecommendedPicksLoaded: function(store, records) {
-        console.log(this.getDataView().getStore().getRange(0, this.getDataView().getStore().getCount() - 1));
-        this.getDataView().select(0);
+        var view = this.getDataView();
+        view.select(0);
+
+        // draw edit buttons for each item
+        view.getEl().select('.recommended_pick .edit', true).each(this.createEditButton);
     },
 
-    onItemKeyDown: function(me, record, item, index, e) {
+    createEditButton: function(container) {
+        var button = Ext.create('Ext.button.Button', {
+            text: 'Swap Player...',
+            itemId: 'edit',
+            renderTo: container
+        });
+        button.getEl().setVisibilityMode(Ext.Element.VISIBILITY).setVisible(false);
+        return button;
+    },
+
+    onItemUpdate: function(record, index, node) {
+        var el = new Ext.Element(node),
+            buttonContainer = el.down('.edit');
+        this.createEditButton(buttonContainer);
+        // update the stat comparison
+        this.onSelectionChange();
+    },
+
+    onItemClick: function(view, record, item, i, e) {
+        var target = e.getTarget(),
+            button = new Ext.Element(item).down('.edit *');
+
+        // if the click came from our "edit" button
+        if (button.contains(target)) {
+            var window = this.getEditWindow();
+            // if the dialog has not been created, create it now
+            if (!window) {
+                var klass = this.getNewPlayerDialogView();
+                window = new klass({
+                    id: 'recommended-pick-edit-window'
+                });
+            }
+
+            window.show(record);
+        }
+    },
+
+    /**
+     * When a new player is submitted, we want to remove the old record
+     * from the store and put the new record in its place.
+     */
+    onItemEditSubmit: function(record, oldRecord) {
+        var store = this.getRecommendedPicksStore(),
+            oldIndex = store.indexOf(oldRecord),
+            view = this.getDataView(),
+            el = new Ext.Element(view.getNode(oldIndex));
+        oldRecord.data = record.data;
+        view.refreshNode(oldIndex);
+    },
+
+    onItemKeyDown: function(view, record, item, index, e) {
         var key = e.getKey();
         if (key === Ext.EventObject.ENTER || key === Ext.EventObject.SPACE) {
             this.onSubmit();
             return false;
         }
+    },
+
+    onItemRollover: function(view, record, item, i) {
+        var button = new Ext.Element(item).down('.edit *');
+        button.setVisible(true);
+    },
+
+    onItemRollout: function(view, record, item, i) {
+        var button = new Ext.Element(item).down('.edit *');
+        button.setVisible(false);
     },
 
     onSubmit: function() { this.makePick(); },
@@ -87,10 +159,6 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             var msg = 'Do you want to add ' + record.get('full_name') + ' to your roster?';
             Ext.Msg.confirm('Confirm pick?', msg, callback, this);
         }
-    },
-
-    onDataChanged: function() {
-        this.getDataView().select(0);
     },
 
     /**
@@ -120,18 +188,20 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
      * values for each stat to reflect the amount of change from the
      * equivalent stat from the selected node.
      */
-    onSelectionChange: function(selectionModel, selections) {
+    onSelectionChange: function() {
         /**
          * If somehow the user finds a way to clear the selection, simply
          * select the last thing that was selected and don't fire an event.
          * That's what they get for being a dick.
          */
-        if (selections.length === 0) {
+        var view = this.getDataView(),
+            selectionModel = view.getSelectionModel();
+
+        if (selectionModel.getCount() === 0) {
             selectionModel.select(selectionModel.getLastSelected() ? selectionModel.getLastSelected() : 0, false, true);
         }
 
-        var view = selectionModel.view,
-            selectedNode = view.getSelectedNodes()[0],
+        var selectedNode = view.getSelectedNodes()[0],
             selectedRecord = view.getRecord(selectedNode),
             nodes = view.getNodes();
         
