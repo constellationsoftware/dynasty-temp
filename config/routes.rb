@@ -9,12 +9,14 @@ Dynasty::Application.routes.draw do
         post 'start', :format => 'text'
         post 'pick', :format => 'text'
         post 'reset', :format => 'text'
-        get 'data', :format => :json
       end
 
       defaults :format => 'json' do
         resources :picks
         resources :teams
+        resources :players do
+          get 'search', :on => :collection
+        end
       end
     end
   end

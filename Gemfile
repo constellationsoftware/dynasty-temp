@@ -35,10 +35,16 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'zurb-foundation', :group => :assets
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+
 gem 'andand'
 gem 'coffee-filter'
 gem 'timecop'
 gem 'jbuilder'
+
+gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
+gem 'money', :git => 'git://github.com/FOMNick/money.git'
+
+
 
 group :production do
   gem 'pg'

@@ -3,10 +3,11 @@ Ext.define('DynastyDraft.view.Viewport', {
 
     requires: [
         'DynastyDraft.view.PlayerGrid',
-        'DynastyDraft.view.PlayerQueue',
-        'DynastyDraft.view.ShoutBoxContainer',
         'DynastyDraft.view.AdminControls',
         'DynastyDraft.view.Picks',
+        'DynastyDraft.view.RecommendedPicks',
+        //'DynastyDraft.view.PlayerQueue',
+        //'DynastyDraft.view.ShoutBoxContainer',
     ],
 
     layout: 'border',
@@ -41,13 +42,18 @@ Ext.define('DynastyDraft.view.Viewport', {
                     cls: 'gradient-mask',
                     height: '100%'
                 }]
-            }, {
+            },
+            /*
+            {
                 xtype: 'container',
                 width: 30,
-            }, {
+            },
+            {
                 xtype: 'shoutboxcontainer',
                 width: 350,
-            }],
+            }
+            */
+            ],
         },
         
 
@@ -61,21 +67,100 @@ Ext.define('DynastyDraft.view.Viewport', {
             flex: 1,
 
             items: [{
-                xtype: 'playergrid',
-                title: 'Players'
+                xtype: 'panel',
+                title: 'Recommended',
+                id: 'recommendedpickwrap',
+                autoScroll: true,
+                items: [{
+                    xtype: 'recommendedpicks',
+                    padding: 10
+                }],
+                tbar: [{
+                    xtype: 'combo',
+                    itemId: 'filter',
+                    valueField: 'id',
+                    displayField: 'name',
+                    queryMode: 'local',
+                    fieldLabel: 'Filter',
+                    labelAlign: 'left',
+                    labelWidth: 40,
+                    editable: false,
+                    store: Ext.create('Ext.data.Store', {
+                        // store configs
+                        autoDestroy: true,
+                        // reader configs
+                        idIndex: 0,
+                        fields: ['id', 'name'],
+                        data: [{
+                            id: 'all',
+                            name: 'Show All',
+                        }, {
+                            id: 'QB',
+                            name: 'Quarterbacks'
+                        }, {
+                            id: 'WR',
+                            name: 'Wide Receivers'
+                        }, {
+                            id: 'RB',
+                            name: 'Running Backs'
+                        }, {
+                            id: 'TE',
+                            name: 'Tight Ends'
+                        }, {
+                            id: 'K',
+                            name: 'Kickers'
+                        }]
+                    }),
+                    value: 'all'
+                }, {
+                    xtype: 'tbfill'
+                }, {
+                    xtype: 'button',
+                    text: 'Confirm Pick',
+                    itemId: 'submit',
+                    scale: 'large',
+                    disabled: true
+                }],
+
             }, {
-                xtype: 'rostergrid',
+                xtype: 'playergrid',
+                title: 'All Players',
+            }, {
+                xtype: 'roster',
                 title: 'Roster',
             }, {
                 xtype: 'admincontrols',
                 title: 'Draft Tools',
             }],
-        },
-
+        }, {
+            xtype: 'toolbar',
+            region: 'south',
+            height: 30,
+            items: [{
+                xtype: 'tbfill'
+            }, {
+                xtype: 'tbtext',
+                data: USER_BALANCE,
+                id: 'user-balance',
+                tpl: Ext.create('Ext.XTemplate',
+                    '<tpl for=".">',
+                        'Total: ',
+                        '<span class="amount {[values < 0 ? "deficit" : ""]}">',
+                            '{[this.formatMoney(values)]}',
+                        '</span>',
+                    '</tpl>',
+                {
+                    formatMoney: function(value) {
+                        return Ext.util.Format.usMoney(value);
+                    }   
+                }),
+            }]
+        }
 
         /**
          * "TOOLBOX" CONTAINER
          */
+        /*
         {
             xtype: 'container',
             region: 'east',
@@ -94,5 +179,6 @@ Ext.define('DynastyDraft.view.Viewport', {
                 xtype: 'playerqueue',
             }],
         }
+        */
     ],
 });

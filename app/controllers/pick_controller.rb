@@ -1,2 +1,0 @@
-class PicksController < ApplicationController
-end

@@ -3,6 +3,9 @@ class PickObserver < ActiveRecord::Observer
     # if a player was picked, update the timestamp
     if !!pick.player
       pick.picked_at = Time.now
+
+      #audit the team's balance now
+      #picks = pick.team.picks
     end
   end
 

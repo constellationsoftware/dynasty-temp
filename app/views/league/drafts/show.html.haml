@@ -1,12 +1,13 @@
-%script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
+%script{:src => 'http://js.pusherapp.com/1.10/pusher.min.js', :type => 'text/javascript'}
 :javascript
   var CLIENT_ID = '#{@team.uuid}';
   var SOCKET_APP_KEY = '#{Pusher.key}';
   var DRAFT_STATUS = '#{@draft.status}';
-= stylesheet_link_tag "/draft/resources/css/dynasty_theme"
-= javascript_include_tag "/draft/lib/extjs/ext-debug"
-= javascript_include_tag "/draft/app"
+  var USER_BALANCE = #{@team.balance};
+= stylesheet_link_tag '/draft/resources/css/dynasty_theme'
+= javascript_include_tag '/draft/lib/extjs/ext-debug'
+= javascript_include_tag '/draft/app'
 %body
-  = content_tag(:div, flash.notice, :class => "notice") if flash.notice
-  = content_tag(:div, flash.alert, :class => "alert") if flash.alert
+  = content_tag(:div, flash.notice, :class => 'notice') if flash.notice
+  = content_tag(:div, flash.alert, :class => 'alert') if flash.alert
   = yield

@@ -1,21 +1,20 @@
-Ext.define('DynastyDraft.store.Roster', {
+Ext.define('DynastyDraft.store.PlayerSearch', {
     extend: 'Ext.data.Store',
 
     model: 'DynastyDraft.model.Player',
-    groupField: 'position',
-    autoLoad: true,
-    buffered: false,
+    remoteSort: true,
+    remoteFilter: true,
 
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/draft/players',
+        url: '/draft/players/search',
         reader: {
             type: 'json',
             root: 'players'
         },
         extraParams: {
-            roster: true
+            available: true
         }
     },
 });

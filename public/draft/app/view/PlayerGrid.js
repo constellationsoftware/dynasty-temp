@@ -12,19 +12,10 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
     loadMask: true,
     invalidateScrollerOnRefresh: false,
     viewConfig: {
-        copy: true,
         trackOver: false,
         getRowClass: function(record, rowIndex, rowParams, store) {
             if (!record.get('is_valid')) { return 'row-invalid'; }
-        },
-        plugins: [
-            {
-                ptype: 'gridviewdragdrop',
-                dragText: 'Drop onto your team roster',
-                dragGroup: 'PlayerGridDD',
-                enableDrop: false,
-            },
-        ],
+        }
     },
 
     columns: [
@@ -78,9 +69,6 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
     ],
 
     features: [
-        {
-            ftype: 'rowbody'
-        },
         {
             ftype: 'grouping',
             groupHeaderTpl: '{name} ({rows.length} Player{[values.rows.length > 1 ? "s" : ""]})',

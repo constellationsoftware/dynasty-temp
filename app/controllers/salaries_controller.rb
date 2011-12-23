@@ -7,7 +7,6 @@ class SalariesController < InheritedResources::Base
 
   #include Rails::ExtJS::Direct::Controller
   respond_to :html, :json
-  has_scope :offense, :type => :boolean, :default => true, :only => :index
   has_scope :by_position, :type => :boolean, :default => true, :only => :index
   has_scope :with_valid, :type => :boolean, :default => false, :only => :index
 
