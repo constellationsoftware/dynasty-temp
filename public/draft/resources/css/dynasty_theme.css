@@ -11272,10 +11272,39 @@ body .ux-notification-window {
   background-image: linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
 }
 
+/* line 204, ../sass/dynasty_theme.scss */
+.x-boundlist-floating {
+  border-top-width: 1px;
+}
+
+/* line 206, ../sass/dynasty_theme.scss */
+.playersearch-boundlist ul {
+  display: block;
+  padding: 0px 3px;
+}
+/* line 210, ../sass/dynasty_theme.scss */
+.playersearch-boundlist ul li {
+  display: inline-block;
+  text-align: left;
+}
+/* line 214, ../sass/dynasty_theme.scss */
+.playersearch-boundlist ul li.name {
+  width: 60%;
+}
+/* line 215, ../sass/dynasty_theme.scss */
+.playersearch-boundlist ul li.position {
+  width: 10%;
+}
+/* line 216, ../sass/dynasty_theme.scss */
+.playersearch-boundlist ul li.salary {
+  width: 30%;
+  text-align: right;
+}
+
 /********************************************************************************
  * PICK SCROLLER STUFF
  *******************************************************************************/
-/* line 208, ../sass/dynasty_theme.scss */
+/* line 227, ../sass/dynasty_theme.scss */
 .gradient-mask {
   position: absolute;
   right: 0px;
@@ -11285,7 +11314,7 @@ body .ux-notification-window {
   -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(black), to(rgba(0, 0, 0, 0)));
 }
 
-/* line 218, ../sass/dynasty_theme.scss */
+/* line 237, ../sass/dynasty_theme.scss */
 #picks_scroller ul {
   display: table-row;
   overflow: hidden;
@@ -11293,7 +11322,7 @@ body .ux-notification-window {
   height: 120px;
 }
 
-/* line 226, ../sass/dynasty_theme.scss */
+/* line 245, ../sass/dynasty_theme.scss */
 div.pick {
   position: absolute;
   height: 120px;
@@ -11301,7 +11330,7 @@ div.pick {
   margin: 0;
   padding: 10px;
 }
-/* line 233, ../sass/dynasty_theme.scss */
+/* line 252, ../sass/dynasty_theme.scss */
 div.pick div.team_pic {
   margin: 0 auto;
   height: 80px;
@@ -11309,19 +11338,19 @@ div.pick div.team_pic {
   border: 1px solid black;
   margin-bottom: 5px;
 }
-/* line 241, ../sass/dynasty_theme.scss */
+/* line 260, ../sass/dynasty_theme.scss */
 div.pick div.round p {
   width: 100%;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 248, ../sass/dynasty_theme.scss */
+/* line 267, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 251, ../sass/dynasty_theme.scss */
+/* line 270, ../sass/dynasty_theme.scss */
 #user-balance.deficit {
   color: red;
 }

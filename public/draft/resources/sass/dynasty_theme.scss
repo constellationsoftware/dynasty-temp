@@ -201,6 +201,25 @@ $recommended_pick_bio_min-height: 8em;
 }
 .selected { @include background-image(linear-gradient(bottom, $recommended_pick_background_color_selected)); }
 
+.#{$prefix}boundlist-floating { border-top-width: 1px; }
+.playersearch-boundlist {
+    ul {
+        display: block;
+        padding: 0px 3px;
+
+        li {
+            display: inline-block;
+            text-align: left;
+
+            &.name { width: 60%; }
+            &.position { width: 10%; }
+            &.salary {
+                width: 30%;
+                text-align: right;
+            }
+        }
+    }
+}
 
 /********************************************************************************
  * PICK SCROLLER STUFF

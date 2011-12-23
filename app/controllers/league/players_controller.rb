@@ -51,7 +51,6 @@ class League::PlayersController < InheritedResources::Base
         @players = end_of_association_chain
           .page(params[:page])
           .per(params[:limit])
-          .all
       end
     end
 end

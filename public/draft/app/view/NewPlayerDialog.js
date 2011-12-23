@@ -43,9 +43,27 @@ Ext.define('DynastyDraft.view.NewPlayerDialog', {
             minChars: 3,
             width: 300,
             selectOnFocus: true,
+            matchFieldWidth: false,
             listConfig: {
                 autoScroll: true,
-                maxHeight: 250
+                minHeight: 14,
+                maxHeight: 250,
+                width: 350,
+                height: null,
+                loadingText: 'Searching...',
+                emptyText: 'No matching players found.',
+                cls: 'playersearch-boundlist',
+                shadow: 'drop',
+                padding: 0,
+                itemTpl: Ext.create('Ext.XTemplate',
+                    '<tpl for=".">',
+                        '<ul class="{[xindex % 2 === 0 ? "even" : "odd"]}">',
+                            '<li class="name">{full_name}</li>',
+                            '<li class="position">{position}</li>',
+                            '<li class="salary">{contract_amount:usMoney}</li>',
+                        '</ul>',
+                    '</tpl>'
+                )
             },
             listeners: {
                 // set the cached record of the form to the new selected record
