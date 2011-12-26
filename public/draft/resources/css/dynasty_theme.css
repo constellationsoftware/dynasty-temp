@@ -11289,22 +11289,26 @@ body .ux-notification-window {
 }
 /* line 214, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.name {
-  width: 60%;
+  width: 55%;
 }
 /* line 215, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.position {
   width: 10%;
 }
 /* line 216, ../sass/dynasty_theme.scss */
+.playersearch-boundlist ul li.rating {
+  width: 10%;
+}
+/* line 217, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.salary {
-  width: 30%;
+  width: 25%;
   text-align: right;
 }
 
 /********************************************************************************
  * PICK SCROLLER STUFF
  *******************************************************************************/
-/* line 227, ../sass/dynasty_theme.scss */
+/* line 228, ../sass/dynasty_theme.scss */
 .gradient-mask {
   position: absolute;
   right: 0px;
@@ -11314,7 +11318,7 @@ body .ux-notification-window {
   -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(black), to(rgba(0, 0, 0, 0)));
 }
 
-/* line 237, ../sass/dynasty_theme.scss */
+/* line 238, ../sass/dynasty_theme.scss */
 #picks_scroller ul {
   display: table-row;
   overflow: hidden;
@@ -11322,7 +11326,7 @@ body .ux-notification-window {
   height: 120px;
 }
 
-/* line 245, ../sass/dynasty_theme.scss */
+/* line 246, ../sass/dynasty_theme.scss */
 div.pick {
   position: absolute;
   height: 120px;
@@ -11330,7 +11334,7 @@ div.pick {
   margin: 0;
   padding: 10px;
 }
-/* line 252, ../sass/dynasty_theme.scss */
+/* line 253, ../sass/dynasty_theme.scss */
 div.pick div.team_pic {
   margin: 0 auto;
   height: 80px;
@@ -11338,19 +11342,19 @@ div.pick div.team_pic {
   border: 1px solid black;
   margin-bottom: 5px;
 }
-/* line 260, ../sass/dynasty_theme.scss */
+/* line 261, ../sass/dynasty_theme.scss */
 div.pick div.round p {
   width: 100%;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 267, ../sass/dynasty_theme.scss */
+/* line 268, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 270, ../sass/dynasty_theme.scss */
+/* line 271, ../sass/dynasty_theme.scss */
 #user-balance.deficit {
   color: red;
 }

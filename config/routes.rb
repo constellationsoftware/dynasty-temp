@@ -13,7 +13,9 @@ Dynasty::Application.routes.draw do
 
       defaults :format => 'json' do
         resources :picks
-        resources :teams
+        resources :teams do
+          get 'balance'
+        end
         resources :players do
           get 'search', :on => :collection
         end

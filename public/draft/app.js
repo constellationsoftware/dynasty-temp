@@ -47,6 +47,7 @@ Ext.application({
             'draft:pick:update': this.onPickUpdate,
             //'draft:pause': this.onDraftPaused,
             //'draft:resume': this.onDraftResumed,
+            'draft:finish': this.onDraftFinish,
             'draft:reset': this.onDraftReset,
         };
         events['draft:pick:start-' + CLIENT_ID] = this.startPicking;
@@ -61,6 +62,14 @@ Ext.application({
         this.getController('RecommendedPicks').addListener('playerpicked', this.onPlayerPicked, this);
         this.getController('AdminControls').addListener('click', this.onAdminControlsClicked, this);
         this.getController('Picks').addListener('picksucceeded', this.onPickSucceeded, this);
+    },
+
+    onDraftFinish: function() {
+        Ext.Msg.show({
+            title: '',
+            msg: 'The draft is complete!',
+            icon: Ext.Msg.WARNING
+        });
     },
 
     onAdminControlsClicked: function(button) {

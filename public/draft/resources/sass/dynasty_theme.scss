@@ -211,10 +211,11 @@ $recommended_pick_bio_min-height: 8em;
             display: inline-block;
             text-align: left;
 
-            &.name { width: 60%; }
+            &.name { width: 55%; }
             &.position { width: 10%; }
+            &.rating { width: 10%; }
             &.salary {
-                width: 30%;
+                width: 25%;
                 text-align: right;
             }
         }
