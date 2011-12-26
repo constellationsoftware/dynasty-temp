@@ -9,14 +9,15 @@ class League::DraftsController < SubdomainController
   # starts the draft
   def start
     start! do |format|
-      if !(@draft.status === :finished)
+      if @draft.status.nil?
         @draft.start
-        # trigger the pick request for the user for the current_pick
-        #pick_user_id = @draft.current_pick.team.uuid
-        #Pusher[Draft::CHANNEL_PREFIX + @draft.league.slug].delay.trigger('draft:pick:start-' + pick_user_id, {})
+      end
+
+      if @draft.status === :started
+        @draft.advance
         format.text { render :text => "Starting draft for #{@league.name}" }  
       else
-        raise 'A finished draft must be reset before it can be started.'
+        raise 'The draft is in an unknown state and must be reset before it can be started again.'
       end
     end
   end

@@ -21,59 +21,26 @@ class Draft < ActiveRecord::Base
 
   enum :status, [:started, :finished, :paused]
 
-  # start the draft
   def start
-    # if the draft isn't started, start it. otherwise, pick up where we left off
+    # Sets up parameters necessary to start the draft
     if !(self.status === :started)
-      # generate picks
-      i = 0
-      round = 1
-      teams = self.league.teams
-
-      self.number_of_rounds.times do
-        if round.odd?
-            roundsort = teams.sort
-        else
-            roundsort = teams.sort.reverse
-        end
-        roundsort.each do |team|
-            i += 1
-            pick = Pick.new
-            pick.draft_id = self.id
-            pick.team_id = team.id
-            pick.pick_order = i
-            pick.round = round
-            pick.save!
-        end
-        round += 1
-      end
-
       self.status = :started
       self.started_at = Time.now
-      self.save!
-    end
+      self.current_pick = self.get_current_pick
 
-    self.advance
-  end
-
-  # end the draft
-  def finish
-    if !(self.status === :finished)
-      self.status = :finished
-      self.finished_at = Time.now
       self.save!
     end
   end
 
   # reset the draft
   def reset
-     # destroy picks
-    Pick.destroy_all(:draft_id => self.id)
+    Pick.destroy_all(:draft_id => self.id) # destroy picks
+    self.create_pick_records # create new picks
 
+    self.finished_at = nil
     self.status = nil
     self.started_at = nil
-    self.finished_at = nil
-    self.current_pick = nil
+
     self.save!
   end
 
@@ -232,4 +199,30 @@ class Draft < ActiveRecord::Base
   def best_player
     best = self.available_players.first
   end
+
+  def create_pick_records
+    # generate picks
+    i = 0
+    round = 1
+    teams = self.league.teams
+
+    self.number_of_rounds.times do
+      if round.odd?
+          roundsort = teams.sort
+      else
+          roundsort = teams.sort.reverse
+      end
+      roundsort.each do |team|
+          i += 1
+          pick = Pick.new
+          pick.draft_id = self.id
+          pick.team_id = team.id
+          pick.pick_order = i
+          pick.round = round
+          pick.save!
+      end
+      round += 1
+    end
+  end
+
 end

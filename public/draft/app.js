@@ -103,7 +103,20 @@ Ext.application({
     */
     
     onDraftReset: function(data) {
-        this.fireEvent(this.STATUS_RESET);
+        var t = setTimeout('window.location.reload()', 5000);
+        Ext.Msg.show({
+            title: 'The draft has been reset!',
+            msg: 'An administrator has initiated a draft reset. ' +
+                'The page will refresh in 5 seconds. ' +
+                'Press the button below if you do not wish to wait.',
+            icon: Ext.Msg.WARNING,
+            buttons: Ext.MessageBox.OK,
+            width: 400,
+            fn: function() {
+                clearTimeout(t);
+                window.location.reload();
+            }
+        });
     },
 
     onPlayerPicked: function(player) {

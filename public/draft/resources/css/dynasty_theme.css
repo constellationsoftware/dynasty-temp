@@ -11239,7 +11239,7 @@ body .ux-notification-window {
 /* line 180, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats dd {
   display: inline-block;
-  width: 75px;
+  width: 100px;
   margin-right: 20px;
 }
 /* line 185, ../sass/dynasty_theme.scss */
@@ -11255,14 +11255,14 @@ body .ux-notification-window {
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats dd span.neg {
   color: red;
 }
-/* line 195, ../sass/dynasty_theme.scss */
+/* line 196, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .footer {
   clear: both;
   width: 100%;
   text-align: center;
 }
 
-/* line 202, ../sass/dynasty_theme.scss */
+/* line 203, ../sass/dynasty_theme.scss */
 .selected {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #cfe2f6), color-stop(6%, #b2d7ff), color-stop(100%, #cfe2f6));
   background-image: -webkit-linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
@@ -11272,34 +11272,34 @@ body .ux-notification-window {
   background-image: linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
 }
 
-/* line 204, ../sass/dynasty_theme.scss */
+/* line 205, ../sass/dynasty_theme.scss */
 .x-boundlist-floating {
   border-top-width: 1px;
 }
 
-/* line 206, ../sass/dynasty_theme.scss */
+/* line 207, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul {
   display: block;
   padding: 0px 3px;
 }
-/* line 210, ../sass/dynasty_theme.scss */
+/* line 211, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li {
   display: inline-block;
   text-align: left;
 }
-/* line 214, ../sass/dynasty_theme.scss */
+/* line 215, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.name {
   width: 55%;
 }
-/* line 215, ../sass/dynasty_theme.scss */
+/* line 216, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.position {
   width: 10%;
 }
-/* line 216, ../sass/dynasty_theme.scss */
+/* line 217, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.rating {
   width: 10%;
 }
-/* line 217, ../sass/dynasty_theme.scss */
+/* line 218, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.salary {
   width: 25%;
   text-align: right;
@@ -11308,7 +11308,7 @@ body .ux-notification-window {
 /********************************************************************************
  * PICK SCROLLER STUFF
  *******************************************************************************/
-/* line 228, ../sass/dynasty_theme.scss */
+/* line 229, ../sass/dynasty_theme.scss */
 .gradient-mask {
   position: absolute;
   right: 0px;
@@ -11318,7 +11318,7 @@ body .ux-notification-window {
   -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(black), to(rgba(0, 0, 0, 0)));
 }
 
-/* line 238, ../sass/dynasty_theme.scss */
+/* line 239, ../sass/dynasty_theme.scss */
 #picks_scroller ul {
   display: table-row;
   overflow: hidden;
@@ -11326,7 +11326,7 @@ body .ux-notification-window {
   height: 120px;
 }
 
-/* line 246, ../sass/dynasty_theme.scss */
+/* line 247, ../sass/dynasty_theme.scss */
 div.pick {
   position: absolute;
   height: 120px;
@@ -11334,7 +11334,7 @@ div.pick {
   margin: 0;
   padding: 10px;
 }
-/* line 253, ../sass/dynasty_theme.scss */
+/* line 254, ../sass/dynasty_theme.scss */
 div.pick div.team_pic {
   margin: 0 auto;
   height: 80px;
@@ -11342,19 +11342,19 @@ div.pick div.team_pic {
   border: 1px solid black;
   margin-bottom: 5px;
 }
-/* line 261, ../sass/dynasty_theme.scss */
+/* line 262, ../sass/dynasty_theme.scss */
 div.pick div.round p {
   width: 100%;
   text-align: center;
   font-weight: bold;
 }
 
-/* line 268, ../sass/dynasty_theme.scss */
+/* line 269, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 271, ../sass/dynasty_theme.scss */
+/* line 272, ../sass/dynasty_theme.scss */
 #user-balance.deficit {
   color: red;
 }

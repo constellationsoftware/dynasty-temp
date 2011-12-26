@@ -179,14 +179,15 @@ $recommended_pick_bio_min-height: 8em;
                     clear: both; 
                     dd {
                         display: inline-block;
-                        width: 75px;
+                        width: 80px;
                         margin-right: 20px;
-                    }
-                    dd span {
-                        float: right;
-                        color: #CCCCCC;
-                        &.pos { color: green; }
-                        &.neg { color: red; }
+
+                        span {
+                            float: right;
+                            color: #CCCCCC;
+                            &.pos { color: green; }
+                            &.neg { color: red; }
+                        }
                     }
                 }
             }
