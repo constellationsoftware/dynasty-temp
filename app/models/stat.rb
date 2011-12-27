@@ -16,8 +16,18 @@ class Stat < ActiveRecord::Base
 
   end
 
+
+
   def self.subseason_stat
     where(:stat_coverage_type => 'SubSeason').includes(:stat_repository).includes(:stat_coverage)
+  end
+
+  def self.last_season
+    where(:stat_coverage_id => '11').includes(:stat_repository).includes(:stat_repository).includes(:stat_coverage)
+  end
+
+  def self.this_season
+    where(:stat_coverage_id => '1')
   end
 
   def self.affiliation_stat

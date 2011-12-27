@@ -5,12 +5,27 @@ GIT
     enum_simulator (1.0.1)
 
 GIT
+  remote: git://github.com/FOMNick/money.git
+  revision: 64a0d9b945fe7fd11956ae810c6cfda24c3b61d7
+  specs:
+    money (1.7.4)
+      money
+
+GIT
   remote: git://github.com/logankoester/pusher-client.git
   revision: bbee02734423e067f4f38e6185b823334754cacb
   specs:
     pusher-client (0.2.1)
       eventmachine (~> 0.12.10)
       libwebsocket (~> 0.1.0)
+
+GIT
+  remote: git://github.com/teambox/vestal_versions.git
+  revision: 82760a3df7ae927fe6450d72d7be900f7dcdb521
+  specs:
+    vestal_versions (1.2.2)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
 
 GEM
   remote: http://rubygems.org/
@@ -268,6 +283,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   meta_search (>= 1.1.0.pre)
+  money!
   mysql2 (< 0.3.7)
   pg
   pusher
@@ -285,4 +301,5 @@ DEPENDENCIES
   uglifier
   unicorn
   uuidtools
+  vestal_versions!
   zurb-foundation
