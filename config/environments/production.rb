@@ -2,8 +2,8 @@ Dynasty::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
-  config.cache_classes = true
-  config.cache_store = :dalli_store
+  config.cache_classes = false
+  #config.cache_store = :dalli_store
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = true # set to true for fake dev mode
@@ -60,7 +60,7 @@ Dynasty::Application.configure do
   config.active_support.deprecation = :notify
   
 end
-
+require 'pusher'
 Pusher.app_id = '10192'
 Pusher.key    = '6e855396056bdf519e1a'
 Pusher.secret = 'da06ccd5289c0145a263'
