@@ -33,17 +33,10 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 itemupdate: this.onItemUpdate
             },
 
-            '#recommendedpickwrap button#submit': {
-                click: this.onSubmit
-            },
-
-            '#recommendedpickwrap combo#filter': {
-                change: this.onFilterChanged
-            },
-
-            '#recommended-pick-edit-window': {
-                submit: this.onItemEditSubmit
-            }
+            '#recommendedpickwrap button#submit': { click: this.onSubmit },
+            '#recommendedpickwrap combo#filter': { change: this.onFilterChanged },
+            '#recommended-pick-edit-window': { submit: this.onItemEditSubmit },
+            '#recommended-pick-edit-window combo': { beforequery: this.onBeforeQuery }
         });
 
         this.addEvents('playerpicked');
@@ -82,6 +75,10 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         });
         button.getEl().setVisibilityMode(Ext.Element.VISIBILITY).setVisible(false);
         return button;
+    },
+
+    onBeforeQuery: function(query) {
+        console.log(query);
     },
 
     onItemUpdate: function(record, index, node) {
@@ -167,7 +164,6 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
      */
     onFilterChanged: function(ctl, value) {
         var store = this.getRecommendedPicksStore();
-        console.log(store);
         /**
          * Clear out filters manually, since remote filters aren't recognized
          * by the store for some reason.

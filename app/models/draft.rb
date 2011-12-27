@@ -20,64 +20,26 @@ class Draft < ActiveRecord::Base
 
   enum :status, [:started, :finished, :paused]
 
-  def current_pick
-    pick = Pick.find(self.current_pick_id)
-    return pick unless !pick
-  end
-
-  # start the draft
   def start
-    # if the draft isn't started, start it. otherwise, pick up where we left off
+    # Sets up parameters necessary to start the draft
     if !(self.status === :started)
-      # generate picks
-      i = 0
-      round = 1
-      teams = self.league.teams
-
-      self.number_of_rounds.times do
-        if round.odd?
-            roundsort = teams.sort
-        else
-            roundsort = teams.sort.reverse
-        end
-        roundsort.each do |team|
-            i += 1
-            pick = Pick.new
-            pick.draft_id = self.id
-            pick.team_id = team.id
-            pick.pick_order = i
-            pick.round = round
-            pick.save!
-        end
-        round += 1
-      end
-
       self.status = :started
       self.started_at = Time.now
-      self.save!
-    end
+      self.current_pick = self.get_current_pick
 
-    self.advance
-  end
-
-  # end the draft
-  def finish
-    if !(self.status === :finished)
-      self.status = :finished
-      self.finished_at = Time.now
       self.save!
     end
   end
 
   # reset the draft
   def reset
-     # destroy picks
-    Pick.destroy_all(:draft_id => self.id)
+    Pick.destroy_all(:draft_id => self.id) # destroy picks
+    self.create_pick_records # create new picks
 
+    self.finished_at = nil
     self.status = nil
     self.started_at = nil
-    self.finished_at = nil
-    self.current_pick = nil
+
     self.save!
   end
 
@@ -99,7 +61,7 @@ class Draft < ActiveRecord::Base
     # this loop iterates through eligible pick slots, autopicking for offline
     # users and returning when a pick for an online user is reached
     autopick_iterations = 1
-    while !self.current_pick.nil? and !self.current_pick.team.is_online
+    while !self.current_pick.nil? and !self.current_pick.team.is_online and !(self.status === :finished)
       puts self.current_pick.team.name + ' IS SLEEPING!'
       # make the "auto-pick"
       autopick_player = self.best_player
@@ -121,6 +83,8 @@ class Draft < ActiveRecord::Base
         :players => Salary.by_rating.by_position.available.limit(5)
       }
       Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, payload)
+    else
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:finish', {})
     end
 
     self.save!
@@ -234,4 +198,30 @@ class Draft < ActiveRecord::Base
   def best_player
     best = self.available_players.first
   end
+
+  def create_pick_records
+    # generate picks
+    i = 0
+    round = 1
+    teams = self.league.teams
+
+    self.number_of_rounds.times do
+      if round.odd?
+          roundsort = teams.sort
+      else
+          roundsort = teams.sort.reverse
+      end
+      roundsort.each do |team|
+          i += 1
+          pick = Pick.new
+          pick.draft_id = self.id
+          pick.team_id = team.id
+          pick.pick_order = i
+          pick.round = round
+          pick.save!
+      end
+      round += 1
+    end
+  end
+
 end

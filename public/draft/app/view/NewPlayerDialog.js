@@ -60,6 +60,7 @@ Ext.define('DynastyDraft.view.NewPlayerDialog', {
                         '<ul class="{[xindex % 2 === 0 ? "even" : "odd"]}">',
                             '<li class="name">{full_name}</li>',
                             '<li class="position">{position}</li>',
+                            '<li class="rating">{rating}</li>',
                             '<li class="salary">{contract_amount:usMoney}</li>',
                         '</ul>',
                     '</tpl>'

@@ -47,6 +47,7 @@ Ext.application({
             'draft:pick:update': this.onPickUpdate,
             //'draft:pause': this.onDraftPaused,
             //'draft:resume': this.onDraftResumed,
+            'draft:finish': this.onDraftFinish,
             'draft:reset': this.onDraftReset,
         };
         events['draft:pick:start-' + CLIENT_ID] = this.startPicking;
@@ -61,6 +62,14 @@ Ext.application({
         this.getController('RecommendedPicks').addListener('playerpicked', this.onPlayerPicked, this);
         this.getController('AdminControls').addListener('click', this.onAdminControlsClicked, this);
         this.getController('Picks').addListener('picksucceeded', this.onPickSucceeded, this);
+    },
+
+    onDraftFinish: function() {
+        Ext.Msg.show({
+            title: '',
+            msg: 'The draft is complete!',
+            icon: Ext.Msg.WARNING
+        });
     },
 
     onAdminControlsClicked: function(button) {
@@ -94,7 +103,20 @@ Ext.application({
     */
     
     onDraftReset: function(data) {
-        this.fireEvent(this.STATUS_RESET);
+        var t = setTimeout('window.location.reload()', 5000);
+        Ext.Msg.show({
+            title: 'The draft has been reset!',
+            msg: 'An administrator has initiated a draft reset. ' +
+                'The page will refresh in 5 seconds. ' +
+                'Press the button below if you do not wish to wait.',
+            icon: Ext.Msg.WARNING,
+            buttons: Ext.MessageBox.OK,
+            width: 400,
+            fn: function() {
+                clearTimeout(t);
+                window.location.reload();
+            }
+        });
     },
 
     onPlayerPicked: function(player) {

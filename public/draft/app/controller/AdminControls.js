@@ -31,8 +31,6 @@ Ext.define('DynastyDraft.controller.AdminControls', {
         // enable/disable pick button on app status
         this.application.addListener(this.application.STATUS_STARTED, function() {
         }, this);
-        this.application.addListener(this.application.STATUS_RESET, function() {
-        }, this);
 
         // enable/disable pause button on app status
         this.application.addListener(this.application.STATUS_PICKING, function() {

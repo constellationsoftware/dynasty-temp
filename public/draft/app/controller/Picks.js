@@ -103,7 +103,7 @@ Ext.define('DynastyDraft.controller.Picks', {
         var store = this.getPickOrderStore(),
             pickCount = store.getCount();
         
-        if (pickCount > 0) {
+        if (pickCount > 0 && currentPick) {
             store.clearFilter(true);
 
             // if it's not supplied, infer it from the first free pick in the store

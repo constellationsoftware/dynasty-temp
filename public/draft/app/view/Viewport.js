@@ -135,7 +135,9 @@ Ext.define('DynastyDraft.view.Viewport', {
         }, {
             xtype: 'toolbar',
             region: 'south',
-            height: 30,
+            height: 35,
+            id: 'statusbar',
+
             items: [{
                 xtype: 'tbfill'
             }, {
@@ -144,16 +146,18 @@ Ext.define('DynastyDraft.view.Viewport', {
                 id: 'user-balance',
                 tpl: Ext.create('Ext.XTemplate',
                     '<tpl for=".">',
-                        'Total: ',
-                        '<span class="amount {[values < 0 ? "deficit" : ""]}">',
-                            '{[this.formatMoney(values)]}',
-                        '</span>',
-                    '</tpl>',
-                {
-                    formatMoney: function(value) {
-                        return Ext.util.Format.usMoney(value);
-                    }   
-                }),
+                        '<dl>',
+                            '<dt>Balance:</dt>',
+                            '<dd class="balance amount {[values < 0 ? "deficit" : ""]}">',
+                                '{values:usMoney}',
+                            '</dd>',
+                            '<dt>Total Salary Obligation:</dt>',
+                            '<dd class="obligation amount {[values < 0 ? "deficit" : ""]}">',
+                                '{values:usMoney}',
+                            '</dd>',
+                       '</dl>',
+                    '</tpl>'
+                ),
             }]
         }
 
