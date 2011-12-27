@@ -5,7 +5,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'compass', '>= 0.11.5'
-gem 'sass-rails',  '~> 3.1.0'
+gem 'sass-rails', '~> 3.1.0'
 gem 'heroku'
 # gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'haml'
@@ -26,7 +26,7 @@ gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
-gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
+gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'delayed_job'
 gem 'uuidtools'
 gem 'activeadmin'
@@ -45,7 +45,6 @@ gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 
-
 group :production do
   gem 'pg'
 end
@@ -57,7 +56,6 @@ end
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 
 
 # Gems used only for assets and not required
