@@ -1,15 +1,15 @@
 GIT
-  remote: git://github.com/FOMNick/enum_simulator.git
-  revision: 5c9010f47ae82492735302b95fd2901aacafd326
-  specs:
-    enum_simulator (1.0.1)
-
-GIT
   remote: git://github.com/FOMNick/money.git
   revision: 64a0d9b945fe7fd11956ae810c6cfda24c3b61d7
   specs:
     money (1.7.4)
       money
+
+GIT
+  remote: git://github.com/bamurphymac/enum_simulator.git
+  revision: 6ec11c4f943adb0a1673309d2fabbd12ae198828
+  specs:
+    enum_simulator (1.0.1)
 
 GIT
   remote: git://github.com/logankoester/pusher-client.git
