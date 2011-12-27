@@ -1,6 +1,5 @@
 tmp/
 Dynasty.esproj/
-<<<<<<< HEAD
 bundler_stubs/
 .bundle/
 .bundle
@@ -14,6 +13,5 @@ dynastyowner.tmproj
 tmp
 *.sqlite3
 database.yml
-=======
 public/draft/resources/.sass-cache/
->>>>>>> 220862d4c828ea720fc2f7c6136832cfe057e957
+.idea/Dynasty.iml
