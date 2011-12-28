@@ -18,7 +18,7 @@ class PersonsController < ApplicationController
     # GET /persons/1
     # GET /persons/1.xml
   def show
-    Timecop.freeze(2011,12, 26)
+    #Timecop.freeze(2011,12, 26)
     @person = Person.find(params[:id])
     @last_years_stats = @person.stats.event_stat
     @stats        = @person.stats.current.event_stat
