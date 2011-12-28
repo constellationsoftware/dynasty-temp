@@ -22,14 +22,10 @@ Dynasty::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  # comment out this line:
-  # config.action_view.debug_rjs             = true
-
-  # Do not compress assets
-    config.assets.compress = false
-
-  # Expands the lines which load the assets
-    config.assets.debug = true
+  # Enable the asset pipeline
+  config.assets.enabled = false
+  config.serve_static_assets = false
+  config.assets.compile = false
 
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
