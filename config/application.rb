@@ -48,7 +48,7 @@ module Dynasty
     config.filter_parameters += [:password]
 
     # Enable the asset pipeline
-    config.assets.enabled = false
+    config.assets.enabled = true
     config.serve_static_assets = false
     config.assets.compile = false
 
