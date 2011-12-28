@@ -18,3 +18,5 @@ public/draft/resources/.sass-cache/
 .idea/dictionaries/benjaminmurphy.xml
 
 config/database.yml
+
+.sass-cache/
