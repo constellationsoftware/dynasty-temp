@@ -60,7 +60,7 @@ module Dynasty
     config.assets.version = '1.0'
 
     # Disable asset initialization on precompile for heroku deployment w/ devise authentication
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
     # set up a custom provider for the direct RPC root URL
     #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"
