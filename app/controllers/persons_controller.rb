@@ -27,13 +27,13 @@ class PersonsController < ApplicationController
     @scores       = @person.person_scores.order("created_at DESC").all
 
     stats = {
-        :passing_stats => @last_season.andand.passing_stat.first.andand.stat_repository,
-        :rushing_stats => @last_season.andand.rushing_stat.first.andand.stat_repository,
-        :defensive_stats => @last_season.andand.defensive_stat.first.andand.stat_repository,
-        :sacks_against_stats => @last_season.andand.sacks_against_stat.first.andand.stat_repository,
-        :scoring_stat => @last_season.andand.scoring_stat.first.andand.stat_repository,
-        :special_teams_stat => @last_season.andand.special_teams_stat.first.andand.stat_repository,
-        :passing_yards => @last_season.andand.passing_stat.first.andand.stat_repository
+        :passing_stats => @last_season.andand.passing_stat.first.andand.stat_repository.score_modifier,
+        :rushing_stats => @last_season.andand.rushing_stat.first.andand.stat_repository.score_modifier,
+        :defensive_stats => @last_season.andand.defensive_stat.first.andand.stat_repository.score_modifier,
+        :sacks_against_stats => @last_season.andand.sacks_against_stat.first.andand.stat_repository.score_modifier,
+        :scoring_stat => @last_season.andand.scoring_stat.first.andand.stat_repository.score_modifier,
+        :special_teams_stat => @last_season.andand.special_teams_stat.first.andand.stat_repository.score_modifier,
+        :passing_yards => @last_season.andand.passing_stat.first.andand.stat_repository.score_modifier
     }
 
     result = {
