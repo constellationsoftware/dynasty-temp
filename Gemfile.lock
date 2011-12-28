@@ -299,7 +299,7 @@ DEPENDENCIES
   responders
   ruby_parser
   sass (= 3.1.7)
-  sass-rails (~> 3.1.0)
+  sass-rails
   squeel
   thin
   timecop
