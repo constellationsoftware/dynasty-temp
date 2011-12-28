@@ -48,9 +48,9 @@ module Dynasty
     config.filter_parameters += [:password]
 
     # Enable the asset pipeline
-    config.assets.enabled = true
-    config.serve_static_assets = true
-    config.assets.compile = true
+    config.assets.enabled = false
+    config.serve_static_assets = false
+    config.assets.compile = false
 
     # Compass integration
     # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
