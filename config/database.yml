@@ -12,28 +12,16 @@
 # Configure Using Gemfile
 # gem 'pg'
 #
-sportsdb:
-  adapter: mysql2
-  database: sportsdb
-  host: localhost
-  username: root
-  socket: /tmp/mysql.sock
-  pool: 5
-  encoding: utf8
-
-#mysql2://ba1b7ceed0b5d6:878e1429@us-mm-auto-dca-01.cleardb.com/heroku_2f4306f804ff8ff
+#sportsdb:
+#  adapter: mysql2
+#  database: sportsdb
+#  host: localhost
+#  username: root
+#  socket: /tmp/mysql.sock
+#  pool: 5
+#  encoding: utf8
 
 development:
-  pool: 5
-  encoding: utf8
-  adapter: mysql2
-  database: heroku_2f4306f804ff8ff
-  host: us-mm-auto-dca-01.cleardb.com
-  username: ba1b7ceed0b5d6
-  password: 878e1429
-  socket: /tmp/mysql.sock
-
-production:
   pool: 5
   encoding: utf8
   adapter: mysql2
@@ -41,6 +29,15 @@ production:
   host: localhost
   username: root
   socket: /tmp/mysql.sock
+
+#production:
+#  pool: 5
+#  encoding: utf8
+#  adapter: mysql2
+#  database: dynasty_dev
+#  host: localhost
+#  username: root
+#  socket: /tmp/mysql.sock
 
   #database: app1455111
   #host: 50.16.184.114

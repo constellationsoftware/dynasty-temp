@@ -89,5 +89,5 @@ end
 #
 EM.next_tick do
     # cause the job to be instantiated and therefore queued
-    # Pusher::Job.instance
+    Pusher::Job.instance
 end
