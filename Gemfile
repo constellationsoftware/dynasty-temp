@@ -36,6 +36,8 @@ gem 'zurb-foundation', :group => :assets
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/bamurphymac/enum_simulator.git'
 
+gem 'newrelic_rpm'
+
 gem 'andand'
 gem 'coffee-filter'
 gem 'timecop'
