@@ -23,9 +23,9 @@ Dynasty::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # Enable the asset pipeline
-  config.assets.enabled = false
-  config.serve_static_assets = false
-  config.assets.compile = false
+  config.assets.enabled = true
+  config.serve_static_assets = true
+  config.assets.compile = true
 
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
