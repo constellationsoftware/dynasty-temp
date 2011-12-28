@@ -17,4 +17,3 @@ production:
     transaction_threshold: apdex_f
   capture_params: false
   log_level: info
-124
