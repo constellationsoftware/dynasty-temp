@@ -17,7 +17,7 @@ class Stat < ActiveRecord::Base
   end
 
   def self.career_stat
-    where(:context => 'career')
+    where(:context => 'career').includes(:stat_repository).includes(:stat_coverage)
   end
 
   def self.subseason_stat
