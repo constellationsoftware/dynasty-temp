@@ -1,6 +1,5 @@
 class Player < ActiveRecord::Base
-  belongs_to :user_team
-  belongs_to :person
-
-#  requires :association, :user_team, :person
+  belongs_to :team, :class_name => 'UserTeam'
+  has_one :user, :through => :team
+  belongs_to :player, :class_name => 'Person', :foreign_key => 'person_id'
 end

@@ -1,5 +1,15 @@
 class Salary < ActiveRecord::Base
   POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'K']
+  POSITION_QUANTITIES = {
+    :qb => 2,
+    :wr => 4,
+    :rb => 4,
+    :te => 2,
+    :k => 2,
+    :t => 4,
+    :g => 4,
+    :c => 2
+  }
 
   has_many :picks, :foreign_key => :person_id
   belongs_to :person
