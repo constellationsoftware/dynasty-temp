@@ -8,3 +8,7 @@ features
 help
 Dynasty.esproj
 tmp
+public/draft/lib/extjs/build
+public/draft/lib/extjs/builds
+public/draft/lib/extjs/examples
+public/draft/lib/extjs/jsbuilder
