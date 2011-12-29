@@ -22,7 +22,7 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
-gem 'unicorn'
+#gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
@@ -43,7 +43,7 @@ gem 'coffee-filter'
 gem 'timecop'
 gem 'jbuilder'
 
-gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
+gem 'vestal_versions'#, :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 gem 'iron_worker'

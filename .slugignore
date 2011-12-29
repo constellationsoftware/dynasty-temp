@@ -1,6 +1,6 @@
 *.psd
 *.pdf
-
+public/draft/lib/extjs/docs
 test
 spec
 doc
