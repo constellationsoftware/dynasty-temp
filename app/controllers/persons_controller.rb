@@ -23,27 +23,49 @@ class PersonsController < ApplicationController
     @last_years_stats = @person.stats.event_stat
     @stats        = @person.stats.current.event_stat
     @last_season     = @person.stats.subseason_stat.last_season
+    @current_season = @person.stats.subseason_stat.this_season
+    @career = @person.stats.subseason_stat.career_stat
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
 
-    stats = {
+    last_season_stats = {
         :passing_stats => @last_season.andand.passing_stat.first.andand.stat_repository.andand.score_modifier,
         :rushing_stats => @last_season.andand.rushing_stat.first.andand.stat_repository.andand.score_modifier,
         :defensive_stats => @last_season.andand.defensive_stat.first.andand.stat_repository.andand.score_modifier,
         :sacks_against_stats => @last_season.andand.sacks_against_stat.first.andand.stat_repository.andand.score_modifier,
         :scoring_stat => @last_season.andand.scoring_stat.first.andand.stat_repository.andand.score_modifier,
-        :special_teams_stat => @last_season.andand.special_teams_stat.first.andand.stat_repository.andand.score_modifier,
-        :passing_yards => @last_season.andand.passing_stat.first.andand.stat_repository.andand.score_modifier
+        :special_teams_stat => @last_season.andand.special_teams_stat.first.andand.stat_repository.andand.score_modifier
     }
+
+    current_season_stats = {
+        :passing_stats => @current_season.andand.passing_stat.first.andand.stat_repository.andand.score_modifier,
+        :rushing_stats => @current_season.andand.rushing_stat.first.andand.stat_repository.andand.score_modifier,
+        :defensive_stats => @current_season.andand.defensive_stat.first.andand.stat_repository.andand.score_modifier,
+        :sacks_against_stats => @current_season.andand.sacks_against_stat.first.andand.stat_repository.andand.score_modifier,
+        :scoring_stat => @current_season.andand.scoring_stat.first.andand.stat_repository.andand.score_modifier,
+        :special_teams_stat => @current_season.andand.special_teams_stat.first.andand.stat_repository.andand.score_modifier
+    }
+
+    career_stats = {
+        :passing_stats => @career.andand.passing_stat.first.andand.stat_repository.andand.score_modifier,
+        :rushing_stats => @career.andand.rushing_stat.first.andand.stat_repository.andand.score_modifier,
+        :defensive_stats => @career.andand.defensive_stat.first.andand.stat_repository.andand.score_modifier,
+        :sacks_against_stats => @career.andand.sacks_against_stat.first.andand.stat_repository.andand.score_modifier,
+        :scoring_stat => @career.andand.scoring_stat.first.andand.stat_repository.andand.score_modifier,
+        :special_teams_stat => @career.andand.special_teams_stat.first.andand.stat_repository.andand.score_modifier
+    }
+
 
     result = {
         :success => true,
         :person => @person,
         :display_name => @person.display_name,
         :position => @person.current_position,
-        :stats => stats
-
+        :last_season_score => last_season_stats,
+        :this_season_score => current_season_stats,
+        :career_score => career_stats
     }
+
     #json[:first_name] = @person.display_name
     #json[:ranking] = "123"
     #json[:last_years_stats] = @last_years_stats
