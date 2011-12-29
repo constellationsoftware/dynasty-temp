@@ -9,28 +9,28 @@
                         Players
 
 
-        - team.person_phases.current_phase.each do |p|
-            .person
-            %ul
-                %li
-                    = link_to p.person.display_name.full_name, p.person
-                    %strong
-                        Status:
-                    = link_to p.phase_status, p.phase_status
-                    %strong
-                        Position:
-                    = link_to p.position.abbreviation, p.position
-                    %strong
-                        Uniform #:
-                    = p.uniform_number
-                %li
-                    Total Stats:
-                    = p.person.stats.count
-                    Event Stats:
-                    = p.person.stats.event_stat.count
-                    SubSeason Stats:
-                    = p.person.stats.subseason_stat.count
-                    Affiliation Stats:
-                    = p.person.stats.affiliation_stat.count
-
-
+        //- team.person_phases.current_phase.each do |p|
+        //    .person
+        //    %ul
+        //        %li
+        //            = link_to p.person.display_name.full_name, p.person
+        //            %strong
+        //                Status:
+        //            = link_to p.phase_status, p.phase_status
+        //            %strong
+        //                Position:
+        //            = link_to p.position.abbreviation, p.position
+        //            %strong
+        //                Uniform #:
+        //            = p.uniform_number
+        //        %li
+        //            Total Stats:
+        //            = p.person.stats.count
+        //            Event Stats:
+        //            = p.person.stats.event_stat.count
+        //            SubSeason Stats:
+        //            = p.person.stats.subseason_stat.count
+        //            Affiliation Stats:
+        //            = p.person.stats.affiliation_stat.count
+        //
+        //
