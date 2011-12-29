@@ -29,7 +29,7 @@ Dynasty::Application.routes.draw do
   resources :person_scores, :events, :dynasty_dollars, :positions, :trades,
             :user_teams, :user_team_person, :users, :person_phases, :display_names,
             :stats, :fix, :draftable_players, :picks, :salaries,
-            :persons, :drafts, :leagues, :admin_dashboard
+            :persons, :people, :drafts, :leagues, :admin_dashboard
 
   resources :teams do
     resources :display_name, :person_phases

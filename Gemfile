@@ -2,15 +2,16 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 gem 'rails', '3.1.1'
+gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
-gem 'taps'
+gem 'compass', '>= 0.11.5'
+gem 'sass-rails'#, '~> 3.1.0'
 gem 'heroku'
-gem 'compass', :git => 'git://github.com/chriseppstein/compass.git'
-gem 'sass-rails', "  ~> 3.1.0"
-gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
+# gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'haml'
 gem 'hpricot'
-gem "devise", :git => "git://github.com/plataformatec/devise.git"
+gem 'ruby_parser'
+gem 'devise'
 gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
@@ -24,20 +25,24 @@ gem 'thin'
 gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
-gem 'pusher-client', :git => "git://github.com/logankoester/pusher-client.git"
-gem 'friendly_id', '~> 4.0.0.beta14'     # for sluggable behavior
+gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
+gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'delayed_job'
 gem 'uuidtools'
-gem 'kumade'  
 gem 'activeadmin'
 gem 'squeel'
-gem 'redcarpet'
-gem 'mustache'
-gem 'rocco'
 gem 'meta_search', '>= 1.1.0.pre'
-gem 'slim-rails'
-gem 'compass_twitter_bootstrap'
-gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+gem 'zurb-foundation', :group => :assets
+gem 'execjs'
+gem 'enum_simulator', :git => 'git://github.com/bamurphymac/enum_simulator.git'
+
+gem 'newrelic_rpm'
+
+gem 'andand'
+gem 'coffee-filter'
+gem 'timecop'
+gem 'jbuilder'
+
 gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
@@ -48,7 +53,6 @@ end
 
 group :development, :test do
   gem 'rack', '1.3.3'
-  gem 'mysql2', '< 0.3.7'
 end
 
 
@@ -56,12 +60,11 @@ end
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
   gem 'sass', '3.1.7'
-  gem 'coffee-rails', "~> 3.1.0"
+  gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
   gem 'thin'
 end
@@ -79,6 +82,6 @@ gem 'jquery-rails'
 
 group :test do
   # Pretty printed test output
-  #gem 'turn', :require => false
+  gem 'turn', :require => false
 end
 

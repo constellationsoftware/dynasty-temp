@@ -2,6 +2,13 @@ class UsersController < ApplicationController
   # GET /Users
   # GET /Users.json
   def index
+    @time = Time.now
+    Thread.new do
+      100.times {
+        sleep 1
+        Pusher['chrono-channel'].trigger('update', Time.now)
+      }
+    end
     @user = current_user
     respond_to do |format|
       format.html # index.html.erb

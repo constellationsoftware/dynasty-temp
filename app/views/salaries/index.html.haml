@@ -1,0 +1,13 @@
+%h1 Listing salaries
+%table
+  %tr
+    %th
+    %th
+    %th
+  - @salaries.each do |salary|
+    %tr
+      %td= link_to 'Show', salary
+      %td= link_to 'Edit', edit_salary_path(salary)
+      %td= link_to 'Destroy', salary, confirm: 'Are you sure?', method: :delete
+%br/
+= link_to 'New Salary', new_salary_path

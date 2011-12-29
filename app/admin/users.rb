@@ -9,4 +9,12 @@ ActiveAdmin.register User do
     default_actions
   end
 
+  form do |f|
+    f.inputs "Details" do
+      f.input :name
+      f.input :email
+      f.input :role
+    end
+    f.buttons
+  end
 end

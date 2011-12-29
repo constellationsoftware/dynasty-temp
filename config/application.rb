@@ -5,7 +5,7 @@ require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
-  Bundler.require *Rails.groups(:assets => %w(development test))
+  Bundler.require *Rails.groups(:default, :assets, Rails.env)
   # If you want your assets lazily compiled in production, use this line
   # Bundler.require(:default, :assets, Rails.env)
 end
@@ -49,16 +49,18 @@ module Dynasty
 
     # Enable the asset pipeline
     config.assets.enabled = true
-        
+    config.serve_static_assets = true
+    config.assets.compile = true
+
     # Compass integration
-    config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
-    config.sass.load_paths << Compass::Frameworks['twitter_bootstrap'].stylesheets_directory
+    # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
+    # config.sass.load_paths << Compass::Frameworks['twitter_bootstrap'].stylesheets_directory
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
     # Disable asset initialization on precompile for heroku deployment w/ devise authentication
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
     # set up a custom provider for the direct RPC root URL
     #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"

@@ -3,7 +3,7 @@ Dynasty::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
-  config.cache_store = :dalli_store
+  #config.cache_store = :dalli_store
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false # set to true for fake dev mode
@@ -16,7 +16,7 @@ Dynasty::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
@@ -60,3 +60,7 @@ Dynasty::Application.configure do
   config.active_support.deprecation = :notify
   
 end
+require 'pusher'
+Pusher.app_id = '10192'
+Pusher.key    = '6e855396056bdf519e1a'
+Pusher.secret = 'da06ccd5289c0145a263'
