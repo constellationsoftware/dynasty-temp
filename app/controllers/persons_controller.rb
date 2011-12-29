@@ -56,8 +56,8 @@ class PersonsController < ApplicationController
         :special_teams_stat => @career.andand.special_teams_stat.first.andand.stat_repository.andand.score_modifier
     }
 
-    career_info {
-       :seasons_played => seasons
+    career_info = {
+       :seasons_played => seasons.to_i
     }
 
     result = {
