@@ -29,7 +29,7 @@ module Pusher
       end
 
       # subscribe to all active drafts
-      drafts = Draft.active.find(:all, :include => :league)
+      drafts = Draft.find(:all, :include => :league)
       drafts.each do |draft|
         channel_name = Draft::CHANNEL_PREFIX + draft.league.slug
         self.socket.subscribe(channel_name, DEFAULT_USER_ID)

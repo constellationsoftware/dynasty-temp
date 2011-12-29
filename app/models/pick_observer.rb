@@ -10,7 +10,6 @@ class PickObserver < ActiveRecord::Observer
     finished_count = Pick.joins{draft}.where{draft.id.eq pick.draft.id}.maximum(:pick_order)
 
     if pick.pick_order === finished_count
-      puts "THE DRAFT IS DONE!"
       pick.draft.status = :finished
       pick.draft.finished_at = Time.now
       pick.draft.current_pick_id = nil

@@ -1,0 +1,112 @@
+##
+# This document describes valid player positions and common aliases for them.
+# It is used mainly by the seed file for the player database to map the odd
+# position values to the normalized ones contained here.
+#
+
+---
+##
+# This object consists of positions that we want to create
+# a position group for. The "aliases" array is to only contain
+# position strings which can't be inferred from the position
+# value in the database. Values starting with the position
+# key or name are inferred automatically.
+#
+
+# BACKS/RECEIVERS
+qb: Quarterback
+
+wr:
+  name: Wide Receiver
+  aliases: 
+  - Split End
+  - Flanker
+  - Slot Receiver
+
+rb:
+  name: Running Back
+  aliases: 
+  - Tailback
+  - Halfback
+  - Wingback
+  - Slotback
+  - Fullback
+
+te:
+  name: Tight End
+  aliases: 
+  - H Back
+
+# OFFENSIVE LINE
+c: Center
+
+g:
+  name: Guard
+  aliases: 
+  - Lineman Offensive
+  - Guard Left
+  - Guard Right
+
+t:
+  name: Tackle
+  aliases:
+  - Tackle Offensive
+  - Tackle Offensive Left
+  - Tackle Offensive Right
+
+
+# DEFENSIVE LINE
+dt:
+  name: Defensive Tackle
+  aliases: 
+  - Tackle Defensive
+  - Defensive Guard
+  - Nose Tackle
+  - Nose Guard
+  - Lineman Defensive
+
+de: Defensive End
+
+# LINEBACKERS
+lb: 
+  name: Linebacker
+  aliases:
+  - Inside Linebacker
+  - Linebacker Inside
+  - Middle Linebacker
+  - Linebacker Middle
+  - MLB
+  - Outside Linebacker
+  - Linebacker Outside
+  - Left Outside
+  - Right Outside
+  - OLB
+  - Defenseman
+
+# DEFENSIVE BACKS
+db:
+  name: Defensive Back
+  aliases:
+  - CB
+  - Cornerback
+  - Safety
+  - SS
+  - FS
+  - Free Safety
+cb: 
+  name: Cornerback
+  aliases: 
+  - CB
+
+s: 
+  name: Safety
+  aliases: 
+  - Safety Strong
+  - SS
+  - Safety Free
+
+# SPECIAL TEAMS
+k: Kicker
+p: Punter
+ls: Long Snapper
+h: Holder

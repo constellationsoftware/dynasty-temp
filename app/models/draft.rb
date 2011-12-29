@@ -40,6 +40,7 @@ class Draft < ActiveRecord::Base
     self.finished_at = nil
     self.status = nil
     self.started_at = nil
+    self.current_pick = nil
 
     self.save!
   end
