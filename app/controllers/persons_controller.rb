@@ -57,9 +57,7 @@ class PersonsController < ApplicationController
     }
 
     career_info {
-       :seasons_played => @seasons,
-       :games_played => "TODO",
-       :consistency => "TODO"
+       :seasons_played => @seasons
     }
 
     result = {
