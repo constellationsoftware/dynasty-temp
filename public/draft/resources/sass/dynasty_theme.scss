@@ -50,7 +50,8 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
 
 // include mixins specific to our custom theme
 @import 'shoutbox';
-
+@import 'compass/utilities/general/min';
+@import 'compass/css3/transition';
 
 /********************************************************************************
  * HEADER
@@ -89,6 +90,137 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
  *******************************************************************************/
 .row-invalid {
     color: $row-disabled-color;
+}
+
+/** RECOMMENDED PICK */
+$recommended_pick_border_color: #CCC;
+$recommended_pick_background_color: color-stops(#EDEDED 0%, #FFFFFF 6%, #EDEDED 100%);
+$recommended_pick_background_color_hover: rgba(255, 255, 82, 0.2);
+$recommended_pick_background_color_selected: color-stops(mix(#EDEDED, #B2D7FF) 0%, #B2D7FF 6%, mix(#EDEDED, #B2D7FF) 100%);
+$recommended_pick_bio_width: 10em;
+$recommended_pick_bio_min-height: 8em;
+.recommended_pick_wrap {
+    width: 100%;
+    overflow: hidden;
+    margin: 0;
+    margin-bottom: 1em;
+    &:last-child { margin-bottom: 0; }
+    border: 0.2em solid $recommended_pick_border_color;
+    @include border-radius(0.7em);
+    @include background-image(linear-gradient(bottom, $recommended_pick_background_color));
+
+    .recommended_pick {
+        @include min-height($recommended_pick_bio_min-height);
+        padding: 0.5em 0.7em;
+        @include transition-property(background-color);
+        @include transition-duration(0.4s);
+        @include transition-timing-function(cubic-bezier(0, 0.42, 0.57, 0.88));
+
+        &:hover { background-color: $recommended_pick_background_color_hover; }
+
+        dt, dd {
+            display: inline;
+            margin: 0;
+            padding: 0;
+            font-size: 1.5em;
+        }
+        dt {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        dd { margin-right: 1em; }
+
+        .bio {
+            float: left;
+            width: $recommended_pick_bio_width;
+            margin-left: -100%;
+            text-align: center;
+
+            .photo {
+                width: 100px;
+                height: 123px;
+                margin: 0 auto;
+                background-color: white;
+                background-image: image-url("players/default.png", false, false);
+            }
+        }
+        
+        .stats_wrap {
+            float: left;
+            width: 100%;
+            padding-left: 1em;
+
+            .stats_content {
+                margin-left: $recommended_pick_bio_width;
+
+                .title, .salary {
+                    float: left;
+                    width: 50%;
+                    margin: 0;
+                    padding: 0;
+                    font-weight: bold;
+                    font-size: 2em;
+                    margin-bottom: 0.5em;
+
+                    .edit {
+                        display: inline-block;
+                        margin: 0;
+                        padding: 0;
+                        margin-left: 1em;
+
+                        div {
+                            font-size: 16px;
+                            height: 100%;
+                        }
+                    }
+                }
+                .salary { text-align: right; }
+                .stats {
+                    clear: both; 
+                    dd {
+                        display: inline-block;
+                        width: 80px;
+                        margin-right: 20px;
+
+                        span {
+                            float: right;
+                            color: #CCCCCC;
+                            &.pos { color: green; }
+                            &.neg { color: red; }
+                        }
+                    }
+                }
+            }
+        }
+
+        .footer {
+            clear: both;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+.selected { @include background-image(linear-gradient(bottom, $recommended_pick_background_color_selected)); }
+
+.#{$prefix}boundlist-floating { border-top-width: 1px; }
+.playersearch-boundlist {
+    ul {
+        display: block;
+        padding: 0px 3px;
+
+        li {
+            display: inline-block;
+            text-align: left;
+
+            &.name { width: 55%; }
+            &.position { width: 10%; }
+            &.rating { width: 10%; }
+            &.salary {
+                width: 25%;
+                text-align: right;
+            }
+        }
+    }
 }
 
 /********************************************************************************
@@ -131,5 +263,13 @@ div.pick {
         width: 100%;
         text-align: center;
         font-weight: bold;
+    }
+}
+
+#user-balance {
+    font-size: 1.2em;
+    font-weight: bold;
+    &.deficit {
+        color: red;
     }
 }

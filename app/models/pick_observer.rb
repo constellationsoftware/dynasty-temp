@@ -7,11 +7,12 @@ class PickObserver < ActiveRecord::Observer
   end
 
   def after_update(pick)
-    finished_count = Pick.joins{draft}.where{draft.id == pick.draft.id}.maximum(:pick_order)
+    finished_count = Pick.joins{draft}.where{draft.id.eq pick.draft.id}.maximum(:pick_order)
 
     if pick.pick_order === finished_count
       pick.draft.status = :finished
       pick.draft.finished_at = Time.now
+      pick.draft.current_pick_id = nil
       pick.draft.save
     end
   end

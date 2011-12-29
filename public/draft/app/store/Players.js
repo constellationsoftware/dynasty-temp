@@ -8,25 +8,19 @@ Ext.define('DynastyDraft.store.Players', {
     pageSize: 50,
     remoteSort: true,
 
-    //groupField: 'position',
-
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/salaries',
-        /*extraParams: {
-            total: 50000
-        },*/
+        url: '/draft/players',
         reader: {
-            root: 'results',
+            type: 'json',
+            root: 'players',
             totalProperty: 'total'
         },
-        // sends single sort as multi parameter
-        simpleSortMode: false,
         extraParams: {
-            by_position: true,
-            offense: true,
-            with_valid: true,
+            available: true,
+            by_rating: true,
+            by_position: true
         }
     },
 
@@ -44,8 +38,7 @@ Ext.define('DynastyDraft.store.Players', {
             var index = positions.indexOf(position);
             return index !== -1 ? index : 999;
         }
-    },
-    {
+    }, {
         property: 'rating',
         direction: 'DESC'
     }]

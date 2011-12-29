@@ -5,22 +5,22 @@ Ext.Loader.setConfig({
 });
 
 
-var APP;
 Ext.application({
     name: 'DynastyDraft',
     appFolder: '/draft/app',
     autoCreateViewport: true,
 
-    requires: [ 'DynastyDraft.data.Socket' ],
+    requires: [
+        'DynastyDraft.data.Socket',
+        'Ext.window.MessageBox'
+    ],
 
     models: [
-        'Message',
         'Update'
     ],
 
     stores: [
         //'PlayerStoreCharts',
-        'Messages',
         'Roster',
         'Players',
         'Picks',
@@ -28,17 +28,14 @@ Ext.application({
 
     controllers: [
         'PlayerGrid',
-        'PlayerQueue',
-        'ShoutBox',
         'Timer',
         'Roster',
         'AdminControls',
         'Picks',
+        'RecommendedPicks'
     ],
 
     launch: function() {
-        APP = this;
-
         Ext.tip.QuickTipManager.init();
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
             showDelay: 50      // Show 50ms after entering target
@@ -50,6 +47,7 @@ Ext.application({
             'draft:pick:update': this.onPickUpdate,
             //'draft:pause': this.onDraftPaused,
             //'draft:resume': this.onDraftResumed,
+            'draft:finish': this.onDraftFinish,
             'draft:reset': this.onDraftReset,
         };
         events['draft:pick:start-' + CLIENT_ID] = this.startPicking;
@@ -61,9 +59,17 @@ Ext.application({
         DynastyDraft.data.Socket.init();
 
         this.getController('Timer').addListener('timeout', this.onTimeout, this);
-        this.getController('PlayerQueue').addListener('picked', this.onPlayerPicked, this);
-        this.getController('PlayerQueue').addListener('pickfailed', this.onPlayerPickFailed, this);
+        this.getController('RecommendedPicks').addListener('playerpicked', this.onPlayerPicked, this);
         this.getController('AdminControls').addListener('click', this.onAdminControlsClicked, this);
+        this.getController('Picks').addListener('picksucceeded', this.onPickSucceeded, this);
+    },
+
+    onDraftFinish: function() {
+        Ext.Msg.show({
+            title: '',
+            msg: 'The draft is complete!',
+            icon: Ext.Msg.WARNING
+        });
     },
 
     onAdminControlsClicked: function(button) {
@@ -97,14 +103,31 @@ Ext.application({
     */
     
     onDraftReset: function(data) {
-        this.fireEvent(this.STATUS_RESET);
+        var t = setTimeout('window.location.reload()', 5000);
+        Ext.Msg.show({
+            title: 'The draft has been reset!',
+            msg: 'An administrator has initiated a draft reset. ' +
+                'The page will refresh in 5 seconds. ' +
+                'Press the button below if you do not wish to wait.',
+            icon: Ext.Msg.WARNING,
+            buttons: Ext.MessageBox.OK,
+            width: 400,
+            fn: function() {
+                clearTimeout(t);
+                window.location.reload();
+            }
+        });
     },
 
     onPlayerPicked: function(player) {
-        console.log('player pick succeeded', player);
+        console.log('player picked succeeded', player);
         this.fireEvent(this.STATUS_PICKED, player.get('id'));
         //Ext.ux.data.Socket.request('pick', { player_id: player.get('id') });
         this.fireEvent(this.STATUS_WAITING);
+    },
+
+    onPickSucceeded: function() {
+        this.fireEvent(this.STATUS_PICK_SUCCESS);
     },
 
     onPlayerPickFailed: function() {
@@ -130,9 +153,8 @@ Ext.application({
         //Ext.ux.data.Socket.request('ready', { id: user.id });
     },
 
-    startPicking: function() {
-        this.fireEvent(this.STATUS_BEFORE_PICKING);
-        this.fireEvent(this.STATUS_PICKING);
+    startPicking: function(data) {
+        this.fireEvent(this.STATUS_PICKING, data);
     },
 
     resumePicking: function() {
@@ -146,9 +168,9 @@ Ext.application({
 
     //statics: {
         STATUS_STARTED:         'started',
-        STATUS_BEFORE_PICKING:  'beforepick',
         STATUS_PICKING:         'picking',
         STATUS_PICKED:          'picked',
+        STATUS_PICK_SUCCESS:    'picksuccess',
         STATUS_WAITING:         'waiting',
         STATUS_PAUSED:          'paused',
         STATUS_RESUMED:         'resumed',

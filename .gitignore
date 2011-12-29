@@ -8,8 +8,14 @@ bundler_stubs/
 db/*.sqlite3
 log/*
 dynastyowner.tmproj
-.idea/workspace.xml
-.idea/dynastyowner.iml
+
 tmp
 *.sqlite3
 database.yml
+public/draft/resources/.sass-cache/
+
+
+config/database.yml
+
+.sass-cache/
+encodings.xml

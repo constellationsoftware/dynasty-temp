@@ -4,13 +4,25 @@ class UserTeam < ActiveRecord::Base
 
   has_many :picks, :foreign_key => 'team_id'
   has_many :players
+  has_one :balance,
+    :class_name => 'UserTeamBalance',
+    :autosave => true,
+    :dependent => :destroy,
+    :inverse_of => :team
 
   scope :online, self.where(:is_online => true)
   scope :offline, self.where(:is_online => false)
   scope :draft_data, includes(:user, :picks)
 
   before_create :generate_uuid
- 
+
+  # aliased method overrides the default getter for the association
+  # so we can return the balance attr of the associated class
+  # instead of the class instance
+  alias_method :get_balance_instance, :balance
+  def balance
+    return self.get_balance_instance.balance
+  end
 
 =begin
   def roster

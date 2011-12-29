@@ -12,6 +12,8 @@ end
 
 require 'friendly_id'
 
+
+
 module Dynasty
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -28,7 +30,10 @@ module Dynasty
     # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
     # Activate observers that should always be running.
-    config.active_record.observers = :league_observer, :user_team_observer, :pick_observer #, :cacher, :garbage_collector, :forum_observer
+    config.active_record.observers = :league_observer,
+        :user_team_observer,
+        :draft_observer,
+        :pick_observer #, :cacher, :garbage_collector, :forum_observer
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
@@ -47,7 +52,8 @@ module Dynasty
     # Enable the asset pipeline
     config.assets.enabled = true
     config.serve_static_assets = true
-        
+    config.assets.compile = true
+
     # Compass integration
     # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
     # config.sass.load_paths << Compass::Frameworks['twitter_bootstrap'].stylesheets_directory
@@ -56,7 +62,7 @@ module Dynasty
     config.assets.version = '1.0'
 
     # Disable asset initialization on precompile for heroku deployment w/ devise authentication
-    config.assets.initialize_on_precompile = false
+    config.assets.initialize_on_precompile = true
 
     # set up a custom provider for the direct RPC root URL
     #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"
@@ -87,3 +93,10 @@ EM.next_tick do
     # cause the job to be instantiated and therefore queued
     Pusher::Job.instance
 end
+
+#
+# Mailgun REST client
+#
+
+
+

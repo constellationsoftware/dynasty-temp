@@ -1,7 +1,7 @@
 class League::TeamsController < SubdomainController
   before_filter :authenticate_user!
 
-  actions :index
+  actions :index, :balance
   has_scope :draft_data, :type => :boolean, :default => true, :only => :index
   respond_to :json
 
@@ -18,6 +18,10 @@ class League::TeamsController < SubdomainController
         }
       )}
     end
+  end
+
+  def balance
+    #team = UserTeam
   end
 
   def collection

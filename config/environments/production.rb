@@ -3,7 +3,7 @@ Dynasty::Application.configure do
 
   # Code is not reloaded between requests
   config.cache_classes = true
-  config.cache_store = :dalli_store
+  #config.cache_store = :dalli_store
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false # set to true for fake dev mode
@@ -60,3 +60,10 @@ Dynasty::Application.configure do
   config.active_support.deprecation = :notify
   
 end
+require 'pusher'
+Pusher.app_id = '10192'
+Pusher.key    = '6e855396056bdf519e1a'
+Pusher.secret = 'da06ccd5289c0145a263'
+
+#MAILGUN_API_KEY = "key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61"
+#MAILGUN_API_URL = "https://api:#{MAILGUN_API_KEY}@api.mailgun.net/v2/mailgun.net"

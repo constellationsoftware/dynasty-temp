@@ -5,7 +5,6 @@
     .eight.columns
       %h2
         = @person.display_name.full_name
-
       %h4
         = @person.person_phases.current_phase.first.membership.display_name.full_name
         Position:

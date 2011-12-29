@@ -4,13 +4,10 @@ Ext.define('DynastyDraft.view.Roster', {
     // WARNING: does not work entirely
     //requires: [ 'DynastyDraft.grid.feature.Grouping' ],
 
-    alias: 'widget.rostergrid',
+    alias: 'widget.roster',
     title: 'Roster',
     store: 'Roster',
     columnLines: true,
-    selModel: {
-        mode: "MULTI",
-    },
 
     columns: [
         {
@@ -32,11 +29,8 @@ Ext.define('DynastyDraft.view.Roster', {
 
     features: [
         {
-            ftype: 'rowbody',
-        },
-        {
             ftype: 'grouping',
-            groupHeaderTpl: '{name} ({rows.length} Salary{[values.rows.length > 1 ? "s" : ""]})',
+            groupHeaderTpl: '{name} ({rows.length} Player{[values.rows.length > 1 ? "s" : ""]})',
             hideGroupedHeader: false,
             enableGroupingMenu: false,
             startCollapsed: false,

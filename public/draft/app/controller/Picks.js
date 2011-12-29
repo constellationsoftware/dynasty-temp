@@ -16,6 +16,8 @@ Ext.define('DynastyDraft.controller.Picks', {
             }
         });
 
+        this.addEvents('picksucceeded');
+
         this.getTeamsStore().addListener('load', this.onTeamsLoaded, this);
         this.getPicksStore().addListener('changeCurrentPick', this.onChangeCurrentPick, this);
         this.application.addListener(this.application.STATUS_PICKED, this.onPlayerPicked, this);
@@ -67,7 +69,7 @@ Ext.define('DynastyDraft.controller.Picks', {
             // suspend model events until the end of the update
             currentPick.set('person_id', player_id);
             currentPick.save({
-                success: function() {},
+                success: function() { this.fireEvent('picksucceeded'); },
                 failure: function() {},
                 callback: function() {},
                 scope: this
@@ -101,7 +103,7 @@ Ext.define('DynastyDraft.controller.Picks', {
         var store = this.getPickOrderStore(),
             pickCount = store.getCount();
         
-        if (pickCount > 0) {
+        if (pickCount > 0 && currentPick) {
             store.clearFilter(true);
 
             // if it's not supplied, infer it from the first free pick in the store

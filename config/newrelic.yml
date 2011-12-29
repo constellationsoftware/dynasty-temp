@@ -7,9 +7,9 @@ production:
   apdex_t: 0.5
   ssl: false
   monitor_mode: true
-  license_key: <%= ENV["NEW_RELIC_LICENSE_KEY"] %>
-  developer_mode: true
-  app_name: <%= ENV["NEW_RELIC_APP_NAME"] %>
+  license_key: 3359003d4e4b34b59e38ba8a62c8576812fcae19
+  developer_mode: false
+  app_name: dynastyowner
   transaction_tracer:
     record_sql: obfuscated
     enabled: true
