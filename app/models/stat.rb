@@ -16,6 +16,7 @@ class Stat < ActiveRecord::Base
 
   end
 
+
   def self.career_stat
     where(:context => 'career').includes(:stat_repository).includes(:stat_coverage)
   end
@@ -66,6 +67,9 @@ class Stat < ActiveRecord::Base
 
 
 
+  def self.core_stat
+    where(:stat_repository_type => 'CoreStat').includes(:stat_repository).includes(:stat_coverage)
+  end
 
   def self.passing_stat
     where(:stat_repository_type => 'AmericanFootballPassingStat').includes(:stat_repository).includes(:stat_coverage)

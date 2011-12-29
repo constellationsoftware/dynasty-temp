@@ -25,6 +25,7 @@ class PersonsController < ApplicationController
     @last_season     = @person.stats.subseason_stat.last_season
     @current_season = @person.stats.subseason_stat.this_season
     @career = @person.stats.career_stat
+    @seasons = @person.stats.subseason_stat.core_stat.count
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
 
@@ -55,6 +56,11 @@ class PersonsController < ApplicationController
         :special_teams_stat => @career.andand.special_teams_stat.first.andand.stat_repository.andand.score_modifier
     }
 
+    career_info {
+       :seasons_played => @seasons,
+       :games_played => "TODO"
+       :consistency => "TODO"
+    }
 
     result = {
         :success => true,
@@ -63,7 +69,8 @@ class PersonsController < ApplicationController
         :position => @person.current_position,
         :last_season_score => last_season_stats,
         :this_season_score => current_season_stats,
-        :career_score => career_stats
+        :career_score => career_stats,
+        :career_info => career_info
     }
 
     #json[:first_name] = @person.display_name
