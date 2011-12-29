@@ -5,7 +5,7 @@ handler do |job|
   puts "Running #{job}"
 end
 
-every(1.seconds, 'seconds.job') {
+every(10.seconds, 'seconds.job') {
   time = Time.now
   puts time
 }

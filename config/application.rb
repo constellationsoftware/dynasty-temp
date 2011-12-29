@@ -12,6 +12,8 @@ end
 
 require 'friendly_id'
 
+
+
 module Dynasty
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -91,3 +93,10 @@ EM.next_tick do
     # cause the job to be instantiated and therefore queued
     Pusher::Job.instance
 end
+
+#
+# Mailgun REST client
+#
+
+
+

@@ -48,6 +48,10 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 gem 'iron_worker'
 gem 'clockwork'
+gem 'typhoeus'
+
+gem 'rest-client'
+
 
 
 group :production do

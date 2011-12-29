@@ -255,6 +255,8 @@ GEM
       polyglot (>= 0.3.1)
     turn (0.8.3)
       ansi
+    typhoeus (0.3.3)
+      mime-types
     tzinfo (0.3.31)
     uglifier (1.2.1)
       execjs (>= 0.3.0)
@@ -311,6 +313,7 @@ DEPENDENCIES
   rack (= 1.3.3)
   rails (= 3.1.1)
   responders
+  rest-client
   ruby_parser
   sass (= 3.1.7)
   sass-rails
@@ -318,6 +321,7 @@ DEPENDENCIES
   thin
   timecop
   turn
+  typhoeus
   uglifier
   unicorn
   uuidtools

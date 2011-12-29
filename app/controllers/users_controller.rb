@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   # GET /Users
   # GET /Users.json
+
+
+
+
   def index
     @time = Time.now
     Thread.new do

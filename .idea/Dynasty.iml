@@ -33,6 +33,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.0.21, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cancan (v1.6.7, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chunky_png (v1.2.5, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="clockwork (v0.3.4, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-filter (v0.1.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v3.1.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
@@ -112,6 +113,7 @@
     <orderEntry type="library" scope="PROVIDED" name="timecop (v0.3.5, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="treetop (v1.4.10, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turn (v0.8.3, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="typhoeus (v0.3.3, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.31, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v1.2.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicorn (v4.1.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />

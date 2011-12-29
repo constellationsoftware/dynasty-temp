@@ -34,9 +34,22 @@ Dynasty::Application.configure do
 
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  ENV['MAILGUN_API_KEY']  = 'key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61'
+  ENV['MAILGUN_API_URL']  = "https://api:key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61@api.mailgun.net/v2/mailgun.net"
+  # Example message format
+  # RestClient.post MAILGUN_API_URL+"/messages",
+  #                :from => "ev@example.com",
+  #                :to => "ev@mailgun.net",
+  #                :subject => "This is subject",
+  #                :text => "Text body",
+  #                :html => "<b>HTML</b> version of the body!"
+  #
 end
 
 require 'pusher'
 Pusher.app_id = '10193'
 Pusher.key    = '64db7a76d407adc40ff3'
 Pusher.secret = 'cf5b7ef9fae37eefa146'
+
+
