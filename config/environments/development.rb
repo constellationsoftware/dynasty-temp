@@ -29,8 +29,14 @@ Dynasty::Application.configure do
 
   #Iron Worker to run jobs
 
-  ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
-  ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
+  #ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
+  #ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
+
+  # Rotate Log Files. example:
+  # config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
+  # will rotate every 5 megabytes, keeping the 3 most recent used logs = 15 mb of logs
+
+  config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
 
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }

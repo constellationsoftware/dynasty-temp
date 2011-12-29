@@ -37,6 +37,12 @@ Dynasty::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
+  # Rotate Log Files. example:
+  # config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
+  # will rotate every 5 megabytes, keeping the 3 most recent used logs = 15 mb of logs
+
+  config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
+
   # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
   config.assets.allow_debugging = true
 end
