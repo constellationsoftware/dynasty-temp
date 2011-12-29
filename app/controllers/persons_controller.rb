@@ -57,7 +57,7 @@ class PersonsController < ApplicationController
     }
 
     career_info = {
-       :seasons_played => seasons.to_i
+
     }
 
     result = {
@@ -70,7 +70,8 @@ class PersonsController < ApplicationController
         :last_season_score => last_season_stats,
         :this_season_score => current_season_stats,
         :career_score => career_stats,
-        :career_info => career_info
+        :career_info => career_info,
+        :seasons_played => seasons.to_i
     }
 
     #json[:first_name] = @person.display_name
