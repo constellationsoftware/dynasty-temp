@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219171416) do
+ActiveRecord::Schema.define(:version => 20111228203228) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -97,6 +97,14 @@ ActiveRecord::Schema.define(:version => 20111219171416) do
 
   add_index "affiliations_documents", ["affiliation_id"], :name => "FK_aff_doc_aff_id__aff_id"
   add_index "affiliations_documents", ["document_id"], :name => "FK_aff_doc_doc_id__doc_id"
+
+  create_table "affiliations_documents_bak", :id => false, :force => true do |t|
+    t.integer "affiliation_id", :null => false
+    t.integer "document_id",    :null => false
+  end
+
+  add_index "affiliations_documents_bak", ["affiliation_id"], :name => "FK_aff_doc_aff_id__aff_id"
+  add_index "affiliations_documents_bak", ["document_id"], :name => "FK_aff_doc_doc_id__doc_id"
 
   create_table "affiliations_events", :id => false, :force => true do |t|
     t.integer "affiliation_id", :null => false
@@ -1035,14 +1043,20 @@ ActiveRecord::Schema.define(:version => 20111219171416) do
     t.integer "person_id"
   end
 
+  create_table "position_groups", :force => true do |t|
+    t.string "name"
+    t.string "abbreviation"
+  end
+
   create_table "positions", :force => true do |t|
-    t.integer "affiliation_id",                :null => false
-    t.string  "abbreviation",   :limit => 100, :null => false
-    t.string  "name",           :limit => 20,  :null => false
+    t.integer "affiliation_id",                   :null => false
+    t.string  "abbreviation",      :limit => 100, :null => false
+    t.integer "position_group_id"
   end
 
   add_index "positions", ["abbreviation"], :name => "IDX_positions_1"
   add_index "positions", ["affiliation_id"], :name => "IDX_FK_pos_aff_id__aff_id"
+  add_index "positions", ["position_group_id"], :name => "index_positions_on_position_group_id"
 
   create_table "publishers", :force => true do |t|
     t.string "publisher_key",  :limit => 100, :null => false
