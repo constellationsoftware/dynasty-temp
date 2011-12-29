@@ -138,6 +138,13 @@ GEM
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
+    iron_worker (2.2.0)
+      rest
+      rest
+      rest-client
+      rest-client
+      zip
+      zip
     jbuilder (0.3)
       activesupport (>= 3.0.0)
       blankslate (>= 2.1.2.4)
@@ -207,6 +214,9 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.4)
+    rest (0.1.0)
+      rest-client
+      rest-client
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ruby-hmac (0.4.0)
@@ -255,6 +265,7 @@ GEM
     uuidtools (2.1.2)
     warden (1.1.0)
       rack (>= 1.0)
+    zip (2.0.2)
     zurb-foundation (2.1.4.1)
       jquery-rails (~> 1.0)
       rails (~> 3.1.0)
@@ -284,6 +295,7 @@ DEPENDENCIES
   heroku
   hpricot
   inherited_resources
+  iron_worker
   jbuilder
   jquery-rails
   kaminari

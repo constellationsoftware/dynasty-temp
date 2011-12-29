@@ -46,6 +46,8 @@ gem 'jbuilder'
 gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
+gem 'iron_worker'
+
 
 group :production do
   gem 'pg'

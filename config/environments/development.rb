@@ -27,6 +27,11 @@ Dynasty::Application.configure do
   config.serve_static_assets = true
   config.assets.compile = true
 
+  #Iron Worker to run jobs
+
+  ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
+  ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
+
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

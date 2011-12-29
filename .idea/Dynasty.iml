@@ -61,6 +61,7 @@
     <orderEntry type="library" scope="PROVIDED" name="http_parser.rb (v0.5.3, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.6.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="inherited_resources (v1.2.2, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="iron_worker (v2.2.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v0.3, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v1.0.19, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.6.4, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
@@ -93,6 +94,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rake-compiler (v0.7.9, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rdoc (v3.12, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="responders (v0.6.4, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rest (v0.1.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rest-client (v1.6.7, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-hmac (v0.4.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby_parser (v2.3.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
@@ -116,6 +118,7 @@
     <orderEntry type="library" scope="PROVIDED" name="uuidtools (v2.1.2, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="vestal_versions (v82760a, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.1.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="zip (v2.0.2, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zurb-foundation (v2.1.4.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
   </component>
   <component name="RModuleSettingsStorage">
