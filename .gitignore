@@ -10,12 +10,14 @@ log/*
 dynastyowner.tmproj
 .idea/workspace.xml
 .idea/dynastyowner.iml
+.idea
+.idea/Dynasty.iml
+.idea/dictionaries/benjaminmurphy.xml
 tmp
 *.sqlite3
 database.yml
 public/draft/resources/.sass-cache/
-.idea/Dynasty.iml
-.idea/dictionaries/benjaminmurphy.xml
+
 
 config/database.yml
 
