@@ -104,3 +104,15 @@ body {
     z-index: -1000;
 
 }
+
+.row {
+    width: 100%;
+    max-width: 100%;
+    min-width: 727px;
+    margin: 0 auto;
+.row {
+    min-width: 0px; } }
+
+#wrap {margin-top: 50px;
+    padding-top: 50px;}
+$font-color             : #000000;
