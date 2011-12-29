@@ -34,7 +34,7 @@ gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
 gem 'zurb-foundation', :group => :assets
 gem 'execjs'
-gem 'enum_simulator', :git => 'git://github.com/bamurphymac/enum_simulator.git'
+gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
 gem 'newrelic_rpm'
 
