@@ -2,6 +2,20 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/abbrev" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/graceful-fs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/ini" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/minimatch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/minimatch/node_modules/lru-cache" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/node-uuid" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/nopt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/proto-list" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/request" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/rimraf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/semver" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/slide" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmp/npm/node_modules/which" vcs="Git" />
   </component>
 </project>
 
