@@ -25,7 +25,7 @@ class PersonsController < ApplicationController
     @last_season     = @person.stats.subseason_stat.last_season
     @current_season = @person.stats.subseason_stat.this_season
     @career = @person.stats.career_stat
-    @seasons = @person.stats.subseason_stat.andand.core_stat.count
+    seasons = @person.stats.subseason_stat.andand.core_stat.count
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
 
@@ -57,13 +57,15 @@ class PersonsController < ApplicationController
     }
 
     career_info {
-       :seasons_played => @seasons
+       :seasons_played => seasons
     }
 
     result = {
         :success => true,
         :person => @person,
-        :display_name => @person.display_name,
+        :first_name => @person.display_name.first_name,
+        :last_name => @person.display_name.last_name,
+        :id => @person.id,
         :position => @person.current_position,
         :last_season_score => last_season_stats,
         :this_season_score => current_season_stats,
