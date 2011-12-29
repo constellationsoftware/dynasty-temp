@@ -25,7 +25,7 @@ class PersonsController < ApplicationController
     @last_season     = @person.stats.subseason_stat.last_season
     @current_season = @person.stats.subseason_stat.this_season
     @career = @person.stats.career_stat
-    @seasons = @person.stats.subseason_stat.core_stat.count
+    @seasons = @person.stats.subseason_stat.andand.core_stat.count
     @score        = @person.person_scores.order("created_at").last
     @scores       = @person.person_scores.order("created_at DESC").all
 
