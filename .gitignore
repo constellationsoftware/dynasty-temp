@@ -15,8 +15,6 @@ database.yml
 public/draft/resources/.sass-cache/
 
 
-config/database.yml
 
 .sass-cache/
 encodings.xml
-.idea/scopes/
