@@ -1480,11 +1480,6 @@ ActiveRecord::Schema.define(:version => 20111228203228) do
   add_index "persons_media", ["media_id"], :name => "FK_per_med_med_id__med_id"
   add_index "persons_media", ["person_id"], :name => "FK_per_med_per_id__per_id"
 
-  create_table "position_groups", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
-  end
-
   create_table "positions", :force => true do |t|
     t.integer "affiliation_id",                   :null => false
     t.string  "abbreviation",      :limit => 100, :null => false
