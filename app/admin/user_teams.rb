@@ -4,7 +4,9 @@ ActiveAdmin.register UserTeam do
   index do 
   	column :name
   	column :league
-  	#column :payroll
+    column "balance" do |team|
+      team.balance_cents
+    end
   	default_actions
   end
 

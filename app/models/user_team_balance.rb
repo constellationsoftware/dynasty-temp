@@ -6,4 +6,6 @@ class UserTeamBalance < ActiveRecord::Base
       :autosave => true,
       :touch => true,
       :inverse_of => :balance
+
+
 end

@@ -19,3 +19,6 @@ encodings.xml
 .idea/
 
 .idea/workspace.xml
+.idea/.generators
+.idea/Dynasty.iml
+Dynasty.iml

@@ -43,7 +43,7 @@ gem 'coffee-filter'
 gem 'timecop'
 gem 'jbuilder'
 
-gem 'vestal_versions'#, :git => 'git://github.com/teambox/vestal_versions.git'
+gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 gem 'iron_worker'
@@ -52,7 +52,7 @@ gem 'typhoeus'
 
 gem 'rest-client'
 
-
+gem 'fnordmetric', '~> 0.5'
 
 group :production do
   gem 'pg'
