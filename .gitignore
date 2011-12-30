@@ -22,3 +22,4 @@ encodings.xml
 .idea/.generators
 .idea/Dynasty.iml
 Dynasty.iml
+app/views/layouts/application.html.erb

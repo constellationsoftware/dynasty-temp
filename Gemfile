@@ -5,6 +5,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'compass', '>= 0.11.5'
+gem 'compass-foundation'
 gem 'sass-rails'#, '~> 3.1.0'
 gem 'heroku'
 # gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
@@ -32,7 +33,7 @@ gem 'uuidtools'
 gem 'activeadmin'
 gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
-gem 'zurb-foundation', :group => :assets
+gem "zurb-foundation", "~> 2.1.2"
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
@@ -52,7 +53,7 @@ gem 'typhoeus'
 
 gem 'rest-client'
 
-gem 'fnordmetric', '~> 0.5'
+#gem 'fnordmetric', '~> 0.5'
 
 group :production do
   gem 'pg'
