@@ -115,7 +115,7 @@
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v0.3.31, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v1.2.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uuidtools (v2.1.2, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="vestal_versions (v82760a, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="vestal_versions (v1.0.2, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.1.0, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zip (v2.0.2, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zurb-foundation (v2.1.4.1, RVM: ruby-1.9.2-p290 [dynasty]) [gem]" level="application" />
