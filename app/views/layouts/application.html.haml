@@ -45,15 +45,14 @@
           %img.show-on-desktops{:src => "/assets/images/logo_med.png"}
           %img.show-on-tablets{:src => "/assets/images/logo_small.png"}
           %img.show-on-phones{:src => "/assets/images/logo_tiny.png"}
-        %ul.nav-bar.clean.nine.columns.hide-on-phones
+        %ul.nav-bar.clean.hide-on-phones
           %li
             = link_to 'Player Research', people_path
           %li
             = link_to 'My Teams'
           %li
             = link_to 'Account'
-          %li
-            = Time.now.strftime("%A %B %d, %Y")
+
 
   .container.wrapper
     .row

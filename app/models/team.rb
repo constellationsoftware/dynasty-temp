@@ -22,4 +22,6 @@ class Team < ActiveRecord::Base
       Event.find(p.event_id).summary
     end
   end
+
+
 end
