@@ -52,7 +52,7 @@ module Dynasty
     # Enable the asset pipeline
     config.assets.enabled = true
     config.serve_static_assets = true
-    config.assets.compile = true
+    config.assets.compile = false
 
     # Compass integration
     # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
@@ -62,7 +62,7 @@ module Dynasty
     config.assets.version = '1.0'
 
     # Disable asset initialization on precompile for heroku deployment w/ devise authentication
-    config.assets.initialize_on_precompile = true
+    config.assets.initialize_on_precompile = false
 
     # set up a custom provider for the direct RPC root URL
     #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"
@@ -91,7 +91,7 @@ end
 #
 EM.next_tick do
     # cause the job to be instantiated and therefore queued
-    #Pusher::Job.instance
+    Pusher::Job.instance
 end
 
 #
