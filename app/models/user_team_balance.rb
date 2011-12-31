@@ -1,9 +1,11 @@
 class UserTeamBalance < ActiveRecord::Base
-    money :balance, :cents => :balance_cents
+  set_table_name 'dynasty_team_balances'
 
-    belongs_to :team,
-      :class_name => 'UserTeam',
-      :autosave => true,
-      :touch => true,
-      :inverse_of => :balance
+  money :balance, :cents => :balance_cents
+
+  belongs_to :team,
+    :class_name => 'UserTeam',
+    :autosave => true,
+    :touch => true,
+    :inverse_of => :balance
 end

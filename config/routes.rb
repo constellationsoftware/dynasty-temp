@@ -26,9 +26,9 @@ Dynasty::Application.routes.draw do
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
-  resources :person_scores, :events, :dynasty_dollars, :positions, :trades,
+  resources :person_scores, :events, :positions, :trades,
             :user_teams, :user_team_person, :users, :person_phases, :display_names,
-            :stats, :fix, :draftable_players, :picks, :salaries,
+            :stats, :fix, :picks, :salaries,
             :persons, :people, :drafts, :leagues, :admin_dashboard
 
   resources :teams do
@@ -41,19 +41,6 @@ Dynasty::Application.routes.draw do
 
   resources :persons do
     resources :display_name
-  end
-
-  resources :drafts do
-    member do
-      get 'push_available_players'
-      get 'push_draft_status'
-      get 'roster'
-      get 'auto_pick'
-      get 'draft_auto_pick'
-      get 'users'
-      get 'available_players'
-      get 'status'
-    end
   end
 
 

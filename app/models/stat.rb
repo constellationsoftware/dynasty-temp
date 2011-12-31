@@ -1,10 +1,16 @@
 class Stat < ActiveRecord::Base
 
-  belongs_to :stat_holder, :polymorphic => true
-  belongs_to :stat_coverage, :polymorphic => true
+  belongs_to :stat_holder,
+    :conditions => [ 'stat_holder_type = ?', 'persons' ]
+#, :polymorphic => true
+  #belongs_to :stat_coverage, :polymorphic => true
   #belongs_to :event, :foreign_key => :stat_coverage_id, :class_name => "Event"
-  belongs_to :stat_membership, :polymorphic => true
-  belongs_to :stat_repository, :polymorphic => true
+  belongs_to :stat_membership#, :polymorphic => true
+  belongs_to :stat_repository#, :polymorphic => true
+
+  belongs_to :sub_season,
+    :foreign_key => :stat_coverage_id,
+    :conditions => [ 'stat_coverage_type = ?', 'sub_seasons' ]
 
   #Stat.joins(:stat_repository).joins(:stat_coverage).joins(:stat_membership)
 
@@ -12,29 +18,29 @@ class Stat < ActiveRecord::Base
 
   def self.event_stat
 
-    where(:stat_coverage_type => 'Event').includes(:stat_repository).includes(:stat_coverage)
+    where{stat_coverage_type == 'events'}.includes{[stat_repository, stat_coverage]}
 
   end
 
 
   def self.career_stat
-    where(:context => 'career').includes(:stat_repository).includes(:stat_coverage)
+    where{context == 'career'}.includes{[stat_repository, stat_coverage]}
   end
 
   def self.subseason_stat
-    where(:stat_coverage_type => 'SubSeason').includes(:stat_repository).includes(:stat_coverage)
+    where{stat_coverage_type == 'sub_seasons'}.includes{[stat_repository, stat_coverage]}
   end
 
   def self.last_season
-    where(:stat_coverage_id => '11').includes(:stat_repository).includes(:stat_repository).includes(:stat_coverage)
+    where{stat_coverage_id == '11'}.includes{[stat_repository, stat_coverage]}
   end
 
   def self.this_season
-    where(:stat_coverage_id => '1').includes(:stat_repository).includes(:stat_repository).includes(:stat_coverage)
+    where{stat_coverage_id == '1'}.includes{[stat_repository, stat_coverage]}
   end
 
   def self.affiliation_stat
-    where(:stat_coverage_type => 'Affiliation').includes(:stat_repository).includes(:stat_coverage)
+    where{stat_coverage_type == 'affiliations'}.includes{[stat_repository, stat_coverage]}
   end
 
   scope :event, event_stat
@@ -65,37 +71,9 @@ class Stat < ActiveRecord::Base
       end; nil
   end
 
-
-
-  def self.core_stat
-    where(:stat_repository_type => 'CoreStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.passing_stat
-    where(:stat_repository_type => 'AmericanFootballPassingStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.rushing_stat
-    where(:stat_repository_type => 'AmericanFootballRushingStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.defensive_stat
-    where(:stat_repository_type => 'AmericanFootballDefensiveStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.fumbles_stat
-    where(:stat_repository_type => 'AmericanFootballFumblesStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.sacks_against_stat
-    where(:stat_repository_type => 'AmericanFootballSacksAgainstStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.scoring_stat
-    where(:stat_repository_type => 'AmericanFootballScoringStat').includes(:stat_repository).includes(:stat_coverage)
-  end
-
-  def self.special_teams_stat
-    where(:stat_repository_type => 'AmericanFootballSpecialTeamStat').includes(:stat_repository).includes(:stat_coverage)
+  def points
+    klass = self.stat_repository_type.classify.constantize
+    stat = klass.where{id == my{self.stat_repository_id}}.first
+    return stat.points if stat.respond_to? 'points'
   end
 end

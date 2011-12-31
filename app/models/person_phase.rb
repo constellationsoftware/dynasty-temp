@@ -1,8 +1,8 @@
 class PersonPhase < ActiveRecord::Base
   belongs_to :person
-  belongs_to :membership, :polymorphic => true
+  belongs_to :membership#, :polymorphic => true
   
-  belongs_to :position, :foreign_key => "regular_position_id"
+  belongs_to :position, :class_name => 'SportsDb::Position', :foreign_key => 'regular_position_id'
   belongs_to :role
   belongs_to :season, :foreign_key => "end_season_id"
   belongs_to :season, :foreign_key => "start_season_id"
@@ -19,7 +19,7 @@ class PersonPhase < ActiveRecord::Base
   end
 
   def self.current
-    where("membership_type = ?", 'Team')
+    where("membership_type = ?", 'teams')
   end
 
   def self.current_phase
@@ -27,8 +27,6 @@ class PersonPhase < ActiveRecord::Base
   end
 
   scope :positioned, positioned
-
   scope :draftable, positioned.activated
-
   scope :current_phase, current_phase
 end

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  set_table_name 'dynasty_users'
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   has_and_belongs_to_many :roles
