@@ -16,10 +16,5 @@ public/draft/resources/.sass-cache/
 .sass-cache/
 encodings.xml
 
-.idea/
 
-.idea/workspace.xml
-.idea/.generators
-.idea/Dynasty.iml
-Dynasty.iml
 app/views/layouts/application.html.erb
