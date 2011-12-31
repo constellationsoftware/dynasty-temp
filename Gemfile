@@ -49,7 +49,6 @@ gem 'jbuilder'
 gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
-gem 'iron_worker'
 gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
 gem 'typhoeus'
 
