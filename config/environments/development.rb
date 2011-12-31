@@ -29,8 +29,8 @@ Dynasty::Application.configure do
 
   #Iron Worker to run jobs
 
-  ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
-  ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
+  #ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
+  #ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
 
   # Rotate Log Files. example:
   # config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
