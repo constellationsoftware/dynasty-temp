@@ -28,7 +28,9 @@ gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
-gem 'delayed_job'
+gem 'delayed_job','< 3.0'
+# issues with DJ 3.0
+# gem 'delayed_job_active_record'
 gem 'uuidtools'
 gem 'activeadmin'
 gem 'squeel'

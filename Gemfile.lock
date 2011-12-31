@@ -100,8 +100,9 @@ GEM
       compass (>= 0.10.0)
     daemons (1.1.5)
     dalli (1.1.4)
-    delayed_job (3.0.0)
+    delayed_job (2.1.4)
       activesupport (~> 3.0)
+      daemons
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -289,7 +290,7 @@ DEPENDENCIES
   compass (>= 0.11.5)
   compass-foundation
   dalli
-  delayed_job
+  delayed_job (< 3.0)
   devise
   devise_lastseenable (>= 0.0.3)
   em-http-request

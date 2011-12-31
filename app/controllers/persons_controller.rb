@@ -63,20 +63,7 @@ class PersonsController < InheritedResources::Base
 
     }
 
-    # get contract info
-    team = @person.person_phases.current.first.membership.display_name.full_name.gsub! /\s+/, '-'
-    name = @person.display_name.full_name.gsub! /\s+/, '-'
-    url = "http://www.spotrac.com/nfl/#{team}/#{name}"
-    doc = Nokogiri::HTML(open(url))
 
-    # try rotoworld
-
-    roto_url = "http://rotoworld.com/content/playersearch.aspx?searchname=#{@person.display_name.last_name},#{@person.display_name.first_name}"
-    roto_doc = Nokogiri::HTML(open(roto_url))
-    @roto_doc = roto_doc
-
-    @photo = @roto_doc.css("#cp1_ctl00_imgPlayerPhoto")
-    @photo_url = "http://rotoworld.com#{@photo.attribute('src').to_s}"
     result = {
         :success => true,
         :person => @person,
@@ -115,6 +102,22 @@ class PersonsController < InheritedResources::Base
           :stats => { :methods => [ :points ] }
         }
       )}
+      format.html {
+        # get contract info
+        team = @person.person_phases.current.first.membership.display_name.full_name.gsub! /\s+/, '-'
+        name = @person.display_name.full_name.gsub! /\s+/, '-'
+        url = "http://www.spotrac.com/nfl/#{team}/#{name}"
+        doc = Nokogiri::HTML(open(url))
+
+        # try rotoworld
+
+        roto_url = "http://rotoworld.com/content/playersearch.aspx?searchname=#{@person.display_name.last_name},#{@person.display_name.first_name}"
+        roto_doc = Nokogiri::HTML(open(roto_url))
+        @roto_doc = roto_doc
+
+        @photo = @roto_doc.css("#cp1_ctl00_imgPlayerPhoto")
+        @photo_url = "http://rotoworld.com#{@photo.attribute('src').to_s}"
+      }
     end
   end
 
