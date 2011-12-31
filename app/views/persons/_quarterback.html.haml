@@ -48,10 +48,10 @@
     %tr
       %td{:colspan => "16"}
   %tbody
-    - @person.stat_events.each do |event|
+    - @person.events.past.each do |event|
       %tr
         %td
-          = event.week
+          = event.gameday
         %td
           = event.away_team.display_name.first_name
           %br

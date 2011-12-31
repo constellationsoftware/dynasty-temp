@@ -1,0 +1,2 @@
+module DynastyPlayerContractsHelper
+end

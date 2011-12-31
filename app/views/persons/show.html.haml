@@ -1,21 +1,23 @@
 #person
   .row.rounded
     .two.columns
-      %img{:src => "/assets/images/headshot_sml.png", :class => "photo"}
+      %img{:src => @photo_url, :class => "photo"}
     .eight.columns
       %h2
         = @person.display_name.full_name
       %h4
         = @person.person_phases.current_phase.first.membership.display_name.full_name
         Position:
-        = @person.current_position.position.name
+        = @person.current_position.name
         Uniform #
         = @person.person_phases.current_phase.first.uniform_number
 
 
 
-  - if @person.current_position.position.name == "Quarterback"
+  - if @person.current_position.name == "Quarterback"
     = render :partial => "quarterback"
+
+
 
   - @person.stat_events.each do |event|
     %li

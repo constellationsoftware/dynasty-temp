@@ -1,5 +1,5 @@
 class Event < ActiveRecord::Base
-  #default_scope :order => 'start_date_time ASC'
+  default_scope :order => 'start_date_time ASC'
   #default_scope where('start_date_time <= ?', Time.now)
 
   # TODO: Associated participating players to lock for trading and score calculations
@@ -8,6 +8,7 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :medias
   has_many :stats, :as => :stat_coverage
   has_many :participants_events
+  belongs_to :sub_season
 
 
 
@@ -28,11 +29,11 @@ class Event < ActiveRecord::Base
   #Chrono Methods
 
   def gameday
-    self.start_date_time
+    self.start_date_time.day
   end
 
   def week
-    self.start_date_time.strftime("%U").to_i - 35
+    self.start_date_time.week
   end
 
   def self.has_date

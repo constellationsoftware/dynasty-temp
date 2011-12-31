@@ -1,4 +1,6 @@
 Dynasty::Application.routes.draw do
+  resources :dynasty_player_contracts
+
   ActiveAdmin.routes(self)
   devise_for :users
 

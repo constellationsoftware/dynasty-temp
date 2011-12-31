@@ -1,7 +1,7 @@
 class Person < ActiveRecord::Base
   #establish_connection(configurations[:sportsdb])
   set_table_name "persons"
-
+  has_one :dynasty_player_contract
   has_one :display_name, :as => :entity
   has_many :person_phases
   has_one :person_score
@@ -55,7 +55,7 @@ class Person < ActiveRecord::Base
   has_many :user_teams, :through => :players
 
   def current_position
-    self.person_phases.current_phase.first
+    self.person_phases.current_phase.first.position.group
   end
 
   def current_stats
@@ -69,6 +69,8 @@ class Person < ActiveRecord::Base
   def stat_events
     Event.find(self.stat_event_ids)
   end
+
+
 
 
 

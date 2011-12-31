@@ -51,6 +51,9 @@ gem 'iron_worker'
 gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
 gem 'typhoeus'
 
+# for scraping salaries
+gem 'nokogiri'
+
 gem 'rest-client'
 
 #gem 'fnordmetric', '~> 0.5'
