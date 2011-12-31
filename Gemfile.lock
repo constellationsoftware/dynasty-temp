@@ -100,8 +100,9 @@ GEM
       compass (>= 0.10.0)
     daemons (1.1.5)
     dalli (1.1.4)
-    delayed_job (3.0.0)
+    delayed_job (2.1.4)
       activesupport (~> 3.0)
+      daemons
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -145,13 +146,6 @@ GEM
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
       responders (~> 0.6.0)
-    iron_worker (2.2.0)
-      rest
-      rest
-      rest-client
-      rest-client
-      zip
-      zip
     jbuilder (0.3)
       activesupport (>= 3.0.0)
       blankslate (>= 2.1.2.4)
@@ -220,9 +214,6 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.4)
-    rest (0.1.0)
-      rest-client
-      rest-client
     rest-client (1.6.7)
       mime-types (>= 1.16)
     ruby-hmac (0.4.0)
@@ -269,7 +260,6 @@ GEM
     uuidtools (2.1.2)
     warden (1.1.0)
       rack (>= 1.0)
-    zip (2.0.2)
     zurb-foundation (2.1.4.1)
       jquery-rails (~> 1.0)
       rails (~> 3.1.0)
@@ -289,7 +279,7 @@ DEPENDENCIES
   compass (>= 0.11.5)
   compass-foundation
   dalli
-  delayed_job
+  delayed_job (< 3.0)
   devise
   devise_lastseenable (>= 0.0.3)
   em-http-request
@@ -301,7 +291,6 @@ DEPENDENCIES
   heroku
   hpricot
   inherited_resources
-  iron_worker
   jbuilder
   jquery-rails
   kaminari
