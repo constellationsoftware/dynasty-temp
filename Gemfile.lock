@@ -100,9 +100,8 @@ GEM
       compass (>= 0.10.0)
     daemons (1.1.5)
     dalli (1.1.4)
-    delayed_job (2.1.4)
+    delayed_job (3.0.0)
       activesupport (~> 3.0)
-      daemons
     devise (1.5.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)

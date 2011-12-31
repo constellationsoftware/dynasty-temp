@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111230220702) do
+ActiveRecord::Schema.define(:version => 0) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -97,14 +97,6 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
 
   add_index "affiliations_documents", ["affiliation_id"], :name => "FK_aff_doc_aff_id__aff_id"
   add_index "affiliations_documents", ["document_id"], :name => "FK_aff_doc_doc_id__doc_id"
-
-  create_table "affiliations_documents_bak", :id => false, :force => true do |t|
-    t.integer "affiliation_id", :null => false
-    t.integer "document_id",    :null => false
-  end
-
-  add_index "affiliations_documents_bak", ["affiliation_id"], :name => "FK_aff_doc_aff_id__aff_id"
-  add_index "affiliations_documents_bak", ["document_id"], :name => "FK_aff_doc_doc_id__doc_id"
 
   create_table "affiliations_events", :id => false, :force => true do |t|
     t.integer "affiliation_id", :null => false
@@ -430,6 +422,299 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
     t.integer "date_coverage_id"
   end
 
+  create_table "baseball_action_contact_details", :force => true do |t|
+    t.integer "baseball_action_pitch_id",                :null => false
+    t.string  "location",                 :limit => 100
+    t.string  "strength",                 :limit => 100
+    t.integer "velocity"
+    t.string  "comment",                  :limit => 512
+    t.string  "trajectory_coordinates",   :limit => 100
+    t.string  "trajectory_formula",       :limit => 100
+  end
+
+  add_index "baseball_action_contact_details", ["baseball_action_pitch_id"], :name => "FK_bas_act_con_det_bas_act_pit_id__bas_act_pit_id"
+
+  create_table "baseball_action_pitches", :force => true do |t|
+    t.integer "baseball_action_play_id",                                                   :null => false
+    t.decimal "sequence_number",                             :precision => 4, :scale => 1
+    t.integer "baseball_defensive_group_id"
+    t.string  "umpire_call",                 :limit => 100
+    t.string  "pitch_location",              :limit => 100
+    t.string  "pitch_type",                  :limit => 100
+    t.integer "pitch_velocity"
+    t.string  "comment",                     :limit => 2048
+    t.string  "trajectory_coordinates",      :limit => 512
+    t.string  "trajectory_formula",          :limit => 100
+    t.string  "ball_type",                   :limit => 40
+    t.string  "strike_type",                 :limit => 40
+    t.integer "strikes"
+    t.integer "balls"
+  end
+
+  add_index "baseball_action_pitches", ["baseball_action_play_id"], :name => "FK_baseball_action_plays_baseball_action_pitches"
+  add_index "baseball_action_pitches", ["baseball_defensive_group_id"], :name => "IDX_FK_bas_act_pit_bas_def_gro_id__bas_def_gro_id"
+  add_index "baseball_action_pitches", ["pitch_type"], :name => "IDX_baseball_action_pitches_2"
+  add_index "baseball_action_pitches", ["umpire_call"], :name => "IDX_baseball_action_pitches_1"
+
+  create_table "baseball_action_plays", :force => true do |t|
+    t.integer "baseball_event_state_id",                    :null => false
+    t.string  "play_type",                   :limit => 100
+    t.string  "out_type",                    :limit => 100
+    t.string  "notation",                    :limit => 100
+    t.text    "notation_yaml"
+    t.integer "baseball_defensive_group_id"
+    t.string  "comment",                     :limit => 512
+    t.string  "runner_on_first_advance",     :limit => 40
+    t.string  "runner_on_second_advance",    :limit => 40
+    t.string  "runner_on_third_advance",     :limit => 40
+    t.integer "outs_recorded"
+    t.integer "rbi"
+    t.integer "runs_scored"
+    t.string  "earned_runs_scored",          :limit => 100
+  end
+
+  add_index "baseball_action_plays", ["baseball_event_state_id"], :name => "IDX_FK_bas_act_pla_bas_eve_sta_id__bas_eve_sta_id"
+  add_index "baseball_action_plays", ["out_type"], :name => "IDX_baseball_action_plays_2"
+  add_index "baseball_action_plays", ["play_type"], :name => "IDX_baseball_action_plays_1"
+
+  create_table "baseball_action_substitutions", :force => true do |t|
+    t.integer "baseball_event_state_id",                                                   :null => false
+    t.decimal "sequence_number",                             :precision => 4, :scale => 1
+    t.string  "person_type",                  :limit => 100
+    t.integer "person_original_id"
+    t.integer "person_original_position_id"
+    t.integer "person_original_lineup_slot"
+    t.integer "person_replacing_id"
+    t.integer "person_replacing_position_id"
+    t.integer "person_replacing_lineup_slot"
+    t.string  "substitution_reason",          :limit => 100
+    t.string  "comment",                      :limit => 512
+  end
+
+  add_index "baseball_action_substitutions", ["baseball_event_state_id"], :name => "FK_bas_act_sub_bas_eve_sta_id__bas_eve_sta_id"
+  add_index "baseball_action_substitutions", ["person_original_id"], :name => "FK_bas_act_sub_per_ori_id__per_id"
+  add_index "baseball_action_substitutions", ["person_original_position_id"], :name => "FK_bas_act_sub_per_ori_pos_id__pos_id"
+  add_index "baseball_action_substitutions", ["person_replacing_id"], :name => "FK_bas_act_sub_per_rep_id__per_id"
+  add_index "baseball_action_substitutions", ["person_replacing_position_id"], :name => "FK_bas_act_sub_per_rep_pos_id__pos_id"
+
+  create_table "baseball_defensive_group", :force => true do |t|
+  end
+
+  create_table "baseball_defensive_players", :force => true do |t|
+    t.integer "baseball_defensive_group_id", :null => false
+    t.integer "player_id",                   :null => false
+    t.integer "position_id",                 :null => false
+  end
+
+  add_index "baseball_defensive_players", ["baseball_defensive_group_id"], :name => "FK_bas_def_pla_bas_def_gro_id__bas_def_gro_id"
+  add_index "baseball_defensive_players", ["player_id"], :name => "FK_bas_def_pla_pla_id__per_id"
+  add_index "baseball_defensive_players", ["position_id"], :name => "FK_bas_def_pla_pos_id__pos_id"
+
+  create_table "baseball_defensive_stats", :force => true do |t|
+    t.integer "double_plays"
+    t.integer "triple_plays"
+    t.integer "putouts"
+    t.integer "assists"
+    t.integer "errors"
+    t.float   "fielding_percentage"
+    t.float   "defensive_average"
+    t.integer "errors_passed_ball"
+    t.integer "errors_catchers_interference"
+    t.integer "stolen_bases_average"
+    t.integer "stolen_bases_caught"
+  end
+
+  create_table "baseball_event_states", :force => true do |t|
+    t.integer "event_id",                                                           :null => false
+    t.integer "current_state",         :limit => 2
+    t.decimal "sequence_number",                      :precision => 4, :scale => 1
+    t.integer "at_bat_number"
+    t.integer "inning_value"
+    t.string  "inning_half",           :limit => 100
+    t.integer "outs"
+    t.integer "balls"
+    t.integer "strikes"
+    t.integer "runner_on_first_id"
+    t.integer "runner_on_second_id"
+    t.integer "runner_on_third_id"
+    t.integer "runner_on_first",       :limit => 2
+    t.integer "runner_on_second",      :limit => 2
+    t.integer "runner_on_third",       :limit => 2
+    t.integer "runs_this_inning_half"
+    t.integer "pitcher_id"
+    t.integer "batter_id"
+    t.string  "batter_side",           :limit => 100
+    t.string  "context",               :limit => 40
+    t.integer "document_id"
+  end
+
+  add_index "baseball_event_states", ["batter_id"], :name => "FK_bas_eve_sta_bat_id__per_id"
+  add_index "baseball_event_states", ["context"], :name => "IDX_baseball_event_states_context"
+  add_index "baseball_event_states", ["current_state"], :name => "IDX_baseball_event_states_1"
+  add_index "baseball_event_states", ["event_id"], :name => "IDX_FK_bas_eve_sta_eve_id__eve_id"
+  add_index "baseball_event_states", ["pitcher_id"], :name => "FK_bas_eve_sta_pit_id__per_id"
+  add_index "baseball_event_states", ["runner_on_first_id"], :name => "FK_bas_eve_sta_run_on_fir_id__per_id"
+  add_index "baseball_event_states", ["runner_on_second_id"], :name => "FK_bas_eve_sta_run_on_sec_id__per_id"
+  add_index "baseball_event_states", ["runner_on_third_id"], :name => "FK_bas_eve_sta_run_on_thi_id__per_id"
+  add_index "baseball_event_states", ["sequence_number"], :name => "IDX_baseball_event_states_seq_num"
+
+  create_table "baseball_offensive_stats", :force => true do |t|
+    t.float   "average"
+    t.integer "runs_scored"
+    t.integer "at_bats"
+    t.integer "hits"
+    t.integer "rbi"
+    t.integer "total_bases"
+    t.float   "slugging_percentage"
+    t.integer "bases_on_balls"
+    t.integer "strikeouts"
+    t.integer "left_on_base"
+    t.integer "left_in_scoring_position"
+    t.integer "singles"
+    t.integer "doubles"
+    t.integer "triples"
+    t.integer "home_runs"
+    t.integer "grand_slams"
+    t.float   "at_bats_per_rbi"
+    t.float   "plate_appearances_per_rbi"
+    t.float   "at_bats_per_home_run"
+    t.float   "plate_appearances_per_home_run"
+    t.integer "sac_flies"
+    t.integer "sac_bunts"
+    t.integer "grounded_into_double_play"
+    t.integer "moved_up"
+    t.float   "on_base_percentage"
+    t.integer "stolen_bases"
+    t.integer "stolen_bases_caught"
+    t.float   "stolen_bases_average"
+    t.integer "hit_by_pitch"
+    t.float   "on_base_plus_slugging"
+    t.integer "plate_appearances"
+    t.integer "hits_extra_base"
+    t.integer "pick_offs_against"
+    t.integer "sacrifices"
+    t.integer "outs_fly"
+    t.integer "outs_ground"
+    t.integer "reached_base_defensive_interference"
+    t.integer "reached_base_error"
+    t.integer "reached_base_fielder_choice"
+    t.integer "double_plays_against"
+    t.integer "triple_plays_against"
+    t.integer "strikeouts_looking"
+    t.integer "bases_on_balls_intentional"
+  end
+
+  create_table "baseball_pitching_stats", :force => true do |t|
+    t.integer "runs_allowed"
+    t.integer "singles_allowed"
+    t.integer "doubles_allowed"
+    t.integer "triples_allowed"
+    t.integer "home_runs_allowed"
+    t.string  "innings_pitched",            :limit => 20
+    t.integer "hits"
+    t.integer "earned_runs"
+    t.integer "unearned_runs"
+    t.integer "bases_on_balls"
+    t.integer "bases_on_balls_intentional"
+    t.integer "strikeouts"
+    t.float   "strikeout_to_bb_ratio"
+    t.integer "number_of_pitches"
+    t.float   "era"
+    t.integer "inherited_runners_scored"
+    t.integer "pick_offs"
+    t.integer "errors_hit_with_pitch"
+    t.integer "errors_wild_pitch"
+    t.integer "balks"
+    t.integer "wins"
+    t.integer "losses"
+    t.integer "saves"
+    t.integer "shutouts"
+    t.integer "games_complete"
+    t.integer "games_finished"
+    t.float   "winning_percentage"
+    t.string  "event_credit",               :limit => 40
+    t.string  "save_credit",                :limit => 40
+    t.integer "batters_doubles_against"
+    t.integer "batters_triples_against"
+    t.integer "outs_recorded"
+    t.integer "batters_at_bats_against"
+    t.integer "number_of_strikes"
+    t.integer "wins_season"
+    t.integer "losses_season"
+    t.integer "saves_season"
+    t.integer "saves_blown_season"
+    t.integer "saves_blown"
+  end
+
+  create_table "basketball_defensive_stats", :force => true do |t|
+    t.string "steals_total",    :limit => 100
+    t.string "steals_per_game", :limit => 100
+    t.string "blocks_total",    :limit => 100
+    t.string "blocks_per_game", :limit => 100
+  end
+
+  create_table "basketball_event_states", :force => true do |t|
+    t.integer "event_id",                             :null => false
+    t.integer "current_state",         :limit => 1
+    t.integer "sequence_number"
+    t.string  "period_value",          :limit => 100
+    t.string  "period_time_elapsed",   :limit => 100
+    t.string  "period_time_remaining", :limit => 100
+    t.string  "context",               :limit => 40
+    t.integer "document_id"
+  end
+
+  add_index "basketball_event_states", ["context"], :name => "IDX_basketball_event_states_context"
+  add_index "basketball_event_states", ["event_id"], :name => "IDX_FK_events_basketball_event_states"
+  add_index "basketball_event_states", ["sequence_number"], :name => "IDX_basketball_event_states_seq_num"
+
+  create_table "basketball_offensive_stats", :force => true do |t|
+    t.integer "field_goals_made"
+    t.integer "field_goals_attempted"
+    t.string  "field_goals_percentage",            :limit => 100
+    t.string  "field_goals_per_game",              :limit => 100
+    t.string  "field_goals_attempted_per_game",    :limit => 100
+    t.string  "field_goals_percentage_adjusted",   :limit => 100
+    t.integer "three_pointers_made"
+    t.integer "three_pointers_attempted"
+    t.string  "three_pointers_percentage",         :limit => 100
+    t.string  "three_pointers_per_game",           :limit => 100
+    t.string  "three_pointers_attempted_per_game", :limit => 100
+    t.string  "free_throws_made",                  :limit => 100
+    t.string  "free_throws_attempted",             :limit => 100
+    t.string  "free_throws_percentage",            :limit => 100
+    t.string  "free_throws_per_game",              :limit => 100
+    t.string  "free_throws_attempted_per_game",    :limit => 100
+    t.string  "points_scored_total",               :limit => 100
+    t.string  "points_scored_per_game",            :limit => 100
+    t.string  "assists_total",                     :limit => 100
+    t.string  "assists_per_game",                  :limit => 100
+    t.string  "turnovers_total",                   :limit => 100
+    t.string  "turnovers_per_game",                :limit => 100
+    t.string  "points_scored_off_turnovers",       :limit => 100
+    t.string  "points_scored_in_paint",            :limit => 100
+    t.string  "points_scored_on_second_chance",    :limit => 100
+    t.string  "points_scored_on_fast_break",       :limit => 100
+  end
+
+  create_table "basketball_rebounding_stats", :force => true do |t|
+    t.string "rebounds_total",          :limit => 100
+    t.string "rebounds_per_game",       :limit => 100
+    t.string "rebounds_defensive",      :limit => 100
+    t.string "rebounds_offensive",      :limit => 100
+    t.string "team_rebounds_total",     :limit => 100
+    t.string "team_rebounds_per_game",  :limit => 100
+    t.string "team_rebounds_defensive", :limit => 100
+    t.string "team_rebounds_offensive", :limit => 100
+  end
+
+  create_table "basketball_team_stats", :force => true do |t|
+    t.string "timeouts_left",   :limit => 100
+    t.string "largest_lead",    :limit => 100
+    t.string "fouls_total",     :limit => 100
+    t.string "turnover_margin", :limit => 100
+  end
+
   create_table "bookmakers", :force => true do |t|
     t.string  "bookmaker_key", :limit => 100
     t.integer "publisher_id",                 :null => false
@@ -582,7 +867,16 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
   add_index "documents_media", ["media_caption_id"], :name => "FK_doc_med_med_cap_id__med_cap_id"
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
-  create_table "drafts", :force => true do |t|
+  create_table "dynasty_draft_picks", :force => true do |t|
+    t.integer  "person_id"
+    t.integer  "draft_id",   :default => 0, :null => false
+    t.integer  "team_id",                   :null => false
+    t.integer  "pick_order", :default => 0, :null => false
+    t.datetime "picked_at"
+    t.integer  "round",                     :null => false
+  end
+
+  create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "league_id",                                     :null => false
@@ -591,21 +885,96 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
     t.string   "status"
   end
 
-  add_index "drafts", ["league_id"], :name => "index_drafts_league"
-  add_index "drafts", ["status"], :name => "index_drafts_on_status"
+  add_index "dynasty_drafts", ["league_id"], :name => "index_drafts_league"
+  add_index "dynasty_drafts", ["status"], :name => "index_drafts_on_status"
 
-  create_table "dynasty_dollars", :force => true do |t|
-    t.integer "team_id", :null => false
-  end
-
-  create_table "dynasty_player_contracts", :force => true do |t|
+  create_table "dynasty_leagues", :force => true do |t|
+    t.string   "name",       :limit => 50,                 :null => false
+    t.integer  "size",                     :default => 15, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "person_id"
-    t.integer  "amount"
-    t.integer  "length"
-    t.integer  "end_year"
+    t.integer  "manager_id"
+    t.string   "slug"
+    t.datetime "clock"
   end
+
+  add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
+  add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
+
+  create_table "dynasty_player_points", :force => true do |t|
+    t.integer  "score",      :null => false
+    t.integer  "player_id",  :null => false
+    t.datetime "created_at", :null => false
+  end
+
+  create_table "dynasty_player_positions", :id => false, :force => true do |t|
+    t.integer "player_id"
+    t.integer "position_id"
+  end
+
+  add_index "dynasty_player_positions", ["player_id", "position_id"], :name => "index_dynasty_player_positions_on_player_id_and_position_id", :unique => true
+
+  create_table "dynasty_positions", :force => true do |t|
+    t.string "name"
+    t.string "abbreviation"
+  end
+
+  create_table "dynasty_team_balances", :force => true do |t|
+    t.integer  "balance_cents", :limit => 11, :default => 75000000000, :null => false
+    t.integer  "user_team_id",                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "dynasty_team_players", :force => true do |t|
+    t.integer "user_team_id"
+    t.integer "person_id"
+  end
+
+  create_table "dynasty_teams", :force => true do |t|
+    t.integer "league_id",                                        :null => false
+    t.string  "name",           :limit => 50,                     :null => false
+    t.integer "user_id",                                          :null => false
+    t.boolean "is_online",                     :default => false, :null => false
+    t.binary  "uuid",           :limit => 255
+    t.string  "last_socket_id"
+  end
+
+  add_index "dynasty_teams", ["league_id"], :name => "index_user_teams_league"
+  add_index "dynasty_teams", ["user_id"], :name => "index_user_teams_user"
+  add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
+
+  create_table "dynasty_trades", :force => true do |t|
+    t.integer "league_id",       :null => false
+    t.integer "initial_team_id", :null => false
+    t.integer "second_team_id",  :null => false
+  end
+
+  create_table "dynasty_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "authentication_token"
+    t.datetime "last_seen"
+    t.integer  "league_id"
+    t.string   "name"
+    t.string   "role"
+    t.integer  "roles_mask"
+  end
+
+  add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
 
   create_table "event_action_fouls", :force => true do |t|
     t.integer "event_state_id",                :null => false
@@ -755,6 +1124,183 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
 
   add_index "events_sub_seasons", ["sub_season_id"], :name => "FK_eve_sub_sea_sub_sea_id__sub_sea_id"
 
+  create_table "ice_hockey_action_participants", :force => true do |t|
+    t.integer "team_id",                                  :null => false
+    t.integer "ice_hockey_action_play_id",                :null => false
+    t.integer "person_id",                                :null => false
+    t.string  "participant_role",          :limit => 100
+    t.integer "point_credit"
+    t.integer "goals_cumulative"
+    t.integer "assists_cumulative"
+  end
+
+  add_index "ice_hockey_action_participants", ["ice_hockey_action_play_id"], :name => "FK_ice_hockey_action_plays_ice_hockey_action_participants"
+  add_index "ice_hockey_action_participants", ["person_id"], :name => "FK_persons_ice_hockey_action_participants"
+  add_index "ice_hockey_action_participants", ["team_id"], :name => "FK_ice_hockey_action_participants_team_id_teams_id"
+
+  create_table "ice_hockey_action_plays", :force => true do |t|
+    t.integer "ice_hockey_event_state_id",                 :null => false
+    t.string  "play_key",                  :limit => 100
+    t.string  "play_type",                 :limit => 100
+    t.string  "score_attempt_type",        :limit => 100
+    t.string  "play_result",               :limit => 100
+    t.string  "penalty_type",              :limit => 100
+    t.string  "penalty_length",            :limit => 100
+    t.string  "penalty_code",              :limit => 100
+    t.string  "recipient_type",            :limit => 100
+    t.integer "team_id"
+    t.string  "strength",                  :limit => 100
+    t.integer "shootout_shot_order"
+    t.integer "goal_order"
+    t.string  "shot_type",                 :limit => 100
+    t.string  "shot_distance",             :limit => 100
+    t.string  "goal_zone",                 :limit => 100
+    t.string  "penalty_time_remaining",    :limit => 40
+    t.string  "location",                  :limit => 40
+    t.string  "zone",                      :limit => 40
+    t.string  "comment",                   :limit => 1024
+  end
+
+  add_index "ice_hockey_action_plays", ["ice_hockey_event_state_id"], :name => "FK_ice_hockey_event_states_ice_hockey_action_plays"
+
+  create_table "ice_hockey_defensive_stats", :force => true do |t|
+    t.string  "goals_power_play_allowed",   :limit => 100
+    t.string  "goals_penalty_shot_allowed", :limit => 100
+    t.string  "goals_empty_net_allowed",    :limit => 100
+    t.string  "goals_against_average",      :limit => 100
+    t.string  "goals_short_handed_allowed", :limit => 100
+    t.string  "goals_shootout_allowed",     :limit => 100
+    t.string  "shots_power_play_allowed",   :limit => 100
+    t.string  "shots_penalty_shot_allowed", :limit => 100
+    t.string  "shots_blocked",              :limit => 100
+    t.string  "saves",                      :limit => 100
+    t.string  "save_percentage",            :limit => 100
+    t.string  "penalty_killing_amount",     :limit => 100
+    t.string  "penalty_killing_percentage", :limit => 100
+    t.string  "takeaways",                  :limit => 100
+    t.string  "shutouts",                   :limit => 100
+    t.string  "minutes_penalty_killing",    :limit => 100
+    t.string  "hits",                       :limit => 100
+    t.string  "shots_shootout_allowed",     :limit => 100
+    t.integer "goaltender_wins"
+    t.integer "goaltender_losses"
+    t.integer "goaltender_ties"
+    t.integer "goals_allowed"
+    t.integer "shots_allowed"
+    t.integer "player_count"
+    t.integer "player_count_opposing"
+    t.integer "goaltender_wins_overtime"
+    t.integer "goaltender_losses_overtime"
+    t.integer "goals_overtime_allowed"
+  end
+
+  create_table "ice_hockey_event_states", :force => true do |t|
+    t.integer "power_play_team_id"
+    t.integer "event_id",                                   :null => false
+    t.integer "current_state",               :limit => 1
+    t.string  "period_value",                :limit => 100
+    t.string  "period_time_elapsed",         :limit => 100
+    t.string  "period_time_remaining",       :limit => 100
+    t.string  "record_type",                 :limit => 40
+    t.integer "power_play_player_advantage"
+    t.integer "score_team"
+    t.integer "score_team_opposing"
+    t.integer "score_team_home"
+    t.integer "score_team_away"
+    t.string  "action_key",                  :limit => 100
+    t.string  "sequence_number",             :limit => 100
+    t.string  "context",                     :limit => 40
+    t.integer "document_id"
+  end
+
+  add_index "ice_hockey_event_states", ["context"], :name => "IDX_ice_hockey_event_states_context"
+  add_index "ice_hockey_event_states", ["event_id"], :name => "FK_ice_hoc_eve_sta_eve_id__eve_id"
+  add_index "ice_hockey_event_states", ["power_play_team_id"], :name => "FK_hockey_event_states_power_play_team_id_teams_id"
+  add_index "ice_hockey_event_states", ["sequence_number"], :name => "IDX_ice_hockey_event_states_seq_num"
+
+  create_table "ice_hockey_faceoff_stats", :force => true do |t|
+    t.integer "player_count"
+    t.integer "player_count_opposing"
+    t.integer "faceoff_wins"
+    t.integer "faceoff_losses"
+    t.decimal "faceoff_win_percentage",                 :precision => 5, :scale => 2
+    t.integer "faceoffs_power_play_wins"
+    t.integer "faceoffs_power_play_losses"
+    t.decimal "faceoffs_power_play_win_percentage",     :precision => 5, :scale => 2
+    t.integer "faceoffs_short_handed_wins"
+    t.integer "faceoffs_short_handed_losses"
+    t.decimal "faceoffs_short_handed_win_percentage",   :precision => 5, :scale => 2
+    t.integer "faceoffs_even_strength_wins"
+    t.integer "faceoffs_even_strength_losses"
+    t.decimal "faceoffs_even_strength_win_percentage",  :precision => 5, :scale => 2
+    t.integer "faceoffs_offensive_zone_wins"
+    t.integer "faceoffs_offensive_zone_losses"
+    t.decimal "faceoffs_offensive_zone_win_percentage", :precision => 5, :scale => 2
+    t.integer "faceoffs_defensive_zone_wins"
+    t.integer "faceoffs_defensive_zone_losses"
+    t.decimal "faceoffs_defensive_zone_win_percentage", :precision => 5, :scale => 2
+    t.integer "faceoffs_neutral_zone_wins"
+    t.integer "faceoffs_neutral_zone_losses"
+    t.decimal "faceoffs_neutral_zone_win_percentage",   :precision => 5, :scale => 2
+  end
+
+  create_table "ice_hockey_offensive_stats", :force => true do |t|
+    t.string  "giveaways",                     :limit => 100
+    t.integer "goals"
+    t.string  "goals_game_winning",            :limit => 100
+    t.string  "goals_game_tying",              :limit => 100
+    t.string  "goals_power_play",              :limit => 100
+    t.string  "goals_short_handed",            :limit => 100
+    t.string  "goals_even_strength",           :limit => 100
+    t.string  "goals_empty_net",               :limit => 100
+    t.string  "goals_overtime",                :limit => 100
+    t.string  "goals_shootout",                :limit => 100
+    t.string  "goals_penalty_shot",            :limit => 100
+    t.string  "assists",                       :limit => 100
+    t.integer "shots"
+    t.string  "shots_penalty_shot_taken",      :limit => 100
+    t.string  "shots_penalty_shot_missed",     :limit => 100
+    t.string  "shots_penalty_shot_percentage", :limit => 100
+    t.integer "shots_missed"
+    t.integer "shots_blocked"
+    t.integer "shots_power_play"
+    t.integer "shots_short_handed"
+    t.integer "shots_even_strength"
+    t.string  "points",                        :limit => 100
+    t.string  "power_play_amount",             :limit => 100
+    t.string  "power_play_percentage",         :limit => 100
+    t.string  "minutes_power_play",            :limit => 100
+    t.string  "faceoff_wins",                  :limit => 100
+    t.string  "faceoff_losses",                :limit => 100
+    t.string  "faceoff_win_percentage",        :limit => 100
+    t.string  "scoring_chances",               :limit => 100
+    t.integer "player_count"
+    t.integer "player_count_opposing"
+    t.integer "assists_game_winning"
+    t.integer "assists_overtime"
+    t.integer "assists_power_play"
+    t.integer "assists_short_handed"
+  end
+
+  create_table "ice_hockey_player_stats", :force => true do |t|
+    t.string "plus_minus", :limit => 100
+  end
+
+  create_table "ice_hockey_time_on_ice_stats", :force => true do |t|
+    t.integer "player_count"
+    t.integer "player_count_opposing"
+    t.integer "shifts"
+    t.string  "time_total",                   :limit => 40
+    t.string  "time_power_play",              :limit => 40
+    t.string  "time_short_handed",            :limit => 40
+    t.string  "time_even_strength",           :limit => 40
+    t.string  "time_empty_net",               :limit => 40
+    t.string  "time_power_play_empty_net",    :limit => 40
+    t.string  "time_short_handed_empty_net",  :limit => 40
+    t.string  "time_even_strength_empty_net", :limit => 40
+    t.string  "time_average_per_shift",       :limit => 40
+  end
+
   create_table "injury_phases", :force => true do |t|
     t.integer  "person_id",                      :null => false
     t.string   "injury_status",   :limit => 100
@@ -795,19 +1341,6 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
 
   add_index "latest_revisions", ["latest_document_id"], :name => "IDX_FK_lat_rev_lat_doc_id__doc_id"
   add_index "latest_revisions", ["revision_id"], :name => "IDX_latest_revisions_1"
-
-  create_table "leagues", :force => true do |t|
-    t.string   "name",       :limit => 50,                 :null => false
-    t.integer  "size",                     :default => 15, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "manager_id"
-    t.string   "slug",       :limit => 50,                 :null => false
-    t.datetime "clock"
-  end
-
-  add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
-  add_index "leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
   create_table "locations", :force => true do |t|
     t.string "city",         :limit => 100
@@ -870,6 +1403,72 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
   end
 
   add_index "media_keywords", ["media_id"], :name => "FK_med_key_med_id__med_id"
+
+  create_table "motor_racing_event_states", :force => true do |t|
+    t.integer "event_id",                       :null => false
+    t.integer "current_state",   :limit => 1
+    t.integer "sequence_number"
+    t.string  "lap",             :limit => 100
+    t.string  "laps_remaining",  :limit => 100
+    t.string  "time_elapsed",    :limit => 100
+    t.string  "flag_state",      :limit => 100
+    t.string  "context",         :limit => 40
+    t.integer "document_id"
+  end
+
+  add_index "motor_racing_event_states", ["context"], :name => "IDX_motor_racing_event_states_context"
+  add_index "motor_racing_event_states", ["event_id"], :name => "IDX_FK_events_motor_racing_event_states"
+  add_index "motor_racing_event_states", ["sequence_number"], :name => "IDX_motor_racing_event_states_seq_num"
+
+  create_table "motor_racing_event_stats", :force => true do |t|
+    t.decimal "speed_average",                      :precision => 6, :scale => 3
+    t.string  "speed_units",          :limit => 40
+    t.decimal "margin_of_victory",                  :precision => 6, :scale => 3
+    t.integer "caution_flags"
+    t.integer "caution_flags_laps"
+    t.integer "lead_changes"
+    t.integer "lead_changes_drivers"
+    t.integer "laps_total"
+  end
+
+  create_table "motor_racing_qualifying_stats", :force => true do |t|
+    t.string "grid",                   :limit => 100
+    t.string "pole_position",          :limit => 100
+    t.string "pole_wins",              :limit => 100
+    t.string "qualifying_speed",       :limit => 100
+    t.string "qualifying_speed_units", :limit => 100
+    t.string "qualifying_time",        :limit => 100
+    t.string "qualifying_position",    :limit => 100
+  end
+
+  create_table "motor_racing_race_stats", :force => true do |t|
+    t.string "time_behind_leader",  :limit => 100
+    t.string "laps_behind_leader",  :limit => 100
+    t.string "time_ahead_follower", :limit => 100
+    t.string "laps_ahead_follower", :limit => 100
+    t.string "time",                :limit => 100
+    t.string "points",              :limit => 100
+    t.string "points_rookie",       :limit => 100
+    t.string "bonus",               :limit => 100
+    t.string "laps_completed",      :limit => 100
+    t.string "laps_leading_total",  :limit => 100
+    t.string "distance_leading",    :limit => 100
+    t.string "distance_completed",  :limit => 100
+    t.string "distance_units",      :limit => 40
+    t.string "speed_average",       :limit => 40
+    t.string "speed_units",         :limit => 40
+    t.string "status",              :limit => 40
+    t.string "finishes_top_5",      :limit => 40
+    t.string "finishes_top_10",     :limit => 40
+    t.string "starts",              :limit => 40
+    t.string "finishes",            :limit => 40
+    t.string "non_finishes",        :limit => 40
+    t.string "wins",                :limit => 40
+    t.string "races_leading",       :limit => 40
+    t.string "money",               :limit => 40
+    t.string "money_units",         :limit => 40
+    t.string "leads_total",         :limit => 40
+  end
 
   create_table "outcome_totals", :force => true do |t|
     t.integer  "standing_subgroup_id",                 :null => false
@@ -995,12 +1594,6 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
   add_index "person_phases", ["role_id"], :name => "FK_per_pha_rol_id__rol_id"
   add_index "person_phases", ["start_season_id"], :name => "FK_per_pha_sta_sea_id__sea_id"
 
-  create_table "person_scores", :force => true do |t|
-    t.integer  "score",      :null => false
-    t.integer  "person_id",  :null => false
-    t.datetime "created_at", :null => false
-  end
-
   create_table "persons", :force => true do |t|
     t.string  "person_key",                :limit => 100, :null => false
     t.integer "publisher_id",                             :null => false
@@ -1037,20 +1630,6 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
 
   add_index "persons_media", ["media_id"], :name => "FK_per_med_med_id__med_id"
   add_index "persons_media", ["person_id"], :name => "FK_per_med_per_id__per_id"
-
-  create_table "picks", :force => true do |t|
-    t.integer  "person_id"
-    t.integer  "draft_id",   :default => 0, :null => false
-    t.integer  "team_id",                   :null => false
-    t.integer  "pick_order", :default => 0, :null => false
-    t.datetime "picked_at"
-    t.integer  "round",      :default => 0, :null => false
-  end
-
-  create_table "players", :force => true do |t|
-    t.integer "user_team_id"
-    t.integer "person_id"
-  end
 
   create_table "position_groups", :force => true do |t|
     t.string "name"
@@ -1104,23 +1683,6 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
     t.datetime "updated_at"
   end
 
-  create_table "roles_copy", :force => true do |t|
-    t.string "role_key",  :limit => 100, :null => false
-    t.string "role_name", :limit => 100
-    t.string "comment",   :limit => 100
-  end
-
-  add_index "roles_copy", ["role_key"], :name => "IDX_roles_1"
-
-  create_table "salaries", :force => true do |t|
-    t.string  "full_name",       :limit => 50, :null => false
-    t.string  "position",        :limit => 10
-    t.integer "contract_amount"
-    t.integer "points"
-    t.integer "rating"
-    t.float   "consistency",     :limit => 4
-  end
-
   create_table "seasons", :force => true do |t|
     t.integer  "season_key",      :null => false
     t.integer  "publisher_id",    :null => false
@@ -1152,6 +1714,139 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
   add_index "sites", ["location_id"], :name => "IDX_FK_sit_loc_id__loc_id"
   add_index "sites", ["publisher_id"], :name => "IDX_FK_sit_pub_id__pub_id"
   add_index "sites", ["site_key"], :name => "IDX_sites_1"
+
+  create_table "soccer_action_fouls", :force => true do |t|
+    t.integer "soccer_event_state_id",                :null => false
+    t.string  "foul_name",             :limit => 100
+    t.string  "foul_result",           :limit => 100
+    t.string  "foul_type",             :limit => 100
+    t.string  "fouler_id",             :limit => 100
+    t.string  "recipient_type",        :limit => 100
+    t.integer "recipient_id",                         :null => false
+    t.string  "comment",               :limit => 512
+  end
+
+  add_index "soccer_action_fouls", ["recipient_id"], :name => "FK_persons_soccer_action_fouls"
+  add_index "soccer_action_fouls", ["soccer_event_state_id"], :name => "FK_soccer_event_states_soccer_action_fouls"
+
+  create_table "soccer_action_participants", :force => true do |t|
+    t.integer "soccer_action_play_id",                :null => false
+    t.integer "person_id",                            :null => false
+    t.string  "participant_role",      :limit => 100
+  end
+
+  add_index "soccer_action_participants", ["person_id"], :name => "FK_persons_soccer_action_participants"
+  add_index "soccer_action_participants", ["soccer_action_play_id"], :name => "FK_soccer_action_plays_soccer_action_participants"
+
+  create_table "soccer_action_penalties", :force => true do |t|
+    t.integer "soccer_event_state_id",                :null => false
+    t.string  "penalty_type",          :limit => 100
+    t.string  "penalty_level",         :limit => 100
+    t.string  "caution_value",         :limit => 100
+    t.string  "recipient_type",        :limit => 100
+    t.integer "recipient_id",                         :null => false
+    t.string  "comment",               :limit => 512
+  end
+
+  add_index "soccer_action_penalties", ["recipient_id"], :name => "FK_persons_soccer_action_penalties"
+  add_index "soccer_action_penalties", ["soccer_event_state_id"], :name => "FK_soccer_event_states_soccer_action_penalties"
+
+  create_table "soccer_action_plays", :force => true do |t|
+    t.integer "soccer_event_state_id",                :null => false
+    t.string  "play_type",             :limit => 100
+    t.string  "score_attempt_type",    :limit => 100
+    t.string  "play_result",           :limit => 100
+    t.string  "comment",               :limit => 100
+  end
+
+  add_index "soccer_action_plays", ["soccer_event_state_id"], :name => "FK_soccer_event_states_soccer_action_plays"
+
+  create_table "soccer_action_substitutions", :force => true do |t|
+    t.integer "soccer_event_state_id",                       :null => false
+    t.string  "person_type",                  :limit => 100
+    t.integer "person_original_id",                          :null => false
+    t.integer "person_original_position_id"
+    t.integer "person_replacing_id",                         :null => false
+    t.integer "person_replacing_position_id"
+    t.string  "substitution_reason",          :limit => 100
+    t.string  "comment",                      :limit => 512
+  end
+
+  add_index "soccer_action_substitutions", ["person_original_id"], :name => "FK_persons_soccer_action_substitutions"
+  add_index "soccer_action_substitutions", ["person_original_position_id"], :name => "FK_positions_soccer_action_substitutions"
+  add_index "soccer_action_substitutions", ["person_replacing_id"], :name => "FK_persons_soccer_action_substitutions1"
+  add_index "soccer_action_substitutions", ["person_replacing_position_id"], :name => "FK_positions_soccer_action_substitutions1"
+  add_index "soccer_action_substitutions", ["soccer_event_state_id"], :name => "FK_soccer_event_states_soccer_action_substitutions"
+
+  create_table "soccer_defensive_stats", :force => true do |t|
+    t.string "shots_penalty_shot_allowed", :limit => 100
+    t.string "goals_penalty_shot_allowed", :limit => 100
+    t.string "goals_against_average",      :limit => 100
+    t.string "goals_against_total",        :limit => 100
+    t.string "saves",                      :limit => 100
+    t.string "save_percentage",            :limit => 100
+    t.string "catches_punches",            :limit => 100
+    t.string "shots_on_goal_total",        :limit => 100
+    t.string "shots_shootout_total",       :limit => 100
+    t.string "shots_shootout_allowed",     :limit => 100
+    t.string "shots_blocked",              :limit => 100
+    t.string "shutouts",                   :limit => 100
+  end
+
+  create_table "soccer_event_states", :force => true do |t|
+    t.integer "event_id",                             :null => false
+    t.integer "current_state",         :limit => 1
+    t.integer "sequence_number"
+    t.string  "period_value",          :limit => 100
+    t.string  "period_time_elapsed",   :limit => 100
+    t.string  "period_time_remaining", :limit => 100
+    t.string  "minutes_elapsed",       :limit => 100
+    t.string  "period_minute_elapsed", :limit => 100
+    t.string  "context",               :limit => 40
+    t.integer "document_id"
+  end
+
+  add_index "soccer_event_states", ["context"], :name => "IDX_soccer_event_states_context"
+  add_index "soccer_event_states", ["event_id"], :name => "IDX_FK_events_soccer_event_states"
+  add_index "soccer_event_states", ["sequence_number"], :name => "IDX_soccer_event_states_seq_num"
+
+  create_table "soccer_foul_stats", :force => true do |t|
+    t.string "fouls_suffered",         :limit => 100
+    t.string "fouls_commited",         :limit => 100
+    t.string "cautions_total",         :limit => 100
+    t.string "cautions_pending",       :limit => 100
+    t.string "caution_points_total",   :limit => 100
+    t.string "caution_points_pending", :limit => 100
+    t.string "ejections_total",        :limit => 100
+  end
+
+  create_table "soccer_offensive_stats", :force => true do |t|
+    t.string "goals_game_winning",            :limit => 100
+    t.string "goals_game_tying",              :limit => 100
+    t.string "goals_overtime",                :limit => 100
+    t.string "goals_shootout",                :limit => 100
+    t.string "goals_total",                   :limit => 100
+    t.string "assists_game_winning",          :limit => 100
+    t.string "assists_game_tying",            :limit => 100
+    t.string "assists_overtime",              :limit => 100
+    t.string "assists_total",                 :limit => 100
+    t.string "points",                        :limit => 100
+    t.string "shots_total",                   :limit => 100
+    t.string "shots_on_goal_total",           :limit => 100
+    t.string "shots_hit_frame",               :limit => 100
+    t.string "shots_penalty_shot_taken",      :limit => 100
+    t.string "shots_penalty_shot_scored",     :limit => 100
+    t.string "shots_penalty_shot_missed",     :limit => 40
+    t.string "shots_penalty_shot_percentage", :limit => 40
+    t.string "shots_shootout_taken",          :limit => 40
+    t.string "shots_shootout_scored",         :limit => 40
+    t.string "shots_shootout_missed",         :limit => 40
+    t.string "shots_shootout_percentage",     :limit => 40
+    t.string "giveaways",                     :limit => 40
+    t.string "offsides",                      :limit => 40
+    t.string "corner_kicks",                  :limit => 40
+    t.string "hat_tricks",                    :limit => 40
+  end
 
   create_table "sports_property", :force => true do |t|
     t.string  "sports_property_type", :limit => 100
@@ -1271,57 +1966,129 @@ ActiveRecord::Schema.define(:version => 20111230220702) do
   add_index "teams_media", ["media_id"], :name => "FK_tea_med_med_id__med_id"
   add_index "teams_media", ["team_id"], :name => "FK_tea_med_tea_id__tea_id"
 
-  create_table "trades", :force => true do |t|
-    t.integer "league_id",       :null => false
-    t.integer "initial_team_id", :null => false
-    t.integer "second_team_id",  :null => false
+  create_table "tennis_action_points", :force => true do |t|
+    t.string "sub_period_id",   :limit => 100
+    t.string "sequence_number", :limit => 100
+    t.string "win_type",        :limit => 100
   end
 
-  create_table "user_team_balances", :force => true do |t|
-    t.integer  "balance_cents", :limit => 8, :default => 0, :null => false
-    t.integer  "user_team_id",                              :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "tennis_action_volleys", :force => true do |t|
+    t.string  "sequence_number",         :limit => 100
+    t.integer "tennis_action_points_id"
+    t.string  "landing_location",        :limit => 100
+    t.string  "swing_type",              :limit => 100
+    t.string  "result",                  :limit => 100
+    t.string  "spin_type",               :limit => 100
+    t.string  "trajectory_details",      :limit => 100
   end
 
-  create_table "user_teams", :force => true do |t|
-    t.integer "league_id",                                        :null => false
-    t.string  "name",           :limit => 50,                     :null => false
-    t.integer "user_id",                                          :null => false
-    t.boolean "is_online",                     :default => false, :null => false
-    t.binary  "uuid",           :limit => 255
-    t.string  "last_socket_id"
+  create_table "tennis_event_states", :force => true do |t|
+    t.integer "event_id",                          :null => false
+    t.integer "current_state",      :limit => 1
+    t.integer "sequence_number"
+    t.string  "tennis_set",         :limit => 100
+    t.string  "game",               :limit => 100
+    t.integer "server_person_id"
+    t.string  "server_score",       :limit => 100
+    t.integer "receiver_person_id"
+    t.string  "receiver_score",     :limit => 100
+    t.string  "service_number",     :limit => 100
+    t.string  "context",            :limit => 40
+    t.integer "document_id"
   end
 
-  add_index "user_teams", ["league_id"], :name => "index_user_teams_league"
-  add_index "user_teams", ["user_id"], :name => "index_user_teams_user"
-  add_index "user_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
+  add_index "tennis_event_states", ["context"], :name => "IDX_tennis_event_states_context"
+  add_index "tennis_event_states", ["event_id"], :name => "IDX_FK_events_tennis_event_states"
+  add_index "tennis_event_states", ["sequence_number"], :name => "IDX_tennis_event_states_seq_num"
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "authentication_token"
-    t.datetime "last_seen"
-    t.integer  "league_id"
-    t.string   "name"
-    t.string   "role"
-    t.integer  "roles_mask"
+  create_table "tennis_player_stats", :force => true do |t|
+    t.integer "net_points_won"
+    t.integer "net_points_played"
+    t.integer "points_won"
+    t.integer "winners"
+    t.integer "unforced_errors"
+    t.integer "winners_forehand"
+    t.integer "winners_backhand"
+    t.integer "winners_volley"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  create_table "tennis_return_stats", :force => true do |t|
+    t.integer "returns_played"
+    t.integer "matches_played"
+    t.integer "first_service_return_points_won"
+    t.integer "first_service_return_points_won_pct"
+    t.integer "second_service_return_points_won"
+    t.integer "second_service_return_points_won_pct"
+    t.integer "return_games_played"
+    t.integer "return_games_won"
+    t.integer "return_games_won_pct"
+    t.integer "break_points_played"
+    t.integer "break_points_converted"
+    t.integer "break_points_converted_pct"
+    t.integer "net_points_won"
+    t.integer "net_points_played"
+    t.integer "points_won"
+    t.integer "winners"
+    t.integer "unforced_errors"
+    t.integer "winners_forehand"
+    t.integer "winners_backhand"
+    t.integer "winners_volley"
+  end
+
+  create_table "tennis_service_stats", :force => true do |t|
+    t.integer "services_played"
+    t.integer "matches_played"
+    t.integer "aces"
+    t.integer "first_services_good"
+    t.integer "first_services_good_pct"
+    t.integer "first_service_points_won"
+    t.integer "first_service_points_won_pct"
+    t.integer "second_service_points_won"
+    t.integer "second_service_points_won_pct"
+    t.integer "service_games_played"
+    t.integer "service_games_won"
+    t.integer "service_games_won_pct"
+    t.integer "break_points_played"
+    t.integer "break_points_saved"
+    t.integer "break_points_saved_pct"
+    t.integer "service_points_won"
+    t.integer "service_points_won_pct"
+    t.integer "double_faults"
+    t.string  "first_service_top_speed",       :limit => 100
+    t.integer "second_services_good"
+    t.integer "second_services_good_pct"
+    t.string  "second_service_top_speed",      :limit => 100
+    t.integer "net_points_won"
+    t.integer "net_points_played"
+    t.integer "points_won"
+    t.integer "winners"
+    t.integer "unforced_errors"
+    t.integer "winners_forehand"
+    t.integer "winners_backhand"
+    t.integer "winners_volley"
+  end
+
+  create_table "tennis_set_stats", :force => true do |t|
+    t.integer "net_points_won"
+    t.integer "net_points_played"
+    t.integer "points_won"
+    t.integer "winners"
+    t.integer "unforced_errors"
+    t.integer "winners_forehand"
+    t.integer "winners_backhand"
+    t.integer "winners_volley"
+  end
+
+  create_table "tennis_team_stats", :force => true do |t|
+    t.integer "net_points_won"
+    t.integer "net_points_played"
+    t.integer "points_won"
+    t.integer "winners"
+    t.integer "unforced_errors"
+    t.integer "winners_forehand"
+    t.integer "winners_backhand"
+    t.integer "winners_volley"
+  end
 
   create_table "versions", :force => true do |t|
     t.integer  "versioned_id"

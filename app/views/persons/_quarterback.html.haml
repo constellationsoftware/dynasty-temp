@@ -44,46 +44,46 @@
         FUM
       %th
         Lost
-  %tfoot
-    %tr
-      %td{:colspan => "16"}
-  %tbody
-    - @person.events.past.each do |event|
-      %tr
-        %td
-          = event.gameday
-        %td
-          = event.away_team.display_name.first_name
-          %br
-          vs.
-          = event.home_team.display_name.first_name
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_attempts                             ||="--"
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_completions                          ||="--"
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_percentage                           ||="--"
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_yards_net                            ||="--"
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_touchdowns                           ||="--"
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_interceptions                        ||="--"
-        %td
-          = event.event_sacks_stats(params[:id]).andand.stat_repository.andand.sacks_against_total                           ||="--"
-        %td
-          = event.event_sacks_stats(params[:id]).andand.stat_repository.andand.sacks_against_yards                           ||="--"
-        %td
-          = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passer_rating                        ||="--"
-        %td
-          = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushes_attempts                      ||="--"
-        %td
-          = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushes_yards                         ||="--"
-        %td
-          = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushing_average_yards_per            ||="--"
-        %td
-          = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushes_touchdowns                    ||="--"
-        %td
-          = event.event_fumbles_stats(params[:id]).andand.stat_repository.andand.fumbles_committed             ||="--"
-        %td
-          = event.event_fumbles_stats(params[:id]).andand.stat_repository.andand.fumbles_lost                  ||="--"
+  //%tfoot
+  //  %tr
+  //    %td{:colspan => "16"}
+  //%tbody
+  //  - @person.events.past.each do |event|
+  //    %tr
+  //      %td
+  //        = event.gameday
+  //      %td
+  //        = event.away_team.display_name.first_name
+  //        %br
+  //        vs.
+  //        = event.home_team.display_name.first_name
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_attempts                             ||="--"
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_completions                          ||="--"
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_percentage                           ||="--"
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_yards_net                            ||="--"
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_touchdowns                           ||="--"
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passes_interceptions                        ||="--"
+  //      %td
+  //        = event.event_sacks_stats(params[:id]).andand.stat_repository.andand.sacks_against_total                           ||="--"
+  //      %td
+  //        = event.event_sacks_stats(params[:id]).andand.stat_repository.andand.sacks_against_yards                           ||="--"
+  //      %td
+  //        = event.event_passing_stats(params[:id]).andand.stat_repository.andand.passer_rating                        ||="--"
+  //      %td
+  //        = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushes_attempts                      ||="--"
+  //      %td
+  //        = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushes_yards                         ||="--"
+  //      %td
+  //        = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushing_average_yards_per            ||="--"
+  //      %td
+  //        = event.event_rushing_stats(params[:id]).andand.stat_repository.andand.rushes_touchdowns                    ||="--"
+  //      %td
+  //        = event.event_fumbles_stats(params[:id]).andand.stat_repository.andand.fumbles_committed             ||="--"
+  //      %td
+  //        = event.event_fumbles_stats(params[:id]).andand.stat_repository.andand.fumbles_lost                  ||="--"

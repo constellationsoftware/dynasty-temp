@@ -1,4 +1,8 @@
-class PersonsController < ApplicationController
+class PersonsController < InheritedResources::Base
+  respond_to :json, :html, :xml
+
+  has_scope :with_points_from_season, :default => 'last'
+
   # GET /
   # GET /persons.xml
   def index
@@ -15,6 +19,7 @@ class PersonsController < ApplicationController
 
     # GET /persons/1
     # GET /persons/1.xml
+=begin
   def show
     Timecop.freeze(2011,10, 26)
     @person = Person.find(params[:id])
@@ -97,6 +102,19 @@ class PersonsController < ApplicationController
       format.html # show.html.erb
       format.xml { render :xml => @person }
       format.json { render :json => result }
+    end
+  end
+=end
+
+  def show
+    show! do |format|
+      format.json { render :text => @person.to_json(
+        :include => {
+          :display_name => {},
+          :positions => {},
+          :stats => { :methods => [ :points ] }
+        }
+      )}
     end
   end
 

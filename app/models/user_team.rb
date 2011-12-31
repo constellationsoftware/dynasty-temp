@@ -1,4 +1,6 @@
 class UserTeam < ActiveRecord::Base
+  set_table_name 'dynasty_teams'
+
   belongs_to :user
   belongs_to :league
 

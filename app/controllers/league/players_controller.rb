@@ -4,7 +4,7 @@ class League::PlayersController < InheritedResources::Base
   custom_actions :collection => :search
   respond_to :json
 
-  defaults :resource_class => Salary, :collection_name => 'players', :instance_name => 'player'
+  defaults :resource_class => Player, :collection_name => 'players', :instance_name => 'player'
   has_scope :by_rating, :type => :boolean, :only => :index
   has_scope :by_position, :only => :index, :type => :boolean do |controller, scope|
     scope.by_position(!!(controller.params[:filter]) ? ActiveSupport::JSON.decode(controller.params[:filter]) : nil)
@@ -24,7 +24,7 @@ class League::PlayersController < InheritedResources::Base
         :players => @players,
         :total => @total
       }
-      format.json { render :text => result.to_json }
+      format.json { render :text => result.to_json() }
     end
   end
 
@@ -45,12 +45,13 @@ class League::PlayersController < InheritedResources::Base
 
   protected
     def collection
-      @players = end_of_association_chain
-      @total = @players.size
       if (!!params[:page] and !!params[:limit])
         @players = end_of_association_chain
           .page(params[:page])
           .per(params[:limit])
+      else
+        @players = end_of_association_chain.all
       end
+      @total = @players.size
     end
 end

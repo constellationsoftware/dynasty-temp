@@ -1,4 +1,5 @@
 class Draft < ActiveRecord::Base
+  set_table_name 'dynasty_drafts'
   include EnumSimulator
 
   #constants
@@ -13,7 +14,7 @@ class Draft < ActiveRecord::Base
   has_many :picks
   belongs_to :current_pick, :class_name => 'Pick'
 
-  default_scope order("ISNULL(drafts.finished_at) DESC, drafts.id DESC, drafts.finished_at DESC")
+  default_scope order{[isnull(finished_at).desc, id.desc, finished_at.desc]}
   scope :active, where{status.not_eq 'finished'}
   scope :paused, where{status.eq 'paused'}
   scope :finished, where{status.eq 'finished'}
