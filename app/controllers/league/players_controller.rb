@@ -14,25 +14,41 @@ class League::PlayersController < InheritedResources::Base
     scope.roster(controller.current_user)
   end
   has_scope :by_name, :only => :search do |controller, scope, value|
-    scope.where{full_name.like "%#{value}%"}.order('full_name ASC')
+    scope.joins{name}.where{name.full_name.like "%#{value}%"}.order('full_name ASC')
+  end
+
+  # also have this in the draft model for now
+  def get_normalized_player_object(player)
+    obj = {
+      :id => player.id,
+      :full_name => player.name.full_name,
+      :position => (player.position.nil?) ? '' : player.position.abbreviation.upcase,
+      :contract_amount => player.contract.amount,
+      :points => (player.points.nil?) ? 0 : player.points.points
+    }
   end
 
   def index
     index! do |format|
+      players = []
+      players = @players.collect{ |player| get_normalized_player_object(player) }
+
       result = {
         :success => true,
-        :players => @players,
+        :players => players,
         :total => @total
       }
-      format.json { render :text => result.to_json() }
+      format.json { render :json => result }
     end
   end
 
   def search
     search! do |format|
+      players = @players.joins{position}.collect{ |player| get_normalized_player_object(player) }
+
       result = {
         :success => true,
-        :players => @players,
+        :players => players,
         :total => @total
       }
       format.json { render :text => result.to_json }
@@ -45,12 +61,14 @@ class League::PlayersController < InheritedResources::Base
 
   protected
     def collection
+      @players = end_of_association_chain
+
       if (!!params[:page] and !!params[:limit])
         @players = end_of_association_chain
           .page(params[:page])
           .per(params[:limit])
       else
-        @players = end_of_association_chain.all
+        @players = @players.all
       end
       @total = @players.size
     end

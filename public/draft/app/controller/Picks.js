@@ -67,7 +67,7 @@ Ext.define('DynastyDraft.controller.Picks', {
         if (currentPick) {
             console.log("saving current pick:", currentPick);
             // suspend model events until the end of the update
-            currentPick.set('person_id', player_id);
+            currentPick.set('player_id', player_id);
             currentPick.save({
                 success: function() { this.fireEvent('picksucceeded'); },
                 failure: function() {},

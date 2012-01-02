@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120102154852) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -856,7 +856,7 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
   create_table "dynasty_draft_picks", :force => true do |t|
-    t.integer  "person_id"
+    t.integer  "player_id"
     t.integer  "draft_id",   :default => 0, :null => false
     t.integer  "team_id",                   :null => false
     t.integer  "pick_order", :default => 0, :null => false
@@ -890,10 +890,13 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
   create_table "dynasty_player_points", :force => true do |t|
-    t.integer  "score",      :null => false
+    t.integer  "points",     :null => false
     t.integer  "player_id",  :null => false
-    t.datetime "created_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "dynasty_player_points", ["player_id"], :name => "index_dynasty_player_points_on_player_id"
 
   create_table "dynasty_player_positions", :id => false, :force => true do |t|
     t.integer "player_id"

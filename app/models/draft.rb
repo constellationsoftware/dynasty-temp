@@ -53,6 +53,17 @@ class Draft < ActiveRecord::Base
     return pick
   end
 
+  # also have this in the players_controller for now
+  def get_normalized_player_object(player)
+    obj = {
+      :id => player.id,
+      :full_name => player.name.full_name,
+      :position => (player.position.nil?) ? '' : player.position.abbreviation.upcase,
+      :contract_amount => player.contract.amount,
+      :points => (player.points.nil?) ? 0 : player.points.points
+    }
+  end
+
   ##
   # This method advances the draft after a pick is made, or on draft start.
   #
@@ -82,7 +93,7 @@ class Draft < ActiveRecord::Base
     if !(self.status === :finished)
       pick_user_id = self.current_pick.team.uuid
       payload = {
-        :players => Salary.by_rating.by_position.available.limit(5)
+        :players => Player.by_rating.by_position.available.limit(5).collect{ |player| get_normalized_player_object(player) }
       }
       Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, payload)
     else
@@ -148,7 +159,7 @@ class Draft < ActiveRecord::Base
 
   # finding the current user_team up to pick 
   def get_current_pick
-    return self.picks.where(:person_id => nil).first
+    return self.picks.where(:player_id => nil).first
   end
 
   # most recent pick
@@ -159,21 +170,21 @@ class Draft < ActiveRecord::Base
 
   # most recently picked player
   def last_player_picked
-    @pick = self.last_pick_made.person_id
-    Salary.find(@pick)
+    @pick = self.last_pick_made.player_id
+    Player.find(@pick)
   end
 
   # seeing what players have been picked
   def already_picked
-    @picked = self.picks.where("person_id >= ?", 1).map(&:person_id)
-    Salary.find(@picked)
+    @picked = self.picks.where("player_id >= ?", 1).map(&:player_id)
+    Player.find(@picked)
   end
 
   # automatically picking the best available player  
   def auto_pick
     p = self.get_current_pick
     unless p.team.is_online?
-      p.person_id = self.best_player.id
+      p.player_id = self.best_player.id
       p.picked_at = Time.now
       p.save!
       #self.push_pick_update
@@ -191,14 +202,12 @@ class Draft < ActiveRecord::Base
 
   # list of the remaining available players
   def available_players
-    picked = self.already_picked
-    all_players = Salary.all
-    available_players = all_players - picked
+    Player.available
   end
 
   # the supposedly best pick
   def best_player
-    best = self.available_players.first
+    self.available_players.joins{points}.order{points.points.desc}.first
   end
 
   def create_pick_records

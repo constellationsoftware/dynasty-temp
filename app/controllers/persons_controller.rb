@@ -1,6 +1,7 @@
 class PersonsController < InheritedResources::Base
   respond_to :json, :html, :xml
 
+  has_scope :extended_data, :type => :boolean, :default => false
   has_scope :with_points_from_season, :default => 'last'
 
   # GET /
