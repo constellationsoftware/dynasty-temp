@@ -38,6 +38,15 @@ namespace :dynasty do
           "INSERT INTO #{PlayerPosition.table_name}(player_id, position_id) VALUES #{values.join(',')}"
         )
       end
+
+      desc 'Calculates last season points for all players'
+      task :points => [ :environment ] do
+        players = Person.joins{stats}.with_points_from_season('last')
+        players.each do |player|
+          points = player.stats.collect{ |stat| stat.points }.compact.sum
+          point_record = PlayerPoint.find_or_create_by_player_id(player.id) { |u| u.points = points }
+        end
+      end
     end
   end
 end

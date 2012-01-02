@@ -18,7 +18,6 @@ Ext.define('DynastyDraft.model.Player', {
         },
         { name: 'contract_amount', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'rating', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'consistency', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'is_valid', allowBlank: true, type: 'int', defaultValue: 1 },
     ],
