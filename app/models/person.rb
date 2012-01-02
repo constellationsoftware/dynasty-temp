@@ -116,6 +116,8 @@ class Person < ActiveRecord::Base
     self.event_stats.where(:stat_coverage_id => event)
   end
 
+
+  ### GETS POINTS FOR A PARTICULAR EVENT - PASS IN EVENT IN QUESTION
   def game_points(event)
     stats = self.event_stats.where(:stat_coverage_id => event)
     p = 0
@@ -127,6 +129,7 @@ class Person < ActiveRecord::Base
     p += stats.special_teams.andand.points ||= 0
   end 
 
+  ### GETS SEASON POINTS FOR A FULL SEASON (PAST OR PRESENT) - PASS IN SEASON
   def season_points(season)
     stats = self.subseason_stats.where(:stat_coverage_id => season)
     p = 0
@@ -138,17 +141,22 @@ class Person < ActiveRecord::Base
     p += stats.special_teams.andand.points ||= 0
   end 
 
+  ### SUMS EVENT POINTS FOR ALL EVENTS IN PAST - WILL BE CURRENT SEASONS EVENTS. PASS IN CLOCK OBJECT
+  ### EVALUATES WHETHER AN EVENT IS BEFORE CLOCK
+  ### CURRENTLY THERE IS 1 CLOCK OBJECT for ALL LEAGUES-> Clock.first
+  ### Clock should eventually be scoped to a league
+  ### Will need to limit to this year
 
-  def current_season_points(season)
-    stats = self.event_stats.current
+  def current_season_points(clock)
+    stats = self.current_stats
     p = 0
-    p += stats.passing.andand.points ||= 0
-    p += stats.rushing.andand.points ||= 0
-    p += stats.defense.andand.points ||= 0
-    p += stats.fumbles.andand.points ||= 0
-    p += stats.sacks.andand.points ||= 0
-    p += stats.special_teams.andand.points ||= 0
+    stats.each do |stat|
+      p += stat.points ||= 0
+
+    end
+    p
   end 
+
 
 
 

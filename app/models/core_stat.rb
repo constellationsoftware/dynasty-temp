@@ -5,4 +5,5 @@ class CoreStat < BaseStat
   def points
     0
   end
+
 end

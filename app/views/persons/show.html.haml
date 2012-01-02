@@ -33,10 +33,10 @@
       =  (@person.season_points(11) / (@person.contract.amount / 1000000)).to_i
     %p
       Fantasy Points Earned This Season: 
-      = @person.current_season_points(1)
+      = @person.current_season_points(Clock.first.time.to_s)
       |
       Dynasty Weighted FPTS: 
-      =  (@person.current_season_points(1) / (@person.contract.amount / 1000000)).to_i 
+      = (@person.current_season_points(Clock.first.time.to_s) / (@person.contract.amount / 1000000)).to_i 
   //- if @person.current_position.position.id = 1
   = render :partial => "quarterback"
 
