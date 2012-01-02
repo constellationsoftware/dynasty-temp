@@ -907,9 +907,10 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
   end
 
   create_table "dynasty_player_points", :force => true do |t|
-    t.integer  "score",      :null => false
+    t.integer  "points",      :null => false
     t.integer  "person_id",  :null => false
     t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "dynasty_player_positions", :id => false, :force => true do |t|
