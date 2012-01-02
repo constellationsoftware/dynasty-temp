@@ -39,12 +39,25 @@ namespace :dynasty do
         )
       end
 
-      desc 'Calculates last season points for all players'
+      desc 'Calculates season point totals for all players'
       task :points => [ :environment ] do
-        players = Person.joins{stats}.with_points_from_season('last')
-        players.each do |player|
-          points = player.stats.collect{ |stat| stat.points }.compact.sum
-          point_record = PlayerPoint.find_or_create_by_player_id(player.id) { |u| u.points = points }
+        puts 'Emptying player points table!'
+        ActiveRecord::Base.connection.execute("TRUNCATE #{PlayerPoint.table_name}")
+        
+        seasons = Season.order{season_key.desc}
+        seasons.each do |season|
+          point_data = []
+          year = season.season_key
+
+          players = Person.joins{stats}.calculate_points_from_season(year.to_i)
+          players.each do |player|
+            points = player.stats.collect{ |stat| stat.points }.compact.sum
+            point_data << "(#{points},#{player.id},#{year})"
+          end
+          puts "Writing point totals for #{year}..."
+          ActiveRecord::Base.connection.execute(
+            "INSERT INTO #{PlayerPoint.table_name}(points, player_id, year) VALUES #{point_data.join(',')}"
+          )
         end
       end
     end

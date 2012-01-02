@@ -62,6 +62,7 @@ class Person < ActiveRecord::Base
 
   has_many :participants_events, :as => :participant
   has_one :contract
+  has_one :points, :class_name => 'PlayerPoint', :foreign_key => 'player_id'
   #has_and_belongs_to_many :documents, :join_table => "persons_documents"
   #has_and_belongs_to_many :medias
 
@@ -70,10 +71,25 @@ class Person < ActiveRecord::Base
   #has_many :players
   #has_many :user_teams, :through => :players
 
-  def self.with_points_from_season(season = 'last')
-    joins{[stats, stats.sub_season.season]}.includes{stats}
-      .where{stats.sub_season.seasons.season_key == "#{1.year.ago.year}"}
+  def self.calculate_points_from_season(season)
+      joins{[stats, stats.sub_season.season]}.includes{stats}
+        .where{stats.sub_season.season.season_key == "#{season}"}
   end
+
+  def self.with_points_from_season(season = 'last')
+    if season.is_a? String
+      current_year = Season.maximum(:season_key).to_i
+      case season
+      when 'current'
+        return joins{[stats, stats.event.season]}.includes{stats}
+          .where{stats.event.season.season_key == "#{current_year}"}
+      else # last season
+        season = current_year - 1
+      end
+    end
+    joins{points}.where{points.year == "#{season}"}
+  end
+
 
   def self.current_player
     self.with_points_from_season(season = 'last')
