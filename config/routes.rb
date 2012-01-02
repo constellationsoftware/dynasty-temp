@@ -33,10 +33,16 @@ Dynasty::Application.routes.draw do
   resources :person_scores, :events, :positions, :trades,
             :user_teams, :user_team_person, :users, :person_phases, :display_names,
             :stats, :fix, :picks, :salaries,
-            :persons, :people, :drafts, :leagues, :admin_dashboard
+            :persons, :people, :drafts, :leagues, :admin_dashboard, :clock, :clocks
 
   resources :teams do
     resources :display_name, :person_phases
+  end
+
+  resources :clock do
+    get 'show'
+    get 'next_week'
+    get 'reset'
   end
 
   resources :users do

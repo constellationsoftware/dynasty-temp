@@ -75,6 +75,10 @@ class Person < ActiveRecord::Base
       .where{stats.sub_season.seasons.season_key == "#{1.year.ago.year}"}
   end
 
+  def self.current_player
+    self.with_points_from_season(season = 'last')
+  end
+
   def current_position
     self.person_phases.current_phase.first
   end
@@ -134,6 +138,17 @@ class Person < ActiveRecord::Base
     p += stats.special_teams.andand.points ||= 0
   end 
 
+
+  def current_season_points(season)
+    stats = self.event_stats.current
+    p = 0
+    p += stats.passing.andand.points ||= 0
+    p += stats.rushing.andand.points ||= 0
+    p += stats.defense.andand.points ||= 0
+    p += stats.fumbles.andand.points ||= 0
+    p += stats.sacks.andand.points ||= 0
+    p += stats.special_teams.andand.points ||= 0
+  end 
 
 
 

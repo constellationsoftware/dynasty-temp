@@ -4,25 +4,39 @@
       = @person.display_name.full_name
     %p
       = @person.current_position.position.abbreviation.capitalize
-      | Uniform # |
-      = @person.current_team.display_name.full_name
+      | Uniform # 
       = @person.current_position.uniform_number
+      |
+      = @person.current_team.display_name.full_name
+      |
+      = @person.current_position.regular_position_depth.to_i.ordinalize
+      String
+      
     %p
-      Contract Summary:
+      Contract Summary: $
       = @person.contract.summary
-    %p
-      Contract Ends:
+      over
+      = @person.contract.length
+      years, ending in 
       = @person.contract.end_year
+    %p 
+      Yearly Salary: $
+      = @person.contract.amount
     %p
       Free Agent:
       = @person.contract.free_agent_year
     %p
       Fantasy Points Earned Last Season: 
-      = @person.season_points(11)
+      = @person.season_points(11) 
+      |
+      Dynasty Weighted FPTS: 
+      =  (@person.season_points(11) / (@person.contract.amount / 1000000)).to_i
     %p
       Fantasy Points Earned This Season: 
-      = @person.season_points(1)
-       
+      = @person.current_season_points(1)
+      |
+      Dynasty Weighted FPTS: 
+      =  (@person.current_season_points(1) / (@person.contract.amount / 1000000)).to_i 
   //- if @person.current_position.position.id = 1
   = render :partial => "quarterback"
 

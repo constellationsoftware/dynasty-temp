@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120101200637) do
+ActiveRecord::Schema.define(:version => 20120102172443) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -712,6 +712,12 @@ ActiveRecord::Schema.define(:version => 20120101200637) do
   add_index "bookmakers", ["location_id"], :name => "FK_boo_loc_id__loc_id"
   add_index "bookmakers", ["publisher_id"], :name => "FK_boo_pub_id__pub_id"
 
+  create_table "clocks", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "time"
+  end
+
   create_table "core_stats", :force => true do |t|
     t.string  "score",                     :limit => 100
     t.string  "score_opposing",            :limit => 100
@@ -893,10 +899,10 @@ ActiveRecord::Schema.define(:version => 20120101200637) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "person_id"
-    t.string  "amount"
-    t.string  "length"
+    t.integer  "amount"
+    t.integer  "length"
     t.integer  "end_year"
-    t.string   "summary"
+    t.integer  "summary"
     t.string   "free_agent_year"
   end
 

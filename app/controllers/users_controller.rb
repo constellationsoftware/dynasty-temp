@@ -6,13 +6,8 @@ class UsersController < ApplicationController
 
 
   def index
-    @time = Time.now
-    Thread.new do
-      100.times {
-        sleep 1
-        Pusher['chrono-channel'].trigger('update', Time.now)
-      }
-    end
+    #@time = Clock.first.time
+
     @user = current_user
     respond_to do |format|
       format.html # index.html.erb

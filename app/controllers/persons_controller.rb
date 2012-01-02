@@ -104,7 +104,7 @@ class PersonsController < InheritedResources::Base
         }
       )}
       format.html {
-
+      
       @person = Person.find(params[:id]) 
           # get contract info
          #team = @person.current_team.name.gsub! /\s+/, '-'

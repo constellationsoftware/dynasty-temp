@@ -55,7 +55,19 @@
             %a.nice.large.radius.button(data-reveal-id="userTeams") My Teams
           %li
             %a.nice.large.radius.button(data-reveal-id="userAccount") My Account
+  
 
+.panel
+  %h3
+    Time Machine Control
+  %h3
+    Current Date:
+    = Clock.first.time.strftime("%B %e, %Y")
+  %h3
+    Fast Forward
+    = link_to "Next Week", "/clock/2/next_week"
+    Reset (careful)
+    = link_to "RESET", "/clock/2/reset"
   .container
     .row
       .twelve.columns
