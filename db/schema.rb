@@ -902,15 +902,15 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
     t.integer  "amount"
     t.integer  "length"
     t.integer  "end_year"
-    t.string  "summary"
+    t.integer  "summary"
     t.string   "free_agent_year"
   end
 
   create_table "dynasty_player_points", :force => true do |t|
-    t.integer  "points",      :null => false
+    t.integer  "points",     :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "person_id",  :null => false
     t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "dynasty_player_positions", :id => false, :force => true do |t|
