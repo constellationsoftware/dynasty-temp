@@ -43,6 +43,7 @@ Dynasty::Application.routes.draw do
     get 'show'
     get 'next_week'
     get 'reset'
+    get 'present'
   end
 
   resources :users do

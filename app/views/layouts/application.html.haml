@@ -64,10 +64,14 @@
     Current Date:
     = Clock.first.time.strftime("%B %e, %Y")
   %h3
-    Fast Forward
-    = link_to "Next Week", "/clock/2/next_week"
-    Reset (careful)
+    Fast Forward 1 Week:
+    = link_to "NEXT WEEK", "/clock/2/next_week"
+    |||
+    Reset To Start of Season: 
     = link_to "RESET", "/clock/2/reset"
+    |||
+    Fast Forward To Real Date: 
+    = link_to "REAL DATE", "/clock/2/present"
   .container
     .row
       .twelve.columns

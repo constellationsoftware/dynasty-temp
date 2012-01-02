@@ -10,4 +10,10 @@ class Clock < ActiveRecord::Base
     self.save!
     self.time
   end
+
+  def present
+    self.time =  Time.now
+    self.save!
+    self.time
+  end
 end

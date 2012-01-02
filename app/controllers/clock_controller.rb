@@ -7,7 +7,6 @@ class ClockController < ApplicationController
 
   def show
     @clock = Clock.first
-    session[:return_to] ||= request.referer
     respond_to do |format|
       format.html { render :json => @clock.time.to_date}
       format.json { render :json => @clock }
@@ -18,17 +17,24 @@ class ClockController < ApplicationController
     @clock = Clock.first
     @clock.next_week
     session[:return_to] ||= request.referer
-    redirect_to session[:return_to]
+    redirect_to :back
   end
 
   def reset
     @clock = Clock.first
     @clock.reset
     session[:return_to] ||= request.referer
-    redirect_to session[:return_to]
+    redirect_to :back
+  end
+
+  def present
+    @clock = Clock.first
+    @clock.present
+    session[:return_to] ||= request.referer
+    redirect_to :back
   end
 
   def update
-    redirect_to session[:return_to]
+
   end
 end
