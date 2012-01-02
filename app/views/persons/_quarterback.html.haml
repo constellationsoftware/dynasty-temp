@@ -55,10 +55,10 @@
           %td
             = event.gameday
           %td
-            = event.away_team.display_name.first_name
+            = event.away_team.andand.display_name.andand.first_name
             %br
             vs.
-            = event.home_team.display_name.first_name
+            = event.home_team.andand.display_name.andand.first_name
           %td
             = @person.game_points(event)
           %td
