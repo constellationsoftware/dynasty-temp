@@ -11,6 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+
 ActiveRecord::Schema.define(:version => 20120102172443) do
 
   create_table "active_admin_comments", :force => true do |t|
@@ -718,11 +719,7 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
     t.datetime "time"
   end
     
-  create_table "clocks", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "time"
-  end
+
 
   create_table "core_stats", :force => true do |t|
     t.string  "score",                     :limit => 100
@@ -924,11 +921,15 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
   end
 
   create_table "dynasty_player_points", :force => true do |t|
+
      t.integer  "points",     :null => false
      t.integer  "player_id",  :null => false
      t.datetime "created_at"
      t.datetime "updated_at"
+
   end
+
+  add_index "dynasty_player_points", ["player_id"], :name => "index_dynasty_player_points_on_player_id"
 
   create_table "dynasty_player_positions", :id => false, :force => true do |t|
     t.integer "player_id"
