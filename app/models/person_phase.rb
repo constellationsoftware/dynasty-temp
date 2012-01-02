@@ -1,7 +1,20 @@
 class PersonPhase < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :personr
+
+
   belongs_to :membership#, :polymorphic => true
-  
+
+  belongs_to :team,
+             :foreign_key => 'membership_id',
+             :conditions => [ 'membership_type = ?', 'teams' ]
+
+
+  belongs_to :affiliation,
+             :foreign_key => 'membership_id',
+             :conditions => [ 'membership_type = ?', 'affiliations' ]
+
+
+
   belongs_to :position, :class_name => 'SportsDb::Position', :foreign_key => 'regular_position_id'
   belongs_to :role
   belongs_to :season, :foreign_key => "end_season_id"

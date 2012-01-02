@@ -4,7 +4,8 @@ ActiveAdmin.register Draft do
   index do 
   	column :id
   	column :league
-
+    column :number_of_rounds
+    column :current_pick_id
   	default_actions
   end
 
@@ -17,7 +18,7 @@ ActiveAdmin.register Draft do
     f.inputs  do
 
       f.input :league
-
+      f.input :number_of_rounds
     end
     f.buttons
   end

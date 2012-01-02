@@ -2,6 +2,22 @@
 */
 
 
+.nav-bar {
+    height: 45px;
+    background: #fff;
+
+    border: none !important;
+}
+
+.nav-bar > li {
+    float: left;
+    display: block;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    border-right: none !important;
+    line-height: 45px;
+}
 
 th,td {
     text-align: center !important;
@@ -11,7 +27,6 @@ th,td {
 .rounded {
     -moz-border-radius:10px !important;
     -webkit-border-radius:10px !important;
-    border: solid 1px #333;
 }
 .photo {
     margin: 3px;
@@ -29,6 +44,10 @@ body {
 
 
 }
+
+/* basic styles from Zurb */
+.row.display { background: #f4f4f4; margin-bottom: 10px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
+.row.display .column, .row.display .columns { background: #e7e7e7; font-size: 11px; text-indent: 3px; padding-top: 6px; padding-bottom: 6px; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; }
 
 /* rotations */
 .forty_five_deg {
@@ -48,20 +67,13 @@ body {
 }
 
 .wrapper {
-    margin-top: 150px;
+
     background-color: rgba(255, 255, 255, .5);
 
 }
 .top-bar {
 
-    position: fixed;
-    top: 0pt;
-    left: 0pt;
-    right: 0pt;
-    z-index: 10000;
-    overflow: visible;
-    overflow-x: visible;
-    overflow-y: visible;
+
     /* Got this from colorzilla.com/gradienteditor */
     background: rgb(255,252,252); /* Old browsers */
     /* IE9 SVG, needs conditional override of 'filter' to 'none' */
@@ -74,7 +86,7 @@ body {
     background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(219,219,219,1) 63%,rgba(63,82,150,1) 64%,rgba(76,144,255,1) 80%,rgba(255,255,255,1) 81%,rgba(159,159,159,1) 82%,rgba(63,63,63,1) 83%,rgba(255,255,255,0.57) 89%,rgba(255,252,252,0) 97%,rgba(255,252,252,0) 100%); /* IE10+ */
     background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(219,219,219,1) 63%,rgba(63,82,150,1) 64%,rgba(76,144,255,1) 80%,rgba(255,255,255,1) 81%,rgba(159,159,159,1) 82%,rgba(63,63,63,1) 83%,rgba(255,255,255,0.57) 89%,rgba(255,252,252,0) 97%,rgba(255,252,252,0) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00fffcfc',GradientType=0 ); /* IE6-8 */
-
+    margin-bottom: 10px;
 
 
 
@@ -82,7 +94,7 @@ body {
 }
 
 .clean {
-    border: none;
+    border: none !important;
     background: none !important;
     text-align: right !important;
 }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120101200637) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -51,18 +51,6 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "addresses", ["location_id"], :name => "IDX_FK_add_loc_id__loc_id"
   add_index "addresses", ["postal_code"], :name => "IDX_addresses_3"
   add_index "addresses", ["region"], :name => "IDX_addresses_2"
-
-  create_table "admin_notes", :force => true do |t|
-    t.integer  "resource_id",     :null => false
-    t.string   "resource_type",   :null => false
-    t.integer  "admin_user_id"
-    t.string   "admin_user_type"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "affiliation_phases", :force => true do |t|
     t.integer  "affiliation_id",          :null => false
@@ -868,7 +856,7 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
   create_table "dynasty_draft_picks", :force => true do |t|
-    t.integer  "person_id"
+    t.integer  "player_id"
     t.integer  "draft_id",   :default => 0, :null => false
     t.integer  "team_id",                   :null => false
     t.integer  "pick_order", :default => 0, :null => false
@@ -880,7 +868,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "league_id",                                     :null => false
-    t.integer  "number_of_rounds",              :default => 30, :null => false
+    t.integer  "number_of_rounds",              :default => 42, :null => false
     t.integer  "current_pick_id",  :limit => 2
     t.string   "status"
   end
@@ -901,9 +889,20 @@ ActiveRecord::Schema.define(:version => 0) do
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
+  create_table "dynasty_player_contracts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "person_id"
+    t.string  "amount"
+    t.string  "length"
+    t.integer  "end_year"
+    t.string   "summary"
+    t.string   "free_agent_year"
+  end
+
   create_table "dynasty_player_points", :force => true do |t|
     t.integer  "score",      :null => false
-    t.integer  "player_id",  :null => false
+    t.integer  "person_id",  :null => false
     t.datetime "created_at", :null => false
   end
 
@@ -920,8 +919,8 @@ ActiveRecord::Schema.define(:version => 0) do
   end
 
   create_table "dynasty_team_balances", :force => true do |t|
-    t.integer  "balance_cents", :limit => 11, :default => 75000000000, :null => false
-    t.integer  "user_team_id",                              :null => false
+    t.integer  "balance_cents", :limit => 8, :default => 75000000, :null => false
+    t.integer  "user_team_id",                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -1630,6 +1629,13 @@ ActiveRecord::Schema.define(:version => 0) do
 
   add_index "persons_media", ["media_id"], :name => "FK_per_med_med_id__med_id"
   add_index "persons_media", ["person_id"], :name => "FK_per_med_per_id__per_id"
+
+  create_table "photos", :force => true do |t|
+    t.string   "url"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "position_groups", :force => true do |t|
     t.string "name"

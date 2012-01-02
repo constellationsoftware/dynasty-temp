@@ -1,17 +1,29 @@
-#person
-  .row.rounded
-    .two.columns
-      %img{:src => @photo_url, :class => "photo"}
-    .eight.columns
-      %h2
-        = @person.display_name.full_name
-      %h4
-        = @person.current_position
-        Uniform #
-
-
-
-  //- if @person.current_position.name == "Quarterback"
+.row.person
+  .panel
+    %h3
+      = @person.display_name.full_name
+    %p
+      = @person.current_position.position.abbreviation.capitalize
+      | Uniform # |
+      = @person.current_team.display_name.full_name
+      = @person.current_position.uniform_number
+    %p
+      Contract Summary:
+      = @person.contract.summary
+    %p
+      Contract Ends:
+      = @person.contract.end_year
+    %p
+      Free Agent:
+      = @person.contract.free_agent_year
+    %p
+      Fantasy Points Earned Last Season: 
+      = @person.season_points(11)
+    %p
+      Fantasy Points Earned This Season: 
+      = @person.season_points(1)
+       
+  //- if @person.current_position.position.id = 1
   = render :partial => "quarterback"
 
 

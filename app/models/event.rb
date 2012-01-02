@@ -29,7 +29,7 @@ class Event < ActiveRecord::Base
   #Chrono Methods
 
   def gameday
-    self.start_date_time.day
+    self.start_date_time.to_date
   end
 
   def week
