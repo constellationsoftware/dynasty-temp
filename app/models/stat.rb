@@ -94,13 +94,13 @@ class Stat < ActiveRecord::Base
 
 
   def self.future
-    where('start_date_time >= ?', Time.now)
+    where('start_date_time >= ?', Clock.first.time)
   end
 
 
 
 
-  scope :current, where('start_date_time <= ?', Time.now)
+  scope :current, where('start_date_time <= ?', Clock.first.time)
   scope :future, future
 
   # copy stat start_date_time from event into stat table - shitty but expedient

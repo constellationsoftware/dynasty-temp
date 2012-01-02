@@ -53,7 +53,7 @@
       - @person.events.past.each do |event|
         %tr
           %td
-            = event.gameday
+            = event.gameday.strftime("%B %e, %Y")
           %td
             = event.away_team.andand.display_name.andand.first_name
             %br
