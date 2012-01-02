@@ -868,7 +868,7 @@ ActiveRecord::Schema.define(:version => 20120102154852) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "league_id",                                     :null => false
-    t.integer  "number_of_rounds",              :default => 30, :null => false
+    t.integer  "number_of_rounds",              :default => 42, :null => false
     t.integer  "current_pick_id",  :limit => 2
     t.string   "status"
   end
@@ -889,11 +889,28 @@ ActiveRecord::Schema.define(:version => 20120102154852) do
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
+  create_table "dynasty_player_contracts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "person_id"
+    t.string  "amount"
+    t.string  "length"
+    t.integer  "end_year"
+    t.string   "summary"
+    t.string   "free_agent_year"
+  end
+
   create_table "dynasty_player_points", :force => true do |t|
+<<<<<<< HEAD
     t.integer  "points",     :null => false
     t.integer  "player_id",  :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+=======
+    t.integer  "score",      :null => false
+    t.integer  "person_id",  :null => false
+    t.datetime "created_at", :null => false
+>>>>>>> d318998ad43bf71085e4fe223b0e2ca25d956cfa
   end
 
   add_index "dynasty_player_points", ["player_id"], :name => "index_dynasty_player_points_on_player_id"
@@ -911,8 +928,8 @@ ActiveRecord::Schema.define(:version => 20120102154852) do
   end
 
   create_table "dynasty_team_balances", :force => true do |t|
-    t.integer  "balance_cents", :limit => 8, :default => 0, :null => false
-    t.integer  "user_team_id",                              :null => false
+    t.integer  "balance_cents", :limit => 8, :default => 75000000, :null => false
+    t.integer  "user_team_id",                                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -1621,6 +1638,13 @@ ActiveRecord::Schema.define(:version => 20120102154852) do
 
   add_index "persons_media", ["media_id"], :name => "FK_per_med_med_id__med_id"
   add_index "persons_media", ["person_id"], :name => "FK_per_med_per_id__per_id"
+
+  create_table "photos", :force => true do |t|
+    t.string   "url"
+    t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "position_groups", :force => true do |t|
     t.string "name"

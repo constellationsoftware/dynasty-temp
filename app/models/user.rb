@@ -1,5 +1,25 @@
 class User < ActiveRecord::Base
   set_table_name 'dynasty_users'
+  
+    
+    
+    ##Send welcome email after creation
+    #require 'rest_client'
+    #after_create :send_welcome_email
+    #
+    #private
+    #
+    #def send_welcome_email
+    #  #send the welcome email
+    #  require 'rest_client'
+    #  RestClient.post 'https://api:key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61@api.mailgun.net/v2',
+    #                  :from => "developers@dynastyowner.net",
+    #                  :to => "bamurphymac@me.com",
+    #                  :subject => "Welcome to Dynasty Owner BETA.",
+    #                  :text => "Your username is XYZ and your password is PQR",
+    #                  :html => "Your username is <strong>XYZ</strong> and your password is <em>PQR!</em>"
+    #end
+
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

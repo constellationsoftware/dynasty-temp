@@ -32,6 +32,7 @@ class UserTeamsController < ApplicationController
   def new
     @user_team = UserTeam.new
 
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @user_team }
@@ -47,6 +48,8 @@ class UserTeamsController < ApplicationController
     # POST /user_teams.xml
   def create
     @user_team = UserTeam.new(params[:user_team])
+    @user_team.create_balance
+
 
     respond_to do |format|
       if @user_team.save

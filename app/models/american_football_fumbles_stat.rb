@@ -3,6 +3,6 @@ class AmericanFootballFumblesStat < BaseStat
   # TODO: Check scoring vs. spreadsheets
 
   def points
-    return fumbles_committed.to_f * 2
+    fumbles_committed.to_f * 2
   end
 end

@@ -64,3 +64,6 @@ require 'pusher'
 Pusher.app_id = '10192'
 Pusher.key    = '6e855396056bdf519e1a'
 Pusher.secret = 'da06ccd5289c0145a263'
+
+#MAILGUN_API_KEY = "key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61"
+#MAILGUN_API_URL = "https://api:#{MAILGUN_API_KEY}@api.mailgun.net/v2/mailgun.net"

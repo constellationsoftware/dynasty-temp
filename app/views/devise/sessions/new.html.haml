@@ -1,16 +1,36 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
+#newsession.panel.six.columns.centered
+  %h2 Welcome to Dynasty Owner
+  %p  You need to log in to access this site.
+
+
+%br
+#signin.panel.six.columns.centered.display
+  %h2 Sign In
+  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = f.label :email
-    %br/
     = f.email_field :email
-  %div
+    %br
     = f.label :password
-    %br/
     = f.password_field :password
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render :partial => "devise/shared/links"
+    %br
+    = f.submit "Sign in" , :class => "nice large radius blue button"
+%br
+#signup.panel.six.columns.centered.display
+  %h2 New User? Sign up!
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = devise_error_messages!
+    = f.label :name
+    = f.text_field :name
+    %br
+    = f.label :email
+    = f.email_field :email
+    %br
+    = f.label :password
+    = f.password_field :password
+    %br
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    %br
+    = f.submit "Sign up", :class => "nice large radius red button"
+
+  = render :partial => "devise/shared/links"

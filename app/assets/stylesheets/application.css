@@ -1,106 +1,132 @@
 /*
 *= require_self
-*= require foundation
+ *= require foundation
 *= require_tree .
 */
-
-
-th,td {
-    text-align: center !important;
-    font-size: 10px !important;
+/* line 8, application.scss */
+th, td {
+  text-align: center !important;
+  font-size: 10px !important;
 }
 
+/* line 13, application.scss */
 .rounded {
-    -moz-border-radius:10px !important;
-    -webkit-border-radius:10px !important;
-    border: solid 1px #333;
+  -moz-border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  border: solid 1px #333;
 }
+
+/* line 18, application.scss */
 .photo {
-    margin: 3px;
-    -moz-border-radius:10px !important;
-    -webkit-border-radius:10px !important;
-    border: white solid 3px;
-    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  margin: 3px;
+  -moz-border-radius: 10px !important;
+  -webkit-border-radius: 10px !important;
+  border: white solid 3px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
+/* line 26, application.scss */
 .stats_table {
-    overflow: scroll;
-    width: 500px;
-}
-body {
-
-
+  overflow: scroll;
+  width: 500px;
 }
 
 /* rotations */
+/* line 36, application.scss */
 .forty_five_deg {
-    -moz-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-    -webkit-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-    -o-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-    -ms-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-    transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
+  -moz-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
+  -webkit-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
+  -o-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
+  -ms-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
+  transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
 }
 
+/* line 44, application.scss */
 .perpendicular {
-    -moz-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-    -webkit-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-    -o-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-    -ms-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-    transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
+  -moz-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
+  -webkit-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
+  -o-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
+  -ms-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
+  transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
 }
 
+/* line 52, application.scss */
 .wrapper {
-    margin-top: 150px;
-    background-color: rgba(255, 255, 255, .5);
-
+  margin-top: 150px;
+  background-color: rgba(255, 255, 255, 0.5);
 }
+
+/* line 57, application.scss */
 .top-bar {
-
-    position: fixed;
-    top: 0pt;
-    left: 0pt;
-    right: 0pt;
-    z-index: 10000;
-    overflow: visible;
-    overflow-x: visible;
-    overflow-y: visible;
-    /* Got this from colorzilla.com/gradienteditor */
-    background: rgb(255,252,252); /* Old browsers */
-    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-    /* IE9 SVG, needs conditional override of 'filter' to 'none' */
-    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYzJSIgc3RvcC1jb2xvcj0iI2RiZGJkYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY0JSIgc3RvcC1jb2xvcj0iIzNmNTI5NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgwJSIgc3RvcC1jb2xvcj0iIzRjOTBmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgxJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgyJSIgc3RvcC1jb2xvcj0iIzlmOWY5ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgzJSIgc3RvcC1jb2xvcj0iIzNmM2YzZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijg5JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjU3Ii8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk3JSIgc3RvcC1jb2xvcj0iI2ZmZmNmYyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZjZmMiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-    background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(219,219,219,1) 63%, rgba(63,82,150,1) 64%, rgba(76,144,255,1) 80%, rgba(255,255,255,1) 81%, rgba(159,159,159,1) 82%, rgba(63,63,63,1) 83%, rgba(255,255,255,0.57) 89%, rgba(255,252,252,0) 97%, rgba(255,252,252,0) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(63%,rgba(219,219,219,1)), color-stop(64%,rgba(63,82,150,1)), color-stop(80%,rgba(76,144,255,1)), color-stop(81%,rgba(255,255,255,1)), color-stop(82%,rgba(159,159,159,1)), color-stop(83%,rgba(63,63,63,1)), color-stop(89%,rgba(255,255,255,0.57)), color-stop(97%,rgba(255,252,252,0)), color-stop(100%,rgba(255,252,252,0))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(219,219,219,1) 63%,rgba(63,82,150,1) 64%,rgba(76,144,255,1) 80%,rgba(255,255,255,1) 81%,rgba(159,159,159,1) 82%,rgba(63,63,63,1) 83%,rgba(255,255,255,0.57) 89%,rgba(255,252,252,0) 97%,rgba(255,252,252,0) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(219,219,219,1) 63%,rgba(63,82,150,1) 64%,rgba(76,144,255,1) 80%,rgba(255,255,255,1) 81%,rgba(159,159,159,1) 82%,rgba(63,63,63,1) 83%,rgba(255,255,255,0.57) 89%,rgba(255,252,252,0) 97%,rgba(255,252,252,0) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(219,219,219,1) 63%,rgba(63,82,150,1) 64%,rgba(76,144,255,1) 80%,rgba(255,255,255,1) 81%,rgba(159,159,159,1) 82%,rgba(63,63,63,1) 83%,rgba(255,255,255,0.57) 89%,rgba(255,252,252,0) 97%,rgba(255,252,252,0) 100%); /* IE10+ */
-    background: linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(219,219,219,1) 63%,rgba(63,82,150,1) 64%,rgba(76,144,255,1) 80%,rgba(255,255,255,1) 81%,rgba(159,159,159,1) 82%,rgba(63,63,63,1) 83%,rgba(255,255,255,0.57) 89%,rgba(255,252,252,0) 97%,rgba(255,252,252,0) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00fffcfc',GradientType=0 ); /* IE6-8 */
-
-
-
-
-    width: 100%;
+  position: fixed;
+  top: 0pt;
+  left: 0pt;
+  right: 0pt;
+  overflow: visible;
+  overflow-x: visible;
+  overflow-y: visible;
+  /* Got this from colorzilla.com/gradienteditor */
+  background: #fffcfc;
+  /* Old browsers */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjYzJSIgc3RvcC1jb2xvcj0iI2RiZGJkYiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjY0JSIgc3RvcC1jb2xvcj0iIzNmNTI5NiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgwJSIgc3RvcC1jb2xvcj0iIzRjOTBmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgxJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgyJSIgc3RvcC1jb2xvcj0iIzlmOWY5ZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjgzJSIgc3RvcC1jb2xvcj0iIzNmM2YzZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9Ijg5JSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIwLjU3Ii8+CiAgICA8c3RvcCBvZmZzZXQ9Ijk3JSIgc3RvcC1jb2xvcj0iI2ZmZmNmYyIgc3RvcC1vcGFjaXR5PSIwIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZjZmMiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(top, white 0%, #dbdbdb 63%, #3f5296 64%, #4c90ff 80%, white 81%, #9f9f9f 82%, #3f3f3f 83%, rgba(255, 255, 255, 0.57) 89%, rgba(255, 252, 252, 0) 97%, rgba(255, 252, 252, 0) 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(63%, #dbdbdb), color-stop(64%, #3f5296), color-stop(80%, #4c90ff), color-stop(81%, white), color-stop(82%, #9f9f9f), color-stop(83%, #3f3f3f), color-stop(89%, rgba(255, 255, 255, 0.57)), color-stop(97%, rgba(255, 252, 252, 0)), color-stop(100%, rgba(255, 252, 252, 0)));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, white 0%, #dbdbdb 63%, #3f5296 64%, #4c90ff 80%, white 81%, #9f9f9f 82%, #3f3f3f 83%, rgba(255, 255, 255, 0.57) 89%, rgba(255, 252, 252, 0) 97%, rgba(255, 252, 252, 0) 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, white 0%, #dbdbdb 63%, #3f5296 64%, #4c90ff 80%, white 81%, #9f9f9f 82%, #3f3f3f 83%, rgba(255, 255, 255, 0.57) 89%, rgba(255, 252, 252, 0) 97%, rgba(255, 252, 252, 0) 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, white 0%, #dbdbdb 63%, #3f5296 64%, #4c90ff 80%, white 81%, #9f9f9f 82%, #3f3f3f 83%, rgba(255, 255, 255, 0.57) 89%, rgba(255, 252, 252, 0) 97%, rgba(255, 252, 252, 0) 100%);
+  /* IE10+ */
+  background: linear-gradient(top, #ffffff 0%, #dbdbdb 63%, #3f5296 64%, #4c90ff 80%, #ffffff 81%, #9f9f9f 82%, #3f3f3f 83%, rgba(255, 255, 255, 0.57) 89%, rgba(255, 252, 252, 0) 97%, rgba(255, 252, 252, 0) 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#00fffcfc',GradientType=0 );
+  /* IE6-8 */
+  width: 100%;
 }
 
+/* line 86, application.scss */
 .clean {
-    border: none;
-    background: none !important;
-    text-align: right !important;
+  border: none;
+  background: none !important;
+  text-align: right !important;
 }
 
+/* line 92, application.scss */
 .clean li {
-    float: right;
+  float: right;
 }
 
+/* line 96, application.scss */
 #video_background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: auto;
-    height: 100%;
-    z-index: -1000;
-
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  height: 100%;
+  z-index: -1000;
 }
+
+/* line 108, application.scss */
+.row {
+  width: 100%;
+  max-width: 100%;
+  min-width: 727px;
+  margin: 0 auto;
+}
+/* line 113, application.scss */
+.row .row {
+  min-width: 0px;
+}
+
+/* line 116, application.scss */
+#wrap {
+  margin-top: 50px;
+  padding-top: 50px;
+}
+

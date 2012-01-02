@@ -6,7 +6,7 @@ class PeopleController < ApplicationController
     @teams = Team.all
     @positions = Position.all
     #people = Person.all
-    @people = PersonPhase.current_phase.joins(:person)
+    @people = Person.all
     #data = {}
     #data[:players] = []
     #people.each do |p|

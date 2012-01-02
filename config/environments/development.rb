@@ -27,11 +27,35 @@ Dynasty::Application.configure do
   config.serve_static_assets = true
   config.assets.compile = true
 
+  #Iron Worker to run jobs
+
+  #ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
+  #ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
+
+  # Rotate Log Files. example:
+  # config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
+  # will rotate every 5 megabytes, keeping the 3 most recent used logs = 15 mb of logs
+
+  config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
+
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  ENV['MAILGUN_API_KEY']  = 'key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61'
+  ENV['MAILGUN_API_URL']  = "https://api:key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61@api.mailgun.net/v2/mailgun.net"
+  # Example message format
+  # RestClient.post MAILGUN_API_URL+"/messages",
+  #                :from => "ev@example.com",
+  #                :to => "ev@mailgun.net",
+  #                :subject => "This is subject",
+  #                :text => "Text body",
+  #                :html => "<b>HTML</b> version of the body!"
+  #
 end
 
 require 'pusher'
 Pusher.app_id = '10193'
 Pusher.key    = '64db7a76d407adc40ff3'
 Pusher.secret = 'cf5b7ef9fae37eefa146'
+
+

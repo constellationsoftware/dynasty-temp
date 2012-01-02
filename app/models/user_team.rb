@@ -17,14 +17,24 @@ class UserTeam < ActiveRecord::Base
   scope :draft_data, includes(:user, :picks)
 
   before_create :generate_uuid
+  after_create :initial_balance
+
+  # @return [Object]
+  # TODO The initial balance should be set by league settings
+  def initial_balance
+    self.create_balance
+    self.balance.balance_cents = 7500000000
+    self.balance.save
+  end
 
   # aliased method overrides the default getter for the association
   # so we can return the balance attr of the associated class
   # instead of the class instance
-  alias_method :get_balance_instance, :balance
-  def balance
-    return self.get_balance_instance.balance
-  end
+  # hacky fix with addand
+  #alias_method :get_balance_instance, :balance
+  #def balance
+  #  self.get_balance_instance.andand.balance
+  #end
 
 =begin
   def roster
@@ -32,7 +42,7 @@ class UserTeam < ActiveRecord::Base
     salaries = Salary.find(ld)
     salaries
   end
- 
+
   def payroll
     payroll = 0
     salaries = self.roster
@@ -49,7 +59,7 @@ class UserTeam < ActiveRecord::Base
   	self.offline
   end
 
-  # use uuid as a string 
+  # use uuid as a string
   def uuid
     parse_uuid_to_s
   end
@@ -67,7 +77,7 @@ class UserTeam < ActiveRecord::Base
 
  # requires :association, :user, :league
  # requires :attribute, :name
- 	
+
  	private
  		def generate_uuid
  			uuid = UUIDTools::UUID.timestamp_create

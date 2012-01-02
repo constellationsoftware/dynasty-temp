@@ -5,6 +5,7 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'compass', '>= 0.11.5'
+gem 'compass-foundation'
 gem 'sass-rails'#, '~> 3.1.0'
 gem 'heroku'
 # gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
@@ -22,17 +23,19 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
-gem 'unicorn'
+#gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
-gem 'delayed_job'
+gem 'delayed_job','< 3.0'
+# issues with DJ 3.0
+# gem 'delayed_job_active_record'
 gem 'uuidtools'
 gem 'activeadmin'
 gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
-gem 'zurb-foundation', :group => :assets
+gem "zurb-foundation", "~> 2.1.2"
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
@@ -46,6 +49,15 @@ gem 'jbuilder'
 gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
+gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
+gem 'typhoeus'
+
+# for scraping salaries
+gem 'nokogiri'
+
+gem 'rest-client'
+
+#gem 'fnordmetric', '~> 0.5'
 
 group :production do
   gem 'pg'

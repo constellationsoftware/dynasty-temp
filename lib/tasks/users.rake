@@ -13,6 +13,7 @@ namespace :users do
 		puts 'Modified ' + num_changed.to_s + ' rows.'
 	end
 
+  #TODO: Look at this. Getting noMethod errors.
 	desc 'Sets user balances to 0 for users without a balance record'
 	task :create_balance => :environment do
 		num_changed = 0

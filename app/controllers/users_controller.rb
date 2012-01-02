@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   # GET /Users
   # GET /Users.json
+  before_filter :authenticate_user!
+
+
+
   def index
     @time = Time.now
     Thread.new do

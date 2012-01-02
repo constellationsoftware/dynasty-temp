@@ -1,6 +1,10 @@
 class Affiliation < ActiveRecord::Base
   has_one :display_name, :as => :entity
   has_many :affiliation_phases
+  has_many :stats,
+           :foreign_key => 'membership_id',
+           :conditions => [ 'membership_type = ?', 'affiliations' ]
+
   belongs_to :sport
   belongs_to :division
   belongs_to :conference

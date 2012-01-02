@@ -1,8 +1,7 @@
 class PersonsController < InheritedResources::Base
   respond_to :json, :html, :xml
 
-  has_scope :extended_data, :type => :boolean, :default => false
-  has_scope :with_points_from_season, :default => 'last'
+  #has_scope :with_points_from_season, :default => 'last'
 
   # GET /
   # GET /persons.xml
@@ -16,15 +15,13 @@ class PersonsController < InheritedResources::Base
     end
   end
 
-  def position
-    @positions = Position.find(params[:id])
-  end
+
 
     # GET /persons/1
     # GET /persons/1.xml
 =begin
   def show
-    #Timecop.freeze(2011,12, 26)
+    Timecop.freeze(2011,10, 26)
     @person = Person.find(params[:id])
     @last_years_stats = @person.stats.event_stat
     @stats        = @person.stats.current.event_stat
@@ -66,6 +63,7 @@ class PersonsController < InheritedResources::Base
 
     }
 
+
     result = {
         :success => true,
         :person => @person,
@@ -77,7 +75,9 @@ class PersonsController < InheritedResources::Base
         :this_season_score => current_season_stats,
         :career_score => career_stats,
         :career_info => career_info,
-        :seasons_played => seasons.to_i
+        :seasons_played => seasons.to_i,
+        :contract => doc.css(".playerValue").first.text,
+        :roto => @photo
     }
 
     #json[:first_name] = @person.display_name
@@ -99,9 +99,40 @@ class PersonsController < InheritedResources::Base
         :include => {
           :display_name => {},
           :positions => {},
+          :person_phases => {},
           :stats => { :methods => [ :points ] }
         }
       )}
+      format.html {
+
+      @person = Person.find(params[:id]) 
+          # get contract info
+         #team = @person.current_team.name.gsub! /\s+/, '-'
+         #name = @person.display_name.full_name.gsub! /\s+/, '-'
+         #url = "http://www.spotrac.com/nfl/#{team}/#{name}"
+         #spotrac_doc = Nokogiri::HTML(open(url))
+         #@contract = spotrac_doc.css("span.playerValue")
+         #@person.contract.summary = @contract[0].andand.text
+         #@person.contract.amount = @contract[2].andand.text.strip!
+         #@person.contract.end_year = @contract[3].andand.text
+         #@person.contract.free_agent_year = @contract[4].andand.text
+         #@person.contract.save
+        
+#
+       # @salary = @spotract_doc.css(".salaryTable salaryInfo")
+       # unless @person.photo.url do
+       #   # try rotoworld
+       #   roto_url = "http://rotoworld.com/content/playersearch.aspx?searchname=#{@person.display_name.last_name},#{@person.display_name.first_name}"
+       #   roto_doc = Nokogiri::HTML(open(roto_url))
+       #   @roto_doc = roto_doc
+       #   
+       #   @photo = @roto_doc.css("#cp1_ctl00_imgPlayerPhoto")
+       #   @photo_url = "http://rotoworld.com#{@photo.attribute('src').to_s}"
+       #   @person.photo.url = @photo_url
+       #   @person.photo.save
+       # end
+#
+      }
     end
   end
 

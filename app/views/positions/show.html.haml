@@ -1,0 +1,6 @@
+.panel
+  %h3 
+    = @position.name
+  - @position.players.each do |p|
+    %dd
+      = link_to p.andand.display_name.andand.full_name, p, :class => "nice large radius button"

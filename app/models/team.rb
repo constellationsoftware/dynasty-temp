@@ -1,7 +1,13 @@
 class Team < ActiveRecord::Base
   has_many :american_football_action_plays
-  has_one :display_name, :as => :entity
-  has_many :person_phases, :as => :membership, :order => "regular_position_depth ASC, regular_position_id ASC"
+  has_one :display_name,
+          :foreign_key => 'entity_id',
+          :conditions => [ 'entity_type = ?', 'teams' ]
+
+  has_many :person_phases,
+           :foreign_key => 'membership_id',
+           :conditions => ['membership_type = ?', 'teams']
+
   has_many :people, :through => :person_phases
   has_many :team_phases
   belongs_to :division
@@ -22,4 +28,10 @@ class Team < ActiveRecord::Base
       Event.find(p.event_id).summary
     end
   end
+
+  def name
+    self.display_name.full_name
+  end
+
+
 end
