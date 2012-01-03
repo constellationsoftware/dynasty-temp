@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120102232629) do
+ActiveRecord::Schema.define(:version => 20120103160511) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -869,6 +869,10 @@ ActiveRecord::Schema.define(:version => 20120102232629) do
     t.datetime "picked_at"
     t.integer  "round",                     :null => false
   end
+
+  add_index "dynasty_draft_picks", ["draft_id"], :name => "index_dynasty_draft_picks_on_draft_id"
+  add_index "dynasty_draft_picks", ["player_id"], :name => "index_dynasty_draft_picks_on_player_id"
+  add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
 
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"

@@ -14,7 +14,12 @@ Ext.define('DynastyDraft.store.PlayerSearch', {
             root: 'players'
         },
         extraParams: {
-            available: true
+            available: true,
+            weighted: true,
+            order_by: Ext.JSON.encode({
+                last_name: 'asc',
+                first_name: 'asc'
+            })
         }
     },
 });
