@@ -1649,6 +1649,11 @@ ActiveRecord::Schema.define(:version => 20120102232629) do
     t.datetime "updated_at"
   end
 
+  create_table "position_groups", :force => true do |t|
+    t.string "name"
+    t.string "abbreviation"
+  end
+
   create_table "positions", :force => true do |t|
     t.integer "affiliation_id",                   :null => false
     t.string  "abbreviation",      :limit => 100, :null => false
