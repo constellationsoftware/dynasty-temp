@@ -18,8 +18,9 @@ Ext.define('DynastyDraft.store.RecommendedPicks', {
         simpleSortMode: false,
         extraParams: {
             available: true,
-            by_rating: true,
+            weighted: true,
             by_position: true,
+            order_by: Ext.JSON.encode({weighted_points: 'DESC'}),
             page: 1,
             limit: 5
         }
