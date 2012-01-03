@@ -52,7 +52,7 @@ module Dynasty
     # Enable the asset pipeline
     config.assets.enabled = true
     config.serve_static_assets = true
-    config.assets.compile = false
+    config.assets.compile = true
 
     # Compass integration
     # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory

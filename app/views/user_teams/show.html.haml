@@ -1,7 +1,37 @@
-%h1
-  = @team.name
-%h2
-  = @team.league.name
-%h2
-  Roster
-      
+.panel
+  %h3
+    League:
+    = @team.league.name
+
+  %h4 
+    - if @team.user_id == current_user.id
+      = "Your Team:"
+      - else
+      = "Your Opponent's Team:"
+    = @team.name
+  %h4
+    Other Teams in League:
+    - @team.league.draft.teams.each do |team|
+      = link_to team.name, team
+  %h4
+
+.panel
+  %h3
+    Team Points:
+    - @points = 0 
+    - @team.picks.each do |pick|
+      - if pick.player_id
+        - @points += Person.find(pick.player_id).current_season_points(Clock.first.time)
+    = @points
+        
+  .panel
+    %h3
+      Roster:
+    %ul
+      = @team.picks.each do |pick|
+        - if pick.player_id
+          %li
+            = Person.find(pick.player_id).display_name.full_name
+            = Player.find(pick.player_id).position.name
+            = Person.find(pick.player_id).current_season_points(Clock.first.time)
+    

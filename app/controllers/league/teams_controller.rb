@@ -25,6 +25,6 @@ class League::TeamsController < SubdomainController
   end
 
   def collection
-    @teams = @league.draft.teams
+    @teams = self.draft.teams
   end
 end
