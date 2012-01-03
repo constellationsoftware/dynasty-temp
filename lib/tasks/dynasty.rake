@@ -46,18 +46,56 @@ namespace :dynasty do
         
         seasons = Season.order{season_key.desc}
         seasons.each do |season|
-          point_data = []
+
           year = season.season_key
 
           players = Person.joins{stats}.calculate_points_from_season(year.to_i)
           players.each do |player|
+            # zero out points per player
+            fumbles_points = 0
+            defensive_points = 0
+            passing_points = 0
+            rushing_points = 0
+            sacks_against_points = 0
+            special_teams_points = 0
+            scoring_points = 0
+            games_played = 0
+            # this breaks points down per stat repository type
+            player.stats.each do |stat|
+              repo_type = stat.stat_repository_type
+              case repo_type
+                when "american_football_defensive_stats"
+                  defensive_points = stat.stat_repository.points
+                when "american_football_fumbles_stats"
+                  fumbles_points = stat.stat_repository.points
+                when "american_football_passing_stats"
+                  passing_points = stat.stat_repository.points
+                when "american_football_rushing_stats"
+                  rushing_points = stat.stat_repository.points
+                when "american_football_sacks_against_stats"
+                  sacks_against_points = stat.stat_repository.points
+                when "american_football_sacks_against_stats"
+                  sacks_against_points = stat.stat_repository.points
+                when "american_football_special_teams_stats"
+                  special_teams_points = stat.stat_repository.points
+                when "american_football_scoring_stats"
+                  scoring_points = stat.stat_repository.points
+                when "core_stats"
+                  games_played = stat.stat_repository.events_played
+                else
+
+               end
+            end
+            # this provides the total sum points
             points = player.stats.collect{ |stat| stat.points }.compact.sum
-            point_data << "(#{points},#{player.id},#{year})"
+            point_data = []
+            point_data << "(#{points},#{player.id},#{year}, #{defensive_points}, #{fumbles_points}, #{passing_points}, #{rushing_points}, #{sacks_against_points},#{scoring_points},#{special_teams_points}, #{games_played})"
+
+            puts "Writing point totals for player id: #{player.id} #{year}..."
+            ActiveRecord::Base.connection.execute(
+                "INSERT INTO #{PlayerPoint.table_name}(points, player_id, year, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points, games_played) VALUES #{point_data.join(',')}"
+            )
           end
-          puts "Writing point totals for #{year}..."
-          ActiveRecord::Base.connection.execute(
-            "INSERT INTO #{PlayerPoint.table_name}(points, player_id, year) VALUES #{point_data.join(',')}"
-          )
         end
       end
     end

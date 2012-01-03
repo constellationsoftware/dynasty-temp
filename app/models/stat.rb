@@ -65,6 +65,10 @@ class Stat < ActiveRecord::Base
     where{stat_repository_type == 'american_football_passing_stats'}.first.andand.stat_repository
   end
 
+  def self.scoring
+    where{stat_repository_type == 'american_football_scoring_stats'}.first.andand.stat_repository
+  end
+
   def self.rushing
     where{stat_repository_type == 'american_football_rushing_stats'}.first.andand.stat_repository
   end
