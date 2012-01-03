@@ -1,6 +1,6 @@
 class Player < ActiveRecord::Base
   set_table_name 'persons'
-  POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'K']
+  POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'C', 'G', 'T', 'K']
   POSITION_QUANTITIES = {
     :qb => 2,
     :wr => 4,
@@ -16,7 +16,6 @@ class Player < ActiveRecord::Base
     :class_name => 'DisplayName',
     :foreign_key => 'entity_id',
     :conditions => [ 'entity_type = ?', 'persons' ]
-  accepts_nested_attributes_for :name
   has_one  :score, :class_name => 'PersonScore'
   has_one  :position_link, :class_name => 'PlayerPosition'
   has_one  :position, :through => :position_link
@@ -25,7 +24,6 @@ class Player < ActiveRecord::Base
   has_many :picks
   has_one  :points, :class_name => 'PlayerPoint'
   has_one  :contract, :foreign_key => 'person_id'
-  accepts_nested_attributes_for :points
 
   # Returns a case statement for ordering by a particular set of strings
   # Note that the SQL is built by hand and therefore injection is possible,
@@ -44,7 +42,14 @@ class Player < ActiveRecord::Base
     joins{picks.user}
       .where{picks.user.id.eq my_user.id}
   }
-  scope :by_rating, joins{points}.order{points.points.desc}
+  scope :by_rating, lambda {
+    current_year = Season.order{season_key.desc}.first.season_key
+    puts current_year.inspect
+
+    joins{points}
+    .where{points.year == "#{current_year}"}
+    .order{points.points.desc}
+  }
   scope :available, joins{picks.outer}.where{isnull(picks.id)}
 
   # scopes
