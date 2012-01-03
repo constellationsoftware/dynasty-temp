@@ -96,8 +96,6 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
-    compass-foundation (0.1.1)
-      compass (>= 0.10.0)
     daemons (1.1.5)
     dalli (1.1.4)
     delayed_job (2.1.4)
@@ -175,8 +173,7 @@ GEM
     newrelic_rpm (3.3.1)
     nokogiri (1.5.0)
     orm_adapter (0.0.5)
-    pg (0.12.0)
-      rake-compiler (~> 0.7)
+    pg (0.12.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -209,8 +206,6 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.6)
     rake (0.9.2.2)
-    rake-compiler (0.7.9)
-      rake
     rdoc (3.12)
       json (~> 1.4)
     responders (0.6.4)
@@ -277,7 +272,6 @@ DEPENDENCIES
   coffee-filter
   coffee-rails (~> 3.1.0)
   compass (>= 0.11.5)
-  compass-foundation
   dalli
   delayed_job (< 3.0)
   devise
@@ -317,4 +311,4 @@ DEPENDENCIES
   uglifier
   uuidtools
   vestal_versions!
-  zurb-foundation (~> 2.1.2)
+  zurb-foundation

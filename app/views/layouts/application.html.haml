@@ -41,37 +41,54 @@
 
 
 %body
-  .top-bar
-    .container
-      .row
-        .three.columns
-          %img.show-on-desktops{:src => "/assets/images/logo_med.png"}
-          %img.show-on-tablets{:src => "/assets/images/logo_small.png"}
-          %img.show-on-phones{:src => "/assets/images/logo_tiny.png"}
-        %ul.nav-bar.clean
-          %li
-            %a.nice.large.radius.button(data-reveal-id="playerResearch") Research Players
-          %li
-            %a.nice.large.radius.button(data-reveal-id="userTeams") My Teams
-          %li
-            %a.nice.large.radius.button(data-reveal-id="userAccount") My Account
-  
+  .top-bar.container
+    .row
+      .three.columns
+        %img.show-on-desktops{:src => "/assets/images/logo_med.png"}
+        %img.show-on-tablets{:src => "/assets/images/logo_small.png"}
+        %img.show-on-phones{:src => "/assets/images/logo_tiny.png"}
+      .nine.columns
+      %ul.nav-bar.clean
+        %li
+          %a.nice.large.radius.button(data-reveal-id="playerResearch") Research Players
+        %li
+          %a.nice.large.radius.button(data-reveal-id="userTeams") My Teams
+        %li
+          %a.nice.large.radius.button(data-reveal-id="userAccount") My Account
 
-.panel
-  %h3
-    Time Machine Control
-  %h3
-    Current Date:
-    = Clock.first.time.strftime("%B %e, %Y")
-  %h3
-    Fast Forward 1 Week:
-    = link_to "NEXT WEEK", "/clock/2/next_week"
-    |||
-    Reset To Start of Season: 
-    = link_to "RESET", "/clock/2/reset"
-    |||
-    Fast Forward To Real Date: 
-    = link_to "REAL DATE", "/clock/2/present"
+
+  .panel
+    .row
+      .four.columns
+        %h3
+          Time Machine Control
+        %h3
+          Current Date:
+          = Clock.first.time.strftime("%B %e, %Y")
+        %h3
+          Fast Forward 1 Week:
+          = link_to "NEXT WEEK", "/clock/2/next_week"
+          |||
+          Reset To Start of Season:
+          = link_to "RESET", "/clock/2/reset"
+          |||
+          Fast Forward To Real Date:
+          = link_to "REAL DATE", "/clock/2/present"
+      .four.columns
+        %h3
+          Time Machine Control
+        %h3
+          Current Date:
+          = Clock.first.time.strftime("%B %e, %Y")
+        %h3
+          Fast Forward 1 Week:
+          = link_to "NEXT WEEK", "/clock/2/next_week"
+          |||
+          Reset To Start of Season:
+          = link_to "RESET", "/clock/2/reset"
+          |||
+          Fast Forward To Real Date:
+          = link_to "REAL DATE", "/clock/2/present"
   .container
     .row
       .twelve.columns

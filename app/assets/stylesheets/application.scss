@@ -5,6 +5,8 @@
 */
 
 
+
+
 th,td {
     text-align: center !important;
     font-size: 10px !important;
@@ -93,25 +95,8 @@ body {
     float: right;
 }
 
-#video_background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    width: auto;
-    height: 100%;
-    z-index: -1000;
 
-}
 
-.row {
-    width: 100%;
-    max-width: 100%;
-    min-width: 727px;
-    margin: 0 auto;
-.row {
-    min-width: 0px; } }
 
 #wrap {
     margin-top: 50px;

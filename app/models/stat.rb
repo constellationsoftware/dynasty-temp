@@ -106,7 +106,7 @@ class Stat < ActiveRecord::Base
   # copy stat start_date_time from event into stat table - shitty but expedient
 
   def self.copy_start_date_time
-    @stats = Stat.event_stat.where(:start_date_time => nil)
+    @stats = Stat.event_stat.where(:start_date_time => nil) ; nil
       @stats.each do |s|
         s.start_date_time = s.coverage_start_date_time
         s.save!
