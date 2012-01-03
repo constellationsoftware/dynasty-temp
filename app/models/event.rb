@@ -8,10 +8,8 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :medias
   has_many :stats, :as => :stat_coverage
   has_many :participants_events
-  belongs_to :sub_season
-
-
-
+  has_one :sub_season, :class_name => 'EventSubSeason'
+  has_one :season, :through => :sub_season
 
 
   def summary

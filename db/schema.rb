@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120102172443) do
+ActiveRecord::Schema.define(:version => 20120102232629) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -874,7 +874,7 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
     t.datetime "started_at"
     t.datetime "finished_at"
     t.integer  "league_id",                                     :null => false
-    t.integer  "number_of_rounds",              :default => 42, :null => false
+    t.integer  "number_of_rounds",              :default => 30, :null => false
     t.integer  "current_pick_id",  :limit => 2
     t.string   "status"
   end
@@ -907,11 +907,16 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
   end
 
   create_table "dynasty_player_points", :force => true do |t|
-    t.integer  "points",     :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "person_id",  :null => false
-    t.datetime "created_at", :null => false
+    t.integer  "points",                       :null => false
+    t.integer  "player_id",                    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "year",       :default => 2000, :null => false
   end
+
+  add_index "dynasty_player_points", ["player_id", "year"], :name => "index_dynasty_player_points_on_player_id_and_year", :unique => true
+  add_index "dynasty_player_points", ["player_id"], :name => "index_dynasty_player_points_on_player_id"
+  add_index "dynasty_player_points", ["year"], :name => "index_dynasty_player_points_on_year"
 
   create_table "dynasty_player_positions", :id => false, :force => true do |t|
     t.integer "player_id"
@@ -926,8 +931,8 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
   end
 
   create_table "dynasty_team_balances", :force => true do |t|
-    t.integer  "balance_cents", :limit => 8, :default => 75000000, :null => false
-    t.integer  "user_team_id",                                     :null => false
+    t.integer  "balance_cents", :limit => 8, :default => 0, :null => false
+    t.integer  "user_team_id",                              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -1642,11 +1647,6 @@ ActiveRecord::Schema.define(:version => 20120102172443) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "position_groups", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
   end
 
   create_table "positions", :force => true do |t|
