@@ -40,7 +40,15 @@ class League::PlayersController < SubdomainController
       :last_name => player.name.last_name,
       :position => (player.position.nil?) ? '' : player.position.abbreviation.upcase,
       :contract_amount => player.contract.amount,
-      :points => (player.weighted_points.nil?) ? 0 : player.weighted_points
+      :points => player.points.first.points,
+      :defensive_points => player.points.first.defensive_points,
+      :fumbles_points => player.points.first.fumbles_points,
+      :passing_points => player.points.first.passing_points,
+      :rushing_points => player.points.first.rushing_points,
+      :sacks_against_points => player.points.first.sacks_against_points,
+      :scoring_points => player.points.first.scoring_points,
+      :special_teams_points => player.points.first.special_teams_points,
+      :games_played => player.points.first.games_played
     }
   end
 

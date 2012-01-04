@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120103231403) do
+ActiveRecord::Schema.define(:version => 20120104175603) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -870,6 +870,10 @@ ActiveRecord::Schema.define(:version => 20120103231403) do
     t.integer  "round",                     :null => false
   end
 
+  add_index "dynasty_draft_picks", ["draft_id"], :name => "index_dynasty_draft_picks_on_draft_id"
+  add_index "dynasty_draft_picks", ["player_id"], :name => "index_dynasty_draft_picks_on_player_id"
+  add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
+
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -930,14 +934,14 @@ ActiveRecord::Schema.define(:version => 20120103231403) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year",                 :default => 2000, :null => false
-    t.integer  "defensive_points",     :default => 0
-    t.integer  "fumbles_points",       :default => 0
-    t.integer  "passing_points",       :default => 0
-    t.integer  "rushing_points",       :default => 0
-    t.integer  "sacks_against_points", :default => 0
-    t.integer  "scoring_points",       :default => 0
-    t.integer  "special_teams_points", :default => 0
-    t.integer  "games_played",         :default => 0
+    t.integer  "defensive_points",     :default => 0,    :null => false
+    t.integer  "fumbles_points",       :default => 0,    :null => false
+    t.integer  "passing_points",       :default => 0,    :null => false
+    t.integer  "rushing_points",       :default => 0,    :null => false
+    t.integer  "sacks_against_points", :default => 0,    :null => false
+    t.integer  "scoring_points",       :default => 0,    :null => false
+    t.integer  "special_teams_points", :default => 0,    :null => false
+    t.integer  "games_played",         :default => 0,    :null => false
   end
 
   add_index "dynasty_player_points", ["player_id", "year"], :name => "index_dynasty_player_points_on_player_id_and_year", :unique => true
@@ -1012,6 +1016,9 @@ ActiveRecord::Schema.define(:version => 20120103231403) do
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "dynasty_users", ["league_id"], :name => "index_dynasty_users_on_league_id"
+  add_index "dynasty_users", ["name"], :name => "index_dynasty_users_on_name"
+  add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
 
   create_table "event_action_fouls", :force => true do |t|
     t.integer "event_state_id",                :null => false
@@ -1673,11 +1680,6 @@ ActiveRecord::Schema.define(:version => 20120103231403) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "position_groups", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
   end
 
   create_table "positions", :force => true do |t|

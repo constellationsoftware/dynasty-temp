@@ -52,6 +52,7 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
 @import 'shoutbox';
 @import 'compass/utilities/general/min';
 @import 'compass/css3/transition';
+@import 'compass/css3/columns';
 
 /********************************************************************************
  * HEADER
@@ -176,19 +177,28 @@ $recommended_pick_bio_min-height: 8em;
                 }
                 .salary { text-align: right; }
                 .stats {
-                    clear: both; 
-                    dd {
-                        display: inline-block;
-                        width: 80px;
-                        margin-right: 20px;
+                    clear: both;
+                    font-size: 1.2em;
+                    line-height: 1.4em;
 
-                        span {
-                            float: right;
+                    ul.stat_columns {
+                        @include column-count(3);
+                        @include column-gap(10px);
+                    }
+                    .label {
+                        min-width: 120px;
+                        font-weight: bold;
+                    }
+                    span.points {
+                        float: right;
+
+                        span.delta {
                             color: #CCCCCC;
                             &.pos { color: green; }
                             &.neg { color: red; }
                         }
                     }
+                    .total span.points { float: none; }
                 }
             }
         }

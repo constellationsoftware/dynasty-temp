@@ -81,7 +81,6 @@ namespace :dynasty do
                 when "core_stats"
                   games_played += stat.stat_repository.events_played.to_i
                 else
-
                end
             end
             # this provides the total sum points
