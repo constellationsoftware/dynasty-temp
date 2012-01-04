@@ -23,8 +23,10 @@ class Player < ActiveRecord::Base
   has_many :teams, :class_name => 'UserTeam'
   has_many :leagues, :through => :teams
   has_many :picks
-  has_one  :points, :class_name => 'PlayerPoint'
+  has_many :points, :class_name => 'PlayerPoint'
+  has_many :event_points, :class_name => 'PlayerEventPoint'
   has_one  :contract, :foreign_key => 'person_id'
+
 
   # Returns a case statement for ordering by a particular set of strings
   # Note that the SQL is built by hand and therefore injection is possible,
