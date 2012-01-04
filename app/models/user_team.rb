@@ -14,7 +14,6 @@ class UserTeam < ActiveRecord::Base
 
   scope :online, self.where(:is_online => true)
   scope :offline, self.where(:is_online => false)
-  scope :draft_data, includes(:user, :picks)
 
   before_create :generate_uuid
   after_create :initial_balance
@@ -83,7 +82,4 @@ class UserTeam < ActiveRecord::Base
  			uuid = UUIDTools::UUID.timestamp_create
  			self.uuid = uuid.raw
  		end
-
-
-
 end

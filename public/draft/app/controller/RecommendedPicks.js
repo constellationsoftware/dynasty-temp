@@ -205,7 +205,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         for (var i = 0, l = nodes.length; i < l; ++i) {
             var node = nodes[i],
                 el = new Ext.Element(node),
-                statEls = el.query('.stats dd');
+                statEls = el.query('.stats li');
+            console.log(statEls);
             
             // for all but the selected node, compare stat values to selected
             if (node !== selectedNode) {
@@ -228,7 +229,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                     var node = statEls[j],
                         el = new Ext.Element(node),
                         deltaEl = new Ext.Element(el.down('.delta'));
-                    deltaEl.update('');
+                    deltaEl.update('&nbsp;');
                 }
             }
         }

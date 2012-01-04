@@ -12,6 +12,9 @@ class Player < ActiveRecord::Base
     :c => 1
   }
   POSITION_FILLED_WEIGHT = 3
+  def self.get_position_filled_weight
+    POSITION_FILLED_WEIGHT
+  end
   
   has_one :name,
     :class_name => 'DisplayName',
@@ -44,7 +47,6 @@ class Player < ActiveRecord::Base
   #
   # SCOPES
   #
-  default_scope joins{name}
   scope :roster, lambda { |my_user|
     joins{picks.user}
       .where{picks.user.id.eq my_user.id}
@@ -85,11 +87,11 @@ class Player < ActiveRecord::Base
       max = POSITION_QUANTITIES[position_count.abbr.to_sym]
       position_count.count == 0 or (!(max.nil?) and max >= position_count.count)
     }.collect{ |x| x.abbr }
-    weighted_point_calc = "IF(dynasty_positions.abbreviation IN ('#{filled_pos.join('\', \'')}'), points / #{POSITION_FILLED_WEIGHT}, points)"
-
+    weighted_point_calc = "IF(dynasty_positions.abbreviation IN ('#{filled_pos.join('\', \'')}'), points / #{POSITION_FILLED_WEIGHT}, points) DESC"
     current_year = Season.order{season_key.desc}.first.season_key
-    joins{[name, points, position]}
+    joins{[points, position]}
+      .includes{[points, position, contract]}
       .where{points.year == "#{current_year}"}
-      .select("#{table_name}.*, #{weighted_point_calc} AS weighted_points")
+      .order{weighted_point_calc}
   }
 end
