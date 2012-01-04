@@ -36,7 +36,16 @@
       = @person.current_season_points(Clock.first.time.to_s)
       |
       Dynasty Weighted FPTS: 
-      = (@person.current_season_points(Clock.first.time.to_s) / (@person.contract.amount / 1000000)).to_i 
+      = (@person.current_season_points(Clock.first.time.to_s) / (@person.contract.amount / 1000000)).to_i
+
+    %p
+      Testing player_event_points stuff
+      - @person.event_points.past.each do |event|
+        %p
+          = event.start_date_time.strftime("%B %e, %Y")
+
+
+
   //- if @person.current_position.position.id = 1
   = render :partial => "quarterback"
 

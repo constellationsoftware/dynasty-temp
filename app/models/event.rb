@@ -11,7 +11,7 @@ class Event < ActiveRecord::Base
   has_one :sub_season, :class_name => 'EventSubSeason'
   has_one :season, :through => :sub_season
   has_many :player_points, :class_name => 'PlayerEventPoint'
-
+  has_many :players, :through => :player_points
   def summary
     puts self.start_date_time
 

@@ -65,23 +65,21 @@ namespace :dynasty do
               repo_type = stat.stat_repository_type
               case repo_type
                 when "american_football_defensive_stats"
-                  defensive_points = stat.stat_repository.points
+                  defensive_points += stat.stat_repository.points.to_i
                 when "american_football_fumbles_stats"
-                  fumbles_points = stat.stat_repository.points
+                  fumbles_points += stat.stat_repository.points.to_i
                 when "american_football_passing_stats"
-                  passing_points = stat.stat_repository.points
+                  passing_points += stat.stat_repository.points.to_i
                 when "american_football_rushing_stats"
-                  rushing_points = stat.stat_repository.points
+                  rushing_points += stat.stat_repository.points.to_i
                 when "american_football_sacks_against_stats"
-                  sacks_against_points = stat.stat_repository.points
-                when "american_football_sacks_against_stats"
-                  sacks_against_points = stat.stat_repository.points
+                  sacks_against_points += stat.stat_repository.points.to_i
                 when "american_football_special_teams_stats"
-                  special_teams_points = stat.stat_repository.points
+                  special_teams_points += stat.stat_repository.points.to_i
                 when "american_football_scoring_stats"
-                  scoring_points = stat.stat_repository.points
+                  scoring_points += stat.stat_repository.points.to_i
                 when "core_stats"
-                  games_played = stat.stat_repository.events_played
+                  games_played += stat.stat_repository.events_played.to_i
                 else
 
                end
@@ -89,7 +87,7 @@ namespace :dynasty do
             # this provides the total sum points
             points = player.stats.collect{ |stat| stat.points }.compact.sum
             point_data = []
-            point_data << "(#{points},#{player.id},#{year}, #{defensive_points}, #{fumbles_points}, #{passing_points}, #{rushing_points}, #{sacks_against_points},#{scoring_points},#{special_teams_points}, #{games_played})"
+            point_data << "(#{points},#{player.id},#{year},#{defensive_points},#{fumbles_points},#{passing_points},#{rushing_points},#{sacks_against_points},#{scoring_points},#{special_teams_points},#{games_played})"
 
             puts "Writing point totals for player id: #{player.id} #{year}..."
             ActiveRecord::Base.connection.execute(

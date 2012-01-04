@@ -4,6 +4,6 @@ class AmericanFootballScoringStat < BaseStat
   
   def points
     return (extra_points_made.to_f +
-            (field_goals_made.to_f * 3))
+            (field_goals_made.to_f * 3)).to_i
   end
 end

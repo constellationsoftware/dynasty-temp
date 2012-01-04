@@ -24,7 +24,8 @@ class Player < ActiveRecord::Base
   has_many :leagues, :through => :teams
   has_many :picks
   has_many :points, :class_name => 'PlayerPoint'
-  has_many :event_points, :class_name => 'PlayerEventPoint'
+  has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
+  has_many :events, :through => :event_points
   has_one  :contract, :foreign_key => 'person_id'
 
 

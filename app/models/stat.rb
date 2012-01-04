@@ -37,6 +37,8 @@ class Stat < ActiveRecord::Base
     where{stat_coverage_type == 'sub_seasons'}#.includes{[stat_repository, stat_coverage]}
   end
 
+
+
   def self.last_season
     where{stat_coverage_id == '11'}#includes{[stat_repository, stat_coverage]}
   end
@@ -46,7 +48,11 @@ class Stat < ActiveRecord::Base
   end
 
   def self.affiliation_stat
-    where{stat_coverage_type == 'affiliations'}#includes{[stat_repository, stat_coverage]}
+    where{stat_membership_type == 'affiliations'}#includes{[stat_repository, stat_coverage]}
+  end
+
+  def self.team_stat
+    where{stat_membership_type == 'teams'}
   end
 
   scope :event, event_stat

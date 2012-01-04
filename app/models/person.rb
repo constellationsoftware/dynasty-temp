@@ -19,31 +19,31 @@ class Person < ActiveRecord::Base
     :class_name => 'AmericanFootballPassingStat',
     :source => :stat_repository,
     :conditions => [ 'stat_repository_type = ?', 'american_football_passing_stats' ]
-  
+
   has_many :rushing_stats,
     :through => :stats,
     :class_name => 'AmericanFootballRushingStat',
     :source => :stat_repository,
     :conditions => [ 'stat_repository_type = ?', 'american_football_rushing_stats' ]
-  
+
   has_many :defensive_stats,
     :through => :stats,
     :class_name => 'AmericanFootballDefensiveStat',
     :source => :stat_repository,
     :conditions => [ 'stat_repository_type = ?', 'american_football_defensive_stats' ]
-  
+
   has_many :fumbles_stats,
     :through => :stats,
     :class_name => 'AmericanFootballFumblesStat',
     :source => :stat_repository,
     :conditions => [ 'stat_repository_type = ?', 'american_football_fumbles_stats' ]
-  
+
   has_many :sacks_against_stats,
     :through => :stats,
     :class_name => 'AmericanFootballSacksAgainstStat',
     :source => :stat_repository,
     :conditions => [ 'stat_repository_type = ?', 'american_football_sacks_against_stats' ]
-  
+
   has_many :special_teams_stats,
     :through => :stats,
     :class_name => 'AmericanFootballSpecialTeamsStat',
@@ -62,7 +62,10 @@ class Person < ActiveRecord::Base
 
   has_many :participants_events, :as => :participant
   has_one :contract
-  has_one :points, :class_name => 'PlayerPoint', :foreign_key => 'player_id'
+  has_many :points, :class_name => 'PlayerPoint', :foreign_key => 'player_id'
+  has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
+
+
   #has_and_belongs_to_many :documents, :join_table => "persons_documents"
   #has_and_belongs_to_many :medias
 
@@ -71,9 +74,11 @@ class Person < ActiveRecord::Base
   #has_many :players
   #has_many :user_teams, :through => :players
 
+
   def self.calculate_points_from_season(season)
       joins{[stats, stats.sub_season.season]}.includes{stats}
         .where{stats.sub_season.season.season_key == "#{season}"}
+        .where{stats.stat_membership_type == "teams"}
   end
 
   def self.with_points_from_season(season = 'last')
@@ -143,7 +148,7 @@ class Person < ActiveRecord::Base
     p += stats.fumbles.andand.points ||= 0
     p += stats.sacks.andand.points ||= 0
     p += stats.special_teams.andand.points ||= 0
-  end 
+  end
 
   ### GETS SEASON POINTS FOR A FULL SEASON (PAST OR PRESENT) - PASS IN SEASON
   def season_points(season)
@@ -155,7 +160,7 @@ class Person < ActiveRecord::Base
     p += stats.fumbles.andand.points ||= 0
     p += stats.sacks.andand.points ||= 0
     p += stats.special_teams.andand.points ||= 0
-  end 
+  end
 
   ### SUMS EVENT POINTS FOR ALL EVENTS IN PAST - WILL BE CURRENT SEASONS EVENTS. PASS IN CLOCK OBJECT
   ### EVALUATES WHETHER AN EVENT IS BEFORE CLOCK
@@ -171,8 +176,12 @@ class Person < ActiveRecord::Base
 
     end
     p
-  end 
+  end
 
+  def current_event_points
+    @events = self.events.past
+
+  end
 
 
 
@@ -197,6 +206,6 @@ class Person < ActiveRecord::Base
           @person.contract.end_year = @contract[3].andand.text
           @person.contract.free_agent_year = @contract[4].andand.text
           @person.contract.save
-        
+
   end
 end

@@ -4,6 +4,6 @@ class AmericanFootballRushingStat < BaseStat
  
   def points
     return ((rushes_yards.to_f / 10) +
-            (rushes_touchdowns.to_f * 6))
+            (rushes_touchdowns.to_f * 6)).to_i
   end
 end
