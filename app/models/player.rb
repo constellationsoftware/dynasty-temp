@@ -102,4 +102,31 @@ class Player < ActiveRecord::Base
     puts query.to_sql
     return query  
   }
+
+
+  def flatten
+    obj = {
+      :id => id,
+      :full_name => name.full_name,
+      :first_name => name.first_name,
+      :last_name => name.last_name,
+      :position => (position.nil?) ? '' : position.abbreviation.upcase,
+      :contract_amount => contract.amount
+    }
+
+    if respond_to?('points') and points.length > 0
+      obj = obj.merge({
+        :points => points.first.points,
+        :defensive_points => points.first.defensive_points,
+        :fumbles_points => points.first.fumbles_points,
+        :passing_points => points.first.passing_points,
+        :rushing_points => points.first.rushing_points,
+        :sacks_against_points => points.first.sacks_against_points,
+        :scoring_points => points.first.scoring_points,
+        :special_teams_points => points.first.special_teams_points,
+        :games_played => points.first.games_played
+      })
+    end
+    return obj
+  end
 end

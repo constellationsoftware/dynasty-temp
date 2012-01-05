@@ -669,7 +669,7 @@ input, textarea, select {
   width: 100%;
   height: 100%;
   zoom: 1;
-  background: #cccccc;
+  background: #333333;
 }
 
 /* line 21, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_loadmask.scss */
@@ -11351,29 +11351,33 @@ div.pick {
   height: 120px;
   width: 120px;
   margin: 0;
-  padding: 10px;
+  padding: 5px;
 }
 /* line 264, ../sass/dynasty_theme.scss */
-div.pick div.team_pic {
+div.pick div.team_image {
   margin: 0 auto;
   height: 80px;
   width: 80px;
   border: 1px solid black;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  background-image: url('../images/waterboy-sm.png');
 }
-/* line 272, ../sass/dynasty_theme.scss */
-div.pick div.round p {
+/* line 273, ../sass/dynasty_theme.scss */
+div.pick .info {
   width: 100%;
   text-align: center;
+}
+/* line 276, ../sass/dynasty_theme.scss */
+div.pick .info p.round {
   font-weight: bold;
 }
 
-/* line 279, ../sass/dynasty_theme.scss */
+/* line 280, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.2em;
   font-weight: bold;
 }
-/* line 282, ../sass/dynasty_theme.scss */
+/* line 283, ../sass/dynasty_theme.scss */
 #user-balance.deficit {
   color: red;
 }

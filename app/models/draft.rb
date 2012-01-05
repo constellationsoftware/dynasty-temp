@@ -53,17 +53,6 @@ class Draft < ActiveRecord::Base
     return pick
   end
 
-  # also have this in the players_controller for now
-  def get_normalized_player_object(player)
-    obj = {
-      :id => player.id,
-      :full_name => player.name.full_name,
-      :position => (player.position.nil?) ? '' : player.position.abbreviation.upcase,
-      :contract_amount => player.contract.amount,
-      :points => (player.points.nil?) ? 0 : player.points.points
-    }
-  end
-
   ##
   # This method advances the draft after a pick is made, or on draft start.
   #
@@ -93,7 +82,12 @@ class Draft < ActiveRecord::Base
     if !(self.status === :finished)
       pick_user_id = self.current_pick.team.uuid
       payload = {
-        :players => Player.by_rating.by_position.available.limit(5).collect{ |player| get_normalized_player_object(player) }
+        :players => Player.filter_positions(self.current_pick.team)
+          .available.with_points
+          .with_contract
+          .order{points.points.desc}
+          .page(1).per(5)
+          .collect{ |player| player.flatten }
       }
       Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, payload)
     else
@@ -206,8 +200,14 @@ class Draft < ActiveRecord::Base
   end
 
   # the supposedly best pick
+  # TODO: hacky; refactor this sometime
   def best_player
-    self.available_players.joins{points}.order{points.points.desc}.first
+    Player.filter_positions(self.current_pick.team)
+      .available.with_points
+      .with_contract
+      .order{points.points.desc}
+      .page(1).per(1)
+      .first
   end
 
   def create_pick_records

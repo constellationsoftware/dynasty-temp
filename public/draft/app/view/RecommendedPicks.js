@@ -71,5 +71,6 @@ Ext.define('DynastyDraft.view.RecommendedPicks', {
     ),
     itemSelector: '.recommended_pick_wrap',
     singleSelect: true,
-    selectedItemCls: 'selected'
+    selectedItemCls: 'selected',
+    loadingText: 'Loading player data...'
 });

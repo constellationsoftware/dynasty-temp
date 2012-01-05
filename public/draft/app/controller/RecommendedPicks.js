@@ -6,7 +6,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
 
     refs: [{
         ref: 'dataView',
-        selector: 'viewport recommendedpicks',
+        selector: 'viewport recommendedpicks'
     }, {
         ref: 'filterCtl',
         selector: '#recommendedpickwrap combo#filter'
@@ -24,6 +24,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         this.control({
             'viewport recommendedpicks': {
                 beforerender: this.onBeforeRender,
+                afterrender: this.onAfterRender,
                 selectionchange: this.onSelectionChange,
                 itemclick: this.onItemClick,
                 itemdblclick: this.onSubmit,
@@ -32,7 +33,6 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 itemmouseleave: this.onItemRollout,
                 itemupdate: this.onItemUpdate
             },
-
             '#recommendedpickwrap button#submit': { click: this.onSubmit },
             '#recommendedpickwrap combo#filter': { change: this.onFilterChanged },
             '#recommended-pick-edit-window': { submit: this.onItemEditSubmit },
@@ -48,9 +48,15 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         this.application.addListener(this.application.STATUS_PICKING, function(data) {
             this.getRecommendedPicksStore().loadRawData(data);
             this.getSubmitButton().setDisabled(false);
+            var view = this.getDataView();
+            //view.setDisabled(false);
+            //view.loadMask.hide();
         }, this);
         this.application.addListener(this.application.STATUS_WAITING, function() {
             this.getSubmitButton().setDisabled(true);
+            var view = this.getDataView();
+            //view.setDisabled(true);
+            //view.loadMask.show();
         }, this);
     },
 
@@ -59,12 +65,23 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         view.bindStore(this.getRecommendedPicksStore());
     },
 
+    onAfterRender: function(view) {
+        // since the load mask isn't created until render time, bind to it now
+        view.loadMask.addListener();
+    },
+
     onRecommendedPicksLoaded: function(store, records) {
         var view = this.getDataView();
         view.select(0);
+        console.log(view.loadMask);
 
         // draw edit buttons for each item
         view.getEl().select('.recommended_pick .edit', true).each(this.createEditButton);
+        /**
+         * This is a hack to force a redraw, since autoScroll doesn't play nice with
+         * a dataview that just had an item update (or something) when using a 'fit' layout.
+         */
+        view.hide().show();
     },
 
     createEditButton: function(container) {
@@ -206,7 +223,6 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             var node = nodes[i],
                 el = new Ext.Element(node),
                 statEls = el.query('.stats li');
-            console.log(statEls);
             
             // for all but the selected node, compare stat values to selected
             if (node !== selectedNode) {
