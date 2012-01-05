@@ -949,8 +949,19 @@ ActiveRecord::Schema.define(:version => 20120105004603) do
     t.integer  "games_played",         :default => 0
   end
 
+  add_index "dynasty_player_points", ["defensive_points"], :name => "index_dynasty_player_points_on_defensive_points"
+  add_index "dynasty_player_points", ["fumbles_points"], :name => "index_dynasty_player_points_on_fumbles_points"
+  add_index "dynasty_player_points", ["games_played"], :name => "index_dynasty_player_points_on_games_played"
+  add_index "dynasty_player_points", ["passing_points"], :name => "index_dynasty_player_points_on_passing_points"
   add_index "dynasty_player_points", ["player_id", "year"], :name => "index_dynasty_player_points_on_player_id_and_year", :unique => true
   add_index "dynasty_player_points", ["player_id"], :name => "index_dynasty_player_points_on_player_id"
+  add_index "dynasty_player_points", ["points"], :name => "index_dynasty_player_points_on_points"
+  add_index "dynasty_player_points", ["rushing_points"], :name => "index_dynasty_player_points_on_rushing_points"
+  add_index "dynasty_player_points", ["sacks_against_points"], :name => "index_dynasty_player_points_on_sacks_against_points"
+  add_index "dynasty_player_points", ["scoring_points"], :name => "index_dynasty_player_points_on_scoring_points"
+  add_index "dynasty_player_points", ["special_teams_points"], :name => "index_dynasty_player_points_on_special_teams_points"
+  add_index "dynasty_player_points", ["year", "points", "player_id"], :name => "index_dynasty_player_points_on_year_and_points_and_player_id"
+  add_index "dynasty_player_points", ["year", "points"], :name => "index_dynasty_player_points_on_year_and_points"
   add_index "dynasty_player_points", ["year"], :name => "index_dynasty_player_points_on_year"
 
   create_table "dynasty_player_positions", :id => false, :force => true do |t|
@@ -997,15 +1008,21 @@ ActiveRecord::Schema.define(:version => 20120105004603) do
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
 
   create_table "dynasty_trades", :force => true do |t|
-    t.integer  "league_id",       :null => false
-    t.integer  "initial_team_id", :null => false
-    t.integer  "second_team_id",  :null => false
+    t.integer  "league_id",           :null => false
+    t.integer  "initial_team_id",     :null => false
+    t.integer  "second_team_id",      :null => false
     t.integer  "player_id"
     t.boolean  "accepted"
     t.boolean  "open"
     t.datetime "offered_at"
     t.datetime "accepted_at"
     t.datetime "denied_at"
+    t.integer  "offered_player_id"
+    t.integer  "requested_player_id"
+    t.integer  "offered_cash"
+    t.integer  "requested_cash"
+    t.string   "offered_picks"
+    t.string   "requested_picks"
   end
 
   create_table "dynasty_users", :force => true do |t|
