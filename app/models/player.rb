@@ -11,10 +11,7 @@ class Player < ActiveRecord::Base
     :g => 2,
     :c => 1
   }
-  POSITION_FILLED_WEIGHT = 3
-  def self.get_position_filled_weight
-    POSITION_FILLED_WEIGHT
-  end
+  default_scope joins{[name, position]}.includes{[name, position]}
   
   has_one :name,
     :class_name => 'DisplayName',
@@ -32,10 +29,6 @@ class Player < ActiveRecord::Base
   has_one  :contract, :foreign_key => 'person_id'
 
 
-  # Returns a case statement for ordering by a particular set of strings
-  # Note that the SQL is built by hand and therefore injection is possible,
-  # however since we're declaring the priorities in a constant above it's
-  # safe.
   def self.order_by_position_priority
     ret = "CASE"
     POSITION_PRIORITIES.each_with_index do |p, i|
@@ -48,50 +41,65 @@ class Player < ActiveRecord::Base
   # SCOPES
   #
   scope :roster, lambda { |my_user|
-    joins{picks.user}
-      .where{picks.user.id.eq my_user.id}
+    joins{picks.user}.where{picks.user.id.eq my_user.id}
   }
-  scope :by_rating, lambda {
-    current_year = Season.order{season_key.desc}.first.season_key
-
-    joins{points}
-    .where{points.year == "#{current_year}"}
-    .order{points.points.desc}
-  }
+  scope :with_contract, joins{contract}.includes{contract}
+  scope :with_points, joins{points}.includes{points}
   scope :available, joins{picks.outer}.where{isnull(picks.id)}
-  scope :by_position, Proc.new { |filter = nil|
-    if !(filter.nil?) and filter.size > 0
-      filter = filter[0] # for now we're not supporting multiple filters
-      joins{position}
-        .where{position.abbreviation == my{filter['value'].to_s}}
-    end
-  }
   scope :by_position_priority, joins{position}
     .where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}}
     .order(order_by_position_priority)
-  scope :weighted, lambda { |team|
-    # find how many picks have been made by position
-    position_counts = Position.find_by_sql("
-      SELECT abbreviation AS abbr, (
-        SELECT COUNT(*)
-        FROM dynasty_draft_picks dp
-        JOIN dynasty_player_positions pp
-        ON dp.player_id = pp.player_id
-        WHERE team_id = #{team.id} AND pp.position_id = pos.id
-      ) AS count
-      FROM dynasty_positions pos
-    ")
-
-    # filter out the position counts less than the max position quantities
-    filled_pos = position_counts.delete_if { |position_count|
-      max = POSITION_QUANTITIES[position_count.abbr.to_sym]
-      position_count.count == 0 or (!(max.nil?) and max >= position_count.count)
-    }.collect{ |x| x.abbr }
-    weighted_point_calc = "IF(dynasty_positions.abbreviation IN ('#{filled_pos.join('\', \'')}'), points / #{POSITION_FILLED_WEIGHT}, points) DESC"
+  scope :by_name, lambda { |value|
+    query = order{[
+        isnull(name.full_name),
+        isnull(name.last_name),
+        isnull(name.first_name),
+        name.last_name,
+        name.first_name
+      ]}
+    query = query.where{name.full_name.like "%#{value}%"} unless value.nil?
+    return query
+  }
+  ##
+  # This scope filters out positions on the starting lineup that have been
+  # filled. Once a user has filled their starting lineup, all positions
+  # are available again.
+  #
+  # If you pass in an array of whitelisted positions, they won't be calculated
+  #
+  scope :filter_positions, lambda { |team, filters = nil|
     current_year = Season.order{season_key.desc}.first.season_key
-    joins{[points, position]}
-      .includes{[points, position, contract]}
+    puts !filters
+    if !filters
+      # count how many picks have been made by position
+      position_counts = Position.find_by_sql("
+        SELECT abbreviation AS abbr, (
+          SELECT COUNT(*)
+          FROM dynasty_draft_picks dp
+          JOIN dynasty_player_positions pp
+          ON dp.player_id = pp.player_id
+          WHERE team_id = #{team.id} AND pp.position_id = pos.id
+        ) AS count
+        FROM dynasty_positions pos
+        ")
+      filters = position_counts.delete_if { |position_count|
+        max = POSITION_QUANTITIES[position_count.abbr.to_sym]
+        max.nil? or position_count.count >= max
+      }.collect{ |x| x.abbr }
+    end
+
+    if !!filters and filters.length > 0
+      points_subquery = Player.select{id}
+        .joins{points}
+        .where{points.year == "#{current_year}"}
+      points_subquery = points_subquery.where{position.abbreviation.like_any filters} if filters.length > 0
+    end
+
+    query = joins{points}
+      .includes{[points, position]}
       .where{points.year == "#{current_year}"}
-      .order{weighted_point_calc}
+    query = query.where{id.in(points_subquery)} if !!points_subquery
+    puts query.to_sql
+    return query  
   }
 end

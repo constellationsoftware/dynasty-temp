@@ -8,14 +8,15 @@ Ext.define('DynastyDraft.store.PlayerSearch', {
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/draft/players/search',
+        url: '/draft/players',
         reader: {
             type: 'json',
             root: 'players'
         },
         extraParams: {
             available: true,
-            weighted: true,
+            with_contract: true,
+            with_points: true,
             order_by: Ext.JSON.encode({
                 last_name: 'asc',
                 first_name: 'asc'

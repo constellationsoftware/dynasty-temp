@@ -20,9 +20,7 @@ Dynasty::Application.routes.draw do
         resources :teams do
           get 'balance'
         end
-        resources :players do
-          get 'search', :on => :collection
-        end
+        resources :players
       end
     end
   end
