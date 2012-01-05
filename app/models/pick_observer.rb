@@ -16,12 +16,12 @@ class PickObserver < ActiveRecord::Observer
       pick.draft.save
     end
 
-    ptr = PlayerTeamRecord.new
-    ptr.current = TRUE
-    ptr.player_id = pick.player_id
-    ptr.details = "Drafted in round #{pick.round}"
-    ptr.user_team_id = pick.team_id
-    ptr.added_at = pick.picked_at
-    ptr.save
+   #ptr = PlayerTeamRecord.new
+   #ptr.current = TRUE
+   #ptr.player_id = pick.player_id
+   #ptr.details = "Drafted in round #{pick.round}"
+   #ptr.user_team_id = pick.team_id
+   #ptr.added_at = pick.picked_at
+   #ptr.save
   end
 end
