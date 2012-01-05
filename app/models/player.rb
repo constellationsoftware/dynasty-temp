@@ -60,6 +60,8 @@ class Player < ActiveRecord::Base
   scope :roster, lambda { |my_user|
     joins{picks.user}.where{picks.user.id.eq my_user.id}
   }
+
+  scope :by_rating, order('points DESC')
   scope :with_contract, joins{contract}.includes{contract}
   scope :with_points, joins{points}.includes{points}
   scope :available, joins{picks.outer}.where{isnull(picks.id)}
