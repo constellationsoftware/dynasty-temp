@@ -53,6 +53,6 @@ class League::DraftsController < SubdomainController
 
   private
     def get_team!
-      @team = UserTeam.where{(league == @league) & (user == @current_user)}.first
+      @team = UserTeam.where{(league == @league) & (user == my{current_user})}.first
     end
 end
