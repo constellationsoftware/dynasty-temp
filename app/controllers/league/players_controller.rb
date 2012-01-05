@@ -1,28 +1,31 @@
 class League::PlayersController < SubdomainController
   before_filter :authenticate_user!
-  before_filter :get_team!, :only => [:index, :search]
+  before_filter :get_team!, :only => :index
 
-  custom_actions :collection => :search
   respond_to :json
 
-  defaults :resource_class => Player, :collection_name => 'players', :instance_name => 'player'
-  has_scope :by_rating, :type => :boolean, :only => :index
-  has_scope :by_position, :only => :index, :type => :boolean do |controller, scope|
-    scope.by_position(!!(controller.params[:filter]) ? ActiveSupport::JSON.decode(controller.params[:filter]) : nil)
-  end
-  has_scope :available, :type => :boolean, :only => [ :index, :search ]
+  has_scope :available, :type => :boolean, :only => :index
+  has_scope :with_contract, :type => :boolean
+  has_scope :with_points, :type => :boolean
   has_scope :roster, :only => :index, :type => :boolean do |controller, scope|
     scope.roster(controller.current_user)
   end
-  has_scope :weighted, :type => :boolean, :default => true do |controller, scope, value|
+  has_scope :filter_positions, :type => :boolean, :only => :index do |controller, scope, value|
+    # if a filter is defined, we use that
+    filter = nil
+    if !!controller.params[:filter]
+      filterObj = ActiveSupport::JSON.decode(controller.params[:filter])
+      filter = filterObj.collect{ |x|
+        x['property'] === 'position' ? x['value'] : nil
+      }.compact
+    end
     team = controller.instance_variable_get("@team")
-    scope.weighted(team)
+    scope.filter_positions(team, filter).joins{name}.includes{name}
   end
-  has_scope :by_name, :only => :search do |controller, scope, value|
-    query = scope.joins{name}.order{[name.last_name, name.first_name]}
-    query = query.where{name.full_name.like "%#{value}%"} unless value.nil?
+  has_scope :by_name, :allow_blank => true, :only => :index do |controller, scope, value|
+    scope.by_name(value)
   end
-  has_scope :order_by do |controller, scope, value|
+  has_scope :order_by, :only => :index do |controller, scope, value|
     sort_hash = ActiveSupport::JSON.decode(value)
     sort_str = sort_hash.collect{ |key, value|
       value = 'ASC' if !value
@@ -39,17 +42,24 @@ class League::PlayersController < SubdomainController
       :first_name => player.name.first_name,
       :last_name => player.name.last_name,
       :position => (player.position.nil?) ? '' : player.position.abbreviation.upcase,
-      :contract_amount => player.contract.amount,
-      :points => player.points.first.points,
-      :defensive_points => player.points.first.defensive_points,
-      :fumbles_points => player.points.first.fumbles_points,
-      :passing_points => player.points.first.passing_points,
-      :rushing_points => player.points.first.rushing_points,
-      :sacks_against_points => player.points.first.sacks_against_points,
-      :scoring_points => player.points.first.scoring_points,
-      :special_teams_points => player.points.first.special_teams_points,
-      :games_played => player.points.first.games_played
+      :contract_amount => player.contract.amount
     }
+
+    if player.respond_to?('points') and player.points.length > 0
+      obj = obj.merge({
+        :points => player.points.first.points,
+        :defensive_points => player.points.first.defensive_points,
+        :fumbles_points => player.points.first.fumbles_points,
+        :passing_points => player.points.first.passing_points,
+        :rushing_points => player.points.first.rushing_points,
+        :sacks_against_points => player.points.first.sacks_against_points,
+        :scoring_points => player.points.first.scoring_points,
+        :special_teams_points => player.points.first.special_teams_points,
+        :games_played => player.points.first.games_played
+      })
+    end
+
+    return obj
   end
 
   def index
@@ -63,25 +73,6 @@ class League::PlayersController < SubdomainController
       }
       format.json { render :json => result }
     end
-  end
-
-  def search
-    search! do |format|
-      players = @players
-        .joins{position}
-        .collect{ |player| get_normalized_player_object(player) }
-
-      result = {
-        :success => true,
-        :players => players,
-        :total => @total
-      }
-      format.json { render :json => result }
-    end
-  end
-
-  def is_filtered
-    return (!!params[:filter])
   end
 
   protected
