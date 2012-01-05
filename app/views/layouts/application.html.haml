@@ -44,9 +44,9 @@
   .top-bar.container
     .row
       .three.columns
-        %img.show-on-desktops{:src => "/assets/images/logo_med.png"}
-        %img.show-on-tablets{:src => "/assets/images/logo_small.png"}
-        %img.show-on-phones{:src => "/assets/images/logo_tiny.png"}
+        = image_tag 'logo_med.png', :class => 'show-on-desktops'
+        = image_tag 'logo_small.png', :class => 'show-on-tablets'
+        = image_tag 'logo-tiny.png', :class => 'show-on-phones'
       .nine.columns
       %ul.nav-bar.clean
         %li
