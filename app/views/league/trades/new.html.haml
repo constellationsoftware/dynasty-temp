@@ -1,0 +1,15 @@
+.panel
+  %p
+    = @league.inspect
+    = current_user.inspect
+    = session.inspect
+    = @user_team.name
+    = @league.players
+  %h3
+    Offer A Trade
+  = semantic_form_for @trade,  do |f|
+    = f.input :offered_player_id, :as => :select, :collection => @my_players, :label => "Choose A Player to Offer:"
+    = f.label "Choose A Player to Request"
+    = f.grouped_collection_select :requested_player_id, @other_teams.order(:name), :players, :name, :id, :full_name, :include_blank => true
+    = f.buttons do
+      = f.commit_button

@@ -14,7 +14,6 @@ Dynasty::Application.routes.draw do
         post 'pick', :format => 'text'
         post 'reset', :format => 'text'
       end
-
       defaults :format => 'json' do
         resources :picks
         resources :teams do
@@ -25,6 +24,16 @@ Dynasty::Application.routes.draw do
         end
       end
     end
+
+
+    resource :trades do
+      member do
+        get 'edit'
+
+      end
+    end
+
+
   end
 
   # The priority is based upon order of creation:

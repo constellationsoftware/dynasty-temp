@@ -4,6 +4,17 @@ class PlayerEventPoint < ActiveRecord::Base
   belongs_to :person, :foreign_key=> 'player_id'
   belongs_to :event
 
+  scope :current, PlayerEventPoint.joins(:event).where('start_date_time < ?', Clock.first.time)
+
+  def self.by_event(event, player)
+    query = PlayerEventPoint.where('event_id = ?', event).where('player_id = ?', player)
+    query.first
+  end
+
+
+
+
+
 
 #def start_date_time
 #  self.event.start_date_time

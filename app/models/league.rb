@@ -8,6 +8,8 @@ class League < ActiveRecord::Base
   has_many :teams, :class_name => 'UserTeam'
   has_many :users, :through => :teams
   has_many :drafts
+  has_many :players, :through => :teams
+  has_many :player_team_records, :through => :teams
 #  requires :attribute, :name, :size
   belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
 

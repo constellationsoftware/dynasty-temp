@@ -52,11 +52,16 @@ module Dynasty
     # Enable the asset pipeline
     config.assets.enabled = true
     config.serve_static_assets = true
-    config.assets.compile = false
+    config.assets.compile = true
 
     # Compass integration
     # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
     # config.sass.load_paths << Compass::Frameworks['twitter_bootstrap'].stylesheets_directory
+
+    # Enable IdentityMap for Active Record
+    # to disable set to false or remove the line below.
+    #config.active_record.identity_map = true
+    #ActiveRecord::IdentityMap.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'

@@ -17,21 +17,19 @@
 
 .panel
   %h3
-    Team Points:
-    - @points = 0 
-    - @team.picks.each do |pick|
-      - if pick.player_id
-        - @points += Person.find(pick.player_id).current_season_points(Clock.first.time)
-    = @points
-        
-  .panel
-    %h3
-      Roster:
-    %ul
-      = @team.picks.each do |pick|
-        - if pick.player_id
-          %li
-            = Person.find(pick.player_id).display_name.full_name
-            = Player.find(pick.player_id).position.name
-            = Person.find(pick.player_id).current_season_points(Clock.first.time)
+    Roster:
+  - @team.players.each do |player|
+    %p
+      = player.name.full_name
+      = player.id
+      = player.position.name
+      = player.current_event_points
+
+      - player.events.past.each do |event|
+        Event Id:
+        = event.start_date_time
+        Points Earned:
+        = PlayerEventPoint.by_event(event.id, player.id).points
+
+
     

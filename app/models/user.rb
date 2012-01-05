@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   has_many :leagues, :foreign_key => 'manager_id'
 
 
+#def current_team
+#  Team.where(:user_id => current_user.id).where(:league_id => current_user.league_id)
+#end
+
 def roles=(roles)
   self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
 end

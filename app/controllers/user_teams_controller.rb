@@ -17,7 +17,6 @@ class UserTeamsController < ApplicationController
     # GET /user_teams/1.xml
   def show
     @team = UserTeam.find(params[:id])
-    @players = @team.picks
     @user = current_user
 
     

@@ -279,6 +279,7 @@ DEPENDENCIES
   em-http-request
   enum_simulator!
   execjs
+  formtastic
   friendly_id (~> 4.0.0.beta14)
   haml
   has_scope

@@ -5,7 +5,8 @@ class UserTeam < ActiveRecord::Base
   belongs_to :league
 
   has_many :picks, :foreign_key => 'team_id'
-  has_many :players
+  has_many :player_team_records, :conditions => 'current = TRUE'
+  has_many :players, :through => :player_team_records
   has_one :balance,
     :class_name => 'UserTeamBalance',
     :autosave => true,

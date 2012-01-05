@@ -1,4 +1,7 @@
 class Player < ActiveRecord::Base
+
+  attr_accessible :full_name
+
   set_table_name 'persons'
   POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'C', 'G', 'T', 'K']
   POSITION_QUANTITIES = {
@@ -15,6 +18,10 @@ class Player < ActiveRecord::Base
   def self.get_position_filled_weight
     POSITION_FILLED_WEIGHT
   end
+
+  def full_name
+    self.name.full_name
+  end
   
   has_one :name,
     :class_name => 'DisplayName',
@@ -27,9 +34,10 @@ class Player < ActiveRecord::Base
   has_many :leagues, :through => :teams
   has_many :picks
   has_many :points, :class_name => 'PlayerPoint'
-  has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
+  has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id', :include => :event
   has_many :events, :through => :event_points
   has_one  :contract, :foreign_key => 'person_id'
+
 
 
   # Returns a case statement for ordering by a particular set of strings
@@ -94,4 +102,18 @@ class Player < ActiveRecord::Base
       .where{points.year == "#{current_year}"}
       .order{weighted_point_calc}
   }
+
+  # Player point methods
+  def current_event_points
+    event_points = self.event_points.current
+
+    p = 0
+    event_points.each do |ep|
+      p += ep.points ||= 0
+
+    end
+    p
+  end
+
+
 end

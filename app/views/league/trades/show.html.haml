@@ -1,0 +1,116 @@
+.panel
+  %p
+    = @league.inspect
+    = current_user.inspect
+    = session.inspect
+    = @user_team.name
+  %h3
+    Control Panel
+    = link_to "Offer a Trade", new_trade_path, :class => "nice radius medium button blue"
+.panel
+  %h3
+    Open Trade Offers
+  - @my_open_trades_offered.andand.each do |trade|
+    %p
+      %a.button.nice.small.red
+        Retract Offer
+      I offered
+      = trade.offered_player.full_name
+      to
+      = trade.second_team.name
+      for
+      = trade.requested_player.full_name
+      on
+      = trade.offered_at
+
+  %h3
+    Received Open Offers
+  - @my_open_trades_received.andand.each do |trade|
+    %p
+      %a.button.nice.small.red
+        Deny Trade
+      %a.button.nice.small.green
+        Accept Trade
+      I was offered
+      = trade.offered_player.full_name
+      by
+      = trade.second_team.name
+      for
+      = trade.requested_player.full_name
+      on
+      = trade.offered_at
+
+.panel
+  %h3
+    Accepted Trade Offers Made
+  - @my_accepted_trades_offered.andand.each do |trade|
+    %p
+
+      I offered
+      = trade.offered_player.full_name
+      to
+      = trade.second_team.name
+      for
+      = trade.requested_player.full_name
+      on
+      = trade.offered_at
+      and the trade was
+      %strong.success
+        ACCEPTED
+      at
+      = trade.accepted_at
+
+  %h3
+    Accepted Trade Offers Received
+  - @my_accepted_trades_received.andand.each do |trade|
+    %p
+      I was offered
+      = trade.offered_player.full_name
+      by
+      = trade.second_team.name
+      for
+      = trade.requested_player.full_name
+      on
+      = trade.offered_at
+      and the trade was
+      %strong.success
+        ACCEPTED
+      at
+      = trade.accepted_at
+.panel
+  %h3
+    Denied Trade Offers Made
+  - @my_denied_trades_offered.andand.each do |trade|
+    %p
+
+      I offered
+      = trade.offered_player.full_name
+      to
+      = trade.second_team.name
+      for
+      = trade.requested_player.full_name
+      on
+      = trade.offered_at
+      but was
+      %strong.failure
+        DENIED!
+
+  %h3
+    Denied Trade Offers Received
+  - @my_denied_trades_offered.andand.each do |trade|
+    %p
+
+      I was offered
+      = trade.offered_player.full_name
+      by
+      = trade.second_team.name
+      for
+      = trade.requested_player.full_name
+      on
+      = trade.offered_at
+      but
+      %strong.failure
+        I REFUSED!
+
+
+
