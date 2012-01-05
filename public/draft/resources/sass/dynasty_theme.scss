@@ -17,7 +17,7 @@ $font-family: 'Droid Sans', sans-serif;
 //$window-border-radius: 50px;
 $row-disabled-color: #CCC;
 $picks-scroller-mask-color: #FFF;
-
+$loadmask-background: #333;
 //$grid-row-padding: 10px !default;
 //$grid-row-padding: 15px !default;
 //$grid-row-body-padding: 15px !default;
@@ -259,20 +259,21 @@ div.pick {
     height: 120px;
     width: 120px;
     margin: 0;
-    padding: 10px;
+    padding: 5px;
 
-    div.team_pic {
+    div.team_image {
         margin: 0 auto;
         height: 80px;
         width: 80px;
         border: 1px solid black;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
+        background-image: image-url("waterboy-sm.png", false, false);
     }
 
-    div.round p {
+    .info {
         width: 100%;
         text-align: center;
-        font-weight: bold;
+        p.round { font-weight: bold; }
     }
 }
 

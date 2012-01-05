@@ -68,12 +68,14 @@ Ext.define('DynastyDraft.view.Viewport', {
 
             items: [{
                 xtype: 'panel',
-                title: 'Recommended',
+                title: 'Recommended Picks',
                 id: 'recommendedpickwrap',
+                layout: 'fit',
                 autoScroll: true,
                 items: [{
                     xtype: 'recommendedpicks',
-                    padding: 10
+                    padding: 10,
+                    //disabled: true
                 }],
                 tbar: [{
                     xtype: 'combo',

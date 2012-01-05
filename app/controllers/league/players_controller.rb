@@ -34,37 +34,9 @@ class League::PlayersController < SubdomainController
     scope.order(sort_str)
   end
 
-  # also have this in the draft model for now
-  def get_normalized_player_object(player)
-    obj = {
-      :id => player.id,
-      :full_name => player.name.full_name,
-      :first_name => player.name.first_name,
-      :last_name => player.name.last_name,
-      :position => (player.position.nil?) ? '' : player.position.abbreviation.upcase,
-      :contract_amount => player.contract.amount
-    }
-
-    if player.respond_to?('points') and player.points.length > 0
-      obj = obj.merge({
-        :points => player.points.first.points,
-        :defensive_points => player.points.first.defensive_points,
-        :fumbles_points => player.points.first.fumbles_points,
-        :passing_points => player.points.first.passing_points,
-        :rushing_points => player.points.first.rushing_points,
-        :sacks_against_points => player.points.first.sacks_against_points,
-        :scoring_points => player.points.first.scoring_points,
-        :special_teams_points => player.points.first.special_teams_points,
-        :games_played => player.points.first.games_played
-      })
-    end
-
-    return obj
-  end
-
   def index
     index! do |format|
-      players = @players.collect{ |player| get_normalized_player_object(player) }
+      players = @players.collect{ |player| player.flatten }
 
       result = {
         :success => true,

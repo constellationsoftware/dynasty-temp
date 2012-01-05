@@ -1,7 +1,4 @@
 class Player < ActiveRecord::Base
-
-  attr_accessible :full_name
-
   set_table_name 'persons'
   POSITION_PRIORITIES = ['QB', 'WR', 'RB', 'TE', 'C', 'G', 'T', 'K']
   POSITION_QUANTITIES = {
@@ -14,16 +11,6 @@ class Player < ActiveRecord::Base
     :g => 2,
     :c => 1
   }
-
-  POSITION_FILLED_WEIGHT = 3
-  def self.get_position_filled_weight
-    POSITION_FILLED_WEIGHT
-  end
-
-  def full_name
-    self.name.full_name
-  end
-
   default_scope joins{[name, position]}.includes{[name, position]}
   
   has_one :name,
@@ -37,14 +24,10 @@ class Player < ActiveRecord::Base
   has_many :leagues, :through => :teams
   has_many :picks
   has_many :points, :class_name => 'PlayerPoint'
-  has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id', :include => :event
+  has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
   has_many :events, :through => :event_points
   has_one  :contract, :foreign_key => 'person_id'
 
-  # Returns a case statement for ordering by a particular set of strings
-  # Note that the SQL is built by hand and therefore injection is possible,
-  # however since we're declaring the priorities in a constant above it's
-  # safe.
 
   def self.order_by_position_priority
     ret = "CASE"
@@ -60,8 +43,6 @@ class Player < ActiveRecord::Base
   scope :roster, lambda { |my_user|
     joins{picks.user}.where{picks.user.id.eq my_user.id}
   }
-
-  scope :by_rating, order('points DESC')
   scope :with_contract, joins{contract}.includes{contract}
   scope :with_points, joins{points}.includes{points}
   scope :available, joins{picks.outer}.where{isnull(picks.id)}
@@ -122,17 +103,30 @@ class Player < ActiveRecord::Base
     return query  
   }
 
-  # Player point methods
-  def current_event_points
-    event_points = self.event_points.current
 
-    p = 0
-    event_points.each do |ep|
-      p += ep.points ||= 0
+  def flatten
+    obj = {
+      :id => id,
+      :full_name => name.full_name,
+      :first_name => name.first_name,
+      :last_name => name.last_name,
+      :position => (position.nil?) ? '' : position.abbreviation.upcase,
+      :contract_amount => contract.amount
+    }
 
+    if respond_to?('points') and points.length > 0
+      obj = obj.merge({
+        :points => points.first.points,
+        :defensive_points => points.first.defensive_points,
+        :fumbles_points => points.first.fumbles_points,
+        :passing_points => points.first.passing_points,
+        :rushing_points => points.first.rushing_points,
+        :sacks_against_points => points.first.sacks_against_points,
+        :scoring_points => points.first.scoring_points,
+        :special_teams_points => points.first.special_teams_points,
+        :games_played => points.first.games_played
+      })
     end
-    p
+    return obj
   end
-
-
 end
