@@ -139,7 +139,7 @@ Ext.application({
      * When a pick event originated from someone else is received
      */
     onPickUpdate: function(data) {
-        var player_id = data.person_id;
+        var player_id = data.player_id;
         this.fireEvent(this.PICK_UPDATE, player_id);
         this.getController('Picks').onPickUpdate(data);
     },

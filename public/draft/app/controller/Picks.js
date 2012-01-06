@@ -85,7 +85,7 @@ Ext.define('DynastyDraft.controller.Picks', {
             console.log('\tPick record found:', record, store);
             // update the pick record
             record.beginEdit();
-            record.set('person_id', pickData.person_id);
+            record.set('player_id', pickData.player_id);
             record.set('picked_at', pickData.picked_at);
             record.endEdit();
             record.commit();
