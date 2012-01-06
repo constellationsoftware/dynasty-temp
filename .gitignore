@@ -6,7 +6,6 @@ bundler_stubs/
 .DS_Store
 .rspec
 .rvmrc
-.idea/
 db/*.sqlite3
 log/*
 dynastyowner.tmproj
@@ -15,8 +14,5 @@ tmp
 public/draft/resources/.sass-cache/
 .sass-cache/
 encodings.xml
-
-
 app/views/layouts/application.html.erb
-.idea/workspace.xml
 .rakeTasks
