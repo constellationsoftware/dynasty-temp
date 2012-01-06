@@ -61,6 +61,9 @@ class League::PlayersController < SubdomainController
 
   private
     def get_team!
-      @team = UserTeam.where{(league = @league) & (user = @current_user)}.first
+      @team = UserTeam.where{(league_id == my{@league.id}) & (user_id == my{current_user.id})}.first
     end
+
+
+
 end
