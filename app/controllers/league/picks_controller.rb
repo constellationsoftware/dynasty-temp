@@ -1,5 +1,3 @@
-require 'delayed_job'
-
 class League::PicksController < SubdomainController
   before_filter :authenticate_user!
 

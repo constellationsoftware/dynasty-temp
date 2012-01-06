@@ -4,7 +4,7 @@ Ext.Loader.setConfig({
     //paths: { '<appName>': '.', 'Ext': '/draft/lib/extjs/src', 'Ext.ux': '/draft/lib/extjs/ux' }
 });
 
-
+var app;
 Ext.application({
     name: 'DynastyDraft',
     appFolder: '/draft/app',
@@ -36,6 +36,9 @@ Ext.application({
     ],
 
     launch: function() {
+        app = this;
+        if (DRAFT_STATUS === 'finished') { this.showDraftFinishedDialog(); }
+
         Ext.tip.QuickTipManager.init();
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
             showDelay: 50      // Show 50ms after entering target
@@ -65,11 +68,8 @@ Ext.application({
     },
 
     onDraftFinish: function() {
-        Ext.Msg.show({
-            title: '',
-            msg: 'The draft is complete!',
-            icon: Ext.Msg.WARNING
-        });
+        this.showDraftFinishedDialog();
+        this.fireEvent(this.STATUS_FINISHED);
     },
 
     onAdminControlsClicked: function(button) {
@@ -87,9 +87,13 @@ Ext.application({
             }
             break;
         case 'reset':
-            Ext.ux.data.Socket.request('reset');
+            this.reset();
             break;
         }
+    },
+
+    reset: function() {
+        Ext.ux.data.Socket.request('reset');
     },
 
     /*
@@ -123,11 +127,11 @@ Ext.application({
         console.log('player picked succeeded', player);
         this.fireEvent(this.STATUS_PICKED, player.get('id'));
         //Ext.ux.data.Socket.request('pick', { player_id: player.get('id') });
-        this.fireEvent(this.STATUS_WAITING);
     },
 
     onPickSucceeded: function() {
         this.fireEvent(this.STATUS_PICK_SUCCESS);
+        this.fireEvent(this.STATUS_WAITING);
     },
 
     onPlayerPickFailed: function() {
@@ -165,6 +169,18 @@ Ext.application({
         return a[0];
     },
 
+    showDraftFinishedDialog: function() {
+        Ext.Msg.show({
+            title: '',
+            msg: 'The draft is complete!',
+            icon: Ext.Msg.WARNING,
+            buttons: Ext.MessageBox.OK,
+            fn: function() {
+                window.location = 'http://' + window.location.host + '/';
+            }
+        });
+    },
+
     //statics: {
         STATUS_STARTED:         'started',
         STATUS_PICKING:         'picking',
@@ -174,6 +190,7 @@ Ext.application({
         STATUS_PAUSED:          'paused',
         STATUS_RESUMED:         'resumed',
         STATUS_RESET:           'reset',
+        STATUS_FINISHED:        'finished',
 
         TIMEOUT:                'timeout',
 

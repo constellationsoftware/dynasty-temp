@@ -16,7 +16,7 @@ Ext.define('DynastyDraft.store.PlayerSearch', {
         extraParams: {
             available: true,
             with_contract: true,
-            with_points: true,
+            with_points_from_season: 'current',
             order_by: Ext.JSON.encode({
                 last_name: 'asc',
                 first_name: 'asc'

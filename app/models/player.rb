@@ -40,11 +40,24 @@ class Player < ActiveRecord::Base
   #
   # SCOPES
   #
-  scope :roster, lambda { |my_user|
-    joins{picks.user}.where{picks.user.id.eq my_user.id}
+  scope :roster, lambda { |user|
+    joins{picks.user}.where{picks.user.id == my{user.id}}
   }
   scope :with_contract, joins{contract}.includes{contract}
   scope :with_points, joins{points}.includes{points}
+  scope :with_points_from_season, lambda { |season = 'last'|
+    if season.is_a? String
+      current_year = Season.maximum(:season_key).to_i
+      case season
+      when 'current'
+        season = current_year
+      else # last season
+        season = current_year - 1
+      end
+    end
+    with_points.where{points.year == "#{season}"}
+  }
+
   scope :available, joins{picks.outer}.where{isnull(picks.id)}
   scope :by_position_priority, joins{position}
     .where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}}
@@ -69,7 +82,6 @@ class Player < ActiveRecord::Base
   #
   scope :filter_positions, lambda { |team, filters = nil|
     current_year = Season.order{season_key.desc}.first.season_key
-    puts !filters
     if !filters
       # count how many picks have been made by position
       position_counts = Position.find_by_sql("
@@ -99,7 +111,6 @@ class Player < ActiveRecord::Base
       .includes{[points, position]}
       .where{points.year == "#{current_year}"}
     query = query.where{id.in(points_subquery)} if !!points_subquery
-    puts query.to_sql
     return query  
   }
 

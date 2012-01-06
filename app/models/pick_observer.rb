@@ -7,9 +7,11 @@ class PickObserver < ActiveRecord::Observer
   end
 
   def after_update(pick)
-  finished_count = Pick.joins{draft}.where{draft.id.eq pick.draft.id}.maximum(:pick_order)
+    finished = Pick.joins{draft}
+      .where{(draft_id == my{pick.draft_id}) & (isnull(player_id))}
+      .count === 0
 
-    if pick.pick_order === finished_count
+    if finished
       pick.draft.status = :finished
       pick.draft.finished_at = Time.now
       pick.draft.current_pick_id = nil
@@ -17,7 +19,5 @@ class PickObserver < ActiveRecord::Observer
       # TODO: Edit this to update after each pick is made not at end of draft.
       PlayerTeamRecord.match_picks
     end
-
-
   end
 end

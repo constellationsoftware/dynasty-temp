@@ -7,6 +7,9 @@ class League::PlayersController < SubdomainController
   has_scope :available, :type => :boolean, :only => :index
   has_scope :with_contract, :type => :boolean
   has_scope :with_points, :type => :boolean
+  has_scope :with_points_from_season, :default => 'current' do |controller, scope, value|
+    scope.with_points_from_season(value)
+  end
   has_scope :roster, :only => :index, :type => :boolean do |controller, scope|
     scope.roster(controller.current_user)
   end

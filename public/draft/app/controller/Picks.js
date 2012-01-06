@@ -33,6 +33,7 @@ Ext.define('DynastyDraft.controller.Picks', {
      * view and initialize it.
      */
     onTeamsLoaded: function(teamStore, records) {
+        if (DRAFT_STATUS === 'finished') { return; }
         var pickOrder = this.getPickOrderStore(),
             picksStore = this.getPicksStore(),
             pickRecords = [],

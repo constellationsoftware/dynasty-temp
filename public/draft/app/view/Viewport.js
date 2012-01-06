@@ -75,7 +75,8 @@ Ext.define('DynastyDraft.view.Viewport', {
                 items: [{
                     xtype: 'recommendedpicks',
                     padding: 10,
-                    //disabled: true
+                    loadMask: false, // we'll use the one on the parent
+                    maskOnDisable: false
                 }],
                 tbar: [{
                     xtype: 'combo',
