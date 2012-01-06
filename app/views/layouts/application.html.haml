@@ -81,7 +81,7 @@
         .panel
           %h5
             Your Teams & Leagues
-          -if current_user.teams
+          - if current_user.teams
             %dl.nice.vertical.tabs
               - current_user.teams.each do |t|
                 %dd
