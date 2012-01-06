@@ -21,6 +21,7 @@ Ext.define('DynastyDraft.controller.Picks', {
         this.getTeamsStore().addListener('load', this.onTeamsLoaded, this);
         this.getPicksStore().addListener('changeCurrentPick', this.onChangeCurrentPick, this);
         this.application.addListener(this.application.STATUS_PICKED, this.onPlayerPicked, this);
+        this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
     },
 
     /**
@@ -81,7 +82,6 @@ Ext.define('DynastyDraft.controller.Picks', {
         console.log('Pick update received:', pickData);
         var store = this.getPicksStore(),
             record = store.getById(pickData.id);
-        console.log(pickData.id);
         if (record) {
             console.log('\tPick record found:', record, store);
             // update the pick record

@@ -140,8 +140,7 @@ Ext.application({
      */
     onPickUpdate: function(data) {
         var player_id = data.player_id;
-        this.fireEvent(this.PICK_UPDATE, player_id);
-        this.getController('Picks').onPickUpdate(data);
+        this.fireEvent(this.PICK_UPDATE, data);
     },
 
     onTimeout: function() {
