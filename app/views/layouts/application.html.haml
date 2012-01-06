@@ -79,14 +79,7 @@
               Not you?
               = link_to "Sign Out", destroy_user_session_path, :method => :delete
         .panel
-          %h5
-            Your Teams & Leagues
-          - if current_user.teams
-            %dl.nice.vertical.tabs
-              - current_user.teams.each do |t|
-                %dd
-                  %a
-                    = link_to t.league.name, "#{root_url(:subdomain => t.league.slug)}" + "#{t.name}"
+
 
         .panel
           Right 2
