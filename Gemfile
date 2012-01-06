@@ -40,6 +40,7 @@ gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
 gem 'newrelic_rpm'
+gem 'moonshado-sms'
 
 gem 'andand'
 gem 'coffee-filter'

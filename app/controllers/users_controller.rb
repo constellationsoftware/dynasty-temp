@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
 
   def index
-    #@time = Clock.first.time
+    @time = Clock.first.time
 
     @user = current_user
     respond_to do |format|
@@ -20,7 +20,12 @@ class UsersController < ApplicationController
     # GET /Users/1.json
 
   def home
+    #@league = League.find_by_slug!(request.subdomain)
     @user = current_user
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render :json => @user.inspect }
+    end
   end
   
   def show

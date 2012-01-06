@@ -168,6 +168,9 @@ GEM
       activesupport (~> 3.1.0)
       polyamorous (~> 0.5.0)
     mime-types (1.17.2)
+    moonshado-sms (1.1.1)
+      json (>= 1.2.0)
+      rest-client (>= 1.6.0)
     multi_json (1.0.4)
     mysql2 (0.3.6)
     newrelic_rpm (3.3.1)
@@ -291,6 +294,7 @@ DEPENDENCIES
   kaminari
   meta_search (>= 1.1.0.pre)
   money!
+  moonshado-sms
   mysql2 (< 0.3.7)
   newrelic_rpm
   nokogiri

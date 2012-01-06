@@ -1,72 +1,8 @@
 /*
 *= require_self
 *= require foundation
+*= require application.scss
 */
-/* line 8, application.scss */
-th, td {
-  text-align: center !important;
-  font-size: 10px !important;
-}
-
-/* line 13, application.scss */
-.rounded {
-  -moz-border-radius: 10px !important;
-  -webkit-border-radius: 10px !important;
-  border: solid 1px #333;
-}
-
-/* line 18, application.scss */
-.photo {
-  margin: 3px;
-  -moz-border-radius: 10px !important;
-  -webkit-border-radius: 10px !important;
-  border: white solid 3px;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* line 26, application.scss */
-.stats_table {
-  overflow: scroll;
-  width: 500px;
-}
-
-/* rotations */
-/* line 36, application.scss */
-.forty_five_deg {
-  -moz-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-  -webkit-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-  -o-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-  -ms-transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-  transform: scale(1) rotate(45deg) translate(0px, px) skew(deg, 0deg);
-}
-
-/* line 44, application.scss */
-.perpendicular {
-  -moz-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-  -webkit-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-  -o-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-  -ms-transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-  transform: scale(1) rotate(-90deg) translate(0px, px) skew(deg, 0deg);
-}
-
-/* line 52, application.scss */
-.wrapper {
-  margin-top: 150px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
-
-
-/* line 86, application.scss */
-.clean {
-  border: none;
-  background: none !important;
-  text-align: right !important;
-}
-
-/* line 92, application.scss */
-.clean li {
-  float: right;
-}
 
 
 

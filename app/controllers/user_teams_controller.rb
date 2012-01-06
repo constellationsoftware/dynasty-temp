@@ -16,7 +16,7 @@ class UserTeamsController < ApplicationController
     # GET /user_teams/1
     # GET /user_teams/1.xml
   def show
-    @team = UserTeam.find(params[:id])
+    @team = UserTeam.find_by_name(params[:name])
     @user = current_user
 
     

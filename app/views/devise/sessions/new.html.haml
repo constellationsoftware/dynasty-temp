@@ -1,36 +1,42 @@
-#newsession.panel.six.columns.centered
-  %h2 Welcome to Dynasty Owner
-  %p  You need to log in to access this site.
+.row.twelve.columns.centered
+  #newsession.alert-box.success
+    You need to log in to access this site.
+    %a.close
+      &times;
 
 
-%br
-#signin.panel.six.columns.centered.display
-  %h2 Sign In
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-    = f.label :email
-    = f.email_field :email
-    %br
-    = f.label :password
-    = f.password_field :password
-    %br
-    = f.submit "Sign in" , :class => "nice large radius blue button"
-%br
-#signup.panel.six.columns.centered.display
-  %h2 New User? Sign up!
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-    = devise_error_messages!
-    = f.label :name
-    = f.text_field :name
-    %br
-    = f.label :email
-    = f.email_field :email
-    %br
-    = f.label :password
-    = f.password_field :password
-    %br
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-    %br
-    = f.submit "Sign up", :class => "nice large radius red button"
+.row.twelve.columns.centered
+  .panel
+    .row
+      .six.columns
+        %h2 Sign In
+        = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = f.label :email
+          = f.email_field :email
+          %br
+          = f.label :password
+          = f.password_field :password
+          %br
+          = f.submit "Sign in" , :class => "nice large radius blue button"
 
-  = render :partial => "devise/shared/links"
+      .six.columns
+        %h2 New User? Sign up!
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "nice"}  ) do |f|
+          = devise_error_messages!
+          = f.label :name
+          = f.text_field :name
+          %br
+          = f.label :email
+          = f.email_field :email
+          %br
+          = f.label :password
+          = f.password_field :password
+          %br
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation
+          %br
+          = f.label :phone
+          = f.phone_field :phone
+          = f.submit "Sign up", :class => "nice large radius red button"
+
+

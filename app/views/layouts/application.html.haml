@@ -41,30 +41,87 @@
 
 
 %body
-  .top-bar.container
+  #dynasty-navbar.container
     .row
       .three.columns
-        = image_tag 'logo_med.png', :class => 'show-on-desktops'
-        = image_tag 'logo_small.png', :class => 'show-on-tablets'
-        = image_tag 'logo-tiny.png', :class => 'show-on-phones'
+        %h1
+          = image_tag 'navbar_logo.png'
+      .nine.columns.hide-on-phones.clean.right
+        %strong
+          %a.button.nice.small.black(data-reveal-id="playerResearch") Research
+          %a.button.nice.small.black(data-reveal-id="userTeams") Teams
+          %a.button.nice.small.black(data-reveal-id="userAccount") Account
+          %a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
+
+  /*Primary Page Header Bar
+  .container
+    .row
+      .twelve.columns
+        .foundation-header
+          %h1
+            %a
+              Dynasty Owner
+          %h4.subheader
+
+
+    .row
       .nine.columns
-      %ul.nav-bar.clean
-        %li
-          %a.nice.large.radius.button(data-reveal-id="playerResearch") Research
-        %li
-          %a.nice.large.radius.button(data-reveal-id="userTeams") Teams
-        %li
-          %a.nice.large.radius.button(data-reveal-id="userAccount") Account
-        %li
-          %a.nice.large.radius.button(data-reveal-id="timeTravel") TimeMachine
+        /*Core Content
+        = yield
+
+      .three.columns
+        - if user_signed_in?
+          .panel
+            .alert-box.success
+              Signed in as
+              = current_user.name
+            .alert-box.error
+              Not you?
+              = link_to "Sign Out", destroy_user_session_path, :method => :delete
+        .panel
+          %h5
+            Your Teams & Leagues
+          -if current_user.teams
+            %dl.nice.vertical.tabs
+              - current_user.teams.each do |t|
+                %dd
+                  %a
+                    = link_to t.league.name, "#{root_url(:subdomain => t.league.slug)}" + "#{t.name}"
+
+        .panel
+          Right 2
+          %br
+          %br
+          %br
+          %br
+        .panel
+          Right 3
+          %br
+          %br
+          %br
+          %br
+        .panel
+          Right 4
+          %br
+          %br
+          %br
+          %br
 
 
 
 
 
-  .content.container
 
-    = yield
+
+
+
+
+
+
+
+
+
+
 
 
   #playerResearch.reveal-modal
