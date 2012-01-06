@@ -80,7 +80,8 @@ Ext.define('DynastyDraft.controller.Picks', {
     onPickUpdate: function(pickData) {
         console.log('Pick update received:', pickData);
         var store = this.getPicksStore(),
-            record = store.getById(pickData.id);
+            record = store.getById(pickData.pick.id);
+        console.log(pickData.pick.id);
         if (record) {
             console.log('\tPick record found:', record, store);
             // update the pick record
