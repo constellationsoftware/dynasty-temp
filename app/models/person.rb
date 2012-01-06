@@ -81,6 +81,7 @@ class Person < ActiveRecord::Base
         .where{stats.stat_membership_type == "teams"}
   end
 
+  # TODO: remove from here once player model is used exclusively
   def self.with_points_from_season(season = 'last')
     if season.is_a? String
       current_year = Season.maximum(:season_key).to_i

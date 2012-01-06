@@ -5,6 +5,7 @@ class Draft < ActiveRecord::Base
   #constants
   # TODO: put this in the controller, probably
   CHANNEL_PREFIX = 'presence-draft-'
+  DELAY_BETWEEN_PICKS = 1
 
   #is_timed
 
@@ -72,7 +73,7 @@ class Draft < ActiveRecord::Base
       # notify clients of the pick
       # TODO: figure out a better place to put this, maybe as a callback from the controller
       puts 'pushing pick update to channel: ' + CHANNEL_PREFIX + self.league.slug
-      Pusher[CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:update', self.current_pick)
+      Pusher[CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:update', self.current_pick)
 
       self.current_pick = self.get_current_pick
       autopick_iterations += 1
@@ -89,9 +90,9 @@ class Draft < ActiveRecord::Base
           .page(1).per(5)
           .collect{ |player| player.flatten }
       }
-      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:pick:start-' + pick_user_id, payload)
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:start-' + pick_user_id, payload)
     else
-      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * 5))).trigger('draft:finish', {})
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:finish', {})
     end
 
     self.save!

@@ -1,7 +1,6 @@
-class UsersController < ApplicationController
-  # GET /Users
-  # GET /Users.json
+class UsersController < InheritedResources::Base
   before_filter :authenticate_user!
+<<<<<<< HEAD
 
 
 
@@ -97,4 +96,6 @@ class UsersController < ApplicationController
       format.json { head :ok }
     end
   end
+=======
+>>>>>>> 02324ca456b33c72252a663cc61d1f70e5c26613
 end

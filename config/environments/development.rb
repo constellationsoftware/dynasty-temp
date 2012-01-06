@@ -60,9 +60,6 @@ Dynasty::Application.configure do
   #
 end
 
-require 'pusher'
 Pusher.app_id = '10193'
 Pusher.key    = '64db7a76d407adc40ff3'
 Pusher.secret = 'cf5b7ef9fae37eefa146'
-
-

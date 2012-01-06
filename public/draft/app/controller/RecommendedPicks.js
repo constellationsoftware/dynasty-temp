@@ -5,6 +5,9 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     views: [ 'RecommendedPicks', 'NewPlayerDialog' ],
 
     refs: [{
+        ref: 'dataViewContainer',
+        selector: 'viewport #recommendedpickwrap'
+    }, {
         ref: 'dataView',
         selector: 'viewport recommendedpicks'
     }, {
@@ -17,22 +20,23 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         ref: 'editWindow',
         selector: '#recommended-pick-edit-window'
     }],
-
+    loadMask: null,
     init: function() {
         this.callParent(arguments);
-
         this.control({
             'viewport recommendedpicks': {
                 beforerender: this.onBeforeRender,
-                afterrender: this.onAfterRender,
                 selectionchange: this.onSelectionChange,
                 itemclick: this.onItemClick,
                 itemdblclick: this.onSubmit,
                 itemkeydown: this.onItemKeyDown,
                 itemmouseenter: this.onItemRollover,
                 itemmouseleave: this.onItemRollout,
-                itemupdate: this.onItemUpdate
+                itemupdate: this.onItemUpdate,
+                disable: this.onDisable,
+                enable: this.onEnable
             },
+            'viewport #recommendedpickwrap': {},
             '#recommendedpickwrap button#submit': { click: this.onSubmit },
             '#recommendedpickwrap combo#filter': { change: this.onFilterChanged },
             '#recommended-pick-edit-window': { submit: this.onItemEditSubmit },
@@ -41,23 +45,45 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
 
         this.addEvents('playerpicked');
 
-        this.getRecommendedPicksStore().addListener('load', this.onRecommendedPicksLoaded, this);
+        // listen to events from our store
+        this.mon(this.getRecommendedPicksStore(), {
+            scope: this,
+            beforeload: this.onBeforeLoad,
+            load: this.onLoad,
+            exception: this.onLoadFail
+        });
         // force pick on clock timeout
         this.application.addListener(this.application.TIMEOUT, function() { this.makePick(true); }, this);
         // enable/disable pick button on app status
         this.application.addListener(this.application.STATUS_PICKING, function(data) {
-            this.getRecommendedPicksStore().loadRawData(data);
-            this.getSubmitButton().setDisabled(false);
-            var view = this.getDataView();
-            //view.setDisabled(false);
-            //view.loadMask.hide();
+            //this.getRecommendedPicksStore().loadRawData(data);
+            this.getRecommendedPicksStore().load();
+            this.getDataView().setDisabled(false);
         }, this);
         this.application.addListener(this.application.STATUS_WAITING, function() {
-            this.getSubmitButton().setDisabled(true);
-            var view = this.getDataView();
-            //view.setDisabled(true);
-            //view.loadMask.show();
+            this.application
+            this.setStatusMessage('Waiting for turn...');
+            this.getDataView().setDisabled(true);
         }, this);
+        this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSucceeded, this);
+        this.application.addListener(this.application.STATUS_FINISHED, function() {
+            var view = this.getDataView();
+            if (view.isDisabled()) {
+                view.setDisabled(false);
+            }
+        }, this);    
+    },
+
+    onLaunch: function() {
+        if (DRAFT_STATUS === 'finished') { return; }
+        // create the load mask
+        var loadMask = Ext.create('Ext.LoadMask', this.getDataViewContainer(), {
+            msg: 'Waiting for draft start...'
+        });
+        this.loadMask = loadMask;
+
+        // disable the dataview so the mask will show up
+        this.getDataView().setDisabled(true);
     },
 
     onBeforeRender: function(view) {
@@ -65,15 +91,26 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         view.bindStore(this.getRecommendedPicksStore());
     },
 
-    onAfterRender: function(view) {
-        // since the load mask isn't created until render time, bind to it now
-        view.loadMask.addListener();
+    onDisable: function(view) {
+        this.getSubmitButton().setDisabled(true);
+        this.getFilterCtl().setDisabled(true);
+        this.loadMask.show();
     },
 
-    onRecommendedPicksLoaded: function(store, records) {
+    onEnable: function(view) {
+        this.getSubmitButton().setDisabled(false);
+        this.getFilterCtl().setDisabled(false);
+        this.statusFade();
+    },
+
+    onBeforeLoad: function(store, operation) {
+        this.setStatusMessage('Loading our recommended picks...');
+        this.loadMask.show();
+    },
+
+    onLoad: function(store, records) {
         var view = this.getDataView();
         view.select(0);
-        console.log(view.loadMask);
 
         // draw edit buttons for each item
         view.getEl().select('.recommended_pick .edit', true).each(this.createEditButton);
@@ -82,7 +119,12 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
          * a dataview that just had an item update (or something) when using a 'fit' layout.
          */
         view.hide().show();
+
+        // update status message
+        this.setStatusMessage('Success!');
+        this.getDataView().setDisabled(false);
     },
+    onLoadFail: function() {},
 
     createEditButton: function(container) {
         var button = Ext.create('Ext.button.Button', {
@@ -165,6 +207,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 buttonId = buttonId || null;
                 if (buttonId === "yes") {
                     me.fireEvent('playerpicked', record);
+                    me.setStatusMessage('Sending pick to server...');
+                    me.getDataView().setDisabled(true);
                 }
             };
         
@@ -173,6 +217,9 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             var msg = 'Do you want to add ' + record.get('full_name') + ' to your roster?';
             Ext.Msg.confirm('Confirm pick?', msg, callback, this);
         }
+    },
+    onPickSucceeded: function() {
+        this.setStatusMessage('Pick received!');
     },
 
     /**
@@ -187,7 +234,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
          */
         if (store.filters && store.filters.items.length > 0) {
             store.filters.items = [];
-            store.filters.keys = [];            
+            store.filters.keys = [];
         }
         if (value !== 'all') {
             store.filter('position', value);
@@ -249,5 +296,27 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 }
             }
         }
+    },
+
+    setStatusMessage: function(msg) {
+        this.loadMask.msg = msg;
+        this.loadMask.msgEl.update(msg);
+    },
+
+    statusFade: function() {
+        this.loadMask.animate({
+            from: { opacity: 1 },
+            to: { opacity: 0 },
+            duration: 400,
+            delay: 600,
+            easing: 'easeOut',
+            listeners: {
+                afteranimate: function() {
+                    this.hide();
+                    this.getEl().setOpacity(1);
+                },
+                scope: this.loadMask
+            }
+        });
     }
 });

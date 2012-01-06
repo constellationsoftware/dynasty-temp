@@ -4,7 +4,6 @@ Ext.define('DynastyDraft.store.RecommendedPicks', {
     model: 'DynastyDraft.model.Player',
     remoteSort: true,
     remoteFilter: true,
-    autoLoad: true,
 
     proxy: {
         type: 'rest',

@@ -2,8 +2,7 @@ Ext.define('DynastyDraft.view.RecommendedPicks', {
     extend: 'Ext.view.View',
 
     alias: 'widget.recommendedpicks',
-    //deferInitialRefresh: true,
-    //duration: 400,
+    deferInitialRefresh: true,
     tpl: Ext.create('Ext.XTemplate',
         '<tpl for=".">',
             '<div class="recommended_pick_wrap">',
@@ -71,6 +70,5 @@ Ext.define('DynastyDraft.view.RecommendedPicks', {
     ),
     itemSelector: '.recommended_pick_wrap',
     singleSelect: true,
-    selectedItemCls: 'selected',
-    loadingText: 'Loading player data...'
+    selectedItemCls: 'selected'
 });
