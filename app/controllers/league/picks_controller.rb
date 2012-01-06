@@ -25,13 +25,9 @@ class League::PicksController < SubdomainController
     update! do |format|
       # move this somewhere else I guess
       socket_id ||= @pick.team.last_socket_id
-      payload = {
-        :pick => @pick,
-        :next_pick => @pick.draft.get_current_pick
-      }
+
       puts "PICK UPDATE"
-      puts payload.inspect
-      Pusher[Draft::CHANNEL_PREFIX + @pick.draft.league.slug].delay.trigger('draft:pick:update', payload, socket_id)
+      Pusher[Draft::CHANNEL_PREFIX + @pick.draft.league.slug].delay.trigger('draft:pick:update', @pick, socket_id)
       @pick.draft.advance
 
       result = {
