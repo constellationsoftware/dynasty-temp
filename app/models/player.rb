@@ -40,8 +40,8 @@ class Player < ActiveRecord::Base
   #
   # SCOPES
   #
-  scope :roster, lambda { |user|
-    joins{picks.user}.where{picks.user.id == my{user.id}}
+  scope :roster, lambda { |team|
+    joins{picks.user}.where{picks.team_id == my{team.id}}
   }
   scope :with_contract, joins{contract}.includes{contract}
   scope :with_points, joins{points}.includes{points}

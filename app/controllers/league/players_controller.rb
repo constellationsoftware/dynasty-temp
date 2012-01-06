@@ -11,7 +11,8 @@ class League::PlayersController < SubdomainController
     scope.with_points_from_season(value)
   end
   has_scope :roster, :only => :index, :type => :boolean do |controller, scope|
-    scope.roster(controller.current_user)
+    team = controller.instance_variable_get("@team")
+    scope.roster(team)
   end
   has_scope :filter_positions, :type => :boolean, :only => :index do |controller, scope, value|
     # if a filter is defined, we use that
@@ -66,7 +67,4 @@ class League::PlayersController < SubdomainController
     def get_team!
       @team = UserTeam.where{(league_id == my{@league.id}) & (user_id == my{current_user.id})}.first
     end
-
-
-
 end
