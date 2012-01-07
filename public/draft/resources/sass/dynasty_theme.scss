@@ -279,9 +279,14 @@ div.pick {
 }
 
 #user-balance {
-    font-size: 1.2em;
-    font-weight: bold;
-    &.deficit {
-        color: red;
+    font-size: 1.3em;
+
+    li {
+        display: inline;
+        padding-right: .5em;
+        &.amount{ padding-right: 1.2em; }
+        &.deficit { color: red; }
+        &.label { font-weight: bold; }
+        &:last-child { padding-right: 0; }
     }
 }

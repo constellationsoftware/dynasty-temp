@@ -7,6 +7,9 @@ Ext.define('DynastyDraft.controller.Picks', {
     refs: [{
         ref: 'picksSlider',
         selector: 'viewport picks',
+    }, {
+        ref: 'balanceView',
+        selector: 'viewport #user-balance'
     }],
 
     init: function() {
@@ -36,28 +39,23 @@ Ext.define('DynastyDraft.controller.Picks', {
         if (DRAFT_STATUS === 'finished') { return; }
         var pickOrder = this.getPickOrderStore(),
             picksStore = this.getPicksStore(),
-            pickRecords = [],
-            pickOrderRecords = [],
+            pickRecordsRaw = [],
             view = this.getPicksSlider(),
             teamCount = teamStore.getCount();
     
         teamStore.each(function(team) {
-            pickRecords = Ext.Array.merge(pickRecords, team.picks().data.items); // for picks store
-
             team.picks().each(function(pick) { // for pickorder store
                 var data = pick.data;
                 data['team_name'] = team.get('name');
                 var pick_r = pick.get('pick_order') % teamCount
                 data['pick'] = (pick_r === 0) ? teamCount : pick_r;
-                pickOrderRecords.push(data);
+                pickRecordsRaw[parseInt(pick.get('pick_order')) - 1] = data;
             }, this);
         }, this);
         // bind the pick order store to the view
         view.bindStore(pickOrder);
-        pickOrder.loadRawData(pickOrderRecords);
-
-        picksStore.add(pickRecords);
-        picksStore.fireEvent('load', picksStore, pickRecords, true);
+        pickOrder.loadRawData(pickRecordsRaw);
+        picksStore.loadRawData(pickRecordsRaw);
     },
 
     /**
@@ -71,7 +69,19 @@ Ext.define('DynastyDraft.controller.Picks', {
             // suspend model events until the end of the update
             currentPick.set('player_id', player_id);
             currentPick.save({
-                success: function() { this.fireEvent('picksucceeded'); },
+                success: function(record, operation) {
+                    this.fireEvent('picksucceeded');
+                    
+                    // get "extra" data from the operation directly
+                    var response = Ext.JSON.decode(operation.response.responseText);
+                    if (response && response.balance) {
+                        var balance = response.balance;
+                        // update the user balance data
+                        var bv = this.getBalanceView();
+                        bv.tpl.overwrite(bv.getEl(), balance);
+                        bv.hide().show();
+                    }
+                },
                 failure: function() {},
                 callback: function() {},
                 scope: this

@@ -1,9 +1,9 @@
 class PickObserver < ActiveRecord::Observer
   def before_save(pick)
-# if a player was picked, update the timestamp
-  if !!pick.player
-    pick.picked_at = Time.now
-  end
+    # if a player was picked, update the timestamp
+    if !!pick.player
+      pick.picked_at = Time.now
+    end
   end
 
   def after_update(pick)

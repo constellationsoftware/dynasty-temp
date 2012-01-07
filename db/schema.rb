@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105012437) do
+ActiveRecord::Schema.define(:version => 20120106231417) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -896,13 +896,14 @@ ActiveRecord::Schema.define(:version => 20120105012437) do
   end
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",       :limit => 50,                 :null => false
-    t.integer  "size",                     :default => 15, :null => false
+    t.string   "name",                  :limit => 50,                 :null => false
+    t.integer  "size",                                :default => 15, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug"
     t.datetime "clock"
+    t.integer  "default_balance_cents", :limit => 8,  :default => 0,  :null => false
   end
 
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -991,13 +992,6 @@ ActiveRecord::Schema.define(:version => 20120105012437) do
     t.string "abbreviation"
   end
 
-  create_table "dynasty_team_balances", :force => true do |t|
-    t.integer  "balance_cents", :limit => 8, :default => 0, :null => false
-    t.integer  "user_team_id",                              :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "dynasty_team_players", :force => true do |t|
     t.integer "user_team_id"
     t.integer "person_id"
@@ -1010,8 +1004,10 @@ ActiveRecord::Schema.define(:version => 20120105012437) do
     t.boolean "is_online",                     :default => false, :null => false
     t.binary  "uuid",           :limit => 255
     t.string  "last_socket_id"
+    t.integer "balance_cents",  :limit => 8,   :default => 0,     :null => false
   end
 
+  add_index "dynasty_teams", ["balance_cents"], :name => "index_dynasty_teams_on_balance_cents"
   add_index "dynasty_teams", ["league_id"], :name => "index_user_teams_league"
   add_index "dynasty_teams", ["user_id"], :name => "index_user_teams_user"
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
@@ -1052,14 +1048,12 @@ ActiveRecord::Schema.define(:version => 20120105012437) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.datetime "last_seen"
-    t.integer  "league_id"
     t.string   "name"
     t.string   "role"
     t.integer  "roles_mask"
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "dynasty_users", ["league_id"], :name => "index_dynasty_users_on_league_id"
   add_index "dynasty_users", ["name"], :name => "index_dynasty_users_on_name"
   add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
 

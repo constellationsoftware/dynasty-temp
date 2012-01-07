@@ -7,34 +7,30 @@ class UserTeam < ActiveRecord::Base
   has_many :picks, :foreign_key => 'team_id'
   has_many :player_team_records, :conditions => 'current = TRUE'
   has_many :players, :through => :player_team_records
-  has_one :balance,
-    :class_name => 'UserTeamBalance',
-    :autosave => true,
-    :dependent => :destroy,
-    :inverse_of => :team
+  money :balance, :cents => :balance_cents
 
-  scope :online, self.where(:is_online => true)
-  scope :offline, self.where(:is_online => false)
+  scope :online, where(:is_online => true)
+  scope :offline, where(:is_online => false)
+
+  def salary_total
+    UserTeam.joins{picks.player.contract}
+      .select{coalesce(sum(picks.player.contract.amount), 0).as('total')}
+      .where{id == my{self.id}}.first.total.to_f
+  end
 
   before_create :generate_uuid
-  after_create :initial_balance
+  after_create :initial_balance_from_league
 
   # @return [Object]
   # TODO The initial balance should be set by league settings
-  def initial_balance
-    self.create_balance
-    self.balance.balance_cents = 7500000000
-    self.balance.save
+  def initial_balance_from_league
+    if !!self.league_id
+      self.balance = self.league.default_balance
+    else
+      self.balance = 75000000
+    end
+    self.save
   end
-
-  # aliased method overrides the default getter for the association
-  # so we can return the balance attr of the associated class
-  # instead of the class instance
-  # hacky fix with addand
-  #alias_method :get_balance_instance, :balance
-  #def balance
-  #  self.get_balance_instance.andand.balance
-  #end
 
 =begin
   def roster
@@ -56,7 +52,7 @@ class UserTeam < ActiveRecord::Base
 =end
 
   def is_offline
-  	self.offline
+    self.offline
   end
 
   # use uuid as a string
@@ -78,9 +74,9 @@ class UserTeam < ActiveRecord::Base
  # requires :association, :user, :league
  # requires :attribute, :name
 
- 	private
- 		def generate_uuid
- 			uuid = UUIDTools::UUID.timestamp_create
- 			self.uuid = uuid.raw
- 		end
+  private
+    def generate_uuid
+      uuid = UUIDTools::UUID.timestamp_create
+      self.uuid = uuid.raw
+    end
 end

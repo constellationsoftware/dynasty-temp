@@ -57,14 +57,15 @@ class Draft < ActiveRecord::Base
   ##
   # This method advances the draft after a pick is made, or on draft start.
   #
-  def advance
+  def advance(force_finish = false)
+    puts force_finish
     # set the current pick to the next "free" pick slot
     self.current_pick = self.get_current_pick
     
     # this loop iterates through eligible pick slots, autopicking for offline
     # users and returning when a pick for an online user is reached
     autopick_iterations = 1
-    while !self.current_pick.nil? and !self.current_pick.team.is_online and !(self.status === :finished)
+    while !self.current_pick.nil? and (!self.current_pick.team.is_online or force_finish) and !(self.status === :finished)
       puts self.current_pick.team.name + ' IS SLEEPING!'
       # make the "auto-pick"
       autopick_player = self.best_player
@@ -73,14 +74,16 @@ class Draft < ActiveRecord::Base
       # notify clients of the pick
       # TODO: figure out a better place to put this, maybe as a callback from the controller
       puts 'pushing pick update to channel: ' + CHANNEL_PREFIX + self.league.slug
-      Pusher[CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:update', self.current_pick)
+      Pusher[CHANNEL_PREFIX + self.league.slug]
+        .delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS)))
+        .trigger('draft:pick:update', self.current_pick) unless (self.online.count === 0 or force_finish)
 
       self.current_pick = self.get_current_pick
       autopick_iterations += 1
     end
 
     # if the draft isn't over, then the "current pick" is for a live user
-    if !(self.status === :finished)
+    if !(self.current_pick.nil?) and !(self.status === :finished)
       pick_user_id = self.current_pick.team.uuid
       payload = {
         :players => Player.filter_positions(self.current_pick.team)
@@ -90,9 +93,13 @@ class Draft < ActiveRecord::Base
           .page(1).per(5)
           .collect{ |player| player.flatten }
       }
-      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:start-' + pick_user_id, payload)
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug]
+        .delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS)))
+        .trigger('draft:pick:start-' + pick_user_id, payload) unless (self.online.count === 0 or force_finish)
     else
-      Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:finish', {})
+      Pusher[Draft::CHANNEL_PREFIX + self.league.slug]
+        .delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS)))
+        .trigger('draft:finish', {}) unless (self.online.count === 0 or force_finish)
     end
 
     self.save!
@@ -204,11 +211,11 @@ class Draft < ActiveRecord::Base
   # TODO: hacky; refactor this sometime
   def best_player
     Player.filter_positions(self.current_pick.team)
-      .available.with_points
+      .available(self)
+      .with_points
       .with_contract
       .order{points.points.desc}
-      .page(1).per(1)
-      .first
+      .page(1).per(1).first
   end
 
   def create_pick_records

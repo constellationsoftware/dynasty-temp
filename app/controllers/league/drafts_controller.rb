@@ -4,7 +4,7 @@ class League::DraftsController < SubdomainController
   before_filter :get_team!, :except => [:edit, :update, :destroy]
 
   singleton_belongs_to :league
-  custom_actions :resource => [:start, :reset, :pick, :data]
+  custom_actions :resource => [:start, :reset, :pick, :finish]
 
   # starts the draft
   def start
@@ -32,6 +32,14 @@ class League::DraftsController < SubdomainController
     end
   end
 
+  # TODO: might want to notify and redirect users taking part in the draft IF we're ever going to
+  # use this in production.
+  def finish
+    finish! do |format|
+      @draft.advance(true)
+      format.text { render :text => "Forcing finish of draft for #{@league.name}" }
+    end
+  end
 
   def auth
     @team.last_socket_id = params[:socket_id]
