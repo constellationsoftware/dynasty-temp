@@ -38,12 +38,7 @@ class League::DraftsController < SubdomainController
     @team.save
 
     payload = {
-      :user_id => current_user.id,
-      :user_info => {
-        :name => current_user.name,
-        :team_name => @team.name,
-        :team_id => @team.uuid
-      }
+      :user_id => @team.uuid
     }
 
     response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)
