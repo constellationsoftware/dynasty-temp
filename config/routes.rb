@@ -60,11 +60,19 @@ Dynasty::Application.routes.draw do
   end
 
   resources :users do
-    get 'home'
+    get :home
   end
 
   resources :persons do
     resources :display_name
+  end
+
+  resources :user_teams do
+    member do
+      get 'manage'
+      get 'roster'
+    end
+
   end
 
 

@@ -1,5 +1,5 @@
 class UserTeamsController < ApplicationController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!
   def index
     @user_teams = UserTeam.all
 
@@ -11,6 +11,24 @@ class UserTeamsController < ApplicationController
     end
   end
 
+  def manage
+   @title =
+   @team = UserTeam.find(params[:id])
+   @league = @team.league
+   @current_user = current_user
+   @team_manager = @team.user
+   @other_teams = @league.teams.where(:user_id != @current_user.id)
+   @clock = Clock.first.nice_time
+
+   unless @current_user == @team_manager
+    redirect_to root_path, :flash => { :infp => "You aren't authorized to do that!'"}
+   end
+
+  end
+
+  def roster
+
+  end
 
 
     # GET /user_teams/1

@@ -1,5 +1,5 @@
 class League::TeamsController < SubdomainController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
 
   actions :index, :balance
   has_scope :draft_data, :type => :boolean, :default => true, :only => :index
@@ -37,7 +37,5 @@ class League::TeamsController < SubdomainController
     @team = @league.teams.find_by_uuid(params[:uuid])
   end
 
-  def manage
-    @team = @league.teams.find_by_uuid(params[:uuid])
-  end
+
 end
