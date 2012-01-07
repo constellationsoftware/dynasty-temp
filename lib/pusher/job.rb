@@ -10,20 +10,26 @@ module Pusher
     def initialize
       # create the socket and start the connection process
       #PusherClient.logger = Logger.new(STDOUT)
-      self.socket = PusherClient::Socket.new(Pusher.key, { :secret => Pusher.secret })
-      self.socket.connect(true)
+      @socket = PusherClient::Socket.new(Pusher.key, { :secret => Pusher.secret })
+      @socket.connect(true)
 
-      self.socket.bind('pusher_internal:member_added') do |result|
-        data = parse(result)
-        on_member_join(data) #unless data[:user_id] != DEFAULT_USER_ID
+      @socket.bind('pusher_internal:member_added') do |result|
+        team = get_team_from_data(parse(result))
+        if !(team.nil?) and team.is_a? UserTeam
+          team.is_online = true
+          team.save()
+        end
       end
 
-      self.socket.bind('pusher_internal:member_removed') do |result|
-        data = parse(result)
-        on_member_leave(data) #unless data[:user_id] != DEFAULT_USER_ID
+      @socket.bind('pusher_internal:member_removed') do |result|
+        team = get_team_from_data(parse(result))
+        if !(team.nil?) and team.is_a? UserTeam
+          team.is_online = false
+          team.save()
+        end
       end
 
-      self.socket.bind('pusher:error') do |result|
+      @socket.bind('pusher:error') do |result|
         puts result.inspect
         raise result
       end
@@ -32,7 +38,7 @@ module Pusher
       drafts = Draft.find(:all, :include => :league)
       drafts.each do |draft|
         channel_name = Draft::CHANNEL_PREFIX + draft.league.slug
-        self.socket.subscribe(channel_name, DEFAULT_USER_ID)
+        @socket.subscribe(channel_name, DEFAULT_USER_ID)
       end
     end
     handle_asynchronously :initialize
@@ -43,30 +49,25 @@ module Pusher
 
     def parse(s)
       begin
-        return JSON.parse(s)
+        return ActiveSupport::JSON.decode(s)
       rescue => err
         PusherClient.logger.warn(err)
-        PusherClient.logger.warn("Pusher : data attribute not valid JSON - you may wish to implement your own Pusher::Client.parser")
+        PusherClient.logger.warn("Pusher : data attribute not valid JSON")
         return s
       end
     end
 
-
-    protected
-      def on_member_join(data)
-        uuid = data['user_info']['team_id'].to_s
-        team = UserTeam.find_by_uuid(uuid)
-        team.is_online = true
-        team.save()
-        #puts "MEMBER JOINED: " + data['user_info']['name'].to_s
+    def get_team_from_data(data)
+      begin
+        if data['user_id'] == 0
+          return nil
+        else
+          return UserTeam.find_by_uuid(data['user_id'].to_s)
+        end
+      rescue => err
+        PusherClient.logger.warn(err)
+        PusherClient.logger.warn('Unexpected data format for team. Can not continue.')
       end
-
-      def on_member_leave(data)
-        uuid = data['user_info']['team_id'].to_s
-        team = UserTeam.find_by_uuid(uuid)
-        team.is_online = false
-        team.save()
-        #puts "MEMBER JOINED: " + data['user_info']['name'].to_s
-      end
+    end
   end
 end
