@@ -58,7 +58,10 @@ class Player < ActiveRecord::Base
     with_points.where{points.year == "#{season}"}
   }
 
-  scope :available, joins{picks.outer}.where{isnull(picks.id)}
+  # filter out players that have been picked already in this draft
+  scope :available, lambda { |draft|
+    joins{picks.outer}.where{(picks.draft_id == nil) | (picks.draft_id.not_eq my{draft.id})}
+  }
   scope :by_position_priority, joins{position}
     .where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}}
     .order(order_by_position_priority)

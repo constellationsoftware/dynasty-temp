@@ -4,7 +4,10 @@ class League::PlayersController < SubdomainController
 
   respond_to :json
 
-  has_scope :available, :type => :boolean, :only => :index
+  has_scope :available, :type => :boolean, :only => :index do |controller, scope|
+    team = controller.instance_variable_get("@team")
+    scope.available(team.league.draft)
+  end
   has_scope :with_contract, :type => :boolean
   has_scope :with_points, :type => :boolean
   has_scope :with_points_from_season, :default => 'current' do |controller, scope, value|

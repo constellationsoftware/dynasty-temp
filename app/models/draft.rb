@@ -84,7 +84,7 @@ class Draft < ActiveRecord::Base
       pick_user_id = self.current_pick.team.uuid
       payload = {
         :players => Player.filter_positions(self.current_pick.team)
-          .available.with_points
+          .available(self).with_points
           .with_contract
           .order{points.points.desc}
           .page(1).per(5)
