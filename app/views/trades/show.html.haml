@@ -15,11 +15,11 @@
       %a.button.nice.small.red
         Retract Offer
       I offered
-      = trade.offered_player.full_name
+      = trade.offered_player.name
       to
       = trade.second_team.name
       for
-      = trade.requested_player.full_name
+      = trade.requested_player.name
       on
       = trade.offered_at
 
@@ -32,11 +32,11 @@
       %a.button.nice.small.green
         Accept Trade
       I was offered
-      = trade.offered_player.full_name
+      = trade.offered_player.name
       by
       = trade.second_team.name
       for
-      = trade.requested_player.full_name
+      = trade.requested_player.name
       on
       = trade.offered_at
 
@@ -47,11 +47,11 @@
     %p
 
       I offered
-      = trade.offered_player.full_name
+      = trade.offered_player.name
       to
       = trade.second_team.name
       for
-      = trade.requested_player.full_name
+      = trade.requested_player.name
       on
       = trade.offered_at
       and the trade was
@@ -65,11 +65,11 @@
   - @my_accepted_trades_received.andand.each do |trade|
     %p
       I was offered
-      = trade.offered_player.full_name
+      = trade.offered_player.name
       by
       = trade.second_team.name
       for
-      = trade.requested_player.full_name
+      = trade.requested_player.name
       on
       = trade.offered_at
       and the trade was
@@ -84,11 +84,11 @@
     %p
 
       I offered
-      = trade.offered_player.full_name
+      = trade.offered_player.name
       to
       = trade.second_team.name
       for
-      = trade.requested_player.full_name
+      = trade.requested_player.name
       on
       = trade.offered_at
       but was
@@ -101,11 +101,11 @@
     %p
 
       I was offered
-      = trade.offered_player.full_name
+      = trade.offered_player.name
       by
       = trade.second_team.name
       for
-      = trade.requested_player.full_name
+      = trade.requested_player.name
       on
       = trade.offered_at
       but

@@ -26,6 +26,7 @@ Dynasty::Application.configure do
   config.assets.enabled = true
   config.serve_static_assets = true
   config.assets.compile = true
+  config.assets.debug = true
 
   #Iron Worker to run jobs
 
@@ -40,6 +41,12 @@ Dynasty::Application.configure do
 
   # Devise action mailer config
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.after_initialize do
+    Moonshado::Sms.configure do |config|
+      config.api_key = 'http://65ecea4bba559b49@heroku.moonshado.com'
+    end
+  end
 
   ENV['MAILGUN_API_KEY']  = 'key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61'
   ENV['MAILGUN_API_URL']  = "https://api:key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61@api.mailgun.net/v2/mailgun.net"

@@ -1,0 +1,230 @@
+.container
+  .row
+    .panel
+      %h5
+        = @team.name
+        Dashboard
+      %p
+        Lorem ipsum dolor sit amet, hinc adhuc iisque eam in, est errem putant verear te, ex nam ridens dignissim. Vim quem audire no. Id putent dicunt imperdiet mel, ex vel impetus detracto necessitatibus, eam mandamus vulputate ea. Mei te wisi pertinacia, in nec sensibus scribentur. Ut nulla nostrud percipitur per, nulla zril delectus sea ex.
+  .row
+    %dl.nice.contained.tabs
+      %dd
+        = link_to "Roster", "#roster", :class => "active"
+      %dd
+        = link_to "Set Starters", "#starters"
+      %dd
+        = link_to "Trades", "#trades"
+      %dd
+        = link_to "Research", "#research"
+      %dd
+        = link_to "Waiver Wire", "#waiver"
+      %dd
+        = link_to "League Review", "#league"
+    %ul.nice.tabs-content.contained
+
+
+      %li.active#rosterTab
+        %h5
+          Roster
+        %p
+          This is where the roster will go. This is where the roster will go.
+        .row
+          .one.columns
+            POS
+          .three.columns
+            NAME
+          .one.columns
+            DEPTH
+          .three.columns
+            DETAILS
+          .four.columns
+            MANAGE
+        - Position.all.each do |p|
+          %p
+            - @my_players.each do |ptr|
+              - if ptr.player.position == p
+                .row
+                  .one.columns
+                    = ptr.player.position.abbreviation.upcase
+                  .three.columns
+                    = ptr.player.name.full_name
+                  .one.columns
+                    - if ptr.depth == 1
+                      %strong.success
+                        = "Starter"
+                    - if ptr.depth != 1
+                      .failure
+                        = "Bench"
+
+                  .three.columns
+                    = ptr.details
+                  .four.columns
+                    = link_to "Drop Contract", player_team_record_drop_path(ptr.id), :class => "nice small red button"
+                %br
+
+
+      %li.active#startersTab
+        .row
+          .six.columns
+            Your Current Starters
+            %p
+              %strong
+                Starting QB:
+                = @my_lineup.qb.andand.name || "Not Set!"
+            %p
+              %strong
+                Starting WR(1):
+                = @my_lineup.wr1.andand.name || "Not Set!"
+            %p
+              %strong
+                Starting WR(2):
+                = @my_lineup.wr2.andand.name || "Not Set!"
+            %p
+              %strong
+                Starting RB(1):
+                = @my_lineup.rb1.andand.name || "Not Set!"
+            %p
+              %strong
+                Starting RB(2):
+                = @my_lineup.rb2.andand.name || "Not Set!"
+            %p
+              %strong
+                Starting TE:
+                = @my_lineup.te.andand.name || "Not Set!"
+            %p
+              %strong
+                Starting K:
+                = @my_lineup.k.andand.name || "Not Set!"
+          .six.columns
+            %h5
+              Choose Your Starters!
+            = semantic_form_for @my_lineup do |f|
+              = f.input :qb_id, :as => :select, :collection => @my_qb,  :label => "Choose a starting QB:"
+              = f.input :wr1_id, :as => :select, :collection => @my_wr, :label => "Choose your starting WR (1)"
+              = f.input :wr2_id, :as => :select, :collection => @my_wr, :label => "Choose your starting WR (2)"
+              = f.input :rb1_id, :as => :select, :collection => @my_rb, :label => "Choose your starting RB (1)"
+              = f.input :rb2_id, :as => :select, :collection => @my_rb, :label => "Choose your starting RB (2)"
+              = f.input :te_id, :as => :select, :collection => @my_te,  :label => "Choose your starting TE"
+              = f.input :k_id, :as => :select, :collection => @my_k,    :label => "Choose your starting Kicker"
+              = f.commit_button
+
+
+      %li.active#tradesTab
+        %h5
+        .panel
+          %h3
+            Offer A Trade
+          = semantic_form_for @new_trade,  do |f|
+            .row
+              .six.columns
+                = f.input :offered_player_id, :as => :select, :collection => @my_players, :label => "Choose A Player to Offer:"
+                = f.input :offered_cash, :label => "Offer some cash"
+                = f.input :offered_picks, :label => "Offer picks"
+              .six.columns
+                = f.label "Choose A Player to Request"
+                = f.grouped_collection_select :requested_player_id, @other_teams.order(:name), :player_team_records, :name, :id, :name, :include_blank => true
+                = f.input :requested_cash, :label => "Request some cash"
+                = f.input :requested_picks, :label => "Request picks"
+            .row
+              = f.commit_button
+        .panel
+          %h3
+            Open Trade Offers Received
+          - @my_open_trades_received.andand.each do |trade|
+            %p
+              = link_to "Reject Trade", trade_retract_path(trade), :class => "nice button small radius red"
+              = link_to "Accept Trade", trade_accept_path(trade), :class => "nice button small radius blue"
+              I received and offer to trade
+              = trade.requested_player.name
+              for
+              = trade.offered_player.name
+              from
+              = trade.initial_team.name
+              on
+              = trade.offered_at
+
+        .panel
+          %h3
+            My Open Trade Offers
+          - @my_open_trades_offered.andand.each do |trade|
+            %p
+              = link_to "Retract Trade", trade_retract_path(trade), :class => "nice button small radius red"
+              I offered
+              = trade.offered_player.name
+              to
+              = trade.second_team.name
+              for
+              = trade.requested_player.name
+              on
+              = trade.offered_at
+        .panel
+          %h3
+            Accepted Trade Offers Made
+          - @my_accepted_trades_offered.andand.each do |trade|
+            %p
+
+              = trade.offered_player.name
+              to
+              = trade.second_team.name
+              for
+              = trade.requested_player.name
+              on
+              = trade.offered_at
+
+        .panel
+          %h3
+            Accepted Trade Offers Received
+          - @my_accepted_trades_received.andand.each do |trade|
+            %p
+
+              = trade.requested_player.name
+              to
+              = trade.initial_team.name
+              for
+              = trade.offered_player.name
+              on
+              = trade.offered_at
+
+        .panel
+          %h3
+            Denied or Retracted Trade Offers
+          - @my_denied_trades_offered.andand.each do |trade|
+            %p
+
+              = trade.offered_player.name
+              to
+              = trade.second_team.name
+              for
+              = trade.requested_player.name
+              on
+              = trade.offered_at
+
+
+
+      %li.active#researchTab
+        %h5
+          Player Research
+        - @positions.each do |position|
+          .row
+            %p
+              %strong
+                = position.name
+            - @all_players.each do |player|
+              - if player.position == position
+                .three.columns
+                  = link_to player.name.full_name, player
+
+
+
+
+      %li.active#waiverTab
+        %h5
+          Waiver Wire
+        %p
+          This is where waiver wire will go.
+
+      %li.active#leagueTab
+        %h5
+          League Review
+        %p
+          This is where league review will go.

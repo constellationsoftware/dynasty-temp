@@ -28,10 +28,11 @@ Dynasty::Application.routes.draw do
     end
 
 
-    resource :trades do
-      member do
-        get 'edit'
 
+
+    resource :teams do
+      member do
+        get 'manage'
       end
     end
 
@@ -43,11 +44,26 @@ Dynasty::Application.routes.draw do
 
   resources :person_scores, :events, :positions, :trades,
             :user_teams, :user_team_person, :users, :person_phases, :display_names,
-            :stats, :fix, :picks, :salaries,
-            :persons, :people, :drafts, :leagues, :admin_dashboard, :clock, :clocks
+            :stats, :fix, :picks, :salaries, :players,
+            :persons, :people, :drafts, :leagues, :admin_dashboard, :clock, :clocks, :user_team_lineups, :player_team_records
 
   resources :teams do
     resources :display_name, :person_phases
+  end
+
+  resources :trades do
+    get 'retract'
+    get 'accept'
+    get 'reject'
+    member do
+      get 'edit'
+      get 'retract'
+    end
+  end
+
+  resources :players do
+    get 'show'
+    get 'add'
   end
 
   resources :clock do
@@ -58,11 +74,24 @@ Dynasty::Application.routes.draw do
   end
 
   resources :users do
-    get 'home'
+    get :home
+  end
+
+  resources :player_team_records do
+    get 'drop'
+    get 'add'
   end
 
   resources :persons do
     resources :display_name
+  end
+
+  resources :user_teams do
+    member do
+      get 'manage'
+      get 'roster'
+    end
+
   end
 
 
@@ -112,7 +141,7 @@ Dynasty::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => "users#index"
+  root :to => "users#home"
 
   # See how all your routes lay out with "rake routes"
 

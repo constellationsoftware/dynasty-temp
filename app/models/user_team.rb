@@ -3,6 +3,7 @@ class UserTeam < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :league
+  has_one :user_team_lineup
 
   has_many :picks, :foreign_key => 'team_id'
   has_many :player_team_records, :conditions => 'current = TRUE'

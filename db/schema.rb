@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120108040137) do
+ActiveRecord::Schema.define(:version => 20120107224115) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -986,6 +986,8 @@ ActiveRecord::Schema.define(:version => 20120108040137) do
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "depth"
+    t.integer  "position_id"
   end
 
   create_table "dynasty_positions", :force => true do |t|
@@ -993,9 +995,11 @@ ActiveRecord::Schema.define(:version => 20120108040137) do
     t.string "abbreviation"
   end
 
-  create_table "dynasty_team_players", :force => true do |t|
-    t.integer "user_team_id"
-    t.integer "person_id"
+  create_table "dynasty_team_balances", :force => true do |t|
+    t.integer  "balance_cents", :limit => 8, :default => 0, :null => false
+    t.integer  "user_team_id",                              :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dynasty_teams", :force => true do |t|
@@ -1052,6 +1056,7 @@ ActiveRecord::Schema.define(:version => 20120108040137) do
     t.string   "name"
     t.string   "role"
     t.integer  "roles_mask"
+    t.integer  "phone"
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
@@ -2172,6 +2177,19 @@ ActiveRecord::Schema.define(:version => 20120108040137) do
     t.integer "winners_forehand"
     t.integer "winners_backhand"
     t.integer "winners_volley"
+  end
+
+  create_table "user_team_lineups", :force => true do |t|
+    t.integer  "user_team_id"
+    t.integer  "qb_id"
+    t.integer  "wr1_id"
+    t.integer  "wr2_id"
+    t.integer  "rb1_id"
+    t.integer  "rb2_id"
+    t.integer  "te_id"
+    t.integer  "k_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "versions", :force => true do |t|

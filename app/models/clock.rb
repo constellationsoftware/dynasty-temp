@@ -16,4 +16,10 @@ class Clock < ActiveRecord::Base
     self.save!
     self.time
   end
+
+  def nice_time
+    self.time.strftime("%B %e, %Y")
+  end
+
+
 end
