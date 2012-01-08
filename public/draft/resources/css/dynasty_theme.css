@@ -11138,12 +11138,9 @@ body .ux-notification-window {
   background-image: -ms-linear-gradient(bottom, #ededed 0%, #ffffff 6%, #ededed 100%);
   background-image: linear-gradient(bottom, #ededed 0%, #ffffff 6%, #ededed 100%);
 }
-/* line 109, ../sass/dynasty_theme.scss */
-.recommended_pick_wrap:last-child {
-  margin-bottom: 0;
-}
-/* line 114, ../sass/dynasty_theme.scss */
+/* line 113, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick {
+  position: relative;
   min-height: 8em;
   height: auto !important;
   height: 8em;
@@ -11182,13 +11179,27 @@ body .ux-notification-window {
   margin-right: 1em;
 }
 /* line 135, ../sass/dynasty_theme.scss */
+.recommended_pick_wrap .recommended_pick .edit {
+  position: absolute;
+  top: 16;
+  left: 36;
+  margin: 0;
+  padding: 0;
+  margin-left: 1em;
+}
+/* line 143, ../sass/dynasty_theme.scss */
+.recommended_pick_wrap .recommended_pick .edit div {
+  font-size: 16px;
+  height: 100%;
+}
+/* line 146, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .bio {
   float: left;
   width: 10em;
   margin-left: -100%;
   text-align: center;
 }
-/* line 141, ../sass/dynasty_theme.scss */
+/* line 152, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .bio .photo {
   width: 100px;
   height: 123px;
@@ -11196,17 +11207,17 @@ body .ux-notification-window {
   background-color: white;
   background-image: url('../images/players/default.png');
 }
-/* line 150, ../sass/dynasty_theme.scss */
+/* line 161, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap {
   float: left;
   width: 100%;
   padding-left: 1em;
 }
-/* line 155, ../sass/dynasty_theme.scss */
+/* line 166, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content {
   margin-left: 10em;
 }
-/* line 158, ../sass/dynasty_theme.scss */
+/* line 169, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   float: left;
   width: 50%;
@@ -11216,17 +11227,10 @@ body .ux-notification-window {
   font-size: 2em;
   margin-bottom: 0.5em;
 }
-/* line 167, ../sass/dynasty_theme.scss */
-.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .edit, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .edit {
-  display: inline-block;
-  margin: 0;
-  padding: 0;
-  margin-left: 1em;
-}
-/* line 173, ../sass/dynasty_theme.scss */
-.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .edit div, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .edit div {
-  font-size: 16px;
-  height: 100%;
+/* line 177, ../sass/dynasty_theme.scss */
+.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .bye_week, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .bye_week {
+  padding-left: 1em;
+  font-size: 0.7em;
 }
 /* line 179, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {

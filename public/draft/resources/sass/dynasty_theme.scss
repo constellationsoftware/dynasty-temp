@@ -106,12 +106,12 @@ $recommended_pick_bio_min-height: 8em;
     overflow: hidden;
     margin: 0;
     margin-bottom: 1em;
-    &:last-child { margin-bottom: 0; }
     border: 0.2em solid $recommended_pick_border_color;
     @include border-radius(0.7em);
     @include background-image(linear-gradient(bottom, $recommended_pick_background_color));
 
     .recommended_pick {
+        position: relative;
         @include min-height($recommended_pick_bio_min-height);
         padding: 0.5em 0.7em;
         @include transition-property(background-color);
@@ -131,6 +131,17 @@ $recommended_pick_bio_min-height: 8em;
             text-transform: uppercase;
         }
         dd { margin-right: 1em; }
+
+        .edit {
+            position: absolute;
+            top: 16;
+            left: 36;
+            margin: 0;
+            padding: 0;
+            margin-left: 1em;
+
+            div { font-size: 16px; height: 100%; }
+        }
 
         .bio {
             float: left;
@@ -163,18 +174,7 @@ $recommended_pick_bio_min-height: 8em;
                     font-weight: bold;
                     font-size: 2em;
                     margin-bottom: 0.5em;
-
-                    .edit {
-                        display: inline-block;
-                        margin: 0;
-                        padding: 0;
-                        margin-left: 1em;
-
-                        div {
-                            font-size: 16px;
-                            height: 100%;
-                        }
-                    }
+                    .bye_week { padding-left: 1em; font-size: 0.7em; }
                 }
                 .salary { text-align: right; }
                 .stats {

@@ -9,10 +9,14 @@ Dynasty::Application.routes.draw do
   scope :league, :module => 'league', :constraints => SubdomainConstraint do
     resource :draft, :defaults => { :format => 'html' } do
       member do
-        post 'auth'
-        post 'start', :format => 'text'
-        post 'pick', :format => 'text'
-        post 'reset', :format => 'text'
+        defaults :format => 'text' do
+          post :auth
+          post :start
+          get  :start
+          post :reset
+          get  :reset
+          get  :finish
+        end
       end
       defaults :format => 'json' do
         resources :picks
