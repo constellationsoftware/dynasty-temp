@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120106195034_add_phone_number_to_user.rb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/db/migrate/20120107211421_add_depth_to_dynasty_player_teams.rb" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/user_teams.rb" afterPath="$PROJECT_DIR$/app/admin/user_teams.rb" />
     </list>
     <ignored path="Dynasty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,22 +26,13 @@
     <favorites_list name="Dynasty" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.57151705">
+    <splitter split-orientation="horizontal" split-proportion="0.48999357">
       <split-first>
         <leaf>
           <file leaf-file-name="manage.html.haml" pinned="true" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="136" column="27" selection-start="5209" selection-end="5209" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="show.html.haml" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/views/players/show.html.haml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="8" column="92" selection-start="174" selection-end="174" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -62,16 +52,72 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state line="2" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
                   <folding>
-                    <marker date="1326036779000" expanded="true" signature="44499:44665" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="42136:42500" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="44204:44370" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="47882:47921" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="48330:48365" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="48466:48530" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="48606:49020" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="50215:51022" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="51344:51678" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="51885:52102" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="52556:52844" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="53052:53281" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="53493:53946" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="54656:55124" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="55432:56176" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="56486:57230" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="57574:57631" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="57906:57960" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="58227:58286" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="58500:58851" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="59326:60352" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="60604:61970" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="62067:62829" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="63346:64530" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="64676:66410" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="66505:66518" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="66622:67197" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="67304:67712" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="68216:68273" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="68510:68523" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="68682:68746" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="69026:69340" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="69494:69872" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="70216:70506" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="70780:71145" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="71318:71371" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="71569:71956" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="72364:72721" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="72812:73143" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="73254:74504" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="74602:75791" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="76001:76498" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="77049:77121" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="77185:77557" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="77760:78169" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="78826:79888" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="80666:81144" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="81841:81898" placeholder="do ... end" />
+                    <marker date="1326037076000" expanded="true" signature="82601:82677" placeholder="do ... end" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="player.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="player.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/player.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="71" column="28" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.38287863">
+                <state line="71" column="28" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="20120106222331_add_default_balance_to_dynasty_leagues.rb" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/db/migrate/20120106222331_add_default_balance_to_dynasty_leagues.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="17" column="35" selection-start="549" selection-end="549" vertical-scroll-proportion="0.25587958">
                   <folding />
                 </state>
               </provider>
@@ -81,19 +127,37 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="user_teams_controller.rb" pinned="true" current="false" current-in-tab="true">
+          <file leaf-file-name="user_teams_controller.rb" pinned="true" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="129" column="10" selection-start="3644" selection-end="3644" vertical-scroll-proportion="1.9416745">
+                <state line="29" column="44" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="routes.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/config/routes.rb">
+          <file leaf-file-name="teams_controller.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/controllers/league/teams_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="44" column="28" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="league_controller.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/controllers/league/league_controller.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="user_teams.rb" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
                   <folding />
                 </state>
               </provider>
@@ -103,24 +167,6 @@
             <entry file="file://$PROJECT_DIR$/app/controllers/players_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="10" column="81" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="people_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/people_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="37" column="0" selection-start="1017" selection-end="1185" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="persons_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/persons_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="103" column="14" selection-start="4279" selection-end="4279" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -143,7 +189,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/models/user_team_lineup.rb" />
         <option value="$PROJECT_DIR$/app/controllers/user_team_lineups_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/league/trades/show.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/league/trades_controller.rb" />
@@ -159,6 +204,7 @@
         <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/player.rb" />
+        <option value="$PROJECT_DIR$/app/admin/user_teams.rb" />
       </list>
     </option>
   </component>
@@ -205,7 +251,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="RailsProjectView" proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -311,60 +357,6 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Config" />
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ConfigFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sports_db" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsSubFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Position" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ActiveRecordModelClassNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ModelsFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Migrations" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.MigrationsFolder" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -630,6 +622,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="league" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dynasty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dynasty" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="admin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -946,7 +956,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1222" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32922912" sideWeight="0.7469311" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.49786323" order="8" side_tool="false" content_ui="tabs" />
@@ -957,9 +967,9 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15117522" sideWeight="0.18862559" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.49358973" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.49786323" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39754537" sideWeight="0.28105167" order="1" side_tool="true" content_ui="tabs" x="-751" y="1041" width="659" height="867" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17342582" sideWeight="0.28105167" order="1" side_tool="true" content_ui="tabs" x="-751" y="1041" width="659" height="867" />
       <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.05888651" sideWeight="0.6701422" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39754537" sideWeight="0.712602" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17342582" sideWeight="0.712602" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08215298" sideWeight="0.6631356" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295562" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" x="100" y="122" width="1716" height="978" />
@@ -1036,34 +1046,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/models/player_team_record.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="0" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/player_team_records_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="133" selection-start="493" selection-end="493" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/persons_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="14" selection-start="4279" selection-end="4279" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/people_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="0" selection-start="1017" selection-end="1185" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/routes.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="44" column="28" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0">
@@ -1106,13 +1088,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="129" column="10" selection-start="3644" selection-end="3644" vertical-scroll-proportion="1.9416745">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="136" column="27" selection-start="5209" selection-end="5209" vertical-scroll-proportion="0.0">
@@ -1138,14 +1113,96 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1326036779000" expanded="true" signature="44499:44665" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="42136:42500" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="44204:44370" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="47882:47921" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="48330:48365" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="48466:48530" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="48606:49020" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="50215:51022" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="51344:51678" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="51885:52102" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="52556:52844" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="53052:53281" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="53493:53946" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="54656:55124" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="55432:56176" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="56486:57230" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="57574:57631" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="57906:57960" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="58227:58286" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="58500:58851" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="59326:60352" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="60604:61970" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="62067:62829" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="63346:64530" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="64676:66410" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="66505:66518" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="66622:67197" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="67304:67712" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="68216:68273" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="68510:68523" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="68682:68746" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="69026:69340" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="69494:69872" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="70216:70506" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="70780:71145" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="71318:71371" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="71569:71956" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="72364:72721" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="72812:73143" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="73254:74504" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="74602:75791" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="76001:76498" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="77049:77121" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="77185:77557" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="77760:78169" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="78826:79888" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="80666:81144" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="81841:81898" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="82601:82677" placeholder="do ... end" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/player.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="71" column="28" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.38287863">
+        <state line="71" column="28" selection-start="2279" selection-end="2279" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="44" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/league/teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/league/league_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120106222331_add_default_balance_to_dynasty_leagues.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="35" selection-start="549" selection-end="549" vertical-scroll-proportion="0.25587958">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
           <folding />
         </state>
       </provider>
