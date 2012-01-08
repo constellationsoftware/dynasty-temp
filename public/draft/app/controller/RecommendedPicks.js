@@ -56,8 +56,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         this.application.addListener(this.application.TIMEOUT, function() { this.makePick(true); }, this);
         // enable/disable pick button on app status
         this.application.addListener(this.application.STATUS_PICKING, function(data) {
-            //this.getRecommendedPicksStore().loadRawData(data);
-            this.getRecommendedPicksStore().load();
+            this.getRecommendedPicksStore().loadRawData(data);
+            //this.getRecommendedPicksStore().load();
             this.getDataView().setDisabled(false);
         }, this);
 
