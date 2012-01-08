@@ -52,6 +52,7 @@
           %a.button.nice.small.black(data-reveal-id="userTeams") Teams
           %a.button.nice.small.black(data-reveal-id="userAccount") Account
           %a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
+          = link_to "Home", root_url, :class => "button nice small blue"
 
   /*Primary Page Header Bar
   .container
@@ -68,7 +69,7 @@
       .nine.columns
         /*Core Content
         - flash.each do |key, msg|
-          .alert-box.warning
+          .alert-box.success
             = msg
         = yield
 

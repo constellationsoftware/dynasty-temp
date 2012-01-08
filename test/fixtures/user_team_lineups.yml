@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  qb_id: 1
+  wr1_id: 1
+  wr2_id: 1
+  rb1_id: 1
+  rb2_id: 1
+  te_id: 1
+  k_id: 1
+
+two:
+  qb_id: 1
+  wr1_id: 1
+  wr2_id: 1
+  rb1_id: 1
+  rb2_id: 1
+  te_id: 1
+  k_id: 1

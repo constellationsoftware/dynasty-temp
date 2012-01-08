@@ -12,16 +12,56 @@ class UserTeamsController < ApplicationController
   end
 
   def manage
-   @title =
+   @title = "A Title"
    @team = UserTeam.find(params[:id])
+   @user_team = @team
    @league = @team.league
    @current_user = current_user
    @team_manager = @team.user
    @other_teams = @league.teams.where(:user_id != @current_user.id)
    @clock = Clock.first.nice_time
 
+   # Roster and positioning stuff
+   @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
+   @my_players = @team.player_team_records.all
+   @my_ptr = @team.player_team_records
+      @my_qb = @my_ptr.qb
+      @my_wr = @my_ptr.wr
+      @my_rb = @my_ptr.rb
+      @my_te = @my_ptr.te
+      @my_k  = @my_ptr.k
+
+   # Research Stuff
+   @all_players = Player.with_points_from_season(2011)
+   @signed_players = @league.players
+   @unsigned_players = @all_players - @signed_players
+   @positions = Position.all
+   # Trades stuff
+   @trade = Trade.all
+
+
+   @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@user_team.id)
+   @my_open_trades_received = Trade.open.find_all_by_second_team_id(@user_team.id)
+
+   @my_accepted_trades_offered = Trade.closed.accepted.find_all_by_initial_team_id(@user_team.id)
+   @my_accepted_trades_received = Trade.closed.accepted.find_all_by_second_team_id(@user_team.id)
+
+   @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@user_team.id)
+   @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@user_team.id)
+
+   # Create a New Trade
+   @new_trade = Trade.new
+   @other_teams = @league.teams.where('id != ?', @user_team.id)
+   @other_players = []
+   @other_teams.each do |ot|
+     ot.player_team_records.each do |otp|
+       @other_players << otp.id
+     end
+   end
+   @requestable_players = PlayerTeamRecord.find(@other_players)
+
    unless @current_user == @team_manager
-    redirect_to root_path, :flash => { :infp => "You aren't authorized to do that!'"}
+    redirect_to root_path, :flash => { :info => "You aren't authorized to do that!"}
    end
 
   end
