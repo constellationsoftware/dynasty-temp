@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/pick_observer.rb" afterPath="$PROJECT_DIR$/app/models/pick_observer.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/trades_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
     </list>
     <ignored path="Dynasty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,7 +56,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="pick_observer.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="pick_observer.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/models/pick_observer.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="22" column="58" selection-start="505" selection-end="505" vertical-scroll-proportion="0.32713756">
@@ -82,7 +81,16 @@
           <file leaf-file-name="user_teams_controller.rb" pinned="true" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="29" column="44" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0">
+                <state line="13" column="57" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="trades_controller.rb" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="60" column="62" selection-start="1895" selection-end="1895" vertical-scroll-proportion="0.4816557">
                   <folding />
                 </state>
               </provider>
@@ -106,19 +114,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user_teams.rb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="user_teams.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="players_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/players_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="10" column="81" selection-start="251" selection-end="251" vertical-scroll-proportion="0.0">
+                <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -153,10 +152,10 @@
         <option value="$PROJECT_DIR$/app/controllers/players_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/players/show.html.haml" />
         <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
-        <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/player.rb" />
         <option value="$PROJECT_DIR$/app/admin/user_teams.rb" />
         <option value="$PROJECT_DIR$/app/models/pick_observer.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
       </list>
     </option>
   </component>
@@ -1040,13 +1039,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="49" selection-start="1086" selection-end="1086" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
@@ -1110,13 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="44" selection-start="876" selection-end="876" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/league/teams_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1127,13 +1112,6 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/league/league_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
           <folding />
         </state>
       </provider>
@@ -1155,6 +1133,27 @@
     <entry file="file://$PROJECT_DIR$/app/models/pick_observer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="22" column="58" selection-start="505" selection-end="505" vertical-scroll-proportion="0.32713756">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="57" selection-start="333" selection-end="333" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="60" column="62" selection-start="1895" selection-end="1895" vertical-scroll-proportion="0.4816557">
           <folding />
         </state>
       </provider>
