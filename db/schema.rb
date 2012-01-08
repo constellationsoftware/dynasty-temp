@@ -918,6 +918,7 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
     t.integer  "end_year"
     t.integer  "summary"
     t.string   "free_agent_year"
+    t.integer  "bye_week"
   end
 
   create_table "dynasty_player_event_points", :force => true do |t|

@@ -39,6 +39,7 @@ namespace :dynasty do
         )
       end
 
+
       desc 'Calculates season point totals for all players'
       task :points => [ :environment ] do
         puts 'Emptying player points table!'
@@ -95,6 +96,8 @@ namespace :dynasty do
           end
         end
       end
+
+
       desc 'Calculates event point totals for all players'
       task :event_points => [ :environment ] do
         puts 'Emptying player events points table!'
@@ -148,6 +151,45 @@ namespace :dynasty do
           end
         end
       end
+
+
+      desc 'Sets player bye weeks from lib/assets/bye_weeks.yml'
+      task :bye_weeks => [ :environment ] do
+        db = ActiveRecord::Base.connection
+        file = File.join(Rails.root, 'lib', 'assets', 'bye_weeks.yml')
+        bye_weeks = YAML::load(File.open(file))
+        bye_weeks.each do |week, teams|
+          teams.each do |team|
+            puts "Finding players that play for the #{team}..."
+            result = db.execute("
+              SELECT DISTINCT p.id AS player_id
+              FROM teams t
+              JOIN display_names team_name
+              ON t.id = team_name.entity_id AND team_name.entity_type = 'teams'
+              JOIN person_phases lnk
+              ON t.id = lnk.membership_id AND lnk.membership_type = 'teams'
+              JOIN persons p
+              ON lnk.person_id = p.id
+              JOIN dynasty_player_points points
+              ON points.player_id = p.id AND points.`year` = 2011
+              WHERE t.team_key LIKE '%nfl%'
+                AND team_name.last_name LIKE '#{team}'
+              ORDER BY team_name.last_name
+            ")
+            result.each do |player_id|
+              contract = Contract.find_by_person_id(player_id)
+              begin
+                contract.bye_week = week.to_i
+                contract.save
+              rescue Exception => msg
+                puts msg
+                puts "Player with ID '#{player_id}' does not have a contract record!" if contract.nil?
+              end
+            end
+          end
+        end
+      end
+
     end
   end
 end

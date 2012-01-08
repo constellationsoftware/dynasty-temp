@@ -125,7 +125,8 @@ class Player < ActiveRecord::Base
       :first_name => name.first_name,
       :last_name => name.last_name,
       :position => (position.nil?) ? '' : position.abbreviation.upcase,
-      :contract_amount => contract.amount
+      :contract_amount => contract.amount,
+      :bye_week => contract.bye_week
     }
 
     if respond_to?('points') and points.length > 0
