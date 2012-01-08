@@ -4,7 +4,9 @@
     <bookmark url="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb" description="  def manage&#10;&#10;   @team = UserTeam.find(params[:id]..." line="13" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="" />
+    <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/trades_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
+    </list>
     <ignored path="Dynasty.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,23 +41,23 @@
           <file leaf-file-name="show.html.haml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/players/show.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="55" column="7" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-9.018182">
+                <state line="55" column="7" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-16.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="schema.rb" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/db/schema.rb">
+          <file leaf-file-name="trades_controller.rb" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-34.04045">
+                <state line="159" column="5" selection-start="5224" selection-end="5224" vertical-scroll-proportion="0.50329256">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="player_point.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/player_point.rb">
+          <file leaf-file-name="schema.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/db/schema.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
@@ -148,7 +150,6 @@
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
         <option value="$PROJECT_DIR$/app/views/trades/show.html.haml" />
         <option value="$PROJECT_DIR$/app/models/trade.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/player_team_record.rb" />
         <option value="$PROJECT_DIR$/app/controllers/player_team_records_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/user_teams_controller.rb" />
@@ -156,6 +157,7 @@
         <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/players_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/players/show.html.haml" />
+        <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
       </list>
     </option>
   </component>
@@ -362,6 +364,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="Migrations" />
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.MigrationsFolder" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dynasty" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dynasty" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1026,13 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="171" column="13" selection-start="5451" selection-end="5704" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/player_team_records_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="8" column="133" selection-start="493" selection-end="493" vertical-scroll-proportion="0.0">
@@ -1119,16 +1128,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/players/show.html.haml">
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="7" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-9.018182">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/players/show.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-34.04045">
+        <state line="55" column="7" selection-start="1021" selection-end="1021" vertical-scroll-proportion="-16.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="159" column="5" selection-start="5224" selection-end="5224" vertical-scroll-proportion="0.50329256">
           <folding />
         </state>
       </provider>

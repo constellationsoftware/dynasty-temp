@@ -153,11 +153,11 @@ class TradesController < ApplicationController
     @offered_cash = @trade.offered_cash
     @requested_cash = @trade.requested_cash
 
-    @initial_team.balance.balance_cents = @initial_team.balance.balance_cents - @offered_cash
-    @initial_team.balance.balance_cents = @initial_team.balance.balance_cents + @offered_cash
+    #@initial_team.balance.balance_cents = @initial_team.balance.balance_cents - @offered_cash
+    #@initial_team.balance.balance_cents = @initial_team.balance.balance_cents + @offered_cash
 
-    @second_team.balance.balance_cents = @second_team.balance.balance_cents + @offered_cash
-    @second_team.balance.balance_cents = @second_team.balance.balance_cents - @offered_cash
+    #@second_team.balance.balance_cents = @second_team.balance.balance_cents + @offered_cash
+    #@second_team.balance.balance_cents = @second_team.balance.balance_cents - @offered_cash
 
 
     # Do nothing with picks for right now
