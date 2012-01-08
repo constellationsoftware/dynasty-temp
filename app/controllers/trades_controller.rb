@@ -61,7 +61,7 @@ class TradesController < ApplicationController
     # POST /trades.xml b
   def create
     @trade = Trade.new(params[:trade])
-    @user_team = UserTeam.where(:user_id => current_user.id).where(:league_id => current_user.league_id).first
+    @user_team = UserTeam.where(:user_id => current_user.id)
     @requested_player = PlayerTeamRecord.find(@trade.requested_player_id)
 
     @trade.initial_team_id = @user_team.id
