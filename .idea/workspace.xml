@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/admin/user_teams.rb" afterPath="$PROJECT_DIR$/app/admin/user_teams.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/pick_observer.rb" afterPath="$PROJECT_DIR$/app/models/pick_observer.rb" />
     </list>
     <ignored path="Dynasty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,73 +39,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="trades_controller.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/controllers/trades_controller.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="29" column="49" selection-start="1086" selection-end="1086" vertical-scroll-proportion="0.0">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="schema.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/db/schema.rb">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
-                  <folding>
-                    <marker date="1326037076000" expanded="true" signature="42136:42500" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="44204:44370" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="47882:47921" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="48330:48365" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="48466:48530" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="48606:49020" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="50215:51022" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="51344:51678" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="51885:52102" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="52556:52844" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="53052:53281" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="53493:53946" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="54656:55124" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="55432:56176" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="56486:57230" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="57574:57631" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="57906:57960" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="58227:58286" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="58500:58851" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="59326:60352" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="60604:61970" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="62067:62829" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="63346:64530" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="64676:66410" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="66505:66518" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="66622:67197" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="67304:67712" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="68216:68273" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="68510:68523" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="68682:68746" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="69026:69340" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="69494:69872" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="70216:70506" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="70780:71145" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="71318:71371" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="71569:71956" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="72364:72721" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="72812:73143" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="73254:74504" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="74602:75791" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="76001:76498" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="77049:77121" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="77185:77557" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="77760:78169" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="78826:79888" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="80666:81144" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="81841:81898" placeholder="do ... end" />
-                    <marker date="1326037076000" expanded="true" signature="82601:82677" placeholder="do ... end" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="player.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/models/player.rb">
               <provider selected="true" editor-type-id="text-editor">
@@ -114,10 +48,28 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="20120106222331_add_default_balance_to_dynasty_leagues.rb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="20120106222331_add_default_balance_to_dynasty_leagues.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/db/migrate/20120106222331_add_default_balance_to_dynasty_leagues.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="17" column="35" selection-start="549" selection-end="549" vertical-scroll-proportion="0.25587958">
+                <state line="17" column="44" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pick_observer.rb" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/models/pick_observer.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="22" column="58" selection-start="505" selection-end="505" vertical-scroll-proportion="0.32713756">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="player_team_record.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/player_team_record.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -154,7 +106,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user_teams.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="user_teams.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
@@ -189,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/controllers/user_team_lineups_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/league/trades/show.html.haml" />
         <option value="$PROJECT_DIR$/app/controllers/league/trades_controller.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
@@ -205,6 +156,7 @@
         <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/player.rb" />
         <option value="$PROJECT_DIR$/app/admin/user_teams.rb" />
+        <option value="$PROJECT_DIR$/app/models/pick_observer.rb" />
       </list>
     </option>
   </component>
@@ -1046,20 +998,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/routes.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="28" selection-start="867" selection-end="867" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/persons/show.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="60" selection-start="0" selection-end="3741" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/players/_quarterback.html.haml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -1113,54 +1051,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="96" selection-end="96" vertical-scroll-proportion="0.0">
           <folding>
-            <marker date="1326037076000" expanded="true" signature="42136:42500" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="44204:44370" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="47882:47921" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="48330:48365" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="48466:48530" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="48606:49020" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="50215:51022" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="51344:51678" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="51885:52102" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="52556:52844" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="53052:53281" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="53493:53946" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="54656:55124" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="55432:56176" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="56486:57230" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="57574:57631" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="57906:57960" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="58227:58286" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="58500:58851" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="59326:60352" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="60604:61970" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="62067:62829" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="63346:64530" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="64676:66410" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="66505:66518" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="66622:67197" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="67304:67712" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="68216:68273" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="68510:68523" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="68682:68746" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="69026:69340" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="69494:69872" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="70216:70506" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="70780:71145" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="71318:71371" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="71569:71956" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="72364:72721" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="72812:73143" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="73254:74504" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="74602:75791" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="76001:76498" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="77049:77121" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="77185:77557" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="77760:78169" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="78826:79888" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="80666:81144" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="81841:81898" placeholder="do ... end" />
-            <marker date="1326037076000" expanded="true" signature="82601:82677" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
+            <marker date="1326037076000" expanded="true" signature="-1:-1" placeholder="do ... end" />
           </folding>
         </state>
       </provider>
@@ -1193,16 +1131,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/migrate/20120106222331_add_default_balance_to_dynasty_leagues.rb">
+    <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="35" selection-start="549" selection-end="549" vertical-scroll-proportion="0.25587958">
+        <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/user_teams.rb">
+    <entry file="file://$PROJECT_DIR$/db/migrate/20120106222331_add_default_balance_to_dynasty_leagues.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="65" selection-start="425" selection-end="425" vertical-scroll-proportion="0.35687733">
+        <state line="17" column="44" selection-start="549" selection-end="549" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/player_team_record.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/pick_observer.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="58" selection-start="505" selection-end="505" vertical-scroll-proportion="0.32713756">
           <folding />
         </state>
       </provider>
