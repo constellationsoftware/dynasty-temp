@@ -870,6 +870,10 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
     t.integer  "round",                     :null => false
   end
 
+  add_index "dynasty_draft_picks", ["draft_id"], :name => "index_dynasty_draft_picks_on_draft_id"
+  add_index "dynasty_draft_picks", ["player_id"], :name => "index_dynasty_draft_picks_on_player_id"
+  add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
+
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -892,13 +896,14 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
   end
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",       :limit => 50,                 :null => false
-    t.integer  "size",                     :default => 15, :null => false
+    t.string   "name",                  :limit => 50,                 :null => false
+    t.integer  "size",                                :default => 15, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug"
     t.datetime "clock"
+    t.integer  "default_balance_cents", :limit => 8,  :default => 0,  :null => false
   end
 
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -939,14 +944,14 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year",                 :default => 2000, :null => false
-    t.integer  "defensive_points",     :default => 0
-    t.integer  "fumbles_points",       :default => 0
-    t.integer  "passing_points",       :default => 0
-    t.integer  "rushing_points",       :default => 0
-    t.integer  "sacks_against_points", :default => 0
-    t.integer  "scoring_points",       :default => 0
-    t.integer  "special_teams_points", :default => 0
-    t.integer  "games_played",         :default => 0
+    t.integer  "defensive_points",     :default => 0,    :null => false
+    t.integer  "fumbles_points",       :default => 0,    :null => false
+    t.integer  "passing_points",       :default => 0,    :null => false
+    t.integer  "rushing_points",       :default => 0,    :null => false
+    t.integer  "sacks_against_points", :default => 0,    :null => false
+    t.integer  "scoring_points",       :default => 0,    :null => false
+    t.integer  "special_teams_points", :default => 0,    :null => false
+    t.integer  "games_played",         :default => 0,    :null => false
   end
 
   add_index "dynasty_player_points", ["defensive_points"], :name => "index_dynasty_player_points_on_defensive_points"
@@ -1003,8 +1008,10 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
     t.boolean "is_online",                     :default => false, :null => false
     t.binary  "uuid",           :limit => 255
     t.string  "last_socket_id"
+    t.integer "balance_cents",  :limit => 8,   :default => 0,     :null => false
   end
 
+  add_index "dynasty_teams", ["balance_cents"], :name => "index_dynasty_teams_on_balance_cents"
   add_index "dynasty_teams", ["league_id"], :name => "index_user_teams_league"
   add_index "dynasty_teams", ["user_id"], :name => "index_user_teams_user"
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
@@ -1045,7 +1052,6 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.datetime "last_seen"
-    t.integer  "league_id"
     t.string   "name"
     t.string   "role"
     t.integer  "roles_mask"
@@ -1053,7 +1059,6 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "dynasty_users", ["league_id"], :name => "index_dynasty_users_on_league_id"
   add_index "dynasty_users", ["name"], :name => "index_dynasty_users_on_name"
   add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
 
@@ -1717,11 +1722,6 @@ ActiveRecord::Schema.define(:version => 20120107224115) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "position_groups", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
   end
 
   create_table "positions", :force => true do |t|

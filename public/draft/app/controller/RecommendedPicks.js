@@ -60,9 +60,12 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             this.getRecommendedPicksStore().load();
             this.getDataView().setDisabled(false);
         }, this);
+
+        // When we begin waiting for the server to tell us to pick again,
+        // clear out the store so we don't see the nodes behind the mask
         this.application.addListener(this.application.STATUS_WAITING, function() {
-            this.application
             this.setStatusMessage('Waiting for turn...');
+            this.getRecommendedPicksStore().removeAll();
             this.getDataView().setDisabled(true);
         }, this);
         this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSucceeded, this);
@@ -255,15 +258,15 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
          * That's what they get for being a dick.
          */
         var view = this.getDataView(),
+            nodes = view.getNodes(),
             selectionModel = view.getSelectionModel();
-
+        if (nodes.length === 0) { return; }
         if (selectionModel.getCount() === 0) {
             selectionModel.select(selectionModel.getLastSelected() ? selectionModel.getLastSelected() : 0, false, true);
         }
 
         var selectedNode = view.getSelectedNodes()[0],
-            selectedRecord = view.getRecord(selectedNode),
-            nodes = view.getNodes();
+            selectedRecord = view.getRecord(selectedNode);
         
         // loop through view nodes
         for (var i = 0, l = nodes.length; i < l; ++i) {

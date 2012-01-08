@@ -11374,10 +11374,26 @@ div.pick .info p.round {
 
 /* line 281, ../sass/dynasty_theme.scss */
 #user-balance {
-  font-size: 1.2em;
-  font-weight: bold;
+  font-size: 1.3em;
 }
 /* line 284, ../sass/dynasty_theme.scss */
-#user-balance.deficit {
+#user-balance li {
+  display: inline;
+  padding-right: .5em;
+}
+/* line 287, ../sass/dynasty_theme.scss */
+#user-balance li.amount {
+  padding-right: 1.2em;
+}
+/* line 288, ../sass/dynasty_theme.scss */
+#user-balance li.deficit {
   color: red;
+}
+/* line 289, ../sass/dynasty_theme.scss */
+#user-balance li.label {
+  font-weight: bold;
+}
+/* line 290, ../sass/dynasty_theme.scss */
+#user-balance li:last-child {
+  padding-right: 0;
 }

@@ -3,7 +3,8 @@
   var CLIENT_ID = '#{@team.uuid}';
   var SOCKET_APP_KEY = '#{Pusher.key}';
   var DRAFT_STATUS = '#{@draft.status}';
-  var USER_BALANCE = '#{@team.balance}';
+  var USER_BALANCE = #{@team.balance};
+  var SALARY_TOTAL = #{@team.salary_total};
 = stylesheet_link_tag '/draft/resources/css/dynasty_theme'
 = javascript_include_tag '/draft/lib/extjs/ext-debug'
 = javascript_include_tag '/draft/app'

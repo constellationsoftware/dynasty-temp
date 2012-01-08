@@ -1,5 +1,5 @@
 class League::PicksController < SubdomainController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :get_team!
 
   has_scope :draft_data, :type => :boolean, :default => true, :only => :index
   respond_to :json
@@ -30,7 +30,11 @@ class League::PicksController < SubdomainController
 
       result = {
         :success => true,
-        :picks => [ @pick ]
+        :picks => [ @pick ],
+        :balance => {
+          :balance => @team.balance.to_f,
+          :salary_total => @team.salary_total.to_f
+        }
       }
       format.json { render :json => result }
     end
@@ -39,5 +43,10 @@ class League::PicksController < SubdomainController
   protected
     def collection
       @picks = @league.draft.picks
+    end
+
+  private
+    def get_team!
+      @team = UserTeam.where{(league_id == my{@league.id}) & (user_id == my{current_user.id})}.first
     end
 end
