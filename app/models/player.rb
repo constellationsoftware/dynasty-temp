@@ -60,7 +60,9 @@ class Player < ActiveRecord::Base
 
   # filter out players that have been picked already in this draft
   scope :available, lambda { |draft|
-    joins{picks.outer}.where{(picks.draft_id == nil) | (picks.draft_id.not_eq my{draft.id})}
+    #joins{picks.outer}.where{(picks.draft_id == nil) | (picks.draft_id.not_eq my{draft.id})}
+    picks_subquery = Pick.select{distinct(player_id)}.where{(player_id != nil) & (draft_id == my{draft.id})}
+    where{id.not_in picks_subquery}
   }
   scope :by_position_priority, joins{position}
     .where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}}
