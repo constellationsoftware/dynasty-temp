@@ -35,9 +35,11 @@ class PlayerTeamRecord < ActiveRecord::Base
       ptr = PlayerTeamRecord.new
       ptr.current = TRUE
       ptr.player_id = pick.player_id
-      ptr.details = "Drafted in round #{pick.round} at #{pick.picked_at} by #{pick.team}"
+      ptr.details = "Drafted in round #{pick.round} at #{pick.picked_at} by #{pick.team.name}"
       ptr.user_team_id = pick.team_id
       ptr.added_at = pick.picked_at
+      ptr.depth = 0
+      ptr.position_id = Player.find(pick.player_id).position.id
       ptr.save
     end
   end
