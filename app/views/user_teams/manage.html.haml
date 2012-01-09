@@ -98,7 +98,7 @@
           .six.columns
             %h5
               Choose Your Starters!
-            = semantic_form_for @my_lineup do |f|
+            = semantic_form_for @my_lineup, :remote => true do |f|
               = f.input :qb_id, :as => :select, :collection => @my_qb,  :label => "Choose a starting QB:"
               = f.input :wr1_id, :as => :select, :collection => @my_wr, :label => "Choose your starting WR (1)"
               = f.input :wr2_id, :as => :select, :collection => @my_wr, :label => "Choose your starting WR (2)"
@@ -118,13 +118,13 @@
             .row
               .six.columns
                 = f.input :offered_player_id, :as => :select, :collection => @my_players, :label => "Choose A Player to Offer:"
-                = f.input :offered_cash, :label => "Offer some cash"
-                = f.input :offered_picks, :label => "Offer picks"
+                //= f.input :offered_cash, :label => "Offer some cash"
+                //= f.input :offered_picks, :label => "Offer picks"
               .six.columns
                 = f.label "Choose A Player to Request"
                 = f.grouped_collection_select :requested_player_id, @other_teams.order(:name), :player_team_records, :name, :id, :name, :include_blank => true
-                = f.input :requested_cash, :label => "Request some cash"
-                = f.input :requested_picks, :label => "Request picks"
+                //= f.input :requested_cash, :label => "Request some cash"
+                //= f.input :requested_picks, :label => "Request picks"
             .row
               = f.commit_button
         .panel
