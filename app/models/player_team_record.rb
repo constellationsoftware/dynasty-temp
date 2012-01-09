@@ -3,6 +3,7 @@ class PlayerTeamRecord < ActiveRecord::Base
   belongs_to :player
   belongs_to :position
   belongs_to :user_team
+  belongs_to :team, :class_name => 'UserTeam', :foreign_key => :user_team_id
   has_one :user_team_lineup
 
   attr_accessible :name, :position

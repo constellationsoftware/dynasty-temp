@@ -1,3 +1,3 @@
 class Game < ActiveRecord::Base
-  set_table_name 'dynasty_gammes'
+  set_table_name 'dynasty_games'
 end
