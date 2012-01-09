@@ -33,6 +33,7 @@ ActiveAdmin.register League do
       f.inputs "Details" do
         f.input :name
         f.input :size
+        f.input :default_balance
       end
       f.buttons
     end
