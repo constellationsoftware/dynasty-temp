@@ -14,10 +14,13 @@ class UserTeamsController < ApplicationController
   def manage
    @the_week = Clock.first.week
    @next_week = @the_week + 1
-   @week_results = @team.schedules.where('week = ?', @the_week)
+
+   @team = UserTeam.find(params[:id]).first
+   @week_results = @team.schedules.where('week = ?', @the_week).first
+
    @cap = 75000000
    @title = "A Title"
-   @team = UserTeam.find(params[:id])
+
    session[:user_team_id] = @team.id
 
    @user_team = @team
