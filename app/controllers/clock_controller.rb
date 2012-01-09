@@ -13,6 +13,8 @@ class ClockController < ApplicationController
     end
   end
 
+
+
   def next_week
     @clock = Clock.first
     @clock.next_week

@@ -12,6 +12,9 @@ class UserTeamsController < ApplicationController
   end
 
   def manage
+   @the_week = Clock.first.week
+   @next_week = @the_week + 1
+   @week_results = @team.schedules.where('week = ?', @the_week)
    @cap = 75000000
    @title = "A Title"
    @team = UserTeam.find(params[:id])

@@ -35,6 +35,14 @@ class Clock < ActiveRecord::Base
       .first.points
   end
 
+  def week
+    beginning = Date.new(2011, 9, 8).at_midnight
+    week = ((self.time.to_date - beginning.to_date) / 7).to_i + 1
+    week
+  end
+
+
+
   def calculate_points_for_league(league)
     puts self.time
     puts league.inspect

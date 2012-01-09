@@ -6,23 +6,23 @@
         %p
           %strong
             GAME RESULTS: WEEK
-            = @last_game.week
+            = @the_week
         %p
           %strong
             You
-            - if @last_game.outcome == 1
+            - if @week_results.outcome == 1
               Won!
-            - if @last_game.outcome == 0
+            - if @week_results.outcome == 0
               Lost!
             You got
-            = @team.games.last.points
+            = @week_results.team_score
             points and
-            = UserTeam.find(@last_game.opponent_id).name
+            = UserTeam.find(@week_results.opponent_id).name
             got
-            = UserTeam.find(@last_game.opponent_id).games.last.points
+            = @week_results.opponent_score
             points.
         %p
-          Your next game is against #{@team.schedules.where(:outcome => nil).first.opponent.name}.
+          Your next game is against #{@team.schedules.where('week = ?', @next_week).first.opponent.name}.
           Remember to set your starters!
 
   .row
