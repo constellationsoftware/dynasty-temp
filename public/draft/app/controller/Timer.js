@@ -39,6 +39,7 @@ Ext.define('DynastyDraft.controller.Timer', {
             this.taskRunner.stop(this.countdown);
         } catch (e) {}
         this.view.updateTimer(0, 0);
+        this.countdown = null;
     },
 
     onTimeout: function() {
@@ -52,28 +53,30 @@ Ext.define('DynastyDraft.controller.Timer', {
     },
 
     start: function() {
-        // init the timer countdown task
-        this.countdown = {
-            run: function(iterations) {
-                // stop the task when the timer reaches 0
-                var count = this.self.TURN_LENGTH - ((iterations - 1) % (this.self.TURN_LENGTH + 1));
-                
-                // split seconds into minutes and seconds
-                var minutes = Math.floor(count / 60);
-                var seconds = count % 60;
+        if (this.countdown === null) {
+            // init the timer countdown task
+            this.countdown = {
+                run: function(iterations) {
+                    // stop the task when the timer reaches 0
+                    var count = this.self.TURN_LENGTH - ((iterations - 1) % (this.self.TURN_LENGTH + 1));
+                    
+                    // split seconds into minutes and seconds
+                    var minutes = Math.floor(count / 60);
+                    var seconds = count % 60;
 
-                // update the view to show the remaining time
-                this.view.updateTimer(minutes, seconds);
+                    // update the view to show the remaining time
+                    this.view.updateTimer(minutes, seconds);
 
-                // when the timer times out
-                if (count === 0) { this.onTimeout(); }
-            },
-            interval: 1000,
-            args: null,
-            scope: this
-        };
+                    // when the timer times out
+                    if (count === 0) { this.onTimeout(); }
+                },
+                interval: 1000,
+                args: null,
+                scope: this
+            };
 
-        this.taskRunner.start(this.countdown);
+            this.taskRunner.start(this.countdown);
+        }
     },
 
     onViewRender: function(view) {
