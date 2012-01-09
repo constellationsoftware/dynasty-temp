@@ -1,0 +1,38 @@
+%li.active#rosterTab
+  %h5
+    Roster
+  %p
+    This is where the roster will go. This is where the roster will go.
+  .row
+    .one.columns
+      POS
+    .three.columns
+      NAME
+    .one.columns
+      DEPTH
+    .three.columns
+      DETAILS
+    .four.columns
+      MANAGE
+  - Position.all.each do |p|
+    %p
+      - @my_players.each do |ptr|
+        - if ptr.player.position == p
+          .row
+            .one.columns
+              = ptr.player.position.abbreviation.upcase
+            .three.columns
+              = ptr.player.name.full_name
+            .one.columns
+              - if ptr.depth == 1
+                %strong.success
+                  = "Starter"
+              - if ptr.depth != 1
+                .failure
+                  = "Bench"
+
+            .three.columns
+              = ptr.details
+            .four.columns
+              = link_to "Drop Contract", player_team_record_drop_path(ptr.id), :class => "nice small red button"
+          %br

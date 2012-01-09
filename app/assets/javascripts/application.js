@@ -10,3 +10,5 @@
 //= require foundation
 //= require_tree .
 
+$('div#my_qb').text('#{@my_lineup.qb.andand.name}');
+$('div#clock').text('#{Time.now}');

@@ -4,7 +4,10 @@ Dynasty::Application.routes.draw do
   resources :dynasty_player_contracts
 
   ActiveAdmin.routes(self)
-  devise_for :users
+
+  devise_for :users do
+    get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
+  end
 
   scope :league, :module => 'league', :constraints => SubdomainConstraint do
     resource :draft, :defaults => { :format => 'html' } do
@@ -87,6 +90,10 @@ Dynasty::Application.routes.draw do
     get 'add'
   end
 
+  resources :user_team_lineups do
+    post 'update'
+    get 'update'
+  end
   resources :persons do
     resources :display_name
   end

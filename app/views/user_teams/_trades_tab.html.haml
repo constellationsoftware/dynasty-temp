@@ -1,0 +1,89 @@
+%li.active#tradesTab
+  %h5
+  .panel
+    %h3
+      Offer A Trade
+    = semantic_form_for @new_trade,  do |f|
+      .row
+        .six.columns
+          = f.input :offered_player_id, :as => :select, :collection => @my_players, :label => "Choose A Player to Offer:"
+          //= f.input :offered_cash, :label => "Offer some cash"
+          //= f.input :offered_picks, :label => "Offer picks"
+        .six.columns
+          = f.label "Choose A Player to Request"
+          = f.grouped_collection_select :requested_player_id, @other_teams.order(:name), :player_team_records, :name, :id, :name, :include_blank => true
+          //= f.input :requested_cash, :label => "Request some cash"
+          //= f.input :requested_picks, :label => "Request picks"
+      .row
+        = f.commit_button
+  .panel
+    %h3
+      Open Trade Offers Received
+    - @my_open_trades_received.andand.each do |trade|
+      %p
+        = link_to "Reject Trade", trade_retract_path(trade), :class => "nice button small radius red"
+        = link_to "Accept Trade", trade_accept_path(trade), :class => "nice button small radius blue"
+        I received an offer to trade
+        = trade.requested_player.name
+        for
+        = trade.offered_player.name
+        from
+        = trade.initial_team.name
+        on
+        = trade.offered_at
+
+  .panel
+    %h3
+      My Open Trade Offers
+    - @my_open_trades_offered.andand.each do |trade|
+      %p
+        = link_to "Retract Trade", trade_retract_path(trade), :class => "nice button small radius red"
+        I offered
+        = trade.offered_player.name
+        to
+        = trade.second_team.name
+        for
+        = trade.requested_player.name
+        on
+        = trade.offered_at
+  .panel
+    %h3
+      Accepted Trade Offers Made
+    - @my_accepted_trades_offered.andand.each do |trade|
+      %p
+
+        = trade.offered_player.name
+        to
+        = trade.second_team.name
+        for
+        = trade.requested_player.name
+        on
+        = trade.offered_at
+
+  .panel
+    %h3
+      Accepted Trade Offers Received
+    - @my_accepted_trades_received.andand.each do |trade|
+      %p
+
+        = trade.requested_player.name
+        to
+        = trade.initial_team.name
+        for
+        = trade.offered_player.name
+        on
+        = trade.offered_at
+
+  .panel
+    %h3
+      Denied or Retracted Trade Offers
+    - @my_denied_trades_offered.andand.each do |trade|
+      %p
+
+        = trade.offered_player.name
+        to
+        = trade.second_team.name
+        for
+        = trade.requested_player.name
+        on
+        = trade.offered_at

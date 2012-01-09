@@ -36,7 +36,7 @@ gem 'activeadmin'
 gem 'formtastic'
 gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
-gem 'zurb-foundation'
+
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
@@ -81,6 +81,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.0'
   gem 'uglifier'
   gem 'thin'
+  gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'

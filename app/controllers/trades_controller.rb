@@ -61,16 +61,15 @@ class TradesController < ApplicationController
     # POST /trades.xml b
   def create
     @trade = Trade.new(params[:trade])
-    @user_team = UserTeam.where(:user_id => current_user.id)
+    @offered_player = PlayerTeamRecord.find(@trade.offered_player_id)
     @requested_player = PlayerTeamRecord.find(@trade.requested_player_id)
-    @user_team = UserTeam.find(@requested_player.user_team_id)
-    @league = @user_team.league_id
-    @trade.initial_team_id = @user_team.id
-    @trade.league_id = @user_team.league_id
-    @trade.second_team_id =  UserTeam.find(@requested_player.user_team_id)
+    @trade.initial_team_id = @offered_player.user_team_id
+    @trade.league_id = @offered_player.user_team.league_id
+    @trade.second_team_id = @requested_player.user_team_id
     @trade.offered_at = Clock.first.time
     @trade.open = TRUE
     @trade.accepted = FALSE
+    @trade.save
     respond_to do |format|
       if @trade.save
         format.html { redirect_to :back, :flash => { :info => "You offered #{@requested_player.user_team.name} a trade!" } }

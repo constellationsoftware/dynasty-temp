@@ -36,21 +36,23 @@ class UserTeamsController < ApplicationController
    @signed_players = @league.players
    @unsigned_players = @all_players - @signed_players
    @positions = Position.all
+
    # Trades stuff
    @trade = Trade.all
 
 
-   @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@user_team.id)
-   @my_open_trades_received = Trade.open.find_all_by_second_team_id(@user_team.id)
+   @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@team.id)
+   @my_open_trades_received = Trade.open.find_all_by_second_team_id(@team.id)
 
-   @my_accepted_trades_offered = Trade.closed.accepted.find_all_by_initial_team_id(@user_team.id)
-   @my_accepted_trades_received = Trade.closed.accepted.find_all_by_second_team_id(@user_team.id)
+   @my_accepted_trades_offered = Trade.closed.accepted.find_all_by_initial_team_id(@team.id)
+   @my_accepted_trades_received = Trade.closed.accepted.find_all_by_second_team_id(@team.id)
 
-   @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@user_team.id)
-   @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@user_team.id)
+   @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@team.id)
+   @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@team.id)
 
    # Create a New Trade
    @new_trade = Trade.new
+   @new_trade.initial_team_id = @team.id
    @other_teams = @league.teams.where('id != ?', @user_team.id)
    @other_players = []
    @other_teams.each do |ot|
