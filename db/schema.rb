@@ -992,13 +992,10 @@ ActiveRecord::Schema.define(:version => 20120109154109) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position_id"
-<<<<<<< HEAD
-    t.integer  "depth",        :default => 0, :null => false
-=======
+    t.integer  "depth",          :default => 0, :null => false
     t.boolean  "waiver"
     t.integer  "waiver_team_id"
     t.integer  "league_id"
->>>>>>> 3435079deb23ecac4de1edd344315a1d1857ea17
   end
 
   create_table "dynasty_positions", :force => true do |t|
@@ -1041,10 +1038,10 @@ ActiveRecord::Schema.define(:version => 20120109154109) do
     t.datetime "denied_at"
     t.integer  "offered_player_id"
     t.integer  "requested_player_id"
-    t.integer  "offered_cash",        :default => 0
-    t.integer  "requested_cash",      :default => 0
-    t.string   "offered_picks",       :default => "0"
-    t.string   "requested_picks",     :default => "0"
+    t.integer  "offered_cash"
+    t.integer  "requested_cash"
+    t.string   "offered_picks"
+    t.string   "requested_picks"
     t.text     "message"
   end
 
