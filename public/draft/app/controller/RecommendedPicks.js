@@ -14,6 +14,9 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         ref: 'filterCtl',
         selector: '#recommendedpickwrap combo#filter'
     }, {
+        ref: 'autopickBox',
+        selector: '#recommendedpickwrap combo#autopick'
+    }, {
         ref: 'submitButton',
         selector: '#recommendedpickwrap button#submit'
     }, {
@@ -21,6 +24,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         selector: '#recommended-pick-edit-window'
     }],
     loadMask: null,
+    waitingStatusMsg: 'Waiting for turn...',
     init: function() {
         this.callParent(arguments);
         this.control({
@@ -38,9 +42,11 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             },
             'viewport #recommendedpickwrap': {},
             '#recommendedpickwrap button#submit': { click: this.onSubmit },
+            '#recommendedpickwrap button#submit menu menuitem#autopick': { click: this.onAutoPick },
             '#recommendedpickwrap combo#filter': { change: this.onFilterChanged },
             '#recommended-pick-edit-window': { submit: this.onItemEditSubmit },
-            '#recommended-pick-edit-window combo': { beforequery: this.onBeforeQuery }
+            '#recommended-pick-edit-window combo': { beforequery: this.onBeforeQuery },
+            //'#recommendedpickwrap checkboxfield#autopick': { change: this.onAutoPickChange }
         });
 
         this.addEvents('playerpicked');
@@ -64,7 +70,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         // When we begin waiting for the server to tell us to pick again,
         // clear out the store so we don't see the nodes behind the mask
         this.application.addListener(this.application.STATUS_WAITING, function() {
-            this.setStatusMessage('Waiting for turn...');
+            this.setStatusMessage(this.waitingStatusMsg);
             this.getRecommendedPicksStore().removeAll();
             this.getDataView().setDisabled(true);
         }, this);
@@ -208,14 +214,14 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             record = this.getDataView().getSelectionModel().getSelection()[0],
             callback = function(buttonId) {
                 buttonId = buttonId || null;
-                if (buttonId === "yes") {
+                if (buttonId === "yes" || force) {
                     me.fireEvent('playerpicked', record);
                     me.setStatusMessage('Sending pick to server...');
                     me.getDataView().setDisabled(true);
                 }
             };
         
-        if (force) { callback(); }
+        if (force) { console.log(callback); callback(); }
         else {
             var msg = 'Do you want to add ' + record.get('full_name') + ' to your roster?';
             Ext.Msg.confirm('Confirm pick?', msg, callback, this);
@@ -321,5 +327,37 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 scope: this.loadMask
             }
         });
+    },
+
+    onAutoPick: function() {
+        Ext.Msg.confirm(
+            'Are you sure?',
+            'This cannot be undone! Are you sure you want to auto-pick your remaining players?',
+            function() {
+                Ext.Ajax.request({
+                    url: '/draft/team/autopick',
+                    method: 'GET',
+                    params: { autopick: true },
+                    success: function() {
+                        // update the default "waiting" status message
+                        this.waitingStatusMsg = 'Waiting for the draft to finish...';
+
+                        // select the first record and force the pick
+                        this.getDataView().getSelectionModel().select(0);
+                        this.makePick(true);
+                    },
+                    failure: function() {
+                        Ext.Msg.show({
+                            title: 'Sorry!',
+                            msg: 'Something went wrong with your last operation. Please try again.',
+                            icon: Ext.Msg.WARNING,
+                            buttons: Ext.MessageBox.OK
+                        });
+                    },
+                    scope: this
+                });
+            },
+            this
+        );
     }
 });

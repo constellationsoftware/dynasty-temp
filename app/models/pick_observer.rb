@@ -17,8 +17,16 @@ class PickObserver < ActiveRecord::Observer
       pick.draft.current_pick_id = nil
       pick.draft.save
 
+
       # TODO: Edit this to update after each pick is made not at end of draft.
       PlayerTeamRecord.match_picks(pick.draft_id)
+
+      # reset all teams' autopick status to false
+      pick.draft.teams.each{ |team|
+        team.autopick = false
+        team.save
+      }
+
     end
   end
 end
