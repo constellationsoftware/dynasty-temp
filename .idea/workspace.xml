@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" afterPath="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
     </list>
     <ignored path="Dynasty.iws" />
@@ -55,7 +56,7 @@
           <file leaf-file-name="manage.html.haml" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="21" column="68" selection-start="539" selection-end="539" vertical-scroll-proportion="0.3255814">
+                <state line="21" column="57" selection-start="529" selection-end="529" vertical-scroll-proportion="0.3255814">
                   <folding />
                 </state>
               </provider>
@@ -955,7 +956,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="68" selection-start="539" selection-end="539" vertical-scroll-proportion="0.3255814">
+        <state line="21" column="57" selection-start="529" selection-end="529" vertical-scroll-proportion="0.3255814">
           <folding />
         </state>
       </provider>

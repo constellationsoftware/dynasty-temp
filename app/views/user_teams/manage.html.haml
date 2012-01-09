@@ -15,11 +15,11 @@
             - if @last_game.outcome == 0
               Lost!
             You got
-            = @team.game.last.points
+            = @team.games.last.points
             points and
             = UserTeam.find(@last_game.opponent_id).name
             got
-            = UserTeam.find(@last_game.opponent_id).game.last.points
+            = UserTeam.find(@last_game.opponent_id).games.last.points
             points.
         %p
           Your next game is against #{@team.schedules.where(:outcome => nil).first.opponent.name}.
