@@ -27,3 +27,5 @@
             = t.andand.name
         = link_to "Manage Team", manage_user_team_url(t), :class => "small nice black button radius"
 
+        - unless t.league.draft.status == 'finished'
+          = link_to "Go To The Draft", "http://#{t.league.slug}.dynastyowner.net/draft", :class => "small nice blue button radius"
