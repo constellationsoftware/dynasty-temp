@@ -48,23 +48,44 @@
         %h1
           = image_tag 'navbar_logo.png'
       .nine.columns.hide-on-phones.clean.right
-        %strong
-          //%a.button.nice.small.black(data-reveal-id="playerResearch") Research
-          //%a.button.nice.small.black(data-reveal-id="userTeams") Teams
-          //%a.button.nice.small.black(data-reveal-id="userAccount") Account
-          //%a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
-          = link_to "Home", root_url, :class => "button nice small blue"
+        %span.button.nice.small.black
+          = Clock.first.time.strftime("%B %e, %Y")
+        = link_to "Home", root_url, :class => "button nice small blue"
+        //%a.button.nice.small.black(data-reveal-id="playerResearch") Research
+        //%a.button.nice.small.black(data-reveal-id="userTeams") Teams
+        //%a.button.nice.small.black(data-reveal-id="userAccount") Account
+        //%a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
+
 
   /*Primary Page Header Bar
   .container
     .row
       .twelve.columns
-        .foundation-header
-          %h1
-            %a
-              Primary Heading Goes Here
-          %h4.subheader
-            Lorem impsum dolor sit amet. Lorem impsum dolor sit amet. Lorem impsum dolor sit amet.
+        - if @league
+          .foundation-header
+            %h1
+              Good
+              - if Time.now.hour <= 12
+                Morning,
+              - if Time.now.hour > 12
+                Afternoon,
+              #{@team.user.name}.
+
+            %h4.subheader
+              It's
+              %strong
+                = Clock.first.nice_time
+              and there are #{@team.schedules.where(:outcome => nil).count} games left in the season.
+              %br
+              Your record is
+              %strong
+                = @team.schedules.where(:outcome => '1').count
+                for
+                = @team.schedules.where(:score).count
+              and you have
+              %strong
+                #{number_to_currency(@team.balance)}
+              in the bank. What are you going to do?
 
     .row
       .nine.columns
@@ -83,30 +104,13 @@
             .alert-box.error
               Not you?
               = link_to "Sign Out", destroy_user_session_path
-        .panel
+
 
         - if @league
-          .panel
-            %h5
-              McFly's DeLorean
-            .alert-box
-              = Clock.first.time.strftime("%B %e, %Y")
-            %p
-              = link_to "Fast Forward 1 Week", "/clock/2/next_week?league_id=#{@league.id}", :class => "nice button blue small radius"
-            %p
-              = link_to "Reset To Season Start", "/clock/2/reset?league_id=#{@league.id}", :class => "nice button blue small radius"
-        .panel
-          Right 3
-          %br
-          %br
-          %br
-          %br
-        .panel
-          Right 4
-          %br
-          %br
-          %br
-          %br
+
+          = render :partial => "user_teams/bank_account"
+          = render :partial => "user_teams/schedule_table"
+          = render :partial => "user_teams/time_machine"
 
 
 

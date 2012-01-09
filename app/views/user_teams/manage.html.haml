@@ -2,10 +2,11 @@
   .row
     .panel
       %h5
-        = @team.name
-        Dashboard
+        Your Dashboard
       %p
-        Lorem ipsum dolor sit amet, hinc adhuc iisque eam in, est errem putant verear te, ex nam ridens dignissim. Vim quem audire no. Id putent dicunt imperdiet mel, ex vel impetus detracto necessitatibus, eam mandamus vulputate ea. Mei te wisi pertinacia, in nec sensibus scribentur. Ut nulla nostrud percipitur per, nulla zril delectus sea ex.
+        Your next game is against #{@team.schedules.where(:outcome => nil).first.opponent.name}.
+        Remember to set your starters!
+
   .row
     %dl.nice.contained.tabs
       %dd

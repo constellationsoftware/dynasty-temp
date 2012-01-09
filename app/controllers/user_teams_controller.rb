@@ -12,8 +12,11 @@ class UserTeamsController < ApplicationController
   end
 
   def manage
+   @cap = 75000000
    @title = "A Title"
    @team = UserTeam.find(params[:id])
+   session[:user_team_id] = @team.id
+
    @user_team = @team
    @league = @team.league
    @current_user = current_user
@@ -23,7 +26,12 @@ class UserTeamsController < ApplicationController
 
    # Roster and positioning stuff
    @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
-   @my_players = @team.player_team_records.all
+
+   @my_season_payroll = @team.players.to_a.sum(&:amount)
+   @my_weekly_payroll = @my_season_payroll / @team.schedules.count
+
+   @my_starters = @team.player_team_records.where(:depth => 1)
+   @my_bench = @team.player_team_records.where(:depth => 0)
    @my_ptr = @team.player_team_records
       @my_qb = @my_ptr.qb
       @my_wr = @my_ptr.wr
@@ -32,14 +40,14 @@ class UserTeamsController < ApplicationController
       @my_k  = @my_ptr.k
 
    # Research Stuff
-   @all_players = Player.with_points_from_season(2011)
+   @all_players = Player.with_points_from_season(2011).order("points DESC")
    @signed_players = @league.players
    @unsigned_players = @all_players - @signed_players
    @positions = Position.all
 
    # Trades stuff
    @trade = Trade.all
-
+   @my_players = @team.player_team_records
 
    @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@team.id)
    @my_open_trades_received = Trade.open.find_all_by_second_team_id(@team.id)
@@ -50,7 +58,14 @@ class UserTeamsController < ApplicationController
    @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@team.id)
    @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@team.id)
 
+
+   # Waiver Wire Stuff
+
+   @waiver_players = @league.player_team_records.where(:waiver => 1)
+
+
    # Create a New Trade
+
    @new_trade = Trade.new
    @new_trade.initial_team_id = @team.id
    @other_teams = @league.teams.where('id != ?', @user_team.id)

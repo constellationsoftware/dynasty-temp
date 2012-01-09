@@ -1,6 +1,6 @@
-class CreateSchedules < ActiveRecord::Migration
+class CreateDynastyUserTeamSchedules < ActiveRecord::Migration
   def change
-    create_table :schedules do |t|
+    create_table :dynasty_user_team_schedules do |t|
       t.integer :league_id
       t.integer :team_id
       t.integer :opponent_id

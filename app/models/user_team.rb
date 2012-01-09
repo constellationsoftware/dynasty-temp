@@ -10,6 +10,9 @@ class UserTeam < ActiveRecord::Base
   has_many :players, :through => :player_team_records
   money :balance, :cents => :balance_cents
 
+  has_many :schedules, :inverse_of => :user_team, :foreign_key => 'team_id'
+  has_many :opponents, :through => :schedules
+
   scope :online, where(:is_online => true)
   scope :offline, where(:is_online => false)
 

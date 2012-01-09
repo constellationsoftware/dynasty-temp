@@ -66,19 +66,19 @@ namespace :dynasty do
               repo_type = stat.stat_repository_type
               case repo_type
                 when "american_football_defensive_stats"
-                  defensive_points += stat.stat_repository.points.to_i
+                  defensive_points += stat.stat_repository.points
                 when "american_football_fumbles_stats"
-                  fumbles_points += stat.stat_repository.points.to_i
+                  fumbles_points += stat.stat_repository.points
                 when "american_football_passing_stats"
-                  passing_points += stat.stat_repository.points.to_i
+                  passing_points += stat.stat_repository.points
                 when "american_football_rushing_stats"
-                  rushing_points += stat.stat_repository.points.to_i
+                  rushing_points += stat.stat_repository.points
                 when "american_football_sacks_against_stats"
-                  sacks_against_points += stat.stat_repository.points.to_i
+                  sacks_against_points += stat.stat_repository.points
                 when "american_football_special_teams_stats"
-                  special_teams_points += stat.stat_repository.points.to_i
+                  special_teams_points += stat.stat_repository.points
                 when "american_football_scoring_stats"
-                  scoring_points += stat.stat_repository.points.to_i
+                  scoring_points += stat.stat_repository.points
                 when "core_stats"
                   games_played += stat.stat_repository.events_played.to_i
                 else
@@ -97,6 +97,24 @@ namespace :dynasty do
         end
       end
 
+      desc 'Adds regular position depth to player contracts from person phases'
+      task :add_position_depth => [:environment] do
+        Contract.all.each do |c|
+          c.depth = c.person.person_phases.where(:membership_type => 'teams').andand.first.andand.regular_position_depth
+          if c.depth == 'starter'
+            c.depth = '1'
+          end
+          c.save
+        end
+      end
+
+      desc 'Records player event point dates'
+      task :event_points_dates => [:environment] do
+        PlayerEventPoint.all.each do |pep|
+          pep.event_date = pep.event.start_date_time
+          pep.save
+        end
+      end
 
       desc 'Calculates event point totals for all players'
       task :event_points => [ :environment ] do

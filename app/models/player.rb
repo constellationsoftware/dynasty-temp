@@ -29,6 +29,13 @@ class Player < ActiveRecord::Base
   has_many :events, :through => :event_points
   has_one  :contract, :foreign_key => 'person_id'
 
+  def contract_depth
+    self.contract.depth
+  end
+
+  def amount
+    self.contract.amount
+  end
 
   def self.order_by_position_priority
     ret = "CASE"

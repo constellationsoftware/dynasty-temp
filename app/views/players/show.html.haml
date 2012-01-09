@@ -1,81 +1,146 @@
 .row.person
   .panel
-    %h3
-      = @player.name.full_name
-      = link_to "Add Player", @player
-    %p
-      Contract Summary: $
-      = @player.contract.summary
-      over
-      = @player.contract.length
-      years, ending in
-      = @player.contract.end_year
-    %p
-      Yearly Salary: $
-      = @player.contract.amount
-    %p
-      Free Agent:
-      = @player.contract.free_agent_year
-    %p
-      Fantasy Points Earned Last Season:
-      = @player.points
-      |
-      Dynasty Weighted FPTS:
-      =  (@player.points) #/ (@player.contract.amount / 1000000).to_i
-    %p
+    .row
+      .two.columns
+        = image_tag 'headshot.png'
+        B:
+        = @person.birth_date
+        #{@hometown.city}, #{@hometown.area}
+        Height: #{@person.person_phases.first.height}
+        Weight: #{@person.person_phases.first.weight}
+      .ten.columns
+        %h4
+          %strong
+            = @player.name.full_name
+          \#
+          = @person.person_phases.first.uniform_number
+        %h5
+          = @nfl_team.display_name.full_name
+          = @player.position.abbreviation.upcase
+          (#{@phase.regular_position_depth})
+          2011-2012 Bye Week:
+          = @player.contract.bye_week
+        .span.button.small.black.radius.nice
+          = @current_team
+        - if @league_ptr.nil?
+          = link_to "Add Player", add_player_path, :class => "nice small blue radius button"
+
+        %p
+          Contract Summary: $
+          = @player.contract.summary
+          over
+          = @player.contract.length
+          years, ending in
+          = @player.contract.end_year
+        %p
+          Yearly Salary: $
+          = @player.contract.amount
+        %p
+          Free Agent:
+          = @player.contract.free_agent_year
 
 
-    %p
+  .panel
+    %h5
       This Season's Performance
-.row
-  .twelve.columns
-    %table.twelve.columns
-      %thead
-        %tr
-          %td
-            Event Date
-          %td
-            PTS
-          %td
-            Pass
-          %td
-            Rush
-          %td
-            Def
-          %td
-            Score
-          %td
-            ST
-          %td
-            Sck
-          %td
-            Fmbl
-          %td
-            *
-      %tbody
-      - @player.event_points.each do |pep|
-        %tr
-          %td
-            = pep.event.start_date_time.strftime("%B %e, %Y")
-          %td
-            = pep.points
-          %td
-            = pep.passing_points
-          %td
-            = pep.rushing_points
-          %td
-            = pep.defensive_points
-          %td
-            = pep.scoring_points
-          %td
-            = pep.special_teams_points
-          %td
-            = pep.sacks_against_points
-          %td
-            = pep.fumbles_points
-          %td
-
-
+    .row
+      .twelve.columns
+        %table.twelve.columns
+          %thead
+            %tr
+              %td
+                Event Date
+              %td
+                PTS
+              %td
+                Pass
+              %td
+                Rush
+              %td
+                Def
+              %td
+                Score
+              %td
+                ST
+              %td
+                Sck
+              %td
+                Fmbl
+              %td
+                *
+          %tbody
+          - @player.event_points.current.each do |pep|
+            %tr
+              %td
+                = pep.event.start_date_time.strftime("%B %e, %Y")
+              %td
+                = pep.points
+              %td
+                = pep.passing_points
+              %td
+                = pep.rushing_points
+              %td
+                = pep.defensive_points
+              %td
+                = pep.scoring_points
+              %td
+                = pep.special_teams_points
+              %td
+                = pep.sacks_against_points
+              %td
+                = pep.fumbles_points
+              %td
+  .panel
+    %h5
+      Career Performance
+    .row
+      .twelve.columns
+        %table.twelve.columns
+          %thead
+            %tr
+              %td
+                Season
+              %td
+                PTS
+              %td
+                Pass
+              %td
+                Rush
+              %td
+                Def
+              %td
+                Score
+              %td
+                ST
+              %td
+                Sck
+              %td
+                Fmbl
+              %td
+                Games
+          %tbody
+          - @player.points.each do |psp|
+            %tr
+              %td
+                = psp.year
+              %td
+                = psp.points
+              %td
+                = psp.passing_points
+              %td
+                = psp.rushing_points
+              %td
+                = psp.defensive_points
+              %td
+                = psp.scoring_points
+              %td
+                = psp.special_teams_points
+              %td
+                = psp.sacks_against_points
+              %td
+                = psp.fumbles_points
+              %td
+                = psp.games_played
 
 
   //- if @player.position.position.id = 1
