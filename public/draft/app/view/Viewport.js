@@ -142,10 +142,10 @@ Ext.define('DynastyDraft.view.Viewport', {
                     }
                 }],
 
-            }, {
+            }, /*{
                 xtype: 'playergrid',
                 title: 'All Players',
-            }, {
+            },*/ {
                 xtype: 'roster',
                 title: 'Roster',
             }, {
