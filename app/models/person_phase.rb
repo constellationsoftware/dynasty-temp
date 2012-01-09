@@ -1,5 +1,5 @@
 class PersonPhase < ActiveRecord::Base
-  belongs_to :personr
+  belongs_to :person
 
 
   belongs_to :membership#, :polymorphic => true

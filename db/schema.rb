@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120108225533) do
+ActiveRecord::Schema.define(:version => 20120109132203) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -915,6 +915,7 @@ ActiveRecord::Schema.define(:version => 20120108225533) do
     t.integer  "summary"
     t.string   "free_agent_year"
     t.integer  "bye_week"
+    t.string   "depth"
   end
 
   create_table "dynasty_player_event_points", :force => true do |t|
@@ -930,6 +931,7 @@ ActiveRecord::Schema.define(:version => 20120108225533) do
     t.integer  "special_teams_points", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "event_date"
   end
 
   add_index "dynasty_player_event_points", ["event_id"], :name => "index_dynasty_player_event_points_on_event_id"
@@ -984,6 +986,9 @@ ActiveRecord::Schema.define(:version => 20120108225533) do
     t.datetime "updated_at"
     t.integer  "depth"
     t.integer  "position_id"
+    t.boolean  "waiver"
+    t.integer  "waiver_team_id"
+    t.integer  "league_id"
   end
 
   create_table "dynasty_positions", :force => true do |t|
@@ -1000,6 +1005,8 @@ ActiveRecord::Schema.define(:version => 20120108225533) do
     t.string  "last_socket_id"
     t.integer "balance_cents",  :limit => 8,   :default => 0,     :null => false
     t.boolean "autopick",                      :default => false
+    t.integer "waiver_order"
+    t.integer "draft_order"
   end
 
   add_index "dynasty_teams", ["balance_cents"], :name => "index_dynasty_teams_on_balance_cents"
@@ -1023,6 +1030,19 @@ ActiveRecord::Schema.define(:version => 20120108225533) do
     t.integer  "requested_cash",      :default => 0
     t.string   "offered_picks",       :default => "0"
     t.string   "requested_picks",     :default => "0"
+    t.text     "message"
+  end
+
+  create_table "dynasty_user_team_schedules", :force => true do |t|
+    t.integer  "league_id"
+    t.integer  "team_id"
+    t.integer  "opponent_id"
+    t.integer  "week"
+    t.integer  "outcome"
+    t.integer  "team_score"
+    t.integer  "opponent_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "dynasty_users", :force => true do |t|

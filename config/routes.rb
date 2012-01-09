@@ -74,6 +74,12 @@ Dynasty::Application.routes.draw do
   resources :players do
     get 'show'
     get 'add'
+    post 'add'
+    member do
+      get 'show'
+      get 'add'
+      post 'add'
+    end
   end
 
   resources :clock do
@@ -91,6 +97,14 @@ Dynasty::Application.routes.draw do
   resources :player_team_records do
     get 'drop'
     get 'add'
+    get 'bid'
+    get 'resolve'
+    member do
+      get 'bid'
+      get 'resolve'
+      post 'bid'
+      post 'resolve'
+    end
   end
 
   resources :user_team_lineups do

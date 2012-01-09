@@ -15,14 +15,18 @@
           //= f.input :requested_cash, :label => "Request some cash"
           //= f.input :requested_picks, :label => "Request picks"
       .row
+        .twelve.columns
+          = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"
+      .row
         = f.commit_button
   .panel
     %h3
       Open Trade Offers Received
     - @my_open_trades_received.andand.each do |trade|
-      %p
-        = link_to "Reject Trade", trade_retract_path(trade), :class => "nice button small radius red"
-        = link_to "Accept Trade", trade_accept_path(trade), :class => "nice button small radius blue"
+      .panel
+        %strong
+          = link_to "Reject Trade", trade_retract_path(trade), :class => "success"
+          = link_to "Accept Trade", trade_accept_path(trade), :class => "failure"
         I received an offer to trade
         = trade.requested_player.name
         for
@@ -30,14 +34,19 @@
         from
         = trade.initial_team.name
         on
-        = trade.offered_at
-
+        = trade.offered_at.strftime("%B %e, %Y")
+        - if trade.message
+          %br
+          %strong
+            Message Attached:
+          #{trade.message}
   .panel
     %h3
       My Open Trade Offers
     - @my_open_trades_offered.andand.each do |trade|
-      %p
-        = link_to "Retract Trade", trade_retract_path(trade), :class => "nice button small radius red"
+      .panel
+        %strong
+          = link_to "Retract Trade", trade_retract_path(trade), :class => "failure"
         I offered
         = trade.offered_player.name
         to
@@ -45,7 +54,12 @@
         for
         = trade.requested_player.name
         on
-        = trade.offered_at
+        = trade.offered_at.strftime("%B %e, %Y")
+        - if trade.message
+          %br
+          %strong
+            Message Attached:
+          #{trade.message}
   .panel
     %h3
       Accepted Trade Offers Made
@@ -58,7 +72,7 @@
         for
         = trade.requested_player.name
         on
-        = trade.offered_at
+        = trade.offered_at.strftime("%B %e, %Y")
 
   .panel
     %h3
@@ -72,7 +86,7 @@
         for
         = trade.offered_player.name
         on
-        = trade.offered_at
+        = trade.offered_at.strftime("%B %e, %Y")
 
   .panel
     %h3
@@ -86,4 +100,4 @@
         for
         = trade.requested_player.name
         on
-        = trade.offered_at
+        = trade.offered_at.strftime("%B %e, %Y")
