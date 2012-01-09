@@ -87,17 +87,3 @@
         = trade.offered_player.name
         on
         = trade.offered_at.strftime("%B %e, %Y")
-
-  .panel
-    %h3
-      Denied or Retracted Trade Offers
-    - @my_denied_trades_offered.andand.each do |trade|
-      %p
-
-        = trade.offered_player.name
-        to
-        = trade.second_team.name
-        for
-        = trade.requested_player.name
-        on
-        = trade.offered_at.strftime("%B %e, %Y")
