@@ -38,4 +38,4 @@
         %td
           = @team.schedules.where(:outcome => '1').count
           for
-          = @team.schedules.where('outcome != ?', nil).count
+          = Clock.first.week
