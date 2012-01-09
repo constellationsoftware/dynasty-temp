@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/clock.rb" afterPath="$PROJECT_DIR$/app/models/clock.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.haml" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml" afterPath="$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml" />
     </list>
@@ -35,10 +36,10 @@
     <splitter split-orientation="horizontal" split-proportion="0.53673065">
       <split-first>
         <leaf>
-          <file leaf-file-name="user_teams_controller.rb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="user_teams_controller.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="16" selection-start="438" selection-end="451" vertical-scroll-proportion="0.0">
+                <state line="39" column="3" selection-start="1080" selection-end="1080" vertical-scroll-proportion="0.49612403">
                   <folding />
                 </state>
               </provider>
@@ -65,16 +66,16 @@
           <file leaf-file-name="_schedule_table.html.haml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="12" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
+                <state line="39" column="11" selection-start="719" selection-end="719" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="application.html.haml" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="application.html.haml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="83" column="34" selection-start="2674" selection-end="2674" vertical-scroll-proportion="0.32973504">
+                <state line="82" column="17" selection-start="2637" selection-end="2637" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -84,19 +85,19 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="clock.rb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="clock.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/models/clock.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="8" selection-start="956" selection-end="956" vertical-scroll-proportion="0.6280667">
+                <state line="12" column="5" selection-start="372" selection-end="372" vertical-scroll-proportion="0.069767445">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="user_team.rb" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/models/user_team.rb">
+          <file leaf-file-name="_bank_account.html.haml" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/views/user_teams/_bank_account.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="12" column="43" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -158,10 +159,10 @@
         <option value="$PROJECT_DIR$/app/controllers/players_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/clock_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/user_teams_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/clock.rb" />
         <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
         <option value="$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
+        <option value="$PROJECT_DIR$/app/models/clock.rb" />
       </list>
     </option>
   </component>
@@ -873,9 +874,9 @@
       <window_info id="Heroku" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18996799" sideWeight="0.28139755" order="0" side_tool="true" content_ui="tabs" x="-751" y="1041" width="659" height="867" />
       <window_info id="Code Outline" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.05888651" sideWeight="0.6701422" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3171123" sideWeight="0.7157696" order="2" side_tool="false" content_ui="combo" x="148" y="170" width="246" height="1059" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1748663" sideWeight="0.7157696" order="2" side_tool="false" content_ui="combo" x="148" y="170" width="246" height="1059" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3171123" sideWeight="0.2776204" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1748663" sideWeight="0.2776204" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08159565" sideWeight="0.3331568" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.08215298" sideWeight="0.6631356" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32985783" sideWeight="0.49358973" order="10" side_tool="false" content_ui="tabs" />
@@ -955,11 +956,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/views/users/index.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/injury_phase.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" />
@@ -985,16 +981,6 @@
         <state line="12" column="43" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="71" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/schema.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="885" column="23" selection-start="43277" selection-end="43284" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/players_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="23" selection-start="623" selection-end="623" vertical-scroll-proportion="0.0">
@@ -1007,16 +993,33 @@
         <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="16" selection-start="438" selection-end="451" vertical-scroll-proportion="0.0">
+        <state line="39" column="11" selection-start="719" selection-end="719" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/clock.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="8" selection-start="956" selection-end="956" vertical-scroll-proportion="0.6280667">
+        <state line="82" column="17" selection-start="2637" selection-end="2637" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/game.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="71" selection-start="136" selection-end="136" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/schema.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="885" column="23" selection-start="43277" selection-end="43284" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user_teams/_bank_account.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -1035,16 +1038,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="12" selection-start="734" selection-end="734" vertical-scroll-proportion="0.0">
+        <state line="39" column="3" selection-start="1080" selection-end="1080" vertical-scroll-proportion="0.49612403">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.haml">
+    <entry file="file://$PROJECT_DIR$/app/models/clock.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="34" selection-start="2674" selection-end="2674" vertical-scroll-proportion="0.32973504">
+        <state line="12" column="5" selection-start="372" selection-end="372" vertical-scroll-proportion="0.069767445">
           <folding />
         </state>
       </provider>

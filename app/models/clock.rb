@@ -3,6 +3,14 @@ class Clock < ActiveRecord::Base
     self.time = self.time.next_week.at_midnight
     self.save!
     self.time
+
+    ## do payroll
+    #UserTeam.each do |team|
+    #  my_season_payroll = team.players.to_a.sum(&:amount)
+    #  my_weekly_payroll = my_season_payroll / team.schedules.count
+    #  team.balance - my_weekly_payroll.to_money
+    #  team.save
+    #end
   end
 
   def reset
@@ -47,6 +55,7 @@ class Clock < ActiveRecord::Base
     puts self.time
     puts league.inspect
     beginning = Date.new(2011, 9, 8).at_midnight
+
     league.teams.each { |team|
       points = weekly_points_for_team(team)
       week = ((self.time.to_date - beginning.to_date) / 7).to_i + 1

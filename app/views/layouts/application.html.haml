@@ -80,8 +80,8 @@
               Your record is
               %strong
                 = @team.schedules.where(:outcome => '1').count
-                for
-                = Clock.first.week
+                \-
+                = @team.schedules.where(:outcome => '0').count
               and you have
               %strong
                 #{number_to_currency(@team.balance)}

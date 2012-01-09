@@ -37,5 +37,5 @@
           Record
         %td
           = @team.schedules.where(:outcome => '1').count
-          for
-          = Clock.first.week
+          \-
+          = @team.schedules.where(:outcome => '0').count
