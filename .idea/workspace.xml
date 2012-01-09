@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/players_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/players_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/user_teams_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/user_teams_controller.rb" />
     </list>
     <ignored path="Dynasty.iws" />
@@ -36,19 +34,19 @@
     <splitter split-orientation="horizontal" split-proportion="0.53673065">
       <split-first>
         <leaf>
-          <file leaf-file-name="user_teams_controller.rb" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="user_teams_controller.rb" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="40" column="89" selection-start="1278" selection-end="1278" vertical-scroll-proportion="0.0">
+                <state line="29" column="4" selection-start="831" selection-end="831" vertical-scroll-proportion="0.2635659">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="clock_controller.rb" pinned="false" current="false" current-in-tab="true">
+          <file leaf-file-name="clock_controller.rb" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/controllers/clock_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="34" column="28" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.4975466">
+                <state line="34" column="28" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -57,7 +55,7 @@
           <file leaf-file-name="manage.html.haml" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="24" column="19" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
+                <state line="6" column="21" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
                   <folding />
                 </state>
               </provider>
@@ -121,7 +119,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="players_controller.rb" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="players_controller.rb" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/controllers/players_controller.rb">
               <provider selected="true" editor-type-id="text-editor">
                 <state line="11" column="43" selection-start="520" selection-end="520" vertical-scroll-proportion="0.17271835">
@@ -161,8 +159,8 @@
         <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
         <option value="$PROJECT_DIR$/app/views/user_teams/_schedule_table.html.haml" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
-        <option value="$PROJECT_DIR$/app/controllers/user_teams_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/players_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/user_teams_controller.rb" />
       </list>
     </option>
   </component>
@@ -901,23 +899,11 @@
         <state line="40" column="10" selection-start="732" selection-end="782" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="89" selection-start="1278" selection-end="1278" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/clock_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="28" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.4975466">
+        <state line="34" column="28" selection-start="1100" selection-end="1100" vertical-scroll-proportion="0.0">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="19" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/teams_controller.rb">
@@ -960,6 +946,20 @@
     <entry file="file://$PROJECT_DIR$/app/controllers/players_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="11" column="43" selection-start="520" selection-end="520" vertical-scroll-proportion="0.17271835">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="21" selection-start="84" selection-end="84" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="4" selection-start="831" selection-end="831" vertical-scroll-proportion="0.2635659">
           <folding />
         </state>
       </provider>

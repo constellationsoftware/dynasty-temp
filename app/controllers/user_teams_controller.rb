@@ -25,9 +25,9 @@ class UserTeamsController < ApplicationController
    @clock = Clock.first.nice_time
 
    # game outcome
-   if  @team.schedules.where(:week => @team.games.last.week).first
+   #if  @team.schedules.where(:week => @team.games.last.week).first
    @last_game =  @team.schedules.where(:week => @team.games.last.week).first
-   end
+   #end
    # Roster and positioning stuff
    @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
 
