@@ -18,8 +18,10 @@
           %td
             = ts.opponent.name
           %td
-            - if ts.outcome
-              = ts.outcome
+            - if ts.outcome == 1
+              Win
+            - if ts.outcome == 0
+              Loss
             - unless ts.outcome
               ???
 
@@ -36,4 +38,4 @@
         %td
           = @team.schedules.where(:outcome => '1').count
           for
-          = @team.schedules.where(:score).count
+          = @team.schedules.where('outcome != ?', nil).count

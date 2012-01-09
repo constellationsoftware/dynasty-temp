@@ -4,4 +4,6 @@ class Schedule < ActiveRecord::Base
   belongs_to :opponent, :class_name => 'UserTeam', :foreign_key => 'opponent_id'
 
   default_scope :order => 'week ASC'
+
+
 end

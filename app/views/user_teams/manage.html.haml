@@ -3,9 +3,29 @@
     .panel
       %h5
         Your Dashboard
-      %p
-        Your next game is against #{@team.schedules.where(:outcome => nil).first.opponent.name}.
-        Remember to set your starters!
+
+      - if @last_game
+        %p
+          %strong
+            GAME RESULTS: WEEK
+            = @last_game.week
+        %p
+          %strong
+            You
+            - if @last_game.outcome == 1
+              Won!
+            - if @last_game.outcome == 0
+              Lost!
+            You got
+            = @last_game.team_score
+            points and
+            = UserTeam.find(@last_game.opponent_id).name
+            got
+            = @last_game.opponent_score
+            points.
+        %p
+          Your next game is against #{@team.schedules.where(:outcome => nil).first.opponent.name}.
+          Remember to set your starters!
 
   .row
     %dl.nice.contained.tabs

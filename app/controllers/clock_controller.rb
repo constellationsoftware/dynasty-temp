@@ -23,6 +23,20 @@ class ClockController < ApplicationController
       @clock.calculate_points_for_league(league) if league
     end
 
+    league.teams.each do |ut|
+      schedule = ut.schedules.where(:outcome => nil).first
+      schedule.team_score = ut.games.where(:week => schedule.week).first.points
+      schedule.opponent_score = UserTeam.find(schedule.opponent_id).games.where(:week => schedule.week).first.points
+      if schedule.team_score > schedule.opponent_score
+        schedule.outcome = 1
+      end
+
+      if schedule.team_score < schedule.opponent_score
+        schedule.outcome = 0
+      end
+      schedule.save
+    end
+
     session[:return_to] ||= request.referer
     redirect_to :back
   end

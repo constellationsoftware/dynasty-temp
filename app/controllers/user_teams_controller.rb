@@ -24,6 +24,9 @@ class UserTeamsController < ApplicationController
    @other_teams = @league.teams.where(:user_id != @current_user.id)
    @clock = Clock.first.nice_time
 
+   # game outcome
+
+   @last_game =  @team.schedules.where(:week => @team.games.last.week).first
    # Roster and positioning stuff
    @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
 
