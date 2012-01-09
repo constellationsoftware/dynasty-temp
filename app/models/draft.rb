@@ -65,7 +65,7 @@ class Draft < ActiveRecord::Base
     # this loop iterates through eligible pick slots, autopicking for offline
     # users and returning when a pick for an online user is reached
     autopick_iterations = 1
-    while !self.current_pick.nil? and (!self.current_pick.team.is_online or force_finish) and !(self.status === :finished)
+    while !self.current_pick.nil? and (!self.current_pick.team.is_online or !!self.current_pick.team.autopick or force_finish) and !(self.status === :finished)
       puts self.current_pick.team.name + ' IS SLEEPING!'
       # make the "auto-pick"
       autopick_player = self.best_player

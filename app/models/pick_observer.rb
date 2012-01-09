@@ -17,6 +17,11 @@ class PickObserver < ActiveRecord::Observer
       pick.draft.current_pick_id = nil
       pick.draft.save
 
+      # reset all teams' autopick status to false
+      pick.draft.teams.each{ |team|
+        team.autopick = false
+        team.save
+      }
     end
   end
 end

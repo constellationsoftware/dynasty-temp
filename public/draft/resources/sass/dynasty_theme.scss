@@ -290,3 +290,12 @@ div.pick {
         &:last-child { padding-right: 0; }
     }
 }
+
+.loading {
+    background-image: image-url("loading.gif", false, false);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center; 
+}
+
+.notice, .alert { background: white; }

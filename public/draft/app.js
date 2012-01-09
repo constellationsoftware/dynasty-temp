@@ -37,6 +37,7 @@ Ext.application({
 
     launch: function() {
         app = this;
+        Ext.getBody().removeCls('loading');
         if (DRAFT_STATUS === 'finished') { this.showDraftFinishedDialog(); }
 
         Ext.tip.QuickTipManager.init();

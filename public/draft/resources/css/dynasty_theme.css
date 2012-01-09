@@ -11401,3 +11401,16 @@ div.pick .info p.round {
 #user-balance li:last-child {
   padding-right: 0;
 }
+
+/* line 294, ../sass/dynasty_theme.scss */
+.loading {
+  background-image: url('../images/loading.gif');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+/* line 301, ../sass/dynasty_theme.scss */
+.notice, .alert {
+  background: white;
+}

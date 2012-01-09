@@ -1,11 +1,13 @@
 class League::TeamsController < SubdomainController
-  #before_filter :authenticate_user!
+  before_filter :authenticate_user!, :get_team!
 
-  actions :index
-  respond_to :json
+  respond_to :json, :html
+  defaults :resource_class => UserTeam, :collection_name => 'teams', :instance_name => 'team'
+  custom_actions :resource => [ :autopick ]
 
   def index
     index! do |format|
+      puts @teams.inspect
       result = {
         :success => true,
         :teams => @teams
@@ -19,18 +21,31 @@ class League::TeamsController < SubdomainController
     end
   end
 
-  def collection
-    @teams = @league.draft.teams
+  def autopick
+    if params[:autopick]
+      @team.autopick = true
+      @team.save!
+      render :text => 'success'
+    else
+      raise 'Request or parameters invalid!'
+    end
   end
 
-  def home
-    @teams = @league.teams
+  protected
+    def collection
+      if (!!params[:page] and !!params[:limit])
+        @teams = end_of_association_chain
+          .page(params[:page])
+          .per(params[:limit])
+      else
+        @teams = end_of_association_chain
+      end
+      @teams = @teams.joins{league}.where{league.id == my{@league.id}}
+      @total = @teams.size
+    end
 
+  private
+    def get_team!
+      @team = UserTeam.where{(league_id == my{@league.id}) & (user_id == my{current_user.id})}.first
   end
-
-  def show
-    @team = @league.teams.find_by_uuid(params[:uuid])
-  end
-
-
 end
