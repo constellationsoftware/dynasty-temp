@@ -15,7 +15,7 @@ class UserTeamsController < ApplicationController
    @the_week = Clock.first.week
    @next_week = @the_week + 1
 
-   @team = UserTeam.find(params[:id]).first
+   @team = UserTeam.find(params[:id])
    @week_results = @team.schedules.where('week = ?', @the_week).first
 
    @cap = 75000000
