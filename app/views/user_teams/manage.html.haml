@@ -98,7 +98,7 @@
           .six.columns
             %h5
               Choose Your Starters!
-            = semantic_form_for @my_lineup do |f|
+            = semantic_form_for @my_lineup, :remote => true do |f|
               = f.input :qb_id, :as => :select, :collection => @my_qb,  :label => "Choose a starting QB:"
               = f.input :wr1_id, :as => :select, :collection => @my_wr, :label => "Choose your starting WR (1)"
               = f.input :wr2_id, :as => :select, :collection => @my_wr, :label => "Choose your starting WR (2)"

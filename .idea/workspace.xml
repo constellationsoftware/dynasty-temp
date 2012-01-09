@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff2f1dc5-f964-4464-8a28-ad0b1ce632b1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/player_team_record.rb" afterPath="$PROJECT_DIR$/app/models/player_team_record.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" afterPath="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
     </list>
     <ignored path="Dynasty.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,53 +26,72 @@
     <favorites_list name="Dynasty" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="draft.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/draft.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="draft_observer.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/draft_observer.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="61" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pick.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/pick.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pick_observer.rb" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/models/pick_observer.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="48" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="player_team_record.rb" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/models/player_team_record.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="43" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.7131783">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="user_teams_controller.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="13" column="0" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="pick_observer.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/pick_observer.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="20" column="48" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="player_team_record.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/models/player_team_record.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="46" column="8" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="users_controller.rb" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manage.html.haml" pinned="false" current="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="121" column="0" selection-start="4272" selection-end="4343" vertical-scroll-proportion="0.22276741">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="manage.html.haml" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="96" column="60" selection-start="3005" selection-end="3005" vertical-scroll-proportion="0.51815504">
+                  <folding>
+                    <element signature="e#4093#4848#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -94,7 +113,6 @@
         <option value="$PROJECT_DIR$/app/models/player.rb" />
         <option value="$PROJECT_DIR$/app/admin/user_teams.rb" />
         <option value="$PROJECT_DIR$/app/controllers/trades_controller.rb" />
-        <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
         <option value="$PROJECT_DIR$/db/migrate/20120106222331_add_default_balance_to_dynasty_leagues.rb" />
         <option value="$PROJECT_DIR$/config/initializers/devise.rb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.haml" />
@@ -103,6 +121,7 @@
         <option value="$PROJECT_DIR$/app/models/draft_observer.rb" />
         <option value="$PROJECT_DIR$/app/models/pick_observer.rb" />
         <option value="$PROJECT_DIR$/app/models/player_team_record.rb" />
+        <option value="$PROJECT_DIR$/app/views/user_teams/manage.html.haml" />
       </list>
     </option>
   </component>
@@ -837,45 +856,23 @@
               <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="league" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersSubFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Dynasty" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="league" />
-              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersSubFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DraftsController" />
+              <option name="myItemId" value="UserTeamsController" />
               <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.ControllerClassNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dynasty" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Dynasty" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.RailsModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controllers" />
+              <option name="myItemType" value="org.jetbrains.plugins.ruby.rails.projectView.v2.nodes.folders.ControllersFolderNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -1601,13 +1598,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.rvm/gems/ruby-1.9.2-p290@dynasty/gems/heroku-2.17.0/lib/heroku/command/ps.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/user_team_observer.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="63" selection-start="153" selection-end="153" vertical-scroll-proportion="0.13953489">
@@ -1625,20 +1615,6 @@
     <entry file="file://$PROJECT_DIR$/app/models/trade.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="67" selection-start="798" selection-end="798" vertical-scroll-proportion="-0.9302326">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="116" column="12" selection-start="4045" selection-end="4045" vertical-scroll-proportion="0.14425908">
           <folding />
         </state>
       </provider>
@@ -1708,8 +1684,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/models/player_team_record.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="43" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.7131783">
+        <state line="46" column="8" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/users_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="6" selection-start="6" selection-end="6" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/user_teams_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/user_teams/manage.html.haml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="96" column="60" selection-start="3005" selection-end="3005" vertical-scroll-proportion="0.51815504">
+          <folding>
+            <element signature="e#4093#4848#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
