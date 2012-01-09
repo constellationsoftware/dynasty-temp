@@ -17,6 +17,8 @@ class PickObserver < ActiveRecord::Observer
       pick.draft.current_pick_id = nil
       pick.draft.save
 
+      # TODO: Edit this to update after each pick is made not at end of draft.
+      PlayerTeamRecord.match_picks(pick.draft)
     end
   end
 end

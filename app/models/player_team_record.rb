@@ -29,13 +29,13 @@ class PlayerTeamRecord < ActiveRecord::Base
 
 
   ## TODO: Make this not suck.
-  def self.match_picks
-    picks = Pick.all
+  def self.match_picks(draft)
+    picks = draft.picks
     picks.each do |pick|
       ptr = PlayerTeamRecord.new
       ptr.current = TRUE
       ptr.player_id = pick.player_id
-      ptr.details = "Drafted in round #{pick.round}"
+      ptr.details = "Drafted in round #{pick.round} at #{pick.picked_at} by #{pick.team}"
       ptr.user_team_id = pick.team_id
       ptr.added_at = pick.picked_at
       ptr.save
