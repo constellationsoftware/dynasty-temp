@@ -11185,21 +11185,22 @@ body .ux-notification-window {
   left: 36;
   margin: 0;
   padding: 0;
-  margin-left: 1em;
+  margin-left: 19px;
+  margin-top: 8px;
 }
-/* line 143, ../sass/dynasty_theme.scss */
+/* line 144, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .edit div {
   font-size: 16px;
   height: 100%;
 }
-/* line 146, ../sass/dynasty_theme.scss */
+/* line 147, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .bio {
   float: left;
   width: 10em;
   margin-left: -100%;
   text-align: center;
 }
-/* line 152, ../sass/dynasty_theme.scss */
+/* line 153, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .bio .photo {
   width: 100px;
   height: 123px;
@@ -11207,17 +11208,17 @@ body .ux-notification-window {
   background-color: white;
   background-image: url('../images/players/default.png');
 }
-/* line 161, ../sass/dynasty_theme.scss */
+/* line 162, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap {
   float: left;
   width: 100%;
   padding-left: 1em;
 }
-/* line 166, ../sass/dynasty_theme.scss */
+/* line 167, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content {
   margin-left: 10em;
 }
-/* line 169, ../sass/dynasty_theme.scss */
+/* line 170, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   float: left;
   width: 50%;
@@ -11227,22 +11228,22 @@ body .ux-notification-window {
   font-size: 2em;
   margin-bottom: 0.5em;
 }
-/* line 177, ../sass/dynasty_theme.scss */
+/* line 178, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .bye_week, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .bye_week {
   padding-left: 1em;
   font-size: 0.7em;
 }
-/* line 179, ../sass/dynasty_theme.scss */
+/* line 180, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   text-align: right;
 }
-/* line 180, ../sass/dynasty_theme.scss */
+/* line 181, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats {
   clear: both;
   font-size: 1.2em;
   line-height: 1.4em;
 }
-/* line 185, ../sass/dynasty_theme.scss */
+/* line 186, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats ul.stat_columns {
   -moz-column-count: 3;
   -webkit-column-count: 3;
@@ -11253,39 +11254,39 @@ body .ux-notification-window {
   -o-column-gap: 10px;
   column-gap: 10px;
 }
-/* line 189, ../sass/dynasty_theme.scss */
+/* line 190, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats .label {
   min-width: 120px;
   font-weight: bold;
 }
-/* line 193, ../sass/dynasty_theme.scss */
+/* line 194, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points {
   float: right;
 }
-/* line 196, ../sass/dynasty_theme.scss */
+/* line 197, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points span.delta {
   color: #CCCCCC;
 }
-/* line 198, ../sass/dynasty_theme.scss */
+/* line 199, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points span.delta.pos {
   color: green;
 }
-/* line 199, ../sass/dynasty_theme.scss */
+/* line 200, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points span.delta.neg {
   color: red;
 }
-/* line 202, ../sass/dynasty_theme.scss */
+/* line 203, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats .total span.points {
   float: none;
 }
-/* line 207, ../sass/dynasty_theme.scss */
+/* line 208, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .footer {
   clear: both;
   width: 100%;
   text-align: center;
 }
 
-/* line 214, ../sass/dynasty_theme.scss */
+/* line 215, ../sass/dynasty_theme.scss */
 .selected {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #cfe2f6), color-stop(6%, #b2d7ff), color-stop(100%, #cfe2f6));
   background-image: -webkit-linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
@@ -11295,34 +11296,34 @@ body .ux-notification-window {
   background-image: linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
 }
 
-/* line 216, ../sass/dynasty_theme.scss */
+/* line 217, ../sass/dynasty_theme.scss */
 .x-boundlist-floating {
   border-top-width: 1px;
 }
 
-/* line 218, ../sass/dynasty_theme.scss */
+/* line 219, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul {
   display: block;
   padding: 0px 3px;
 }
-/* line 222, ../sass/dynasty_theme.scss */
+/* line 223, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li {
   display: inline-block;
   text-align: left;
 }
-/* line 226, ../sass/dynasty_theme.scss */
+/* line 227, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.name {
   width: 55%;
 }
-/* line 227, ../sass/dynasty_theme.scss */
+/* line 228, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.position {
   width: 10%;
 }
-/* line 228, ../sass/dynasty_theme.scss */
+/* line 229, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.rating {
   width: 10%;
 }
-/* line 229, ../sass/dynasty_theme.scss */
+/* line 230, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.salary {
   width: 25%;
   text-align: right;
@@ -11331,7 +11332,7 @@ body .ux-notification-window {
 /********************************************************************************
  * PICK SCROLLER STUFF
  *******************************************************************************/
-/* line 240, ../sass/dynasty_theme.scss */
+/* line 241, ../sass/dynasty_theme.scss */
 .gradient-mask {
   position: absolute;
   right: 0px;
@@ -11341,7 +11342,7 @@ body .ux-notification-window {
   -webkit-mask-image: -webkit-gradient(linear, right top, left top, from(black), to(rgba(0, 0, 0, 0)));
 }
 
-/* line 250, ../sass/dynasty_theme.scss */
+/* line 251, ../sass/dynasty_theme.scss */
 #picks_scroller ul {
   display: table-row;
   overflow: hidden;
@@ -11349,7 +11350,7 @@ body .ux-notification-window {
   height: 120px;
 }
 
-/* line 258, ../sass/dynasty_theme.scss */
+/* line 259, ../sass/dynasty_theme.scss */
 div.pick {
   position: absolute;
   height: 120px;
@@ -11357,7 +11358,7 @@ div.pick {
   margin: 0;
   padding: 5px;
 }
-/* line 265, ../sass/dynasty_theme.scss */
+/* line 266, ../sass/dynasty_theme.scss */
 div.pick div.team_image {
   margin: 0 auto;
   height: 80px;
@@ -11366,43 +11367,43 @@ div.pick div.team_image {
   margin-bottom: 3px;
   background-image: url('../images/waterboy-sm.png');
 }
-/* line 274, ../sass/dynasty_theme.scss */
+/* line 275, ../sass/dynasty_theme.scss */
 div.pick .info {
   width: 100%;
   text-align: center;
 }
-/* line 277, ../sass/dynasty_theme.scss */
+/* line 278, ../sass/dynasty_theme.scss */
 div.pick .info p.round {
   font-weight: bold;
 }
 
-/* line 281, ../sass/dynasty_theme.scss */
+/* line 282, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.3em;
 }
-/* line 284, ../sass/dynasty_theme.scss */
+/* line 285, ../sass/dynasty_theme.scss */
 #user-balance li {
   display: inline;
   padding-right: .5em;
 }
-/* line 287, ../sass/dynasty_theme.scss */
+/* line 288, ../sass/dynasty_theme.scss */
 #user-balance li.amount {
   padding-right: 1.2em;
 }
-/* line 288, ../sass/dynasty_theme.scss */
+/* line 289, ../sass/dynasty_theme.scss */
 #user-balance li.deficit {
   color: red;
 }
-/* line 289, ../sass/dynasty_theme.scss */
+/* line 290, ../sass/dynasty_theme.scss */
 #user-balance li.label {
   font-weight: bold;
 }
-/* line 290, ../sass/dynasty_theme.scss */
+/* line 291, ../sass/dynasty_theme.scss */
 #user-balance li:last-child {
   padding-right: 0;
 }
 
-/* line 294, ../sass/dynasty_theme.scss */
+/* line 295, ../sass/dynasty_theme.scss */
 .loading {
   background-image: url('../images/loading.gif');
   background-repeat: no-repeat;
@@ -11410,7 +11411,7 @@ div.pick .info p.round {
   background-position: center center;
 }
 
-/* line 301, ../sass/dynasty_theme.scss */
+/* line 302, ../sass/dynasty_theme.scss */
 .notice, .alert {
   background: white;
 }
