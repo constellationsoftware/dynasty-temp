@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
     @nfl_team = @person.teams.first
     @hometown = Location.find(@person.hometown_location_id)
     @league_ptr = @my_league.player_team_records.where(:player_id => @player.id).first
-    if @league_ptr
+    if @league_ptr && @league_ptr.user_team
       @current_team = @league_ptr.user_team.name
     else
       @current_team = "Not signed!"
