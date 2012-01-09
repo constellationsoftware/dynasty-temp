@@ -1,4 +1,6 @@
 Dynasty::Application.routes.draw do
+  resources :schedules
+
   resources :photos
 
   resources :dynasty_player_contracts
@@ -79,6 +81,7 @@ Dynasty::Application.routes.draw do
     get 'next_week'
     get 'reset'
     get 'present'
+
   end
 
   resources :users do

@@ -49,10 +49,10 @@
           = image_tag 'navbar_logo.png'
       .nine.columns.hide-on-phones.clean.right
         %strong
-          %a.button.nice.small.black(data-reveal-id="playerResearch") Research
-          %a.button.nice.small.black(data-reveal-id="userTeams") Teams
-          %a.button.nice.small.black(data-reveal-id="userAccount") Account
-          %a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
+          //%a.button.nice.small.black(data-reveal-id="playerResearch") Research
+          //%a.button.nice.small.black(data-reveal-id="userTeams") Teams
+          //%a.button.nice.small.black(data-reveal-id="userAccount") Account
+          //%a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
           = link_to "Home", root_url, :class => "button nice small blue"
 
   /*Primary Page Header Bar
@@ -85,13 +85,16 @@
               = link_to "Sign Out", destroy_user_session_path
         .panel
 
-
-        .panel
-          Right 2
-          %br
-          %br
-          %br
-          %br
+        - if @league
+          .panel
+            %h5
+              McFly's DeLorean
+            .alert-box
+              = Clock.first.time.strftime("%B %e, %Y")
+            %p
+              = link_to "Fast Forward 1 Week", "/clock/2/next_week?league_id=#{@league.id}", :class => "nice button blue small radius"
+            %p
+              = link_to "Reset To Season Start", "/clock/2/reset?league_id=#{@league.id}", :class => "nice button blue small radius"
         .panel
           Right 3
           %br
@@ -122,35 +125,3 @@
 
 
 
-  #playerResearch.reveal-modal
-    .three.columns
-      %h2 Player Research
-      %dl.nice.vertical.tabs
-        - Position.all.each do |p|
-          %dd
-            = link_to p.name, p, :class=> "nice large radius button"
-    %a.nice.large.red.button.close-reveal-modal Close
-
-  #userTeams.reveal-modal
-    %h2 User Teams Modal
-    %a.nice.large.red.button.close-reveal-modal Close
-
-  #userAccount.reveal-modal
-    %h2 User Account Modal
-
-    %a.nice.large.red.button.close-reveal-modal Close
-
-  #timeTravel.reveal-modal
-    %h5
-      McFly's DeLorean
-    .alert-box
-      = Clock.first.time.strftime("%B %e, %Y")
-    %p
-      = link_to "Fast Forward 1 Week", "/clock/2/next_week", :class => "nice button blue small radius"
-    %p
-      = link_to "Reset To Season Start", "/clock/2/reset", :class => "nice button blue small radius"
-    %p
-      = link_to "Fast Forward To Real Date", "/clock/2/present", :class => "nice button blue small radius"
-
-  #footer
-    = render :partial => "devise/shared/links"
