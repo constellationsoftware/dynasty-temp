@@ -20,7 +20,8 @@ class Player < ActiveRecord::Base
   has_one  :score, :class_name => 'PersonScore'
   has_one  :position_link, :class_name => 'PlayerPosition'
   has_one  :position, :through => :position_link
-  has_many :teams, :class_name => 'UserTeam'
+  has_one  :team_link, :class_name => 'PlayerTeamRecord'
+  has_many :teams, :through => :team_link, :class_name => 'UserTeam'
   has_many :leagues, :through => :teams
   has_many :picks
   has_many :points, :class_name => 'PlayerPoint'

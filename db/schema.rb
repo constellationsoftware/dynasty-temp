@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120109132203) do
+ActiveRecord::Schema.define(:version => 20120109154109) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -870,6 +870,10 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
     t.integer  "round",                     :null => false
   end
 
+  add_index "dynasty_draft_picks", ["draft_id"], :name => "index_dynasty_draft_picks_on_draft_id"
+  add_index "dynasty_draft_picks", ["player_id"], :name => "index_dynasty_draft_picks_on_player_id"
+  add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
+
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -883,13 +887,16 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
   add_index "dynasty_drafts", ["status"], :name => "index_drafts_on_status"
 
   create_table "dynasty_games", :force => true do |t|
-    t.integer  "home_team_id"
-    t.integer  "away_team_id"
+    t.integer  "team_id"
     t.integer  "week"
-    t.datetime "date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "points",     :default => 0, :null => false
   end
+
+  add_index "dynasty_games", ["points"], :name => "index_dynasty_games_on_points"
+  add_index "dynasty_games", ["team_id"], :name => "index_dynasty_games_on_team_id"
+  add_index "dynasty_games", ["week"], :name => "index_dynasty_games_on_week"
 
   create_table "dynasty_leagues", :force => true do |t|
     t.string   "name",                  :limit => 50,                 :null => false
@@ -943,14 +950,14 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year",                 :default => 2000, :null => false
-    t.integer  "defensive_points",     :default => 0
-    t.integer  "fumbles_points",       :default => 0
-    t.integer  "passing_points",       :default => 0
-    t.integer  "rushing_points",       :default => 0
-    t.integer  "sacks_against_points", :default => 0
-    t.integer  "scoring_points",       :default => 0
-    t.integer  "special_teams_points", :default => 0
-    t.integer  "games_played",         :default => 0
+    t.integer  "defensive_points",     :default => 0,    :null => false
+    t.integer  "fumbles_points",       :default => 0,    :null => false
+    t.integer  "passing_points",       :default => 0,    :null => false
+    t.integer  "rushing_points",       :default => 0,    :null => false
+    t.integer  "sacks_against_points", :default => 0,    :null => false
+    t.integer  "scoring_points",       :default => 0,    :null => false
+    t.integer  "special_teams_points", :default => 0,    :null => false
+    t.integer  "games_played",         :default => 0,    :null => false
   end
 
   add_index "dynasty_player_points", ["defensive_points"], :name => "index_dynasty_player_points_on_defensive_points"
@@ -984,16 +991,24 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "depth"
     t.integer  "position_id"
+<<<<<<< HEAD
+    t.integer  "depth",        :default => 0, :null => false
+=======
     t.boolean  "waiver"
     t.integer  "waiver_team_id"
     t.integer  "league_id"
+>>>>>>> 3435079deb23ecac4de1edd344315a1d1857ea17
   end
 
   create_table "dynasty_positions", :force => true do |t|
     t.string "name"
     t.string "abbreviation"
+  end
+
+  create_table "dynasty_team_players", :force => true do |t|
+    t.integer "user_team_id"
+    t.integer "person_id"
   end
 
   create_table "dynasty_teams", :force => true do |t|
@@ -1015,9 +1030,9 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
 
   create_table "dynasty_trades", :force => true do |t|
-    t.integer  "league_id",                            :null => false
-    t.integer  "initial_team_id",                      :null => false
-    t.integer  "second_team_id",                       :null => false
+    t.integer  "league_id",           :null => false
+    t.integer  "initial_team_id",     :null => false
+    t.integer  "second_team_id",      :null => false
     t.integer  "player_id"
     t.boolean  "accepted"
     t.boolean  "open"
@@ -1066,7 +1081,6 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
     t.string   "name"
     t.string   "role"
     t.integer  "roles_mask"
-    t.integer  "phone"
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
@@ -1735,11 +1749,6 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
     t.datetime "updated_at"
   end
 
-  create_table "position_groups", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
-  end
-
   create_table "positions", :force => true do |t|
     t.integer "affiliation_id",                   :null => false
     t.string  "abbreviation",      :limit => 100, :null => false
@@ -1783,6 +1792,18 @@ ActiveRecord::Schema.define(:version => 20120109132203) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.integer  "league_id"
+    t.integer  "team_id"
+    t.integer  "opponent_id"
+    t.integer  "week"
+    t.integer  "outcome"
+    t.integer  "team_score"
+    t.integer  "opponent_score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

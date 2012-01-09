@@ -16,6 +16,13 @@ class ClockController < ApplicationController
   def next_week
     @clock = Clock.first
     @clock.next_week
+
+    if params[:league_id]
+      # calculate points for the passed-in league
+      league = League.joins{teams}.includes{teams}.where{id == my{params[:league_id]}}.first
+      @clock.calculate_points_for_league(league) if league
+    end
+
     session[:return_to] ||= request.referer
     redirect_to :back
   end
