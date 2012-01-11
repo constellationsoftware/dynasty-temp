@@ -1793,18 +1793,6 @@ ActiveRecord::Schema.define(:version => 20120109154109) do
         t.datetime "updated_at"
     end
 
-    create_table "schedules", :force => true do |t|
-        t.integer "league_id"
-        t.integer "team_id"
-        t.integer "opponent_id"
-        t.integer "week"
-        t.integer "outcome"
-        t.integer "team_score"
-        t.integer "opponent_score"
-        t.datetime "created_at"
-        t.datetime "updated_at"
-    end
-
     create_table "seasons", :force => true do |t|
         t.integer "season_key", :null => false
         t.integer "publisher_id", :null => false

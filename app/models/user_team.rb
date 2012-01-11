@@ -10,6 +10,7 @@ class UserTeam < ActiveRecord::Base
     has_many :players, :through => :player_team_records
     money :balance, :cents => :balance_cents
 
+    has_many :games, :foreign_key => 'team_id'
     has_many :schedules, :inverse_of => :user_team, :foreign_key => 'team_id'
     has_many :opponents, :through => :schedules
 
@@ -35,22 +36,22 @@ class UserTeam < ActiveRecord::Base
     end
 
 =begin
-  def roster
-    ld = self.league.drafts.last.picks.where("team_id = ?", self.id).map(&:person_id)
-    salaries = Salary.find(ld)
-    salaries
-  end
-
-  def payroll
-    payroll = 0
-    salaries = self.roster
-    salaries.each do |salary|
-      payroll += salary.contract_amount
+    def roster
+        ld = self.league.drafts.last.picks.where("team_id = ?", self.id).map(&:person_id)
+        salaries = Salary.find(ld)
+        salaries
     end
-    payroll = payroll.to_f / 1000000
-    payroll
-    payroll = "$" + payroll.to_s + "MM"
-  end
+    
+    def payroll
+        payroll = 0
+        salaries = self.roster
+        salaries.each do |salary|
+            payroll += salary.contract_amount
+        end
+        payroll = payroll.to_f / 1000000
+        payroll
+        payroll = "$" + payroll.to_s + "MM"
+    end
 =end
 
     def is_offline

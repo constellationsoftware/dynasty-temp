@@ -80,8 +80,8 @@
               Your record is
               %strong
                 = @team.schedules.where(:outcome => '1').count
-                for
-                = @team.schedules.where(:score).count
+                \-
+                = @team.schedules.where(:outcome => '0').count
               and you have
               %strong
                 #{number_to_currency(@team.balance)}
