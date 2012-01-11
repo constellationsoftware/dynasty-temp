@@ -11,7 +11,7 @@ class UserTeamsController < ApplicationController
             format.json { render :json =>{:results => @user_teams} }
         end
     end
-    
+
     def manage
         @the_week = Clock.first.week
         @next_week = @the_week + 1
