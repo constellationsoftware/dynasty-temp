@@ -870,6 +870,10 @@ ActiveRecord::Schema.define(:version => 20120109154109) do
     t.integer  "round",                     :null => false
   end
 
+  add_index "dynasty_draft_picks", ["draft_id"], :name => "index_dynasty_draft_picks_on_draft_id"
+  add_index "dynasty_draft_picks", ["player_id"], :name => "index_dynasty_draft_picks_on_player_id"
+  add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
+
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -1736,11 +1740,6 @@ ActiveRecord::Schema.define(:version => 20120109154109) do
     t.integer  "person_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "position_groups", :force => true do |t|
-    t.string "name"
-    t.string "abbreviation"
   end
 
   create_table "positions", :force => true do |t|
