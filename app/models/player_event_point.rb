@@ -1,19 +1,15 @@
 class PlayerEventPoint < ActiveRecord::Base
-  set_table_name 'dynasty_player_event_points'
-  belongs_to :player
-  belongs_to :person, :foreign_key=> 'player_id'
-  belongs_to :event
+    set_table_name 'dynasty_player_event_points'
+    belongs_to :player
+    belongs_to :person, :foreign_key=> 'player_id'
+    belongs_to :event
 
-  scope :current, PlayerEventPoint.joins(:event).where('start_date_time < ?', Clock.first.time)
+    scope :current, PlayerEventPoint.joins(:event).where('start_date_time < ?', Clock.first.time)
 
-  def self.by_event(event, player)
-    query = PlayerEventPoint.where('event_id = ?', event).where('player_id = ?', player)
-    query.first
-  end
-
-
-
-
+    def self.by_event(event, player)
+        query = PlayerEventPoint.where('event_id = ?', event).where('player_id = ?', player)
+        query.first
+    end
 
 
 #def start_date_time
@@ -30,9 +26,6 @@ class PlayerEventPoint < ActiveRecord::Base
 #
 #scope :past_event, self.past
 #scope :future_event, self.future
-
-
-
 
 
 end

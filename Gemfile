@@ -5,10 +5,10 @@ gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
 gem 'activesupport', '~> 3.1.0'
 gem 'compass', '>= 0.11.5'
-gem 'sass-rails'#, '~> 3.1.0'
+gem 'sass-rails' #, '~> 3.1.0'
 gem 'heroku'
-#gem  'heroku-rb', :git => 'git://github.com/heroku/heroku.rb.git'
-# gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
+                 #gem  'heroku-rb', :git => 'git://github.com/heroku/heroku.rb.git'
+                 # gem 'hassle', :git => 'git://github.com/koppen/hassle.git'
 gem 'haml'
 gem 'hpricot'
 gem 'ruby_parser'
@@ -23,14 +23,14 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
-#gem 'unicorn'
+                 #gem 'unicorn'
 gem 'dalli'
 gem 'pusher'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
-gem 'delayed_job','< 3.0'
-# issues with DJ 3.0
-# gem 'delayed_job_active_record'
+gem 'delayed_job', '< 3.0'
+                 # issues with DJ 3.0
+                 # gem 'delayed_job_active_record'
 gem 'uuidtools'
 gem 'activeadmin'
 gem 'formtastic'
@@ -62,11 +62,11 @@ gem 'rest-client'
 #gem 'fnordmetric', '~> 0.5'
 
 group :production do
-  gem 'pg'
+    gem 'pg'
 end
 
 group :development, :test do
-  gem 'rack', '1.3.3'
+    gem 'rack', '1.3.3'
 end
 
 
@@ -77,11 +77,11 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass', '3.1.7'
-  gem 'coffee-rails', '~> 3.1.0'
-  gem 'uglifier'
-  gem 'thin'
-  gem 'zurb-foundation'
+    gem 'sass', '3.1.7'
+    gem 'coffee-rails', '~> 3.1.0'
+    gem 'uglifier'
+    gem 'thin'
+    gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'
@@ -96,7 +96,7 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+    # Pretty printed test output
+    gem 'turn', :require => false
 end
 
