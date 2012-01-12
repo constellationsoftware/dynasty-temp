@@ -3,56 +3,69 @@
     .panel
       %h5
         Your Dashboard
-        %p
-          %strong
-            GAME RESULTS: WEEK
-            = @the_week
+        Week
+        = @the_week
+        Next week
+        = @next_week
 
-        %p
-          %strong
-            You
-            - if @week_results.outcome == 1
-              Won!
-            - if @week_results.outcome == 0
-              Lost!
-            You got
-            = @week_results.team_score
-            points and
-            = UserTeam.find(@week_results.opponent_id).name
-            got
-            = @week_results.opponent_score
-            points.
-        %p
-          Your next game is against #{@team.schedules.where('week = ?', @next_week).first.opponent.name}.
-          Remember to set your starters!
+        - if @the_week == 0
+          No Games Yet
+        - else
 
-  .row
-    %dl.nice.contained.tabs
-      %dd
-        = link_to "Roster", "#roster", :class => "active"
-      %dd
-        = link_to "Set Starters", "#starters"
-      %dd
-        = link_to "Trades", "#trades"
-      %dd
-        = link_to "Research", "#research"
-      %dd
-        = link_to "Waiver Wire", "#waiver"
-      / %dd
-      /  = link_to "League Review", "#league"
-    %ul.nice.tabs-content.contained
+          %p
+            %strong
+              GAME RESULTS: WEEK
+              = @the_week
 
-      = render :partial => "roster_tab"
+          %p
+            %strong
+              You
+              - if @week_results.outcome == 1
+                Won!
+              - if @week_results.outcome == 0
+                Lost!
+              You got
+              = @week_results.team_score
+              points and
+              = UserTeam.find(@week_results.opponent_id).name
+              got
+              = @week_results.opponent_score
+              points.
+              You earned #{number_to_currency(@last_game_winnings)} and spent #{number_to_currency(@my_weekly_payroll)} on payroll.
+          %p
+            Your next game is against #{@team.schedules.where('week = ?', @next_week).first.opponent.name}.
+            Remember to set your starters!
 
-      = render :partial => "starters_tab"
+    - unless @the_week == 0
+      .panel
 
-      = render :partial => "trades_tab"
-
-      = render :partial => "research_tab"
-
-      = render :partial => "waiver_tab"
-
-      = render :partial => "league_tab"
+  /.row
+  /  %dl.nice.contained.tabs
+  /    %dd
+  /      = link_to "Roster", "#roster", :class => "active"
+  /    %dd
+  /      = link_to "Set Starters", "#starters"
+  /    %dd
+  /      = link_to "Trades", "#trades"
+  /    %dd
+  /      = link_to "Research", "#research"
+  /    %dd
+  /      = link_to "Waiver Wire", "#waiver"
+  /    / %dd
+  /    /  = link_to "League Review", "#league"
+  /  %ul.nice.tabs-content.contained
+  /
+  /    = render :partial => "roster_tab"
+  /
+  /    = render :partial => "starters_tab"
+  /
+  /    = render :partial => "trades_tab"
+  /
+  /    = render :partial => "research_tab"
+  /
+  /    = render :partial => "waiver_tab"
+  /
+  /    = render :partial => "league_tab"
 
 
 

@@ -2,64 +2,6 @@ class UserTeamsController < ApplicationController
     before_filter :authenticate_user!
     #@user_teams = league.user_teams
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json =>{ :results => @user_teams }}
-    end
-  end
-
-  def manage
-   @the_week = Clock.first.week
-   @next_week = @the_week + 1
-
-   @team = UserTeam.find(params[:id])
-   @week_results = @team.schedules.where('week = ?', @the_week).first
-
-   @cap = 75000000
-   @title = "A Title"
-
-   session[:user_team_id] = @team.id
-
-
-
-   @user_team = @team
-   @league = @team.league
-   @current_user = current_user
-   @team_manager = @team.user
-   @other_teams = @league.teams.where(:user_id != @current_user.id)
-   @clock = Clock.first.nice_time
-
-   # game outcome
-   #if  @team.schedules.where(:week => @team.games.last.week).first
-   @last_game =  @team.schedules.where(:week => @team.games.last.week).first
-   #end
-   # Roster and positioning stuff
-   @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
-
-   @my_season_payroll = @team.players.to_a.sum(&:amount)
-   @my_weekly_payroll = @my_season_payroll / @team.schedules.count
-
-   @my_starters = @team.player_team_records.where(:depth => 1)
-   @my_bench = @team.player_team_records.where(:depth => 0)
-   @my_ptr = @team.player_team_records
-      @my_qb = @my_ptr.qb
-      @my_wr = @my_ptr.wr
-      @my_rb = @my_ptr.rb
-      @my_te = @my_ptr.te
-      @my_k  = @my_ptr.k
-
-   # Research Stuff
-   @all_players = Player.with_points_from_season(2011).order("points DESC")
-   @signed_players = @league.players
-   @unsigned_players = @all_players - @signed_players
-   @positions = Position.all
-
-   # Trades stuff
-   @trade = Trade.all
-   @my_players = @team.player_team_records
-
-   @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@team.id)
-   @my_open_trades_received = Trade.open.find_all_by_second_team_id(@team.id)
 
     def index
         @user_teams = UserTeam.all
@@ -72,35 +14,40 @@ class UserTeamsController < ApplicationController
         end
     end
 
+
     def manage
-        @the_week = Clock.first.week
-        @next_week = @the_week + 1
-        
+
+        week = Clock.find(2).week
+        @the_week = week
+        @next_week = week + 1
+
         @team = UserTeam.find(params[:id])
-        @week_results = @team.schedules.where('week = ?', @the_week).first
-        
+        @week_results = @team.schedules.where('week = ?', week).first
+
         @cap = 75000000
         @title = "A Title"
-        
+
         session[:user_team_id] = @team.id
-        
+
         @user_team = @team
         @league = @team.league
         @current_user = current_user
         @team_manager = @team.user
         @other_teams = @league.teams.where(:user_id != @current_user.id)
         @clock = Clock.first.nice_time
-        
+
         # game outcome
-        #if  @team.schedules.where(:week => @team.games.last.week).first
-        @last_game =  @team.schedules.where(:week => @team.games.last.week).first
-        #end
+        if  @team.schedules.where(:week => week)
+            @last_game = @team.schedules.where(:week => week)
+        end
+
+        @last_game_winnings = @team.games.where(:week => week).first.winnings
         # Roster and positioning stuff
         @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
-        
+
         @my_season_payroll = @team.players.to_a.sum(&:amount)
         @my_weekly_payroll = @my_season_payroll / @team.schedules.count
-        
+
         @my_starters = @team.player_team_records.where(:depth => 1)
         @my_bench = @team.player_team_records.where(:depth => 0)
         @my_ptr = @team.player_team_records
@@ -109,34 +56,36 @@ class UserTeamsController < ApplicationController
         @my_rb = @my_ptr.rb
         @my_te = @my_ptr.te
         @my_k = @my_ptr.k
-        
+
         # Research Stuff
         @all_players = Player.with_points_from_season(2011).order("points DESC")
         @signed_players = @league.players
         @unsigned_players = @all_players - @signed_players
         @positions = Position.all
-        
+
+
+
         # Trades stuff
         @trade = Trade.all
         @my_players = @team.player_team_records
-        
+
         @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@team.id)
         @my_open_trades_received = Trade.open.find_all_by_second_team_id(@team.id)
-        
+
         @my_accepted_trades_offered = Trade.closed.accepted.find_all_by_initial_team_id(@team.id)
         @my_accepted_trades_received = Trade.closed.accepted.find_all_by_second_team_id(@team.id)
-        
+
         @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@team.id)
         @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@team.id)
-        
-        
+
+
         # Waiver Wire Stuff
-        
+
         @waiver_players = @league.player_team_records.where(:waiver => 1)
-        
-        
+
+
         # Create a New Trade
-        
+
         @new_trade = Trade.new
         @new_trade.initial_team_id = @team.id
         @other_teams = @league.teams.where('id != ?', @user_team.id)
@@ -147,7 +96,7 @@ class UserTeamsController < ApplicationController
             end
         end
         @requestable_players = PlayerTeamRecord.find(@other_players)
-        
+
         unless @current_user == @team_manager
             redirect_to root_path, :flash => {:info => "You aren't authorized to do that!"}
         end
@@ -233,4 +182,6 @@ class UserTeamsController < ApplicationController
             format.xml { head :ok }
         end
     end
+
 end
+

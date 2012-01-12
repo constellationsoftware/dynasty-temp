@@ -14,27 +14,36 @@ class ClockController < ApplicationController
     end
 
     def next_week
-        @clock = Clock.first
-        @clock.next_week
+        @clock = Clock.find(2)
 
+        @clock.next_week
         if params[:league_id]
             # calculate points for the passed-in league
             league = League.joins{teams}.includes{teams}.where{id == my{params[:league_id]}}.first
             @clock.calculate_points_for_league(league) if league
-        end
-        
-        league.teams.each do |ut|
-        schedule = ut.schedules.where(:outcome => nil).first
-        schedule.team_score = ut.games.where(:week => schedule.week).first.points
-        schedule.opponent_score = UserTeam.find(schedule.opponent_id).games.where(:week => schedule.week).first.points
-        if schedule.team_score > schedule.opponent_score
-            schedule.outcome = 1
-        end
-        
-        if schedule.team_score < schedule.opponent_score
-            schedule.outcome = 0
-        end
-        schedule.save
+
+            league.teams.each { |ut|
+                    schedule = ut.schedules.where('week = ?', @clock.week).first
+                    schedule.team_score = ut.games.where('week = ?', @clock.week).first.points
+                    schedule.opponent_score = UserTeam.find(schedule.opponent_id).games.where('week = ?', @clock.week).first.points
+                    schedule.outcome = 1 if schedule.team_score > schedule.opponent_score
+                    schedule.outcome = 0 if schedule.team_score < schedule.opponent_score
+                    # calculate win/loss payouts
+                    @game = ut.games.where('week = ?', @clock.week).first
+                    if schedule.outcome == 1
+                        @game.winnings = 1000000
+                        @game.save
+                    end
+                    if schedule.outcome == 0
+                        @game.winnings = 500000
+                        @game.save
+                    end
+                    @game.save
+                    ut.balance += @game.winnings.to_money
+                    schedule.save
+            }
+
+
     end
 
     session[:return_to] ||= request.referer
