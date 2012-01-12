@@ -3,8 +3,8 @@ class UserTeamsController < ApplicationController
   def index
     @user_teams = UserTeam.all
 
-    #@user_teams = league.user_teams        
-    
+    #@user_teams = league.user_teams
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render :json =>{ :results => @user_teams }}
@@ -22,6 +22,8 @@ class UserTeamsController < ApplicationController
    @title = "A Title"
 
    session[:user_team_id] = @team.id
+
+
 
    @user_team = @team
    @league = @team.league
