@@ -1,18 +1,18 @@
 class PositionsController < ApplicationController
-  def index
-    @positions = Position.all
+    def index
+        @positions = Position.all
 
-    respond_to do |format|
-      format.html # indexbak.html.erb
-      format.xml { render :xml => @positions }
+        respond_to do |format|
+            format.html # indexbak.html.erb
+            format.xml { render :xml => @positions }
+        end
     end
-  end
 
-  def show
-    @position = Position.find(params[:id])
-    respond_to do |format|
-      format.html # indexbak.html.erb
-      format.xml { render :xml => @position }
+    def show
+        @position = Position.find(params[:id])
+        respond_to do |format|
+            format.html # indexbak.html.erb
+            format.xml { render :xml => @position }
+        end
     end
-  end
 end

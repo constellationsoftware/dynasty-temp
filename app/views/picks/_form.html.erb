@@ -1,17 +1,17 @@
 <%= form_for(@pick) do |f| %>
-  <% if @pick.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@pick.errors.count, "error") %> prohibited this pick from being saved:</h2>
+    <% if @pick.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@pick.errors.count, "error") %> prohibited this pick from being saved:</h2>
 
-      <ul>
-      <% @pick.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+            <ul>
+                <% @pick.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="actions">
+        <%= f.submit %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

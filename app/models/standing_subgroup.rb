@@ -1,4 +1,4 @@
 class StandingSubgroup < ActiveRecord::Base
-  belongs_to :affiliation
-  belongs_to :standing
+    belongs_to :affiliation
+    belongs_to :standing
 end

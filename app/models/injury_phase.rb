@@ -1,5 +1,5 @@
 class InjuryPhase < ActiveRecord::Base
-  # TODO: Update team rosters with status (email notifications as well? tbd)
-  belongs_to :person
-  belongs_to :season
+    # TODO: Update team rosters with status (email notifications as well? tbd)
+    belongs_to :person
+    belongs_to :season
 end

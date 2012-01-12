@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  def index
-    @events = Event.winners
-  end
+    def index
+        @events = Event.winners
+    end
 end

@@ -1,4 +1,4 @@
 class Period < ActiveRecord::Base
-  belongs_to :participants_event
+    belongs_to :participants_event
 
 end
