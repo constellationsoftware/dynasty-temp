@@ -37,7 +37,43 @@
             Remember to set your starters!
 
     - unless @the_week == 0
-      .panel
+      .row
+        .panel
+          .row
+            %h5
+              Game Scoring Breakdown
+          .row
+            .your_score_breakdown.six.columns
+              %p
+                QB: #{@game_lineup.qb.name}:     #{@game_lineup.qb.andand.player.event_points.current.last.andand.points}
+              %p
+                WR1: #{@game_lineup.wr1.name}:   #{@game_lineup.wr1.andand.player.event_points.current.last.andand.points}
+              %p
+                WR2: #{@game_lineup.wr2.name}:   #{@game_lineup.wr2.andand.player.event_points.current.last.andand.points}
+              %p
+                RB1: #{@game_lineup.rb1.name}:   #{@game_lineup.rb1.andand.player.event_points.current.last.andand.points}
+              %p
+                RB2: #{@game_lineup.rb2.name}:   #{@game_lineup.rb2.andand.player.event_points.current.last.andand.points}
+              %p
+                TE: #{@game_lineup.te.name}:     #{@game_lineup.te.andand.player.event_points.current.last.andand.points}
+              %p
+                K: #{@game_lineup.k.name}:       #{@game_lineup.k.andand.player.event_points.current.last.andand.points}
+            .opponent_score_breakdown.six.columns
+              %p
+                QB: #{@opponent_lineup.qb.name}:     #{@opponent_lineup.qb.andand.player.event_points.current.last.andand.points}
+              %p
+                WR1: #{@opponent_lineup.wr1.name}:   #{@opponent_lineup.wr1.andand.player.event_points.current.last.andand.points}
+              %p
+                WR2: #{@opponent_lineup.wr2.name}:   #{@opponent_lineup.wr2.andand.player.event_points.current.last.andand.points}
+              %p
+                RB1: #{@opponent_lineup.rb1.name}:   #{@opponent_lineup.rb1.andand.player.event_points.current.last.andand.points}
+              %p
+                RB2: #{@opponent_lineup.rb2.name}:   #{@opponent_lineup.rb2.andand.player.event_points.current.last.andand.points}
+              %p
+                TE: #{@opponent_lineup.te.name}:     #{@opponent_lineup.te.andand.player.event_points.current.last.andand.points}
+              %p
+                K: #{@opponent_lineup.k.name}:       #{@opponent_lineup.k.andand.player.event_points.current.last.andand.points}
+
 
   /.row
   /  %dl.nice.contained.tabs

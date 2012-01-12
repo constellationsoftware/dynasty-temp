@@ -24,12 +24,20 @@ class UserTeamsController < ApplicationController
         @team = UserTeam.find(params[:id])
         @week_results = @team.schedules.where('week = ?', week).first
 
+        # was there a game this week? If so, get some info.
+        unless @week_results.nil?
+            @opponent = UserTeam.find(@week_results.opponent_id)
+            @opponent_lineup = @opponent.user_team_lineups.where('week = ?', @the_week).first
+            @game_lineup = @team.user_team_lineups.where('week = ?', @the_week).first
+        end
+
         @cap = 75000000
         @title = "A Title"
 
         session[:user_team_id] = @team.id
 
         @user_team = @team
+
         @league = @team.league
         @current_user = current_user
         @team_manager = @team.user
@@ -39,11 +47,17 @@ class UserTeamsController < ApplicationController
         # game outcome
         if  @team.schedules.where(:week => week)
             @last_game = @team.schedules.where(:week => week)
+
         end
 
-        @last_game_winnings = @team.games.where(:week => week).first.winnings
+        unless @team.games.nil?
+            @last_game_winnings = @team.games.where(:week => week).andand.first.andand.winnings
+        end
+
         # Roster and positioning stuff
+
         @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
+        @game_lineup = @team.user_team_lineups.where('week = ?', @the_week).first
 
         @my_season_payroll = @team.players.to_a.sum(&:amount)
         @my_weekly_payroll = @my_season_payroll / @team.schedules.count

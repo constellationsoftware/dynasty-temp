@@ -9,4 +9,7 @@ class UserTeamLineup < ActiveRecord::Base
 
     belongs_to :user_team
     has_many :players, :through => :player_team_records
+
+    scope :current, where('current = ?', 1)
+    scope :historical, where('current != ?', 1)
 end

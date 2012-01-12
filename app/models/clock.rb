@@ -20,6 +20,24 @@ class Clock < ActiveRecord::Base
           team.save
         end
 
+
+        ## save historical starters lineup
+        UserTeam.all.each do |team|
+            if team.user_team_lineups.first
+                current_lineup = team.user_team_lineups.current.first
+                @nl = team.user_team_lineups.create
+                @nl.qb_id = current_lineup.qb_id
+                @nl.wr1_id = current_lineup.wr1_id
+                @nl.wr2_id = current_lineup.wr2_id
+                @nl.rb1_id = current_lineup.rb1_id
+                @nl.rb2_id = current_lineup.rb2_id
+                @nl.te_id = current_lineup.te_id
+                @nl.k_id = current_lineup.k_id
+                @nl.current = 0
+                @nl.week = Clock.find(2).week
+                @nl.save
+            end
+        end
     end
 
     def reset
@@ -34,6 +52,11 @@ class Clock < ActiveRecord::Base
             s.opponent_score = nil
             s.updated_at = nil
             s.save
+        end
+        UserTeamLineup.historical.all.each {|lineup| lineup.destroy}
+        UserTeam.all.each do |t|
+            t.balance = 75000000
+            t.save
         end
     end
 

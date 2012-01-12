@@ -1,7 +1,7 @@
 class UserTeamLineupsController < ApplicationController
 
     def update
-        @user_team_lineup = UserTeamLineup.find(params[:id])
+        @user_team_lineup = UserTeamLineup.current.find(params[:id])
         @utl = @user_team_lineup
 
 
