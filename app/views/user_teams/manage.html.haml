@@ -3,56 +3,105 @@
     .panel
       %h5
         Your Dashboard
-        %p
-          %strong
-            GAME RESULTS: WEEK
-            = @the_week
+        Week
+        = @the_week
+        Next week
+        = @next_week
 
-        %p
-          %strong
-            You
-            - if @week_results.outcome == 1
-              Won!
-            - if @week_results.outcome == 0
-              Lost!
-            You got
-            = @week_results.team_score
-            points and
-            = UserTeam.find(@week_results.opponent_id).name
-            got
-            = @week_results.opponent_score
-            points.
-        %p
-          Your next game is against #{@team.schedules.where('week = ?', @next_week).first.opponent.name}.
-          Remember to set your starters!
+        - if @the_week == 0
+          No Games Yet
+        - else
 
-  .row
-    %dl.nice.contained.tabs
-      %dd
-        = link_to "Roster", "#roster", :class => "active"
-      %dd
-        = link_to "Set Starters", "#starters"
-      %dd
-        = link_to "Trades", "#trades"
-      %dd
-        = link_to "Research", "#research"
-      %dd
-        = link_to "Waiver Wire", "#waiver"
-      / %dd
-      /  = link_to "League Review", "#league"
-    %ul.nice.tabs-content.contained
+          %p
+            %strong
+              GAME RESULTS: WEEK
+              = @the_week
 
-      = render :partial => "roster_tab"
+          %p
+            %strong
+              You
+              - if @week_results.outcome == 1
+                Won!
+              - if @week_results.outcome == 0
+                Lost!
+              You got
+              = @week_results.team_score
+              points and
+              = UserTeam.find(@week_results.opponent_id).name
+              got
+              = @week_results.opponent_score
+              points.
+              You earned #{number_to_currency(@last_game_winnings)} and spent #{number_to_currency(@my_weekly_payroll)} on payroll.
+          %p
+            Your next game is against #{@team.schedules.where('week = ?', @next_week).first.opponent.name}.
+            Remember to set your starters!
 
-      = render :partial => "starters_tab"
+    - unless @the_week == 0
+      .row
+        .panel
+          .row
+            %h5
+              Game Scoring Breakdown
+          .row
+            .your_score_breakdown.six.columns
+              %p
+                QB: #{@game_lineup.qb.name}:     #{@game_lineup.qb.andand.player.event_points.current.last.andand.points}
+              %p
+                WR1: #{@game_lineup.wr1.name}:   #{@game_lineup.wr1.andand.player.event_points.current.last.andand.points}
+              %p
+                WR2: #{@game_lineup.wr2.name}:   #{@game_lineup.wr2.andand.player.event_points.current.last.andand.points}
+              %p
+                RB1: #{@game_lineup.rb1.name}:   #{@game_lineup.rb1.andand.player.event_points.current.last.andand.points}
+              %p
+                RB2: #{@game_lineup.rb2.name}:   #{@game_lineup.rb2.andand.player.event_points.current.last.andand.points}
+              %p
+                TE: #{@game_lineup.te.name}:     #{@game_lineup.te.andand.player.event_points.current.last.andand.points}
+              %p
+                K: #{@game_lineup.k.name}:       #{@game_lineup.k.andand.player.event_points.current.last.andand.points}
+            .opponent_score_breakdown.six.columns
+              %p
+                QB: #{@opponent_lineup.qb.name}:     #{@opponent_lineup.qb.andand.player.event_points.current.last.andand.points}
+              %p
+                WR1: #{@opponent_lineup.wr1.name}:   #{@opponent_lineup.wr1.andand.player.event_points.current.last.andand.points}
+              %p
+                WR2: #{@opponent_lineup.wr2.name}:   #{@opponent_lineup.wr2.andand.player.event_points.current.last.andand.points}
+              %p
+                RB1: #{@opponent_lineup.rb1.name}:   #{@opponent_lineup.rb1.andand.player.event_points.current.last.andand.points}
+              %p
+                RB2: #{@opponent_lineup.rb2.name}:   #{@opponent_lineup.rb2.andand.player.event_points.current.last.andand.points}
+              %p
+                TE: #{@opponent_lineup.te.name}:     #{@opponent_lineup.te.andand.player.event_points.current.last.andand.points}
+              %p
+                K: #{@opponent_lineup.k.name}:       #{@opponent_lineup.k.andand.player.event_points.current.last.andand.points}
 
-      = render :partial => "trades_tab"
 
-      = render :partial => "research_tab"
-
-      = render :partial => "waiver_tab"
-
-      = render :partial => "league_tab"
+  /.row
+  /  %dl.nice.contained.tabs
+  /    %dd
+  /      = link_to "Roster", "#roster", :class => "active"
+  /    %dd
+  /      = link_to "Set Starters", "#starters"
+  /    %dd
+  /      = link_to "Trades", "#trades"
+  /    %dd
+  /      = link_to "Research", "#research"
+  /    %dd
+  /      = link_to "Waiver Wire", "#waiver"
+  /    / %dd
+  /    /  = link_to "League Review", "#league"
+  /  %ul.nice.tabs-content.contained
+  /
+  /    = render :partial => "roster_tab"
+  /
+  /    = render :partial => "starters_tab"
+  /
+  /    = render :partial => "trades_tab"
+  /
+  /    = render :partial => "research_tab"
+  /
+  /    = render :partial => "waiver_tab"
+  /
+  /    = render :partial => "league_tab"
 
 
 
