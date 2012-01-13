@@ -1,0 +1,10 @@
+%li.active#researchTab
+  %h5 Player Research
+  - all_players_by_position.each do |position|
+    -if position[:players].size > 0
+      .row
+        %p
+          %strong #{position[:name]}
+        - position[:players].each do |player|
+          .three.columns
+            = link_to "#{player.name.full_name} (#{player.contract.depth ? player.contract.depth_formatted : "n/a"})", player

@@ -16,7 +16,7 @@ class Player < ActiveRecord::Base
     has_one :name,
             :class_name => 'DisplayName',
             :foreign_key => 'entity_id',
-            :conditions => {:entity_type => :persons}
+            :conditions => {:entity_type => 'persons'}
     has_one :position_link, :class_name => 'PlayerPosition'
     has_one :position, :through => :position_link
     has_one :team_link, :class_name => 'PlayerTeamRecord'
@@ -90,9 +90,9 @@ class Player < ActiveRecord::Base
     #
     # If you pass in an array of whitelisted positions, they won't be calculated
     #
-    scope :filter_positions, lambda { |team, filters = nil|
+    scope :filter_positions, lambda { |team = nil, filters = nil|
         current_year = Season.order { season_key.desc }.first.season_key
-        if !filters
+        if team && !(filters?)
             # count how many picks have been made by position
             position_counts = Position.find_by_sql("
             SELECT abbreviation AS abbr, (
@@ -111,8 +111,12 @@ class Player < ActiveRecord::Base
         end
 
         if !!filters and filters.length > 0
-            points_subquery = Player.select { id }.joins { points }.where { points.year == "#{current_year}" }
-            points_subquery = points_subquery.where { position.abbreviation.like_any filters } if filters.length > 0
+            points_subquery = Player.select { id }.joins { [points, position] }.where { points.year == "#{current_year}" }
+            if filters.length === 1
+                points_subquery = points_subquery.where { position.abbreviation == filters.first }
+            else
+                points_subquery = points_subquery.where { position.abbreviation.like_any filters }
+            end
         end
 
         query = joins { [points, position] }.includes { [points, position] }.where { points.year == "#{current_year}" }
@@ -120,6 +124,9 @@ class Player < ActiveRecord::Base
         query
     }
 
+    def full_name
+        name.full_name
+    end
 
     def flatten
         obj = {

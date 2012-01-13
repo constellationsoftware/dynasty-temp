@@ -36,16 +36,14 @@ Dynasty::Application.routes.draw do
                 resources :players
             end
         end
-
-
-        resource :teams do
-            member do
-                get 'manage'
-            end
-        end
-
-
     end
+
+    resources :teams do
+        member do
+            get :manage
+        end
+    end
+
 
     # The priority is based upon order of creation:
     # first created -> highest priority.
