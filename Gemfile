@@ -52,17 +52,17 @@ gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
-gem 'typhoeus'
+#gem 'typhoeus'
 
 # for scraping salaries
-gem 'nokogiri'
+# gem 'nokogiri'
 
 gem 'rest-client'
 
 #gem 'fnordmetric', '~> 0.5'
 
 group :production do
-    gem 'pg'
+#    gem 'pg'
 end
 
 group :development, :test do
