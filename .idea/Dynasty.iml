@@ -18,8 +18,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-<<<<<<< HEAD
-=======
+
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeadmin (v0.3.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
@@ -122,7 +121,7 @@
     <orderEntry type="library" scope="PROVIDED" name="vestal_versions (v82760a, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.1.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="zurb-foundation (v2.1.4.2, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
->>>>>>> 0773a32c9fb29ad96fcb331e6307c201866cc382
+
   </component>
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
