@@ -65,6 +65,8 @@ class Player < ActiveRecord::Base
                     season = current_year - 1
             end
         end
+
+        puts self.with_points
         self.with_points.where { points.year == "#{season}" }
     end
 
