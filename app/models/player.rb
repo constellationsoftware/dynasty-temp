@@ -11,7 +11,7 @@ class Player < ActiveRecord::Base
         :g => 2,
         :c => 1
     }
-    default_scope joins {name}.includes{name}
+    default_scope joins(name).includes(name)
 
     has_one :name,
             :class_name => 'DisplayName',
@@ -51,7 +51,7 @@ class Player < ActiveRecord::Base
         joins{ picks.user }.where { picks.team_id == my { team.id } }
     }
     scope :with_contract, joins{ contract }.includes { contract }
-    scope :with_points, joins{:points}.includes{:points}
+    scope :with_points, joins(:points).includes(:points)
     scope :with_points_from_season do |season|
         if season.nil?
             season = 'last'
@@ -65,7 +65,7 @@ class Player < ActiveRecord::Base
                     season = current_year - 1
             end
         end
-        with_points.where { points.year == "#{season}" }
+        self.with_points.where { points.year == "#{season}" }
     end
 
     # filter out players that have been picked already in this draft
@@ -93,7 +93,7 @@ class Player < ActiveRecord::Base
     #
     # If you pass in an array of whitelisted positions, they won't be calculated
     #
-    scope(:filter_positions) do |team, filters|
+    scope :filter_positions do |team, filters|
         current_year = Season.order { season_key.desc }.first.season_key
         if !filters
             # count how many picks have been made by position
