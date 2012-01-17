@@ -66,8 +66,8 @@ class Player < ActiveRecord::Base
             end
         end
 
-        puts self.with_points
-        self.with_points.where { points.year == "#{season}" }
+        puts with_points
+        with_points.where { points.year == "#{season}" }
     end
 
     # filter out players that have been picked already in this draft
