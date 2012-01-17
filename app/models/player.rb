@@ -53,6 +53,9 @@ class Player < ActiveRecord::Base
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins { points }.includes { points }
     scope :with_points_from_season do |season|
+        unless season
+            season = 'last'
+        end
         if season.is_a? String
             current_year = Season.maximum(:season_key).to_i
             case season
