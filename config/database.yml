@@ -19,7 +19,7 @@ development:
   adapter: mysql2
   database: dynasty_dev
   host: localhost
-  username: root
+  username: dynasty_db
   password: fom556
   socket: /tmp/mysql.sock
 
