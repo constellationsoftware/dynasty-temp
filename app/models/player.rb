@@ -72,9 +72,7 @@ class Player < ActiveRecord::Base
         picks_subquery = Pick.select{distinct(player_id)}.where{(player_id != nil) & (draft_id == my{draft.id})}
         where{id.not_in picks_subquery}
     }
-    scope :by_position_priority, joins{position}
-    .where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}}
-    .order(order_by_position_priority)
+    scope :by_position_priority, joins{position}.where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}.order(order_by_position_priority)
     scope :by_name, lambda { |value|
         query = order{[
             isnull(name.full_name),
