@@ -162,7 +162,7 @@ GEM
     mime-types (1.17.2)
     multi_json (1.0.4)
     mysql2 (0.3.6)
-    orm_adapter (0.0.6)
+    orm_adapter (0.0.5)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
