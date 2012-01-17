@@ -53,7 +53,7 @@ class Player < ActiveRecord::Base
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins { points }.includes { points }
     scope :with_points_from_season do |season|
-        if season.is_nil
+        if season.nil?
             season = 'last'
         end
         if season.is_a?(String)
