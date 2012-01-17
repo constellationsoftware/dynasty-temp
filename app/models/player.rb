@@ -90,7 +90,7 @@ class Player < ActiveRecord::Base
     #
     # If you pass in an array of whitelisted positions, they won't be calculated
     #
-    scope :filter_positions, lambda { |team, filters = nil|
+    scope :filter_positions, lambda { |team, filters|
         current_year = Season.order { season_key.desc }.first.season_key
         if !filters
             # count how many picks have been made by position
