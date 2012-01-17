@@ -20,6 +20,7 @@ development:
   database: dynasty_dev
   host: localhost
   username: root
+  password: fom556
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and

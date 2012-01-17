@@ -40,8 +40,8 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'execjs'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
-gem 'newrelic_rpm'
-gem 'moonshado-sms'
+#gem 'newrelic_rpm'
+#gem 'moonshado-sms'
 
 gem 'andand'
 gem 'coffee-filter'
@@ -58,7 +58,7 @@ group :production do
 end
 
 group :development, :test do
-    gem 'rack', '1.3.3'
+    gem 'rack'
 end
 
 
