@@ -112,15 +112,11 @@ class Player < ActiveRecord::Base
         end
 
         if !!filters and filters.length > 0
-            points_subquery = Player.select{id}
-            .joins{points}
-            .where{points.year == "#{current_year}"}
+            points_subquery = Player.select{id}.joins{points}.where{points.year == "#{current_year}"}
             points_subquery = points_subquery.where{position.abbreviation.like_any filters} if filters.length > 0
         end
 
-        query = joins{points}
-        .includes{[points, position]}
-        .where{points.year == "#{current_year}"}
+        query = joins{points}.includes{[points, position]}.where{points.year == "#{current_year}"}
         query = query.where{id.in(points_subquery)} if !!points_subquery
         return query
     }
