@@ -52,7 +52,7 @@ class Player < ActiveRecord::Base
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins { points }.includes { points }
-    scope :with_points_from_season, lambda { |season = 'last'|
+    scope :with_points_from_season do |season = 'last'|
         if season.is_a? String
             current_year = Season.maximum(:season_key).to_i
             case season
@@ -63,7 +63,7 @@ class Player < ActiveRecord::Base
             end
         end
         with_points.where { points.year == "#{season}" }
-    }
+    end
 
     # filter out players that have been picked already in this draft
     scope :available, lambda { |draft|
