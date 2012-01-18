@@ -96,7 +96,7 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     cookiejar (0.3.0)
-    daemons (1.1.5)
+    daemons (1.1.6)
     dalli (1.1.4)
     delayed_job (2.1.4)
       activesupport (~> 3.0)
