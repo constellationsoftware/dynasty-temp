@@ -53,7 +53,7 @@ class Player < ActiveRecord::Base
     }
     scope :with_contract, joins{contract}.includes{contract}
     scope :with_points, joins{points}.includes{points}
-    scope :with_points_from_season, lambda { |season|
+    scope :with_points_from_season, lambda { |season = 'last'|
         if season.is_a? String
             current_year = Season.maximum(:season_key).to_i
             case season
@@ -72,7 +72,9 @@ class Player < ActiveRecord::Base
         picks_subquery = Pick.select{distinct(player_id)}.where{(player_id != nil) & (draft_id == my{draft.id})}
         where{id.not_in picks_subquery}
     }
-    scope :by_position_priority, joins{position}.where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}.order(order_by_position_priority)
+    scope :by_position_priority, joins{position}
+    .where{substring(position.abbreviation, 1, 2) >> my{POSITION_PRIORITIES}}
+    .order(order_by_position_priority)
     scope :by_name, lambda { |value|
         query = order{[
             isnull(name.full_name),
@@ -91,7 +93,7 @@ class Player < ActiveRecord::Base
     #
     # If you pass in an array of whitelisted positions, they won't be calculated
     #
-    scope :filter_positions, lambda { |team, filters|
+    scope :filter_positions, lambda { |team, filters = nil|
         current_year = Season.order{season_key.desc}.first.season_key
         if !filters
             # count how many picks have been made by position
@@ -112,11 +114,15 @@ class Player < ActiveRecord::Base
         end
 
         if !!filters and filters.length > 0
-            points_subquery = Player.select{id}.joins{points}.where{points.year == "#{current_year}"}
+            points_subquery = Player.select{id}
+            .joins{points}
+            .where{points.year == "#{current_year}"}
             points_subquery = points_subquery.where{position.abbreviation.like_any filters} if filters.length > 0
         end
 
-        query = joins{points}.includes{[points, position]}.where{points.year == "#{current_year}"}
+        query = joins{points}
+        .includes{[points, position]}
+        .where{points.year == "#{current_year}"}
         query = query.where{id.in(points_subquery)} if !!points_subquery
         return query
     }
