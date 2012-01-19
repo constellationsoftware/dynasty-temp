@@ -1001,11 +1001,11 @@ ActiveRecord::Schema.define(:version => 20120119001838) do
   end
 
   create_table "dynasty_positions", :force => true do |t|
-    t.string  "name"
-    t.string  "abbreviation"
-    t.string  "designation",                 :null => false
+    t.string  "name",         :limit => 32
+    t.string  "abbreviation", :limit => 2
+    t.string  "designation",  :limit => 1,                 :null => false
     t.integer "sort_order"
-    t.integer "flex",         :default => 0, :null => false
+    t.integer "flex",                       :default => 0, :null => false
   end
 
   add_index "dynasty_positions", ["abbreviation", "id", "designation", "flex", "name", "sort_order"], :name => "index_dynasty_positions_on_abbr_id_des_name_sort"
