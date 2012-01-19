@@ -7,7 +7,12 @@ class Clock < ActiveRecord::Base
         ## do payroll
         UserTeam.all.each do |team|
           my_season_payroll = team.players.to_a.sum(&:amount)
+          my_weekly_payroll = 0
+          if team.schedules.count > 0
           my_weekly_payroll = my_season_payroll / team.schedules.count
+          end
+
+
           team.balance = team.balance - my_weekly_payroll.to_money
           #team.balance = team.balance + team.games.last.winnings
 

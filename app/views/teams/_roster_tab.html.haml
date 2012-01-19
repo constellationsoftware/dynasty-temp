@@ -10,9 +10,8 @@
         %th Position
         %th Name
         %th Bye
-        - if starters.size > 0 && !(starters[0][:points].nil?)
-          %th Points
-        %th
+        %th Points
+        %th Manage
     %tbody
       - starters.each do |data|
         = render :partial => 'player_row', :locals => { :player => data[:player],
@@ -26,9 +25,8 @@
         %th Position
         %th Name
         %th Bye
-        - if bench.size > 0 && !(bench[0][:points].nil?)
-          %th Points
-        %th
+        %th Points
+        %th Manage
     %tbody
       - bench.each do |data|
         = render :partial => 'player_row', :locals => { :player => data[:player],
