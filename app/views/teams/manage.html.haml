@@ -1,50 +1,57 @@
+= stylesheet_link_tag 'teams'
 .container
   .row
     .panel
       %h5
         Your Dashboard
-        %p
-          %strong
-            GAME RESULTS: WEEK #{week}
+        -if week > 0
+          %p
+            %strong
+              GAME RESULTS: WEEK #{week}
 
-        %p
-          %strong
-            You
-            - if game.team_score > game.opponent_score
-              Won!
-            - elsif game.team_score < game.opponent_score
-              Lost!
-            - else
-              Tied!
-            You got
-            = game.team_score
-            points and
-            = game.opponent.name
-            got
-            = game.opponent_score
-            points.
-        %p
-          Your next game is against #{next_game.opponent.name}.
-          Remember to set your starters!
+          %p
+            %strong
+              You
+              - if game.team_score > game.opponent_score
+                Won!
+              - elsif game.team_score < game.opponent_score
+                Lost!
+              - else
+                Tied!
+              You got
+              = game.team_score
+              points and
+              = game.opponent.name
+              got
+              = game.opponent_score
+              points.
+          %p
+            Your next game is against #{next_game.opponent.name}.
+            Remember to set your starters!
+
+          %ul#game_weeks
+            - (1..max_week).each do |i|
+              %li{:class => ('current' if i === week)}
+                %div= i
 
   .row
     %dl.nice.contained.tabs
       %dd
-        = link_to "Roster", "#roster", :class => "active"
+        = link_to 'Roster', '#roster', :class => 'active'
       %dd
-        = link_to "Set Starters", "#starters"
+        = link_to 'Trades', '#trades'
       %dd
-        = link_to "Trades", "#trades"
-      %dd
-        = link_to "Research", "#research"
+        = link_to 'Research', '#research'
       / %dd
       /  = link_to "Waiver Wire", "#waiver"
       / %dd
       /  = link_to "League Review", "#league"
     %ul.nice.tabs-content.contained
-      = render :partial => "research_tab", :locals => research
-      = render :partial => "trades_tab", :locals => trades
-    /  = render :partial => "roster_tab"
-    /  = render :partial => "starters_tab"
+      = render :partial => 'roster_tab', :locals => roster
+      = render :partial => 'trades_tab', :locals => trades
+    /  = render :partial => "research_tab", :locals => research
     /  = render :partial => "waiver_tab"
     /  = render :partial => "league_tab"
+
+- content_for :sidebar do
+  = render :partial => 'sidebar', :locals => sidebar

@@ -9,13 +9,22 @@ namespace :dynasty do
                 puts 'Emptying player <=> link table!'
                 ActiveRecord::Base.connection.execute("TRUNCATE #{PlayerPosition.table_name}")
 
+                puts 'Emptying positions table!'
+                ActiveRecord::Base.connection.execute("TRUNCATE #{Position.table_name}")
+
                 positions_file = File.join(Rails.root, 'lib', 'assets', 'positions.yml')
                 valid_positions = YAML::load(File.open(positions_file))
+                i = 1
                 valid_positions.each do |abbr, data|
                     # create or find the normalized position record
                     position_name = (data.kind_of? String) ? data : data['name']
-                    position = Position.find_or_create_by_name(position_name) { |u| u.abbreviation = abbr }
-                    aliases = (data.kind_of? Hash) ? data['aliases'] : []
+                    position = Position.find_or_create_by_name(position_name) do |u|
+                        u.abbreviation = abbr
+                        u.sort_order = i
+                        u.designation = data['designation']
+                        u.flex = data['flex'].to_i if data.has_key?('flex')
+                    end
+                    aliases = (data.is_a?(Hash) && data.has_key?('aliases')) ? data['aliases'] : []
                     valid_position_values = []
                     valid_position_values << abbr
                     valid_position_values << position_name.parameterize
@@ -28,6 +37,7 @@ namespace :dynasty do
                     players.each do |player|
                         values << "(#{player['id']},#{position.id})"
                     end
+                    i += 1
                 end
 
                 puts 'Writing to the database...'
@@ -177,20 +187,20 @@ namespace :dynasty do
                     teams.each do |team|
                         puts "Finding players that play for the #{team}..."
                         result = db.execute("
-              SELECT DISTINCT p.id AS player_id
-              FROM teams t
-              JOIN display_names team_name
-              ON t.id = team_name.entity_id AND team_name.entity_type = 'teams'
-              JOIN person_phases lnk
-              ON t.id = lnk.membership_id AND lnk.membership_type = 'teams'
-              JOIN persons p
-              ON lnk.person_id = p.id
-              JOIN dynasty_player_points points
-              ON points.player_id = p.id AND points.`year` = 2011
-              WHERE t.team_key LIKE '%nfl%'
-                AND team_name.last_name LIKE '#{team}'
-              ORDER BY team_name.last_name
-            ")
+                            SELECT DISTINCT p.id AS player_id
+                            FROM teams t
+                            JOIN display_names team_name
+                            ON t.id = team_name.entity_id AND team_name.entity_type = 'teams'
+                            JOIN person_phases lnk
+                            ON t.id = lnk.membership_id AND lnk.membership_type = 'teams'
+                            JOIN persons p
+                            ON lnk.person_id = p.id
+                            JOIN dynasty_player_points points
+                            ON points.player_id = p.id AND points.`year` = 2011
+                            WHERE t.team_key LIKE '%nfl%'
+                                AND team_name.last_name LIKE '#{team}'
+                            ORDER BY team_name.last_name
+                        ")
                         result.each do |player_id|
                             contract = Contract.find_by_person_id(player_id)
                             begin

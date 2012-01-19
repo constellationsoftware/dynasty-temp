@@ -14,6 +14,7 @@ class TeamsController < InheritedResources::Base
         manage! do |format|
             #raise unless current_user === @team.user
 
+            max_week = Schedule.select{max(week).as('week')}.where{team_id == my{@team.id}}.first.week.to_i
             week = Clock.first.week
             game = @team.schedules.for_week(week).with_opponent.first
             next_game = @team.schedules.for_week(week + 1).with_opponent
@@ -29,13 +30,43 @@ class TeamsController < InheritedResources::Base
                 position_players << { :name => position.name, :players => players }
             end
 
+            starters = []
+            bench = []
+            reserve = []
+            payroll_total = 0
+            players = Player.joins{[teams, position, contract]}
+                .includes{[position, contract, team_link]}
+                .where{teams.id == my{@team.id}}
+                .order{[position.sort_order, position.designation.desc]}
+            players = players.with_points_from_season('current') if week > 0
+            players.each do |player|
+                payroll_total += player.contract.amount
+                player_data = {
+                    :player => player,
+                    :points => week > 0 ? player.points_for_week(week) : nil
+                }
+                case player.team_link.depth.to_i
+                when 1
+                    starters << player_data
+                when 0
+                    bench << player_data
+                else # no points for these guys
+                    reserve << player_data
+                end
+            end
+            payroll = payroll_total / max_week
+
             data = {
                 :week => week,
+                :max_week => max_week,
                 :game => game,
                 :next_game => (next_game.nil? ? nil : next_game.first),
 
-                :cap => 75000000,
-
+                :roster => {
+                    :starters => starters,
+                    :bench => bench,
+                    :reserve => reserve
+                },
                 :research => { :all_players_by_position => position_players },
                 :trades => {
                     :my_players => PlayerTeamRecord.joins{player.name}.includes{player.name}
@@ -49,6 +80,14 @@ class TeamsController < InheritedResources::Base
                     :accepted_trades_received => Trade.closed.accepted.find_all_by_second_team_id(@team.id),
                     :denied_trade_offers => Trade.closed.denied.find_all_by_second_team_id(@team.id),
                     :denied_trades_received => Trade.closed.denied.find_all_by_initial_team_id(@team.id)
+                },
+
+                :sidebar => {
+                    :bank_account => {
+                        :cap => 75000000,
+                        :payroll => payroll,
+                        :payroll_total => payroll_total
+                    }
                 }
             }
             format.html { respond_with @team, :locals => data }
@@ -61,6 +100,9 @@ class TeamsController < InheritedResources::Base
         #end
         # Roster and positioning stuff
         @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
+
+        @my_season_payroll = @team.players.to_a.sum(&:amount)
+        @my_weekly_payroll = @my_season_payroll / @team.schedules.count
 
         @my_starters = @team.player_team_records.where { depth == 1 }
         @my_bench = @team.player_team_records.where(:depth => 0)

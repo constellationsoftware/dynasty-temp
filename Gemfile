@@ -18,7 +18,7 @@ gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
 gem 'responders'
 gem 'has_scope'
-gem 'inherited_resources'
+gem 'inherited_resources', '1.3.0'
 gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests

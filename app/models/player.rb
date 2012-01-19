@@ -2,6 +2,7 @@ class Player < ActiveRecord::Base
     set_table_name 'persons'
     POSITION_PRIORITIES = %w(QB WR RB TE C G T K)
     POSITION_QUANTITIES = {
+        # offense
         :qb => 1,
         :wr => 2,
         :rb => 2,
@@ -9,9 +10,13 @@ class Player < ActiveRecord::Base
         :k => 1,
         :t => 2,
         :g => 2,
-        :c => 1
+        :c => 1,
+
+        #defense
+        :dl => 2,
+        :lb => 2,
+        :db => 2
     }
-    default_scope joins {name}.includes{name}
 
     has_one :name,
             :class_name => 'DisplayName',
@@ -64,7 +69,6 @@ class Player < ActiveRecord::Base
         end
         with_points.where { points.year == "#{season}" }
     }
-
     # filter out players that have been picked already in this draft
     scope :available, lambda { |draft|
         #joins{picks.outer}.where{(picks.draft_id == nil) | (picks.draft_id.not_eq my{draft.id})}
@@ -72,6 +76,7 @@ class Player < ActiveRecord::Base
         where { id.not_in picks_subquery }
     }
     scope :by_position_priority, joins { position }.where { substring(position.abbreviation, 1, 2) >> my { POSITION_PRIORITIES } }.order(order_by_position_priority)
+    scope :with_name, joins{name}.includes{name}
     scope :by_name, lambda { |value|
         query = order{[
             isnull(name.full_name),
@@ -95,14 +100,14 @@ class Player < ActiveRecord::Base
         if team && !(filters?)
             # count how many picks have been made by position
             position_counts = Position.find_by_sql("
-            SELECT abbreviation AS abbr, (
-                SELECT COUNT(*)
-                FROM dynasty_draft_picks dp
-                JOIN dynasty_player_positions pp
-                ON dp.player_id = pp.player_id
-                WHERE team_id = #{team.id} AND pp.position_id = pos.id
-            ) AS count
-            FROM dynasty_positions pos
+                SELECT abbreviation AS abbr, (
+                    SELECT COUNT(*)
+                    FROM dynasty_draft_picks dp
+                    JOIN dynasty_player_positions pp
+                    ON dp.player_id = pp.player_id
+                    WHERE team_id = #{sanitize(team.id)} AND pp.position_id = pos.id
+                ) AS count
+                FROM dynasty_positions pos
             ")
             filters = position_counts.delete_if { |position_count|
                 max = POSITION_QUANTITIES[position_count.abbr.to_sym]
@@ -123,6 +128,16 @@ class Player < ActiveRecord::Base
         query = query.where { id.in(points_subquery) } if !!points_subquery
         query
     }
+
+    def points_for_week(week = 1)
+        week_end = Clock.first_week.advance :weeks => week
+        week_start = week_end.advance :weeks => -1
+        PlayerEventPoint.joins{[event, player]}
+            .where{player.id == my{self.id}}
+            .where('events.start_date_time BETWEEN ? AND ?', week_start, week_end)
+            .first
+        #.where{player.team_link.depth == 1}
+    end
 
     def full_name
         name.full_name
@@ -153,5 +168,9 @@ class Player < ActiveRecord::Base
             })
         end
         return obj
+    end
+
+    def self.position_quantities
+        POSITION_QUANTITIES
     end
 end

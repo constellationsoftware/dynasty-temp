@@ -17,7 +17,7 @@
         .twelve.columns
           = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"
       .row
-        = f.commit_button
+        = f.submit 'Submit', :class => 'nice small radius blue button'
   .panel
     %h3
       Open Trade Offers Received

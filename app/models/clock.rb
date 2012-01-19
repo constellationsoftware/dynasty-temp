@@ -22,6 +22,7 @@ class Clock < ActiveRecord::Base
 
 
         ## save historical starters lineup
+=begin
         UserTeam.all.each do |team|
             if team.user_team_lineups.first
                 current_lineup = team.user_team_lineups.current.first
@@ -38,6 +39,7 @@ class Clock < ActiveRecord::Base
                 @nl.save
             end
         end
+=end
     end
 
     def reset
@@ -74,12 +76,19 @@ class Clock < ActiveRecord::Base
         week_end = self.time
         week_start = self.time.advance :weeks => -1
 
-        PlayerEventPoint.select{sum(points).as('points')}
+        starter_points = PlayerEventPoint.select{sum(points).as('points')}
             .joins{[event, player.team_link.team]}
             .where{player.team_link.team.id == my{ team.id }}
             .where{player.team_link.depth == 1}
             .where{(event.start_date_time >= week_start) & (event.start_date_time < week_end)}
             .first.points
+        bench_points = PlayerEventPoint.select{sum(points).as('points')}
+            .joins{[event, player.team_link.team]}
+            .where{player.team_link.team.id == my{ team.id }}
+            .where{player.team_link.depth == 0}
+            .where{(event.start_date_time >= week_start) & (event.start_date_time < week_end)}
+            .first.points
+        starter_points.to_f + (bench_points.to_f / 3)
     end
 
     def week
@@ -87,16 +96,16 @@ class Clock < ActiveRecord::Base
         ((self.time.to_date - beginning.to_date) / 7).to_i
     end
 
-
-
     def calculate_points_for_league(league)
-        beginning = Date.new(2011, 9, 8).at_midnight
-
         league.teams.each { |team|
             points = weekly_points_for_team(team)
             #week = ((self.time.to_date - beginning.to_date) / 7).to_i + 1
             #puts "points: #{points} week: #{week}"
             Game.create :team_id => team.id, :week => self.week, :points => (points ? points : 0)
         }
+    end
+
+    def self.first_week
+        return Date.new(2011, 9, 8).at_midnight
     end
 end

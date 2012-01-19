@@ -91,14 +91,14 @@ Dynasty::Application.routes.draw do
     end
 
     resources :player_team_records do
-        get 'drop'
-        get 'add'
-        get 'bid'
-        get 'resolve'
         member do
+            put :start
+            put :bench
+            get 'drop'
+            get 'add'
             get 'bid'
-            get 'resolve'
             post 'bid'
+            get 'resolve'
             post 'resolve'
         end
     end

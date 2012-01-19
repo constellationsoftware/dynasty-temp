@@ -12,100 +12,156 @@
 # value in the database. Values starting with the position
 # key or name are inferred automatically.
 #
+# NOTE: The order in which these positions appear will dictate
+#       their sorting order in the database
+#
 
 # BACKS/RECEIVERS
-qb: Quarterback
-
-wr:
-  name: Wide Receiver
-  aliases: 
-  - Split End
-  - Flanker
-  - Slot Receiver
+qb:
+    name: Quarterback
+    designation: o
 
 rb:
-  name: Running Back
-  aliases: 
-  - Tailback
-  - Halfback
-  - Wingback
-  - Slotback
-  - Fullback
+    name: Running Back
+    designation: o
+    flex: 1
+    aliases:
+    - Tailback
+    - Halfback
+    - Wingback
+    - Slotback
+    - Fullback
+
+wr:
+    name: Wide Receiver
+    designation: o
+    flex: 1
+    aliases:
+    - Split End
+    - Flanker
+    - Slot Receiver
 
 te:
-  name: Tight End
-  aliases: 
-  - H Back
+    name: Tight End
+    designation: o
+    flex: 1
+    aliases:
+    - H Back
+
+
+# SPECIAL TEAMS
+k:
+    name: Kicker
+    designation: o
+
+p:
+    name: Punter
+    designation: o
+
+ls:
+    name: Long Snapper
+    designation: o
+
+h:
+    name: Holder
+    designation: o
+
 
 # OFFENSIVE LINE
-c: Center
+c:
+    name: Center
+    designation: o
 
 g:
-  name: Guard
-  aliases: 
-  - Lineman Offensive
-  - Guard Left
-  - Guard Right
+    name: Guard
+    designation: o
+    aliases:
+    - Lineman Offensive
+    - Guard Left
+    - Guard Right
 
 t:
-  name: Tackle
-  aliases:
-  - Tackle Offensive
-  - Tackle Offensive Left
-  - Tackle Offensive Right
+    name: Tackle
+    designation: o
+    aliases:
+    - Tackle Offensive
+    - Tackle Offensive Left
+    - Tackle Offensive Right
 
 
-# DEFENSIVE LINE
-dt:
-  name: Defensive Tackle
-  aliases: 
-  - Tackle Defensive
-  - Defensive Guard
-  - Nose Tackle
-  - Nose Guard
-  - Lineman Defensive
+# DEFENSIVE LINEMEN
+dl:
+    name: Defensive Lineman
+    designation: d
+    flex: 1
+    aliases:
+    - Tackle Defensive
+    - Defensive Guard
+    - Nose Tackle
+    - Nose Guard
+    - Lineman Defensive
+    - Defensive End
+    - DE
 
-de: Defensive End
+#dt:
+#    name: Defensive Tackle
+#    designation: d
+#    aliases:
+#    - Tackle Defensive
+#    - Defensive Guard
+#    - Nose Tackle
+#    - Nose Guard
+#    - Lineman Defensive
+
+#de:
+#    name: Defensive End
+#    designation: d
+
 
 # LINEBACKERS
-lb: 
-  name: Linebacker
-  aliases:
-  - Inside Linebacker
-  - Linebacker Inside
-  - Middle Linebacker
-  - Linebacker Middle
-  - MLB
-  - Outside Linebacker
-  - Linebacker Outside
-  - Left Outside
-  - Right Outside
-  - OLB
-  - Defenseman
+lb:
+    name: Linebacker
+    designation: d
+    flex: 1
+    aliases:
+    - Inside Linebacker
+    - Linebacker Inside
+    - Middle Linebacker
+    - Linebacker Middle
+    - MLB
+    - Outside Linebacker
+    - Linebacker Outside
+    - Left Outside
+    - Right Outside
+    - OLB
+    - Defenseman
+
 
 # DEFENSIVE BACKS
 db:
-  name: Defensive Back
-  aliases:
-  - CB
-  - Cornerback
-  - Safety
-  - FS
-  - Free Safety
-cb: 
-  name: Cornerback
-  aliases: 
-  - CB
+    name: Defensive Back
+    designation: d
+    flex: 1
+    aliases:
+    - CB
+    - Cornerback
+    - Safety
+    - FS
+    - Free Safety
+    - Safety Strong
+    - SS
+    - Safety Free
 
-s: 
-  name: Safety
-  aliases: 
-  - Safety Strong
-  - SS
-  - Safety Free
+#cb:
+#    name: Cornerback
+#    designation: d
+#    aliases:
+#    - CB
 
-# SPECIAL TEAMS
-k: Kicker
-p: Punter
-ls: Long Snapper
-h: Holder
+#s:
+#    name: Safety
+#    designation: d
+#    aliases:
+#    - Safety Strong
+#    - SS
+#    - Safety Free

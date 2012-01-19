@@ -7,7 +7,8 @@ class PlayerTeamRecord < ActiveRecord::Base
     has_one :user_team_lineup
     belongs_to :league
 
-    attr_accessible :name, :position
+    attr_accessible :name, :position, :depth
+    validates_with Validators::PlayerTeamRecord
 
     def name
         self.player.name.full_name
@@ -45,5 +46,14 @@ class PlayerTeamRecord < ActiveRecord::Base
             ptr.position_id = Player.find(pick.player_id).position.id
             ptr.save
         end
+    end
+
+    #
+    # Returns (current) records of players that share the same position
+    #
+    def players_in_position(position_depth = nil)
+        query = self.class.where{(user_team_id == my{self.user_team_id}) & (position_id == my{self.position_id}) & (current == 1)}
+        query = query.where{depth == position_depth} unless position_depth.nil?
+        query
     end
 end
