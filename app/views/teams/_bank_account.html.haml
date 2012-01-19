@@ -1,0 +1,47 @@
+.panel
+  %p
+    %strong
+      #{@team.name} Financials
+  .row
+    .four.columns
+      Cash:
+    .three.columns
+      #{number_to_currency(@team.balance)}
+  .row
+    .four.columns
+      Wk.Pay:
+    .three.columns
+      #{number_to_currency(payroll)}
+
+  .row
+    .four.columns
+      S. Cap:
+    .three.columns
+      #{number_to_currency(cap)}
+  .row
+    .four.columns
+      Ssn.Pay:
+    - if payroll_total > cap
+      .three.columns.failure
+        #{number_to_currency(payroll_total)}
+    - if payroll_total <= cap
+      .three.columns.success
+        #{number_to_currency(payroll_total)}
+
+  .row
+    - if payroll_total > cap
+      .twelve.columns.failure
+        %strong
+          #{number_to_currency(payroll_total - cap)} over cap!
+    - if payroll_total <= cap
+      .twelve.columns.success
+        %strong
+          #{number_to_currency(cap - payroll_total)} under cap!
+  %br
+
+
+
+
+
+
+

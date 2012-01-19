@@ -1,15 +1,31 @@
-class PlayerTeamRecordsController < ApplicationController
+class PlayerTeamRecordsController < InheritedResources::Base
+    before_filter :authenticate_user!
+    custom_actions :resource => [ :drop ]
+
+    def interpolation_options
+        position = @player_team_record.position.name
+        {
+            :resource_player_name => @player_team_record.name,
+            :resource_player_position => position.downcase
+        }
+    end
+
+    def start
+        update_and_return binding
+    end
+
+    def bench
+        update_and_return binding
+    end
 
     def drop
-        @player_team_record = PlayerTeamRecord.find(params[:player_team_record_id])
-        @player_team_record.details = "Dropped by #{@player_team_record.user_team.name} on #{Clock.first.nice_time}"
-        @player_team_record.user_team_id = 0
-        @player_team_record.waiver = 1
+        update! do |format|
+            @player_team_record.details = "Dropped by #{@player_team_record.user_team.name} on #{Clock.first.nice_time}"
+            @player_team_record.user_team_id = 0
+            @player_team_record.waiver = 1
+            @player_team_record.save
 
-        @player_team_record.save
-        respond_to do |format|
-            format.html { redirect_to :back, :flash => {:info => "You dropped #{@player_team_record.name}! I hope his feelings arent hurt'"} }
-            format.xml { head :ok }
+            format.html { redirect_to :back }
         end
     end
 

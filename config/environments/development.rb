@@ -26,7 +26,7 @@ Dynasty::Application.configure do
     config.assets.enabled = true
     config.serve_static_assets = true
     config.assets.compile = true
-    config.assets.debug = true
+    config.assets.debug = false
 
     #Iron Worker to run jobs
 

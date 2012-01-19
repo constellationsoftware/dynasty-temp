@@ -27,10 +27,10 @@ class League::PlayersController < SubdomainController
             }.compact
         end
         team = controller.instance_variable_get("@team")
-        scope.filter_positions(team, filter).joins { name }.includes { name }
+        scope.filter_positions(team, filter).with_name
     end
     has_scope :by_name, :allow_blank => true, :only => :index do |controller, scope, value|
-        scope.by_name(value)
+        scope.with_name.by_name(value)
     end
     has_scope :order_by, :only => :index do |controller, scope, value|
         sort_hash = ActiveSupport::JSON.decode(value)

@@ -6,6 +6,12 @@ class League::DraftsController < SubdomainController
     singleton_belongs_to :league
     custom_actions :resource => [:start, :reset, :pick, :finish]
 
+    def show
+        show! do |format|
+            format.html{ redirect_to root_url } if @draft.nil?
+        end
+    end
+
     # starts the draft
     def start
         start! do |format|
@@ -21,7 +27,6 @@ class League::DraftsController < SubdomainController
             end
         end
     end
-
 
     def reset
         reset! do |format|

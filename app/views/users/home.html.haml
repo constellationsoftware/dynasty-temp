@@ -25,7 +25,7 @@
           Team Name:
           %strong
             = t.andand.name
-        = link_to "Manage Team", manage_user_team_url(t), :class => "small nice black button radius"
+        = link_to "Manage Team", manage_team_path(t, :anchor => 'roster'), :class => "small nice black button radius"
 
-        - unless t.league.draft.status == 'finished'
-          = link_to "Go To The Draft", "http://#{t.league.slug}.dynastyowner.net/draft", :class => "small nice blue button radius"
+        - unless t.league.draft.nil? || t.league.draft.status === :finished
+          = link_to "Go To The Draft", draft_url(:subdomain => t.andand.league.slug, ), :class => "small nice blue button radius"

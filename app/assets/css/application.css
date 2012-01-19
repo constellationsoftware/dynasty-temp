@@ -117,3 +117,6 @@ th, td {
     margin-top: 50px;
     padding-top: 50px;
 }
+
+/* useful for single-button forms */
+form.inline { display: inline; }

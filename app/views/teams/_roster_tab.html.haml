@@ -1,0 +1,51 @@
+%li.active#rosterTab
+  %h5 Review your Roster
+  %p How strong does your team look? Should you drop a weaker player?
+
+  %table.roster
+    %thead
+      %tr
+        %th{:colspan => 5} Active
+      %tr
+        %th Position
+        %th Name
+        %th Bye
+        - if starters.size > 0 && !(starters[0][:points].nil?)
+          %th Points
+        %th
+    %tbody
+      - starters.each do |data|
+        = render :partial => 'player_row', :locals => { :player => data[:player],
+          :depth => :starter,
+          :extra => (data[:points].nil? ? nil : number_with_precision(data[:points].points, :precision => 1)) }
+  %table.roster
+    %thead
+      %tr
+        %th{:colspan => 5} Bench
+      %tr
+        %th Position
+        %th Name
+        %th Bye
+        - if bench.size > 0 && !(bench[0][:points].nil?)
+          %th Points
+        %th
+    %tbody
+      - bench.each do |data|
+        = render :partial => 'player_row', :locals => { :player => data[:player],
+          :depth => :bench,
+          :extra => (data[:points].nil? ? nil : number_with_precision((data[:points].points.to_f / 3), :precision => 1)) }
+
+- if reserve.size > 0
+  %table.roster
+    %thead
+      %tr
+        %th{:colspan => 5} Reserve
+      %tr
+        %th Position
+        %th Name
+        %th Bye
+        %th Weekly Cost
+        %th
+    %tbody
+      - reserve.each do |data|
+        = render :partial => 'player_row', :locals => { :player => data[:player], :depth => :reserve }
