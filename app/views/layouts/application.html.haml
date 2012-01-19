@@ -90,8 +90,8 @@
     .row
       .nine.columns
         /*Core Content
-        - flash.each do |key, msg|
-          %div{ :class => ['alert-box', ({:success => 'success', :warning => 'warning', :failure => 'error'}.values_at(key).first) ] }
+        - flash.each do |type, msg|
+          %div.alert-box{ :class => get_alert_style_by_type(type) }
             = msg
         = yield
 
