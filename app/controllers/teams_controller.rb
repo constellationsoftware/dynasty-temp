@@ -65,7 +65,9 @@ class TeamsController < InheritedResources::Base
                 :roster => {
                     :starters => starters,
                     :bench => bench,
-                    :reserve => reserve
+                    :reserve => reserve,
+                    :week => week,
+                    :game_lineup => @team.user_team_lineups.where('week = ?', week).first
                 },
                 :research => { :all_players_by_position => position_players },
                 :trades => {
