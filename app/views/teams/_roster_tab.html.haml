@@ -10,8 +10,7 @@
         %th Position
         %th Name
         %th Bye
-        - if starters.size > 0 && !(starters[0][:points].nil?)
-          %th Points
+        %th Points
         %th Manage
     %tbody
       - starters.each do |data|
@@ -26,8 +25,7 @@
         %th Position
         %th Name
         %th Bye
-        - if bench.size > 0 && !(bench[0][:points].nil?)
-          %th Points
+        %th Points
         %th Manage
     %tbody
       - bench.each do |data|
