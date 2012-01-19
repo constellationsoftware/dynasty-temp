@@ -33,6 +33,7 @@ class ClockController < ApplicationController
                     if schedule.outcome == 1
                         @game.winnings = 1000000
                         @game.save
+
                     end
                     if schedule.outcome == 0
                         @game.winnings = 500000
@@ -40,6 +41,7 @@ class ClockController < ApplicationController
                     end
                     @game.save
                     ut.balance += @game.winnings.to_money
+                    ut.save
                     schedule.save
             }
 

@@ -18,20 +18,21 @@ class Player < ActiveRecord::Base
         :db => 2
     }
 
-    has_one :name,
-            :class_name => 'DisplayName',
-            :foreign_key => 'entity_id',
-            :conditions => {:entity_type => 'persons'}
-    has_one :position_link, :class_name => 'PlayerPosition'
-    has_one :position, :through => :position_link
-    has_one :team_link, :class_name => 'PlayerTeamRecord'
+    has_one  :name,
+             :class_name => 'DisplayName',
+             :foreign_key => 'entity_id',
+             :conditions => { :entity_type => 'persons' }
+    has_one  :score, :class_name => 'PersonScore'
+    has_one  :position_link, :class_name => 'PlayerPosition'
+    has_one  :position, :through => :position_link
+    has_one  :team_link, :class_name => 'PlayerTeamRecord'
     has_many :teams, :through => :team_link, :class_name => 'UserTeam'
     has_many :leagues, :through => :teams
     has_many :picks
     has_many :points, :class_name => 'PlayerPoint'
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :events, :through => :event_points
-    has_one :contract, :foreign_key => 'person_id'
+    has_one  :contract, :foreign_key => 'person_id'
 
     def contract_depth
         self.contract.depth
@@ -67,7 +68,7 @@ class Player < ActiveRecord::Base
                     season = current_year - 1
             end
         end
-        with_points.where { points.year == "#{season}" }
+        with_points.where { points.year == my{ season } }
     }
     # filter out players that have been picked already in this draft
     scope :available, lambda { |draft|
@@ -85,7 +86,7 @@ class Player < ActiveRecord::Base
             name.last_name,
             name.first_name
         ]}
-        query = query.where{ name.full_name.like "%#{value}%" } unless value.nil?
+        query = query.where{ name.full_name.like "%#{sanitize(value)}%" } unless value.nil?
         return query
     }
     ##
@@ -124,7 +125,7 @@ class Player < ActiveRecord::Base
             end
         end
 
-        query = joins { [points, position] }.includes { [points, position] }.where { points.year == "#{current_year}" }
+        query = joins { [points, position] }.includes { [points, position] }.where { points.year == my{ current_year } }
         query = query.where { id.in(points_subquery) } if !!points_subquery
         query
     }

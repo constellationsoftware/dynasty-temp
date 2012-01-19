@@ -8,7 +8,7 @@ en:
                 success: "%{resource_player_name} was placed in your starting lineup."
                 failure: "There isn't room for another %{resource_player_position} in your starting lineup!"
             bench:
-                success: "%{resource_player_name} is warming the benches."
+                success: "%{resource_player_name} is warming the bench."
                 failure: "%{resource_player_name} could not be sent to the bench."
             drop:
                 success: "You dropped %{resource_player_name}. I hope his feelings aren't hurt."

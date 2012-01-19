@@ -7,16 +7,12 @@ class Clock < ActiveRecord::Base
         ## do payroll
         UserTeam.all.each do |team|
           my_season_payroll = team.players.to_a.sum(&:amount)
-          puts team.balance
-          puts "-"
           my_weekly_payroll = my_season_payroll / team.schedules.count
-          puts my_weekly_payroll
           team.balance = team.balance - my_weekly_payroll.to_money
+          #team.balance = team.balance + team.games.last.winnings
 
           #TODO Figure out why negative money values gives an error...
           team.balance = "0" if team.balance < 0.to_money
-          puts "balance:"
-          puts team.balance
           team.save
         end
 
