@@ -17,12 +17,13 @@
 #
 
 # BACKS/RECEIVERS
-qb:
+-
     name: Quarterback
+    abbreviation: qb
     designation: o
-
-rb:
+-
     name: Running Back
+    abbreviation: rb
     designation: o
     flex: 1
     aliases:
@@ -31,18 +32,18 @@ rb:
     - Wingback
     - Slotback
     - Fullback
-
-wr:
+-
     name: Wide Receiver
+    abbreviation: wr
     designation: o
     flex: 1
     aliases:
     - Split End
     - Flanker
     - Slot Receiver
-
-te:
+-
     name: Tight End
+    abbreviation: te
     designation: o
     flex: 1
     aliases:
@@ -50,38 +51,40 @@ te:
 
 
 # SPECIAL TEAMS
-k:
+-
     name: Kicker
+    abbreviation: k
     designation: o
-
-p:
+-
     name: Punter
+    abbreviation: p
     designation: o
-
-ls:
+-
     name: Long Snapper
+    abbreviation: ls
     designation: o
-
-h:
+-
     name: Holder
+    abbreviation: h
     designation: o
 
 
 # OFFENSIVE LINE
-c:
+-
     name: Center
+    abbreviation: c
     designation: o
-
-g:
+-
     name: Guard
+    abbreviation: g
     designation: o
     aliases:
     - Lineman Offensive
     - Guard Left
     - Guard Right
-
-t:
+-
     name: Tackle
+    abbreviation: t
     designation: o
     aliases:
     - Tackle Offensive
@@ -90,8 +93,9 @@ t:
 
 
 # DEFENSIVE LINEMEN
-dl:
+-
     name: Defensive Lineman
+    abbreviation: dl
     designation: d
     flex: 1
     aliases:
@@ -102,9 +106,9 @@ dl:
     - Lineman Defensive
     - Defensive End
     - DE
-
-#dt:
+#-
 #    name: Defensive Tackle
+#    abbreviation: dt
 #    designation: d
 #    aliases:
 #    - Tackle Defensive
@@ -113,14 +117,16 @@ dl:
 #    - Nose Guard
 #    - Lineman Defensive
 
-#de:
+#-
 #    name: Defensive End
+#    abbreviation: de
 #    designation: d
 
 
 # LINEBACKERS
-lb:
+-
     name: Linebacker
+    abbreviation: lb
     designation: d
     flex: 1
     aliases:
@@ -138,8 +144,9 @@ lb:
 
 
 # DEFENSIVE BACKS
-db:
+-
     name: Defensive Back
+    abbreviation: db
     designation: d
     flex: 1
     aliases:
@@ -151,15 +158,15 @@ db:
     - Safety Strong
     - SS
     - Safety Free
-
-#cb:
+#-
 #    name: Cornerback
+#    abbreviation: cb
 #    designation: d
 #    aliases:
 #    - CB
-
-#s:
+#-
 #    name: Safety
+#    abbreviation: s
 #    designation: d
 #    aliases:
 #    - Safety Strong
