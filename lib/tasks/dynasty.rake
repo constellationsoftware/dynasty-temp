@@ -14,20 +14,17 @@ namespace :dynasty do
 
                 positions_file = File.join(Rails.root, 'lib', 'assets', 'positions.yml')
                 valid_positions = YAML::load(File.open(positions_file))
-                i = 1
-                valid_positions.each do |abbr, data|
+                valid_positions.each_with_index do |data, index|
                     # create or find the normalized position record
-                    position_name = (data.kind_of? String) ? data : data['name']
-                    position = Position.find_or_create_by_name(position_name) do |u|
-                        u.abbreviation = abbr
-                        u.sort_order = i
+                    position = Position.create do |u|
+                        u.name = data['name']
+                        u.abbreviation = data['abbreviation']
+                        u.sort_order = index + 1
                         u.designation = data['designation']
                         u.flex = data['flex'].to_i if data.has_key?('flex')
                     end
-                    aliases = (data.is_a?(Hash) && data.has_key?('aliases')) ? data['aliases'] : []
-                    valid_position_values = []
-                    valid_position_values << abbr
-                    valid_position_values << position_name.parameterize
+                    aliases = data.has_key?('aliases') ? data['aliases'] : []
+                    valid_position_values = [ data['abbreviation'], data['name'] ]
                     valid_position_values += aliases.collect { |item| item.parameterize }
 
                     players = Person.select { distinct(id) }.joins { positions }.where { substring_index(substring_index(positions.abbreviation, ',', 1), '/', 1).in valid_position_values }.where { (person_phases.membership_type == 'teams') & (person_phases.phase_status == 'active') }
@@ -37,13 +34,18 @@ namespace :dynasty do
                     players.each do |player|
                         values << "(#{player['id']},#{position.id})"
                     end
-                    i += 1
                 end
 
                 puts 'Writing to the database...'
-                ActiveRecord::Base.connection.execute(
-                    "INSERT INTO #{PlayerPosition.table_name}(player_id, position_id) VALUES #{values.join(',')}"
-                )
+                ActiveRecord::Base.connection.execute("
+                    INSERT INTO #{PlayerPosition.table_name}(player_id, position_id) VALUES #{values.join(',')}
+                ")
+                ActiveRecord::Base.connection.execute("
+                    UPDATE dynasty_player_teams pt
+                    JOIN dynasty_player_positions lnk ON pt.player_id = lnk.player_id
+                    SET pt.position_id = lnk.position_id
+                    WHERE pt.position_id != lnk.position_id
+                ")
             end
 
 
