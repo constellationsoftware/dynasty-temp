@@ -33,7 +33,7 @@
       - bench.each do |data|
         = render :partial => 'player_row', :locals => { :player => data[:player],
           :depth => :bench,
-          :extra => (data[:points].nil? ? nil : number_with_precision(data[:points].points, :precision => 1)) }
+          :extra => (data[:points].nil? ? nil : number_with_precision((data[:points].points.to_f / 3), :precision => 1)) }
 
 - if reserve.size > 0
   %table.roster

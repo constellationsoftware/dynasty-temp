@@ -20,7 +20,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="activeadmin (v0.3.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activeadmin (v0.3.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activeresource (v3.1.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
@@ -41,7 +41,7 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.2.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="compass (v0.11.7, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cookiejar (v0.3.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="daemons (v1.1.5, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="daemons (v1.1.6, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="dalli (v1.1.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="delayed_job (v2.1.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v1.5.3, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
@@ -53,17 +53,16 @@
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.0.0.beta.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v1.2.13, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fastercsv (v1.5.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="formtastic (v2.0.2, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="formtastic (v1.2.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="friendly_id (v4.0.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="fssm (v0.2.8.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="haml (v3.1.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="has_scope (v0.5.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="heroku (v2.18.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hpricot (v0.8.6, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="http_parser.rb (v0.5.3, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.6.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="inherited_resources (v1.3.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="inherited_resources (v1.2.2, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v1.0.19, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.6.5, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v0.13.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
@@ -75,10 +74,7 @@
     <orderEntry type="library" scope="PROVIDED" name="money (v1.7.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.0.4, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mysql2 (v0.3.6, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="newrelic_rpm (v3.3.1, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.5.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.0.6, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="pg (v0.12.2, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="polyamorous (v0.5.0, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.3, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pusher (v0.8.5, RVM: ruby-1.9.2-p290 [rails_3_1]) [gem]" level="application" />
