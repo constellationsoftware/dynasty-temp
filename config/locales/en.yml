@@ -2,4 +2,25 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+    flash:
+        player_team_records:
+            start:
+                success: "%{resource_player_name} was placed in your starting lineup."
+                failure: "There isn't room for another %{resource_player_position} in your starting lineup!"
+            bench:
+                success: "%{resource_player_name} is warming the bench."
+                failure: "%{resource_player_name} could not be sent to the bench."
+            drop:
+                success: "You dropped %{resource_player_name}. I hope his feelings aren't hurt."
+                failure: "Couldn't drop %{resource_player_name}."
+
+        actions:
+            create:
+                success: "%{resource_name} was successfully created."
+                failure: "%{resource_name} could not be created."
+            update:
+                success: "%{resource_name} was successfully updated."
+                failure: "%{resource_name} could not be updated."
+            destroy:
+                success: "%{resource_name} was successfully destroyed."
+                failure: "%{resource_name} could not be destroyed."

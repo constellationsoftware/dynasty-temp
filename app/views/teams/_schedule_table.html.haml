@@ -1,0 +1,41 @@
+.panel
+  = @team.name
+  Schedule
+  %table
+    %thead
+      %tr
+        %th
+          Week
+        %th
+          Opponent
+        %th
+          Outcome
+    %tbody
+      - @team.schedules.limit(9).each do |ts|
+        %tr
+          %td
+            = ts.week
+          %td
+            = ts.opponent.name
+          %td
+            - if ts.outcome == 1
+              Win
+            - if ts.outcome == 0
+              Loss
+            - unless ts.outcome
+              ???
+
+      %tr
+        %td
+          10
+        %td{:colspan => 2}
+          %strong
+            Dynasty Bowl
+    %tfoot
+      %tr
+        %td{:colspan => 2}
+          Record
+        %td
+          = @team.schedules.where(:outcome => '1').count
+          \-
+          = @team.schedules.where(:outcome => '0').count

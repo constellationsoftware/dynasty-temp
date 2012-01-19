@@ -91,7 +91,7 @@
       .nine.columns
         /*Core Content
         - flash.each do |key, msg|
-          .alert-box.success
+          %div{ :class => ['alert-box', ({:success => 'success', :warning => 'warning', :failure => 'error'}.values_at(key).first) ] }
             = msg
         = yield
 
@@ -105,27 +105,4 @@
               Not you?
               = link_to "Sign Out", destroy_user_session_path
 
-
-        - if @league
-
-          = render :partial => "user_teams/bank_account"
-          = render :partial => "user_teams/schedule_table"
-          = render :partial => "user_teams/time_machine"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        = yield :sidebar

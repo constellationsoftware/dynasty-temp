@@ -96,10 +96,3 @@ EM.next_tick do
     # cause the job to be instantiated and therefore queued
     Pusher::Job.instance
 end
-
-#
-# Mailgun REST client
-#
-
-
-

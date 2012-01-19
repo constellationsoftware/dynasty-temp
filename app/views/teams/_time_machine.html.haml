@@ -1,0 +1,9 @@
+.panel
+  %h5
+    Time Machine
+  .alert-box
+    = Clock.first.time.strftime("%B %e, %Y")
+  %p
+    = link_to "Fast Forward 1 Week", "/clock/2/next_week?league_id=#{@team.league.id}", :class => "nice button blue small radius"
+  %p
+    = link_to "Reset To Season Start", "/clock/2/reset?league_id=#{@team.league.id}", :class => "nice button blue small radius"
