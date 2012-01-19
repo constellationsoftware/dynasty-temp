@@ -4,6 +4,9 @@
   %td= player.contract.bye_week
   - unless extra.nil?
     %td= extra
+  - if extra.nil?
+    %td
+      0
   %td
     - if depth == :starter
       = form_for player.team_link, :url => bench_player_team_record_path(player.team_link.id), :html => { :method => :put, :class => 'inline' } do |f|
