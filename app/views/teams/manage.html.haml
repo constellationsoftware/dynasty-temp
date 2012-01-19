@@ -34,11 +34,12 @@
               %li{:class => ('current' if i === week)}
                 %div= i
 
-
   .row
     %dl.nice.contained.tabs
       %dd
-        = link_to 'Roster', '#roster', :class => 'active'
+        = link_to 'Game Review', '#review'
+      %dd
+        = link_to 'Roster', '#roster'
       %dd
         = link_to 'Trades', '#trades'
       %dd
@@ -48,8 +49,10 @@
       / %dd
       /  = link_to "League Review", "#league"
     %ul.nice.tabs-content.contained
+      = render :partial => 'review_tab', :locals => review
       = render :partial => 'roster_tab', :locals => roster
       = render :partial => 'trades_tab', :locals => trades
+
     /  = render :partial => "research_tab", :locals => research
     /  = render :partial => "waiver_tab"
     /  = render :partial => "league_tab"
