@@ -9,7 +9,7 @@ gem 'sass-rails' #, '~> 3.1.0'
 gem 'execjs'
 gem 'therubyracer'
 #gem 'heroku'
-
+gem 'foreman'
 gem 'haml'
 gem 'hpricot'
 gem 'ruby_parser'
