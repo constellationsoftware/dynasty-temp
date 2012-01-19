@@ -66,6 +66,7 @@ class TeamsController < InheritedResources::Base
                     :starters => starters,
                     :bench => bench,
                     :reserve => reserve
+                    :week => week
                 },
                 :research => { :all_players_by_position => position_players },
                 :trades => {
