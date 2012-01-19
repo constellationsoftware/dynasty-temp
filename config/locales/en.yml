@@ -13,9 +13,6 @@ en:
             drop:
                 success: "You dropped %{resource_player_name}. I hope his feelings aren't hurt."
                 failure: "Couldn't drop %{resource_player_name}."
-            update:
-                success: "test"
-                failure: "wah wah"
 
         actions:
             create:
