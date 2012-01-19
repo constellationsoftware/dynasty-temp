@@ -35,25 +35,6 @@ class UserTeam < ActiveRecord::Base
         self.save
     end
 
-=begin
-    def roster
-        ld = self.league.drafts.last.picks.where("team_id = ?", self.id).map(&:person_id)
-        salaries = Salary.find(ld)
-        salaries
-    end
-    
-    def payroll
-        payroll = 0
-        salaries = self.roster
-        salaries.each do |salary|
-            payroll += salary.contract_amount
-        end
-        payroll = payroll.to_f / 1000000
-        payroll
-        payroll = "$" + payroll.to_s + "MM"
-    end
-=end
-
     def is_offline
         self.offline
     end
