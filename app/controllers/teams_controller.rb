@@ -14,7 +14,7 @@ class TeamsController < InheritedResources::Base
         manage! do |format|
             #raise unless current_user === @team.user
 
-            session[:user_team_id] = @team.id
+            #session[:user_team_id] = @team.id
             max_week = Schedule.select{max(week).as('week')}.where{team_id == my{@team.id}}.first.week.to_i
             week = Clock.first.week
             game = @team.schedules.for_week(week).with_opponent.first
