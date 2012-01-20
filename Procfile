@@ -1,6 +1,5 @@
-#web: bundle exec unicorn_rails -p $PORT -c ./config/unicorn.rb
-web: bundle exec rails server thin -p 5000
-#web: bundle exec rails server thin -p 5001
-#web: bundle exec rails server thin -p 5002
+### This is the development environment foreman file. Use like this: ###
+### bundle exec foreman start -f ./Procfile web=4 worker=1
+web: bundle exec rails server thin start -p $PORT
 worker: bundle exec rake jobs:work --trace
 #clock: bundle exec clockwork clock.rb

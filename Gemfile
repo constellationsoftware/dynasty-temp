@@ -22,6 +22,7 @@ gem 'kaminari'
 gem 'pusher'
 gem 'em-http-request' # required for async pusher requests
 gem 'thin'
+gem 'foreman'
 
 gem 'dalli'
 gem 'pusher'

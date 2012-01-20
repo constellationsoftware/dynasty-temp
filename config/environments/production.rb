@@ -3,10 +3,9 @@ Dynasty::Application.configure do
 
     # Code is not reloaded between requests
     config.cache_classes = true
-    #config.cache_store = :dalli_store
 
     # Full error reports are disabled and caching is turned on
-    config.consider_all_requests_local = false # set to true for fake dev mode
+    config.consider_all_requests_local = true # set to true for fake dev mode
     config.action_controller.perform_caching = true # set to false for fake dev mode
 
     # Disable Rails's static asset server (Apache or nginx will already do this)
@@ -21,6 +20,15 @@ Dynasty::Application.configure do
     # Generate digests for assets URLs
     config.assets.digest = true
 
+    # Only use best-standards-support built into browsers
+    config.action_dispatch.best_standards_support = :builtin
+
+    # Enable the asset pipeline
+    config.assets.enabled = true
+    config.serve_static_assets = true
+    config.assets.compile = true
+    config.assets.debug = false
+
     # Defaults to Rails.root.join("public/assets")
     # config.assets.manifest = YOUR_PATH
 
@@ -32,7 +40,8 @@ Dynasty::Application.configure do
     # config.force_ssl = true
 
     # See everything in the log (default is :info)
-    # config.log_level = :debug
+    config.log_level = :debug
+    config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 3, 5*1024*1024)
 
     # Use a different logger for distributed setups
     # config.logger = SyslogLogger.new
@@ -50,7 +59,7 @@ Dynasty::Application.configure do
     # config.action_mailer.raise_delivery_errors = false
 
     # Enable threaded mode
-    # config.threadsafe!
+    config.threadsafe!
 
     # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
     # the I18n.default_locale when a translation can not be found)
@@ -65,5 +74,3 @@ Pusher.app_id = '10192'
 Pusher.key = '6e855396056bdf519e1a'
 Pusher.secret = 'da06ccd5289c0145a263'
 
-#MAILGUN_API_KEY = "key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61"
-#MAILGUN_API_URL = "https://api:#{MAILGUN_API_KEY}@api.mailgun.net/v2/mailgun.net"

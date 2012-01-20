@@ -36,25 +36,30 @@
 
   .row
     %dl.nice.contained.tabs
-      %dd
-        = link_to 'Game Review', '#review'
-      %dd
-        = link_to 'Roster', '#roster'
+      - if week > 0
+        %dd
+          = link_to 'Game Review', '#review', :class => 'active'
+        %dd
+          = link_to 'Roster', '#roster'
+      - unless week > 0
+        %dd
+          = link_to 'Roster', '#roster', :class => 'active'
       %dd
         = link_to 'Trades', '#trades'
       %dd
         = link_to 'Research', '#research'
-      / %dd
-      /  = link_to "Waiver Wire", "#waiver"
+      %dd
+        = link_to "Waiver Wire", "#waiver"
       / %dd
       /  = link_to "League Review", "#league"
     %ul.nice.tabs-content.contained
-      = render :partial => 'review_tab', :locals => review
+      - if week > 0
+        = render :partial => 'review_tab', :locals => review
       = render :partial => 'roster_tab', :locals => roster
       = render :partial => 'trades_tab', :locals => trades
 
-    /  = render :partial => "research_tab", :locals => research
-    /  = render :partial => "waiver_tab"
+      = render :partial => "research_tab", :locals => research
+      = render :partial => "waiver_tab", :locals => waiver
     /  = render :partial => "league_tab"
 
 - content_for :sidebar do

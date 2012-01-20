@@ -28,10 +28,6 @@ Dynasty::Application.configure do
     config.assets.compile = true
     config.assets.debug = false
 
-    #Iron Worker to run jobs
-
-    #ENV['SIMPLE_WORKER_TOKEN'] = 'H-6n-pFsiR4RFiwJFPnhXW7E8WI'
-    #ENV['SIMPLE_WORKER_PROJECT_ID'] = '4eebc865066bce1a4e0007a0'
 
     # Rotate Log Files. example:
     # config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
@@ -48,9 +44,7 @@ Dynasty::Application.configure do
    #     end
    # end
 
-    ENV['MAILGUN_API_KEY'] = 'key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61'
-    ENV['MAILGUN_API_URL'] = "https://api:key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61@api.mailgun.net/v2/mailgun.net"
-    # Example message format
+     # Example message format
     # RestClient.post MAILGUN_API_URL+"/messages",
     #                :from => "ev@example.com",
     #                :to => "ev@mailgun.net",

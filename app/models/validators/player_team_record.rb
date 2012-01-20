@@ -7,6 +7,7 @@ module Validators
                 position_allowance = Player.position_quantities[record.depth][(player.position.designation).to_sym][(player.position.abbreviation).to_sym]
                 position_count = record.players_in_position(record.depth).count
                 record.errors[:depth] << "Your starting lineup has too many #{player.position.name.pluralize}." unless position_count < position_allowance
+                puts record.errors[:depth]
             end
         end
     end

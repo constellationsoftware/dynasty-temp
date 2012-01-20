@@ -34,6 +34,7 @@ class Clock < ActiveRecord::Base
             pth.depth = ptr.depth
             pth.league_id = ptr.league_id
             pth.position_id = ptr.position_id
+
             pth.save
             puts pth.player.name.full_name
             puts "saved"
@@ -80,6 +81,7 @@ class Clock < ActiveRecord::Base
             t.save
         end
         PlayerTeamHistory.all.each {|pth| pth.destroy}
+        Trade.all.each {|trade| trade.destroy}
     end
 
     def present
