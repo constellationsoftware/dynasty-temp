@@ -1,4 +1,3 @@
-
 .panel
   %h4
     User Control Panel
@@ -25,7 +24,15 @@
           Team Name:
           %strong
             = t.andand.name
-        = link_to "Manage Team", manage_team_path(t, :anchor => 'roster'), :class => "small nice black button radius"
+        = button_to "Manage Team",
+          manage_team_url(t, :subdomain => t.andand.league.slug, :anchor => 'roster'),
+          :method => :get,
+          :class => 'small nice black button radius',
+          :form_class => 'inline',
+          :disabled => !(t.players.count > 0)
 
         - unless t.league.draft.nil? || t.league.draft.status === :finished
-          = link_to "Go To The Draft", draft_url(:subdomain => t.andand.league.slug, ), :class => "small nice blue button radius"
+          = button_to "Go To The Draft",
+            draft_url(:subdomain => t.andand.league.slug),
+            :form_class => 'inline',
+            :class => 'small nice blue button radius'

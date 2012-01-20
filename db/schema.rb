@@ -951,14 +951,14 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year",                 :default => 2000, :null => false
-    t.integer  "defensive_points",     :default => 0,    :null => false
-    t.integer  "fumbles_points",       :default => 0,    :null => false
-    t.integer  "passing_points",       :default => 0,    :null => false
-    t.integer  "rushing_points",       :default => 0,    :null => false
-    t.integer  "sacks_against_points", :default => 0,    :null => false
-    t.integer  "scoring_points",       :default => 0,    :null => false
-    t.integer  "special_teams_points", :default => 0,    :null => false
-    t.integer  "games_played",         :default => 0,    :null => false
+    t.integer  "defensive_points",     :default => 0
+    t.integer  "fumbles_points",       :default => 0
+    t.integer  "passing_points",       :default => 0
+    t.integer  "rushing_points",       :default => 0
+    t.integer  "sacks_against_points", :default => 0
+    t.integer  "scoring_points",       :default => 0
+    t.integer  "special_teams_points", :default => 0
+    t.integer  "games_played",         :default => 0
   end
 
   add_index "dynasty_player_points", ["defensive_points"], :name => "index_dynasty_player_points_on_defensive_points"
@@ -984,21 +984,6 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
   add_index "dynasty_player_positions", ["player_id", "position_id"], :name => "index_dynasty_player_positions_on_player_id_and_position_id", :unique => true
   add_index "dynasty_player_positions", ["position_id", "player_id"], :name => "index_dynasty_player_positions_on_position_id_and_player_id", :unique => true
 
-  create_table "dynasty_player_team_histories", :force => true do |t|
-    t.integer  "player_id"
-    t.integer  "user_team_id"
-    t.integer  "week"
-    t.integer  "depth"
-    t.integer  "position_id"
-    t.integer  "league_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "dynasty_player_team_histories", ["player_id"], :name => "index_dynasty_player_team_histories_on_player_id"
-  add_index "dynasty_player_team_histories", ["user_team_id"], :name => "index_dynasty_player_team_histories_on_user_team_id"
-  add_index "dynasty_player_team_histories", ["week"], :name => "index_dynasty_player_team_histories_on_week"
-
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"
     t.integer  "user_team_id"
@@ -1014,8 +999,6 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.integer  "waiver_team_id"
     t.integer  "league_id"
   end
-
-  add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "user_team_id"], :name => "index_position_counts_by_team"
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",         :limit => 32
@@ -1051,9 +1034,9 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
 
   create_table "dynasty_trades", :force => true do |t|
-    t.integer  "league_id",           :null => false
-    t.integer  "initial_team_id",     :null => false
-    t.integer  "second_team_id",      :null => false
+    t.integer  "league_id",                            :null => false
+    t.integer  "initial_team_id",                      :null => false
+    t.integer  "second_team_id",                       :null => false
     t.integer  "player_id"
     t.boolean  "accepted"
     t.boolean  "open"
@@ -1062,10 +1045,10 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.datetime "denied_at"
     t.integer  "offered_player_id"
     t.integer  "requested_player_id"
-    t.integer  "offered_cash"
-    t.integer  "requested_cash"
-    t.string   "offered_picks"
-    t.string   "requested_picks"
+    t.integer  "offered_cash",        :default => 0
+    t.integer  "requested_cash",      :default => 0
+    t.string   "offered_picks",       :default => "0"
+    t.string   "requested_picks",     :default => "0"
     t.text     "message"
   end
 

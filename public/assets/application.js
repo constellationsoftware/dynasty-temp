@@ -22460,6 +22460,4 @@ $(document).ready(function () {
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-
-$('div#my_qb').text('#{@my_lineup.qb.andand.name}');
-$('div#clock').text('#{Time.now}');
+;

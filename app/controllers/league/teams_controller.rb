@@ -7,7 +7,6 @@ class League::TeamsController < SubdomainController
 
     def index
         index! do |format|
-            puts @teams.inspect
             result = {
                 :success => true,
                 :teams => @teams

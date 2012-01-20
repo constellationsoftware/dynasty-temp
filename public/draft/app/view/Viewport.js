@@ -110,17 +110,17 @@ Ext.define('DynastyDraft.view.Viewport', {
                             id: 'TE',
                             name: 'Tight Ends'
                         }, {
-                            id: 'T',
-                            name: 'Offensive Tackle'
-                        }, {
-                            id: 'G',
-                            name: 'Guards'
-                        }, {
-                            id: 'C',
-                            name: 'Centers'
-                        }, {
                             id: 'K',
                             name: 'Kickers'
+                        }, {
+                            id: 'DL',
+                            name: 'Defensive Linemen'
+                        }, {
+                            id: 'LB',
+                            name: 'Linebacker'
+                        }, {
+                            id: 'DB',
+                            name: 'Defensive Back'
                         }]
                     }),
                     value: 'all'

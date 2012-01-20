@@ -19,6 +19,15 @@ class League::PicksController < SubdomainController
         end
     end
 
+    def test_update
+        @pick = Pick.find(params[:id])
+        if @pick
+            @pick.player_id = params[:player_id]
+            @pick.save
+        end
+        render :json => @pick
+    end
+
     def update
         update! do |format|
             # move this somewhere else I guess

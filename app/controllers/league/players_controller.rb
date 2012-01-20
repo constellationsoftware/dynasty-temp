@@ -41,6 +41,13 @@ class League::PlayersController < SubdomainController
         scope.order(sort_str)
     end
 
+    def show
+        show! do |format|
+            @player = @player.flatten
+            format.json{ render :json => @player }
+        end
+    end|
+
     def index
         index! do |format|
             players = @players.collect { |player| player.flatten }
