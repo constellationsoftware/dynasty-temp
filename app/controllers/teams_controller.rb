@@ -19,9 +19,10 @@ class TeamsController < InheritedResources::Base
             game = @team.schedules.for_week(week).with_opponent.first
             next_game = @team.schedules.for_week(week + 1).with_opponent
 
-            last_weeks_players = @team.player_team_histories.where(:week => week)
-            last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
-
+            if week != 0
+                last_weeks_players = @team.player_team_histories.where(:week => week)
+                last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
+            end
             # RESEARCH
             position_players = []
             positions = Position.select{[name, abbreviation]}.all
