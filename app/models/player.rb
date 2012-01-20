@@ -98,7 +98,7 @@ class Player < ActiveRecord::Base
     #
     scope :filter_positions, lambda { |team = nil, filters = nil|
         current_year = Season.order { season_key.desc }.first.season_key
-        if team && !(filters?)
+        if team && !(filters.nil?)
             # count how many picks have been made by position
             position_counts = Position.find_by_sql("
                 SELECT abbreviation AS abbr, (

@@ -9,7 +9,7 @@ class Clock < ActiveRecord::Base
           my_season_payroll = team.players.to_a.sum(&:amount)
           my_weekly_payroll = 0
           if team.schedules.count > 0
-          my_weekly_payroll = my_season_payroll / team.schedules.count
+            my_weekly_payroll = my_season_payroll / team.schedules.count
           end
 
 
@@ -19,6 +19,24 @@ class Clock < ActiveRecord::Base
           #TODO Figure out why negative money values gives an error...
           team.balance = "0" if team.balance < 0.to_money
           team.save
+
+        # create historical records
+
+
+
+        end
+
+        PlayerTeamRecord.all.each do |ptr|
+            pth = PlayerTeamHistory.new
+            pth.player_id = ptr.player_id
+            pth.user_team_id = ptr.user_team_id
+            pth.week = self.week
+            pth.depth = ptr.depth
+            pth.league_id = ptr.league_id
+            pth.position_id = ptr.position_id
+            pth.save
+            puts pth.player.name.full_name
+            puts "saved"
         end
 
 
@@ -61,6 +79,7 @@ class Clock < ActiveRecord::Base
             t.balance = 75000000
             t.save
         end
+        PlayerTeamHistory.all.each {|pth| pth.destroy}
     end
 
     def present

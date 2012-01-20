@@ -1,0 +1,122 @@
+%li.active#reviewTab
+  .panel
+    %h5 Review Player Performance for Last Week
+    %p How did your players do?
+    %h3
+      Starters
+    .row
+      .six.columns
+        %table
+          %thead
+            %tr
+              %th
+                Name
+              %th
+                Points
+              %th
+                Pass
+              %th
+                Rush
+              %th
+                Fmbl/Sck
+          %tbody
+            - last_weeks_players.where(:depth => 1).each do |player|
+              %tr
+                %td
+                  = "#{player.last_name} : #{player.position.abbreviation.upcase}"
+                %td
+                  = player.points_for_week(week).andand.points
+                %td
+                  = player.points_for_week(week).andand.passing_points
+                %td
+                  = player.points_for_week(week).andand.rushing_points
+                %td
+                  = player.points_for_week(week).andand.fumbles_points
+                  = player.points_for_week(week).andand.sacks_against_points
+      .six.columns
+        %table
+          %thead
+            %tr
+              %th
+                Name
+              %th
+                Points
+              %th
+                Pass
+              %th
+                Rush
+              %th
+                Fmbl/Sck
+          %tbody
+            - last_weeks_opponents.where(:depth => 1).each do |player|
+              %tr
+                %td
+                  = "#{player.last_name} : #{player.position.abbreviation.upcase}"
+                %td
+                  = player.points_for_week(week).andand.points
+                %td
+                  = player.points_for_week(week).andand.passing_points
+                %td
+                  = player.points_for_week(week).andand.rushing_points
+                %td
+                  = player.points_for_week(week).andand.fumbles_points
+                  = player.points_for_week(week).andand.sacks_against_points
+    %h3
+      Bench
+    .row
+      .six.columns
+        %table
+          %thead
+            %tr
+              %th
+                Name
+              %th
+                Points
+              %th
+                Pass
+              %th
+                Rush
+              %th
+                Fmbl/Sck
+          %tbody
+            - last_weeks_players.where(:depth => 0).each do |player|
+              %tr
+                %td
+                  = "#{player.last_name} : #{player.position.abbreviation.upcase}"
+                %td
+                  = player.points_for_week(week).andand.points
+                %td
+                  = player.points_for_week(week).andand.passing_points
+                %td
+                  = player.points_for_week(week).andand.rushing_points
+                %td
+                  = player.points_for_week(week).andand.fumbles_points
+                  = player.points_for_week(week).andand.sacks_against_points
+      .six.columns
+        %table
+          %thead
+            %tr
+              %th
+                Name
+              %th
+                Points
+              %th
+                Pass
+              %th
+                Rush
+              %th
+                Fmbl/Sck
+          %tbody
+            - last_weeks_opponents.where(:depth => 0).each do |player|
+              %tr
+                %td
+                  = "#{player.last_name} : #{player.position.abbreviation.upcase}"
+                %td
+                  = player.points_for_week(week).andand.points
+                %td
+                  = player.points_for_week(week).andand.passing_points
+                %td
+                  = player.points_for_week(week).andand.rushing_points
+                %td
+                  = player.points_for_week(week).andand.fumbles_points
+                  = player.points_for_week(week).andand.sacks_against_points
