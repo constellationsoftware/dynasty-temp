@@ -106,3 +106,5 @@
               = link_to "Sign Out", destroy_user_session_path
 
         = yield :sidebar
+        - unless @team
+          = link_to "Reset To Season Start", "/clock/2/reset", :class => "nice button black small radius"
