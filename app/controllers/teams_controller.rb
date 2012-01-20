@@ -78,7 +78,7 @@ class TeamsController < InheritedResources::Base
                     :week => week,
                     :game_lineup => @team.user_team_lineups.where('week = ?', week).first
                 },
-                :research => { :all_players_by_position => position_players },
+                #:research => { :all_players_by_position => position_players },
                 :trades => {
                     :my_players => PlayerTeamRecord.joins{player.name}.includes{player.name}
                         .where{user_team_id == my{@team.id}},
