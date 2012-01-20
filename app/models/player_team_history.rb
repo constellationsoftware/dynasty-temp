@@ -8,7 +8,7 @@ class PlayerTeamHistory < ActiveRecord::Base
     belongs_to :league
 
     attr_accessible :name, :position, :depth, :last_name
-    validates_with Validators::PlayerTeamRecord
+
 
     def name
         self.player.name.full_name
