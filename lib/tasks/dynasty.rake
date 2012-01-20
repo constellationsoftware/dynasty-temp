@@ -24,10 +24,10 @@ namespace :dynasty do
                         u.flex = data['flex'].to_i if data.has_key?('flex')
                     end
                     aliases = data.has_key?('aliases') ? data['aliases'] : []
-                    valid_position_values = [ data['abbreviation'], data['name'] ]
+                    valid_position_values = [ data['abbreviation'], data['name'].parameterize ]
                     valid_position_values += aliases.collect { |item| item.parameterize }
 
-                    players = Person.select { distinct(id) }.joins { positions }.where { substring_index(substring_index(positions.abbreviation, ',', 1), '/', 1).in valid_position_values }.where { (person_phases.membership_type == 'teams') & (person_phases.phase_status == 'active') }
+                    players = Person.select{ distinct(id) }.joins{ positions }.where{ substring_index(substring_index(positions.abbreviation, ',', 1), '/', 1).in valid_position_values }.where{ (person_phases.membership_type == 'teams') & (person_phases.phase_status == 'active') }
                     puts "Collecting records for #{position.name.pluralize}"
 
                     # make the link
