@@ -55,41 +55,41 @@
     name: Kicker
     abbreviation: k
     designation: o
--
-    name: Punter
-    abbreviation: p
-    designation: o
--
-    name: Long Snapper
-    abbreviation: ls
-    designation: o
--
-    name: Holder
-    abbreviation: h
-    designation: o
+#-
+#    name: Punter
+#    abbreviation: p
+#    designation: o
+#-
+#    name: Long Snapper
+#    abbreviation: ls
+#    designation: o
+#-
+#    name: Holder
+#    abbreviation: h
+#    designation: o
 
 
 # OFFENSIVE LINE
--
-    name: Center
-    abbreviation: c
-    designation: o
--
-    name: Guard
-    abbreviation: g
-    designation: o
-    aliases:
-    - Lineman Offensive
-    - Guard Left
-    - Guard Right
--
-    name: Tackle
-    abbreviation: t
-    designation: o
-    aliases:
-    - Tackle Offensive
-    - Tackle Offensive Left
-    - Tackle Offensive Right
+#-
+#    name: Center
+#    abbreviation: c
+#    designation: o
+#-
+#    name: Guard
+#    abbreviation: g
+#    designation: o
+#    aliases:
+#    - Lineman Offensive
+#    - Guard Left
+#    - Guard Right
+#-
+#    name: Tackle
+#    abbreviation: t
+#    designation: o
+#    aliases:
+#    - Tackle Offensive
+#    - Tackle Offensive Left
+#    - Tackle Offensive Right
 
 
 # DEFENSIVE LINEMEN

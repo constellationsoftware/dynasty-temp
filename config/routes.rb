@@ -24,7 +24,11 @@ Dynasty::Application.routes.draw do
                 end
             end
             defaults :format => 'json' do
-                resources :picks
+                resources :picks do
+                    member do
+                        get :test_update
+                    end
+                end
                 resources :teams do
                     get :balance
                 end

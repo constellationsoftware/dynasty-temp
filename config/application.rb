@@ -2,16 +2,9 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 #require 'rails-extjs-direct'
-
 if defined?(Bundler)
-    # If you precompile assets before deploying to production, use this line
-    Bundler.require(:default, :assets, Rails.env)
-    # If you want your assets lazily compiled in production, use this line
-    # Bundler.require(:default, :assets, Rails.env)
+    Bundler.require *Rails.groups(:assets => %w(development test))
 end
-
-require 'friendly_id'
-
 
 module Dynasty
     class Application < Rails::Application
@@ -49,7 +42,7 @@ module Dynasty
         config.filter_parameters += [:password]
 
         # Enable the asset pipeline
-        config.assets.enabled = true
+        config.assets.enabled = false
         config.serve_static_assets = true
         config.assets.compile = false
 
@@ -87,7 +80,6 @@ module Kernel
         puts $!.backtrace[1..-1].join("\n")
     end
 end
-
 
 #
 # After thin boots, run this shit

@@ -1,22 +1,34 @@
 class Player < ActiveRecord::Base
     set_table_name 'persons'
-    POSITION_PRIORITIES = %w(QB WR RB TE C G T K)
-    POSITION_QUANTITIES = {
-        # offense
-        :qb => 1,
-        :wr => 2,
-        :rb => 2,
-        :te => 1,
-        :k => 1,
-        :t => 2,
-        :g => 2,
-        :c => 1,
 
-        #defense
-        :dl => 2,
-        :lb => 2,
-        :db => 2
-    }
+    POSITION_QUANTITIES = [{
+        # BENCH
+        :o => { # offense
+            :qb => 1,
+            :rb => 1,
+            :wr => 1,
+            :te => 1
+        },
+        :d => {} # defense
+    }, {
+        # STARTERS
+        :o => { # offense
+            :qb => 1,
+            :rb => 2,
+            :wr => 2,
+            :te => 2,
+            :k => 1
+        },
+        :d => { #defense
+            :dl => 3,
+            :lb => 2,
+            :db => 2
+        }
+    }]
+    FREE_SLOTS = [
+        { :o => 7, :d => 6 },
+        { :o => 8, :d => 7 }
+    ]
 
     has_one  :name,
              :class_name => 'DisplayName',
@@ -40,14 +52,6 @@ class Player < ActiveRecord::Base
 
     def amount
         self.contract.amount
-    end
-
-    def self.order_by_position_priority
-        ret = "CASE"
-        POSITION_PRIORITIES.each_with_index do |p, i|
-            ret << " WHEN SUBSTRING(dynasty_positions.abbreviation, 1, 2) = '#{p}' THEN #{i}"
-        end
-        ret << " END ASC"
     end
 
     #
@@ -76,7 +80,6 @@ class Player < ActiveRecord::Base
         picks_subquery = Pick.select { distinct(player_id) }.where { (player_id != nil) & (draft_id == my { draft.id }) }
         where { id.not_in picks_subquery }
     }
-    scope :by_position_priority, joins { position }.where { substring(position.abbreviation, 1, 2) >> my { POSITION_PRIORITIES } }.order(order_by_position_priority)
     scope :with_name, joins{name}.includes{name}
     scope :by_name, lambda { |value|
         query = order{[
@@ -96,38 +99,71 @@ class Player < ActiveRecord::Base
     #
     # If you pass in an array of whitelisted positions, they won't be calculated
     #
-    scope :filter_positions, lambda { |team = nil, filters = nil|
-        current_year = Season.order { season_key.desc }.first.season_key
-        if team && !(filters.nil?)
-            # count how many picks have been made by position
-            position_counts = Position.find_by_sql("
-                SELECT abbreviation AS abbr, (
-                    SELECT COUNT(*)
-                    FROM dynasty_draft_picks dp
-                    JOIN dynasty_player_positions pp
-                    ON dp.player_id = pp.player_id
-                    WHERE team_id = #{sanitize(team.id)} AND pp.position_id = pos.id
-                ) AS count
-                FROM dynasty_positions pos
-            ")
-            filters = position_counts.delete_if { |position_count|
-                max = POSITION_QUANTITIES[position_count.abbr.to_sym]
-                max.nil? or position_count.count >= max
-            }.collect { |x| x.abbr }
-        end
+    scope :filter_positions, lambda { |team = nil, filter = nil|
+        recommended_position = nil
+        if filter
+            recommended_position = Position.find_by_abbreviation(filter).id
+        elsif team
+            [:o, :d].each do |designation|
+                break unless recommended_position.nil?
+                [1, 0].each do |depth|
+                    max_counts = POSITION_QUANTITIES[depth][designation]
 
-        if !!filters and filters.length > 0
-            points_subquery = Player.select { id }.joins { [points, position] }.where { points.year == "#{current_year}" }
-            if filters.length === 1
-                points_subquery = points_subquery.where { position.abbreviation == filters.first }
-            else
-                points_subquery = points_subquery.where { position.abbreviation.like_any filters }
+                    # count how many picks have been made by position
+                    position_counts = self.get_position_counts(team, depth, designation)
+
+                    # remove "filled" positions
+                    vacant_positions = position_counts.reject do |position|
+                        max_count ||= max_counts[position.abbreviation.to_sym]
+                        max_count.nil? || position.count >= max_count
+                    end
+
+                    # if we have some vacant positions, the one we want is the first
+                    unless vacant_positions.empty?
+                        recommended_position = vacant_positions.first.id
+                        puts "Found open position (#{recommended_position}) at designation: #{designation}, depth: #{depth}"
+                        break
+                    end
+
+                    # special case for remaining bench positions to give them an even distribution after requirements
+                    if depth === 0
+                        counts ||= position_counts.collect{ |x| x.count if x.designation == designation }.compact
+                        player_sum = counts.empty? ? 0 : counts.reduce(:+)
+
+                        # if there are any slots open for defensive bench positions
+                        if player_sum < FREE_SLOTS[depth][designation]
+                            # grab the highest-ordered offensive position with the lowest count
+                            position = Position.find_by_sql("
+                                SELECT p.id
+                                FROM dynasty_positions p
+                                JOIN (
+                                    SELECT position_id, COUNT(id) AS count
+                                    FROM dynasty_player_teams
+                                    WHERE current = 1 AND user_team_id = #{sanitize(team.id)} AND depth = 0
+                                    GROUP BY position_id
+                                ) AS pt
+                                ON p.id = pt.position_id
+                                WHERE p.designation = '#{designation}'
+                                ORDER BY pt.count, p.sort_order
+                                LIMIT 1
+                            ")
+                            recommended_position ||= position.first.id unless position.empty?
+                        end
+                    end
+                end
             end
         end
+        puts recommended_position.inspect
 
-        query = joins { [points, position] }.includes { [points, position] }.where { points.year == my{ current_year } }
-        query = query.where { id.in(points_subquery) } if !!points_subquery
-        query
+        current_year = Season.order { season_key.desc }.first.season_key
+        result = joins{ [points, position] }.includes{ [points, position] }
+            .where{ points.year == my{ current_year }}
+        if !(recommended_position.nil?)
+            result = result.where{ position.id == my{ recommended_position } }
+        else
+            result = result.where{ position.designation == :d }
+        end
+        result  
     }
 
     def points_for_week(week = 1)
@@ -173,5 +209,26 @@ class Player < ActiveRecord::Base
 
     def self.position_quantities
         POSITION_QUANTITIES
+    end
+
+    def self.free_slots
+        FREE_SLOTS
+    end
+
+    def self.get_position_counts(team, depth, designation)
+        Position.find_by_sql("
+            SELECT id, abbreviation, designation, (
+                SELECT COUNT(*)
+                FROM dynasty_player_teams pt
+                JOIN dynasty_player_positions pp
+                ON pt.player_id = pp.player_id
+                WHERE user_team_id = #{sanitize(team.id)}
+                    AND pp.position_id = pos.id
+                    AND depth = #{depth}
+                    AND designation = '#{designation}'
+            ) AS count
+            FROM dynasty_positions pos
+            ORDER BY sort_order
+        ")
     end
 end

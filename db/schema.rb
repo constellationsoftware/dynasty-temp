@@ -1015,21 +1015,6 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
 
   add_index "dynasty_player_positions", ["player_id", "position_id"], :name => "index_dynasty_player_positions_on_player_id_and_position_id", :unique => true
 
-  create_table "dynasty_player_team_histories", :force => true do |t|
-    t.integer  "player_id"
-    t.integer  "user_team_id"
-    t.integer  "week"
-    t.integer  "depth"
-    t.integer  "position_id"
-    t.integer  "league_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "dynasty_player_team_histories", ["player_id"], :name => "index_dynasty_player_team_histories_on_player_id"
-  add_index "dynasty_player_team_histories", ["user_team_id"], :name => "index_dynasty_player_team_histories_on_user_team_id"
-  add_index "dynasty_player_team_histories", ["week"], :name => "index_dynasty_player_team_histories_on_week"
-
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"
     t.integer  "user_team_id"
