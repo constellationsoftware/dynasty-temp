@@ -84,14 +84,14 @@
                 %td
                   = "#{player.last_name} : #{player.position.abbreviation.upcase}"
                 %td
-                  = player.points_for_week(week).andand.points
+                  = player.points_for_week(week).andand.points.to_i / 3
                 %td
-                  = player.points_for_week(week).andand.passing_points
+                  = player.points_for_week(week).andand.passing_points.to_i / 3
                 %td
-                  = player.points_for_week(week).andand.rushing_points
+                  = player.points_for_week(week).andand.rushing_points.to_i / 3
                 %td
-                  = player.points_for_week(week).andand.fumbles_points
-                  = player.points_for_week(week).andand.sacks_against_points
+                  = player.points_for_week(week).andand.fumbles_points.to_i / 3
+                  = player.points_for_week(week).andand.sacks_against_points.to_i / 3
       .six.columns
         %table
           %thead
@@ -112,11 +112,11 @@
                 %td
                   = "#{player.last_name} : #{player.position.abbreviation.upcase}"
                 %td
-                  = player.points_for_week(week).andand.points
+                  = player.points_for_week(week).andand.points.to_i / 3
                 %td
-                  = player.points_for_week(week).andand.passing_points
+                  = player.points_for_week(week).andand.passing_points.to_i / 3
                 %td
-                  = player.points_for_week(week).andand.rushing_points
+                  = player.points_for_week(week).andand.rushing_points.to_i / 3
                 %td
-                  = player.points_for_week(week).andand.fumbles_points
-                  = player.points_for_week(week).andand.sacks_against_points
+                  = player.points_for_week(week).andand.fumbles_points.to_i / 3
+                  = player.points_for_week(week).andand.sacks_against_points.to_i / 3

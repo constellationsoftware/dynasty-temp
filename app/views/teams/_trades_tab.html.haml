@@ -20,7 +20,7 @@
         = f.submit 'Submit', :class => 'nice small radius blue button'
   .panel
     %h3
-      Open Trade Offers Received
+      Open Trade Offers
     - open_trades_received.andand.each do |trade|
       .panel
         %strong
@@ -39,9 +39,6 @@
           %strong
             Message Attached:
           #{trade.message}
-  .panel
-    %h3
-      My Open Trade Offers
     - open_trade_offers.andand.each do |trade|
       .panel
         %strong
@@ -61,7 +58,7 @@
           #{trade.message}
   .panel
     %h3
-      Accepted Trade Offers Made
+      Accepted Trade Offers
     - accepted_trade_offers.andand.each do |trade|
       %p
 
@@ -73,9 +70,6 @@
         on
         = trade.offered_at.strftime("%B %e, %Y")
 
-  .panel
-    %h3
-      Accepted Trade Offers Received
     - accepted_trades_received.andand.each do |trade|
       %p
 
@@ -88,7 +82,7 @@
         = trade.offered_at.strftime("%B %e, %Y")
   .panel
     %h3
-      Trade Offers You Rejected
+      Rejected Trades
     - denied_trade_offers.andand.each do |trade|
       %p
 
@@ -99,9 +93,7 @@
         = trade.requested_player.name
         on
         = trade.offered_at.strftime("%B %e, %Y")
-  .panel
-    %h3
-      Trade Offers Rejected By Others
+
     - denied_trades_received.andand.each do |trade|
       %p
 

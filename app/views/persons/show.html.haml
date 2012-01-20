@@ -1,48 +1,44 @@
-.row.person
-  .panel
-    %h3
-      = @person.display_name.full_name
-    %p
-      = @person.current_position.position.abbreviation.capitalize
-      | Uniform # 
-      = @person.current_position.uniform_number
-      |
-      = @person.current_team.display_name.full_name
-      |
-      = @person.current_position.regular_position_depth.to_i.ordinalize
-      String
-      
-    %p
-      Contract Summary: $
-      = @person.contract.summary
-      over
-      = @person.contract.length
-      years, ending in 
-      = @person.contract.end_year
-    %p 
-      Yearly Salary: $
-      = @person.contract.amount
-    %p
-      Free Agent:
-      = @person.contract.free_agent_year
-    %p
-      Fantasy Points Earned Last Season: 
-      = @person.season_points(11) 
-      |
-      Dynasty Weighted FPTS: 
-      =  (@person.season_points(11) / (@person.contract.amount / 1000000)).to_i
-    %p
-      Fantasy Points Earned This Season: 
-      = @person.current_season_points(Clock.first.time.to_s)
-      |
-      Dynasty Weighted FPTS: 
-      = (@person.current_season_points(Clock.first.time.to_s) / (@person.contract.amount / 1000000)).to_i
+//.row.person
+//  .panel
+//    %h3
+//      = @person.display_name.full_name
+//    %p
+//      = @person.current_position.position.abbreviation.capitalize
+//      | Uniform #
+//      = @person.current_position.uniform_number
+//      |
+//      = @person.current_team.display_name.full_name
+//      |
+//      = @person.current_position.regular_position_depth.to_i.ordinalize
+//      String
+//
+//    %p
+//      Contract Summary: $
+//      = @person.contract.summary
+//      over
+//      = @person.contract.length
+//      years, ending in
+//      = @person.contract.end_year
+//    %p
+//      Yearly Salary: $
+//      = @person.contract.amount
+//    %p
+//      Free Agent:
+//      = @person.contract.free_agent_year
+//    %p
+//      Fantasy Points Earned Last Season:
+//      = @person.season_points(11)
+//      |
+//      Dynasty Weighted FPTS:
+//      =  (@person.season_points(11) / (@person.contract.amount / 1000000)).to_i
+//    %p
+//      Fantasy Points Earned This Season:
+//      = @person.current_season_points(Clock.first.time.to_s)
+//      |
+//      Dynasty Weighted FPTS:
+//      = (@person.current_season_points(Clock.first.time.to_s) / (@person.contract.amount / 1000000)).to_i
 
-    %p
-      Testing player_event_points stuff
-      - @person.event_points.past.each do |event|
-        %p
-          = event.start_date_time.strftime("%B %e, %Y")
+
 
 
 
