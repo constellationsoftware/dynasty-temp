@@ -1,4 +1,4 @@
-#web: bundle exec unicorn_rails -p $PORT -c ./config/unicorn.rb
+
 web: bundle exec rails server thin -p 5000
 web: bundle exec rails server thin -p 5001
 web: bundle exec rails server thin -p 5002

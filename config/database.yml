@@ -19,8 +19,8 @@ development:
   adapter: mysql2
   database: dynasty_dev
   host: localhost
-  username: root
-  #password: fom556
+  username: dynasty_db
+  password: fom556
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -35,20 +35,16 @@ test:
   username: root
   socket: /tmp/mysql.sock
 
-#production:
-#  pool: 5
-#  encoding: utf8
-#  adapter: mysql2
-#  database: dynasty_dev
-#  host: localhost
-#  username: root
-#  socket: /tmp/mysql.sock
+production:
+ pool: 5
+ encoding: utf8
+ adapter: mysql2
+ database: dynasty_dev
+ host: localhost
+ username: dynasty_db
+ password: fom556
+ socket: /tmp/mysql.sock
 
-  #database: app1455111
-  #host: 50.16.184.114
-  #port: 3365
-  #username: app1455111
-  #password: eSwWReno
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
