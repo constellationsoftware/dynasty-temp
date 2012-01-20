@@ -7,6 +7,7 @@ class UserTeam < ActiveRecord::Base
 
     has_many :picks, :foreign_key => 'team_id'
     has_many :player_team_records, :conditions => 'current = TRUE'
+    has_many :player_team_histories
     has_many :players, :through => :player_team_records
     money :balance, :cents => :balance_cents
 

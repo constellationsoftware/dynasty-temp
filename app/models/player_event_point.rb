@@ -12,6 +12,8 @@ class PlayerEventPoint < ActiveRecord::Base
     end
 
 
+
+
 #def start_date_time
 #  self.event.start_date_time
 #end

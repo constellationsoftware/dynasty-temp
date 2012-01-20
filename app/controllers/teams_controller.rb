@@ -19,6 +19,9 @@ class TeamsController < InheritedResources::Base
             game = @team.schedules.for_week(week).with_opponent.first
             next_game = @team.schedules.for_week(week + 1).with_opponent
 
+            last_weeks_players = @team.player_team_histories.where(:week => week)
+            last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
+
             # RESEARCH
             position_players = []
             positions = Position.select{[name, abbreviation]}.all
@@ -61,7 +64,11 @@ class TeamsController < InheritedResources::Base
                 :max_week => max_week,
                 :game => game,
                 :next_game => (next_game.nil? ? nil : next_game.first),
-
+                :review => {
+                    :last_weeks_players => last_weeks_players,
+                    :last_weeks_opponents => last_weeks_opponents,
+                    :week => week
+                },
                 :roster => {
                     :starters => starters,
                     :bench => bench,

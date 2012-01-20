@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  player_id: 1
+  user_team_id: 1
+  week: 1
+  depth: 1
+  position_id: 1
+  league_id: 1
+
+two:
+  player_id: 1
+  user_team_id: 1
+  week: 1
+  depth: 1
+  position_id: 1
+  league_id: 1
