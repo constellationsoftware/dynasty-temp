@@ -14,6 +14,7 @@ class TeamsController < InheritedResources::Base
         manage! do |format|
             #raise unless current_user === @team.user
 
+            session[:user_team_id] = @team.id
             max_week = Schedule.select{max(week).as('week')}.where{team_id == my{@team.id}}.first.week.to_i
             week = Clock.first.week
             game = @team.schedules.for_week(week).with_opponent.first
@@ -90,6 +91,10 @@ class TeamsController < InheritedResources::Base
                     :accepted_trades_received => Trade.closed.accepted.find_all_by_second_team_id(@team.id),
                     :denied_trade_offers => Trade.closed.denied.find_all_by_second_team_id(@team.id),
                     :denied_trades_received => Trade.closed.denied.find_all_by_initial_team_id(@team.id)
+                },
+
+                :waiver => {
+                    :waiver_players => @team.league.player_team_records.where(:waiver => 1)
                 },
 
                 :sidebar => {
