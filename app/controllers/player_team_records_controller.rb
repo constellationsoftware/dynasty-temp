@@ -30,7 +30,7 @@ class PlayerTeamRecordsController < InheritedResources::Base
     end
 
     def bid
-        @player_team_record = PlayerTeamRecord.find(params[:player_team_record_id])
+        @player_team_record = PlayerTeamRecord.find(params[:id])
         @bidder = UserTeam.find(session[:user_team_id])
 
         if @player_team_record.waiver_team_id.nil?
@@ -56,7 +56,7 @@ class PlayerTeamRecordsController < InheritedResources::Base
     end
 
     def resolve
-        @player_team_record = PlayerTeamRecord.find(params[:player_team_record_id])
+        @player_team_record = PlayerTeamRecord.find(params[:id])
 
         if @player_team_record.waiver_team_id.nil?
             @player_team_record.waiver = 0

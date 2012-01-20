@@ -48,8 +48,8 @@
         = link_to 'Trades', '#trades'
       %dd
         = link_to 'Research', '#research'
-      / %dd
-      /  = link_to "Waiver Wire", "#waiver"
+      %dd
+        = link_to "Waiver Wire", "#waiver"
       / %dd
       /  = link_to "League Review", "#league"
     %ul.nice.tabs-content.contained
@@ -58,8 +58,8 @@
       = render :partial => 'roster_tab', :locals => roster
       = render :partial => 'trades_tab', :locals => trades
 
-    /  = render :partial => "research_tab", :locals => research
-    /  = render :partial => "waiver_tab"
+      = render :partial => "research_tab", :locals => research
+      = render :partial => "waiver_tab", :locals => waiver
     /  = render :partial => "league_tab"
 
 - content_for :sidebar do
