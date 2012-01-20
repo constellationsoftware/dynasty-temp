@@ -36,14 +36,14 @@ test:
   socket: /tmp/mysql.sock
 
 production:
- pool: 5
- encoding: utf8
- adapter: mysql2
- database: dynasty_dev
- host: localhost
- username: dynasty_db
- password: fom556
- socket: /tmp/mysql.sock
+  pool: 5
+  encoding: utf8
+  adapter: mysql2
+  database: dynasty_dev
+  host: localhost
+  username: dynasty_db
+  password: fom556
+  socket: /tmp/mysql.sock
 
 
   # Connect on a TCP socket. Omitted by default since the client uses a
