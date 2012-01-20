@@ -19,7 +19,7 @@ class TeamsController < InheritedResources::Base
             game = @team.schedules.for_week(week).with_opponent.first
             next_game = @team.schedules.for_week(week + 1).with_opponent
 
-            if week != 0
+            if week > 0
                 last_weeks_players = @team.player_team_histories.where(:week => week)
                 last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
             end
