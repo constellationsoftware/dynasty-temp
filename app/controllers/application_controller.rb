@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
     include UrlHelper
     helper_method :get_alert_style_by_type
 
+    # Session Storage using ActiveRecord
+    session :session_key => '_dynasty_session_id'
+
+
     #
     # Don't even think about using this without Inherited Resources
     #
