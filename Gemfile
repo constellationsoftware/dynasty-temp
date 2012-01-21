@@ -31,7 +31,8 @@ gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'delayed_job', '< 3.0'
 
 gem 'uuidtools'
-gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
+# commented out for the moment, will probably completely remove
+#gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 gem 'formtastic'
 gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
