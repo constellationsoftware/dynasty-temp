@@ -31,12 +31,12 @@ class ClockController < ApplicationController
                     # calculate win/loss payouts
                     @game = ut.games.where('week = ?', @clock.week).first
                     if schedule.outcome == 1
-                        @game.winnings = 1000000
+                        @game.winnings = 5000000
                         @game.save
 
                     end
                     if schedule.outcome == 0
-                        @game.winnings = 500000
+                        @game.winnings = 2500000
                         @game.save
                     end
                     @game.save
