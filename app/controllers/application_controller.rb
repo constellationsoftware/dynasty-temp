@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     helper_method :get_alert_style_by_type
 
     # Session Storage using ActiveRecord
-    session :session_key => '_dynasty_session_id'
+    # session :session_key => '_dynasty_session_id'
 
 
     #
