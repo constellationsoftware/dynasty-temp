@@ -30,6 +30,10 @@ gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'delayed_job', '< 3.0'
 
+gem 'juggernaut'
+gem 'spine-rails'
+gem 'eco'
+
 gem 'uuidtools'
 # commented out for the moment, will probably completely remove
 #gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
