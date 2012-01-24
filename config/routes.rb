@@ -23,6 +23,7 @@ Dynasty::Application.routes.draw do
                     get :finish
                 end
             end
+
             defaults :format => 'json' do
                 resources :picks do
                     member do
@@ -40,6 +41,13 @@ Dynasty::Application.routes.draw do
                 resources :players
             end
         end
+        resources :clock do
+            member do
+                get :next_week
+                get :reset
+                get :present
+            end
+        end
     end
 
     resources :teams do
@@ -48,14 +56,13 @@ Dynasty::Application.routes.draw do
         end
     end
 
-
     # The priority is based upon order of creation:
     # first created -> highest priority.
 
     resources :person_scores, :events, :positions, :trades,
               :user_teams, :user_team_person, :users, :person_phases, :display_names,
               :stats, :fix, :picks, :salaries, :players,
-              :persons, :people, :drafts, :leagues, :admin_dashboard, :clock, :clocks, :user_team_lineups, :player_team_records
+              :persons, :people, :drafts, :leagues, :admin_dashboard, :user_team_lineups, :player_team_records
 
     resources :teams do
         resources :display_name, :person_phases
@@ -80,14 +87,6 @@ Dynasty::Application.routes.draw do
             get 'add'
             post 'add'
         end
-    end
-
-    resources :clock do
-        get 'show'
-        get 'next_week'
-        get 'reset'
-        get 'present'
-
     end
 
     resources :users do

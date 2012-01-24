@@ -8,3 +8,11 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require foundation
+//= require juggernaut
+
+//= require app
+
+var JUG = new Juggernaut;
+JUG.subscribe('clock-update', function(data) {
+    console.log('Got data:', data);
+});

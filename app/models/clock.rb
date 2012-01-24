@@ -6,24 +6,21 @@ class Clock < ActiveRecord::Base
 
         ## do payroll
         UserTeam.all.each do |team|
-          my_season_payroll = team.players.to_a.sum(&:amount)
-          my_weekly_payroll = 0
-          if team.schedules.count > 0
+            my_season_payroll = team.players.to_a.sum(&:amount)
+            my_weekly_payroll = 0
+            if team.schedules.count > 0
             my_weekly_payroll = my_season_payroll / team.schedules.count
-          end
+            end
 
 
-          team.balance = team.balance - my_weekly_payroll.to_money
-          #team.balance = team.balance + team.games.last.winnings
+            team.balance = team.balance - my_weekly_payroll.to_money
+            #team.balance = team.balance + team.games.last.winnings
 
-          #TODO Figure out why negative money values gives an error...
-          team.balance = "0" if team.balance < 0.to_money
-          team.save
+            #TODO Figure out why negative money values gives an error...
+            team.balance = "0" if team.balance < 0.to_money
+            team.save
 
-        # create historical records
-
-
-
+            # create historical records
         end
 
         PlayerTeamRecord.all.each do |ptr|
@@ -39,27 +36,6 @@ class Clock < ActiveRecord::Base
             puts pth.player.name.full_name
             puts "saved"
         end
-
-
-        ## save historical starters lineup
-=begin
-        UserTeam.all.each do |team|
-            if team.user_team_lineups.first
-                current_lineup = team.user_team_lineups.current.first
-                @nl = team.user_team_lineups.create
-                @nl.qb_id = current_lineup.qb_id
-                @nl.wr1_id = current_lineup.wr1_id
-                @nl.wr2_id = current_lineup.wr2_id
-                @nl.rb1_id = current_lineup.rb1_id
-                @nl.rb2_id = current_lineup.rb2_id
-                @nl.te_id = current_lineup.te_id
-                @nl.k_id = current_lineup.k_id
-                @nl.current = 0
-                @nl.week = Clock.find(2).week
-                @nl.save
-            end
-        end
-=end
     end
 
     def reset
