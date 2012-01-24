@@ -24,15 +24,9 @@
           Team Name:
           %strong
             = t.andand.name
-        = button_to "Manage Team",
-          manage_team_url(t, :subdomain => t.andand.league.slug, :anchor => 'roster'),
-          :method => :get,
-          :class => 'small nice black button radius',
-          :form_class => 'inline',
-          :disabled => !(t.players.count > 0)
 
-        - unless t.league.draft.nil? || t.league.draft.status === :finished
-          = button_to "Go To The Draft",
-            draft_url(:subdomain => t.andand.league.slug),
-            :form_class => 'inline',
-            :class => 'small nice blue button radius'
+        - if t.players.count > 0
+          = link_to "Manage Team", "#{manage_team_url(t, :subdomain => t.andand.league.slug, :anchor => 'roster')}", :class => 'small nice black button radius'
+        - if t.players.count < 1
+          - unless t.league.draft.nil? || t.league.draft.status === :finished
+            = link_to "Go to The Draft",  "#{draft_url(:subdomain => t.andand.league.slug)}", :class => 'small nice blue button radius'
