@@ -57,6 +57,9 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 #gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
 
+gem 'spine-rails'
+gem 'juggernaut'
+
 group :production do
 #    gem 'pg'
 end
