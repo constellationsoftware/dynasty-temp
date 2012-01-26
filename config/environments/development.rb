@@ -1,4 +1,5 @@
 Dynasty::Application.configure do
+    # ruby
     $stdout.sync = true
 
     # Settings specified here will take precedence over those in config/application.rb
@@ -59,3 +60,14 @@ end
 Pusher.app_id = '10193'
 Pusher.key = '64db7a76d407adc40ff3'
 Pusher.secret = 'cf5b7ef9fae37eefa146'
+
+# Enables Ruby Debug while using POW
+# Instructions: http://m.onkey.org/using-ruby-debug-with-pow
+unless $rails_rake_task
+    require 'ruby-debug'
+
+    Debugger.settings[:autoeval] = true
+    Debugger.settings[:autolist] = 1
+    Debugger.settings[:reload_source_on_change] = true
+    Debugger.start_remote
+end
