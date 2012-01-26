@@ -1,4 +1,12 @@
+:coffeescript
+  $ ->
+    window.myClock = new Clocks
+
 = stylesheet_link_tag 'teams'
+
+- content_for :navbar_right do
+  %div{ :style => 'display: inline-block;' }
+    %span.datebox.button.nice.small.black= Clock.first.time.strftime("%B %e, %Y")
 .container
   .row
     .panel
@@ -49,7 +57,7 @@
       //%dd
       //  = link_to 'Research', '#research'
       %dd
-        = link_to "Waiver Wire", "#waiver"
+        = link_to 'Waiver Wire', '#waiver'
       / %dd
       /  = link_to "League Review", "#league"
     %ul.nice.tabs-content.contained
@@ -59,7 +67,7 @@
       = render :partial => 'trades_tab', :locals => trades
 
       / = render :partial => "research_tab", :locals => research
-      = render :partial => "waiver_tab", :locals => waiver
+      = render :partial => 'waiver_tab', :locals => waiver
     /  = render :partial => "league_tab"
 
 - content_for :sidebar do

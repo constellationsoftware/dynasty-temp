@@ -13,33 +13,11 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title Dynasty Owner
+  %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
 
-  -# Included CSS Files
-  = stylesheet_link_tag "application"
-  = stylesheet_link_tag "foundation"
-  -# Included JS Files
-  = javascript_include_tag "application"
-  = javascript_include_tag "foundation"
+  = stylesheet_link_tag "application" # Included CSS Files
+  = javascript_include_tag "application" # Included JS Files
   = csrf_meta_tag
-
-
-  -#%script{:src => "http://js.pusherapp.com/1.9/pusher.min.js", :type => "text/javascript"}
-  -##Time mocking for testing
-  -#:javascript
-  -#  $('div#clock').text('#{Time.now}');
-  -#
-  -#  Pusher.log = function(message) {
-  -#    if (window.console && window.console.log) window.console.log(message);
-  -#  };
-  -#
-  -#  var pusher = new Pusher('#{Pusher.key}');
-  -#  var chrono = pusher.subscribe('chrono-channel');
-  -#  chrono.bind('update', function(data) {
-  -#    $('div#clock').text(data);
-  -#  });
-
-
 
 %body
   #dynasty-navbar.container
@@ -47,15 +25,10 @@
       .three.columns
         %h1
           = image_tag 'navbar_logo.png'
+          = yield :navbar_left
       .nine.columns.hide-on-phones.clean.right
-        %span.button.nice.small.black
-          = Clock.first.time.strftime("%B %e, %Y")
+        = yield :navbar_right
         = link_to "Home", root_url, :class => "button nice small blue"
-        //%a.button.nice.small.black(data-reveal-id="playerResearch") Research
-        //%a.button.nice.small.black(data-reveal-id="userTeams") Teams
-        //%a.button.nice.small.black(data-reveal-id="userAccount") Account
-        //%a.button.nice.small.black(data-reveal-id="timeTravel") TimeMachine
-
 
   /*Primary Page Header Bar
   .container
@@ -64,17 +37,10 @@
         - if @league
           .foundation-header
             %h1
-              Good
-              - if Time.now.hour <= 12
-                Morning,
-              - if Time.now.hour > 12
-                Afternoon,
-              #{@team.user.name}.
-
+              Good #{Time.now.hour <= 12 ? 'Morning' : 'Afternoon'} #{@team.user.name}.
             %h4.subheader
               It's
-              %strong
-                = Clock.first.nice_time
+              %strong= Clock.first.nice_time
               and there are #{@team.schedules.where(:outcome => nil).count} games left in the season.
               %br
               Your record is

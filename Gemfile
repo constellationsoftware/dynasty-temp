@@ -9,6 +9,8 @@ gem 'therubyracer'
 #gem 'heroku'
 gem 'foreman'
 gem 'haml'
+gem 'ruby-haml-js'
+gem 'barista'
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'devise'
@@ -53,7 +55,6 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 #gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
 
-gem 'spine-rails'
 gem 'juggernaut'
 
 group :production do

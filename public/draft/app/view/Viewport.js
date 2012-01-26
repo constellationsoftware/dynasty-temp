@@ -127,21 +127,19 @@ Ext.define('DynastyDraft.view.Viewport', {
                 }, {
                     xtype: 'tbfill'
                 }, {
-                    xtype: 'splitbutton',
+                    xtype: 'button',
                     text: 'Confirm Pick',
                     itemId: 'submit',
                     scale: 'large',
                     width: 100,
-                    disabled: true,
-                    menu: {
-                        xtype: 'menu',
-                        items: [{
-                            text: 'Autopick Remaining Players',
-                            itemId: 'autopick'
-                        }]
-                    }
-                }],
-
+                    disabled: true
+                }, {
+                    xtype: 'button',
+                    text: 'Set Autopick',
+                    itemId: 'autopick',
+                    scale: 'large',
+                    width: 100
+                }]
             }, /*{
                 xtype: 'playergrid',
                 title: 'All Players',

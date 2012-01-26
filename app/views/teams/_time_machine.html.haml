@@ -1,6 +1,6 @@
 .panel
   %h5 Time Machine
-  .alert-box= Clock.first.time.strftime("%B %e, %Y")
+  .datebox.alert-box= Clock.first.time.strftime("%B %e, %Y")
   %p
     = link_to 'Fast Forward 1 Week',
       next_week_clock_path(Clock.first.id),

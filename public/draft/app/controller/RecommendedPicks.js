@@ -42,7 +42,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             },
             'viewport #recommendedpickwrap': {},
             '#recommendedpickwrap button#submit': { click: this.onSubmit },
-            '#recommendedpickwrap button#submit menu menuitem#autopick': { click: this.onAutoPick },
+            '#recommendedpickwrap button#autopick': { click: this.onAutoPick },
             '#recommendedpickwrap combo#filter': { change: this.onFilterChanged },
             '#recommended-pick-edit-window': { submit: this.onItemEditSubmit },
             '#recommended-pick-edit-window combo': { beforequery: this.onBeforeQuery },
@@ -86,10 +86,9 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     onLaunch: function() {
         if (DRAFT_STATUS === 'finished') { return; }
         // create the load mask
-        var loadMask = Ext.create('Ext.LoadMask', this.getDataViewContainer(), {
+        this.loadMask = Ext.create('Ext.LoadMask', this.getDataViewContainer(), {
             msg: 'Waiting for draft start...'
         });
-        this.loadMask = loadMask;
 
         // disable the dataview so the mask will show up
         this.getDataView().setDisabled(true);

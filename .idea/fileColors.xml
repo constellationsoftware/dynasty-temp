@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="SharedFileColors">
-    <fileColor scope="Model Files" color="Rose" />
-    <fileColor scope="Controller Files" color="Blue" />
-    <fileColor scope="View Files" color="Green" />
-  </component>
-</project>
-

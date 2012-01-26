@@ -106,4 +106,12 @@ class Clock < ActiveRecord::Base
     def self.first_week
         return Date.new(2011, 9, 8).at_midnight
     end
+
+    def flatten
+        {
+            :id => self.id,
+            :time => self.time,
+            :date_short => self.nice_time
+        }
+    end
 end
