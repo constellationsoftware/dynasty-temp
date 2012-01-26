@@ -16,7 +16,4 @@ public/draft/resources/.sass-cache/
 encodings.xml
 app/views/layouts/application.html.erb
 .rakeTasks
-.idea/vcs.xml
-.idea/.generators
-.idea/Dynasty.iml
-.idea/misc.xml
+.idea
