@@ -15,5 +15,4 @@ public/draft/resources/.sass-cache/
 .sass-cache/
 encodings.xml
 app/views/layouts/application.html.erb
-vendor/cache/*
 .idea/*
