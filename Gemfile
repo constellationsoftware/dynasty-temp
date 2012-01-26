@@ -1,102 +1,91 @@
 source 'http://rubygems.org'
 source 'http://gems.github.com'
 
+# Core Gems
 gem 'rails', '3.1.1'
 gem 'mysql2', '< 0.3.7'
+gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'activesupport', '~> 3.1.0'
 gem 'execjs'
 gem 'therubyracer'
-#gem 'heroku'
-gem 'foreman'
+
+# AR Improvements
+gem 'squeel'
+gem 'meta_search', '>= 1.1.0.pre'
+gem 'inherited_resources'
+gem 'responders'
+gem 'has_scope'
+gem 'kaminari'
+gem 'uuidtools'
+gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
+
+# Templating & View Helpers
+gem 'eco'
 gem 'haml'
-gem 'hpricot'
-gem 'ruby_parser'
+gem 'spine-rails'
+gem 'jquery-rails'
+gem 'formtastic'
+
+# Authentication & Permissions
 gem 'devise'
 gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
-gem 'responders'
-gem 'has_scope'
-gem 'inherited_resources'
-gem 'kaminari'
-gem 'pusher'
-gem 'em-http-request' # required for async pusher requests
-gem 'thin'
-gem 'foreman'
 
-gem 'dalli'
+# Servers, Workers, Sockets & Push
+gem 'foreman'
+gem 'thin'
+gem 'juggernaut'
 gem 'pusher'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
-gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
+gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
 
-gem 'juggernaut'
-gem 'spine-rails'
-gem 'eco'
+# Deployment
+gem 'capistrano'
+gem 'capistrano-ext'
 
-gem 'uuidtools'
-# commented out for the moment, will probably completely remove
-#gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
-gem 'formtastic'
-gem 'squeel'
-gem 'meta_search', '>= 1.1.0.pre'
-
-gem 'execjs'
-gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
-
-#gem 'newrelic_rpm'
-#gem 'moonshado-sms'
-
+# Misc
 gem 'andand'
 gem 'coffee-filter'
-gem 'timecop'
-#gem 'jbuilder'
-
-gem 'vestal_versions', :git => 'git://github.com/teambox/vestal_versions.git'
+gem 'hpricot'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
+gem 'ruby_parser'
+gem 'timecop'
 
-#gem 'clockwork', :git => 'git://github.com/tomykaira/clockwork.git'
 
-gem 'spine-rails'
-gem 'juggernaut'
+group :development do
+    # Debugging & Development
+    gem 'ruby-debug19', :require => 'ruby-debug'
+    gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+end
 
 group :production do
-#    gem 'pg'
+
 end
 
 group :development, :test do
     gem 'rack'
 end
 
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
-    gem 'sass-rails' #, '~> 3.1.0'
+    gem 'sass-rails'
     gem 'coffee-rails', '~> 3.1.0'
     gem 'uglifier'
     gem 'thin'
     gem 'zurb-foundation'
 end
 
-gem 'jquery-rails'
-
-# Use unicorn as the web server
-#gem 'unicorn'
-
-# Deploy with Capistrano
-gem 'capistrano'
-gem 'capistrano-ext'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-
 group :test do
     # Pretty printed test output
     gem 'turn', :require => false
 end
+
+
+
+
+
+
+
+
 
