@@ -18,3 +18,4 @@ app/views/layouts/application.html.erb
 .idea/*
 vendor/cache/*
 .rails_footnotes
+config/database.yml
