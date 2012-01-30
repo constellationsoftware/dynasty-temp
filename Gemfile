@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 # Core Gems
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.3'
 gem 'mysql2', '< 0.3.7'
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'activesupport', '~> 3.1.0'
@@ -75,16 +75,16 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-    gem 'sass-rails'
-    gem 'coffee-rails', '~> 3.1.0'
-    gem 'uglifier'
+    gem 'sass-rails', '~> 3.1.5'
+    gem 'coffee-rails', '~> 3.1.1'
+    gem 'uglifier', '>= 1.0.3'
     gem 'thin'
     gem 'zurb-foundation'
 end
 
 group :test do
     # Pretty printed test output
-    gem 'turn', :require => false
+    gem 'turn', '< 0.8.3'
     gem 'cucumber-rails', '1.2.1'
     gem 'rspec-rails', '2.7.0'
     gem 'database_cleaner', '0.7.0'
