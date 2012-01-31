@@ -2,7 +2,7 @@ Given /^I visit the sign in page$/ do
   visit('/')
 end
 
-When /^I enter my proper credentials, "([^"]*)" and "([^"]*)"$/ do |username, password|
+When /^I enter my (?:im)?proper credentials, "([^"]*)" and "([^"]*)"$/ do |username, password|
   @username = username
   
   within('#user_new.user_new') do
@@ -20,5 +20,24 @@ end
 
 Then /^I should be on the landing page$/ do
   page.should have_content("Email: #{@username}")
-  ask('hang on...')
+  click_on('Sign Out')
+  # ask('hang on...')
 end
+
+Then /^I should not be on the landing page$/ do
+  # ask('hang on...')
+  page.should have_content("Invalid email or password.")
+ 
+  # ask('hang on...')
+end
+
+# proper email address? is this js?
+
+# invalid creds put email addr in both email fields
+# similar thing with password fields
+
+
+
+# sign up is a feature
+
+# home button
