@@ -2,12 +2,12 @@ Given /^I visit the sign in page$/ do
   visit('/')
 end
 
-When /^I enter my (?:im)?proper credentials, "([^"]*)" and "([^"]*)"$/ do |username, password|
+When /^I enter my (?:im)?proper credentials, "([^"]*)" and "([^"]*)"$/ do |user_name, user_password|
   @username = username
   
   within('#user_new.user_new') do
-    fill_in('user_email', :with => username)
-    fill_in('user_password', :with => password)
+    fill_in('user_email', :with => user_name)
+    fill_in('user_password', :with => user_password)
     click_on('Sign in')
   end
 

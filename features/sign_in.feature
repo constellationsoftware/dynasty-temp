@@ -11,4 +11,3 @@ Feature: Sign in
     Given I visit the sign in page
     When I enter my improper credentials, "test@example.com" and "password"
     Then I should not be on the landing page
-    
