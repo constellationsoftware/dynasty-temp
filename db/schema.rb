@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119205611) do
+ActiveRecord::Schema.define(:version => 20120127021517) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -906,6 +906,10 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.integer  "round",                     :null => false
   end
 
+  add_index "dynasty_draft_picks", ["draft_id"], :name => "index_dynasty_draft_picks_on_draft_id"
+  add_index "dynasty_draft_picks", ["player_id"], :name => "index_dynasty_draft_picks_on_player_id"
+  add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
+
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "started_at"
     t.datetime "finished_at"
@@ -983,14 +987,14 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "year",                 :default => 2000, :null => false
-    t.integer  "defensive_points",     :default => 0
-    t.integer  "fumbles_points",       :default => 0
-    t.integer  "passing_points",       :default => 0
-    t.integer  "rushing_points",       :default => 0
-    t.integer  "sacks_against_points", :default => 0
-    t.integer  "scoring_points",       :default => 0
-    t.integer  "special_teams_points", :default => 0
-    t.integer  "games_played",         :default => 0
+    t.integer  "defensive_points",     :default => 0,    :null => false
+    t.integer  "fumbles_points",       :default => 0,    :null => false
+    t.integer  "passing_points",       :default => 0,    :null => false
+    t.integer  "rushing_points",       :default => 0,    :null => false
+    t.integer  "sacks_against_points", :default => 0,    :null => false
+    t.integer  "scoring_points",       :default => 0,    :null => false
+    t.integer  "special_teams_points", :default => 0,    :null => false
+    t.integer  "games_played",         :default => 0,    :null => false
   end
 
   add_index "dynasty_player_points", ["defensive_points"], :name => "index_dynasty_player_points_on_defensive_points"
@@ -1014,6 +1018,22 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
   end
 
   add_index "dynasty_player_positions", ["player_id", "position_id"], :name => "index_dynasty_player_positions_on_player_id_and_position_id", :unique => true
+  add_index "dynasty_player_positions", ["position_id", "player_id"], :name => "index_dynasty_player_positions_on_position_id_and_player_id", :unique => true
+
+  create_table "dynasty_player_team_histories", :force => true do |t|
+    t.integer  "player_id"
+    t.integer  "user_team_id"
+    t.integer  "week"
+    t.integer  "depth"
+    t.integer  "position_id"
+    t.integer  "league_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "dynasty_player_team_histories", ["player_id"], :name => "index_dynasty_player_team_histories_on_player_id"
+  add_index "dynasty_player_team_histories", ["user_team_id"], :name => "index_dynasty_player_team_histories_on_user_team_id"
+  add_index "dynasty_player_team_histories", ["week"], :name => "index_dynasty_player_team_histories_on_week"
 
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"
@@ -1024,12 +1044,14 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "depth"
     t.integer  "position_id"
+    t.integer  "depth",          :default => 0, :null => false
     t.boolean  "waiver"
     t.integer  "waiver_team_id"
     t.integer  "league_id"
   end
+
+  add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "user_team_id"], :name => "index_position_counts_by_team"
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",         :limit => 32
@@ -1072,9 +1094,9 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
 
   create_table "dynasty_trades", :force => true do |t|
-    t.integer  "league_id",                            :null => false
-    t.integer  "initial_team_id",                      :null => false
-    t.integer  "second_team_id",                       :null => false
+    t.integer  "league_id",           :null => false
+    t.integer  "initial_team_id",     :null => false
+    t.integer  "second_team_id",      :null => false
     t.integer  "player_id"
     t.boolean  "accepted"
     t.boolean  "open"
@@ -1083,10 +1105,10 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.datetime "denied_at"
     t.integer  "offered_player_id"
     t.integer  "requested_player_id"
-    t.integer  "offered_cash",        :default => 0
-    t.integer  "requested_cash",      :default => 0
-    t.string   "offered_picks",       :default => "0"
-    t.string   "requested_picks",     :default => "0"
+    t.integer  "offered_cash"
+    t.integer  "requested_cash"
+    t.string   "offered_picks"
+    t.string   "requested_picks"
     t.text     "message"
   end
 
@@ -1571,6 +1593,12 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
 
   add_index "media_keywords", ["media_id"], :name => "FK_med_key_med_id__med_id"
 
+  create_table "messages", :force => true do |t|
+    t.string   "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "motor_racing_event_states", :force => true do |t|
     t.integer "event_id",                       :null => false
     t.integer "current_state",   :limit => 1
@@ -1892,6 +1920,18 @@ ActiveRecord::Schema.define(:version => 20120119205611) do
     t.integer "points"
     t.integer "rating"
     t.float   "consistency",     :limit => 4
+  end
+
+  create_table "schedules", :force => true do |t|
+    t.integer  "league_id"
+    t.integer  "team_id"
+    t.integer  "opponent_id"
+    t.integer  "week"
+    t.integer  "outcome"
+    t.integer  "team_score"
+    t.integer  "opponent_score"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "seasons", :force => true do |t|

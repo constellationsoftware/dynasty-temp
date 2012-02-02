@@ -1,4 +1,6 @@
 Dynasty::Application.routes.draw do
+  resources :messages
+
     resources :schedules
 
     resources :photos

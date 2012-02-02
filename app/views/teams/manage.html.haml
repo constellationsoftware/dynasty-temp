@@ -1,11 +1,12 @@
 :coffeescript
   $ ->
     window.myClock = new Clocks
-
+    window.myMessage = new Messages
 = stylesheet_link_tag 'teams'
 
 - content_for :navbar_right do
   %div{ :style => 'display: inline-block;' }
+    %span.messages= Message.first.content
     %span.datebox.button.nice.small.black= Clock.first.time.strftime("%B %e, %Y")
 .container
   .row
