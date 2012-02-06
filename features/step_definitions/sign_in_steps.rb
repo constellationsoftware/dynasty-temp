@@ -3,7 +3,7 @@ Given /^I visit the sign in page$/ do
 end
 
 When /^I enter my (?:im)?proper credentials, "([^"]*)" and "([^"]*)"$/ do |user_name, user_password|
-  @username = username
+  @user_name = user_name
   
   within('#user_new.user_new') do
     fill_in('user_email', :with => user_name)
@@ -19,7 +19,7 @@ When /^I enter my (?:im)?proper credentials, "([^"]*)" and "([^"]*)"$/ do |user_
 end
 
 Then /^I should be on the landing page$/ do
-  page.should have_content("Email: #{@username}")
+  page.should have_content("Email: #{@user_name}")
   click_on('Sign Out')
   # ask('hang on...')
 end

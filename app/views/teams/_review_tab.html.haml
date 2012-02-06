@@ -82,7 +82,7 @@
             - last_weeks_players.where(:depth => 0).each do |player|
               %tr
                 %td
-                  = "#{player.last_name} : #{player.position.abbreviation.upcase}"
+                  = "#{player.last_name} : #{player.position.andand.abbreviation.andand.upcase}"
                 %td
                   = player.points_for_week(week).andand.points.to_i / 3
                 %td
@@ -110,7 +110,7 @@
             - last_weeks_opponents.where(:depth => 0).each do |player|
               %tr
                 %td
-                  = "#{player.last_name} : #{player.position.abbreviation.upcase}"
+                  = "#{player.last_name} : #{player.position.andand.abbreviation.andand.upcase}"
                 %td
                   = player.points_for_week(week).andand.points.to_i / 3
                 %td
