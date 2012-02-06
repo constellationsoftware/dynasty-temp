@@ -1,5 +1,6 @@
 Dynasty::Application.routes.draw do
-  resources :messages
+
+    resources :messages
 
     resources :schedules
 

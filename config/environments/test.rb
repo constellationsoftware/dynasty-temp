@@ -43,6 +43,10 @@ Dynasty::Application.configure do
 
     config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 3, 5*1024*1024)
 
+
+    # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
+    config.assets.allow_debugging = true
+
     # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
     config.assets.allow_debugging = true
 end
