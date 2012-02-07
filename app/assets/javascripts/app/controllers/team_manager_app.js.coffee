@@ -3,8 +3,9 @@ class TeamManagerApp extends Spine.Controller
     STARTING_PLAYER_DEPTH: 1
 
     constructor: ->
-        new Clocks el: $('.datebox')
+        new Clocks()
         new GameSummary()
+        new Accounts()
 
         # Pull in players
         new StartingPlayers el: 'table#starters > tbody', depth: @STARTING_PLAYER_DEPTH
