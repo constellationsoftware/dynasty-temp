@@ -3,11 +3,11 @@
   .datebox.alert-box= Clock.first.time.strftime("%B %e, %Y")
   %p
     = link_to 'Fast Forward 1 Week',
-      next_week_clock_path(Clock.first.id),
+      next_week_clock_path,
       :remote => true,
       :class => 'nice button blue small radius'
   %p
     = link_to 'Reset To Season Start',
-      reset_clock_path(Clock.first.id),
+      reset_clock_path,
       :remote => true,
       :class => 'nice button black small radius'

@@ -74,6 +74,6 @@
         = yield :sidebar
         - unless @team
           = link_to 'Reset To Season Start',
-            reset_clock_path(Clock.first.id),
+            reset_clock_path,
             :remote => true,
             :class => 'nice button black small radius'

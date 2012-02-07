@@ -1,5 +1,6 @@
-class League::ClockController < SubdomainController
+class League::ClocksController < SubdomainController
     custom_actions :resource => [ :next_week, :reset ]
+    respond_to :html, :json
 
     def show
         @clock = Clock.first
@@ -49,4 +50,9 @@ class League::ClockController < SubdomainController
         session[:return_to] ||= request.referer
         redirect_to :back
     end
+
+    protected
+        def resource
+            @clock = Clock.first
+        end
 end

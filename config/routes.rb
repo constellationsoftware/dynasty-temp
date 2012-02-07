@@ -51,7 +51,7 @@ Dynasty::Application.routes.draw do
             end
         end
 
-        resources :clock do
+        resource :clock do
             member do
                 get :next_week
                 get :reset

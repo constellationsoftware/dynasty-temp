@@ -5,10 +5,6 @@ class TeamManagerApp extends Spine.Controller
     constructor: ->
         super el: $('.datebox')
 
-        # Bind listeners for clock change, then instantiate the clock
-        Clock.bind 'refresh', (items) => @render items[0]
-        Clock.bind 'change', @render
-        Clock.fetch()
 
         # Pull in players
         @startingPlayersController = new StartingPlayers el: 'table#starters > tbody', depth: @STARTING_PLAYER_DEPTH
