@@ -17,6 +17,7 @@ class League::PlayersController < SubdomainController
         team = controller.instance_variable_get("@team")
         scope.roster(team)
     end
+    has_scope :with_position, :type => :boolean
     has_scope :filter_positions, :type => :boolean, :only => :index do |controller, scope, value|
         # if a filter is defined, we use that
         filter = nil
@@ -29,6 +30,7 @@ class League::PlayersController < SubdomainController
         team = controller.instance_variable_get("@team")
         scope.filter_positions(team, filter).with_name
     end
+    has_scope :with_name
     has_scope :by_name, :allow_blank => true, :only => :index do |controller, scope, value|
         scope.with_name.by_name(value)
     end
@@ -41,38 +43,18 @@ class League::PlayersController < SubdomainController
         scope.order(sort_str)
     end
 
-    def show
-        show! do |format|
-            @player = @player.flatten
-            format.json{ render :json => @player }
-        end
-    end|
-
-    def index
-        index! do |format|
-            players = @players.collect { |player| player.flatten }
-
-            result = {
-                :success => true,
-                :players => players,
-                :total => @total
-            }
-            format.json { render :json => result }
-        end
-    end
-
     protected
-    def collection
-        if (!!params[:page] and !!params[:limit])
-            @players = end_of_association_chain.page(params[:page]).per(params[:limit])
-        else
-            @players = end_of_association_chain
+        def collection
+            if !!params[:page] && !!params[:limit]
+                @players = end_of_association_chain.page(params[:page]).per(params[:limit])
+            else
+                @players = end_of_association_chain
+            end
+            @total = @players.size
         end
-        @total = @players.size
-    end
 
     private
-    def get_team!
-        @team = UserTeam.where { (league_id == my { @league.id }) & (user_id == my { current_user.id }) }.first
-    end
+        def get_team!
+            @team = UserTeam.where { (league_id == my { @league.id }) & (user_id == my { current_user.id }) }.first
+        end
 end

@@ -58,7 +58,7 @@ class Player < ActiveRecord::Base
     # SCOPES
     #
     scope :roster, lambda { |team|
-        joins { picks.user }.where { picks.team_id == my { team.id } }
+        joins { team_link }.where { team_link.user_team_id == my { team.id } }
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins { points }.includes { points }
@@ -80,7 +80,8 @@ class Player < ActiveRecord::Base
         picks_subquery = Pick.select { distinct(player_id) }.where { (player_id != nil) & (draft_id == my { draft.id }) }
         where { id.not_in picks_subquery }
     }
-    scope :with_name, joins{name}.includes{name}
+    scope :with_name, joins{ name }.includes{ name }
+    scope :with_position, joins{ position }.includes{ position }
     scope :by_name, lambda { |value|
         query = order{[
             isnull(name.full_name),
@@ -153,7 +154,6 @@ class Player < ActiveRecord::Base
                 end
             end
         end
-        puts recommended_position.inspect
 
         current_year = Season.order { season_key.desc }.first.season_key
         result = joins{ [points, position] }.includes{ [points, position] }

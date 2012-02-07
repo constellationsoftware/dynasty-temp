@@ -5,11 +5,11 @@ class Clock < ActiveRecord::Base
         self.time
 
         ## do payroll
-        UserTeam.all.each do |team|
+        UserTeam.with_players.each do |team|
             my_season_payroll = team.players.to_a.sum(&:amount)
             my_weekly_payroll = 0
             if team.schedules.count > 0
-            my_weekly_payroll = my_season_payroll / team.schedules.count
+                my_weekly_payroll = my_season_payroll / team.schedules.count
             end
 
 
@@ -32,9 +32,7 @@ class Clock < ActiveRecord::Base
             pth.league_id = ptr.league_id
             pth.position_id = ptr.position_id
 
-            pth.save
-            puts pth.player.name.full_name
-            puts "saved"
+            pth.save!
         end
     end
 

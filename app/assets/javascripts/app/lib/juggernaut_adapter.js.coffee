@@ -4,7 +4,7 @@ class JuggernautAdapter
     constructor: (@options = {}) ->
         @jug = new Juggernaut(@options)
         @jug.subscribe '/observer', @processWithoutAjax
-
+        $.ajaxSetup(beforeSend: (xhr) => xhr.setRequestHeader("X-Session-ID", @jug.sessionID))
     process: (msg) =>
         klass = window[msg.class]
         throw 'Unknown class' unless klass

@@ -12,7 +12,6 @@ class League::ClockController < SubdomainController
     def next_week
         next_week! do |format|
             @clock.next_week
-            puts @league.inspect
             # calculate points for the passed-in league
             @clock.calculate_points_for_league(@league) if @league
 

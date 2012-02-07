@@ -3,6 +3,6 @@ class Clock extends Spine.Model
     @extend Spine.Model.Ajax
 
     @url: '/clock/2'
-    date: -> this.date_short
+    date: -> @date_short
 
 window.Clock = Clock

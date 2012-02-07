@@ -7,6 +7,18 @@ class PlayerTeamRecord < ActiveRecord::Base
     has_one :user_team_lineup
     belongs_to :league
 
+    #shortcuts (actual Person data is seldom useful)
+    belongs_to :player_name,
+        :class_name => 'DisplayName',
+        :foreign_key => 'player_id',
+        :primary_key => 'entity_id',
+        :conditions => { :entity_type => 'persons' }
+    belongs_to :position,
+        :foreign_key => :position_id
+    belongs_to :contract,
+        :foreign_key => :player_id,
+        :primary_key => :person_id
+
     attr_accessible :name, :position, :depth
     validates_with Validators::PlayerTeamRecord
 
@@ -14,14 +26,8 @@ class PlayerTeamRecord < ActiveRecord::Base
         self.player.name.full_name
     end
 
-    scope :qb, where(:position_id => 1)
-    scope :wr, where(:position_id => 2)
-    scope :rb, where(:position_id => 3)
-    scope :te, where(:position_id => 4)
-    scope :k, where(:position_id => 14)
-
-
-    scope :on_waiver_wire, where(:waiver => 1)
+    scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
+    scope :on_waiver_wire, where{ waiver == 1 }
 
     def self.set_all_positions
         PlayerTeamRecord.all.each do |ptr|

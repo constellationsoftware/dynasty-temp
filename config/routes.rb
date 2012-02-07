@@ -40,6 +40,17 @@ Dynasty::Application.routes.draw do
                 resources :players
             end
         end
+
+        # The team in this case is always the user's team for this league
+        defaults :format => 'json' do
+            namespace :team do
+                resources :players do
+                    get :start
+                    get :bench
+                end
+            end
+        end
+
         resources :clock do
             member do
                 get :next_week

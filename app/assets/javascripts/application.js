@@ -8,5 +8,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require foundation
+//= require exception
+//= require util
 
 //= require app
