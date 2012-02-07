@@ -1,0 +1,19 @@
+.row
+  .four.columns Cash:
+  .three.columns= balance
+.row
+  .four.columns Wk.Pay:
+  .three.columns= payroll
+
+.row
+  .four.columns S. Cap:
+  .three.columns= cap
+.row
+  .four.columns Ssn.Pay:
+  .three.columns{ class: (payroll_total < cap ? 'success' : 'failure') }= payroll_total
+
+.row
+  .twelve.columns{ class: (deficit ? 'failure' : 'success') }
+    %strong
+      #{cap_difference} #{deficit ? "over" : "under"} cap!
+%br

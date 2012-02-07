@@ -31,18 +31,18 @@ class League::TeamsController < SubdomainController
     end
 
     protected
-    def collection
-        if (!!params[:page] and !!params[:limit])
-            @teams = end_of_association_chain.page(params[:page]).per(params[:limit])
-        else
-            @teams = end_of_association_chain
+        def collection
+            if (!!params[:page] and !!params[:limit])
+                @teams = end_of_association_chain.page(params[:page]).per(params[:limit])
+            else
+                @teams = end_of_association_chain
+            end
+            @teams = @teams.joins { league }.where { league.id == my { @league.id } }
+            @total = @teams.size
         end
-        @teams = @teams.joins { league }.where { league.id == my { @league.id } }
-        @total = @teams.size
-    end
 
     private
-    def get_team!
-        @team = UserTeam.where { (league_id == my { @league.id }) & (user_id == my { current_user.id }) }.first
-    end
+        def get_team!
+            @team = UserTeam.where { (league_id == my { @league.id }) & (user_id == my { current_user.id }) }.first
+        end
 end

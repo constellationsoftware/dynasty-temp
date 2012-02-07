@@ -49,6 +49,7 @@ Dynasty::Application.routes.draw do
                     get :bench
                 end
                 resources :games
+                resource :balance
             end
         end
 

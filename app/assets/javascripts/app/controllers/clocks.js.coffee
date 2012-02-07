@@ -1,4 +1,6 @@
 class Clocks extends Spine.Controller
+    el: '.datebox'
+
     constructor: ->
         super
 
