@@ -6,13 +6,15 @@
 
 - content_for :navbar_right do
   %div{ :style => 'display: inline-block;' }
-    %span.messages= Message.first.content
+    %spMesan.messages= Message.first.content
     %span.datebox.button.nice.small.black= Clock.first.time.strftime("%B %e, %Y")
 .container
   .row
     .panel
       %h5
         Your Dashboard
+        .messages= Message.first.content
+
         -if week > 0
           %p
             %strong

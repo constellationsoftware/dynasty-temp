@@ -1,5 +1,5 @@
-class JuggernautObserver < ActiveRecord::Observer
-    observe :messages
+class MessageObserver < ActiveRecord::Observer
+    observe :message
 
     def after_create(record)
         publish(:create, record)
@@ -15,7 +15,7 @@ class JuggernautObserver < ActiveRecord::Observer
 
     protected
     def publish(type, record)
-        Juggernaut.publish('/message_observer', {
+        Juggernaut.publish('/observer', {
             type:   type,
             id:     record.id,
             class:  record.class.name,

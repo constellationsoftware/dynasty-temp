@@ -1,10 +1,9 @@
 class MessagesController < InheritedResources::Base
     def show
-        @clock = Clock.first
+        @message = Message.first
         respond_to do |format|
-            format.html { render :json => @clock.time.to_date }
-            format.json { render :json => @clock.flatten }
+            format.html { render :json => @message.content }
+            format.json { render :json => @message.content }
         end
     end
-
 end
