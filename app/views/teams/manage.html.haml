@@ -1,6 +1,6 @@
 :coffeescript
-  $ ->
-    window.TM = new TeamManagerApp
+  window.WEEK = #{week}
+  $ -> window.TM = new TeamManagerApp
 
 = stylesheet_link_tag 'teams'
 
@@ -12,35 +12,38 @@
     .panel
       %h5
         Your Dashboard
-        -if week > 0
-          %p
-            %strong
-              GAME RESULTS: WEEK #{week}
+        %div#game_summary
+          -if week > 0
+            %p
+              %strong
+                Game results for week #{week}
 
-          %p
-            %strong
-              You
-              - if game.team_score > game.opponent_score
-                Won!
-              - elsif game.team_score < game.opponent_score
-                Lost!
-              - else
-                Tied!
-              You got
-              = game.team_score
-              points and
-              = game.opponent.name
-              got
-              = game.opponent_score
-              points.
-          %p
-            Your next game is against #{next_game.opponent.name}.
-            Remember to set your starters!
+            %p
+              %strong
+                You
+                - if game.team_score > game.opponent_score
+                  won!
+                - elsif game.team_score < game.opponent_score
+                  lost!
+                - else
+                  tied!
+                You got
+                = game.team_score
+                points and
+                = game.opponent.name
+                got
+                = game.opponent_score
+                points.
 
-          %ul#game_weeks
-            - (1..max_week).each do |i|
-              %li{:class => ('current' if i === week)}
-                %div= i
+          - if week < max_week
+            %p
+              Your next game is against #{next_game.opponent.name}.
+              Remember to set your starters!
+
+        %ul#game_weeks
+          - (1..max_week).each do |i|
+            %li{:class => ('current' if i === week)}
+              %div= i
 
   .row
     %dl.nice.contained.tabs

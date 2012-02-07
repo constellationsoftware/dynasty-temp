@@ -109,7 +109,8 @@ class Clock < ActiveRecord::Base
         {
             :id => self.id,
             :time => self.time,
-            :date_short => self.nice_time
+            :date_short => self.nice_time,
+            :week => self.week
         }
     end
 end

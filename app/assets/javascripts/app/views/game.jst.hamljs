@@ -1,0 +1,8 @@
+%p
+  %strong
+    Game results for week #{game.week}
+%p
+  %strong
+    You #{game.outcome()}! You got #{game.score} points and #{game.opponent} got #{game.opponent_score} points.
+
+%p Your next game is against #{next_game.opponent}. Remember to set your starters!

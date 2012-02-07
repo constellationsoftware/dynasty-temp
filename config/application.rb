@@ -22,11 +22,10 @@ module Dynasty
         # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
         # Activate observers that should always be running.
-        config.active_record.observers = :juggernaut_observer,
-            :league_observer,
+        config.active_record.observers = :league_observer,
             :user_team_observer,
             :draft_observer,
-            :pick_observer #, :cacher, :garbage_collector, :forum_observer
+            :pick_observer #, :cacher, :garbage_collector, :forum_observer, :juggernaut_observer
 
 
         # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.

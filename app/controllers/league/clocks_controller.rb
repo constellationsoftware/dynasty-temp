@@ -33,6 +33,13 @@ class League::ClocksController < SubdomainController
                 schedule.save
             end
 
+            Juggernaut.publish('/observer', {
+                type:   'update',
+                id:     @clock.id,
+                class:  'Clock',
+                record: @clock.flatten
+            })
+
             format.html { render :text => 'success' }
         end
     end
@@ -40,6 +47,14 @@ class League::ClocksController < SubdomainController
     def reset
         reset! do |format|
             @clock.reset
+
+            Juggernaut.publish('/observer', {
+                type:   'update',
+                id:     @clock.id,
+                class:  'Clock',
+                record: @clock.flatten
+            })
+
             format.html { render :text => 'success' }
         end
     end

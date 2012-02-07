@@ -29,7 +29,7 @@ Dynasty::Application.configure do
     config.assets.enabled = true
     config.serve_static_assets = true
     config.assets.compile = true
-    config.assets.debug = false
+    config.assets.debug = true
 
 
     # Rotate Log Files. example:

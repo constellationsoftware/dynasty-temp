@@ -48,6 +48,7 @@ Dynasty::Application.routes.draw do
                     get :start
                     get :bench
                 end
+                resources :games
             end
         end
 
