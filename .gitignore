@@ -18,3 +18,10 @@ app/views/layouts/application.html.erb
 .idea/*
 vendor/cache/*
 .rails_footnotes
+
+.idea/codeStyleSettings.xml
+.idea/dataSources.ids
+.idea/dataSources.xml
+.idea/dictionaries/benjaminmurphy.xml
+.idea/dictionaries/Nick.xml
+.idea/inspectionProfiles/Project_Default.xml
