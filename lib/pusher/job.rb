@@ -30,12 +30,11 @@ module Pusher
             end
 
             @socket.bind('pusher:error') do |result|
-                puts result.inspect
                 raise result
             end
 
             # subscribe to all active drafts
-            drafts = Draft.find(:all, :include => :league)
+            drafts = Draft.joins{ league }.includes{ league }
             drafts.each do |draft|
                 channel_name = Draft::CHANNEL_PREFIX + draft.league.slug
                 @socket.subscribe(channel_name, DEFAULT_USER_ID)

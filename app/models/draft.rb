@@ -58,7 +58,6 @@ class Draft < ActiveRecord::Base
     # This method advances the draft after a pick is made, or on draft start.
     #
     def advance(force_finish = false)
-        puts force_finish
         # set the current pick to the next "free" pick slot
         self.current_pick = self.get_current_pick
 
@@ -96,7 +95,7 @@ class Draft < ActiveRecord::Base
 
     # what users/teams are online in the draft
     def online
-        user_teams = self.teams.online
+        self.teams.online
     end
 
 # push the draft status

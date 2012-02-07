@@ -7,6 +7,9 @@ class UserTeam < ActiveRecord::Base
 
     has_many :picks, :foreign_key => 'team_id'
     has_many :player_team_records, :conditions => 'current = TRUE'
+    has_many :player_teams,
+        :class_name => 'PlayerTeamRecord',
+        :conditions => 'current = TRUE'
     has_many :player_team_histories
     has_many :players, :through => :player_team_records
     money :balance, :cents => :balance_cents
@@ -17,6 +20,7 @@ class UserTeam < ActiveRecord::Base
 
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
+    scope :with_players, joins{ players }.includes{ players }
 
     def salary_total
         UserTeam.joins { picks.player.contract }.select { coalesce(sum(picks.player.contract.amount), 0).as('total') }.where { id == my { self.id } }.first.total.to_f
@@ -60,8 +64,8 @@ class UserTeam < ActiveRecord::Base
     # requires :attribute, :name
 
     private
-    def generate_uuid
-        uuid = UUIDTools::UUID.timestamp_create
-        self.uuid = uuid.raw
-    end
+        def generate_uuid
+            uuid = UUIDTools::UUID.timestamp_create
+            self.uuid = uuid.raw
+        end
 end

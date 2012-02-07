@@ -2,48 +2,47 @@
   %h5 Review your Roster
   %p How strong does your team look? Should you drop a weaker player?
 
-  %table.roster
+  %table#starters.roster
     %thead
       %tr
-        %th{:colspan => 5} Active
+        %th{:colspan => 4} Active
       %tr
-        %th Position
         %th Name
+        %th Position
         %th Bye
-        %th Points
-        %th Manage
+        %th.controlwrap
     %tbody
-      - starters.each do |data|
-        = render :partial => 'player_row', :locals => { :player => data[:player],
-          :depth => :starter,
-          :extra => (data[:points].nil? ? nil : number_with_precision(data[:points].points, :precision => 1)) }
-  %table.roster
+      -#- starters.each do |data|
+      -#  = render :partial => 'player_row', :locals => { :player => data[:player],
+      -#    :depth => :starter,
+      -#    :extra => (data[:points].nil? ? nil : number_with_precision(data[:points].points, :precision => 1)) }
+  %table#bench.roster
     %thead
       %tr
-        %th{:colspan => 5} Bench
+        %th{:colspan => 4} Bench
       %tr
-        %th Position
         %th Name
+        %th Position
         %th Bye
-        %th Points
-        %th Manage
+        %th.controlwrap
     %tbody
-      - bench.each do |data|
-        = render :partial => 'player_row', :locals => { :player => data[:player],
-          :depth => :bench,
-          :extra => (data[:points].nil? ? nil : number_with_precision((data[:points].points.to_f / 3), :precision => 1)) }
 
-- if reserve.size > 0
-  %table.roster
-    %thead
-      %tr
-        %th{:colspan => 5} Reserve
-      %tr
-        %th Position
-        %th Name
-        %th Bye
-        %th Weekly Cost
-        %th
-    %tbody
-      - reserve.each do |data|
-        = render :partial => 'player_row', :locals => { :player => data[:player], :depth => :reserve }
+      -#- bench.each do |data|
+      -#  = render :partial => 'player_row', :locals => { :player => data[:player],
+      -#    :depth => :bench,
+      -#    :extra => (data[:points].nil? ? nil : number_with_precision((data[:points].points.to_f / 3), :precision => 1)) }
+
+-#- if reserve.size > 0
+-#  %table#reserve.roster
+-#    %thead
+-#      %tr
+-#        %th{:colspan => 5} Reserve
+-#      %tr
+-#        %th Position
+-#        %th Name
+-#        %th Bye
+-#        %th Weekly Cost
+-#        %th
+-#    %tbody
+-#      - reserve.each do |data|
+-#        = render :partial => 'player_row', :locals => { :player => data[:player], :depth => :reserve }

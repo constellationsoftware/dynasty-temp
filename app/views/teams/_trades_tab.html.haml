@@ -1,4 +1,4 @@
-%li.active#tradesTab
+%li#tradesTab
   %h5
   .panel
     %h3
@@ -10,7 +10,7 @@
           //= f.input :offered_cash, :label => "Offer some cash"
           //= f.input :offered_picks, :label => "Offer picks"
         .six.columns
-          = f.input :requested_player, :collection => their_players, :group_by => :team, :prompt => "Choose A Player to Request"
+          = f.input :requested_player, :collection => their_players, :group_by => :team, :group_association => :players, :prompt => "Choose A Player to Request"
           //= f.input :requested_cash, :label => "Request some cash"
           //= f.input :requested_picks, :label => "Request picks"
       .row

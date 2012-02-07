@@ -14,15 +14,7 @@ class Event < ActiveRecord::Base
     has_many :players, :through => :player_points
 
     def summary
-        puts self.start_date_time
-
         participants = self.participants_events.where { participant_type == 'Team' }
-        participants.each do |p|
-            puts Team.find(p.participant_id).display_name.full_name
-            puts p.score
-            puts p.event_outcome
-            puts p.alignment
-        end
     end
 
     #Chrono Methods

@@ -28,8 +28,6 @@ class PickObserver < ActiveRecord::Observer
         #puts "sum: #{player_sum}, slots: #{slots}, pos_count: #{position_count}, max: #{position_max_count}"
         intended_depth = 1 if player_sum < slots && (position_max_count.nil? || position_count < position_max_count)
 
-        puts intended_depth
-
         # create PlayerTeam record based on pick data
         record = PlayerTeamRecord.create do |ptr|
             ptr.current = TRUE

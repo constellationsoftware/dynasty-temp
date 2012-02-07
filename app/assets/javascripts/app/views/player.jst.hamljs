@@ -1,0 +1,7 @@
+%td.name= name()
+%td.position= position
+%td.bye_week= bye_week
+%td.controlwrap
+  %div.controls.invisible
+    %input{ type: 'button', value: (depth == 1 ? 'Bench' : 'Start'), data-type: (depth == 1 ? 'bench' : 'start') }
+    %input{ type: 'button', value: 'Drop', data-type: 'remove' }

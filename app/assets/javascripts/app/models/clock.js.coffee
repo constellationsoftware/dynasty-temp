@@ -1,8 +1,15 @@
 class Clock extends Spine.Model
-    @configure 'Clock', 'date_short'
+    @configure 'Clock', 'date_short', 'week'
     @extend Spine.Model.Ajax
 
-    @url: '/clock/2'
-    date: -> this.date_short
+    @url: '/clock'
+    date: -> @date_short
+
+    update: ->
+        super
+
+        console.log('clock updated')
+        # fire a global clock update event
+        Spine.trigger 'clock:update', @
 
 window.Clock = Clock

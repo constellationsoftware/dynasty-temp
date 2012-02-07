@@ -1,8 +1,8 @@
 #= require json2
 #= require spine/lib/spine
 #= require spine/lib/manager
+#= require spine/lib/tabs
 #= require spine/lib/ajax
-#= require spine/lib/route
 
 #= require_tree ./lib
 #= require_tree ./views

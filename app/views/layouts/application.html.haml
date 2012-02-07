@@ -73,4 +73,7 @@
 
         = yield :sidebar
         - unless @team
-          = link_to "Reset To Season Start", "/clock/2/reset", :class => "nice button black small radius"
+          = link_to 'Reset To Season Start',
+            reset_clock_path,
+            :remote => true,
+            :class => 'nice button black small radius'

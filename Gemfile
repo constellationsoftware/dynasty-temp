@@ -25,6 +25,7 @@ gem 'ruby-haml-js'
 gem 'barista'
 gem 'jquery-rails'
 gem 'formtastic'
+gem 'jbuilder'
 
 # Authentication & Permissions
 gem 'devise'
@@ -36,7 +37,7 @@ gem 'devise_lastseenable', '>= 0.0.3'
 gem 'foreman'
 gem 'thin'
 gem 'juggernaut'
-gem 'pusher'
+gem 'pusher', :git => 'git://github.com/pusher/pusher-gem.git'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
@@ -57,6 +58,7 @@ group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
     gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+    #gem 'query_trace'
 end
 
 group :production do
