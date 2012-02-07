@@ -37,7 +37,7 @@ gem 'devise_lastseenable', '>= 0.0.3'
 gem 'foreman'
 gem 'thin'
 gem 'juggernaut'
-gem 'pusher', :git => 'git://github.com/pusher/pusher-gem.git'
+gem 'pusher', '= 0.8.5'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
