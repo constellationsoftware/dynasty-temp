@@ -53,6 +53,7 @@ Ext.application({
             //'draft:resume': this.onDraftResumed,
             'draft:finish': this.onDraftFinish,
             'draft:reset': this.onDraftReset,
+            'draft:pick:start': this.onDraftLivePick
         };
         events['draft:pick:start-' + CLIENT_ID] = this.startPicking;
         events['draft:pick:resume-' + CLIENT_ID] = this.resumePicking;
@@ -66,6 +67,11 @@ Ext.application({
         this.getController('RecommendedPicks').addListener('playerpicked', this.onPlayerPicked, this);
         this.getController('AdminControls').addListener('click', this.onAdminControlsClicked, this);
         this.getController('Picks').addListener('picksucceeded', this.onPickSucceeded, this);
+    },
+
+    onDraftLivePick: function(payload){
+        console.log(payload);
+        this.fireEvent(this.LIVE_PICK_MADE);
     },
 
     onDraftFinish: function() {
@@ -192,6 +198,7 @@ Ext.application({
         STATUS_RESUMED:         'resumed',
         STATUS_RESET:           'reset',
         STATUS_FINISHED:        'finished',
+        LIVE_PICK_MADE:         'someone-made-a-pick',
 
         TIMEOUT:                'timeout',
 

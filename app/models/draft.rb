@@ -87,6 +87,8 @@ class Draft < ActiveRecord::Base
                 :players => Player.filter_positions(self.current_pick.team).available(self).with_points.with_contract.order { points.points.desc }.page(1).per(5).collect { |player| player.flatten }
             }
             Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:start-' + pick_user_id, payload) unless (self.online.count === 0 or force_finish)
+            Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:start', {:team => self.current_pick.team.name}, self.current_pick.team.last_socket_id )
+
         else
             Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:finish', {}) unless (self.online.count === 0 or force_finish)
         end

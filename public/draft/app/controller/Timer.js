@@ -17,11 +17,14 @@ Ext.define('DynastyDraft.controller.Timer', {
         this.addEvents('timeout');
 
         this.taskRunner = new Ext.util.TaskRunner();
-        this.application.addListener(this.application.STATUS_PICKING, this.start, this);
+        this.application.addListener(this.application.STATUS_PICKING, function() { this.start(true); }, this);
         this.application.addListener(this.application.STATUS_PICKED, this.reset, this);
         this.application.addListener(this.application.STATUS_PAUSED, this.pause, this);
         this.application.addListener(this.application.STATUS_RESUMED, this.resume, this);
         this.application.addListener(this.application.STATUS_RESET, this.reset, this);
+        this.application.addListener(this.application.LIVE_PICK_MADE, function() { this.start(); }, this);
+        this.application.addListener(this.application.STATUS_STARTED, function() { this.start(); }, this);
+        this.application.addListener(this.application.PICK_UPDATE, this.reset, this);
     },
 
     pause: function() {
@@ -52,7 +55,8 @@ Ext.define('DynastyDraft.controller.Timer', {
         //this.taskRunner.start(this.countdown);
     },
 
-    start: function() {
+    start: function(doTimeout) {
+
         if (this.countdown === null) {
             // init the timer countdown task
             this.countdown = {
@@ -68,7 +72,11 @@ Ext.define('DynastyDraft.controller.Timer', {
                     this.view.updateTimer(minutes, seconds);
 
                     // when the timer times out
-                    if (count === 0) { this.onTimeout(); }
+                    console.log(doTimeout);
+                    if (count === 0) {
+                        if (doTimeout) { this.onTimeout(); }
+                        else { this.reset(); }
+                    }
                 },
                 interval: 1000,
                 args: null,
