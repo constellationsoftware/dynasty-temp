@@ -11,12 +11,19 @@ Ext.define('DynastyDraft.view.Roster', {
 
     columns: [
         {
-            text: 'Name',
+            text: 'Player Name',
             dataIndex: 'full_name',
             xtype: 'gridcolumn',
             hideable: false,
             groupable: true,
             flex: 1,
+        },
+        {
+            text: 'Bye Week',
+            dataIndex: 'bye_week',
+            xtype: 'numbercolumn',
+            align: 'right',
+            format: '0',
         },
         {
             text: 'Salary',

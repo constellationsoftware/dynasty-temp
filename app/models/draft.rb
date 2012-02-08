@@ -36,6 +36,7 @@ class Draft < ActiveRecord::Base
     # reset the draft
     def reset
         Pick.destroy_all(:draft_id => self.id) # destroy picks
+        PlayerTeamRecord.destroy_all(:league_id => self.league_id)
         self.create_pick_records # create new picks
 
         self.finished_at = nil
