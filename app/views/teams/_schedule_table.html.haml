@@ -1,41 +1,25 @@
 .panel
-  = @team.name
-  Schedule
-  %table
+  #{@team.name} Schedule
+  %table#scoring
     %thead
       %tr
-        %th
-          Week
-        %th
-          Opponent
-        %th
-          Outcome
+        %th Week
+        %th Opponent
+        %th Outcome
     %tbody
-      - @team.schedules.limit(9).each do |ts|
+      - games.each do |game|
         %tr
+          %td= game.week
+          %td= game.opponent.name
           %td
-            = ts.week
-          %td
-            = ts.opponent.name
-          %td
-            - if ts.outcome == 1
+            - if game.outcome == 1
               Win
-            - if ts.outcome == 0
+            - elsif game.outcome == 0
               Loss
-            - unless ts.outcome
-              ???
-
-      %tr
-        %td
-          10
-        %td{:colspan => 2}
-          %strong
-            Dynasty Bowl
+            - else
+              N/A
     %tfoot
       %tr
-        %td{:colspan => 2}
-          Record
+        %td{ :colspan => 2 } Record
         %td
-          = @team.schedules.where(:outcome => '1').count
-          \-
-          = @team.schedules.where(:outcome => '0').count
+          #{record[:wins]} - #{record[:losses]}

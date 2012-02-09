@@ -1,6 +1,0 @@
-%p
-  %strong
-    Game results for week #{game.week}
-%p
-  %strong
-    You #{game.outcome()}! You got #{game.score} points and #{game.opponent} got #{game.opponent_score} points.

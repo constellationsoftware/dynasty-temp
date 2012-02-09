@@ -5,6 +5,7 @@ class TeamManagerApp extends Spine.Controller
     constructor: ->
         new Clocks()
         new GameSummary()
+        new GameScoring()
         new Accounts()
 
         # Pull in players

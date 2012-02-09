@@ -46,20 +46,23 @@ class TeamsController < InheritedResources::Base
             players = players.with_points_from_season('current') if week > 0
             players.each do |player|
                 payroll_total += player.contract.amount
-                player_data = {
-                    :player => player,
-                    :points => week > 0 ? player.points_for_week(week) : nil
-                }
-                case player.team_link.depth.to_i
-                when 1
-                    starters << player_data
-                when 0
-                    bench << player_data
-                else # no points for these guys
-                    reserve << player_data
-                end
+                #player_data = {
+                #    :player => player,
+                #    :points => week > 0 ? player.points_for_week(week) : nil
+                #}
+                #case player.team_link.depth.to_i
+                #when 1
+                #    starters << player_data
+                #when 0
+                #    bench << player_data
+                #else # no points for these guys
+                #    reserve << player_data
+                #end
             end
             payroll = payroll_total / max_week
+
+            # schedule stuff
+            games = @team.schedules
 
             data = {
                 :week => week,
@@ -102,6 +105,10 @@ class TeamsController < InheritedResources::Base
                         :cap => 75000000,
                         :payroll => payroll,
                         :payroll_total => payroll_total
+                    },
+                    :schedule => {
+                        :games => games,
+                        :record => Schedule.ratio(games)
                     }
                 }
             }

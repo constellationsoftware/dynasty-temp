@@ -8,7 +8,7 @@ class League::Team::PlayersController < SubdomainController
     has_scope :roster, :type => :boolean do |controller, scope|
         # can't do join subqueries otherwise :(
         scope.joins{[ player_name, contract, position ]}
-            .select{[ id, depth, contract.bye_week, position.abbreviation, player_name.first_name, player_name.last_name ]}
+            .select{[ id, depth, contract.bye_week, contract.amount, position.abbreviation, player_name.first_name, player_name.last_name ]}
     end
 
     def bench

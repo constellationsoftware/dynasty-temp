@@ -21,6 +21,7 @@ class UserTeam < ActiveRecord::Base
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
     scope :with_players, joins{ players }.includes{ players }
+    scope :with_schedule, joins{ schedules }.includes{ schedules }
 
     def salary_total
         UserTeam.joins { picks.player.contract }.select { coalesce(sum(picks.player.contract.amount), 0).as('total') }.where { id == my { self.id } }.first.total.to_f
