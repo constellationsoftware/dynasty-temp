@@ -1,38 +1,22 @@
 :coffeescript
-<<<<<<< HEAD
   window.WEEK = #{week}
   $ -> window.TM = new TeamManagerApp
 
-=======
-  $ ->
-    window.myClock = new Clocks
-    window.myMessage = new Messages
->>>>>>> d14648eeff8e50f9d631f62fa507bf1148aa7327
 = stylesheet_link_tag 'teams'
 
 - content_for :navbar_right do
   %div{ :style => 'display: inline-block;' }
-    %spMesan.messages= Message.first.content
     %span.datebox.button.nice.small.black= Clock.first.time.strftime("%B %e, %Y")
 .container
   .row
     .panel
       %h5
         Your Dashboard
-<<<<<<< HEAD
         %div#game_summary
           -if week > 0
             %p
               %strong
                 Game results for week #{week}
-=======
-        .messages= Message.first.content
-
-        -if week > 0
-          %p
-            %strong
-              GAME RESULTS: WEEK #{week}
->>>>>>> d14648eeff8e50f9d631f62fa507bf1148aa7327
 
             %p
               %strong

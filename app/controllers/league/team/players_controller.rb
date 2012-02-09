@@ -14,14 +14,23 @@ class League::Team::PlayersController < SubdomainController
     def bench
         @player_team = resource
         @player_team.depth = 0
+
+        @player_team.save
         update!
     end
 
     def start
         @player_team = resource
         @player_team.depth = 1
-        update!
+        if @player_team.valid?
+            @player_team.save
+            update!
+        end
     end
+
+
+
+
 
     def destroy
         @player_team = PlayerTeamRecord.find(params[:id])

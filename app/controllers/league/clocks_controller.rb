@@ -33,6 +33,14 @@ class League::ClocksController < SubdomainController
                 schedule.save
             end
 
+            # set all available starting slots
+            PlayerTeamRecord.all.each do |ptr|
+                ptr.depth = 1
+                if ptr.valid?
+                    ptr.save
+                end
+            end
+
             Juggernaut.publish('/observer', {
                 type:   'update',
                 id:     @clock.id,

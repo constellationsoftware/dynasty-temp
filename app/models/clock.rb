@@ -31,11 +31,8 @@ class Clock < ActiveRecord::Base
             pth.depth = ptr.depth
             pth.league_id = ptr.league_id
             pth.position_id = ptr.position_id
-
-<<<<<<< HEAD
             pth.save!
-=======
->>>>>>> d14648eeff8e50f9d631f62fa507bf1148aa7327
+
         end
     end
 

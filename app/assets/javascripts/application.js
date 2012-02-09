@@ -8,10 +8,9 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require foundation
-<<<<<<< HEAD
+//= require hamlcoffee
+
 //= require exception
 //= require util
 
-=======
->>>>>>> d14648eeff8e50f9d631f62fa507bf1148aa7327
 //= require app

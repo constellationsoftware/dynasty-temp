@@ -1,4 +1,6 @@
 class Players extends Spine.Controller
+
+
     constructor: ->
         super
 
@@ -8,9 +10,17 @@ class Players extends Spine.Controller
         Player.bind('create',  @addOne)
         Player.bind('changeDepth', @onChangeDepth)
 
-        # set the params
-        params = { data: $.param({ has_depth: @depth, roster: 1, order_by_name: 1 }) }
-        Player.fetch(params)
+
+        Player.fetch(@getParams())
+
+        # bind to global clock update event
+        Spine.bind 'clock:update', @onClockUpdate
+
+    onClockUpdate: (clock) =>
+        console.log(@el)
+        # refresh the player lineup
+        # Player.refresh([], {clear: true})
+        Player.fetch(@getParams())
 
     addOne: (item) =>
         player = new PlayerItem(item: item)
@@ -27,6 +37,10 @@ class Players extends Spine.Controller
         else
             playerItem.release()
 
+    getParams: ->
+        # set the params
+        @params = { data: $.param({ has_depth: @depth, roster: 1, order_by_name: 1 }) }
+
 window.Players = Players
 
 
@@ -36,4 +50,5 @@ window.BenchPlayers = BenchPlayers
 
 class StartingPlayers extends Players
 window.StartingPlayers = StartingPlayers
+
 

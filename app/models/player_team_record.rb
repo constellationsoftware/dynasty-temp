@@ -36,6 +36,16 @@ class PlayerTeamRecord < ActiveRecord::Base
         end
     end
 
+    def self.start_all
+        PlayerTeamRecord.all.each do |ptr|
+            ptr.depth = 1
+            if ptr.valid?
+                ptr.save
+                ptr.update_attributes(attributes)
+            end
+        end
+    end
+
 
     ## TODO: Make this not suck.
     def self.match_picks(draft_id)
