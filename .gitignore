@@ -24,4 +24,3 @@ vendor/cache/*
 .idea/dictionaries/benjaminmurphy.xml
 .idea/dictionaries/Nick.xml
 .idea/inspectionProfiles/Project_Default.xml
-config/database.yml
