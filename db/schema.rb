@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120206114140) do
+=======
+ActiveRecord::Schema.define(:version => 20120127021517) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+>>>>>>> d14648eeff8e50f9d631f62fa507bf1148aa7327
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -1037,7 +1056,10 @@ ActiveRecord::Schema.define(:version => 20120206114140) do
     t.integer  "league_id"
   end
 
+<<<<<<< HEAD
   add_index "dynasty_player_teams", ["player_id", "depth", "user_team_id", "current"], :name => "index_dynasty_player_teams_roster_api"
+=======
+>>>>>>> d14648eeff8e50f9d631f62fa507bf1148aa7327
   add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "user_team_id"], :name => "index_position_counts_by_team"
 
   create_table "dynasty_positions", :force => true do |t|
