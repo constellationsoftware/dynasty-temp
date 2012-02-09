@@ -3,5 +3,5 @@
 #redis: redis-server /usr/local/etc/redis.conf
 #jug: juggernaut
 web: bundle exec thin start -p $PORT
-#worker: bundle exec rake jobs:work --trace
+worker: bundle exec rake jobs:work
 log: tail -f -n 0 log/development.log

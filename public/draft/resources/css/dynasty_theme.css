@@ -994,7 +994,7 @@ input, textarea, select {
   border-color: #d1d1d1;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-default-small {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1015,13 +1015,13 @@ input, textarea, select {
   background-image: linear-gradient(top, #ffffff, #f9f9f9 48%, #e2e2e2 52%, #e7e7e7);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-small-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-small-bg.gif');
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-small {
   padding: 0 !important;
   border-width: 0 !important;
@@ -1366,7 +1366,7 @@ input, textarea, select {
   border-color: #d1d1d1;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-default-medium {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1387,13 +1387,13 @@ input, textarea, select {
   background-image: linear-gradient(top, #ffffff, #f9f9f9 48%, #e2e2e2 52%, #e7e7e7);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-medium-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-medium-bg.gif');
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-medium {
   padding: 0 !important;
   border-width: 0 !important;
@@ -1738,7 +1738,7 @@ input, textarea, select {
   border-color: #d1d1d1;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-default-large {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -1759,13 +1759,13 @@ input, textarea, select {
   background-image: linear-gradient(top, #ffffff, #f9f9f9 48%, #e2e2e2 52%, #e7e7e7);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-large-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/btn/btn-default-large-bg.gif');
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-large {
   padding: 0 !important;
   border-width: 0 !important;
@@ -2110,7 +2110,7 @@ input, textarea, select {
   border-color: transparent;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-default-toolbar-small {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -2124,12 +2124,12 @@ input, textarea, select {
   background-color: transparent;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-toolbar-small-mc {
   background-color: transparent;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-toolbar-small {
   padding: 0 !important;
   border-width: 0 !important;
@@ -2451,7 +2451,7 @@ input, textarea, select {
   border-color: transparent;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-default-toolbar-medium {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -2465,12 +2465,12 @@ input, textarea, select {
   background-color: transparent;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-toolbar-medium-mc {
   background-color: transparent;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-toolbar-medium {
   padding: 0 !important;
   border-width: 0 !important;
@@ -2792,7 +2792,7 @@ input, textarea, select {
   border-color: transparent;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-default-toolbar-large {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -2806,12 +2806,12 @@ input, textarea, select {
   background-color: transparent;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-default-toolbar-large-mc {
   background-color: transparent;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-default-toolbar-large {
   padding: 0 !important;
   border-width: 0 !important;
@@ -3159,7 +3159,7 @@ input, textarea, select {
   white-space: nowrap;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-btn-group-default-framed {
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
@@ -3173,12 +3173,12 @@ input, textarea, select {
   background-color: #d0def0;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-btn-group-default-framed-mc {
   background-color: #d0def0;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-btn-group-default-framed {
   padding: 0 !important;
   border-width: 0 !important;
@@ -4687,29 +4687,29 @@ browsers will do whacky things with it.
   height: 24px;
 }
 /* line 762, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-ml, .x-grid-row-editor-buttons-mr, .x-grid-row-editor-buttons-bl, .x-grid-row-editor-buttons-br, .x-grid-row-editor-buttons-bc {
+.x-grid-row-editor-buttons -ml, .x-grid-row-editor-buttons -mr, .x-grid-row-editor-buttons -bl, .x-grid-row-editor-buttons -br, .x-grid-row-editor-buttons -bc {
   position: absolute;
   overflow: hidden;
 }
 /* line 768, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-bl, .x-grid-row-editor-buttons-br {
+.x-grid-row-editor-buttons -bl, .x-grid-row-editor-buttons -br {
   width: 4px;
   height: 4px;
   bottom: 0px;
   background-image: url('../../lib/extjs/resources/themes/images/default/panel/panel-default-framed-corners.gif');
 }
 /* line 774, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-bl {
+.x-grid-row-editor-buttons -bl {
   left: 0px;
   background-position: 0px -16px;
 }
 /* line 778, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-br {
+.x-grid-row-editor-buttons -br {
   right: 0px;
   background-position: 0px -20px;
 }
 /* line 783, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-bc {
+.x-grid-row-editor-buttons -bc {
   position: absolute;
   left: 4px;
   bottom: 0px;
@@ -4718,18 +4718,18 @@ browsers will do whacky things with it.
   background-color: #99bce8;
 }
 /* line 793, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-ml, .x-grid-row-editor-buttons-mr {
+.x-grid-row-editor-buttons -ml, .x-grid-row-editor-buttons -mr {
   height: 27px;
   width: 1px;
   top: 1px;
   background-color: #99bce8;
 }
 /* line 799, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-ml {
+.x-grid-row-editor-buttons -ml {
   left: 0px;
 }
 /* line 802, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_grid.scss */
-.x-grid-row-editor-buttons-mr {
+.x-grid-row-editor-buttons -mr {
   background-position: 0px -20px;
   right: 0px;
 }
@@ -5931,7 +5931,7 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(right, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-default-framed {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -5945,12 +5945,12 @@ textarea.x-form-invalid-field {
   background-color: #dfe9f6;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-default-framed-mc {
   background-color: #dfe9f6;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-default-framed {
   padding: 0 !important;
   border-width: 0 !important;
@@ -5988,7 +5988,7 @@ textarea.x-form-invalid-field {
   padding: 0px 0px 0px 0px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-top {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -6027,13 +6027,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(top, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-top-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-top-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-top {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6070,7 +6070,7 @@ textarea.x-form-invalid-field {
   padding: 0px 1px 4px 1px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-right {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -6109,13 +6109,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(right, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-right-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-right-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-right {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6153,7 +6153,7 @@ textarea.x-form-invalid-field {
   padding: 0px 1px 0px 5px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-bottom {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -6192,13 +6192,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(top, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-bottom-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-bottom-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-bottom {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6235,7 +6235,7 @@ textarea.x-form-invalid-field {
   padding: 4px 1px 0px 1px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-left {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -6274,13 +6274,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(right, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-left-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-left-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-left {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6385,7 +6385,7 @@ textarea.x-form-invalid-field {
   border-radius: 4px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-collapsed-top {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -6424,13 +6424,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(top, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-top-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-top-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-top {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6467,7 +6467,7 @@ textarea.x-form-invalid-field {
   padding: 0px 1px 0px 1px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-collapsed-right {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -6506,13 +6506,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(right, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-right-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-right-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-right {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6550,7 +6550,7 @@ textarea.x-form-invalid-field {
   padding: 0px 1px 0px 1px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-collapsed-bottom {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -6589,13 +6589,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(top, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-bottom-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-bottom-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-bottom {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6632,7 +6632,7 @@ textarea.x-form-invalid-field {
   padding: 0px 1px 0px 1px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-panel-header-default-framed-collapsed-left {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -6671,13 +6671,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(right, #dae7f6, #cddef3 45%, #abc7ec 46%, #abc7ec 50%, #b8cfee 51%, #cbddf3);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-panel-header-default-framed-collapsed-left-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/panel-header/panel-header-default-framed-collapsed-left-bg.gif');
   background-color: #cbddf3;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-panel-header-default-framed-collapsed-left {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6752,7 +6752,7 @@ textarea.x-form-invalid-field {
   padding: 0px 1px 0 0 !important;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-tip {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -6766,12 +6766,12 @@ textarea.x-form-invalid-field {
   background-color: #e9f2ff;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-tip-mc {
   background-color: #e9f2ff;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-tip {
   padding: 0 !important;
   border-width: 0 !important;
@@ -6936,7 +6936,7 @@ textarea.x-form-invalid-field {
   margin-bottom: 0;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-form-invalid-tip-default {
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -6950,12 +6950,12 @@ textarea.x-form-invalid-field {
   background-color: white;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-form-invalid-tip-default-mc {
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-form-invalid-tip-default {
   padding: 0 !important;
   border-width: 0 !important;
@@ -7463,7 +7463,7 @@ textarea.x-form-invalid-field {
   box-shadow: #ecf2fb 0 1px 0px 0 inset, #ecf2fb 0 -1px 0px 0 inset, #ecf2fb -1px 0 0px 0 inset, #ecf2fb 1px 0 0px 0 inset;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-default {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -7495,12 +7495,12 @@ textarea.x-form-invalid-field {
   background-color: #ced9e7;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-default-mc {
   background-color: #ced9e7;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-default {
   padding: 0 !important;
   border-width: 0 !important;
@@ -7561,7 +7561,7 @@ textarea.x-form-invalid-field {
   font-size: 11px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-default-top {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -7593,12 +7593,12 @@ textarea.x-form-invalid-field {
   background-color: #ced9e7;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-default-top-mc {
   background-color: #ced9e7;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-top {
   padding: 0 !important;
   border-width: 0 !important;
@@ -7636,7 +7636,7 @@ textarea.x-form-invalid-field {
   padding: 0px 0px 0 0px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-default-right {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -7668,12 +7668,12 @@ textarea.x-form-invalid-field {
   background-color: #ced9e7;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-default-right-mc {
   background-color: #ced9e7;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-right {
   padding: 0 !important;
   border-width: 0 !important;
@@ -7711,7 +7711,7 @@ textarea.x-form-invalid-field {
   padding: 0px 0px 0px 0;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-default-bottom {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -7743,12 +7743,12 @@ textarea.x-form-invalid-field {
   background-color: #ced9e7;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-default-bottom-mc {
   background-color: #ced9e7;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-bottom {
   padding: 0 !important;
   border-width: 0 !important;
@@ -7786,7 +7786,7 @@ textarea.x-form-invalid-field {
   padding: 0 0px 0px 0px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-default-left {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -7818,12 +7818,12 @@ textarea.x-form-invalid-field {
   background-color: #ced9e7;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-default-left-mc {
   background-color: #ced9e7;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-default-left {
   padding: 0 !important;
   border-width: 0 !important;
@@ -7958,7 +7958,7 @@ textarea.x-form-invalid-field {
   background-image: url('../../lib/extjs/resources/themes/images/default/shared/icon-error.gif');
 }
 
-/* line 5, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 72, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar {
   position: relative;
   background-color: transparent;
@@ -7973,18 +7973,18 @@ textarea.x-form-invalid-field {
   font-size: 11px;
 }
 
-/* line 12, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 79, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-nlg .x-tab-bar {
   background-image: url('../../lib/extjs/resources/themes/images/default/tab-bar/tab-bar-default-bg.gif');
 }
 
-/* line 17, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 84, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-default-plain,
 .x-nlg .x-tab-bar-default-plain {
   background: transparent none;
 }
 
-/* line 22, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 89, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-body {
   border-style: solid;
   border-color: #99bce8;
@@ -7994,13 +7994,13 @@ textarea.x-form-invalid-field {
 }
 
 /* Top Tabs */
-/* line 33, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 6, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-top .x-tab-bar-body {
   height: 20px;
   border-width: 1px 1px 0;
   padding: 1px 0 3px;
 }
-/* line 39, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 12, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-top .x-tab-bar-strip {
   /*position strip from top rather than bottom to avoid off-by-one error in IE6*/
   top: 22px;
@@ -8008,22 +8008,22 @@ textarea.x-form-invalid-field {
   height: 2px;
 }
 
-/* line 48, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 21, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-top .x-tab-bar-body {
   height: 25px;
 }
-/* line 52, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 25, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-top .x-tab-bar-strip {
   height: 3px;
 }
 
-/* line 33, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 6, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-top .x-tab-bar-body-default-plain {
   height: 20px;
   border-width: 0;
   padding: 0 0 3px;
 }
-/* line 39, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 12, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-top .x-tab-bar-strip-default-plain {
   /*position strip from top rather than bottom to avoid off-by-one error in IE6*/
   top: 20px;
@@ -8031,83 +8031,83 @@ textarea.x-form-invalid-field {
   height: 2px;
 }
 
-/* line 48, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 21, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-top .x-tab-bar-body-default-plain {
   height: 23px;
 }
-/* line 52, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 25, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-top .x-tab-bar-strip-default-plain {
   height: 3px;
 }
 
 /* Bottom Tabs */
-/* line 61, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 34, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-body {
   height: 20px;
   border-width: 0 1px 1px;
   padding: 3px 0 1px;
 }
-/* line 66, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 39, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-body .x-box-inner {
   position: relative;
   top: -1px;
 }
-/* line 73, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 46, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-body .x-box-scroller,
 .x-tab-bar-bottom .x-tab-bar-body .x-box-scroller-left,
 .x-tab-bar-bottom .x-tab-bar-body .x-box-scroller-right {
   height: 22px;
 }
-/* line 78, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 51, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-strip {
   top: 0;
   border-width: 0 1px 1px 1px;
   height: 2px;
 }
 
-/* line 86, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 59, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-bottom .x-tab-bar-body {
   height: 25px;
 }
-/* line 90, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 63, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-bottom .x-tab-bar-strip {
   height: 3px;
 }
 
-/* line 61, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 34, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-body-default-plain {
   height: 20px;
   border-width: 0;
   padding: 3px 0 0;
 }
-/* line 66, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 39, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-body-default-plain .x-box-inner {
   position: relative;
   top: -1px;
 }
-/* line 73, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 46, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-body-default-plain .x-box-scroller,
 .x-tab-bar-bottom .x-tab-bar-body-default-plain .x-box-scroller-left,
 .x-tab-bar-bottom .x-tab-bar-body-default-plain .x-box-scroller-right {
   height: 21px;
 }
-/* line 78, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 51, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-bottom .x-tab-bar-strip-default-plain {
   top: 0;
   border-width: 0 1px 1px 1px;
   height: 2px;
 }
 
-/* line 86, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 59, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-bottom .x-tab-bar-body-default-plain {
   height: 23px;
 }
-/* line 90, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 63, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-border-box .x-tab-bar-bottom .x-tab-bar-strip-default-plain {
   height: 3px;
 }
 
-/* line 140, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
+/* line 141, ../../lib/extjs/resources/themes/stylesheets/ext4/default/widgets/_tabbar.scss */
 .x-tab-bar-strip-default,
 .x-tab-bar-strip-default-plain {
   font-size: 0;
@@ -8121,7 +8121,7 @@ textarea.x-form-invalid-field {
   zoom: 1;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-tab-default-top {
   -moz-border-radius-topleft: 4px;
   -webkit-border-top-left-radius: 4px;
@@ -8160,13 +8160,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(top, #ccdef6, #d6e6fa 25%, #deecfd 45%);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-tab-default-top-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-top-bg.gif');
   background-color: #deecfd;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-tab-default-top {
   padding: 0 !important;
   border-width: 0 !important;
@@ -8203,7 +8203,7 @@ textarea.x-form-invalid-field {
   padding: 0 0 0 0;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-tab-default-bottom {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -8242,13 +8242,13 @@ textarea.x-form-invalid-field {
   background-image: linear-gradient(bottom, #ccdef6, #d6e6fa 25%, #deecfd 45%);
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-tab-default-bottom-mc {
   background-image: url('../../lib/extjs/resources/themes/images/default/tab/tab-default-bottom-bg.gif');
   background-color: #deecfd;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-tab-default-bottom {
   padding: 0 !important;
   border-width: 0 !important;
@@ -9066,7 +9066,7 @@ textarea.x-form-invalid-field {
   vertical-align: middle;
   *vertical-align: auto;
 }
-/* line 7, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails_3_1/gems/compass-0.11.6/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
+/* line 7, ../../../../../../.rvm/gems/ruby-1.9.2-p290@rails_3_1/gems/compass-0.11.7/frameworks/compass/stylesheets/compass/css3/_inline-block.scss */
 .x-surface {
   *display: inline;
 }
@@ -10630,7 +10630,7 @@ body .ux-notification-window {
   box-shadow: #ecf2fb 0 1px 0px 0 inset, #ecf2fb 0 -1px 0px 0 inset, #ecf2fb -1px 0 0px 0 inset, #ecf2fb 1px 0 0px 0 inset;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-light {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -10662,12 +10662,12 @@ body .ux-notification-window {
   background-color: white;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-light-mc {
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-light {
   padding: 0 !important;
   border-width: 0 !important;
@@ -10728,7 +10728,7 @@ body .ux-notification-window {
   font-size: 11px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-light-top {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -10760,12 +10760,12 @@ body .ux-notification-window {
   background-color: white;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-light-top-mc {
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-top {
   padding: 0 !important;
   border-width: 0 !important;
@@ -10803,7 +10803,7 @@ body .ux-notification-window {
   padding: 0px 0px 0 0px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-light-right {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -10835,12 +10835,12 @@ body .ux-notification-window {
   background-color: white;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-light-right-mc {
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-right {
   padding: 0 !important;
   border-width: 0 !important;
@@ -10878,7 +10878,7 @@ body .ux-notification-window {
   padding: 0px 0px 0px 0;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-light-bottom {
   -moz-border-radius-topleft: 0;
   -webkit-border-top-left-radius: 0;
@@ -10910,12 +10910,12 @@ body .ux-notification-window {
   background-color: white;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-light-bottom-mc {
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-bottom {
   padding: 0 !important;
   border-width: 0 !important;
@@ -10953,7 +10953,7 @@ body .ux-notification-window {
   padding: 0 0px 0px 0px;
 }
 
-/* line 58, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 69, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-window-header-light-left {
   -moz-border-radius-topleft: 5px;
   -webkit-border-top-left-radius: 5px;
@@ -10985,12 +10985,12 @@ body .ux-notification-window {
   background-color: white;
 }
 
-/* line 91, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 102, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nlg .x-window-header-light-left-mc {
   background-color: white;
 }
 
-/* line 104, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
+/* line 115, ../../lib/extjs/resources/themes/stylesheets/ext4/default/mixins/_frame.scss */
 .x-nbr .x-window-header-light-left {
   padding: 0 !important;
   border-width: 0 !important;

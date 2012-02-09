@@ -1,5 +1,6 @@
 Ext.define('DynastyDraft.view.Viewport', {
     extend: 'Ext.container.Viewport',
+    id: 'viewport',
 
     requires: [
         'DynastyDraft.view.PlayerGrid',
