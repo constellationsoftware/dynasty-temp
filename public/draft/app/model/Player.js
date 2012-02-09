@@ -18,6 +18,7 @@ Ext.define('DynastyDraft.model.Player', {
         },
         { name: 'bye_week', allowBlank: true, type: 'int', defaultValue: 0 },
         { name: 'contract_amount', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'points_last_season', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'points', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'defensive_points', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'fumbles_points', allowBlank: false, type: 'int', defaultValue: 0 },

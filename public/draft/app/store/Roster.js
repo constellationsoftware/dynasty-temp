@@ -15,7 +15,8 @@ Ext.define('DynastyDraft.store.Roster', {
             root: 'players'
         },
         extraParams: {
-            roster: true
+            roster: true,
+            with_points: true
         }
     },
 });

@@ -18,6 +18,7 @@ app/views/layouts/application.html.erb
 .idea/*
 vendor/cache/*
 .rails_footnotes
+<<<<<<< HEAD
 
 .idea/codeStyleSettings.xml
 .idea/dataSources.ids
@@ -25,3 +26,6 @@ vendor/cache/*
 .idea/dictionaries/benjaminmurphy.xml
 .idea/dictionaries/Nick.xml
 .idea/inspectionProfiles/Project_Default.xml
+=======
+config/database.yml
+>>>>>>> 056e623a6e392b01728130cda72f79cd91f4615c

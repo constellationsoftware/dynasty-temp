@@ -26,12 +26,19 @@ Ext.define('DynastyDraft.view.Roster', {
             format: '0',
         },
         {
+            text: 'Points Last Season',
+            dataIndex: 'points_last_season',
+            xtype: 'numbercolumn',
+            align: 'right',
+            format: '0',
+        },
+        {
             text: 'Salary',
             dataIndex: 'contract_amount',
             xtype: 'numbercolumn',
             align: 'right',
             format: '0,000',
-        },
+        }
     ],
 
     features: [
