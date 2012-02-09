@@ -21,8 +21,6 @@ gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 
 # Templating & View Helpers
 gem 'haml'
-gem 'ruby-haml-js'
-gem 'barista'
 gem 'jquery-rails'
 gem 'formtastic'
 gem 'jbuilder'
@@ -82,6 +80,7 @@ group :assets do
     gem 'uglifier'
     gem 'thin'
     gem 'zurb-foundation'
+    gem 'haml_coffee_assets'
 end
 
 group :test do

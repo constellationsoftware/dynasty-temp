@@ -43,7 +43,7 @@ Dynasty::Application.routes.draw do
 
         # The team in this case is always the user's team for this league
         defaults :format => 'json' do
-            namespace :team do
+            resource :team, :controller => :team, :module => :team do
                 resources :players do
                     get :start
                     get :bench

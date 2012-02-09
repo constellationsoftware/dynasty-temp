@@ -9,6 +9,7 @@ class League::Team::GamesController < SubdomainController
                 .with_opponent
                 .where{ team_id == my{ @team_id }}
                 .order{ week }
+            @ratio = Schedule.ratio(@games)
         end
 
     private

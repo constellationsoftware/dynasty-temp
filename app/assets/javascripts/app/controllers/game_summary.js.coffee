@@ -1,26 +1,11 @@
-class GameSummary extends Spine.Controller
-    el: '#game_summary'
-
+class Games extends Spine.Controller
     constructor: ->
         super
-
         @week = window.WEEK
         Game.bind 'refresh', @render
 
         # bind to global clock update event
         Spine.bind 'clock:update', @onClockUpdate
-
-    render: =>
-        current_game = Game.findByAttribute('week', @week)
-        next_game = Game.findByAttribute('week', @week + 1)
-        if current_game and next_game # middle of the season
-            @html @view('game')(game: current_game, next_game: next_game)
-        else if current_game # end of season
-            @html @view('game_last_week')(game: current_game)
-        else if next_game # beginning of season
-            @html @view('game_first_week')(next_game: next_game)
-        else
-            @html ""
 
     onClockUpdate: (clock) =>
         @week = clock.week
@@ -32,5 +17,24 @@ class GameSummary extends Spine.Controller
         # refresh the scoring
         Game.fetch()
 
+window.Games = Games
+
+
+class GameSummary extends Games
+    el: '#game_summary'
+
+    render: =>
+        current_game = Game.findByAttribute('week', @week)
+        next_game = Game.findByAttribute('week', @week + 1)
+        @html @view('game')(game: current_game, next_game: next_game)
 
 window.GameSummary = GameSummary
+
+
+class GameScoring extends Games
+    el: '#scoring'
+
+    render: (games) =>
+        @html @view('game_scoring')(games: games)
+
+window.GameScoring = GameScoring

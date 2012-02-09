@@ -8,6 +8,8 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require foundation
+//= require hamlcoffee
+
 //= require exception
 //= require util
 
