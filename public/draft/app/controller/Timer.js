@@ -72,7 +72,6 @@ Ext.define('DynastyDraft.controller.Timer', {
                     this.view.updateTimer(minutes, seconds);
 
                     // when the timer times out
-                    console.log(doTimeout);
                     if (count === 0) {
                         if (doTimeout) { this.onTimeout(); }
                         else { this.reset(); }
