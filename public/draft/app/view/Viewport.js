@@ -6,6 +6,7 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.AdminControls',
         'DynastyDraft.view.Picks',
         'DynastyDraft.view.RecommendedPicks',
+        'DynastyDraft.view.DraftBoard'
         //'DynastyDraft.view.PlayerQueue',
         //'DynastyDraft.view.ShoutBoxContainer',
     ],
@@ -145,10 +146,15 @@ Ext.define('DynastyDraft.view.Viewport', {
                 title: 'All Players',
             },*/ {
                 xtype: 'roster',
-                title: 'Roster',
-            }, {
+                title: 'My Roster',
+            },
+                {
+                xtype: 'draftboard',
+                title: 'League Draft Board',
+            },
+                {
                 xtype: 'admincontrols',
-                title: 'Draft Tools',
+                title: 'Admin Draft Tools',
             }],
         }, {
             xtype: 'toolbar',

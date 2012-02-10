@@ -17,18 +17,20 @@ class Players extends Spine.Controller
         Spine.bind 'clock:update', @onClockUpdate
 
     onClockUpdate: (clock) =>
-        console.log(@el)
-        # refresh the player lineup
-        # Player.refresh([], {clear: true})
         Player.fetch(@getParams())
+
 
     addOne: (item) =>
         player = new PlayerItem(item: item)
         @append player.render() if item.depth == @depth
 
+    removeOne: (item) =>
+        item.release()
+
     addAll: (players = []) =>
         for player in players
             @addOne player
+
 
     onChangeDepth: (playerItem) =>
         item = playerItem.item

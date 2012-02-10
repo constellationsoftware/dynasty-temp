@@ -24,6 +24,7 @@ Ext.application({
         'Roster',
         'Players',
         'Picks',
+        'DraftBoard'
     ],
 
     controllers: [
@@ -32,7 +33,8 @@ Ext.application({
         'Roster',
         'AdminControls',
         'Picks',
-        'RecommendedPicks'
+        'RecommendedPicks',
+        'DraftBoard'
     ],
 
     launch: function() {
