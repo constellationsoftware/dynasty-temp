@@ -1,15 +1,23 @@
-Ext.define('DynastyDraft.view.Roster', {
+Ext.define('DynastyDraft.view.DraftBoard', {
     extend: 'Ext.grid.Panel',
     // uncomment to enable empty grouping
     // WARNING: does not work entirely
     //requires: [ 'DynastyDraft.grid.feature.Grouping' ],
 
-    alias: 'widget.roster',
-    title: 'Roster',
-    store: 'Roster',
+    alias: 'widget.draftboard',
+    title: 'DraftBoard',
+    store: 'DraftBoard',
     columnLines: true,
 
     columns: [
+        {
+            text: 'Position',
+            dataIndex: 'position',
+            xtype: 'gridcolumn',
+            hideable: false,
+            groupable: false,
+            flex: 0.15,
+        },
         {
             text: 'Depth',
             dataIndex: 'depth',
@@ -19,11 +27,11 @@ Ext.define('DynastyDraft.view.Roster', {
             flex: 0.15,
         },
         {
-            text: 'Player Name',
+            text: 'DB Player Name',
             dataIndex: 'full_name',
             xtype: 'gridcolumn',
             hideable: false,
-            groupable: true,
+            groupable: false,
             flex: 1,
         },
 
@@ -71,18 +79,18 @@ Ext.define('DynastyDraft.view.Roster', {
             enableGroupingMenu: false,
             startCollapsed: false,
             /*
-            showEmptyGroups: true,
-            emptyIndicatorField: 'empty',
-            emptyGroupHeaderTpl: '{name} (0 Players)',
-            emptyGroupBodyTpl: 'Drag some players over from the left',
-            groupCollapseParams:{
-                onlyShow: function(groupValue) {
-                    if (groupValue == "Quarterback") { return true; }
-                    return false;
-                },
-                onlyHide:null
-            }
-            */
+             showEmptyGroups: true,
+             emptyIndicatorField: 'empty',
+             emptyGroupHeaderTpl: '{name} (0 Players)',
+             emptyGroupBodyTpl: 'Drag some players over from the left',
+             groupCollapseParams:{
+             onlyShow: function(groupValue) {
+             if (groupValue == "Quarterback") { return true; }
+             return false;
+             },
+             onlyHide:null
+             }
+             */
         }
     ],
 });

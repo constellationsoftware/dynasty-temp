@@ -16,6 +16,10 @@ Ext.define('DynastyDraft.model.Player', {
                 return position;
             }
         },
+        { name: 'depth', allowBlank: true, type: 'string', defaultValue: '' },
+        { name: 'position', allowBlank: true, type: 'string', defaultValue: '' },
+        { name: 'drafted_team', allowBlank: true, type: 'string', defaultValue: 'Not Drafted' },
+        { name: 'points_per_dollar', allowBlank: true, type: 'int', defaultValue: 0 },
         { name: 'bye_week', allowBlank: true, type: 'int', defaultValue: 0 },
         { name: 'contract_amount', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'points_last_season', allowBlank: false, type: 'int', defaultValue: 0 },

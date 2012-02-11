@@ -17,6 +17,12 @@ class League::PlayersController < SubdomainController
         team = controller.instance_variable_get("@team")
         scope.roster(team)
     end
+
+    has_scope :drafted, :only => :index, :type => :boolean do |controller, scope|
+        team = controller.instance_variable_get("@team")
+        league = team.league
+        scope.drafted(league)
+    end
     has_scope :with_position, :type => :boolean
     has_scope :filter_positions, :type => :boolean, :only => :index do |controller, scope, value|
         # if a filter is defined, we use that
