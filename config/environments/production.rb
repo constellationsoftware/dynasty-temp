@@ -42,7 +42,7 @@ Dynasty::Application.configure do
     # config.force_ssl = true
 
     # See everything in the log (default is :info)
-    config.log_level = :debug
+    config.log_level = :info
     config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 3, 5*1024*1024)
 
     # Use a different logger for distributed setups

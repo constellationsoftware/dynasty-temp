@@ -16,7 +16,7 @@ class Player < ActiveRecord::Base
             :qb => 1,
             :rb => 2,
             :wr => 2,
-            :te => 2,
+            :te => 1,
             :k => 1
         },
         :d => { #defense
@@ -29,6 +29,15 @@ class Player < ActiveRecord::Base
         { :o => 7, :d => 6 },
         { :o => 8, :d => 7 }
     ]
+
+    #
+    # NOTE about flex positions:
+    # They are only defined for offensive positions since defensive
+    # positions after requirements are SUGGESTED to be filled with equal distribution,
+    # the user will end up with a diversified bench unless they choose not to. That and
+    # all defensive positions are eligible flex positions.
+    #
+    FLEX_POSITIONS = [ :rb, :wr, :te ]
 
     has_one  :name,
              :class_name => 'DisplayName',
@@ -130,21 +139,26 @@ class Player < ActiveRecord::Base
                         break
                     end
 
-                    # special case for remaining bench positions to give them an even distribution after requirements
-                    if depth === 0
-                        counts ||= position_counts.collect{ |x| x.count if x.designation == designation }.compact
-                        player_sum = counts.empty? ? 0 : counts.reduce(:+)
+                    # special case for flex positions:
+                    #   the defined starting slots are filled but starter count is still less than specified in FREE_SLOTS
+                    # special case for remaining bench positions to give them an even distribution after minimum requirements have been met
 
-                        # if there are any slots open for defensive bench positions
-                        if player_sum < FREE_SLOTS[depth][designation]
-                            # grab the highest-ordered offensive position with the lowest count
+                    counts ||= position_counts.collect{ |x| x.count if x.designation == designation }.compact
+                    player_sum = counts.empty? ? 0 : counts.reduce(:+)
+                    # if there are any slots open for defensive bench positions
+                    if player_sum < FREE_SLOTS[depth][designation]
+                        if depth === 1
+                            recommended_position = FLEX_POSITIONS
+                            break
+                        elsif depth === 0
+                            # grab the highest-ordered defensive position with the lowest count
                             position = Position.find_by_sql("
                                 SELECT p.id
                                 FROM dynasty_positions p
                                 JOIN (
                                     SELECT position_id, COUNT(id) AS count
                                     FROM dynasty_player_teams
-                                    WHERE current = 1 AND user_team_id = #{sanitize(team.id)} AND depth = 0
+                                    WHERE current = 1 AND user_team_id = #{sanitize(team.id)} AND depth = #{depth}
                                     GROUP BY position_id
                                 ) AS pt
                                 ON p.id = pt.position_id
@@ -158,12 +172,16 @@ class Player < ActiveRecord::Base
                 end
             end
         end
-
+        puts "Recommended position: #{recommended_position.inspect}"
         current_year = Season.order { season_key.desc }.first.season_key
         result = joins{ [points, position] }.includes{ [points, position] }
             .where{ points.year == my{ current_year }}
         if !(recommended_position.nil?)
-            result = result.where{ position.id == my{ recommended_position } }
+            if recommended_position.is_a? Array
+                result = result.where{ position.abbreviation >> recommended_position }
+            else
+                result = result.where{ position.id == my{ recommended_position } }
+            end
         else
             result = result.where{ position.designation == :d }
         end
@@ -211,22 +229,15 @@ class Player < ActiveRecord::Base
         return obj
     end
 
-    def self.position_quantities
-        POSITION_QUANTITIES
-    end
-
-    def self.free_slots
-        FREE_SLOTS
-    end
-
     def self.get_position_counts(team, depth, designation)
+        team = team.id if team.is_a? UserTeam
         Position.find_by_sql("
             SELECT id, abbreviation, designation, (
                 SELECT COUNT(*)
                 FROM dynasty_player_teams pt
                 JOIN dynasty_player_positions pp
                 ON pt.player_id = pp.player_id
-                WHERE user_team_id = #{sanitize(team.id)}
+                WHERE user_team_id = #{sanitize(team)}
                     AND pp.position_id = pos.id
                     AND depth = #{depth}
                     AND designation = '#{designation}'
@@ -235,4 +246,8 @@ class Player < ActiveRecord::Base
             ORDER BY sort_order
         ")
     end
+
+    def self.position_quantities; POSITION_QUANTITIES end
+    def self.free_slots; FREE_SLOTS end
+    def self.flex_positions; FLEX_POSITIONS end
 end

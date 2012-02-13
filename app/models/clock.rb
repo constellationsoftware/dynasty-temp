@@ -32,7 +32,6 @@ class Clock < ActiveRecord::Base
             pth.league_id = ptr.league_id
             pth.position_id = ptr.position_id
             pth.save!
-
         end
     end
 

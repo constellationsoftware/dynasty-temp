@@ -11,27 +11,6 @@ class League::Team::PlayersController < SubdomainController
             .select{[ id, depth, contract.bye_week, contract.amount, position.abbreviation, player_name.first_name, player_name.last_name ]}
     end
 
-    def bench
-        @player_team = resource
-        @player_team.depth = 0
-
-        @player_team.save
-        update!
-    end
-
-    def start
-        @player_team = resource
-        @player_team.depth = 1
-        if @player_team.valid?
-            @player_team.save
-            update!
-        end
-    end
-
-
-
-
-
     def destroy
         @player_team = PlayerTeamRecord.find(params[:id])
         @player_team.details = "Dropped by #{@player_team.team.name} on #{Clock.first.nice_time}"
@@ -58,12 +37,6 @@ class League::Team::PlayersController < SubdomainController
     end
 
     protected
-        def resource
-            @player_team = end_of_association_chain
-                .where{ (user_team_id == my{ @team_id }) & (id == my{ params[:player_id] }) }
-                .first
-        end
-
         def collection
             @player_teams = end_of_association_chain
                 .where{ (user_team_id == my{ @team_id }) & (current == 1) }

@@ -11,6 +11,6 @@
 //= require hamlcoffee
 
 //= require exception
-//= require util
+//= require global
 
 //= require app

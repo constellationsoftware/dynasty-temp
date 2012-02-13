@@ -55,10 +55,9 @@
 
     .row
       .nine.columns
-        /*Core Content
-        - flash.each do |type, msg|
-          %div.alert-box{ :class => get_alert_style_by_type(type) }
-            = msg
+        #global-errors
+          - flash.each do |type, msg|
+            %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
         = yield
 
       .three.columns

@@ -21,14 +21,22 @@ class PlayerItem extends Spine.Controller
 
     onClickRemove: =>
         @item.destroy() if confirm('Are you sure you want to drop this player?')
+
     onClickStart: =>
-        $.get Spine.Ajax.getURL(@item) + '/start', =>
-            @item.depth = 1
-            Player.trigger('changeDepth', @)
+        $.ajax Spine.Ajax.getURL(@item),
+            type: 'PUT'
+            data: { player_team: { depth: 1 } }
+            success: =>
+                @item.depth = 1
+                Player.trigger('changeDepth', @)
+
     onClickBench: =>
-        $.get Spine.Ajax.getURL(@item) + '/bench', =>
-            @item.depth = 0
-            Player.trigger('changeDepth', @)
+        $.ajax Spine.Ajax.getURL(@item),
+            type: 'PUT'
+            data: { player_team: { depth: 0 } }
+            success: =>
+                @item.depth = 0
+                Player.trigger('changeDepth', @)
 
     onMouseOver: => @controls.removeClass('invisible')
     onMouseOut: => @controls.addClass('invisible')
