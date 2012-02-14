@@ -5,7 +5,7 @@ class Draft < ActiveRecord::Base
     #constants
     # TODO: put this in the controller, probably
     CHANNEL_PREFIX = 'presence-draft-'
-    DELAY_BETWEEN_PICKS = 1
+    DELAY_BETWEEN_PICKS = 2
 
     #is_timed
 
@@ -74,7 +74,12 @@ class Draft < ActiveRecord::Base
             # notify clients of the pick
             # TODO: figure out a better place to put this, maybe as a callback from the controller
             puts 'pushing pick update to channel: ' + CHANNEL_PREFIX + self.league.slug
-            Pusher[CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:update', self.current_pick) unless (self.online.count === 0 or force_finish)
+            payload = {
+                :player => { :id => autopick_player.id, :name => autopick_player.full_name },
+                :team => { :id => self.current_pick.team.id, :name => self.current_pick.team.name },
+                :pick => self.current_pick
+            }
+            Pusher[CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:update', payload) unless (self.online.count === 0 or force_finish)
 
             self.current_pick = self.get_current_pick
             autopick_iterations += 1

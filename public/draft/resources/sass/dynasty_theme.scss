@@ -95,7 +95,7 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
 }
 
 /** RECOMMENDED PICK */
-$recommended_pick_border_color: #CCC;
+$recommended_pick_border_color: #CCCCCC;
 $recommended_pick_background_color: color-stops(#EDEDED 0%, #FFFFFF 6%, #EDEDED 100%);
 $recommended_pick_background_color_hover: rgba(255, 255, 82, 0.2);
 $recommended_pick_background_color_selected: color-stops(mix(#EDEDED, #B2D7FF) 0%, #B2D7FF 6%, mix(#EDEDED, #B2D7FF) 100%);

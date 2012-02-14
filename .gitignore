@@ -5,7 +5,6 @@ bundler_stubs/
 .bundle
 .DS_Store
 .rspec
-.rvmrc
 db/*.sqlite3
 log/*
 dynastyowner.tmproj

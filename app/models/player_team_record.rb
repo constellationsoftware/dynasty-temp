@@ -20,7 +20,7 @@ class PlayerTeamRecord < ActiveRecord::Base
         :primary_key => :person_id
 
     attr_accessible :name, :position, :depth
-    validates_with Validators::PlayerTeamRecord
+    validates_with Validators::PlayerTeamRecord, :on => :update
 
     def name
         self.player.name.full_name

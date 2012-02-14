@@ -1,3 +1,14 @@
+@function pad($radius) {
+    $radius: boxmax($radius);
+    $radius: parseint($radius);
+    @if $radius > 10 {
+        @return $radius;
+    }
+    @else {
+        @return "0" + $radius;
+    }
+}
+
 @mixin x-frame(
     $cls, 
     $ui: null, 
@@ -112,17 +123,6 @@
                     background: #fff;
                 }
 
-                @function pad($radius) {
-                    $radius: boxmax($radius);
-                    $radius: parseint($radius);
-                    @if $radius > 10 {
-                        @return $radius;
-                    }
-                    @else {
-                        @return "0" + $radius;
-                    }
-                }
-                
                 $type: '100';
                 @if $table == true {
                     $type: '110';

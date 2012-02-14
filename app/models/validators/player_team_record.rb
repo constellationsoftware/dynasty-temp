@@ -1,14 +1,33 @@
 module Validators
     class PlayerTeamRecord < ActiveModel::Validator
         def validate(record)
-            # make sure there are positions available in the starting lineup
             if record.depth == 1
-                player = Player.joins{position}.includes{position}.where{id == record.player_id}.first
-                puts player.inspect
-                position_allowance = Player.position_quantities[record.depth][(player.position.designation).to_sym][(player.position.abbreviation).to_sym]
-                position_count = record.players_in_position(record.depth).count
-                record.errors[:depth] << "Your starting lineup has too many #{player.position.name.pluralize}." unless position_count < position_allowance
+                # make sure there are positions available in the starting lineup
+                record.errors[:depth] << "Your starting lineup has too many #{record.player.position.name.pluralize}." if self.class.starter_positions_filled?(record)
             end
+        end
+
+        def self.starter_positions_filled?(record)
+            position = record.player.position
+            # free slots for starters
+            slots = Player.free_slots()[1][position.designation].to_i
+            position_counts = Player.get_position_counts(record.user_team_id, record.depth, position.designation)
+
+            # compute the total filled slots for this designation
+            counts = position_counts.collect{ |x| x.count if x.designation == position.designation }.compact
+            player_sum = counts.empty? ? 0 : counts.reduce(:+)
+
+            # number of filled slots for this position and designation and total
+            position_count = position_counts.find do |x|
+                x.abbreviation == position.abbreviation
+            end
+            position_count = position_count.count unless position_count.nil?
+            position_allowance = Player.position_quantities[1][(position.designation).to_sym][(position.abbreviation).to_sym]
+            # extra allowable for valid flex positions
+            position_allowance += 1 if Player.flex_positions.include?(position.abbreviation.to_sym) && (player_sum < slots) && !(position_allowance.nil?)
+
+            #puts "sum: #{player_sum}, slots: #{slots}, pos_count: #{position_count}, max: #{position_allowance}"
+            !(player_sum < slots && (position_allowance.nil? || position_count < position_allowance))
         end
     end
 end

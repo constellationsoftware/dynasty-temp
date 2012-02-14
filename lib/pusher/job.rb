@@ -14,7 +14,8 @@ module Pusher
             @socket.connect(true)
 
             @socket.bind('pusher_internal:member_added') do |result|
-                team = get_team_from_data(parse(result))
+                data = parse(result)
+                team = get_team_from_data(data) if data
                 if !(team.nil?) and team.is_a? UserTeam
                     team.is_online = true
                     team.save()
@@ -22,7 +23,8 @@ module Pusher
             end
 
             @socket.bind('pusher_internal:member_removed') do |result|
-                team = get_team_from_data(parse(result))
+                data = parse(result)
+                team = get_team_from_data(result) if data
                 if !(team.nil?) and team.is_a? UserTeam
                     team.is_online = false
                     team.save()
@@ -49,24 +51,17 @@ module Pusher
 
         def parse(s)
             begin
-                return ActiveSupport::JSON.decode(s)
-            rescue => err
-                PusherClient.logger.warn(err)
-                PusherClient.logger.warn("Pusher : data attribute not valid JSON")
-                return s
+                ActiveSupport::JSON.decode(s)
+            rescue Exception => e
+                PusherClient.logger.warn("Attempt to parse Pusher data (#{s.inspect}) threw an exception: #{e.message}")
             end
         end
 
         def get_team_from_data(data)
             begin
-                if data['user_id'] == 0
-                    return nil
-                else
-                    return UserTeam.find_by_uuid(data['user_id'].to_s)
-                end
-            rescue => err
-                PusherClient.logger.warn(err)
-                PusherClient.logger.warn('Unexpected data format for team. Can not continue.')
+                UserTeam.find_by_uuid(data['user_id'].to_s) unless data['user_id'] == 0
+            rescue Exception => e
+                PusherClient.logger.warn("Unexpected data format for data: #{data.inspect}. Expected a 'user_id' key; can not continue.")
             end
         end
     end

@@ -12,6 +12,7 @@ Ext.application({
 
     requires: [
         'DynastyDraft.data.Socket',
+        'DynastyDraft.window.Notification',
         'Ext.window.MessageBox'
     ],
 
@@ -28,6 +29,7 @@ Ext.application({
     ],
 
     controllers: [
+        'Ext.ux.util.AlwaysOnTop',
         'PlayerGrid',
         'Timer',
         'Roster',
@@ -39,6 +41,7 @@ Ext.application({
 
     launch: function() {
         app = this;
+
         Ext.getBody().removeCls('loading');
         if (DRAFT_STATUS === 'finished') { this.showDraftFinishedDialog(); }
 
@@ -71,8 +74,7 @@ Ext.application({
         this.getController('Picks').addListener('picksucceeded', this.onPickSucceeded, this);
     },
 
-    onDraftLivePick: function(payload){
-        console.log(payload);
+    onDraftLivePick: function(payload) {
         this.fireEvent(this.LIVE_PICK_MADE);
     },
 
@@ -151,9 +153,9 @@ Ext.application({
     /*
      * When a pick event originated from someone else is received
      */
-    onPickUpdate: function(data) {
-        var player_id = data.player_id;
-        this.fireEvent(this.PICK_UPDATE, data);
+    onPickUpdate: function(payload) {
+        App.Notification.notify(payload.team.name + " picked " + payload.player.name + ".");
+        this.fireEvent(this.PICK_UPDATE, payload.pick);
     },
 
     onTimeout: function() {
