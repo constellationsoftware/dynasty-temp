@@ -1,7 +1,7 @@
 class Position < ActiveRecord::Base
     include EnumSimulator
 
-    set_table_name 'dynasty_positions'
+    self.table_name 'dynasty_positions'
 
     has_many :player_positions
     has_many :players,

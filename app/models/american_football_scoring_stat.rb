@@ -1,5 +1,5 @@
 class AmericanFootballScoringStat < BaseStat
-    set_table_name "american_football_scoring_stats"
+    self.table_name "american_football_scoring_stats"
     # TODO: Check scoring vs. spreadsheets
 
     def points

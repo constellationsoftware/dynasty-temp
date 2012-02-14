@@ -1,5 +1,5 @@
 class Player < ActiveRecord::Base
-    set_table_name 'persons'
+    self.table_name 'persons'
 
     POSITION_QUANTITIES = [{
         # BENCH
