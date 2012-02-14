@@ -1,5 +1,5 @@
 class AmericanFootballRushingStat < BaseStat
-    self.table_name "american_football_rushing_stats"
+    self.table_name = "american_football_rushing_stats"
     # TODO: Check scoring vs. spreadsheets
 
     def points

@@ -1,5 +1,5 @@
 class Person < ActiveRecord::Base
-    self.table_name 'persons'
+    self.table_name = 'persons'
     has_one :photo
     has_one :display_name,
             :foreign_key => 'entity_id',

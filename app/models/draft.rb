@@ -1,5 +1,5 @@
 class Draft < ActiveRecord::Base
-    self.table_name 'dynasty_drafts'
+    self.table_name = 'dynasty_drafts'
     include EnumSimulator
 
     #constants

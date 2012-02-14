@@ -1,5 +1,5 @@
 class League < ActiveRecord::Base
-    self.table_name 'dynasty_leagues'
+    self.table_name = 'dynasty_leagues'
 
     extend FriendlyId
     friendly_id :name, :use => :slugged

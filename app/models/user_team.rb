@@ -1,5 +1,5 @@
 class UserTeam < ActiveRecord::Base
-    self.table_name 'dynasty_teams'
+    self.table_name = 'dynasty_teams'
 
     belongs_to :user
     belongs_to :league
