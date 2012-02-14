@@ -8,6 +8,7 @@ gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'activesupport', '~> 3.2.0'
 gem 'execjs'
 gem 'therubyracer'
+gem 'activeadmin'
 
 # AR Improvements
 gem 'squeel'
@@ -85,9 +86,12 @@ end
 
 group :test do
     # Pretty printed test output
-    gem 'turn', :require => false
+    # Note: turn will have to be uninstalled if there are
+    # versions > 0.8.2 [lrg]
+    gem 'turn', '< 0.8.3'
     gem 'cucumber-rails', '1.2.1'
     gem 'rspec-rails', '2.7.0'
     gem 'database_cleaner', '0.7.0'
     gem 'factory_girl', '2.3.2'
+    gem 'minitest'
 end

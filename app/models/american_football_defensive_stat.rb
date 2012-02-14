@@ -1,5 +1,5 @@
 class AmericanFootballDefensiveStat < BaseStat
-    self.table_name "american_football_defensive_stats"
+    self.table_name = "american_football_defensive_stats"
 
 
     def points

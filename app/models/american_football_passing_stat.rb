@@ -1,5 +1,5 @@
 class AmericanFootballPassingStat < BaseStat
-    self.table_name "american_football_passing_stats"
+    self.table_name = "american_football_passing_stats"
     # TODO: Check scoring vs. spreadsheets
 
     has_many :stats,
