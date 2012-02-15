@@ -1,19 +1,6 @@
 Dynasty::Application.routes.draw do
-<<<<<<< HEAD
 
-
-
-    resources :messages
-
-    resources :schedules
-
-    resources :photos
-
-    resources :dynasty_player_contracts
-
-=======
     resources :messages, :schedules, :photos, :dynasty_player_contracts
->>>>>>> e49c152ba351616ef8ceb3df04377f3223b89d00
 
     devise_for :users do
         get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session

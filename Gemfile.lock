@@ -109,7 +109,7 @@ GEM
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
-    devise (2.0.1)
+    devise (2.0.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
@@ -274,8 +274,6 @@ GEM
     sexp_processor (3.0.10)
     signature (0.1.2)
       ruby-hmac
-    spine-rails (0.1.0)
-      rails (>= 3.1.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -358,7 +356,6 @@ DEPENDENCIES
   ruby-debug19
   ruby_parser
   sass-rails (~> 3.2.3)
-  spine-rails
   squeel
   supermodel!
   therubyracer

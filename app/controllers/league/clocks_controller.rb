@@ -42,18 +42,7 @@ class League::ClocksController < SubdomainController
                 ptr.save
             end
 
-<<<<<<< HEAD
-
-
-            Juggernaut.publish('/observer', {
-                type:   'update',
-                id:     @clock.id,
-                class:  'Clock',
-                record: @clock.flatten
-            })
-=======
             publish_update
->>>>>>> e49c152ba351616ef8ceb3df04377f3223b89d00
 
             format.html { render :text => 'success' }
         end

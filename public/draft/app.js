@@ -38,11 +38,8 @@ Ext.application({
         'Picks',
         'RecommendedPicks',
         'DraftBoard',
-<<<<<<< HEAD
-        'AutoPickOrder'
-=======
+        'AutoPickOrder',
         'ShoutBox'
->>>>>>> e49c152ba351616ef8ceb3df04377f3223b89d00
     ],
 
     launch: function() {

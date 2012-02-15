@@ -9,6 +9,6 @@
 #= require jquery_ujs
 #= require foundation
 #= require hamlcoffee
+#= require auto_picks
 
-#= require_tree ./lib/exception
 #= require lib/util

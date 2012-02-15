@@ -145,30 +145,13 @@ Ext.define('DynastyDraft.view.Viewport', {
                     title: 'League Draft Board',
                 },
                     {
+                    xtype: 'autopickorder',
+                    title: 'View Full Player List',
+                },
+                    {
                     xtype: 'admincontrols',
                     title: 'Admin Draft Tools',
                 }]
-<<<<<<< HEAD
-            },
-            {
-                xtype: 'autopickorder',
-                title: 'View Full Player List',
-            }, /*{
-                xtype: 'playergrid',
-                title: 'All Players',
-            },*/ {
-                xtype: 'roster',
-                title: 'My Roster',
-            },
-                {
-                xtype: 'draftboard',
-                title: 'League Draft Board',
-            },
-                {
-                xtype: 'admincontrols',
-                title: 'Admin Draft Tools',
-            }],
-=======
             }, {
                 xtype: 'shoutboxcontainer',
                 region: 'south',
@@ -178,7 +161,6 @@ Ext.define('DynastyDraft.view.Viewport', {
                 collapseMode: 'header',
                 hideCollapseTool: true
             }]
->>>>>>> e49c152ba351616ef8ceb3df04377f3223b89d00
         }, {
             xtype: 'toolbar',
             region: 'south',
