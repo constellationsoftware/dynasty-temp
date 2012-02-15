@@ -25,7 +25,8 @@ Ext.application({
         'Roster',
         'Players',
         'Picks',
-        'DraftBoard'
+        'DraftBoard',
+        'AutoPickOrder'
     ],
 
     controllers: [
@@ -36,7 +37,8 @@ Ext.application({
         'AdminControls',
         'Picks',
         'RecommendedPicks',
-        'DraftBoard'
+        'DraftBoard',
+        'AutoPickOrder'
     ],
 
     launch: function() {

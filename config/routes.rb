@@ -1,5 +1,7 @@
 Dynasty::Application.routes.draw do
 
+
+
     resources :messages
 
     resources :schedules
@@ -14,6 +16,11 @@ Dynasty::Application.routes.draw do
     end
 
     scope :league, :module => 'league', :constraints => SubdomainConstraint do
+        resources :auto_picks do
+            collection do
+                post :sort
+            end
+        end
         resource :draft, :defaults => {:format => 'html'} do
             member do
                 defaults :format => 'text' do
@@ -67,6 +74,7 @@ Dynasty::Application.routes.draw do
             get :manage
         end
     end
+
 
     # The priority is based upon order of creation:
     # first created -> highest priority.

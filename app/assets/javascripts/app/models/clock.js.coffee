@@ -11,5 +11,5 @@ class Clock extends Spine.Model
         console.log('clock updated')
         # fire a global clock update event
         Spine.trigger 'clock:update', @
-
+        location.reload()
 window.Clock = Clock

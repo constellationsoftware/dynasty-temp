@@ -14,3 +14,5 @@
 //= require util
 
 //= require app
+//= require auto_picks
+

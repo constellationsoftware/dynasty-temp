@@ -125,6 +125,23 @@ namespace :dynasty do
                 end
             end
 
+            desc 'Generate initial autopicks'
+            task :auto_picks => [:environment] do
+                UserTeam.all.each do |team|
+                    i = 0
+                    Player.with_points_from_season.limit(500).order("points DESC").each do |player|
+                        i += 1
+                        autopick = AutoPick.new
+                        autopick.user_team_id = team.id
+                        autopick.player_id = player.id
+                        autopick.sort_order = i
+                        autopick.save
+                    end
+                end
+            end
+
+
+
             desc 'Calculates event point totals for all players'
             task :event_points => [:environment] do
                 puts 'Emptying player events points table!'

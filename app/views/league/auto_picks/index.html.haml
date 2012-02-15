@@ -1,0 +1,19 @@
+%ul#auto_picks{"data-update-url" => sort_auto_picks_url}
+  - @auto_picks.each do |auto_pick|
+    = content_tag_for :li, auto_pick do
+      %table
+        %tr
+          %td.three.columns
+            %span.handle [drag]
+            = link_to h(auto_pick.player.name.full_name), auto_pick
+          %td.one.columns
+            = auto_pick.player.position.andand.abbreviation.andand.upcase
+          %td.three.columns
+            Salary:
+            = number_to_currency(auto_pick.player.contract.amount.to_money)
+          %td.one.columns
+            Points:
+            = auto_pick.player.points_last_season
+          %td.one.columns
+            P/$1MM:
+            = auto_pick.player.points_per_dollar.to_i

@@ -17,7 +17,7 @@ class Players extends Spine.Controller
         Spine.bind 'clock:update', @onClockUpdate
 
     onClockUpdate: (clock) =>
-        Player.fetch(@getParams())
+        # Player.fetch(@getParams())
 
 
     addOne: (item) =>

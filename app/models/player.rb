@@ -50,6 +50,7 @@ class Player < ActiveRecord::Base
     has_many :teams, :through => :team_link, :class_name => 'UserTeam'
     has_many :leagues, :through => :teams
     has_many :picks
+    has_many :auto_picks
     has_many :points, :class_name => 'PlayerPoint'
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :events, :through => :event_points
@@ -200,6 +201,14 @@ class Player < ActiveRecord::Base
 
     def full_name
         name.full_name
+    end
+
+    def points_last_season
+        PlayerPoint.select(:points).where(:year => '2011').find_by_player_id(self.id).andand.points
+    end
+
+    def points_per_dollar
+        (self.points_last_season.to_f / self.contract.amount.to_f) * 1000000
     end
 
     def flatten

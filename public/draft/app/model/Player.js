@@ -16,6 +16,7 @@ Ext.define('DynastyDraft.model.Player', {
                 return position;
             }
         },
+        { name: 'sort_order', allowBlank: true, type: 'string', defaultValue: '' },
         { name: 'depth', allowBlank: true, type: 'string', defaultValue: '' },
         { name: 'position', allowBlank: true, type: 'string', defaultValue: '' },
         { name: 'drafted_team', allowBlank: true, type: 'string', defaultValue: 'Not Drafted' },

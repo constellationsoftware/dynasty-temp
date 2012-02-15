@@ -139,7 +139,7 @@ GEM
     gherkin (2.7.7)
       json (>= 1.4.6)
     haml (3.1.4)
-    haml_coffee_assets (0.8.0)
+    haml_coffee_assets (0.8.2)
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
@@ -254,7 +254,7 @@ GEM
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     rubyzip (0.9.6.1)
-    sass (3.1.14)
+    sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -267,6 +267,8 @@ GEM
     sexp_processor (3.0.10)
     signature (0.1.2)
       ruby-hmac
+    spine-rails (0.1.0)
+      rails (>= 3.1.0)
     sprockets (2.1.2)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -349,6 +351,7 @@ DEPENDENCIES
   ruby-debug19
   ruby_parser
   sass-rails (~> 3.2.3)
+  spine-rails
   squeel
   therubyracer
   thin

@@ -142,6 +142,10 @@ Ext.define('DynastyDraft.view.Viewport', {
                     scale: 'large',
                     width: 100
                 }]
+            },
+            {
+                xtype: 'autopickorder',
+                title: 'View Full Player List',
             }, /*{
                 xtype: 'playergrid',
                 title: 'All Players',

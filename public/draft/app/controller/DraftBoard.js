@@ -12,8 +12,9 @@ Ext.define('DynastyDraft.controller.DraftBoard', {
     init: function() {
         this.control({
             'viewport roster': {},
-        });
 
+        });
+        this.getDraftBoardStore().load();
         this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSuccess, this);
     },
 
