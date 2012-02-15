@@ -234,6 +234,9 @@ namespace :dynasty do
                 end
             end
 
+            desc 'Sets lineup IDs in player team records'
+            task :lineup => [:environment] do
+            end
         end
     end
 end

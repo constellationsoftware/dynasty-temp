@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-    set_table_name 'dynasty_users'
+    self.table_name = 'dynasty_users'
 
 
     ##Send welcome email after creation

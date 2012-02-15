@@ -1,5 +1,5 @@
 class PlayerEventPoint < ActiveRecord::Base
-    set_table_name 'dynasty_player_event_points'
+    self.table_name = 'dynasty_player_event_points'
     belongs_to :player
     belongs_to :person, :foreign_key => 'player_id'
     belongs_to :event
