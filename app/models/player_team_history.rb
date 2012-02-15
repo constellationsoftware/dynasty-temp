@@ -1,5 +1,5 @@
 class PlayerTeamHistory < ActiveRecord::Base
-    set_table_name 'dynasty_player_team_histories'
+    self.table_name = 'dynasty_player_team_histories'
     belongs_to :player
     belongs_to :position
     belongs_to :user_team

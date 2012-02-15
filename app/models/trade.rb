@@ -1,5 +1,5 @@
 class Trade < ActiveRecord::Base
-    set_table_name 'dynasty_trades'
+    self.table_name = 'dynasty_trades'
     belongs_to :initial_team, :class_name => 'UserTeam'
     belongs_to :second_team, :class_name => 'UserTeam'
     belongs_to :offered_player, :foreign_key => 'offered_player_id', :class_name => 'PlayerTeamRecord'

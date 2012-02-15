@@ -10,5 +10,4 @@
 #= require foundation
 #= require hamlcoffee
 
-#= require_tree ./lib/exception
 #= require lib/util

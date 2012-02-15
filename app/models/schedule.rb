@@ -1,5 +1,5 @@
 class Schedule < ActiveRecord::Base
-    set_table_name 'dynasty_user_team_schedules'
+    self.table_name = 'dynasty_user_team_schedules'
     belongs_to :team, :inverse_of => :schedules, :foreign_key => 'team_id', :class_name => 'UserTeam'
     belongs_to :opponent, :class_name => 'UserTeam', :foreign_key => 'opponent_id'
 

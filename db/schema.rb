@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120213171941) do
+ActiveRecord::Schema.define(:version => 20120215203558) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -911,6 +911,11 @@ ActiveRecord::Schema.define(:version => 20120213171941) do
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
+  create_table "dynasty_lineups", :force => true do |t|
+    t.integer "position_id"
+    t.boolean "flex"
+  end
+
   create_table "dynasty_player_contracts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -1011,24 +1016,25 @@ ActiveRecord::Schema.define(:version => 20120213171941) do
     t.boolean  "waiver"
     t.integer  "waiver_team_id"
     t.integer  "league_id"
+    t.integer  "lineup_id"
   end
 
   add_index "dynasty_player_teams", ["player_id", "depth", "user_team_id", "current"], :name => "index_dynasty_player_teams_roster_api"
   add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "user_team_id"], :name => "index_position_counts_by_team"
 
   create_table "dynasty_positions", :force => true do |t|
-    t.string  "name",         :limit => 32
-    t.string  "abbreviation", :limit => 2
-    t.string  "designation",  :limit => 1,                 :null => false
+    t.string  "name",             :limit => 32
+    t.string  "abbreviation",     :limit => 5
+    t.string  "designation",      :limit => 1,  :null => false
     t.integer "sort_order"
-    t.integer "flex",                       :default => 0, :null => false
+    t.integer "flex_position_id"
   end
 
-  add_index "dynasty_positions", ["abbreviation", "id", "designation", "flex", "name", "sort_order"], :name => "index_dynasty_positions_on_abbr_id_des_name_sort"
+  add_index "dynasty_positions", ["abbreviation", "id", "designation", "name", "sort_order"], :name => "index_dynasty_positions_on_abbr_id_des_name_sort"
   add_index "dynasty_positions", ["abbreviation"], :name => "index_dynasty_positions_on_abbreviation"
-  add_index "dynasty_positions", ["flex", "designation", "id"], :name => "index_dynasty_positions_on_flex_and_designation_and_id"
+  add_index "dynasty_positions", ["designation", "id"], :name => "index_dynasty_positions_on_flex_and_designation_and_id"
   add_index "dynasty_positions", ["name"], :name => "index_dynasty_positions_on_name"
-  add_index "dynasty_positions", ["sort_order", "id", "designation", "flex", "abbreviation", "name"], :name => "index_dynasty_positions_on_sort_id_des_abbr_name"
+  add_index "dynasty_positions", ["sort_order", "id", "designation", "abbreviation", "name"], :name => "index_dynasty_positions_on_sort_id_des_abbr_name"
   add_index "dynasty_positions", ["sort_order", "id"], :name => "index_dynasty_positions_on_sort_order_and_id"
 
   create_table "dynasty_teams", :force => true do |t|
