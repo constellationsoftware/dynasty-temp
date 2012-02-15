@@ -61,10 +61,7 @@ class UserTeam < ActiveRecord::Base
         super(raw)
     end
 
-    # requires :association, :user, :league
-    # requires :attribute, :name
-
-    private
+    protected
         def generate_uuid
             uuid = UUIDTools::UUID.timestamp_create
             self.uuid = uuid.raw

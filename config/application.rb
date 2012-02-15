@@ -87,11 +87,3 @@ module Kernel
         puts $!.backtrace[1..-1].join("\n")
     end
 end
-
-#
-# After thin boots, run this shit
-#
-EM.next_tick do
-    # cause the job to be instantiated and therefore queued
-    Pusher::Job.instance
-end

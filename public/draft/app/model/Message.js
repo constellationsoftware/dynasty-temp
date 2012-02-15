@@ -5,10 +5,11 @@ Ext.define('DynastyDraft.model.Message', {
     fields: [
         'user',
         'message',
+        'timestamp',
         {
-            name: 'action',
-            type: 'boolean',
-            defaultValue: 'false',
+            name: 'type',
+            type: 'string',
+            defaultValue: 'text'
         }
     ],
 });

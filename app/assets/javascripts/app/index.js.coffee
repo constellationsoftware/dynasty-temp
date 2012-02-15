@@ -3,6 +3,7 @@
 #= require spine/lib/manager
 #= require spine/lib/tabs
 #= require spine/lib/ajax
+#= require lib/juggernaut/juggernaut_spine
 
 #= require_tree ./lib
 #= require_tree ./views

@@ -1,5 +1,5 @@
 class Players extends Spine.Controller
-
+    _playerItems: []
 
     constructor: ->
         super
@@ -10,27 +10,24 @@ class Players extends Spine.Controller
         Player.bind('create',  @addOne)
         Player.bind('changeDepth', @onChangeDepth)
 
-
         Player.fetch(@getParams())
 
         # bind to global clock update event
         Spine.bind 'clock:update', @onClockUpdate
 
     onClockUpdate: (clock) =>
-        # Player.fetch(@getParams())
-
+        while playerItem = @_playerItems.shift()
+            playerItem.item.destroy()
+        Player.fetch(@getParams())
 
     addOne: (item) =>
         player = new PlayerItem(item: item)
+        @_playerItems.push(player)
         @append player.render() if item.depth == @depth
-
-    removeOne: (item) =>
-        item.release()
 
     addAll: (players = []) =>
         for player in players
             @addOne player
-
 
     onChangeDepth: (playerItem) =>
         item = playerItem.item

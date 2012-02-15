@@ -12,6 +12,13 @@ GIT
       money
 
 GIT
+  remote: git://github.com/FOMNick/supermodel
+  revision: 05ae736a293a2b9caffb65a4feafa5692192174f
+  specs:
+    supermodel (0.1.4)
+      activemodel (>= 3.0.0)
+
+GIT
   remote: git://github.com/logankoester/pusher-client.git
   revision: 3d38c8bc6d85602f51a148c003eafb0dbdbeae3b
   specs:
@@ -353,6 +360,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   spine-rails
   squeel
+  supermodel!
   therubyracer
   thin
   timecop

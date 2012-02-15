@@ -15,6 +15,11 @@
 
   %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
 
+  -# drop the client's UUID in here for use with socket subscriptions and the like
+  - if @team
+    :javascript
+      window.CLIENT_ID = '#{@team.uuid}';
+
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
   = csrf_meta_tag

@@ -5,7 +5,7 @@ class Draft < ActiveRecord::Base
     #constants
     # TODO: put this in the controller, probably
     CHANNEL_PREFIX = 'presence-draft-'
-    DELAY_BETWEEN_PICKS = 2
+    DELAY_BETWEEN_PICKS = 1
 
     #is_timed
 
