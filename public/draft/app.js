@@ -1,6 +1,6 @@
 Ext.Loader.setConfig({
     enabled: true,
-    disableCaching: true,
+    disableCaching: true
     //paths: { '<appName>': '.', 'Ext': '/draft/lib/extjs/src', 'Ext.ux': '/draft/lib/extjs/ux' }
 });
 
@@ -36,7 +36,8 @@ Ext.application({
         'AdminControls',
         'Picks',
         'RecommendedPicks',
-        'DraftBoard'
+        'DraftBoard',
+        'ShoutBox'
     ],
 
     launch: function() {

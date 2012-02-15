@@ -6,12 +6,6 @@ Ext.define('DynastyDraft.view.ShoutBox', {
     itemSelector: 'div.shoutbox_message',
     emptyText: 'No messages to display.',
     autoScroll: true,
-    /*listeners: {
-        render: {
-            element: 'el',
-            fn: this.onRenderDone,
-        }
-    },*/
 
     _lastScrollHeight: 0,
 

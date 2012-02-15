@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+require File.expand_path('../../config/environment',  __FILE__)
+
+#
+# After thin boots, run this shit
+#
+puts "Starting pusher job"
+Pusher::Job.instance

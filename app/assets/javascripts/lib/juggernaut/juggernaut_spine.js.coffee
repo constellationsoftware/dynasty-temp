@@ -1,11 +1,6 @@
-#= require juggernaut
+#= require ./juggernaut_base
 
-class JuggernautAdapter
-    constructor: (@options = {}) ->
-        @jug = new Juggernaut(@options)
-        @jug.subscribe '/observer', @processWithoutAjax
-        $.ajaxSetup(beforeSend: (xhr) => xhr.setRequestHeader("X-Session-ID", @jug.sessionID))
-
+class JuggernautSpine extends JuggernautBase
     process: (msg) =>
         klass = window[msg.class]
         throw 'Unknown class' unless klass
@@ -19,9 +14,7 @@ class JuggernautAdapter
             else
                 throw 'Unknown type:' + type
 
-    processWithoutAjax: =>
-        args = arguments
-        Spine.Ajax.disable =>
-            @process(args...)
+    handleEvent: =>
+        Spine.Ajax.disable => @process(arguments...)
 
-$ -> new JuggernautAdapter
+$ -> new JuggernautSpine

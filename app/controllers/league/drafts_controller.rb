@@ -46,6 +46,24 @@ class League::DraftsController < SubdomainController
         end
     end
 
+    def send_message
+        clients = JuggernautClient.find_all_by_league_id(@league.id)
+        channels = clients.collect{ |client| "/observer/#{client.uuid}" }
+        if channels.size > 0
+            Juggernaut.publish(channels, {
+                :id => nil,
+                :type => :create,
+                :class => 'ShoutboxMessages',
+                :record => {
+                    :user => @team.name,
+                    :message => params[:message],
+                    :timestamp => DateTime::now
+                }
+            })
+        end
+        render :nothing => true
+    end
+
     def auth
         @team.last_socket_id = params[:socket_id]
         @team.save
@@ -58,9 +76,8 @@ class League::DraftsController < SubdomainController
         render :json => response
     end
 
-
     private
-    def get_team!
-        @team = UserTeam.where { (league_id == my { @league.id }) & (user_id == my { current_user.id }) }.first
-    end
+        def get_team!
+            @team = UserTeam.where { (league_id == my { @league.id }) & (user_id == my { current_user.id }) }.first
+        end
 end
