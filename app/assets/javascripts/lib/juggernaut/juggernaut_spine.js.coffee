@@ -1,6 +1,9 @@
 #= require ./juggernaut_base
 
 class JuggernautSpine extends JuggernautBase
+    handleEvent: (msg) =>
+        Spine.Ajax.disable => @process(msg)
+
     process: (msg) =>
         klass = window[msg.class]
         throw 'Unknown class' unless klass
@@ -13,8 +16,5 @@ class JuggernautSpine extends JuggernautBase
                 klass.destroy msg.id
             else
                 throw 'Unknown type:' + type
-
-    handleEvent: =>
-        Spine.Ajax.disable => @process(arguments...)
 
 $ -> new JuggernautSpine

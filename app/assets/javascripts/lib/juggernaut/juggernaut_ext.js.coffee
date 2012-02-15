@@ -1,7 +1,7 @@
 #= require ./juggernaut_base
 
 class JuggernautExt extends JuggernautBase
-    handleEvent: => @process(arguments...)
+    handleEvent: (msg) => @process(msg)
 
     process: (msg) =>
         store = window[msg.class]

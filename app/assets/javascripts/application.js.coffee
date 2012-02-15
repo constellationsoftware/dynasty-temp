@@ -12,5 +12,3 @@
 
 #= require_tree ./lib/exception
 #= require lib/util
-
-#= require app
