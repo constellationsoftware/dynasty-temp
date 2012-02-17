@@ -28,6 +28,9 @@ class PlayerTeamRecord < ActiveRecord::Base
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
     scope :on_waiver_wire, where{ waiver == 1 }
+    scope :starter, where{ lineup_id >= 1 }
+    scope :bench, where{lineup_id == nil}
+
 
     def self.set_all_positions
         PlayerTeamRecord.all.each do |ptr|
@@ -72,6 +75,7 @@ class PlayerTeamRecord < ActiveRecord::Base
         query = query.where{depth == position_depth} unless position_depth.nil?
         query
     end
+
 
 
     def flex_position

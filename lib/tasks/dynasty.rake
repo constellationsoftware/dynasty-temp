@@ -234,8 +234,41 @@ namespace :dynasty do
                 end
             end
 
-            desc 'Sets lineup IDs in player team records'
+            desc "Add lineup information to player team records"
             task :lineup => [:environment] do
+
+                # Set the non-flex-assigned positions
+
+                Lineup.all.each do |lineup|
+                    UserTeam.all.each do |user_team|
+                        ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id(lineup.andand.position_id).first
+                        if ptr != nil
+                            ptr.lineup_id = lineup.id
+                            ptr.depth = 1
+                            ptr.save
+                        end
+                    end
+                end
+
+                # set offensive flex
+                UserTeam.all.each do |user_team|
+                    ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id([2,3,4]).first
+                    if ptr != nil
+                        ptr.lineup_id = 7
+                        ptr.position_id = 15
+                        ptr.save
+                    end
+                end
+
+                # set defensive flex
+                UserTeam.all.each do |user_team|
+                    ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id([12,13,14]).first
+                    if ptr != nil
+                        ptr.lineup_id = 15
+                        ptr.position_id = 16
+                        ptr.save
+                    end
+                end
             end
         end
     end
