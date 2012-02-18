@@ -32,6 +32,9 @@ class PlayerTeamRecord < ActiveRecord::Base
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
     scope :on_waiver_wire, where{ waiver == 1 }
+    scope :starter, where{ lineup_id >= 1 }
+    scope :bench, where{lineup_id == nil}
+
 
     scope :with_player_name, joins{ player_name }.includes{ player_name }
     scope :with_player_contract, joins{ player_contract }.includes{ player_contract }
@@ -80,5 +83,28 @@ class PlayerTeamRecord < ActiveRecord::Base
         query = self.class.where{(user_team_id == my{self.user_team_id}) & (position_id == my{self.position_id}) & (current == 1)}
         query = query.where{depth == position_depth} unless position_depth.nil?
         query
+    end
+
+
+
+    def flex_position
+        @user_team = self.user_team
+        @position_id = self.player.position.id
+        #@players_in_position = @user_team.player_team_records.where('position_id = ?', @position_id).where('depth = ?', 1)
+        #@flex_position = Position.find(@position_id).flex
+        #@position = Position.find(@position_id)
+        #@last_player_in_position = @players_in_position.last
+        #@this_player = self.player
+        #@position_abbreviation = self.position.abbreviation.upcase
+        #if @position.flex == 1
+        #    if @position_id == 2 && 3
+        #        if @players_in_position.count > 2
+        #            if @last_player_in_position == @this_player
+        #                @position_abbreviation = "Flex"
+        #            end
+        #        end
+        #    end
+        #end
+        #return @position_abbreviation
     end
 end

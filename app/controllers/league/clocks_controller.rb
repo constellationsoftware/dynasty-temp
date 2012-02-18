@@ -36,9 +36,10 @@ class League::ClocksController < SubdomainController
             # set all available starting slots
             PlayerTeamRecord.all.each do |ptr|
                 ptr.depth = 1
-                if ptr.valid?
-                    ptr.save
+                unless ptr.valid?
+                    ptr.depth = 0
                 end
+                ptr.save
             end
 
             publish_update

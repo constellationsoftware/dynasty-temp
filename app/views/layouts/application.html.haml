@@ -37,26 +37,7 @@
 
   /*Primary Page Header Bar
   .container
-    .row
-      .twelve.columns
-        - if @league
-          .foundation-header
-            %h1
-              Good #{Time.now.hour <= 12 ? 'Morning' : 'Afternoon'} #{@team.user.name}.
-            %h4.subheader
-              It's
-              %strong= Clock.first.nice_time
-              and there are #{@team.schedules.where(:outcome => nil).count} games left in the season.
-              %br
-              Your record is
-              %strong
-                = @team.schedules.where(:outcome => '1').count
-                \-
-                = @team.schedules.where(:outcome => '0').count
-              and you have
-              %strong
-                #{number_to_currency(@team.balance)}
-              in the bank. What are you going to do?
+
 
     .row
       .nine.columns

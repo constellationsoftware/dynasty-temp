@@ -25,7 +25,8 @@ Ext.application({
         'Roster',
         'Players',
         'Picks',
-        'DraftBoard'
+        'DraftBoard',
+        'AutoPickOrder'
     ],
 
     controllers: [
@@ -37,6 +38,7 @@ Ext.application({
         'Picks',
         'RecommendedPicks',
         'DraftBoard',
+        'AutoPickOrder',
         'ShoutBox'
     ],
 

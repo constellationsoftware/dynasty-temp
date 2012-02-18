@@ -145,6 +145,10 @@ Ext.define('DynastyDraft.view.Viewport', {
                     title: 'League Draft Board',
                 },
                     {
+                    xtype: 'autopickorder',
+                    title: 'View Full Player List',
+                },
+                    {
                     xtype: 'admincontrols',
                     title: 'Admin Draft Tools',
                 }]
