@@ -29,7 +29,7 @@ Ext.define('DynastyDraft.view.Roster', {
 
         {
             text: 'Team',
-            dataIndex: 'drafted_team',
+            dataIndex: 'team_name',
             xtype: 'gridcolumn',
             align: 'right',
         },
@@ -49,7 +49,7 @@ Ext.define('DynastyDraft.view.Roster', {
         },
         {
             text: 'Salary',
-            dataIndex: 'contract_amount',
+            dataIndex: 'contract',
             xtype: 'numbercolumn',
             align: 'right',
             format: '$0,000',

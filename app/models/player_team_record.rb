@@ -4,20 +4,24 @@ class PlayerTeamRecord < ActiveRecord::Base
     belongs_to :position
     belongs_to :user_team
     belongs_to :team, :class_name => 'UserTeam', :foreign_key => :user_team_id
-    has_one :user_team_lineup
+    belongs_to :lineup
     belongs_to :league
 
-    #shortcuts (actual Person data is seldom useful)
-    belongs_to :player_name,
+    #shortcut associations that bypass the person table (actual person data is seldom useful)
+    has_one :player_name,
         :class_name => 'DisplayName',
-        :foreign_key => 'player_id',
-        :primary_key => 'entity_id',
+        :primary_key => 'player_id',
+        :foreign_key => 'entity_id',
         :conditions => { :entity_type => 'persons' }
-    belongs_to :position,
-        :foreign_key => :position_id
-    belongs_to :contract,
-        :foreign_key => :player_id,
-        :primary_key => :person_id
+    has_one :player_contract,
+        :class_name => 'Contract',
+        :primary_key => :player_id,
+        :foreign_key => :person_id
+    has_one :player_points,
+        :class_name => 'PlayerPoint',
+        :primary_key => :player_id,
+        :foreign_key => :player_id
+
 
     attr_accessible :name, :position, :depth
     validates_with Validators::PlayerTeamRecord, :on => :update
@@ -28,6 +32,11 @@ class PlayerTeamRecord < ActiveRecord::Base
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
     scope :on_waiver_wire, where{ waiver == 1 }
+
+    scope :with_player_name, joins{ player_name }.includes{ player_name }
+    scope :with_player_contract, joins{ player_contract }.includes{ player_contract }
+    scope :with_position, joins{ position }.includes{ position }
+    scope :with_player_points, joins{ player_points }.includes{ player_points }
 
     def self.set_all_positions
         PlayerTeamRecord.all.each do |ptr|

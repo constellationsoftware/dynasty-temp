@@ -2,25 +2,9 @@
   %h5 Review your Roster
   %p How strong does your team look? Should you drop a weaker player?
 
+  %h5 Starting Lineup
   %table#starters.roster
     %thead
-      %tr
-        %th{:colspan => 5} Active
-      %tr
-        %th Name
-        %th Position
-        %th Contract
-        %th Bye
-        %th.controlwrap
-    %tbody
-      -#- starters.each do |data|
-      -#  = render :partial => 'player_row', :locals => { :player => data[:player],
-      -#    :depth => :starter,
-      -#    :extra => (data[:points].nil? ? nil : number_with_precision(data[:points].points, :precision => 1)) }
-  %table#bench.roster
-    %thead
-      %tr
-        %th{:colspan => 5} Bench
       %tr
         %th Name
         %th Position
@@ -29,10 +13,16 @@
         %th.controlwrap
     %tbody
 
-      -#- bench.each do |data|
-      -#  = render :partial => 'player_row', :locals => { :player => data[:player],
-      -#    :depth => :bench,
-      -#    :extra => (data[:points].nil? ? nil : number_with_precision((data[:points].points.to_f / 3), :precision => 1)) }
+  %h5 Bench
+  %table#bench.roster.sortable
+    %thead
+      %tr
+        %th{ :class => "{sorter: 'text'}" } Name
+        %th{ :class => "{sorter: 'text'}" } Position
+        %th{ :class => "{sorter: 'currency'}" } Contract
+        %th{ :class => "{sorter: 'integer'}" } Bye
+        %th.controlwrap
+    %tbody
 
 -#- if reserve.size > 0
 -#  %table#reserve.roster

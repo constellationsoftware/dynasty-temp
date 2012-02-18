@@ -1,22 +1,25 @@
 Ext.define('DynastyDraft.store.Roster', {
     extend: 'Ext.data.Store',
 
-    model: 'DynastyDraft.model.Player',
+    model: 'DynastyDraft.model.Roster',
     groupField: 'position',
     autoLoad: true,
-    buffered: false,
 
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/draft/players',
+        pageParam: undefined,
+        startParam: undefined,
+        limitParam: undefined,
+        url: '/team/roster',
         reader: {
-            type: 'json',
-            root: 'players'
+            type: 'json'
         },
         extraParams: {
-            roster: true,
-            with_points: true
+            with_player_points: true,
+            with_player_contract: true,
+            with_player_name: true,
+            with_position: true
         }
-    },
+    }
 });
