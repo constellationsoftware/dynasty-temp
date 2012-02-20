@@ -105,3 +105,8 @@ form.inline { display: inline-block; }
 .invisible {
     visibility: hidden;
 }
+
+table th {
+    cursor: default;
+    &.header:hover { cursor: pointer }
+}

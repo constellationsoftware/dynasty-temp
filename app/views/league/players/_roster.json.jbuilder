@@ -5,10 +5,5 @@ json.full_name              player.name.full_name
 json.contract_amount        player.contract.amount
 json.position               player.position.andand.abbreviation.andand.upcase
 json.points_last_season     player.points.first.points
-json.points_per_dollar      (player.points.first.points.to_f / player.contract.amount.to_f) * 1000000
-
-if player.team_link.andand.depth == 1
-    json.depth              'Starter'
-else
-    json.depth              'Bench'
-end
+json.points_per_dollar      player.points.first.points.to_f / player.contract.amount.to_f * 1000000
+json.depth                  player.team_link.depth

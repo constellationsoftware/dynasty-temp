@@ -1,15 +1,16 @@
-class League::Team::PlayersController < SubdomainController
+class League::Team::RosterController < SubdomainController
     before_filter :authenticate_user!, :get_team_id!
     defaults :resource_class => PlayerTeamRecord, :collection_name => 'player_teams', :instance_name => 'player_team'
-    custom_actions :resource => [ :bench, :start ]
     respond_to :json
 
-    has_scope :has_depth, :only => :index
-    has_scope :roster, :type => :boolean do |controller, scope|
-        # can't do join subqueries otherwise :(
-        scope.joins{[ player_name, contract, position ]}
-            .select{[ id, depth, player_id, contract.bye_week, contract.amount, position.abbreviation, player_name.first_name, player_name.last_name ]}
+    has_scope :bench, do |controller, scope|
+        scope.has_depth(0)
     end
+
+    has_scope :with_player_name, :type => :boolean
+    has_scope :with_player_contract, :type => :boolean
+    has_scope :with_position, :type => :boolean
+    has_scope :with_player_points, :type => :boolean
 
     def destroy
         @player_team = PlayerTeamRecord.find(params[:id])
@@ -25,11 +26,11 @@ class League::Team::PlayersController < SubdomainController
             record: {
                 :id =>          @player_team.id,
                 :depth =>       @player_team.depth,
-                :bye_week =>    @player_team.contract.bye_week,
-                :position =>    @player_team.position.abbreviation.upcase,
+                :bye_week =>    @player_team.player_contract.bye_week,
+                :position =>    @player_team.player_position.abbreviation.upcase,
                 :first_name =>  @player_team.player_name.first_name,
                 :last_name =>   @player_team.player_name.last_name,
-                :contract =>    @player_team.contract.amount
+                :contract =>    @player_team.player_contract.amount
             }
         },
         :except => request.headers["X-Session-ID"])
@@ -38,12 +39,7 @@ class League::Team::PlayersController < SubdomainController
 
     protected
         def collection
-            @player_teams = end_of_association_chain
-                .where{ (user_team_id == my{ @team_id }) & (current == 1) }
-
-            if params[:order_by_name] && params[:order_by_name].to_i === 1
-                @player_teams.sort!{ |a, b| "#{ a.last_name.downcase } #{ a.first_name.downcase }" <=> "#{ b.last_name.downcase } #{ b.first_name.downcase }" }
-            end
+            @player_teams = end_of_association_chain.where{ user_team_id == my{ @team_id } }
         end
 
     private

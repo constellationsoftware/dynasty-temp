@@ -68,11 +68,11 @@ class Player < ActiveRecord::Base
     # SCOPES
     #
     scope :roster, lambda { |team|
-        joins { team_link }.where { team_link.user_team_id == my { team.id } }
+        joins{ team_link }.where{ team_link.user_team_id == my{ team.id } }
     }
 
     scope :drafted, lambda { |drafted_league|
-        joins { team_link }.where { team_link.league_id. == my { drafted_league.id } }
+        joins{ team_link }.where { team_link.league_id. == my { drafted_league.id } }
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins { points }.includes { points }

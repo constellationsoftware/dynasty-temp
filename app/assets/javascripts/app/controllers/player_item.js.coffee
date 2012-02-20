@@ -17,26 +17,25 @@ class PlayerItem extends Spine.Controller
         @item.bind 'destroy', @remove
 
     render: =>
-        @html @view('player')(@item)
+        @html @view("player/#{@item.constructor.name.underscore()}")(@item)
 
     onClickRemove: =>
         @item.destroy() if confirm('Are you sure you want to drop this player?')
 
-    onClickStart: =>
-        $.ajax Spine.Ajax.getURL(@item),
-            type: 'PUT'
-            data: { player_team: { depth: 1 } }
-            success: =>
-                @item.depth = 1
-                Player.trigger('changeDepth', @)
+    onClickStart: => @changeDepth 1
+    onClickBench: => @changeDepth 0
 
-    onClickBench: =>
-        $.ajax Spine.Ajax.getURL(@item),
+    changeDepth: (depth) =>
+        klass = @item.constructor
+        id = if klass.name is 'Starter' then @item.player.id else @item.id
+
+        $.ajax "/team/roster/#{id}",
             type: 'PUT'
-            data: { player_team: { depth: 0 } }
+            data: { player_team: { depth: depth } }
             success: =>
-                @item.depth = 0
-                Player.trigger('changeDepth', @)
+                Starter.trigger('changeDepth', @)
+                BenchWarmer.trigger('changeDepth', @)
+
 
     onMouseOver: => @controls.removeClass('invisible')
     onMouseOut: => @controls.addClass('invisible')
