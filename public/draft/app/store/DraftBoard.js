@@ -3,20 +3,20 @@ Ext.define('DynastyDraft.store.DraftBoard', {
 
     model: 'DynastyDraft.model.Player',
     groupField: 'drafted_team',
-    autoLoad: true,
-    buffered: false,
-    pageSize: 2000,
 
     proxy: {
         type: 'rest',
         format: 'json',
         url: '/draft/players',
+        pageParam: undefined,
+        startParam: undefined,
+        limitParam: undefined,
         reader: {
             type: 'json',
             root: 'players'
         },
         extraParams: {
-            drafted: true,
+            drafted: true
         }
-    },
+    }
 });

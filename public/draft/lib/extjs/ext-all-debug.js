@@ -76962,7 +76962,7 @@ Ext.define('Ext.grid.PagingScroller', {
                     me.attemptLoad(requestStart, requestEnd);
                 }
                 
-                me.syncScroll = false;
+                me.syncScroll = true;
             } else if (activePrefetch && visibleStart < (guaranteedStart + numFromEdge) && prevPage > 0) {
                 me.syncScroll = true;
                 store.prefetchPage(prevPage);

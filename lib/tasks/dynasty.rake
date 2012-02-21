@@ -106,6 +106,7 @@ namespace :dynasty do
                 end
             end
 
+
             desc 'Adds regular position depth to player contracts from person phases'
             task :add_position_depth => [:environment] do
                 Contract.all.each do |c|
@@ -117,6 +118,7 @@ namespace :dynasty do
                 end
             end
 
+
             desc 'Records player event point dates'
             task :event_points_dates => [:environment] do
                 PlayerEventPoint.all.each do |pep|
@@ -125,21 +127,21 @@ namespace :dynasty do
                 end
             end
 
+
             desc 'Generate initial autopicks'
             task :auto_picks => [:environment] do
                 UserTeam.all.each do |team|
                     i = 0
-                    Player.with_points_from_season.limit(500).order("points DESC").each do |player|
+                    Player.with_points_from_season.limit{ 500 }.order{ points.desc }.each do |player|
                         i += 1
-                        autopick = AutoPick.new
-                        autopick.user_team_id = team.id
-                        autopick.player_id = player.id
-                        autopick.sort_order = i
-                        autopick.save
+                        favorite = Favorite.new
+                        favorite.team_id = team.id
+                        favorite.player_id = player.id
+                        favorite.sort_order = i
+                        favorite.save
                     end
                 end
             end
-
 
 
             desc 'Calculates event point totals for all players'
@@ -233,6 +235,7 @@ namespace :dynasty do
                     end
                 end
             end
+
 
             desc "Add lineup information to player team records"
             task :lineup => [:environment] do

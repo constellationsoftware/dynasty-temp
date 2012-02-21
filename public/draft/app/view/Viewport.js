@@ -87,34 +87,17 @@ Ext.define('DynastyDraft.view.Viewport', {
                             // reader configs
                             idIndex: 0,
                             fields: ['id', 'name'],
-                            data: [{
-                                id: 'all',
-                                name: 'Show All',
-                            }, {
-                                id: 'QB',
-                                name: 'Quarterbacks'
-                            }, {
-                                id: 'WR',
-                                name: 'Wide Receivers'
-                            }, {
-                                id: 'RB',
-                                name: 'Running Backs'
-                            }, {
-                                id: 'TE',
-                                name: 'Tight Ends'
-                            }, {
-                                id: 'K',
-                                name: 'Kickers'
-                            }, {
-                                id: 'DL',
-                                name: 'Defensive Linemen'
-                            }, {
-                                id: 'LB',
-                                name: 'Linebacker'
-                            }, {
-                                id: 'DB',
-                                name: 'Defensive Back'
-                            }]
+                            data: [
+                                { id: 'all', name: 'Show All' },
+                                { id: 'QB', name: 'Quarterbacks' },
+                                { id: 'WR', name: 'Wide Receivers' },
+                                { id: 'RB', name: 'Running Backs' },
+                                { id: 'TE', name: 'Tight Ends' },
+                                { id: 'K', name: 'Kickers' },
+                                { id: 'DL', name: 'Defensive Linemen' },
+                                { id: 'LB', name: 'Linebacker' },
+                                { id: 'DB', name: 'Defensive Back' }
+                            ]
                         }),
                         value: 'all'
                     }, {
@@ -133,24 +116,21 @@ Ext.define('DynastyDraft.view.Viewport', {
                         scale: 'large',
                         width: 100
                     }]
-                }, /*{
+                }, {
                     xtype: 'playergrid',
-                    title: 'All Players',
-                },*/ {
+                    title: 'Full Player List'
+                }, {
                     xtype: 'roster',
-                    title: 'My Roster',
-                },
-                    {
+                    title: 'My Roster'
+                }, {
                     xtype: 'draftboard',
-                    title: 'League Draft Board',
-                },
-                    {
+                    title: 'League Draft Board'
+                }, /*{
                     xtype: 'autopickorder',
-                    title: 'View Full Player List',
-                },
-                    {
+                    title: 'View Full Player List'
+                },*/ {
                     xtype: 'admincontrols',
-                    title: 'Admin Draft Tools',
+                    title: 'Admin Draft Tools'
                 }]
             }, {
                 xtype: 'shoutboxcontainer',
@@ -214,7 +194,7 @@ Ext.define('DynastyDraft.view.Viewport', {
             },
             items: [{
                 xtype: 'playerqueue',
-            }],
+            }]
         }
         */
     ],

@@ -2,29 +2,22 @@ Ext.define('DynastyDraft.model.Player', {
     extend: 'Ext.data.Model',
 
     fields: [
-        { name: 'id', allowBlank: true,type: 'int', defaultValue: null },
-        { name: 'full_name', allowBlank: false,type: 'string', defaultValue: null },
-        {
-            name: 'position',
-            allowBlank: false,
-            type: 'string',
-            defaultValue: '',
-            convert: function(value) {
-                var slashPos = value.indexOf('/');
-                // if position is compound, use only the primary
-                var position = (slashPos === -1) ? value : value.substring(0, slashPos);
-                return position;
-            }
-        },
-        { name: 'sort_order', allowBlank: true, type: 'string', defaultValue: '' },
-        { name: 'depth', allowBlank: true, type: 'string', defaultValue: '' },
-        { name: 'position', allowBlank: true, type: 'string', defaultValue: '' },
-        { name: 'drafted_team', allowBlank: true, type: 'string', defaultValue: 'Not Drafted' },
-        { name: 'points_per_dollar', allowBlank: true, type: 'int', defaultValue: 0 },
-        { name: 'bye_week', allowBlank: true, type: 'int', defaultValue: 0 },
-        { name: 'contract_amount', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'points_last_season', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'points', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'id', allowBlank: true, type: 'int', defaultValue: null },
+        { name: 'favorite', allowBlank: true, mapping: 'favorites.sort_order', type: 'int' },
+        { name: 'first_name', allowBlank: false, type: 'string', mapping: 'name.first_name' },
+        { name: 'last_name', allowBlank: false, type: 'string', mapping: 'name.last_name' },
+        { name: 'full_name', allowBlank: false, type: 'string', mapping: 'name.full_name' },
+        { name: 'position', allowBlank: true, type: 'string', mapping: 'position.abbreviation', defaultValue: '', convert: function(value) { return value.toUpperCase(); } },
+        { name: 'bye_week', allowBlank: true, type: 'int', mapping: 'contract.bye_week', defaultValue: 0 },
+        { name: 'contract', allowBlank: false, type: 'int', mapping: 'contract.amount', defaultValue: 0 },
+        { name: 'points', allowBlank: false, type: 'int', mapping: 'points.points', defaultValue: 0 },
+        { name: 'points_per_dollar', allowBlank: false, type: 'float', defaultValue: 0, convert: function(value, record) {
+            return record.get('points') / record.get('contract') * 1000000
+        } },
+        { name: 'dollars_per_point', allowBlank: false, type: 'float', defaultValue: 0, convert: function(value, record) {
+            return record.get('contract') / record.get('points')
+        } },
+/*
         { name: 'defensive_points', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'fumbles_points', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'passing_points', allowBlank: false, type: 'int', defaultValue: 0 },
@@ -34,20 +27,13 @@ Ext.define('DynastyDraft.model.Player', {
         { name: 'special_teams_points', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'games_played', allowBlank: false, type: 'int', defaultValue: 0 },
         { name: 'consistency', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'is_valid', allowBlank: true, type: 'int', defaultValue: 1 },
+*/
+        { name: 'available', allowBlank: true, type: 'boolean', default: true }
     ],
 
     belongsTo: {
         model: 'DynastyDraft.model.Pick',
-        name: 'pick',
+        name: 'pick'
     },
-    idProperty: 'id',
-    /*proxy: {
-        type: 'rest',
-        url: '/draft/players',
-        reader: {
-            type: 'json',
-            root: 'players'
-        }
-    }*/
+    idProperty: 'id'
 });

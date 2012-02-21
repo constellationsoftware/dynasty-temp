@@ -4,19 +4,51 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
     stores: [ 'Players' ],
     views: [ 'PlayerGrid' ],
 
-    view: null,
+    refs: [{
+        ref: 'playerGrid',
+        selector: 'viewport playergrid'
+    }],
 
     init: function() {
+        var searchFieldChangeTask = new Ext.util.DelayedTask();
         this.control({
-            'playergrid': {
+            'viewport playergrid': {
                 itemdblclick: this.onRowDblClick,
-                render: this.onRender,
+                render: this.onRender
             },
+            'viewport playergrid textfield#search': {
+                change: function() {
+                    searchFieldChangeTask.delay(700, this.onSearchFieldChange, this, arguments)
+                }
+            },
+            'viewport playergrid button#available': {
+                click: this.onToggleAvailablePlayers
+            }
         });
 
         // append a "disabled" class to the row when it's picked
         this.application.addListener(this.application.STATUS_PICKED, this.onPickUpdate, this);
         this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
+
+        var store = this.getPlayersStore();
+        store.guaranteeRange(0, store.pageSize - 1);
+    },
+
+    onSearchFieldChange: function(field, value) {
+        var store = this.getPlayersStore();
+        if (value.length === 0) {
+            store.clearFilter();
+        } else {
+            store.filters.clear();
+            if (value.length > 2) {
+                store.filter('name.name', value);
+            }
+        }
+    },
+
+    onToggleAvailablePlayers: function(button, e) {
+        if (button.pressed) { button.setText('Show Unavailable'); }
+        else { button.setText('Hide Unavailable'); }
     },
 
     onPickUpdate: function(pick_id) {
@@ -35,9 +67,6 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
     },
 
     onRender: function(view) {
-        this.view = view;
-        
-        // trigger the data store load
-        view.store.guaranteeRange(0, view.store.pageSize - 1);
+        this.getPlayersStore().on('load', function() { this.invalidateScroller(); }, view);
     }
 });
