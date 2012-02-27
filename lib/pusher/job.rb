@@ -1,5 +1,3 @@
-require 'pusher-client'
-
 module Pusher
     class Job
         include Singleton
@@ -24,7 +22,7 @@ module Pusher
 
             @socket.bind('pusher_internal:member_removed') do |result|
                 data = parse(result)
-                team = get_team_from_data(result) if data
+                team = get_team_from_data(data) if data
                 if !(team.nil?) and team.is_a? UserTeam
                     team.is_online = false
                     team.save()
@@ -41,9 +39,11 @@ module Pusher
                 channel_name = Draft::CHANNEL_PREFIX + draft.league.slug
                 @socket.subscribe(channel_name, DEFAULT_USER_ID)
             end
-        end
 
-        handle_asynchronously :initialize
+            loop do
+                sleep(1) # Keep main thread running
+            end
+        end
 
         def error(job, exception)
             puts exception.to_json

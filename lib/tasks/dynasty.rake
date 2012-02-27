@@ -125,6 +125,23 @@ namespace :dynasty do
                 end
             end
 
+            desc 'Generate initial autopicks'
+            task :auto_picks => [:environment] do
+                UserTeam.all.each do |team|
+                    i = 0
+                    Player.with_points_from_season.limit(500).order("points DESC").each do |player|
+                        i += 1
+                        autopick = AutoPick.new
+                        autopick.user_team_id = team.id
+                        autopick.player_id = player.id
+                        autopick.sort_order = i
+                        autopick.save
+                    end
+                end
+            end
+
+
+
             desc 'Calculates event point totals for all players'
             task :event_points => [:environment] do
                 puts 'Emptying player events points table!'
@@ -217,6 +234,42 @@ namespace :dynasty do
                 end
             end
 
+            desc "Add lineup information to player team records"
+            task :lineup => [:environment] do
+
+                # Set the non-flex-assigned positions
+
+                Lineup.all.each do |lineup|
+                    UserTeam.all.each do |user_team|
+                        ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id(lineup.andand.position_id).first
+                        if ptr != nil
+                            ptr.lineup_id = lineup.id
+                            ptr.depth = 1
+                            ptr.save
+                        end
+                    end
+                end
+
+                # set offensive flex
+                UserTeam.all.each do |user_team|
+                    ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id([2,3,4]).first
+                    if ptr != nil
+                        ptr.lineup_id = 7
+                        ptr.position_id = 15
+                        ptr.save
+                    end
+                end
+
+                # set defensive flex
+                UserTeam.all.each do |user_team|
+                    ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id([12,13,14]).first
+                    if ptr != nil
+                        ptr.lineup_id = 15
+                        ptr.position_id = 16
+                        ptr.save
+                    end
+                end
+            end
         end
     end
 end

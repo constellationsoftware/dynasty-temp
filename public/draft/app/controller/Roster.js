@@ -13,7 +13,7 @@ Ext.define('DynastyDraft.controller.Roster', {
         this.control({
             'viewport roster': {},
         });
-
+        this.getRosterStore().load();
         this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSuccess, this);
     },
 

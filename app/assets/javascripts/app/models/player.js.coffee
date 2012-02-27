@@ -1,8 +1,18 @@
-class Player extends Spine.Model
-    @configure 'Player', 'first_name', 'last_name', 'position', 'contract', 'bye_week', 'depth'
+class Starter extends Spine.Model
+    @configure 'Starter', 'flex', 'position', 'player'
     @extend Spine.Model.Ajax
+    @url: '/team/lineup'
 
-    @url: '/team/players'
-    name: -> [@first_name.charAt(0), @last_name].join('. ')
+    name: (player) -> [player.first_name.charAt(0), player.last_name].join('. ')
 
-window.Player = Player
+
+window.Starter = Starter
+
+class BenchWarmer extends Spine.Model
+    @configure 'BenchWarmer', 'first_name', 'last_name', 'contract', 'player_id', 'position'
+    @extend Spine.Model.Ajax
+    @url: '/team/roster/bench'
+
+    name: => [@first_name.charAt(0), @last_name].join('. ')
+
+window.BenchWarmer = BenchWarmer

@@ -12,6 +12,13 @@ GIT
       money
 
 GIT
+  remote: git://github.com/FOMNick/supermodel
+  revision: 05ae736a293a2b9caffb65a4feafa5692192174f
+  specs:
+    supermodel (0.1.4)
+      activemodel (>= 3.0.0)
+
+GIT
   remote: git://github.com/logankoester/pusher-client.git
   revision: 3d38c8bc6d85602f51a148c003eafb0dbdbeae3b
   specs:
@@ -111,7 +118,7 @@ GEM
     delayed_job (2.1.4)
       activesupport (~> 3.0)
       daemons
-    devise (2.0.1)
+    devise (2.0.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
@@ -149,7 +156,7 @@ GEM
     gherkin (2.7.7)
       json (>= 1.4.6)
     haml (3.1.4)
-    haml_coffee_assets (0.8.0)
+    haml_coffee_assets (0.8.2)
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
@@ -265,7 +272,7 @@ GEM
     ruby_parser (2.3.1)
       sexp_processor (~> 3.0)
     rubyzip (0.9.6.1)
-    sass (3.1.14)
+    sass (3.1.15)
     sass-rails (3.2.4)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -363,6 +370,7 @@ DEPENDENCIES
   ruby_parser
   sass-rails (~> 3.2.3)
   squeel
+  supermodel!
   therubyracer
   thin
   timecop

@@ -36,17 +36,13 @@ class League::ClocksController < SubdomainController
             # set all available starting slots
             PlayerTeamRecord.all.each do |ptr|
                 ptr.depth = 1
-                if ptr.valid?
-                    ptr.save
+                unless ptr.valid?
+                    ptr.depth = 0
                 end
+                ptr.save
             end
 
-            Juggernaut.publish('/observer', {
-                type:   'update',
-                id:     @clock.id,
-                class:  'Clock',
-                record: @clock.flatten
-            })
+            publish_update
 
             format.html { render :text => 'success' }
         end
@@ -55,13 +51,7 @@ class League::ClocksController < SubdomainController
     def reset
         reset! do |format|
             @clock.reset
-
-            Juggernaut.publish('/observer', {
-                type:   'update',
-                id:     @clock.id,
-                class:  'Clock',
-                record: @clock.flatten
-            })
+            publish_update
 
             format.html { render :text => 'success' }
         end
@@ -77,5 +67,18 @@ class League::ClocksController < SubdomainController
     protected
         def resource
             @clock = Clock.first
+        end
+
+        def publish_update
+            clients = JuggernautClient.find_all_by_league_id(@league.id)
+            channels = clients.collect{ |client| "/observer/#{client.uuid}" }
+            if channels.size > 0
+                Juggernaut.publish(channels, {
+                    :type =>   'update',
+                    :id =>     @clock.id,
+                    :class =>  'Clock',
+                    :record => @clock.flatten
+                })
+            end
         end
 end

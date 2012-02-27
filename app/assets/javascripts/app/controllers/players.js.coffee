@@ -1,56 +1,44 @@
 class Players extends Spine.Controller
+    _playerItems: []
 
-
-    constructor: ->
-        super
-
-        throw 'Error: player depth must be specified in the options!' unless @depth?
-        throw 'Error: model class is not defined!' unless Player?
-        Player.bind('refresh', @addAll)
-        Player.bind('create',  @addOne)
-        Player.bind('changeDepth', @onChangeDepth)
-
-
-        Player.fetch(@getParams())
+    constructor: (options) ->
+        super(options)
 
         # bind to global clock update event
-        Spine.bind 'clock:update', @onClockUpdate
+        Spine.bind 'clock:update', @reloadAll
 
-    onClockUpdate: (clock) =>
-        Player.fetch(@getParams())
-
+        throw 'Error: Model class is not defined!' unless @model?
+        @model.bind('refresh', @onRefresh)
+        @model.bind('changeDepth', @reloadAll)
+        @model.fetch()
 
     addOne: (item) =>
         player = new PlayerItem(item: item)
-        @append player.render() if item.depth == @depth
-
-    removeOne: (item) =>
-        item.release()
+        @_playerItems.push(player)
+        @append player.render()
 
     addAll: (players = []) =>
         for player in players
             @addOne player
 
+    onRefresh: =>
+        @addAll(arguments...)
+        @el.parents('table').trigger 'update'
 
-    onChangeDepth: (playerItem) =>
-        item = playerItem.item
-        if item.depth == @depth
-            @addOne(item)
-        else
+    reloadAll: =>
+        while playerItem = @_playerItems.shift()
             playerItem.release()
-
-    getParams: ->
-        # set the params
-        @params = { data: $.param({ has_depth: @depth, roster: 1, order_by_name: 1 }) }
-
-window.Players = Players
-
+        @model.fetch()
 
 class BenchPlayers extends Players
+    constructor: (options = {}) -> super($.extend model: BenchWarmer, options)
+
 window.BenchPlayers = BenchPlayers
 
 
 class StartingPlayers extends Players
+    constructor: (options = {}) -> super($.extend model: Starter, options)
+
 window.StartingPlayers = StartingPlayers
 
 

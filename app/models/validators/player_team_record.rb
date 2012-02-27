@@ -2,8 +2,18 @@ module Validators
     class PlayerTeamRecord < ActiveModel::Validator
         def validate(record)
             if record.depth == 1
-                # make sure there are positions available in the starting lineup
-                record.errors[:depth] << "Your starting lineup has too many #{record.player.position.name.pluralize}." if self.class.starter_positions_filled?(record)
+                # figure out which slot it goes in (other than your mom's)
+                filled_slots = Lineup.select{ id }.joins{ player_teams }.where{ player_teams.user_team_id == my{ record.user_team_id } }
+                empty_slot = Lineup.where{ (position_id == my{ record.position_id }) & (id << filled_slots) }.first
+
+                if empty_slot
+                    record.lineup = empty_slot
+                else
+                    record.errors[:depth] << "Your starting lineup has too many #{record.player.position.name.pluralize}."
+                    record.errors[:starter] << "It is #{record.player.name.full_name}s bye week." if self.class.bye_week?(record)                    
+                end
+            else
+                record.lineup = nil
             end
         end
 
@@ -28,6 +38,12 @@ module Validators
 
             #puts "sum: #{player_sum}, slots: #{slots}, pos_count: #{position_count}, max: #{position_allowance}"
             !(player_sum < slots && (position_allowance.nil? || position_count < position_allowance))
+        end
+
+        def self.bye_week?(record)
+            the_week = Clock.first.week+1
+            player_bye_week = record.player.flatten[:bye_week]
+            the_week == player_bye_week
         end
     end
 end

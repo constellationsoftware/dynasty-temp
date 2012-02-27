@@ -1,0 +1,9 @@
+%td.name= @name()
+%td.position= @position.toUpperCase()
+%td.contract= @contract
+%td.bye_week= @bye_week
+%td.controlwrap
+  %div.controls.invisible
+    %input{ type: 'button', value: 'Start', data-type: 'start' }
+    %input{ type: 'button', value: 'Drop', data-type: 'remove' }
+

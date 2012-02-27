@@ -1,19 +1,16 @@
 Dynasty::Application.routes.draw do
-
-    resources :messages
-
-    resources :schedules
-
-    resources :photos
-
-    resources :dynasty_player_contracts
-
+    resources :messages, :schedules, :photos, :dynasty_player_contracts
 
     devise_for :users do
         get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
     end
 
     scope :league, :module => 'league', :constraints => SubdomainConstraint do
+        resources :auto_picks do
+            collection do
+                post :sort
+            end
+        end
         resource :draft, :defaults => {:format => 'html'} do
             member do
                 defaults :format => 'text' do
@@ -23,6 +20,8 @@ Dynasty::Application.routes.draw do
                     post :reset
                     get :reset
                     get :finish
+
+                    post :send_message
                 end
             end
 
@@ -47,7 +46,10 @@ Dynasty::Application.routes.draw do
         # The team in this case is always the user's team for this league
         defaults :format => 'json' do
             resource :team, :controller => :team, :module => :team do
-                resources :players
+                resources :roster do
+                    get :bench, :on => :collection, :action => :index, :defaults => { :bench => 0 }
+                end
+                resources :lineup
                 resources :games
                 resource :balance
             end
@@ -118,10 +120,6 @@ Dynasty::Application.routes.draw do
         end
     end
 
-    resources :user_team_lineups do
-        post 'update'
-        get 'update'
-    end
     resources :persons do
         resources :display_name
     end

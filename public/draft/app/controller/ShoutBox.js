@@ -1,18 +1,19 @@
 Ext.define('DynastyDraft.controller.ShoutBox', {
     extend: 'Ext.app.Controller',
-    requires: [ 'DynastyDraft.data.Socket' ],
     stores: [ 'Messages' ],
-    views: [ 'ShoutBox' ],
+    views: [
+        'ShoutBoxContainer',
+        'ShoutBox'
+    ],
+
     refs: [{
         ref: 'container',
-        selector: 'shoutboxcontainer',
+        selector: 'shoutboxcontainer'
     }],
 
     channel: null,
 
     init: function() {
-        var _this = this;
-        
         this.control({
             'textfield': {
                 specialkey: function(field, e) {
@@ -20,9 +21,8 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                         var form = field.up('form').getForm();
                         if (form.isValid() && field.getValue()) {
                             // get a store instance and add the message to it
-                            var message = this.createMessage(user.email, field.getValue());
-                            Ext.ux.data.Socket.request('post_message', {
-                                message: message.message,
+                            $.post('draft/send_message', {
+                                message: field.getValue()
                             });
 
                             field.reset();
@@ -31,21 +31,27 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                 }
             }
         });
+        // save out store instance under a global variable
+        window.ShoutboxMessages = this.getMessagesStore();
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
 
+/*
         var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL_PREFIX + this.application.getSubDomain(), {
             'send_message': this.onMessageReceived,
         }, this);
+*/
 
         /* 
          * check if connected to socket
          * if so, trigger a join, otherwise defer it until connected
          */
+/*
         if (Ext.ux.data.Socket.isConnected()) {
             this.joinChat();
         } else {
             
         }
+*/
     },
 
     onPick: function(data) {

@@ -4,11 +4,11 @@ source 'http://gems.github.com'
 # Core Gems
 gem 'rails', '3.2.0'
 gem 'mysql2'
-gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'activesupport', '~> 3.2.0'
 gem 'execjs'
 gem 'therubyracer'
-gem 'activeadmin'
+# gem 'activeadmin'
+gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
 
 # AR Improvements
 gem 'squeel'
@@ -19,6 +19,7 @@ gem 'has_scope'
 gem 'kaminari'
 gem 'uuidtools'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
+gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 
 # Templating & View Helpers
 gem 'haml'

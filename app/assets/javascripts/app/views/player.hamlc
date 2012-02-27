@@ -1,8 +1,0 @@
-%td.name= @name()
-%td.position= @position
-%td.contract= @contract
-%td.bye_week= @bye_week
-%td.controlwrap
-  %div.controls.invisible
-    %input{ type: 'button', value: if @depth == 1 then 'Bench' else 'Start', data-type: if @depth == 1 then 'bench' else 'start' }
-    %input{ type: 'button', value: 'Drop', data-type: 'remove' }

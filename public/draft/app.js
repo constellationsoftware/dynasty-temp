@@ -1,6 +1,6 @@
 Ext.Loader.setConfig({
     enabled: true,
-    disableCaching: true,
+    disableCaching: true
     //paths: { '<appName>': '.', 'Ext': '/draft/lib/extjs/src', 'Ext.ux': '/draft/lib/extjs/ux' }
 });
 
@@ -25,7 +25,8 @@ Ext.application({
         'Roster',
         'Players',
         'Picks',
-        'DraftBoard'
+        'DraftBoard',
+        'AutoPickOrder'
     ],
 
     controllers: [
@@ -36,7 +37,9 @@ Ext.application({
         'AdminControls',
         'Picks',
         'RecommendedPicks',
-        'DraftBoard'
+        'DraftBoard',
+        'AutoPickOrder',
+        'ShoutBox'
     ],
 
     launch: function() {
@@ -154,7 +157,23 @@ Ext.application({
      * When a pick event originated from someone else is received
      */
     onPickUpdate: function(payload) {
-        App.Notification.notify(payload.team.name + " picked " + payload.player.name + ".");
+        // show notification bubble for pick
+        var msg = payload.team.name + " picked " + payload.player.name + ".";
+        App.Notification.notify(msg);
+
+        // display pick in the shoutbox
+        var store = window.ShoutboxMessages;
+        var model = store.model;
+        if (model) {
+            var record = model.create({
+                user: payload.team.name,
+                message: "picked " + payload.player.name,
+                type: 'notice'
+            });
+            console.log(record);
+            store.add(record);
+        }
+
         this.fireEvent(this.PICK_UPDATE, payload.pick);
     },
 

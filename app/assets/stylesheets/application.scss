@@ -3,6 +3,8 @@
  *= require_self
  */
 
+.handle { font-size: 12px; color: #777; cursor: move; }
+.stack > *:not(.active) { display: none;}
 #dynasty-navbar {
     background-image: url("/assets/navbar_bg.png");
     background-repeat: repeat-x;
@@ -102,4 +104,9 @@ form.inline { display: inline-block; }
 
 .invisible {
     visibility: hidden;
+}
+
+table th {
+    cursor: default;
+    &.header:hover { cursor: pointer }
 }
