@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
     self.table_name = 'dynasty_users'
+    
+    # not sure if a new column is needed for this
+    alias_attribute :persistence_token, :authentication_token
 
 
     ##Send welcome email after creation
@@ -22,7 +25,7 @@ class User < ActiveRecord::Base
 
     # Include default devise modules. Others available are:
     # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    has_and_belongs_to_many :roles
+    # has_and_belongs_to_many :roles
 
     # Setup accessible (or protected) attributes for your model
     attr_accessible :roles, :email, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip
@@ -33,10 +36,14 @@ class User < ActiveRecord::Base
     # Setup accessible (or protected) attributes for your model
     #  attr_accessible :email, :password, :password_confirmation, :remember_me
 
+
     attr_accessible :name
     has_many :teams, :class_name => 'UserTeam'
     has_many :leagues, :foreign_key => 'manager_id'
 
+    scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
+    # ALWAYS add new roles add the end of this list
+    ROLES = %w[admin user team_owner league_founder league_commissioner]
 
 #def current_team
 #  Team.where(:user_id => current_user.id).where(:league_id => current_user.league_id)
@@ -56,4 +63,7 @@ class User < ActiveRecord::Base
         roles.include?(role.to_s)
     end
 
+    def role_symbols
+        roles.map(&:to_sym)
+    end
 end

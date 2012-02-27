@@ -3,9 +3,10 @@ Given /^I visit the sign in page$/ do
 end
 
 When /^I enter my (?:im)?proper credentials, "([^"]*)" and "([^"]*)"$/ do |user_name, user_password|
+  FactoryGirl.create(:user)
   @user_name = user_name
   
-  within('#user_new.user_new') do
+  within('#new_user.new_user') do
     fill_in('user_email', :with => user_name)
     fill_in('user_password', :with => user_password)
     click_on('Sign in')

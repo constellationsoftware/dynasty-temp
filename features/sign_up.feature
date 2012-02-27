@@ -1,9 +1,9 @@
 Feature: Sign up
 
-  @javascript
+  # @javascript
   Scenario: Sign up successful
     Given I visit the sign up page
-    When I enter valid info, "jdoe" and "jdoe@example.com" and "abcd1234"
+    When I enter valid info, "jdoe" and "jdoe123@example.com" and "abcd1234"
     Then I should be on the landing page
 
   # @javascript
