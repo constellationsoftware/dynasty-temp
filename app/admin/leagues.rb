@@ -1,3 +1,3 @@
-ActiveAdmin.register League do
-  
-end
+# ActiveAdmin.register League do
+#   
+# end

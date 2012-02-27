@@ -1,3 +1,3 @@
-ActiveAdmin.register Draft do
-  
-end
+# ActiveAdmin.register Draft do
+#   
+# end

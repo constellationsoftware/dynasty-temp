@@ -1,3 +1,3 @@
-ActiveAdmin.register UserTeam do
-  
-end
+# ActiveAdmin.register UserTeam do
+#   
+# end
