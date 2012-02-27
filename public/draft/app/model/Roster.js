@@ -7,8 +7,8 @@ Ext.define('DynastyDraft.model.Roster', {
         { name: 'position', allowBlank: false, type: 'string', convert: function(value) { return value.toUpperCase(); } },
         { name: 'depth', allowBlank: true, type: 'int', defaultValue: 0, convert: function(value) {
             switch (value) {
-            case 0: return 'Starter';
-            case 1: return 'Bench';
+                case 0: return 'Starter';
+                case 1: return 'Bench';
             }
         } },
         { name: 'team_name', allowBlank: true, type: 'string', defaultValue: 'Not Drafted' },

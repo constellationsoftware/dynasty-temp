@@ -11,7 +11,7 @@ class Position < ActiveRecord::Base
     has_many :positions, :foreign_key => :flex_position_id, :inverse_of => :flex_position
     has_many :players,
              :through => :player_positions,
-             :class_name => 'Person'
+             :class_name => 'Player'
     has_many :player_team_records,
              :through => :players,
              :class_name => 'PlayerTeamRecord'

@@ -25,3 +25,4 @@ vendor/cache/*
 .idea/inspectionProfiles/Project_Default.xml
 
 config/database.yml
+config/domain.yml

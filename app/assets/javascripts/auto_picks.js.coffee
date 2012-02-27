@@ -1,4 +1,4 @@
-jQuery ->
+$ ->
     $('#auto_picks').sortable(
         axis: 'y'
         update: ->

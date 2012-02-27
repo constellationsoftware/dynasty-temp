@@ -27,17 +27,13 @@ Dynasty::Application.routes.draw do
 
             defaults :format => 'json' do
                 resources :picks do
-                    member do
-                        get :test_update
-                    end
+                    get :test_update, :on => :member
                 end
                 resources :teams do
                     get :balance
                 end
                 resource :team do
-                    member do
-                        get :autopick
-                    end
+                    get :autopick, :on => :member
                 end
                 resources :players
             end
@@ -46,6 +42,7 @@ Dynasty::Application.routes.draw do
         # The team in this case is always the user's team for this league
         defaults :format => 'json' do
             resource :team, :controller => :team, :module => :team do
+                resources :favorites
                 resources :roster do
                     get :bench, :on => :collection, :action => :index, :defaults => { :bench => 0 }
                 end
@@ -65,9 +62,7 @@ Dynasty::Application.routes.draw do
     end
 
     resources :teams do
-        member do
-            get :manage
-        end
+        get :manage, :on => :member
     end
 
     # The priority is based upon order of creation:
@@ -129,7 +124,6 @@ Dynasty::Application.routes.draw do
             get 'manage'
             get 'roster'
         end
-
     end
     
     # these are routes for testing cancan roles

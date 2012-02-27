@@ -5,99 +5,90 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
     title: 'Players',
     store: 'Players',
     columnLines: true,
-    selModel: {
-        mode: "MULTI",
-    },
+    selModel: "SINGLE",
     verticalScrollerType: 'paginggridscroller',
     loadMask: true,
     invalidateScrollerOnRefresh: false,
     viewConfig: {
         trackOver: false,
-        getRowClass: function(record, rowIndex, rowParams, store) {
-            if (!record.get('is_valid')) { return 'row-invalid'; }
+        getRowClass: function(record) {
+            if (record.get('team') > 0) { return 'row-invalid'; }
         }
     },
 
-    columns: [
-        {
-            text: 'Name',
-            dataIndex: 'full_name',
-            xtype: 'gridcolumn',
-            hideable: false,
-            groupable: true,
-            flex: 1,
-        },
-        {
-            text: 'Points',
-            dataIndex: 'points',
-            xtype: 'numbercolumn',
-            align: 'right',
-            format: '0.00',
-        },
-        {
-            text: 'Rating',
-            dataIndex: 'rating',
-            xtype: 'numbercolumn',
-            align: 'right',
-            format: '0.00',
-        },
-        {
-            text: 'Consistency',
-            dataIndex: 'consistency',
-            xtype: 'numbercolumn',
-            align: 'right',
-            format: '0.00',
-        },
-        {
-            text: 'Salary',
-            dataIndex: 'contract_amount',
-            xtype: 'numbercolumn',
-            align: 'right',
-            format: '0,000',
-            /*renderer: function(value) {
-                return Ext.util.Format.currency(value, null, 2);
-            },*/
-        },
-        {
-            text: 'Position',
-            dataIndex: 'position',
-            xtype: 'gridcolumn',
-            align: 'right',
-            width: 50,
-            sortable: false,
-        }
-    ],
+    tbar: [{
+        xtype: 'textfield',
+        itemId: 'search',
+        name: 'searchField',
+        fieldLabel: 'Search',
+        labelWidth: 50,
+        emptyText: 'Enter a player\'s first or last name',
+        width: 250
+    }, {
+        xtype: 'button',
+        itemId: 'available',
+        enableToggle: true,
+        text: 'Hide Unavailable'
+    }],
 
-    features: [
-        {
-            ftype: 'grouping',
-            groupHeaderTpl: '{name} ({rows.length} Player{[values.rows.length > 1 ? "s" : ""]})',
-            hideGroupedHeader: false,
-            enableGroupingMenu: false,
-            startCollapsed: false,
+    columns: [{
+        xtype: 'rownumberer',
+        width: 40,
+        sortable: false
+    }, {
+        text: 'Liked',
+        dataIndex: 'favorite',
+        width: 45,
+        align: 'center',
+        renderer: function(value, metadata, record) {
+            return value > 0 ? '<img src="/draft/resources/images/icons/silk/heart.png" />' : '';
         }
-    ],
-
-    /*
-    this.tbar: [
-        {
-            xtype: 'button',
-            text: 'QB',
-            enableToggle: true,
-            pressed: true,
-        },
-        {
-            xtype: 'button',
-            text: 'RB',
-            enableToggle: true,
-            pressed: true,
-        },
-        {
-            xtype: 'button',
-            text: 'WR',
-            enableToggle: true,
-            pressed: true,
-        },
-   ],
-   */
+    }, {
+        text: 'First Name',
+        dataIndex: 'first_name',
+        xtype: 'gridcolumn',
+        flex: 1
+    }, {
+        text: 'Last Name',
+        dataIndex: 'last_name',
+        xtype: 'gridcolumn',
+        flex: 1
+    }, {
+        text: 'Position',
+        dataIndex: 'position',
+        xtype: 'gridcolumn',
+        align: 'right',
+        width: 50
+    }, {
+        text: 'Points',
+        dataIndex: 'points',
+        xtype: 'numbercolumn',
+        align: 'right',
+        format: '0.00',
+        flex: 1
+    }, {
+        text: 'Contract',
+        dataIndex: 'contract',
+        xtype: 'numbercolumn',
+        align: 'right',
+        format: '0,000',
+        flex: 1,
+        renderer: function(value) { return Ext.util.Format.currency(value, null, 2); }
+    }, {
+        text: 'Points per dollar',
+        dataIndex: 'points_per_dollar',
+        align: 'right',
+        xtype: 'numbercolumn',
+        format: '0.0',
+        flex: 1,
+        sortable: false
+    }, {
+        text: 'Dollars per point',
+        dataIndex: 'dollars_per_point',
+        align: 'right',
+        xtype: 'numbercolumn',
+        format: '0.0',
+        flex: 1,
+        sortable: false
+    }]
 });

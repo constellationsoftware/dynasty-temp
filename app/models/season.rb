@@ -5,4 +5,8 @@ class Season < ActiveRecord::Base
     has_many :events, :through => :event_sub_seasons
     has_many :sub_seasons
     has_many :stats, :through => :sub_seasons
+
+    def self.current
+        self.maximum(:season_key).to_i
+    end
 end

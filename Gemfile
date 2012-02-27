@@ -20,6 +20,7 @@ gem 'kaminari'
 gem 'uuidtools'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
+gem 'select_with_include'
 
 # Templating & View Helpers
 gem 'haml'
