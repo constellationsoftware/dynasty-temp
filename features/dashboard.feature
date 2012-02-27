@@ -8,7 +8,7 @@ Feature: Dashboard
 
   @javascript
   Scenario: Management Tabs
-    Given I am signed in as, "ben", "ben@frontofficemedia.com", "fom556"
+    Given I am signed in as, "testuser", "testuser@example.com", "password"
     And I am managing a team
     Then I can navigate the following tabs:
       |Trades      |Offer A Trade                          |

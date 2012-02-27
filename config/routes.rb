@@ -131,6 +131,13 @@ Dynasty::Application.routes.draw do
         end
 
     end
+    
+    # these are routes for testing cancan roles
+    match 'test_roles/user' => 'test_roles#user'
+    match 'test_roles/team_owner' => 'test_roles#team_owner'
+    match 'test_roles/admin' => 'test_roles#admin'
+    match 'test_roles/league_founder' => 'test_roles#league_founder'
+    match 'test_roles/league_commissioner' => 'test_roles#league_commissioner'
 
 
     # Sample of regular route:

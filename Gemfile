@@ -28,6 +28,7 @@ gem 'formtastic'
 gem 'jbuilder'
 
 # Authentication & Permissions
+# gem 'authlogic'
 gem 'devise'
 gem 'cancan'
 gem 'bcrypt-ruby', '>= 2.1.4'
@@ -92,7 +93,7 @@ group :test do
     gem 'turn', '< 0.8.3'
     gem 'cucumber-rails', '1.2.1'
     gem 'rspec-rails', '2.7.0'
-    gem 'database_cleaner', '0.7.0'
+    gem 'database_cleaner', '0.7.1'
     gem 'factory_girl', '2.3.2'
     gem 'minitest'
 end

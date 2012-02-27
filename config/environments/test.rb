@@ -35,7 +35,7 @@ Dynasty::Application.configure do
     # config.active_record.schema_format = :sql
 
     # Print deprecation notices to the stderr
-    config.active_support.deprecation = :stderr
+    config.active_support.deprecation = :log
 
     # Rotate Log Files. example:
     # config.logger = Logger.new(Rails.root.join("log",Rails.env + ".log"),3,5*1024*1024)
