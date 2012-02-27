@@ -26,3 +26,5 @@ vendor/cache/*
 
 config/database.yml
 config/domain.yml
+
+dump.rdb
