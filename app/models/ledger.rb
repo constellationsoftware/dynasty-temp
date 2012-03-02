@@ -15,7 +15,8 @@ class Ledger < ActiveRecord::Base
   
   def self.account_balance(account=0)
     # account 0 is considered dynasty dollars
-    Ledger.sum(:amount, :conditions=>['account=?', account] )
+    # Ledger.sum(:amount, :conditions=>['account=?', account] )
+    sum(:amount, :conditions => ['account=?', account])
   end
 
   def self.post_payroll(amount, team, week)
@@ -50,4 +51,17 @@ class Ledger < ActiveRecord::Base
     sql = "select account, sum(amount) from ledgers where account != 0 and account != -1 GROUP BY account order by sum(amount) desc limit 20"
     connection.select_all sql
   end
+  
+  def self.get_total_league_value
+    sum(:amount, :conditions => ['account = -1'])
+  end
+
+  def self.get_total_team_value
+    sum(:amount, :conditions => ['account != 0 and account != -1'])
+  end
+  
+  def self.get_team_transactions(team)
+    find_all_by_account(1).sort_by(&:created_at)
+  end
+    
 end

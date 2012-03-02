@@ -4,3 +4,25 @@
 %h2
   Account Balance:
   = "$#{@account_balance}.00"
+  
+%h3
+  Team Transactions
+  %table{ :width => 400 }
+    %tr
+      %td
+      %td
+        Description
+      %td
+        Amount
+      %td
+        Date
+    - @team_transactions.each_with_index do |item, index|
+      %tr
+        %td
+          = index + 1
+        %td
+          = item['description']
+        %td
+          = item['amount']
+        %td
+          = item['created_at']

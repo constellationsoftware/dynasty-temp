@@ -9,10 +9,14 @@ class BankingController < ApplicationController
     
     @activity_list = Ledger.get_top_accounts_by_activity
     @value_list = Ledger.get_top_accounts_by_value
+    
+    @total_team_value = Ledger.get_total_team_value
+    @total_league_value = Ledger.get_total_league_value
   end
   
   def team_stats
     @team_id = params[:id]
     @account_balance = Ledger.account_balance(params[:id])
+    @team_transactions = Ledger.get_team_transactions(params[:id])
   end
 end
