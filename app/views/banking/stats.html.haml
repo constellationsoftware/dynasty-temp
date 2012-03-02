@@ -1,0 +1,45 @@
+%h2
+  Total Users: 
+  = @total_users
+%h2
+  Total Team Owners: 
+  = @total_team_owners
+%h2
+  Total Leagues: 
+  = @total_leagues
+%h2
+  Total Dynasty Dollars: 
+  = "$#{@total_dynasty_dollars}.00"
+%h2
+  Total Dynasty Dollars for sale: 
+  = "$#{@total_dynasty_dollars_for_sale}.00"
+
+%h3
+  Top 20 accounts by activity
+  %table{ :width => 400 }
+    %tr
+      %td
+        Account
+      %td
+        Transactions
+    - @activity_list.each do |item|
+      %tr
+        %td
+          = item['account']
+        %td
+          = item['count(*)']
+  
+  %h3
+    Top 20 accounts by value
+    %table{ :width => 400 }
+      %tr
+        %td
+          Account
+        %td
+          Value
+      - @value_list.each do |item|
+        %tr
+          %td
+            = item['account']
+          %td
+            = "$#{item['sum(amount)']}"

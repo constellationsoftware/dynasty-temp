@@ -138,6 +138,11 @@ Dynasty::Application.routes.draw do
     match 'test_roles/admin' => 'test_roles#admin'
     match 'test_roles/league_founder' => 'test_roles#league_founder'
     match 'test_roles/league_commissioner' => 'test_roles#league_commissioner'
+    match 'test_roles/banker' => 'test_roles#banker'
+
+    # these are used with banking features
+    match 'banking/stats' => 'banking#stats'
+    match 'banking/team_stats/:id' => 'banking#team_stats'
 
 
     # Sample of regular route:

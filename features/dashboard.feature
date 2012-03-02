@@ -6,7 +6,7 @@ Feature: Dashboard
   #   Given I am signed in as, "ben", "ben@frontofficemedia.com", "fom556"
   #   And I am managing a team
 
-  @javascript
+  # @javascript
   Scenario: Management Tabs
     Given I am signed in as, "testuser", "testuser@example.com", "password"
     And I am managing a team

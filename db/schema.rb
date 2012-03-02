@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120215203558) do
+ActiveRecord::Schema.define(:version => 20120302112226) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -785,7 +800,7 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
   end
 
   add_index "display_names", ["entity_id"], :name => "IDX_display_names_1"
-  add_index "display_names", ["entity_type", "last_name", "first_name"], :name => "index_display_names_on_entity_type_and_last_name_and_first_name"
+  add_index "display_names", ["entity_type", "last_name", "first_name"], :name => "index_display_names_on_entity_type_and_first_name_and_last_name"
   add_index "display_names", ["entity_type"], :name => "IDX_display_names_2"
 
   create_table "document_classes", :force => true do |t|
@@ -961,6 +976,8 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
     t.string   "depth"
   end
 
+  add_index "dynasty_player_contracts", ["person_id", "amount", "bye_week"], :name => "index_player_contracts_player_amount_bye"
+
   create_table "dynasty_player_event_points", :force => true do |t|
     t.integer  "player_id",            :default => 0, :null => false
     t.integer  "event_id",             :default => 0, :null => false
@@ -1051,6 +1068,7 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
     t.integer  "lineup_id"
   end
 
+  add_index "dynasty_player_teams", ["league_id", "user_team_id", "player_id"], :name => "index_player_teams_league_user_player"
   add_index "dynasty_player_teams", ["player_id", "depth", "user_team_id", "current"], :name => "index_dynasty_player_teams_roster_api"
   add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "user_team_id"], :name => "index_position_counts_by_team"
 
@@ -1063,8 +1081,8 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
   end
 
   add_index "dynasty_positions", ["abbreviation", "id", "designation", "name", "sort_order"], :name => "index_dynasty_positions_on_abbr_id_des_name_sort"
-  add_index "dynasty_positions", ["abbreviation"], :name => "index_dynasty_positions_on_abbreviation"
   add_index "dynasty_positions", ["designation", "id"], :name => "index_dynasty_positions_on_flex_and_designation_and_id"
+  add_index "dynasty_positions", ["id", "abbreviation"], :name => "index_dynasty_positions_on_id_and_abbreviation"
   add_index "dynasty_positions", ["name"], :name => "index_dynasty_positions_on_name"
   add_index "dynasty_positions", ["sort_order", "id", "designation", "abbreviation", "name"], :name => "index_dynasty_positions_on_sort_id_des_abbr_name"
   add_index "dynasty_positions", ["sort_order", "id"], :name => "index_dynasty_positions_on_sort_order_and_id"
@@ -1074,6 +1092,14 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
     t.integer  "user_team_id",                              :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "dynasty_team_favorites", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "sort_order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "dynasty_teams", :force => true do |t|
@@ -1533,6 +1559,14 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
   add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
+  create_table "ledgers", :force => true do |t|
+    t.text     "description"
+    t.integer  "amount"
+    t.integer  "account"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "locations", :force => true do |t|
     t.string "city",         :limit => 100
     t.string "state",        :limit => 100
@@ -1597,8 +1631,8 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
 
   create_table "messages", :force => true do |t|
     t.string   "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "motor_racing_event_states", :force => true do |t|
@@ -1921,7 +1955,7 @@ ActiveRecord::Schema.define(:version => 20120215203558) do
     t.integer "contract_amount"
     t.integer "points"
     t.integer "rating"
-    t.float   "consistency",     :limit => 4
+    t.float   "consistency"
   end
 
   create_table "schedules", :force => true do |t|

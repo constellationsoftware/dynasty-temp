@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 
     scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
     # ALWAYS add new roles add the end of this list
-    ROLES = %w[admin user team_owner league_founder league_commissioner]
+    ROLES = %w[admin user team_owner league_founder league_commissioner banker]
 
 #def current_team
 #  Team.where(:user_id => current_user.id).where(:league_id => current_user.league_id)
