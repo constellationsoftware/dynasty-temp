@@ -1,0 +1,45 @@
+form {
+    &.formtastic {
+        li { list-style-type: none; }
+        abbr[title="required"] {
+            color: #cf0000;
+            border: none;
+            font-size: 100%;
+        }
+    }
+
+    &.nice {
+        .inline-hints {
+            font-size: 11px;
+            margin: 0;
+            margin-top: -5px;
+            color: #777;
+        }
+
+        ol.fragments-group {
+            margin: 0;
+            
+            li.fragment {
+                display: inline-block;
+                padding-right: 10px;
+                &:last-child { padding-right: 0; }
+            }
+        }
+
+        input[type="checkbox"] {
+            float: left;
+            width: 20px;
+        }
+    }
+}
+
+#navbar {
+    form.login {
+        .col.right {
+            padding-right: 5px;
+            &:first-child { padding-right: 0; }
+        }
+    }
+
+    .col:first-child { margin-top: -5px; }
+}

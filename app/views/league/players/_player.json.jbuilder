@@ -12,7 +12,7 @@ if current_scopes[:with_contract]
         json.bye_week       player.contract.bye_week
     end
 end
-if current_scopes[:with_position]
+if current_scopes[:with_position] || current_scopes[:filter_positions]
     json.position do |json|
         json.abbreviation   player.position.abbreviation
     end
@@ -25,5 +25,11 @@ end
 if current_scopes[:with_favorites]
     json.favorites do |json|
         json.sort_order     player.favorites.first ? player.favorites.first.sort_order : nil
+    end
+end
+if current_scopes[:drafted]
+    json.drafted_team do |json|
+        json.depth          player.team_link.depth
+        json.name           player.andand.team_link.andand.team.andand.name
     end
 end

@@ -187,6 +187,7 @@ Ext.application({
     },
 
     startPicking: function(data) {
+        console.log(data);
         this.fireEvent(this.STATUS_PICKING, data);
     },
 

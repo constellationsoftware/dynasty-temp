@@ -88,9 +88,48 @@ class Draft < ActiveRecord::Base
         # if the draft isn't over, then the "current pick" is for a live user
         if !(self.current_pick.nil?) and !(self.status === :finished)
             pick_user_id = self.current_pick.team.uuid
-            payload = {
-                :players => Player.filter_positions(self.current_pick.team).available(self).with_points.with_contract.order { points.points.desc }.page(1).per(5).collect { |player| player.flatten }
-            }
+
+            # patches up things with the player suggestions until we drop Pusher for good
+            players = Player.filter_positions(self.current_pick.team)
+                .available(self)
+                .with_name
+                .with_points
+                .with_position
+                .with_contract
+                .with_favorites(self.current_pick.team)
+                .order { points.points.desc }
+                .page(1).per(5)
+            payload = Jbuilder.encode do |json|
+                json.(players) do |json, player|
+                    json.id                     player.id
+                    json.name do |json|
+                        json.first_name         player.name.first_name
+                        json.last_name          player.name.last_name
+                        json.full_name          player.name.full_name
+                    end
+                    json.contract do |json|
+                        json.amount             player.contract.amount
+                        json.bye_week           player.contract.bye_week
+                    end
+                    json.position do |json|
+                        json.abbreviation       player.position.abbreviation
+                    end
+                    json.points do |json|
+                        json.points             player.points.first.points
+                        json.defensive_points   player.points.first.defensive_points
+                        json.passing_points     player.points.first.passing_points
+                        json.rushing_points     player.points.first.rushing_points
+                        json.sacks_against_points player.points.first.sacks_against_points
+                        json.scoring_points     player.points.first.scoring_points
+                        json.special_teams_points player.points.first.special_teams_points
+                        json.games_played       player.points.first.games_played
+                        #json.consistency        player.points.first.consistency
+                    end
+                    json.favorites do |json|
+                        json.sort_order         player.favorites.first ? player.favorites.first.sort_order : nil
+                    end
+                end
+            end
             Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:start-' + pick_user_id, payload) unless (self.online.count === 0 or force_finish)
             Pusher[Draft::CHANNEL_PREFIX + self.league.slug].delay(:run_at => (Time.now + (autopick_iterations * Draft::DELAY_BETWEEN_PICKS))).trigger('draft:pick:start', {:team => self.current_pick.team.name}, self.current_pick.team.last_socket_id )
 

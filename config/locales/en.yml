@@ -26,3 +26,13 @@ en:
             destroy:
                 success: "%{resource_name} was successfully destroyed."
                 failure: "%{resource_name} could not be destroyed."
+
+    activerecord:
+        errors:
+            messages:
+                blank: "The '%{attribute}' field is required and cannot be left blank"
+                invalid: "%{attribute} is invalid"
+            models:
+                user:
+                    taken: 'This email address is already registered.'
+

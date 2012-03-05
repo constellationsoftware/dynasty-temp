@@ -25,20 +25,17 @@
   = csrf_meta_tag
 
 %body
-  #dynasty-navbar.container
+  #navbar.container
     .row
       .three.columns
-        %h1
-          = image_tag 'navbar_logo.png'
-          = yield :navbar_left
-      .nine.columns.hide-on-phones.clean.right
+        = link_to (image_tag 'navbar_logo.png'), root_path
+        = yield :navbar_left
+      .nine.columns.hide-on-phones.right
         = yield :navbar_right
-        = link_to "Home", root_url, :class => "button nice small blue"
+        = render :partial => '/users/shared/links'
 
   /*Primary Page Header Bar
-  .container
-
-
+  #content.container
     .row
       .nine.columns
         #global-errors
@@ -47,18 +44,4 @@
         = yield
 
       .three.columns
-        - if user_signed_in?
-          .panel
-            .alert-box.success
-              Signed in as
-              = current_user.name
-            .alert-box.error
-              Not you?
-              = link_to "Sign Out", destroy_user_session_path
-
         = yield :sidebar
-        - unless @team
-          = link_to 'Reset To Season Start',
-            reset_clock_path,
-            :remote => true,
-            :class => 'nice button black small radius'

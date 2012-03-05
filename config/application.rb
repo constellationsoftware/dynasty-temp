@@ -14,8 +14,13 @@ module Dynasty
 
         # Custom directories with classes and modules you want to be autoloadable.
         # config.autoload_paths += %W(#{config.root}/extras)
-        config.autoload_paths += %W(#{config.root}/lib)
-        config.autoload_paths += Dir["#{config.root}/lib/**/"]
+        config.autoload_paths += %W[
+            #{Rails.root}/lib
+            #{Rails.root}/lib/**/
+            #{Rails.root}/app/models/**/
+        ]
+        config.autoload_paths += Dir[""]
+        config.autoload_paths += %W(#{config.root}/models/**/)
 
         # Only load the plugins named here, in the order given (default is alphabetical).
         # :all can be used as a placeholder for all plugins not explicitly named.
@@ -23,6 +28,7 @@ module Dynasty
 
         # Activate observers that should always be running.
         config.active_record.observers = :league_observer,
+            :user_observer,
             :user_team_observer,
             :draft_observer,
             :pick_observer #, :cacher, :garbage_collector, :forum_observer, :juggernaut_observer

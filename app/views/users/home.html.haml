@@ -1,34 +1,23 @@
 .panel
-  %h4
-    User Control Panel
-  %p
-    Username:
-    %strong
-      = @current_user.name
-    Email:
-    %strong
-      = @current_user.email
-
+  %h4 User Control Panel
+  %p= link_to 'Edit User Profile', edit_user_registration_path
 
   %p
-  - unless @current_user_teams.first
-    = @welcome_message
-  - if @current_user_teams.first
-    - @current_user_teams.each do |t|
+  = "You have no teams right now. Please contact a beta administrator for access to a testing league." if @teams.empty?
+  - if @teams.first
+    - @teams.each do |t|
       .panel
         %p
           League Name:
-          %strong
-            = t.andand.league.andand.name
+          %strong= t.league.name
         %p
           Team Name:
-          %strong
-            = t.andand.name
+          %strong= t.name
 
         - if t.players.count > 0
-          = link_to "Manage Team", "#{manage_team_url(t, :subdomain => t.andand.league.slug, :anchor => 'roster')}", :class => 'small nice black button radius'
+          = link_to 'Manage Team', "#{manage_team_url(t, :subdomain => t.league.slug, :anchor => 'roster')}", :class => 'small nice black button radius'
 
         - if t.players.count < 1
           - unless t.league.draft.nil? || t.league.draft.status === :finished
-            = link_to "Go to The Draft",  "#{draft_url(:subdomain => t.andand.league.slug)}", :class => 'small nice blue button radius'
-            = link_to "Set AutoPick Order", auto_pick_url, :class => 'small nice black button radius'
+            = link_to 'Go to The Draft',  "#{draft_url(:subdomain => t.league.slug)}", :class => 'small nice blue button radius'
+            = link_to 'Set AutoPick Order', auto_pick_url, :class => 'small nice black button radius'

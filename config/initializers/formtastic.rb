@@ -78,3 +78,24 @@
 # You can add custom inputs or override parts of Formtastic by subclassing SemanticFormBuilder and
 # specifying that class here.  Defaults to SemanticFormBuilder.
 # Formtastic::SemanticFormHelper.builder = MyCustomBuilder
+
+##
+# Monkey patch to stop adding class "label" to label elements
+#
+module Formtastic
+    module Inputs
+        module Base
+            module Labelling
+                def label_html_options
+                    # opts = options_for_label(options) # TODO
+                    opts = {}
+                    opts[:for] ||= input_html_options[:id]
+                    opts[:class] = [opts[:class]]
+
+                    opts
+                end
+            end
+        end
+    end
+end
+

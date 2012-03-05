@@ -7,7 +7,6 @@ gem 'mysql2'
 gem 'activesupport', '~> 3.2.0'
 gem 'execjs'
 gem 'therubyracer'
-# gem 'activeadmin'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
 
 # AR Improvements
@@ -21,12 +20,15 @@ gem 'uuidtools'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'select_with_include'
+gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 # Templating & View Helpers
 gem 'haml'
 gem 'jquery-rails'
 gem 'formtastic'
 gem 'jbuilder'
+gem 'gravtastic' # gravatar support
+gem 'country_select'
 
 # Authentication & Permissions
 # gem 'authlogic'
@@ -52,9 +54,9 @@ gem 'capistrano-ext'
 gem 'andand'
 gem 'coffee-filter'
 gem 'hpricot'
-gem 'money', :git => 'git://github.com/FOMNick/money.git'
 gem 'ruby_parser'
 gem 'timecop'
+gem 'traceroute'
 
 group :development do
     # Debugging & Development

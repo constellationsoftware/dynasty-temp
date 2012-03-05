@@ -26,7 +26,7 @@ Ext.define('DynastyDraft.store.Players', {
             with_points: true,
             with_contract: true,
             with_position: true,
-            with_favorites: true,
+            with_favorites: true
             //with_available: true
         }
     },

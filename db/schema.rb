@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222190750) do
+ActiveRecord::Schema.define(:version => 20120302012814) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -885,6 +885,12 @@ ActiveRecord::Schema.define(:version => 20120222190750) do
   add_index "dynasty_drafts", ["league_id"], :name => "index_drafts_league"
   add_index "dynasty_drafts", ["status"], :name => "index_drafts_on_status"
 
+  create_table "dynasty_events", :force => true do |t|
+    t.string "name", :null => false
+  end
+
+  add_index "dynasty_events", ["name"], :name => "index_dynasty_events_on_name", :unique => true
+
   create_table "dynasty_games", :force => true do |t|
     t.integer  "team_id"
     t.integer  "week"
@@ -916,6 +922,14 @@ ActiveRecord::Schema.define(:version => 20120222190750) do
     t.integer "position_id"
     t.boolean "flex"
   end
+
+  create_table "dynasty_event_subscriptions", :force => true do |t|
+    t.integer "user_id",  :null => false
+    t.string  "event_id", :null => false
+    t.string  "notifier", :null => false
+  end
+
+  add_index "dynasty_event_subscriptions", ["user_id", "event_id", "notifier"], :name => "index_dynasty_event_subscriptions_on_user_id_and_event_id_and_notifier"
 
   create_table "dynasty_player_contracts", :force => true do |t|
     t.datetime "created_at"
@@ -1089,6 +1103,16 @@ ActiveRecord::Schema.define(:version => 20120222190750) do
     t.text     "message"
   end
 
+  create_table "dynasty_user_addresses", :force => true do |t|
+    t.integer "user_id",                :null => false
+    t.string  "street2", :limit => 64
+    t.string  "city",    :limit => 50,  :null => false
+    t.string  "zip",     :limit => 10,  :null => false
+    t.string  "state",   :limit => 32,  :null => false
+    t.string  "country", :limit => 64,  :null => false
+    t.string  "street",  :limit => 128, :null => false
+  end
+
   create_table "dynasty_user_team_schedules", :force => true do |t|
     t.integer  "league_id"
     t.integer  "team_id"
@@ -1119,14 +1143,15 @@ ActiveRecord::Schema.define(:version => 20120222190750) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.datetime "last_seen"
-    t.string   "name"
+    t.string   "first_name",             :limit => 50,                  :null => false
     t.string   "role"
     t.integer  "roles_mask"
-    t.integer  "phone"
+    t.string   "phone",                  :limit => 32,                  :null => false
+    t.string   "last_name",              :limit => 50,                  :null => false
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "dynasty_users", ["name"], :name => "index_dynasty_users_on_name"
+  add_index "dynasty_users", ["first_name"], :name => "index_dynasty_users_on_name"
   add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
 
   create_table "event_action_fouls", :force => true do |t|
