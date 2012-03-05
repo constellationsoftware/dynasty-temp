@@ -1,6 +1,6 @@
 class UserObserver < ActiveRecord::Observer
-    def before_save(user)
-        user.phone = user.phone.gsub(/[^0-9A-Za-z]/, '')
+    def before_update(user)
+        user.phone = user.phone.gsub(/[^0-9A-Za-z]/, '') if user.phone
     end
 
     def after_create(user)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120302012814) do
+ActiveRecord::Schema.define(:version => 20120305155518) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -885,6 +885,14 @@ ActiveRecord::Schema.define(:version => 20120302012814) do
   add_index "dynasty_drafts", ["league_id"], :name => "index_drafts_league"
   add_index "dynasty_drafts", ["status"], :name => "index_drafts_on_status"
 
+  create_table "dynasty_event_subscriptions", :force => true do |t|
+    t.integer "user_id",  :null => false
+    t.string  "event_id", :null => false
+    t.string  "notifier", :null => false
+  end
+
+  add_index "dynasty_event_subscriptions", ["user_id", "event_id", "notifier"], :name => "index_dynasty_notifications_on_user_id_and_event_id_and_notifier"
+
   create_table "dynasty_events", :force => true do |t|
     t.string "name", :null => false
   end
@@ -905,14 +913,15 @@ ActiveRecord::Schema.define(:version => 20120302012814) do
   add_index "dynasty_games", ["week"], :name => "index_dynasty_games_on_week"
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",                  :limit => 50,                 :null => false
-    t.integer  "size",                                :default => 15, :null => false
+    t.string   "name",                  :limit => 50,                   :null => false
+    t.integer  "size",                                :default => 15,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug"
     t.datetime "clock"
-    t.integer  "default_balance_cents", :limit => 8,  :default => 0,  :null => false
+    t.integer  "default_balance_cents", :limit => 8,  :default => 0,    :null => false
+    t.boolean  "public",                              :default => true
   end
 
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
@@ -922,14 +931,6 @@ ActiveRecord::Schema.define(:version => 20120302012814) do
     t.integer "position_id"
     t.boolean "flex"
   end
-
-  create_table "dynasty_event_subscriptions", :force => true do |t|
-    t.integer "user_id",  :null => false
-    t.string  "event_id", :null => false
-    t.string  "notifier", :null => false
-  end
-
-  add_index "dynasty_event_subscriptions", ["user_id", "event_id", "notifier"], :name => "index_dynasty_event_subscriptions_on_user_id_and_event_id_and_notifier"
 
   create_table "dynasty_player_contracts", :force => true do |t|
     t.datetime "created_at"
@@ -1104,13 +1105,13 @@ ActiveRecord::Schema.define(:version => 20120302012814) do
   end
 
   create_table "dynasty_user_addresses", :force => true do |t|
-    t.integer "user_id",                :null => false
     t.string  "street2", :limit => 64
-    t.string  "city",    :limit => 50,  :null => false
-    t.string  "zip",     :limit => 10,  :null => false
-    t.string  "state",   :limit => 32,  :null => false
-    t.string  "country", :limit => 64,  :null => false
-    t.string  "street",  :limit => 128, :null => false
+    t.string  "city",    :limit => 50
+    t.string  "zip",     :limit => 10
+    t.string  "state",   :limit => 32
+    t.string  "country", :limit => 64
+    t.string  "street",  :limit => 128
+    t.integer "user_id",                :null => false
   end
 
   create_table "dynasty_user_team_schedules", :force => true do |t|
@@ -1146,7 +1147,7 @@ ActiveRecord::Schema.define(:version => 20120302012814) do
     t.string   "first_name",             :limit => 50,                  :null => false
     t.string   "role"
     t.integer  "roles_mask"
-    t.string   "phone",                  :limit => 32,                  :null => false
+    t.string   "phone",                  :limit => 32
     t.string   "last_name",              :limit => 50,                  :null => false
   end
 

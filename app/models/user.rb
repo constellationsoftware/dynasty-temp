@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
     scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
     scope :with_address, joins{ address }.includes{ address }
 
-    validates_presence_of :first_name, :last_name, :phone
+    validates_presence_of :first_name, :last_name
 
     # ALWAYS add new roles add the end of this list
     ROLES = %w[admin user team_owner league_founder league_commissioner]
