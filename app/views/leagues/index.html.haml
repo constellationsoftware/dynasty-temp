@@ -1,23 +1,4 @@
-%h1 Listing leagues
-%table
-  %tr
-    %th
-      Name
-    %th
-      Date/Time
-    %th
-      Show
-    %th
-      Edit
-    %th
-      Delete
-  - @leagues.each do |league|
-    %tr
-      %td= league.name
-      %td= league.clock
-      %td= link_to league.slug, league
-      %td= link_to 'Edit', edit_league_path(league)
-      %td= link_to 'Destroy', league, confirm: 'Are you sure?', method: :delete
-%br/
-
-= link_to 'New League!', new_league_path
+= javascript_include_tag '/draft/lib/extjs/ext-all-debug'
+= javascript_include_tag '/draft/app'
+%h2 League List
+%div#league_list

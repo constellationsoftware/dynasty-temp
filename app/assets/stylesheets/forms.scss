@@ -1,8 +1,10 @@
+$error-color: #C00000;
+
 form {
     &.formtastic {
         li { list-style-type: none; }
         abbr[title="required"] {
-            color: #cf0000;
+            color: $error-color;
             border: none;
             font-size: 100%;
         }
@@ -14,6 +16,11 @@ form {
             margin: 0;
             margin-top: -5px;
             color: #777;
+        }
+
+        p.inline-errors {
+            color: $error-color;
+            font-weight: bold;
         }
 
         ol.fragments-group {

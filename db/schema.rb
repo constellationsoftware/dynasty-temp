@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120305155518) do
+ActiveRecord::Schema.define(:version => 20120306134333) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -922,6 +922,7 @@ ActiveRecord::Schema.define(:version => 20120305155518) do
     t.datetime "clock"
     t.integer  "default_balance_cents", :limit => 8,  :default => 0,    :null => false
     t.boolean  "public",                              :default => true
+    t.string   "password",              :limit => 32
   end
 
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"

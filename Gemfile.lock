@@ -225,6 +225,8 @@ GEM
       railties (= 3.2.0)
     rails-footnotes (3.7.5)
       rails (>= 3.0.0)
+    rails_config (0.2.5)
+      activesupport (>= 3.0)
     railties (3.2.0)
       actionpack (= 3.2.0)
       activesupport (= 3.2.0)
@@ -360,6 +362,7 @@ DEPENDENCIES
   rack
   rails (= 3.2.0)
   rails-footnotes (>= 3.7.5.rc4)
+  rails_config
   responders
   rspec-rails (= 2.7.0)
   ruby-debug19

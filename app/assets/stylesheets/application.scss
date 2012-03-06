@@ -13,9 +13,7 @@
         margin-top: 10px !important;
     }
 
-    .row.right {
-        clear: both;
-    }
+    .row.right { clear: both; }
 
     strong {
         display: block;
@@ -126,9 +124,8 @@ th,td {
 /* useful for single-button forms */
 form.inline { display: inline-block; }
 
-.invisible {
-    visibility: hidden;
-}
+.invisible { visibility: hidden; }
+.hidden { display: none; }
 
 table th {
     cursor: default;

@@ -15,7 +15,12 @@ $(document).ajaxError (e, transport, status, exception) ->
             for msg in messages
                 errorBucket.append("<div class=\"alert-box error\">#{msg}</div>")
 
-$(document).ajaxSuccess (e, transport, status) ->
+$(document).ajaxSuccess (e, transport) ->
+    # If a redirect header is found, redirect!
+    location = transport.getResponseHeader('location')
+    console.log(location)
+    #window.location.reload() if location?
+
     response = $.parseJSON(transport.responseText)
     console.log(response)
     if response? and errorBucket = $('#global-errors')

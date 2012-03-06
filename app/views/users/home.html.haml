@@ -3,8 +3,7 @@
   %p= link_to 'Edit User Profile', edit_user_registration_path
 
   %p
-  = "You have no teams right now. Please contact a beta administrator for access to a testing league." if @teams.empty?
-  - if @teams.first
+  - if @teams && !@teams.empty?
     - @teams.each do |t|
       .panel
         %p
@@ -21,3 +20,10 @@
           - unless t.league.draft.nil? || t.league.draft.status === :finished
             = link_to 'Go to The Draft',  "#{draft_url(:subdomain => t.league.slug)}", :class => 'small nice blue button radius'
             = link_to 'Set AutoPick Order', auto_pick_url, :class => 'small nice black button radius'
+  - elsif current_user.leagues.size > 0
+    - league = current_user.leagues.first
+    %h5= league.name
+    = link_to 'Edit', edit_league_path(league)
+  - else
+    = link_to 'Create New League', new_league_path, :class => 'small nice blue button radius'
+    /= link_to 'Join A League', league_path, :class => 'small nice black button radius'

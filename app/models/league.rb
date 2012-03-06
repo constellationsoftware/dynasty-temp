@@ -15,6 +15,14 @@ class League < ActiveRecord::Base
     #  requires :attribute, :name, :size
     belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
 
+    validates_presence_of :name, :size
+    validates_uniqueness_of :name
+    validates_format_of :name, :with => /^[[:alnum:] ]+$/, :on => :create
+    validates_inclusion_of :size, :in => Settings.leagues.sizes
+    validates_length_of :password,
+        :minimum => Settings.leagues.password_min_length,
+        :maximum => Settings.leagues.password_max_length
+
     # gets the active draft (if any)
     def draft
         self.drafts.first

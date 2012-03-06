@@ -8,6 +8,7 @@ gem 'activesupport', '~> 3.2.0'
 gem 'execjs'
 gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
+gem 'rails_config'
 
 # AR Improvements
 gem 'squeel'

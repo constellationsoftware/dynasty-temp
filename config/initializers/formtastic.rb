@@ -79,6 +79,8 @@
 # specifying that class here.  Defaults to SemanticFormBuilder.
 # Formtastic::SemanticFormHelper.builder = MyCustomBuilder
 
+Formtastic::FormBuilder.priority_countries = ['United States', 'United Kingdom', 'Canada']
+
 ##
 # Monkey patch to stop adding class "label" to label elements
 #
@@ -87,7 +89,7 @@ module Formtastic
         module Base
             module Labelling
                 def label_html_options
-                    # opts = options_for_label(options) # TODO
+                    # opts = options_for_label(options)
                     opts = {}
                     opts[:for] ||= input_html_options[:id]
                     opts[:class] = [opts[:class]]
