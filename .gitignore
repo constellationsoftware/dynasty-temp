@@ -12,7 +12,6 @@ tmp
 *.sqlite3
 public/draft/resources/.sass-cache/
 .sass-cache/
-vendor/assets/javascripts/extjs/resources/sass/.sass-cache/
 encodings.xml
 app/views/layouts/application.html.erb
 .idea/*
@@ -24,7 +23,6 @@ vendor/cache/*
 .idea/dictionaries/benjaminmurphy.xml
 .idea/dictionaries/Nick.xml
 .idea/inspectionProfiles/Project_Default.xml
-.idea/inspectionProfiles/profiles_settings.xml
 
 config/database.yml
 config/domain.yml
@@ -36,6 +34,3 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 public/assets/*
-
-Dynasty.esproj
-bundler_stubs
