@@ -1,6 +1,7 @@
 Ext.define('DynastyDraft.store.PlayerSearch', {
     extend: 'Ext.data.Store',
 
+    requires: 'Ext.data.proxy.Rest',
     model: 'DynastyDraft.model.Player',
     remoteSort: true,
     remoteFilter: true,

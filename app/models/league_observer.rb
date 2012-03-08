@@ -1,13 +1,5 @@
 class LeagueObserver < ActiveRecord::Observer
-
-
-    def before_save(league)
-        #league.name = league.name
+    def before_update(league)
+        league.team_count = league.teams.size
     end
-    #def after_create(model)
-    #    1.times do
-    #       model.drafts.create
-    #       model.teams.picks.update
-    #    end  
-    #end
 end

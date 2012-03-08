@@ -50,13 +50,14 @@ module Dynasty
 
         # Enable the asset pipeline
         unless Rails.env == 'testing'
-          config.assets.enabled = true
-          config.serve_static_assets = true
-          config.assets.compile = true
+            config.assets.enabled = true
+            config.serve_static_assets = true
+            config.assets.compile = true
         else
-          config.assets.enabled = false
-          config.serve_static_assets = true
-          config.assets.compile = false
+            config.assets.enabled = false
+            config.serve_static_assets = true
+            config.assets.compile = false
+            config.assets.paths += File.join(Rails.root, 'vendor', 'assets', 'images')
         end
 
         # Compass integration

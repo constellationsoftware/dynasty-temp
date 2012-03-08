@@ -1,6 +1,7 @@
 Ext.define('DynastyDraft.controller.RecommendedPicks', {
     extend: 'Ext.app.Controller',
 
+    requires: 'DynastyDraft.store.PlayerSearch',
     stores: [ 'RecommendedPicks' ],
     views: [ 'RecommendedPicks', 'NewPlayerDialog' ],
 

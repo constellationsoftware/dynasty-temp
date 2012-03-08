@@ -71,4 +71,8 @@ class User < ActiveRecord::Base
     def role_symbols
         roles.map(&:to_sym)
     end
+
+    def full_name
+        "#{self.first_name} #{self.last_name}"
+    end
 end

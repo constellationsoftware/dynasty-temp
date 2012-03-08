@@ -23,6 +23,12 @@ class League < ActiveRecord::Base
         :minimum => Settings.leagues.password_min_length,
         :maximum => Settings.leagues.password_max_length
 
+    scope :with_manager, joins{ manager }.includes{ manager }
+    scope :with_teams, joins{ teams }.includes{ teams }
+    scope :filter_by_name, lambda{ |league_name|
+        where{ name =~ "#{league_name}%" }
+    }
+
     # gets the active draft (if any)
     def draft
         self.drafts.first

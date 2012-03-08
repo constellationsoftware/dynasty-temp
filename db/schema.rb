@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120306134333) do
+ActiveRecord::Schema.define(:version => 20120308213126) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -923,8 +923,10 @@ ActiveRecord::Schema.define(:version => 20120306134333) do
     t.integer  "default_balance_cents", :limit => 8,  :default => 0,    :null => false
     t.boolean  "public",                              :default => true
     t.string   "password",              :limit => 32
+    t.integer  "team_count"
   end
 
+  add_index "dynasty_leagues", ["id", "name", "size", "team_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
@@ -1257,29 +1259,6 @@ ActiveRecord::Schema.define(:version => 20120306134333) do
   add_index "events", ["event_key"], :name => "IDX_events_1"
   add_index "events", ["publisher_id"], :name => "IDX_FK_eve_pub_id__pub_id"
   add_index "events", ["site_id"], :name => "IDX_FK_eve_sit_id__sit_id"
-
-  create_table "events_copy", :force => true do |t|
-    t.string   "event_key",             :limit => 100, :null => false
-    t.integer  "publisher_id",                         :null => false
-    t.datetime "start_date_time"
-    t.integer  "site_id"
-    t.string   "site_alignment",        :limit => 100
-    t.string   "event_status",          :limit => 100
-    t.string   "duration",              :limit => 100
-    t.string   "attendance",            :limit => 100
-    t.datetime "last_update"
-    t.string   "event_number",          :limit => 32
-    t.string   "round_number",          :limit => 32
-    t.string   "time_certainty",        :limit => 100
-    t.string   "broadcast_listing"
-    t.datetime "start_date_time_local"
-    t.string   "medal_event",           :limit => 100
-    t.string   "series_index",          :limit => 40
-  end
-
-  add_index "events_copy", ["event_key"], :name => "IDX_events_1"
-  add_index "events_copy", ["publisher_id"], :name => "IDX_FK_eve_pub_id__pub_id"
-  add_index "events_copy", ["site_id"], :name => "IDX_FK_eve_sit_id__sit_id"
 
   create_table "events_documents", :id => false, :force => true do |t|
     t.integer "event_id",    :null => false
