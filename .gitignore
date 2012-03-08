@@ -12,6 +12,7 @@ tmp
 *.sqlite3
 public/draft/resources/.sass-cache/
 .sass-cache/
+vendor/assets/javascripts/extjs/resources/sass/.sass-cache/
 encodings.xml
 app/views/layouts/application.html.erb
 .idea/*
