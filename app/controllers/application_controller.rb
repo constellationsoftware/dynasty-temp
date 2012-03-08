@@ -67,6 +67,8 @@ class ApplicationController < ActionController::Base
 
         def get_alert_style_by_type(type)
             case type
+                when :notice
+                    'notice'
                 when :success
                     'success'
                 when :warning, :alert

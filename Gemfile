@@ -7,8 +7,8 @@ gem 'mysql2'
 gem 'activesupport', '~> 3.2.0'
 gem 'execjs'
 gem 'therubyracer'
-# gem 'activeadmin'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
+gem 'rails_config'
 
 # AR Improvements
 gem 'squeel'
@@ -21,12 +21,15 @@ gem 'uuidtools'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'select_with_include'
+gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 # Templating & View Helpers
 gem 'haml'
 gem 'jquery-rails'
 gem 'formtastic'
 gem 'jbuilder'
+gem 'gravtastic' # gravatar support
+gem 'country_select'
 
 # Authentication & Permissions
 # gem 'authlogic'
@@ -52,9 +55,9 @@ gem 'capistrano-ext'
 gem 'andand'
 gem 'coffee-filter'
 gem 'hpricot'
-gem 'money', :git => 'git://github.com/FOMNick/money.git'
 gem 'ruby_parser'
 gem 'timecop'
+gem 'traceroute'
 
 group :development do
     # Debugging & Development
@@ -79,8 +82,9 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-
     gem 'sass-rails', '~> 3.2.3'
+    #gem 'compass-rails'
+    #gem 'extjs-rails-assets'
     gem 'coffee-rails', '~> 3.2.1'
     gem 'uglifier', '>=1.0.3'
     gem 'zurb-foundation'

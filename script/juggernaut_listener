@@ -1,5 +1,16 @@
 #!/usr/bin/env ruby
 require File.expand_path('../../config/environment',  __FILE__)
 
-puts "Starting Juggernaut client listener"
+=begin
+puts 'Loading DynastyEvent records'
+%W[ new_trade_request trade_request_update waiver_wire_update win loss ].each_with_index do |event, i|
+    DynastyEvent.new(:id => (i + 1), :name => event).save unless DynastyEvent.find_by_id(i + 1)
+end
+=end
+
+# TODO: This "solution" to dump our session count isn't preferable. If this job crashes and is able to recover, we don't want to flush these.
+puts 'Flushing Juggernaut clients'
+JuggernautClient.all.each{ |client| client.destroy }
+
+puts 'Starting Juggernaut client listener'
 JuggernautClient.subscribe

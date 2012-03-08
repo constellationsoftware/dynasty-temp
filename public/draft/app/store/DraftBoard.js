@@ -1,7 +1,7 @@
 Ext.define('DynastyDraft.store.DraftBoard', {
     extend: 'Ext.data.Store',
 
-    model: 'DynastyDraft.model.Player',
+    model: 'DynastyDraft.model.DraftedPlayers',
     groupField: 'drafted_team',
 
     proxy: {
@@ -16,7 +16,11 @@ Ext.define('DynastyDraft.store.DraftBoard', {
             root: 'players'
         },
         extraParams: {
-            drafted: true
-        }
+            drafted: true,
+            with_name: true,
+            with_points: true,
+            with_contract: true,
+            with_position: true
+       }
     }
 });

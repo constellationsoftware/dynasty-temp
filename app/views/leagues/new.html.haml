@@ -1,3 +1,7 @@
-%h1 New league
-= render 'form'
-= link_to 'Back', leagues_path
+= stylesheet_link_tag 'forms'
+= semantic_form_for @league, :url => league_path, :html => { :class => 'nice' } do |f|
+  .row.twelve.columns.centered
+    .panel
+      %h3 Create a league
+      = render :partial => 'form', :locals => { :form => f }
+      = f.submit 'Submit', :class => 'nice small radius blue button'

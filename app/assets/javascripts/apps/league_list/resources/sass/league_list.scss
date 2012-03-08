@@ -1,0 +1,66 @@
+$include-default: true; // DO NOT CHANGE
+$theme-name: 'dynasty';
+
+// Insert your custom variables here.
+$font-family: 'Droid Sans', sans-serif;
+
+/********************************************************************************
+ * COLORS
+ *******************************************************************************/
+
+//$base-color: #aa0000
+//$base-color: #111111;
+//$base-font-size: 18px;
+//$base-line-height: 36px;
+//$font-size  : 24px !default;
+//$window-border-radius: 50px;
+$row-disabled-color: #CCC;
+$grid-row-cell-font: normal 13px $font-family !default;
+$grid-cell-inner-padding: 0px 3px !default;
+$picks-scroller-mask-color: #FFF;
+$loadmask-background: #333;
+$loadmask-opacity: 0.7;
+//$grid-row-padding: 10px !default;
+//$grid-row-padding: 15px !default;
+//$grid-row-body-padding: 15px !default;
+
+@import "compass/css3";
+@import "blueprint/typography";
+
+@import 'ext4/default/functions';
+@import 'ext4/default/variables';
+@import 'ext4/default/mixins';
+
+//core
+@import 'ext4/default/core';
+
+//layout
+@import 'ext4/default/layout/layout';
+
+//utils
+@import 'ext4/default/util/scroller';
+@import 'ext4/default/util/focus';
+
+//widgets
+@import 'ext4/default/widgets';
+
+@include extjs-menu;
+@include extjs-grid;
+@include extjs-form;
+    @include extjs-form-field;
+    @include extjs-form-checkboxfield;
+@include extjs-panel;
+@include extjs-qtip;
+@include extjs-slider;
+@include extjs-toolbar;
+@include extjs-layout;
+
+// This line changes the location of your images when creating UIs to be relative instead of within the ExtJS directory.
+// You MUST set this to true/string value if you are creating new UIs + supporting legacy browsers.
+// This only applies to new UIs. It does not apply to default component images (i.e. when changing $base-color)
+// The value can either be true, in which case the image path will be "../images/"
+// or a string, of where the path is
+$relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" when true
+
+h2 { font-size: 3.5rem; }
+#league_list { width: 100%; }

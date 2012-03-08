@@ -1,0 +1,5 @@
+--- # League settings
+leagues:
+    sizes: [ 10, 12, 14, 16 ]
+    password_min_length: 6
+    password_max_length: 32

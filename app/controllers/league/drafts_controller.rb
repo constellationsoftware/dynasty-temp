@@ -37,8 +37,7 @@ class League::DraftsController < SubdomainController
         end
     end
 
-    # TODO: might want to notify and redirect users taking part in the draft IF we're ever going to
-    # use this in production.
+    # TODO: might want to notify and redirect users taking part in the draft IF we're ever going to use this in production.
     def finish
         finish! do |format|
             @draft.advance(true)

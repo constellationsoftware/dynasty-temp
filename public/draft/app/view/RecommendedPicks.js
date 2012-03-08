@@ -14,7 +14,7 @@ Ext.define('DynastyDraft.view.RecommendedPicks', {
                                 '<span class="name">{full_name}</span> ({position})',
                                 '<span class="bye_week">Bye: {bye_week}</span>',
                             '</div>',
-                            '<div class="salary">{contract_amount:usMoney}</div>',
+                            '<div class="salary">{contract:usMoney}</div>',
                             '<div class="stats">',
                                 '<ul class="stat_columns">',
                                     '<li class="defensive_points">',

@@ -17,17 +17,15 @@ Ext.define('DynastyDraft.model.Player', {
         { name: 'dollars_per_point', allowBlank: false, type: 'float', defaultValue: 0, convert: function(value, record) {
             return record.get('contract') / record.get('points')
         } },
-/*
-        { name: 'defensive_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'fumbles_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'passing_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'rushing_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'sacks_against_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'scoring_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'special_teams_points', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'games_played', allowBlank: false, type: 'int', defaultValue: 0 },
-        { name: 'consistency', allowBlank: false, type: 'int', defaultValue: 0 },
-*/
+        { name: 'defensive_points', allowBlank: false, type: 'int', mapping: 'points.defensive_points', defaultValue: 0 },
+        { name: 'fumbles_points', allowBlank: false, type: 'int', mapping: 'points.fumbles_points', defaultValue: 0 },
+        { name: 'passing_points', allowBlank: false, type: 'int', mapping: 'points.passing_points', defaultValue: 0 },
+        { name: 'rushing_points', allowBlank: false, type: 'int', mapping: 'points.rushing_points', defaultValue: 0 },
+        { name: 'sacks_against_points', allowBlank: false, type: 'int', mapping: 'points.sacks_against_points', defaultValue: 0 },
+        { name: 'scoring_points', allowBlank: false, type: 'int', mapping: 'points.scoring_points', defaultValue: 0 },
+        { name: 'special_teams_points', allowBlank: false, type: 'int', mapping: 'points.special_teams_points', defaultValue: 0 },
+        { name: 'games_played', allowBlank: false, type: 'int', mapping: 'points.games_played', defaultValue: 0 },
+        { name: 'consistency', allowBlank: false, type: 'int', mapping: 'points.consistency', defaultValue: 0 },
         { name: 'available', allowBlank: true, type: 'boolean', default: true }
     ],
 

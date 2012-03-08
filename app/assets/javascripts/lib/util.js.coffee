@@ -13,7 +13,20 @@ $(document).ajaxError (e, transport, status, exception) ->
     if response? and errorBucket = $('#global-errors')
         for own attr, messages of response.errors
             for msg in messages
-                errorBucket.append("<div class=\"alert-box error\">Cannot set #{attr}: #{msg}</div>")
+                errorBucket.append("<div class=\"alert-box error\">#{msg}</div>")
+
+$(document).ajaxSuccess (e, transport) ->
+    # If a redirect header is found, redirect!
+    location = transport.getResponseHeader('location')
+    console.log(location)
+    #window.location.reload() if location?
+
+    response = $.parseJSON(transport.responseText)
+    console.log(response)
+    if response? and errorBucket = $('#global-errors')
+        for own attr, messages of response.errors
+            for msg in messages
+                errorBucket.append("<div class=\"alert-box error\">#{msg}</div>")
 
 # clear out all the error boxes prior to doing an Ajax call
 $(document).ajaxSend () ->
