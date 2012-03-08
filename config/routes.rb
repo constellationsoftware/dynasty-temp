@@ -5,6 +5,36 @@ Dynasty::Application.routes.draw do
         get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
     end
 
+    resource :mockups do
+        get :index
+        get :login
+
+
+
+        get :player_research
+        get :player_detail
+
+        get :signup
+        get :signup_2
+        get :signup_3
+
+        get :user_control_panel
+        get :team_control_panel
+
+        get :player_news
+        get :headlines
+        get :transactions_contracts
+        get :depth_charts
+        get :featured_articles
+
+        get :rules
+        get :terms_conditions
+        get :privacy
+        get :contact
+
+    end
+
+
     scope :league, :module => 'league', :constraints => SubdomainConstraint do
         resources :auto_picks do
             collection do

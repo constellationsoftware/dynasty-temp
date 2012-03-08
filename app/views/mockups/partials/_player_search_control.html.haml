@@ -1,0 +1,139 @@
+.row
+  %ul.nav-bar
+    %li
+      %label Player Name
+    %li
+      %p
+        %input#playerSearch.input-text{:type => "text"}
+    %li
+      %p
+        %a.button.small.radius.white Search
+    %li
+
+.row
+  %dl.nice.contained.tabs
+    %dd
+      %a{:href => "#nice1", :class => "active"}
+        Browse By Name
+    %dd
+      %a{:href => "#nice2"}
+        Browse By Position
+    %dd
+      %a{:href => "#nice3"}
+        Browse By Team Roster
+  %ul.nice.tabs-content.contained
+    %li#nice1Tab.active
+      %form{:action => "/players/search", :method => "get", :name => "lastNameSearchForm"}
+        %input{:name => "category", :type => "hidden", :value => "lastName"}
+          %input{:name => "filter", :type => "hidden", :value => "null"}
+            %input{:name => "playerType", :type => "hidden", :value => "current"}
+              %p.alphalinks
+                |
+                %a{:href => ""} A
+                |
+                %a{:href => ""} B
+                |
+                %a{:href => ""} C
+                |
+                %a{:href => ""} D
+                |
+                %a{:href => ""} E
+                |
+                %a{:href => ""} F
+                |
+                %a{:href => ""} G
+                |
+                %a{:href => ""} H
+                |
+                %a{:href => ""} I
+                |
+                %a{:href => ""} J
+                |
+                %a{:href => ""} K
+                |
+                %a{:href => ""} L
+                |
+                %a{:href => ""} M
+                |
+                %a{:href => ""} N
+                |
+                %a{:href => ""} O
+                |
+                %a{:href => ""} P
+                |
+                %a{:href => ""} Q
+                |
+                %a{:href => ""} R
+                |
+                %a{:href => ""} S
+                |
+                %a{:href => ""} T
+                |
+                %a{:href => ""} U
+                |
+                %a{:href => ""} V
+                |
+                %a{:href => ""} W
+                |
+                %a{:href => ""} X
+                |
+                %a{:href => ""} Y
+                |
+                %a{:href => ""} Z
+    %li#nice2Tab
+      %a QB
+      |
+      %a RB
+      |
+      %a WR
+      |
+      %a TE
+      |
+      %a OL
+      |
+      %a DL
+      |
+      %a LB
+      |
+      %a DB
+      |
+      %a K
+      |
+      %a P
+
+    %li#nice3Tab
+      %p
+        %select.teamroster{:name => "filter", :onchange => "document.forms['teamQuickSearchForm'].submit();"}
+          %option Select a Team
+          %option{:value => "Arizona Cardinals   "} Arizona Cardinals
+          %option{:value => "Atlanta Falcons     "} Atlanta Falcons
+          %option{:value => "Baltimore Ravens    "} Baltimore Ravens
+          %option{:value => "Buffalo Bills       "} Buffalo Bills
+          %option{:value => "Carolina Panthers   "} Carolina Panthers
+          %option{:value => "Chicago Bears       "} Chicago Bears
+          %option{:value => "Cincinnati Bengals  "} Cincinnati Bengals
+          %option{:value => "Cleveland Browns    "} Cleveland Browns
+          %option{:value => "Dallas Cowboys      "} Dallas Cowboys
+          %option{:value => "Denver Broncos      "} Denver Broncos
+          %option{:value => "Detroit Lions       "} Detroit Lions
+          %option{:value => "Green Bay Packers   "} Green Bay Packers
+          %option{:value => "Houston Texans      "} Houston Texans
+          %option{:value => "Indianapolis Colts  "} Indianapolis Colts
+          %option{:value => "Jacksonville Jaguars"} Jacksonville Jaguars
+          %option{:value => "Kansas City Chiefs  "} Kansas City Chiefs
+          %option{:value => "Miami Dolphins      "} Miami Dolphins
+          %option{:value => "Minnesota Vikings   "} Minnesota Vikings
+          %option{:value => "New England Patriots"} New England Patriots
+          %option{:value => "New Orleans Saints  "} New Orleans Saints
+          %option{:value => "New York Giants     "} New York Giants
+          %option{:value => "New York Jets       "} New York Jets
+          %option{:value => "Oakland Raiders     "} Oakland Raiders
+          %option{:value => "Philadelphia Eagles "} Philadelphia Eagles
+          %option{:value => "Pittsburgh Steelers "} Pittsburgh Steelers
+          %option{:value => "San Diego Chargers  "} San Diego Chargers
+          %option{:value => "San Francisco 49ers "} San Francisco 49ers
+          %option{:value => "Seattle Seahawks    "} Seattle Seahawks
+          %option{:value => "St. Louis Rams      "} St. Louis Rams
+          %option{:value => "Tampa Bay Buccaneers"} Tampa Bay Buccaneers
+          %option{:value => "Tennessee Titans    "} Tennessee Titans
+          %option{:value => "Washington Redskins "} Washington Redskins

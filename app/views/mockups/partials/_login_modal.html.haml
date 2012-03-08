@@ -1,0 +1,23 @@
+/ Modal Partial
+#loginModal.reveal-modal
+  .row.twelve.columns.centered
+    .row
+      .six.columns
+        %h5 Sign In
+        = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          = f.label :email
+          = f.email_field :email
+          %br
+          = f.label :password
+          = f.password_field :password
+          %br
+          = f.submit "Sign in" , :class => "nice large radius blue button"
+
+      .six.columns
+        %h5 New User? Sign up!
+        %p Creating an account only takes a few minutes. Get started now!
+        %a{:href => "/mockups/signup", :class => "nice large radius green button"} Create an Account!
+
+  %a.close-reveal-modal
+    X
+/ Modal Partial End

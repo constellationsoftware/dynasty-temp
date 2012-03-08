@@ -1,0 +1,13 @@
+%script{:src => "//asset0.zendesk.com/external/zenbox/v2.4/zenbox.js", :type => "text/javascript"}
+%style{:media => "screen, projection", :type => "text/css"}
+  @import url(//asset0.zendesk.com/external/zenbox/v2.4/zenbox.css);
+:javascript
+  if (typeof(Zenbox) !== "undefined") {
+    Zenbox.init({
+      dropboxID:   "20043811",
+      url:         "https://dynastyowner.zendesk.com",
+      tabID:       "support",
+      tabColor:    "black",
+      tabPosition: "Left"
+    });
+  }

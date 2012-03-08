@@ -13,7 +13,7 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
+  %title= @title
 
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team
@@ -25,40 +25,23 @@
   = csrf_meta_tag
 
 %body
-  #dynasty-navbar.container
-    .row
-      .three.columns
-        %h1
-          = image_tag 'navbar_logo.png'
-          = yield :navbar_left
-      .nine.columns.hide-on-phones.clean.right
-        = yield :navbar_right
-        = link_to "Home", root_url, :class => "button nice small blue"
+  /*Dynasty Navigation Partial
+  = render :partial => "mockups/partials/dynasty_nav"
+  .row
+    .twelve.columns
+      #global-errors
+        - flash.each do |type, msg|
+          %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+  /* Main Page Content
+  .row
+    .container.main_yield
+      .row
+        .sub_header
+          %h4.white= @title
+      = yield
 
-  /*Primary Page Header Bar
-  .container
+  / Modal Windows
+  = render :partial => "mockups/partials/login_modal"
+  = render :partial => "mockups/partials/zendesk"
 
 
-    .row
-      .nine.columns
-        #global-errors
-          - flash.each do |type, msg|
-            %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
-        = yield
-
-      .three.columns
-        - if user_signed_in?
-          .panel
-            .alert-box.success
-              Signed in as
-              = current_user.name
-            .alert-box.error
-              Not you?
-              = link_to "Sign Out", destroy_user_session_path
-
-        = yield :sidebar
-        - unless @team
-          = link_to 'Reset To Season Start',
-            reset_clock_path,
-            :remote => true,
-            :class => 'nice button black small radius'
