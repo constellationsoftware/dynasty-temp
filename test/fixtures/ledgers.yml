@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  description: MyText
-  amount: 1
-  account: 1
-
-two:
-  description: MyText
-  amount: 1
-  account: 1
+# one:
+#   description: MyText
+#   amount: 1
+#   account: 1
+# 
+# two:
+#   description: MyText
+#   amount: 1
+#   account: 1

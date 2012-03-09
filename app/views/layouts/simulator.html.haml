@@ -1,0 +1,83 @@
+!!! 5
+/ paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+/[if lt IE 7 ] <html class=\"ie6\" lang=\"en\">
+/[if IE 7 ]    <html class=\"ie7\" lang=\"en\">
+/[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
+/[if IE 9 ]    <html class=\"ie9\" lang=\"en\">
+/[if (gt IE 9)|!(IE)]
+
+%head
+  %meta{ :charset => "utf-8" }
+  -# Uncomment to make IE8 render like IE7
+  -# meta http-equiv="X-UA-Compatible" content="IE=7"
+  -# Set the viewport width to device width for mobile
+  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+  %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
+
+  -# drop the client's UUID in here for use with socket subscriptions and the like
+  - if @team
+    :javascript
+      window.CLIENT_ID = '#{@team.uuid}';
+
+  = stylesheet_link_tag "application" # Included CSS Files
+  = javascript_include_tag "application" # Included JS Files
+  = javascript_include_tag "simulation"
+  = csrf_meta_tag
+
+%body
+  #dynasty-navbar.container
+    .row
+      .three.columns
+        %h1
+          = image_tag 'navbar_logo.png'
+          = yield :navbar_left
+      .nine.columns.hide-on-phones.clean.right
+        = yield :navbar_right
+        = link_to "Home", root_url, :class => "button nice small blue"
+
+  /*Primary Page Header Bar
+  .container
+
+
+    .row
+      .nine.columns
+        #global-errors
+          - flash.each do |type, msg|
+            %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+        = yield
+
+      .three.columns
+        - if user_signed_in?
+          .panel
+            .alert-box.success
+              Signed in as
+              = current_user.name
+            .alert-box.error
+              Not you?
+              = link_to "Sign Out", destroy_user_session_path
+
+        = yield :sidebar
+        - unless @team
+          = link_to 'Next Week',
+            '',
+            :class => 'nice button black small radius',
+            :id => 'next_week'
+          %br
+          %br
+          = link_to 'Previous Week',
+            '',
+            :class => 'nice button black small radius',
+            :id => 'previous_week'
+          %br
+          %br
+          = link_to 'Reset To Season Start',
+            '',
+            :class => 'nice button black small radius',
+            :id => 'reset_week'
+          %br
+          %br
+          = link_to 'Sync',
+            '',
+            :class => 'nice button black small radius',
+            :id => 'sync_week'

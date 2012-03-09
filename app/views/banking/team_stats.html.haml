@@ -1,28 +1,17 @@
+:javascript
+  var team_id = "#{@team_id}";
+%h2
+  Season Week:
+  %span{ :id => 'season_week' }
+    0
 %h2
   Team:
   = @team_id
 %h2
-  Account Balance:
-  = "$#{@account_balance}.00"
+  Team Balance:
+  %span{ :id => 'team_account_balance' }
+    = "$#{@account_balance}.00"
   
 %h3
   Team Transactions
-  %table{ :width => 400 }
-    %tr
-      %td
-      %td
-        Description
-      %td
-        Amount
-      %td
-        Date
-    - @team_transactions.each_with_index do |item, index|
-      %tr
-        %td
-          = index + 1
-        %td
-          = item['description']
-        %td
-          = item['amount']
-        %td
-          = item['created_at']
+  %table{ :id => 'team_ledger', :width => 500 }

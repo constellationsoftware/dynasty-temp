@@ -12,31 +12,59 @@ Then /^the user will see "([^"]*)"$/ do |item|
   page.should have_xpath('//*', :text => Regexp.new(/#{item}:[\s]+\$*[\d]+/))
 end
 
+# simulation counter class tests
+# these can be moved to traditional unit tests if required
 
-When /^a simple transaction is posted$/ do
-  Ledger.post( :description => 'Simple transaction test', :entries => [[10,0],[-10,1]] )
+Given /^a "([^"]*)" set to (\d+)$/ do |file, count|
+  SimCounter.set(file, count)
 end
 
-Then /^the ledger stays balanced$/ do
-  assert_equal Ledger.balanced?, true
+When /^the "([^"]*)" is advanced (\d+)$/ do |file, inc|
+  SimCounter.advance(file, inc)
 end
 
-When /^a payroll transaction is posted for \$(\d+) for team (\d+) for week (\d+)$/ do |amount, team, week|
-  Ledger.post_payroll( amount, team, week )
+Then /^the "([^"]*)" is set to (\d+)$/ do |file, expected_count|
+  assert_equal SimCounter.count(file).to_i, expected_count.to_i
 end
 
-When /^a dynasty dollar transfer is posted for \$(\d+) from team (\d+) to team (\d+)$/ do |amount, team_from, team_to|
-  Ledger.post_dynasty_dollar_transfer(amount, team_from, team_to)
+When /^the "([^"]*)" is retreated (\d+)$/ do |file, dec|
+  SimCounter.retreat(file, dec)
 end
 
-When /^a dynasty dollar purchase is posted for \$(\d+) to team (\d+)$/ do |amount, team|
-  Ledger.post_dynasty_dollar_purchase(amount, team)
+When /^the "([^"]*)" is reset$/ do |file|
+  SimCounter.reset(file)
 end
 
-When /^a revenue share transaction is posted for \$(\d+) to team (\d+)$/ do |amount, team|
-  Ledger.post_revenue_share(amount, team)
+# simulation counter tests
+Given /^a weekly counter$/ do
+  visit('/banking/counter')
 end
 
-When /^a new team transaction is posted for \$(\d+) for team (\d+)$/ do |amount, team|
-  Ledger.post_new_team(amount, team)
+When /^it's reset$/ do
+  visit('/banking/counter_reset')
 end
+
+Then /^it returns (\d+)$/ do |count|
+  page.should have_content count.to_s
+end
+
+When /^the counter set to (\d+)$/ do |count|
+  visit("/banking/counter_set/#{count}")
+end
+
+When /^the counter is advanced (\d+)$/ do |count|
+  visit("/banking/counter_advance/#{count}")
+end
+
+When /^the counter is retreated (\d+)$/ do |count|
+  visit("/banking/counter_retreat/#{count}")
+end
+
+When /^the counter is incremented$/ do
+  visit("/banking/counter_advance")
+end
+
+When /^the counter is decremented$/ do
+  visit("/banking/counter_retreat")
+end
+
