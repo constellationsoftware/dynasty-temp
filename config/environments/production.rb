@@ -73,4 +73,3 @@ end
 Pusher.app_id = '10192'
 Pusher.key = '6e855396056bdf519e1a'
 Pusher.secret = 'da06ccd5289c0145a263'
-

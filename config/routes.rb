@@ -1,4 +1,8 @@
 Dynasty::Application.routes.draw do
+    if Rails.env.development?
+        mount UserMailer::Preview => 'mail_view'
+    end
+
     resources :messages, :schedules, :photos, :dynasty_player_contracts
 
     # REFACTOR: This is inelegant. I couldn't figure out the magic combination of options for 'devise_for' with as poorly documented as it is, but we should figure it out eventually
