@@ -15,7 +15,7 @@ background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   
 }
 .main_yield {
-  padding-top: 75px;
+  padding-top: 95px;
   background-color: rgba(100%, 100%, 100%, .85);
   margin-left: 50px;
   margin-right: 50px;
@@ -71,13 +71,22 @@ padding-top: 75px;
 .stack > *:not(.active) { display: none;}
 #dynasty-navbar {
     background-image: url("/assets/navbar_bg.png");
+    height: 83px;
     background-repeat: repeat-x;
     background-color: #000055;
     box-shadow: 10px 10px 15px rgba(0,0,0,1);
 
 }
+
+#nav_top_row {
+  font-weight: bold;
+  color: #ffffff;
+}
+.right-aligned {
+  text-align: right;
+  float: right;
+}
 .brand {
-  background-image: url("/assets/navbar_logo.png");
   padding: 0px;
   display: block;
   width: 201px;

@@ -1,10 +1,15 @@
+
 #dynasty-navbar.fixed_nav
   .row
-    .twelve.columns
-      %ul.nav-bar
+    .one
+    .two.columns
+      %a{:href => "/mockups/"}
+        %img{:src => "/assets/logo_med.png"}
+    .nine.columns.right#nav_top_row
+      %ul.nav-bar.right
         %li
-          %a{:href => "/mockups/", :class => "brand"}
-        %li.has-flyout
+
+        %li.has-flyout.right
           %a{:href => "#", :class => "main"}Research
           %a{:href => "#", :class => "flyout-toggle"}
             %span
@@ -24,7 +29,7 @@
                 %a{:href => "http://blog.dynastyowner.com", :target => "_blank"} Featured Articles
 
 
-        %li.has-flyout
+        %li.has-flyout.right
           %a{:href => "#", :class => "main"}Support
           %a{:href => "#", :class => "flyout-toggle"}
             %span
@@ -43,7 +48,7 @@
           %li
             %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"} Not Signed In
         - if user_signed_in?
-          %li.has-flyout
+          %li.has-flyout.right
             %a{:href => "#", :class => "main"}
               Signed in as:
               = current_user.email
