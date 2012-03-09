@@ -46,12 +46,12 @@
           %li.has-flyout
             %a{:href => "#", :class => "main"}
               Signed in as:
-              = current_user.name
+              = current_user.email
             %a{:href => "#", :class => "flyout-toggle"}
               %span
             %div.flyout.small.panel
               %dl
                 %dd
-                  = link_to "Sign Out", destroy_user_session_path
+                  = link_to "Not you?", destroy_session_path(devise_mapping.singular), :method => :delete
                 %dd
                   %a{:href => "#"} Manage Account
