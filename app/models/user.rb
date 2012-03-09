@@ -52,7 +52,7 @@ class User < ActiveRecord::Base
     validates_presence_of :first_name, :last_name
 
     # ALWAYS add new roles add the end of this list
-    ROLES = %w[admin user team_owner league_founder league_commissioner]
+    ROLES = %w[admin user team_owner league_founder league_commissioner banker]
 
     def roles=(roles)
         self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum

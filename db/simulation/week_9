@@ -1,0 +1,7 @@
+week = '2000-03-04'
+week_number = 9
+
+(1..12).each do |i|
+  Ledger.post_payroll( i, i, week_number, :created_at => week )
+  Ledger.post_revenue_share( 5, i, 1, :created_at => week )
+end

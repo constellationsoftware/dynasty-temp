@@ -146,7 +146,31 @@ Dynasty::Application.routes.draw do
     match 'test_roles/admin' => 'test_roles#admin'
     match 'test_roles/league_founder' => 'test_roles#league_founder'
     match 'test_roles/league_commissioner' => 'test_roles#league_commissioner'
+    match 'test_roles/banker' => 'test_roles#banker'
 
+    # these are used with banking features
+    match 'banking/dynasty_stats' => 'banking#dynasty_stats'
+    match 'banking/team_stats/:id' => 'banking#team_stats'
+    match 'banking/league_stats/:id' => 'banking#league_stats'
+
+    # these are used for the banking simulation counter
+    match 'banking/counter' => 'banking#counter'
+    match 'banking/counter_reset' => 'banking#counter_reset'
+    match 'banking/counter_set/:count' => 'banking#counter_set'
+    match 'banking/counter_advance/:count' => 'banking#counter_advance'
+    match 'banking/counter_retreat/:count' => 'banking#counter_retreat'
+    match 'banking/counter_advance' => 'banking#counter_advance', :count => 1
+    match 'banking/counter_retreat' => 'banking#counter_retreat', :count => 1
+    match 'banking/team_balance/:id' => 'banking#team_balance'
+    match 'banking/team_ledger/:id' => 'banking#team_ledger'
+    match 'banking/goto_week/:week' => 'banking#goto_week'
+    match 'banking/league_balance/:id' => 'banking#league_balance'
+    match 'banking/total_dynasty_dollars' => 'banking#total_dynasty_dollars'
+    match 'banking/activity_table' => 'banking#activity_table'
+    match 'banking/balance_table' => 'banking#balance_table'
+    match 'banking/teams_balance_table/:id' => 'banking#teams_balance_table'
+    match 'banking/teams_balance_total/:id' => 'banking#teams_balance_total'
+    
     root :controller => :users, :action => :home
 
     # Sample of regular route:

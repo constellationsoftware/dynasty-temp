@@ -21,6 +21,10 @@ class TestRolesController < ApplicationController
     check_can :league_commissioner, :all
   end
   
+  def banker
+    check_can :banker, :all
+  end
+
   def check_can( one, two )
     if can? one, two
       render :text => 'SUCCESS'
