@@ -1,72 +1,56 @@
+= render :partial => "mockups/partials/team_search_control"
 .row
-  .three.columns
+  .three.columns.panel
+    List of Teams
+    %select.teamroster{:name => "filter", :onchange => "document.forms['teamQuickSearchForm'].submit();"}
+      %option Select a Team
+      %option{:value => "Arizona Cardinals   "} Arizona Cardinals
+      %option{:value => "Atlanta Falcons     "} Atlanta Falcons
+      %option{:value => "Baltimore Ravens    "} Baltimore Ravens
+      %option{:value => "Buffalo Bills       "} Buffalo Bills
+      %option{:value => "Carolina Panthers   "} Carolina Panthers
+      %option{:value => "Chicago Bears       "} Chicago Bears
+      %option{:value => "Cincinnati Bengals  "} Cincinnati Bengals
+      %option{:value => "Cleveland Browns    "} Cleveland Browns
+      %option{:value => "Dallas Cowboys      "} Dallas Cowboys
+      %option{:value => "Denver Broncos      "} Denver Broncos
+      %option{:value => "Detroit Lions       "} Detroit Lions
+      %option{:value => "Green Bay Packers   "} Green Bay Packers
+      %option{:value => "Houston Texans      "} Houston Texans
+      %option{:value => "Indianapolis Colts  "} Indianapolis Colts
+      %option{:value => "Jacksonville Jaguars"} Jacksonville Jaguars
+      %option{:value => "Kansas City Chiefs  "} Kansas City Chiefs
+      %option{:value => "Miami Dolphins      "} Miami Dolphins
+      %option{:value => "Minnesota Vikings   "} Minnesota Vikings
+      %option{:value => "New England Patriots"} New England Patriots
+      %option{:value => "New Orleans Saints  "} New Orleans Saints
+      %option{:value => "New York Giants     "} New York Giants
+      %option{:value => "New York Jets       "} New York Jets
+      %option{:value => "Oakland Raiders     "} Oakland Raiders
+      %option{:value => "Philadelphia Eagles "} Philadelphia Eagles
+      %option{:value => "Pittsburgh Steelers "} Pittsburgh Steelers
+      %option{:value => "San Diego Chargers  "} San Diego Chargers
+      %option{:value => "San Francisco 49ers "} San Francisco 49ers
+      %option{:value => "Seattle Seahawks    "} Seattle Seahawks
+      %option{:value => "St. Louis Rams      "} St. Louis Rams
+      %option{:value => "Tampa Bay Buccaneers"} Tampa Bay Buccaneers
+      %option{:value => "Tennessee Titans    "} Tennessee Titans
+      %option{:value => "Washington Redskins "} Washington Redskins
+
+.three.columns.panel
+  List of Teams
+  %select.teamroster{:name => "filter", :onchange => "document.forms['teamQuickSearchForm'].submit();"}
+    %option Sort By Division & Conference
+    %option{:value => "Arizona Cardinals   "}
+    %option{:value => "Atlanta Falcons     "} AFC East
+    %option{:value => "Baltimore Ravens    "} AFC North
+    %option{:value => "Buffalo Bills       "} AFC West
+    %option{:value => "Carolina Panthers   "} NFL South
+    %option{:value => "Atlanta Falcons     "} NFL East
+    %option{:value => "Baltimore Ravens    "} NFL North
+    %option{:value => "Buffalo Bills       "} NFL West
+    %option{:value => "Carolina Panthers   "} NFL South
+
+  .eight.columns
     = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-.row
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
-  .three.columns
-    = render :partial => "mockups/partials/depth_chart_team"
+
