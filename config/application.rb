@@ -1,7 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-#require 'rails-extjs-direct'
 if defined?(Bundler)
     Bundler.require *Rails.groups(:assets => %w(development test))
 end
@@ -82,8 +81,24 @@ module Dynasty
 
         config.generators do |g|
             g.template_engine :haml
-
         end
+
+        ##
+        # Actionmailer config including Mailgun settings
+        #
+        $MAILGUN_API_KEY = 'key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61'
+        config.action_mailer.delivery_method = :smtp
+        config.action_mailer.perform_deliveries = true
+        config.action_mailer.raise_delivery_errors = true
+        config.action_mailer.smtp_settings = {
+             :authentication => :plain,
+             :address => 'smtp.mailgun.org',
+             :port => 465,
+             :domain => 'dynastyowner.mailgun.org',
+             :user_name => 'postmaster',
+             :password => '86kuzjspp1u4',
+             :enable_starttls_auto => true
+        }
     end
 end
 

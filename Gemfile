@@ -30,6 +30,7 @@ gem 'formtastic'
 gem 'jbuilder'
 gem 'gravtastic' # gravatar support
 gem 'country_select'
+gem 'mail_view'
 
 # Authentication & Permissions
 # gem 'authlogic'
@@ -58,6 +59,8 @@ gem 'hpricot'
 gem 'ruby_parser'
 gem 'timecop'
 gem 'traceroute'
+gem 'rest-client'
+
 
 group :development do
     # Debugging & Development

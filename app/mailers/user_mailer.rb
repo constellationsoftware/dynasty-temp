@@ -1,14 +1,20 @@
 class UserMailer < ActionMailer::Base
-    #require 'rest_client'
+    layout 'email'
+    default :from => 'noreply@dynastyowner.mailgun.org'
 
-    #default from: "developers@dynastyowner.net"
-    #
-    #
-    #RestClient.post MAILGUN_API_URL+"/messages",
-    #               :from => "developers@dynastyowner.net",
-    #               :to => "bamurphymac@me.com",
-    #               :subject => "This is a test email.",
-    #               :text => "Text body",
-    #               :html => "<b>HTML</b> version of the body!"
-    #
+    def welcome(user)
+        @user = user
+        @url = new_user_session_path
+        mail :to => @user.email,
+             :subject => 'Welcome to Dynasty Owner!',
+             :template_path => 'users/mailer',
+             :template_name => 'welcome'
+    end
+
+    class Preview < MailView
+        def welcome
+            user = User.first
+            ::UserMailer.welcome(user)
+        end
+    end
 end

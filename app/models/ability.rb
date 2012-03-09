@@ -13,6 +13,8 @@ class Ability
             can :league_founder, :all
         elsif user.is? :league_commissioner
             can :league_commissioner, :all
+        elsif user.is? :banker
+            can :banker, :all
         else # :user
             can :user, :all
         end
