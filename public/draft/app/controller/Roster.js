@@ -6,12 +6,12 @@ Ext.define('DynastyDraft.controller.Roster', {
 
     refs: [{
         ref: 'rosterView',
-        selector: 'viewport roster',
+        selector: 'viewport roster'
     }],
 
     init: function() {
         this.control({
-            'viewport roster': {},
+            'viewport roster': {}
         });
         this.getRosterStore().load();
         this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSuccess, this);

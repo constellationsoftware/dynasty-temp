@@ -1,8 +1,18 @@
 Dynasty::Application.routes.draw do
     resources :messages, :schedules, :photos, :dynasty_player_contracts
 
-    devise_for :users do
-        get "/users/sign_out" => "devise/sessions#destroy", :as => :destroy_user_session
+    # REFACTOR: This is inelegant. I couldn't figure out the magic combination of options for 'devise_for' with as poorly documented as it is, but we should figure it out eventually
+    devise_for :users, :skip => [ :sessions, :registrations ], :controllers => { :sessions => 'users/sessions', :registrations => 'users/registrations' }
+    as :user do
+        #root :to => 'users#home'
+        get '/login' => 'users/sessions#new', :as => :new_user_session
+        post '/login' => 'users/sessions#create', :as => :user_session
+        delete '/logout' => 'users/sessions#destroy', :as => :destroy_user_session
+
+        post '/profile' => 'users/registrations#create', :as => :create_user_registration
+        get '/register' => 'users/registrations#new', :as => :new_user_registration
+        get '/profile' => 'users/registrations#edit', :as => :user_registration
+        put '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end
 
     scope :league, :module => 'league', :constraints => SubdomainConstraint do
@@ -27,17 +37,13 @@ Dynasty::Application.routes.draw do
 
             defaults :format => 'json' do
                 resources :picks do
-                    member do
-                        get :test_update
-                    end
+                    get :test_update, :on => :member
                 end
                 resources :teams do
                     get :balance
                 end
                 resource :team do
-                    member do
-                        get :autopick
-                    end
+                    get :autopick, :on => :member
                 end
                 resources :players
             end
@@ -46,6 +52,7 @@ Dynasty::Application.routes.draw do
         # The team in this case is always the user's team for this league
         defaults :format => 'json' do
             resource :team, :controller => :team, :module => :team do
+                resources :favorites
                 resources :roster do
                     get :bench, :on => :collection, :action => :index, :defaults => { :bench => 0 }
                 end
@@ -65,9 +72,7 @@ Dynasty::Application.routes.draw do
     end
 
     resources :teams do
-        member do
-            get :manage
-        end
+        get :manage, :on => :member
     end
 
     # The priority is based upon order of creation:
@@ -76,7 +81,7 @@ Dynasty::Application.routes.draw do
     resources :person_scores, :events, :positions, :trades,
               :user_teams, :user_team_person, :users, :person_phases, :display_names,
               :stats, :fix, :picks, :salaries, :players,
-              :persons, :people, :drafts, :leagues, :admin_dashboard, :user_team_lineups, :player_team_records
+              :persons, :people, :drafts, :leagues, :user_team_lineups, :player_team_records
 
     resources :teams do
         resources :display_name, :person_phases
@@ -129,7 +134,6 @@ Dynasty::Application.routes.draw do
             get 'manage'
             get 'roster'
         end
-
     end
     
     # these are routes for testing cancan roles
@@ -163,6 +167,7 @@ Dynasty::Application.routes.draw do
     match 'banking/teams_balance_table/:id' => 'banking#teams_balance_table'
     match 'banking/teams_balance_total/:id' => 'banking#teams_balance_total'
     
+    root :controller => :users, :action => :home
 
     # Sample of regular route:
     #   match 'products/:id' => 'catalog#view'
@@ -207,10 +212,6 @@ Dynasty::Application.routes.draw do
     #     # (app/controllers/admin/products_controller.rb)
     #     resources :products
     #   end
-
-    # You can have the root of your site routed with "root"
-    # just remember to delete public/index.html.
-    root :to => "users#home"
 
     # See how all your routes lay out with "rake routes"
 

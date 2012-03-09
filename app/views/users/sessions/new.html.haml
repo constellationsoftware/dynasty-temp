@@ -1,16 +1,9 @@
-%h2 Sign in
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  - if devise_mapping.rememberable?
-    %div
-      = f.check_box :remember_me
-      = f.label :remember_me
-  %div= f.submit "Sign in"
-= render :partial => "devise/shared/links"
+= stylesheet_link_tag 'forms'
+.row.twelve.columns.centered
+  .six.columns.centered
+    .panel
+      %h3 Log in
+      = semantic_form_for :user, :url => new_user_session_path, :html => { :class => 'nice login' } do |f|
+        = render :partial => '/users/shared/login_form', :locals => { :form => f }
+      = link_to 'Don\'t have an account? Create one!', new_user_registration_path
+

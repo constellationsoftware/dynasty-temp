@@ -7,8 +7,8 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
+#= require inflections
 #= require foundation
 #= require hamlcoffee
-#= require auto_picks
 
 #= require lib/util

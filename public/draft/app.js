@@ -1,7 +1,7 @@
 Ext.Loader.setConfig({
     enabled: true,
-    disableCaching: true
-    //paths: { '<appName>': '.', 'Ext': '/draft/lib/extjs/src', 'Ext.ux': '/draft/lib/extjs/ux' }
+    disableCaching: true,
+    paths: { '<appName>': '.', 'Ext': '/assets/extjs/src', 'Ext.ux': '/assets/lib/extjs/ux', 'Ext.override': '/assets/lib/extjs/overrides' }
 });
 
 var app;
@@ -13,20 +13,12 @@ Ext.application({
     requires: [
         'DynastyDraft.data.Socket',
         'DynastyDraft.window.Notification',
-        'Ext.window.MessageBox'
+        'Ext.window.MessageBox',
+        'Ext.override.data.Store'
     ],
 
     models: [
         'Update'
-    ],
-
-    stores: [
-        //'PlayerStoreCharts',
-        'Roster',
-        'Players',
-        'Picks',
-        'DraftBoard',
-        'AutoPickOrder'
     ],
 
     controllers: [
@@ -38,7 +30,7 @@ Ext.application({
         'Picks',
         'RecommendedPicks',
         'DraftBoard',
-        'AutoPickOrder',
+        //'AutoPickOrder',
         'ShoutBox'
     ],
 
@@ -52,7 +44,7 @@ Ext.application({
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
             showDelay: 50      // Show 50ms after entering target
         });
-        
+
         // subscribe to a global "draft events" channel
         var events = {
             'pusher:subscription_succeeded': this.onDraftJoin,
@@ -119,7 +111,7 @@ Ext.application({
         this.fireEvent(this.STATUS_RESUMED);
     },
     */
-    
+
     onDraftReset: function(data) {
         var t = setTimeout('window.location.reload()', 5000);
         Ext.Msg.show({
@@ -187,6 +179,7 @@ Ext.application({
     },
 
     startPicking: function(data) {
+        console.log(data);
         this.fireEvent(this.STATUS_PICKING, data);
     },
 
@@ -226,6 +219,54 @@ Ext.application({
         TIMEOUT:                'timeout',
 
         LEAGUE_CHANNEL_PREFIX:  'presence-draft-',
-        PICK_UPDATE:            'pick_update',
+        PICK_UPDATE:            'pick_update'
     //}
 });
+
+/*
+Ext.override(Ext.data.Store, {
+    */
+/**
+     * @cfg {Boolean/String} remoteSortUseMapping
+     * If set to "true", uses the field mapping property (if set) for the sorter, rather than the field name.
+     * If set to "full", will append the model name to the mapping. This option does nothing unless
+     * the {@link #remoteSort} option is set to true.
+     *//*
+
+    remoteSortUseMapping: false,
+
+    */
+/**
+     * This override adds the ability to use the field mapping defined on the model instead
+     * of the property name by setting the 'remoteSortUseMapping' property on the store. Note
+     * that the field mapping is only used if it exists for that field, otherwise the name is
+     * used.
+     *//*
+
+    decodeSorters: function() {
+        sorters = this.callParent(arguments);
+        var fields = this.model ? this.model.prototype.fields : null;
+        console.log(this.remoteSortUseMapping);
+        if (fields && this.remoteSort && this.remoteSortUseMapping) {
+            var i = 0,
+                length = sorters.length;
+            for(; i < length; ++i) {
+                var sorter = sorters[i],
+                    field = fields.get(sorter.property);
+                if (field && field.mapping) {
+                    if (this.remoteSortUseMapping === 'full') {
+                        // Strips the namespace from the model class
+                        // TODO: move the "underscore" method into an Ext.Inflector mixin
+                        var fullModelClass = this.model.prototype.modelName,
+                            idx = fullModelClass.lastIndexOf('.'),
+                            modelClass = fullModelClass.slice();
+                        sorter.property = modelClass.underscore() + '.' + field.mapping;
+                    }
+                    sorter.property = field.mapping;
+                }
+            }
+        }
+        return sorters;
+    }
+});
+*/

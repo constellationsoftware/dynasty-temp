@@ -2,28 +2,50 @@
  *= require foundation
  *= require_self
  */
-
 .handle { font-size: 12px; color: #777; cursor: move; }
 .stack > *:not(.active) { display: none;}
-#dynasty-navbar {
+#navbar {
     background-image: url("/assets/navbar_bg.png");
     background-repeat: repeat-x;
-}    
+    
+    a {
+        font-weight: 500;
+        margin-top: 10px !important;
+    }
 
-#dynasty-navbar a {
-    font-weight: 500;
-    margin-top: 10px !important;
-}
+    .row.right { clear: both; }
 
-#dynasty-navbar strong {
-    display: block;
-    margin: 0;
-    padding: 0;
-    height: 14px;
-    line-height: 14px;
-    bottom: 4px;
-    padding-top: 25px;
-    margin-top: 10px;
+    strong {
+        display: block;
+        margin: 0;
+        padding: 0;
+        height: 14px;
+        line-height: 14px;
+        bottom: 4px;
+        padding-top: 25px;
+        margin-top: 10px;
+    }
+    .signup { margin-top: 7px; margin-left: 5px; }
+    .credentials {
+        .col {
+            padding-left: 5px;
+            padding-top: 5px;
+        }
+        .user_remember_me, [for=user_remember_me] {
+            display: inline-block;
+            clear: both;
+            text-align: left !important;
+        }
+        input.input-text {
+            padding: 3;
+            font-size: 11px;
+        }
+    }
+
+    .welcome {
+        & > * { display: inline-block; line-height: 54px; }
+        padding: 4px 0;
+    }
 }
 
 body { padding-bottom: 60px; }
@@ -45,11 +67,6 @@ div.foundation-header .subheader { margin-bottom: 9px; }
 div.highlight { margin-bottom: 12px; }
 .success { color: #009900; }
 .failure { color: #990000; }
-
-th,td {
-    text-align: center !important;
-    font-size: 10px !important;
-}
 
 .rounded {
     -moz-border-radius:10px !important;
@@ -102,9 +119,8 @@ th,td {
 /* useful for single-button forms */
 form.inline { display: inline-block; }
 
-.invisible {
-    visibility: hidden;
-}
+.invisible { visibility: hidden; }
+.hidden { display: none; }
 
 table th {
     cursor: default;

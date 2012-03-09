@@ -50,7 +50,7 @@ class Player < ActiveRecord::Base
     has_many :teams, :through => :team_link, :class_name => 'UserTeam'
     has_many :leagues, :through => :teams
     has_many :picks
-    has_many :auto_picks
+    has_many :favorites
     has_many :points, :class_name => 'PlayerPoint'
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :events, :through => :event_points
@@ -72,7 +72,7 @@ class Player < ActiveRecord::Base
     }
 
     scope :drafted, lambda { |drafted_league|
-        joins{ team_link }.where { team_link.league_id. == my { drafted_league.id } }
+        joins{ team_link }.where { team_link.league_id == my{ drafted_league.id } }
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins { points }.includes { points }
@@ -106,6 +106,10 @@ class Player < ActiveRecord::Base
         ]}
         query = query.where{ name.full_name.like "%#{sanitize(value)}%" } unless value.nil?
         return query
+    }
+    scope :with_favorites, lambda{ |team|
+        self.reflect_on_association(:favorites).options[:conditions] = "#{Favorite.table_name}.team_id = #{team.id}"
+        joins{ favorites.outer }.includes{ favorites }
     }
     ##
     # This scope filters out positions on the starting lineup that have been
@@ -186,7 +190,11 @@ class Player < ActiveRecord::Base
         else
             result = result.where{ position.designation == :d }
         end
-        result  
+        result
+    }
+
+    scope :filter_by_name, lambda{ |player_name|
+        where{ (name.last_name =~ "#{player_name}%") | (name.first_name =~ "#{player_name}%") | (name.full_name =~ "#{player_name}%") }
     }
 
     def points_for_week(week = 1)

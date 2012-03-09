@@ -49,7 +49,7 @@ Devise.setup do |config|
     # config.http_authenticatable = false
 
     # If http headers should be returned for AJAX requests. True by default.
-    # config.http_authenticatable_on_xhr = true
+    config.http_authenticatable_on_xhr = false
 
     # The realm used in Http Basic Authentication. "Application" by default.
     # config.http_authentication_realm = "Application"
@@ -86,11 +86,8 @@ Devise.setup do |config|
     # The time the user will be remembered without asking for credentials again.
     # config.remember_for = 2.weeks
 
-    # If true, a valid remember token can be re-used between multiple browsers.
-    # config.remember_across_browsers = true
-
     # If true, extends the user's remember period when remembered via cookie.
-    # config.extend_remember_period = false
+    config.extend_remember_period = true
 
     # If true, uses the password salt as remember token. This should be turned
     # to false if you are not using database authenticatable.
@@ -188,7 +185,7 @@ Devise.setup do |config|
     #
     # The :"*/*" and "*/*" formats below is required to match Internet
     # Explorer requests.
-    # config.navigational_formats = [:"*/*", "*/*", :html]
+    config.navigational_formats = [:"*/*", "*/*", :html, :json, 'json']
 
     # The default HTTP method used to sign out a resource. Default is :delete.
     config.sign_out_via = :delete

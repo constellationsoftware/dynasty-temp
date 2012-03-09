@@ -8,7 +8,7 @@ Ext.define('DynastyDraft.store.AutoPickOrder', {
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/auto_picks',
+        url: '/team/favorites',
         reader: {
             type: 'json',
             root: 'players'

@@ -25,3 +25,12 @@ vendor/cache/*
 .idea/inspectionProfiles/Project_Default.xml
 
 config/database.yml
+config/domain.yml
+
+dump.rdb
+
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
+public/assets/*

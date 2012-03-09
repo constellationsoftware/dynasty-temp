@@ -1,7 +1,7 @@
 class League::PlayersController < SubdomainController
-    before_filter :authenticate_user!
-    before_filter :get_team!, :only => :index
+    before_filter :authenticate_user!, :get_team!, :only => [ :index, :list_by_points ]
 
+    custom_actions :collection => [ :list_by_points ]
     respond_to :json
 
     has_scope :available, :type => :boolean, :only => :index do |controller, scope|
@@ -17,7 +17,7 @@ class League::PlayersController < SubdomainController
         team = controller.instance_variable_get("@team")
         scope.roster(team)
     end
-
+    # TODO: move this to the league roster controller
     has_scope :drafted, :only => :index, :type => :boolean do |controller, scope|
         team = controller.instance_variable_get("@team")
         league = team.league
@@ -40,23 +40,27 @@ class League::PlayersController < SubdomainController
     has_scope :by_name, :allow_blank => true, :only => :index do |controller, scope, value|
         scope.with_name.by_name(value)
     end
-    has_scope :order_by, :only => :index do |controller, scope, value|
-        sort_hash = ActiveSupport::JSON.decode(value)
-        sort_str = sort_hash.collect { |key, value|
-            value = 'ASC' if !value
-            "#{key} #{value}"
-        }.join(', ')
-        scope.order(sort_str)
+    has_scope :ordered_by_points, :only => :index do |controller, scope|
+        scope.order{ points.points.desc }
     end
+    has_scope :with_favorites, :type => :boolean, do |controller, scope|
+        team = controller.instance_variable_get("@team")
+        scope.with_favorites(team)
+    end
+
+    # Session Storage using ActiveRecord
+    # session :session_key => '_dynasty_session_id'
+
 
     protected
         def collection
             if !!params[:page] && !!params[:limit]
-                @players = end_of_association_chain.page(params[:page]).per(params[:limit])
+                @players = end_of_association_chain
+                @total = @players.size
+                @players = @players.page(params[:page]).per(params[:limit])
             else
                 @players = end_of_association_chain
             end
-            @total = @players.size
         end
 
     private
