@@ -1,19 +1,7 @@
-%li#waiver
+%li#waiverTab
   %h5
     Waiver Wire (For Testing)
   %p
     The following players are on the waiver wire.
 
-  - waiver_players.each do |ptr|
-    .row
-      %p
-        .three.columns
-          %strong
-            = ptr.player.name.full_name
-        .two.columns
-          #{ptr.player.position.abbreviation.upcase} (#{ptr.player.contract.depth})
-        .seven.columns
-          = link_to "Bid on Player", "/player_team_records/#{ptr.id}/bid"
-          = link_to "*** Resolve Bids (for testing) ***", "/player_team_records/#{ptr.id}/resolve"
-
-
+    = render :partial => "mockups/partials/waiver_players"

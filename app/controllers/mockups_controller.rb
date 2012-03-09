@@ -71,4 +71,8 @@ class MockupsController < ApplicationController
     def contact
         @title = "Contact Us"
     end
+
+    def new_team
+        @title = "Create a Team"
+    end
 end

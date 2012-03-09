@@ -1,7 +1,12 @@
 .panel
   %h4 User Control Panel
-  %p= link_to 'Edit User Profile', edit_user_registration_path
-
+  %p
+    = link_to 'Edit User Profile', edit_user_registration_path
+    |
+    = link_to 'Create a League', '/leagues/new'
+    |
+    .panel
+      Create a team - need to determine the flow / process here. Nick and I realized today we had 2 totally different approaches.
   %p
   - if @teams && !@teams.empty?
     - @teams.each do |t|

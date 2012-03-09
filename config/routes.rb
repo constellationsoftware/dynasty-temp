@@ -19,7 +19,7 @@ Dynasty::Application.routes.draw do
         get :index
         get :login
 
-
+        get :new_team
 
         get :player_research
         get :player_detail

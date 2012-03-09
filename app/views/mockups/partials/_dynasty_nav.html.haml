@@ -57,6 +57,6 @@
             %div.flyout.small.panel
               %dl
                 %dd
-                  = link_to "Not you?", destroy_session_path(devise_mapping.singular), :method => :delete
+                  = link_to "Sign Out?", destroy_session_path(devise_mapping.singular), :method => :delete
                 %dd
                   %a{:href => "#"} Manage Account

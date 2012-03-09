@@ -1,8 +1,11 @@
 .row
-  .six.columns
+  .three.columns
     %h5 TeamName
     = render :partial => "mockups/partials/heads_up"
 
-  .six.columns
+  .three.columns
     %h5 OpponentTeamName
     = render :partial => "mockups/partials/heads_up"
+
+  .six.columns
+    = render :partial => "mockups/partials/game_review_summary"
