@@ -10,6 +10,11 @@ class Ledger < ActiveRecord::Base
     }
   end
   
+  # method to set BankingModel used for transactions
+  # methods for money i/o and display
+  # scratch ledger for projections - possibly keep these around
+  # methods and theory concerning closing out ledgers
+  
   def self.balanced?
     sum(:amount) == 0
   end

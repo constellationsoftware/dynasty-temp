@@ -96,7 +96,7 @@ group :test do
     # Note: turn will have to be uninstalled if there are
     # versions > 0.8.2 [lrg]
     gem 'turn', '< 0.8.3'
-    gem 'cucumber-rails', '1.2.1'
+    gem 'cucumber-rails', '1.2.1', :require => false
     gem 'rspec-rails', '2.7.0'
     gem 'database_cleaner', '0.7.1'
     gem 'factory_girl', '2.3.2'

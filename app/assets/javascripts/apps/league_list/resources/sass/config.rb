@@ -1,3 +1,4 @@
+environment ||= 'test'
 http_path = '/'
 $rails_root      = File.join(File.dirname(__FILE__), '..', '..', '..', '..', '..', '..', '..')
 project_path    = File.dirname(__FILE__)
