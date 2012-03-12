@@ -769,7 +769,10 @@ ActiveRecord::Schema.define(:version => 20120308213126) do
   end
 
   add_index "display_names", ["entity_id"], :name => "IDX_display_names_1"
+<<<<<<< HEAD
+=======
   add_index "display_names", ["entity_type", "entity_id", "full_name", "first_name", "last_name"], :name => "super_lucky_index"
+>>>>>>> ec7704e4f1444a6f9884e3bcb2dd2a998b785b95
   add_index "display_names", ["entity_type", "last_name", "first_name"], :name => "index_display_names_on_entity_type_and_first_name_and_last_name"
   add_index "display_names", ["entity_type"], :name => "IDX_display_names_2"
 
@@ -1067,7 +1070,17 @@ ActiveRecord::Schema.define(:version => 20120308213126) do
     t.datetime "updated_at", :null => false
   end
 
+<<<<<<< HEAD
+  create_table "dynasty_team_favorites", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "player_id"
+    t.integer  "sort_order"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+=======
   add_index "dynasty_team_favorites", ["team_id", "player_id", "sort_order"], :name => "index_favorites_team_player_sort"
+>>>>>>> ec7704e4f1444a6f9884e3bcb2dd2a998b785b95
 
   create_table "dynasty_teams", :force => true do |t|
     t.integer "league_id",                                        :null => false
@@ -1501,6 +1514,20 @@ ActiveRecord::Schema.define(:version => 20120308213126) do
   add_index "latest_revisions", ["latest_document_id"], :name => "IDX_FK_lat_rev_lat_doc_id__doc_id"
   add_index "latest_revisions", ["revision_id"], :name => "IDX_latest_revisions_1"
 
+<<<<<<< HEAD
+  create_table "leagues", :force => true do |t|
+    t.string   "name",       :limit => 50,                 :null => false
+    t.integer  "size",                     :default => 15, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "manager_id"
+    t.string   "slug",       :limit => 50,                 :null => false
+    t.datetime "clock"
+  end
+
+  add_index "leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
+  add_index "leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
+
   create_table "ledgers", :force => true do |t|
     t.text     "description"
     t.integer  "amount"
@@ -1509,6 +1536,8 @@ ActiveRecord::Schema.define(:version => 20120308213126) do
     t.datetime "updated_at",  :null => false
   end
 
+=======
+>>>>>>> ec7704e4f1444a6f9884e3bcb2dd2a998b785b95
   create_table "locations", :force => true do |t|
     t.string "city",         :limit => 100
     t.string "state",        :limit => 100
@@ -1858,6 +1887,26 @@ ActiveRecord::Schema.define(:version => 20120308213126) do
     t.datetime "updated_at"
   end
 
+<<<<<<< HEAD
+  create_table "roles_copy", :force => true do |t|
+    t.string "role_key",  :limit => 100, :null => false
+    t.string "role_name", :limit => 100
+    t.string "comment",   :limit => 100
+  end
+
+  add_index "roles_copy", ["role_key"], :name => "IDX_roles_1"
+
+  create_table "salaries", :force => true do |t|
+    t.string  "full_name",       :limit => 50, :null => false
+    t.string  "position",        :limit => 10
+    t.integer "contract_amount"
+    t.integer "points"
+    t.integer "rating"
+    t.float   "consistency"
+  end
+
+=======
+>>>>>>> ec7704e4f1444a6f9884e3bcb2dd2a998b785b95
   create_table "schedules", :force => true do |t|
     t.integer  "league_id"
     t.integer  "team_id"

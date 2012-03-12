@@ -1,3 +1,5 @@
+require 'simulation/sim_counter'
+
 Given /^a user with the role of fed$/ do
   user = FactoryGirl.create(:user)
   user.roles = ['fed']

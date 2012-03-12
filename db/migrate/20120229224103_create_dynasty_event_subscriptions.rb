@@ -5,7 +5,8 @@ class CreateDynastyEventSubscriptions < ActiveRecord::Migration
             t.string :event_id, :null => false
             t.string :notifier, :null => false
         end
-        add_index :dynasty_event_subscriptions, [ :user_id, :event_id, :notifier ]
+        # named index if avoid going over 64 char limit [lrg]
+        add_index :dynasty_event_subscriptions, [ :user_id, :event_id, :notifier ], :name => 'dynasty_event_subscriptions_index'
     end
 
     def down

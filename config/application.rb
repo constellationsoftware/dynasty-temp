@@ -1,6 +1,9 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+
+
+#require 'rails-extjs-direct'
 if defined?(Bundler)
     Bundler.require *Rails.groups(:assets => %w(development test))
 end
@@ -48,7 +51,7 @@ module Dynasty
         config.filter_parameters += [:password]
 
         # Enable the asset pipeline
-        unless Rails.env == 'testing'
+        unless Rails.env == 'test'
             config.assets.enabled = true
             config.serve_static_assets = true
             config.assets.compile = true
@@ -56,7 +59,9 @@ module Dynasty
             config.assets.enabled = false
             config.serve_static_assets = true
             config.assets.compile = false
-            config.assets.paths += File.join(Rails.root, 'vendor', 'assets', 'images')
+            # config.assets.paths << File.join(Rails.root, 'vendor', 'assets', 'images')
+            
+            config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
         end
 
         # Compass integration

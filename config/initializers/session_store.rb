@@ -9,7 +9,7 @@ DOMAIN_CONFIG_FILE_PATH = File.join Rails.root, 'config', 'domain.yml'
 if FileTest.exists? DOMAIN_CONFIG_FILE_PATH
     data = YAML.load_file(DOMAIN_CONFIG_FILE_PATH)
     overrides = data[::Rails.env] if data
-    domain_config_options = domain_config_options.merge! overrides.symbolize_keys!
+    domain_config_options = domain_config_options.merge! overrides.symbolize_keys! unless overrides.nil?
 end
 Dynasty::Application.config.session_store :cookie_store, domain_config_options
 

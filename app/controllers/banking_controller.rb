@@ -1,5 +1,6 @@
 class BankingController < ApplicationController
   layout 'simulator'
+  require 'simulation/sim_counter'
   
   def leagues
     [(1..12),(13..24)]

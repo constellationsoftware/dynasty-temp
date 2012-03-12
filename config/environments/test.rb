@@ -5,7 +5,7 @@ Dynasty::Application.configure do
     # test suite.  You never need to work with it otherwise.  Remember that
     # your test database is "scratch space" for the test suite and is wiped
     # and recreated between test runs.  Don't rely on the data there!
-    config.cache_classes = true
+    config.cache_classes = false
 
     # Configure static asset server for tests with Cache-Control for performance
     config.serve_static_assets = true
@@ -45,8 +45,7 @@ Dynasty::Application.configure do
 
 
     # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
-    config.assets.allow_debugging = true
-
-    # Allow pass debug_assets=true as a query parameter to load pages with unpackaged assets
-    config.assets.allow_debugging = true
+    config.assets.allow_debugging = false
+    config.assets.debug = false
+    
 end
