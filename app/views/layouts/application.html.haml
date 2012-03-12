@@ -13,7 +13,7 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
+  %title= @title
 
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team
@@ -25,23 +25,25 @@
   = csrf_meta_tag
 
 %body
-  #navbar.container
-    .row
-      .three.columns
-        = link_to (image_tag 'navbar_logo.png'), root_path
-        = yield :navbar_left
-      .nine.columns.hide-on-phones.right
-        = yield :navbar_right
-        = render :partial => '/users/shared/links'
+  /*Dynasty Navigation Partial
+  = render :partial => "mockups/partials/dynasty_nav"
+  .row
+    .twelve.columns
+      #global-errors
+        - flash.each do |type, msg|
+          %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+  /* Main Page Content
+  .row
+    .container.main_yield
+      .row
+        .sub_header
+          %h4.white= @title
+      = yield
 
-  /*Primary Page Header Bar
-  #content.container
-    .row
-      .nine.columns
-        #global-errors
-          - flash.each do |type, msg|
-            %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
-        = yield
 
-      .three.columns
-        = yield :sidebar
+  = render :partial => "mockups/partials/login_modal"
+  = render :partial => "mockups/partials/zendesk"
+  #footer
+    %form
+      %input{:type => "hidden"}
+

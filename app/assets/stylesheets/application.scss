@@ -2,50 +2,133 @@
  *= require foundation
  *= require_self
  */
+body {
+background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#player_detail {
+  background-color: #fefefe;
+  
+}
+.main_yield {
+  padding-top: 95px;
+  background-color: rgba(100%, 100%, 100%, .85);
+  margin-left: 50px;
+  margin-right: 50px;
+  box-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+.stats_small {
+  font-size: 10px;
+  line-height: 15px;
+}
+
+.sub_header {
+  background-color: #000055;
+  color: #ffffff;
+  padding: 5px;
+  -webkit-border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.align_left {
+  text-align: left;
+}
+
+
+
+.large_input {
+  font-size: 36px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  display: block;
+}
+
+
+nice.tabs-content.contained {
+  background-color: white;
+}
+
+#main_content {
+ z-index: 500;
+padding-top: 75px;
+}
+.fixed_nav {
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+}
+
 .handle { font-size: 12px; color: #777; cursor: move; }
 .stack > *:not(.active) { display: none;}
-#navbar {
+#dynasty-navbar {
     background-image: url("/assets/navbar_bg.png");
+    height: 83px;
     background-repeat: repeat-x;
-    
-    a {
-        font-weight: 500;
-        margin-top: 10px !important;
-    }
+    background-color: #000055;
+    box-shadow: 10px 10px 15px rgba(0,0,0,1);
 
-    .row.right { clear: both; }
+}
 
-    strong {
-        display: block;
-        margin: 0;
-        padding: 0;
-        height: 14px;
-        line-height: 14px;
-        bottom: 4px;
-        padding-top: 25px;
-        margin-top: 10px;
-    }
-    .signup { margin-top: 7px; margin-left: 5px; }
-    .credentials {
-        .col {
-            padding-left: 5px;
-            padding-top: 5px;
-        }
-        .user_remember_me, [for=user_remember_me] {
-            display: inline-block;
-            clear: both;
-            text-align: left !important;
-        }
-        input.input-text {
-            padding: 3;
-            font-size: 11px;
-        }
-    }
+#nav_top_row {
+  font-weight: bold;
+  color: #ffffff;
+}
+.right-aligned {
+  text-align: right;
+  float: right;
+}
+.brand {
+  padding: 0px;
+  display: block;
+  width: 201px;
+  height: 62px;
+  margin-top: 0px !important;
+}
+.nav-bar {
+margin-top: 6px;
+background-color: transparent;
+border: 0px;
+}
 
-    .welcome {
-        & > * { display: inline-block; line-height: 54px; }
-        padding: 4px 0;
-    }
+.flyout {
+
+}  
+dd {
+padding: 5px;
+}
+.flyout-toggle {
+
+}
+
+.nav-bar li {
+border-right: 0px;
+padding-right: 10px;
+
+}
+
+#dynasty-navbar a {
+    font-weight: 500;
+    margin-top: 0px !important;
+}
+
+#dynasty-navbar strong {
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 14px;
+    line-height: 14px;
+    bottom: 4px;
+    padding-top: 25px;
+
 }
 
 body { padding-bottom: 60px; }
@@ -67,6 +150,11 @@ div.foundation-header .subheader { margin-bottom: 9px; }
 div.highlight { margin-bottom: 12px; }
 .success { color: #009900; }
 .failure { color: #990000; }
+
+th,td {
+    text-align: center !important;
+    font-size: 10px !important;
+}
 
 .rounded {
     -moz-border-radius:10px !important;
@@ -119,10 +207,100 @@ div.highlight { margin-bottom: 12px; }
 /* useful for single-button forms */
 form.inline { display: inline-block; }
 
-.invisible { visibility: hidden; }
-.hidden { display: none; }
+.invisible {
+    visibility: hidden;
+}
 
 table th {
     cursor: default;
     &.header:hover { cursor: pointer }
 }
+
+
+
+
+/* Accordion CSS */
+section
+{
+        display: block;
+}
+
+.accordion
+{
+
+
+
+}
+
+.accordion section
+{
+        border-bottom: 1px solid #ccc;
+        margin: 5px;
+        background-color: #fff;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+        background-image: -webkit-linear-gradient(top, #fff, #eee);
+        background-image:    -moz-linear-gradient(top, #fff, #eee);
+        background-image:     -ms-linear-gradient(top, #fff, #eee);
+        background-image:      -o-linear-gradient(top, #fff, #eee);
+        background-image:         linear-gradient(top, #fff, #eee);
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+}
+
+.accordion h2,
+ .accordion p
+{
+        margin: 0;
+}
+
+.accordion p
+{
+        padding: 10px;
+}
+
+.accordion h2 a
+{
+        display: block;
+        position: relative;
+        font: 14px/1 'Trebuchet MS', 'Lucida Sans';
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+}
+
+.accordion h2 a:hover
+{
+        background: #fff;
+}
+
+.accordion h2 + div
+{
+        height: 0;
+        overflow: hidden;
+        -moz-transition: height 0.3s ease-in-out;
+        -webkit-transition: height 0.3s ease-in-out;
+        -o-transition: height 0.3s ease-in-out;
+        transition: height 0.3s ease-in-out;
+}
+
+.accordion :target h2 a:after
+{
+    content: '';
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin-top: -3px;
+        border-top: 5px solid #333;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+}
+
+.accordion :target h2 + div
+{
+        height: 250px;
+}
+

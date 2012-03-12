@@ -69,10 +69,12 @@
         = render :partial => 'review_tab', :locals => review
       = render :partial => 'roster_tab', :locals => roster
       = render :partial => 'trades_tab', :locals => trades
+      = render :partial => 'waiver_tab', :locals => trades
 
-      / = render :partial => "research_tab", :locals => research
-      = render :partial => 'waiver_tab', :locals => waiver
-    /  = render :partial => "league_tab"
+
+
+
+
 
 - content_for :sidebar do
   = render :partial => 'sidebar', :locals => sidebar

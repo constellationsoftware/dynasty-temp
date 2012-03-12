@@ -1,4 +1,8 @@
 Dynasty::Application.routes.draw do
+    if Rails.env.development?
+        mount UserMailer::Preview => 'mail_view'
+    end
+
     resources :messages, :schedules, :photos, :dynasty_player_contracts
 
     # REFACTOR: This is inelegant. I couldn't figure out the magic combination of options for 'devise_for' with as poorly documented as it is, but we should figure it out eventually
@@ -14,6 +18,36 @@ Dynasty::Application.routes.draw do
         get '/profile' => 'users/registrations#edit', :as => :user_registration
         put '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end
+
+    resource :mockups do
+        get :index
+        get :login
+
+        get :new_team
+
+        get :player_research
+        get :player_detail
+
+        get :signup
+        get :signup_2
+        get :signup_3
+
+        get :user_control_panel
+        get :team_control_panel
+
+        get :player_news
+        get :headlines
+        get :transactions_contracts
+        get :depth_charts
+        get :featured_articles
+
+        get :rules
+        get :terms_conditions
+        get :privacy
+        get :contact
+
+    end
+
 
     scope :league, :module => 'league', :constraints => SubdomainConstraint do
         resources :auto_picks do

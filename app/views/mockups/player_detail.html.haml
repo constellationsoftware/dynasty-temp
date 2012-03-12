@@ -1,0 +1,102 @@
+.row
+  .eight.columns#player_detail
+    .row
+      .two.columns
+        %img{:src => "../assets/headshot.png"}
+      .four.columns
+        %h5
+          Player Name
+        %p
+          \#10 QB
+          %a New York Giants
+          %p.stats_small
+            %strong
+              Height:
+            6-4
+            %strong
+              Weight:
+            218
+            %strong
+              Age:
+            31
+            %br
+            %strong
+              Born:
+            1/3/1981 New Orleans, LA
+            %br
+            %strong
+              College:
+            Mississippi
+            %br
+            %strong
+              Experience:
+            8th Season
+            %br
+            %strong
+              High School:
+            St. Ignatius HS
+      .six.columns
+        %p
+          %table
+            %thead
+              %tr
+                %td
+                  TDS
+                %td
+                  INT
+                %td
+                  YDS
+                %td
+                  RTG
+                %td
+                  Contract Info
+            %tbody
+              %tr
+                %td
+                  29
+                %td
+                  16
+                %td
+                  4,933
+                %td
+                  92.9
+                %td
+                  $55M over 6 years
+    .row
+      %dl.nice.contained.tabs
+        %dd
+          %a{:href => "#nice1", :class => "active"}
+            Profile
+        %dd
+          %a{:href => "#nice2"}
+            Career Stats
+        %dd
+          %a{:href => "#nice3"}
+            Game Logs
+        %dd
+          %a{:href => "#nice4"}
+            Game Splits
+        %dd
+          %a{:href => "#nice5"}
+            Situational Stats
+  = render :partial => "mockups/partials/news_sidebar"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
