@@ -1,5 +1,10 @@
 --- # League settings
-leagues:
-    sizes: [ 10, 12, 14, 16 ]
-    password_min_length: 6
-    password_max_length: 32
+clock:
+    weeks:                  14
+    start:                  <%= Date.new(2011, 9, 8).at_midnight %>
+    end:                    <%= self.clock.
+
+league:
+    capacity:               [ 12, 14, 16 ]
+    password_min_length:    6
+    password_max_length:    32

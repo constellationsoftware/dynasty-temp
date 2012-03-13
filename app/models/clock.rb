@@ -1,4 +1,8 @@
 class Clock < ActiveRecord::Base
+    self.table_name = 'dynasty_clocks'
+
+    has_many :leagues
+
     def next_week
         self.time = self.time.advance(:days => 7)
         self.save!

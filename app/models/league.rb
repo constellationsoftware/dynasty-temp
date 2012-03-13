@@ -14,14 +14,16 @@ class League < ActiveRecord::Base
     has_many :player_team_records
     #  requires :attribute, :name, :size
     belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
+    belongs_to :clock, :inverse_of => :leagues
 
     validates_presence_of :name, :size
     validates_uniqueness_of :name
     validates_format_of :name, :with => /^[[:alnum:] ]+$/, :on => :create
-    validates_inclusion_of :size, :in => Settings.leagues.sizes
+    validates_inclusion_of :size, :in => Settings.league.capacity
     validates_length_of :password,
-        :minimum => Settings.leagues.password_min_length,
-        :maximum => Settings.leagues.password_max_length
+        :minimum => Settings.league.password_min_length,
+        :maximum => Settings.league.password_max_length,
+        :if => lambda{ |league| league.is_private? }
 
     scope :with_manager, joins{ manager }.includes{ manager }
     scope :with_teams, joins{ teams }.includes{ teams }
@@ -33,4 +35,7 @@ class League < ActiveRecord::Base
     def draft
         self.drafts.first
     end
+
+    def is_public?; self.public === true end
+    def is_private?; !(is_public?) end
 end
