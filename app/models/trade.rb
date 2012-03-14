@@ -5,11 +5,10 @@ class Trade < ActiveRecord::Base
     belongs_to :offered_player, :foreign_key => 'offered_player_id', :class_name => 'PlayerTeamRecord'
     belongs_to :requested_player, :foreign_key => 'requested_player_id', :class_name => 'PlayerTeamRecord'
     belongs_to :league
-
+    has_many :transactions, :as => :eventable, :class_name => 'Account'
 
     scope :open, where(:open => 1)
     scope :closed, where(:open => 0)
     scope :accepted, closed.where(:accepted => 1)
     scope :denied, closed.where(:accepted => 0)
-
 end

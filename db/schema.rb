@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313134505) do
+ActiveRecord::Schema.define(:version => 20120314214102) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -854,6 +854,19 @@ ActiveRecord::Schema.define(:version => 20120313134505) do
   add_index "documents_media", ["media_caption_id"], :name => "FK_doc_med_med_cap_id__med_cap_id"
   add_index "documents_media", ["media_id"], :name => "FK_doc_med_med_id__med_id"
 
+  create_table "dynasty_accounts", :force => true do |t|
+    t.string   "type"
+    t.integer  "payable_id"
+    t.string   "payable_type"
+    t.integer  "receivable_id"
+    t.string   "receivable_type"
+    t.integer  "eventable_id",                 :null => false
+    t.string   "eventable_type",               :null => false
+    t.integer  "amount_cents",    :limit => 8, :null => false
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "dynasty_clocks", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -924,6 +937,7 @@ ActiveRecord::Schema.define(:version => 20120313134505) do
     t.string   "password",              :limit => 32
     t.integer  "team_count"
     t.integer  "clock_id"
+    t.integer  "balance_cents",         :limit => 8,  :default => 0
   end
 
   add_index "dynasty_leagues", ["id", "clock_id"], :name => "index_dynasty_leagues_on_id_and_clock_id"

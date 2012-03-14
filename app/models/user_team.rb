@@ -1,5 +1,6 @@
 class UserTeam < ActiveRecord::Base
     self.table_name = 'dynasty_teams'
+    money :balance, :cents => :balance_cents
 
     belongs_to :user
     belongs_to :league
@@ -12,11 +13,11 @@ class UserTeam < ActiveRecord::Base
         :conditions => 'current = TRUE'
     has_many :player_team_histories
     has_many :players, :through => :player_team_records
-    money :balance, :cents => :balance_cents
-
     has_many :games, :foreign_key => 'team_id'
     has_many :schedules, :inverse_of => :team, :foreign_key => 'team_id'
     has_many :opponents, :through => :schedules
+    has_many :payments, :as => :receivable
+    has_many :receipts, :as => :payable
 
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)

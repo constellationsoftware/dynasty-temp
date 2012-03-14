@@ -1,8 +1,8 @@
---- # League settings
-clock:
-    weeks:                  14
-    start:                  <%= Date.new(2011, 9, 8).at_midnight %>
-    end:                    <%= self.clock.
+---
+season_weeks:               14
+sports:
+    nfl:
+        week_start_day:     thursday # day absolutely MUST be a day of the week, unabbreviated
 
 league:
     capacity:               [ 12, 14, 16 ]

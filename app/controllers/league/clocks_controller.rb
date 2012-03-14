@@ -13,8 +13,6 @@ class League::ClocksController < SubdomainController
     def next_week
         next_week! do |format|
             @clock.next_week
-            # calculate points for the passed-in league
-            @clock.calculate_points_for_league(@league) if @league
 
             @league.teams.each do |team|
                 schedule = team.schedules.where('week = ?', @clock.week).first
