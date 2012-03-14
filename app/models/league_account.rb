@@ -1,0 +1,2 @@
+class LeagueAccount < Account
+end

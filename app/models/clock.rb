@@ -1,4 +1,8 @@
 class Clock < ActiveRecord::Base
+    self.table_name = 'dynasty_clocks'
+
+    has_many :leagues
+
     def next_week
         self.time = self.time.advance(:days => 7)
         self.save!
@@ -38,23 +42,6 @@ class Clock < ActiveRecord::Base
     def reset
         self.time = Date.new(2011, 9, 8).at_midnight
         self.save!
-        self.time
-
-        Game.all.each { |game| game.destroy }
-        Schedule.all.each do |s|
-            s.outcome = nil
-            s.team_score = nil
-            s.opponent_score = nil
-            s.updated_at = nil
-            s.save
-        end
-        UserTeamLineup.historical.all.each {|lineup| lineup.destroy}
-        UserTeam.all.each do |t|
-            t.balance = 75000000
-            t.save
-        end
-        PlayerTeamHistory.all.each {|pth| pth.destroy}
-        Trade.all.each {|trade| trade.destroy}
     end
 
     def present
@@ -67,41 +54,9 @@ class Clock < ActiveRecord::Base
         self.time.strftime("%B %e, %Y")
     end
 
-    def weekly_points_for_team(team)
-        week_end = self.time
-        week_start = self.time.advance :weeks => -1
-
-        starter_points = PlayerEventPoint.select{sum(points).as('points')}
-            .joins{[event, player.team_link.team]}
-            .where{player.team_link.team.id == my{ team.id }}
-            .where{player.team_link.depth == 1}
-            .where{(event.start_date_time >= week_start) & (event.start_date_time < week_end)}
-            .first.points
-        bench_points = PlayerEventPoint.select{sum(points).as('points')}
-            .joins{[event, player.team_link.team]}
-            .where{player.team_link.team.id == my{ team.id }}
-            .where{player.team_link.depth == 0}
-            .where{(event.start_date_time >= week_start) & (event.start_date_time < week_end)}
-            .first.points
-        starter_points.to_f + (bench_points.to_f / 3)
-    end
-
     def week
         beginning = Date.new(2011, 9, 8).at_midnight
         ((self.time.to_date - beginning.to_date) / 7).to_i
-    end
-
-    def calculate_points_for_league(league)
-        league.teams.each { |team|
-            points = weekly_points_for_team(team)
-            #week = ((self.time.to_date - beginning.to_date) / 7).to_i + 1
-            #puts "points: #{points} week: #{week}"
-            Game.create :team_id => team.id, :week => self.week, :points => (points ? points : 0)
-        }
-    end
-
-    def self.first_week
-        return Date.new(2011, 9, 8).at_midnight
     end
 
     def flatten
@@ -111,5 +66,13 @@ class Clock < ActiveRecord::Base
             :date_short => self.nice_time,
             :week => self.week
         }
+    end
+
+    def weeks_since(clock_start)
+        ((self.time.to_date - clock_start.to_date) / 7).to_i
+    end
+
+    def self.first_week
+        return Date.new(2011, 9, 8).at_midnight
     end
 end

@@ -3,5 +3,5 @@
 web: bundle exec rails server thin start -p $PORT
 jobs: rake jobs:work
 pusher-presence: ./script/pusher
-juggernaut: ./script/juggernaut_listener
+#juggernaut: ./script/juggernaut_listener
 #log: tail -f -n 0 log/development.log
