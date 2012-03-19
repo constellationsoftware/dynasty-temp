@@ -1,6 +1,6 @@
 class League::Team::GamesController < SubdomainController
     before_filter :authenticate_user!, :get_team_id!
-    defaults :resource_class => Schedule, :collection_name => 'games', :instance_name => 'game'
+    defaults :resource_class => Game, :collection_name => 'games', :instance_name => 'game'
     respond_to :json
 
     protected
@@ -9,7 +9,7 @@ class League::Team::GamesController < SubdomainController
                 .with_opponent
                 .where{ team_id == my{ @team_id }}
                 .order{ week }
-            @ratio = Schedule.ratio(@games)
+            @ratio = Game.ratio(@games)
         end
 
     private

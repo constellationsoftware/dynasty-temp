@@ -3,15 +3,26 @@ module Validators
         def validate(record)
             if record.depth == 1
                 # figure out which slot it goes in (other than your mom's)
+                position_id = record.player.position_link.position_id
+                previous_options = Lineup.reflect_on_association(:player_teams).options[:conditions]
+                Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{record.class.table_name}.user_team_id = #{record.user_team_id}"
+                empty_slots = Lineup.joins{[ position, position.positions.outer, player_teams.outer ]}
+                    .where{ player_teams.player_id == nil }
+                    .where{ (position_id == my{ position_id }) }
+=begin
                 filled_slots = Lineup.select{ id }.joins{ player_teams }.where{ player_teams.user_team_id == my{ record.user_team_id } }
-                empty_slot = Lineup.where{ (position_id == my{ record.position_id }) & (id << filled_slots) }.first
-
-                if empty_slot
-                    record.lineup = empty_slot
-                else
+                offensive_flex_positions = Position.select{ id }.where{ (designation == 'o') & (flex_position_id != nil) }
+                defensive_flex_positions = Position.select{ id }.where{ (designation == 'd') & (flex_position_id != nil) }
+                empty_slot = Lineup.joins{[ position ]}.where{ id << filled_slots }
+                    .where{ (position_id == my{ record.position_id }) | ((position.designation == 'o') & (position_id >> offensive_flex_positions)) | ((position.designation == 'd') & (position_id >> defensive_flex_positions)) }.first
+=end
+                if empty_slots.empty?
                     record.errors[:depth] << "Your starting lineup has too many #{record.player.position.name.pluralize}."
-                    record.errors[:starter] << "It is #{record.player.name.full_name}s bye week." if self.class.bye_week?(record)                    
+                    record.errors[:starter] << "It is #{record.player.name.full_name}s bye week." if self.class.bye_week?(record)
+                else
+                    record.lineup = empty_slots.first
                 end
+                Lineup.reflect_on_association(:player_teams).options[:conditions] = previous_options
             else
                 record.lineup = nil
             end

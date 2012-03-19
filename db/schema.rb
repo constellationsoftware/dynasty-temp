@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120314214102) do
+ActiveRecord::Schema.define(:version => 20120319181621) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -913,17 +913,18 @@ ActiveRecord::Schema.define(:version => 20120314214102) do
   add_index "dynasty_events", ["name"], :name => "index_dynasty_events_on_name", :unique => true
 
   create_table "dynasty_games", :force => true do |t|
-    t.integer  "team_id"
-    t.integer  "week"
+    t.integer  "league_id"
+    t.integer  "home_team_id",                                  :null => false
+    t.integer  "away_team_id",                                  :null => false
+    t.integer  "week",                                          :null => false
+    t.decimal  "home_team_score", :precision => 4, :scale => 1
+    t.decimal  "away_team_score", :precision => 4, :scale => 1
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "points",     :default => 0, :null => false
-    t.integer  "winnings"
   end
 
-  add_index "dynasty_games", ["points"], :name => "index_dynasty_games_on_points"
-  add_index "dynasty_games", ["team_id"], :name => "index_dynasty_games_on_team_id"
-  add_index "dynasty_games", ["week"], :name => "index_dynasty_games_on_week"
+  add_index "dynasty_games", ["id", "week"], :name => "index_dynasty_games_on_id_and_week"
+  add_index "dynasty_games", ["league_id", "home_team_id", "away_team_id"], :name => "index_dynasty_games_on_league_and_teams", :unique => true
 
   create_table "dynasty_leagues", :force => true do |t|
     t.string   "name",                  :limit => 50,                   :null => false
@@ -1074,6 +1075,22 @@ ActiveRecord::Schema.define(:version => 20120314214102) do
   add_index "dynasty_positions", ["sort_order", "id", "designation", "abbreviation", "name"], :name => "index_dynasty_positions_on_sort_id_des_abbr_name"
   add_index "dynasty_positions", ["sort_order", "id"], :name => "index_dynasty_positions_on_sort_order_and_id"
 
+  create_table "dynasty_seasons", :force => true do |t|
+    t.string   "affiliation", :limit => 6,                    :null => false
+    t.integer  "year",                                        :null => false
+    t.integer  "weeks",                    :default => 0,     :null => false
+    t.boolean  "current",                  :default => false, :null => false
+    t.date     "start_date",                                  :null => false
+    t.date     "end_date"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+  end
+
+  add_index "dynasty_seasons", ["affiliation", "current", "weeks"], :name => "index_dynasty_seasons_on_affiliation_and_current_and_weeks"
+  add_index "dynasty_seasons", ["affiliation", "year", "current"], :name => "index_dynasty_seasons_on_affiliation_and_year_and_current", :unique => true
+  add_index "dynasty_seasons", ["end_date", "affiliation", "current"], :name => "index_dynasty_seasons_on_end_date_and_affiliation_and_current"
+  add_index "dynasty_seasons", ["start_date", "affiliation", "current"], :name => "index_dynasty_seasons_on_start_date_and_affiliation_and_current"
+
   create_table "dynasty_team_favorites", :force => true do |t|
     t.integer  "team_id"
     t.integer  "player_id"
@@ -1130,18 +1147,6 @@ ActiveRecord::Schema.define(:version => 20120314214102) do
     t.string  "country", :limit => 64
     t.string  "street",  :limit => 128
     t.integer "user_id",                :null => false
-  end
-
-  create_table "dynasty_user_team_schedules", :force => true do |t|
-    t.integer  "league_id"
-    t.integer  "team_id"
-    t.integer  "opponent_id"
-    t.integer  "week"
-    t.integer  "outcome"
-    t.integer  "team_score"
-    t.integer  "opponent_score"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "dynasty_users", :force => true do |t|

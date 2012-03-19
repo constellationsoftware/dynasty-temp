@@ -7,8 +7,8 @@ team:
     setup_fee:                      275         # NOTE: this is in USD
     initial_balance:                25000000
     soft_cap:                       175000000
-    max_balance:                    250000000
-    min_balance:                    1000000
+    hard_cap:                       250000000
+    min_cap_percentage:             1000000
     luxury_tax_percentage:          10
     drop_player_fee_percentage:     2.5
     add_player_fee_percentage:      2.5

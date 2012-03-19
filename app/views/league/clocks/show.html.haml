@@ -1,0 +1,17 @@
+=javascript_include_tag 'clock'
+
+.panel
+  %h3 Time Machine
+  %h5#date= @clock.time.strftime(Settings.datetime_format.date_full)
+  %p
+    = link_to 'Next Week',
+      next_week_clock_path,
+      :remote => true,
+      :format => 'html',
+      :class => 'nice button blue small radius'
+    = link_to 'Reset Season',
+      reset_clock_path,
+      :remote => true,
+      :confirm => 'Are you sure? This will erase all scoring and transactions for this season!',
+      :class => 'nice button red small radius'
+%br

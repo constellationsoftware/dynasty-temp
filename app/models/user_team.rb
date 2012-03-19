@@ -13,58 +13,49 @@ class UserTeam < ActiveRecord::Base
         :conditions => 'current = TRUE'
     has_many :player_team_histories
     has_many :players, :through => :player_team_records
-    has_many :games, :foreign_key => 'team_id'
-    has_many :schedules, :inverse_of => :team, :foreign_key => 'team_id'
-    has_many :opponents, :through => :schedules
+    has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :week
+    has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :week
+    #has_many :games, :finder_sql => proc{ "SELECT * FROM #{Game.table_name} WHERE home_team_id = #{id} OR away_team_id = #{id}" }
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable
 
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
     scope :with_players, joins{ players }.includes{ players }
-    scope :with_schedule, joins{ schedules }.includes{ schedules }
+    scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
+
+    # home and away games ordered by week by default
+    def games(order = 'week')
+        (self.home_games + self.away_games).sort{ |a, b| a.send(order) <=> b.send(order) }
+    end
 
     def salary_total
         UserTeam.joins { picks.player.contract }.select { coalesce(sum(picks.player.contract.amount), 0).as('total') }.where { id == my { self.id } }.first.total.to_f
-    end
-
-    before_create :generate_uuid
-    after_create :initial_balance_from_league
-
-    # @return [Object]
-    # TODO The initial balance should be set by league settings
-    def initial_balance_from_league
-        if !!self.league_id
-            self.balance = self.league.default_balance
-        else
-            self.balance = 75000000
-        end
-        self.save
     end
 
     def is_offline
         self.offline
     end
 
-    # use uuid as a string
-    def uuid
-        parse_uuid_to_s
+    def record
+        record = self.games.collect do |game|
+            outcome = self.won? game
+            break if outcome.nil?
+            outcome ? 1 : 0
+        end
+        record || []
     end
 
-    # convert a uuid to string
-    def parse_uuid_to_s
-        (self[:uuid].empty?) ? nil : UUIDTools::UUID.parse_raw(self[:uuid]).to_s
+    def won?(game); game.won?(self) end
+    def lost?(game); !won?(game) end
+
+    # use uuid as a string
+    def uuid
+        uuid = self.read_attribute(:uuid)
+        UUIDTools::UUID.parse_raw(uuid).to_s unless uuid.nil?
     end
 
     def self.find_by_uuid(uuid_s)
-        uuid = UUIDTools::UUID.parse(uuid_s)
-        raw = uuid.raw
-        super(raw)
+        super UUIDTools::UUID.parse(uuid_s).raw
     end
-
-    protected
-        def generate_uuid
-            uuid = UUIDTools::UUID.timestamp_create
-            self.uuid = uuid.raw
-        end
 end
