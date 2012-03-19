@@ -4,7 +4,6 @@ class PlayerTeamHistory < ActiveRecord::Base
     belongs_to :position
     belongs_to :user_team
     belongs_to :team, :class_name => 'UserTeam', :foreign_key => :user_team_id
-    has_one :user_team_lineup
     belongs_to :league
 
     attr_accessible :name, :position, :depth, :last_name

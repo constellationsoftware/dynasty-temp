@@ -32,6 +32,13 @@ namespace :dynasty do
                 YAML::load(File.open(file))
             end
 
+            ##
+            # Parse accepts the following formats in any combination:
+            # team0 at team1
+            # team 0 @ team 1
+            # Team #0 at Team #1
+            # Team0 @ Team1
+            # ...etc.
             def parse_matchup(matchup)
                 /team(?:[ #]+)?([\d]{1,2}) ?(?:at|@) ?team(?:[ #]+)?([\d]{1,2})/i.match matchup
             end

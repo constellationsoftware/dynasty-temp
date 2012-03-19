@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319181621) do
+ActiveRecord::Schema.define(:version => 20120319192953) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -2295,21 +2295,6 @@ ActiveRecord::Schema.define(:version => 20120319181621) do
     t.integer "winners_forehand"
     t.integer "winners_backhand"
     t.integer "winners_volley"
-  end
-
-  create_table "user_team_lineups", :force => true do |t|
-    t.integer  "user_team_id"
-    t.integer  "qb_id"
-    t.integer  "wr1_id"
-    t.integer  "wr2_id"
-    t.integer  "rb1_id"
-    t.integer  "rb2_id"
-    t.integer  "te_id"
-    t.integer  "k_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "week"
-    t.boolean  "current"
   end
 
   create_table "versions", :force => true do |t|
