@@ -1,9 +1,10 @@
 class UserTeamObserver < ActiveRecord::Observer
+    def before_create(team)
+        # create GUID
+        uuid = UUIDTools::UUID.timestamp_create
+        team.uuid = uuid.raw
 
-
-    #def after_create(model)
-    #    42.times do
-    #        model.picks.create
-    #    end
-    #end
+        # set initial balance
+        team.balance = Settings.team.initial_balance
+    end
 end

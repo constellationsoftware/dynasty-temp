@@ -14,7 +14,7 @@ class League::Team::BalancesController < SubdomainController
                 .to_i
 
             current_week = Clock.first.week
-            max_week = Schedule.select{ max(week).as('week') }.where{ team_id == my{ @team.id } }.first.week.to_i
+            max_week = Game.select{ max(week).as('week') }.where{ team_id == my{ @team.id } }.first.week.to_i
             cap = 75000000
             cap_difference = (cap - payroll_total)
 

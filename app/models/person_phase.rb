@@ -16,8 +16,8 @@ class PersonPhase < ActiveRecord::Base
 
     belongs_to :position, :class_name => 'SportsDb::Position', :foreign_key => 'regular_position_id'
     belongs_to :role
-    belongs_to :season, :foreign_key => "end_season_id"
-    belongs_to :season, :foreign_key => "start_season_id"
+    belongs_to :start_season, :class_name => 'SportsDb::Season', :foreign_key => "end_season_id"
+    belongs_to :end_season, :class_name => 'SportsDb::Season', :foreign_key => "start_season_id"
 
 
     def self.activated

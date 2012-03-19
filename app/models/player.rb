@@ -51,7 +51,10 @@ class Player < ActiveRecord::Base
     has_many :leagues, :through => :teams
     has_many :picks
     has_many :favorites
-    has_many :points, :class_name => 'PlayerPoint'
+    has_many :all_points, :class_name => 'PlayerPoint'
+    has_many :points,
+        :class_name => 'PlayerPoint',
+        :conditions => { :year => Season.current.year }
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :events, :through => :event_points
     has_one  :contract, :foreign_key => 'person_id'
@@ -75,10 +78,11 @@ class Player < ActiveRecord::Base
         joins{ team_link }.where { team_link.league_id == my{ drafted_league.id } }
     }
     scope :with_contract, joins { contract }.includes { contract }
-    scope :with_points, joins { points }.includes { points }
+    scope :with_points, joins{ points }.includes{ points }
+    scope :with_all_points, joins{ all_points }.includes{ all_points }
     scope :with_points_from_season, lambda { |season = 'last'|
         if season.is_a? String
-            current_year = Season.maximum(:season_key).to_i
+            current_year = Season.current.year
             case season
                 when 'current'
                     season = current_year
@@ -178,7 +182,7 @@ class Player < ActiveRecord::Base
             end
         end
         puts "Recommended position: #{recommended_position.inspect}"
-        current_year = Season.order { season_key.desc }.first.season_key
+        current_year = Season.current.year
         result = joins{ [points, position] }.includes{ [points, position] }
             .where{ points.year == my{ current_year }}
         if !(recommended_position.nil?)
@@ -212,7 +216,7 @@ class Player < ActiveRecord::Base
     end
 
     def points_last_season
-        PlayerPoint.select(:points).where(:year => '2011').find_by_player_id(self.id).andand.points
+        PlayerPoint.select(:points).where(:year => Season.current).find_by_player_id(self.id).andand.points
     end
 
     def points_per_dollar

@@ -1,10 +1,13 @@
 ---
-season_weeks:               14
-sports:
-    nfl:
-        week_start_day:     thursday # day absolutely MUST be a day of the week, unabbreviated
-
 league:
-    capacity:               [ 12, 14, 16 ]
+    capacity:               [ 16 ] # NOTE: changing this may require a new scheduling plan
     password_min_length:    6
     password_max_length:    32
+
+# WARNING: do NOT change this unless you want to invalidate current schedules,
+# modify the schedule generation task for a new scheduling plan,
+# and generate fresh schedules for all applicable leagues
+season_weeks:               15
+
+datetime_format:
+    date_full:              '%B %e, %Y'

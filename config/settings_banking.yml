@@ -9,6 +9,7 @@ team:
     soft_cap:                       175000000
     hard_cap:                       250000000
     min_cap:                        1000000
+    min_cap_percentage:             1000000
     luxury_tax_percentage:          10
     drop_player_fee_percentage:     2.5
     add_player_fee_percentage:      2.5
