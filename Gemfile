@@ -2,13 +2,17 @@ source 'http://rubygems.org'
 source 'http://gems.github.com'
 
 # Core Gems
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.2'
 gem 'mysql2'
-gem 'activesupport', '~> 3.2.0'
+gem 'activesupport', '~> 3.2.2'
 gem 'execjs'
 gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
 gem 'rails_config'
+
+# Active Admin
+gem 'activeadmin'
+
 
 # AR Improvements
 gem 'squeel'
@@ -26,7 +30,7 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 # Templating & View Helpers
 gem 'haml'
 gem 'jquery-rails'
-gem 'formtastic'
+gem 'formtastic', '~> 1.2.4'
 gem 'jbuilder'
 gem 'gravtastic' # gravatar support
 gem 'country_select'
@@ -49,8 +53,8 @@ gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
 
 # Deployment
-gem 'capistrano'
-gem 'capistrano-ext'
+#gem 'capistrano'
+#gem 'capistrano-ext'
 
 # Misc
 gem 'andand'

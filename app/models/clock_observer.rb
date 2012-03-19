@@ -5,7 +5,7 @@ class ClockObserver < ActiveRecord::Observer
 
     def after_update(clock)
         season = Season.current
-        last_time = clock.time_wa
+        last_time = clock.time_was
 =begin
         next_week_start = last_time.next_week(Settings.week_start_day.downcase.to_sym)
 

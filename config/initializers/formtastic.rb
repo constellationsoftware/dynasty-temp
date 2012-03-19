@@ -79,7 +79,7 @@
 # specifying that class here.  Defaults to SemanticFormBuilder.
 # Formtastic::SemanticFormHelper.builder = MyCustomBuilder
 
-Formtastic::FormBuilder.priority_countries = ['United States', 'United Kingdom', 'Canada']
+##Formtastic::FormBuilder.priority_countries = ['United States', 'United Kingdom', 'Canada']
 
 ##
 # Monkey patch to stop adding class "label" to label elements

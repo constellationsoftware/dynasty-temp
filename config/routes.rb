@@ -1,4 +1,6 @@
 Dynasty::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
     if Rails.env.development?
         mount UserMailer::Preview => 'mail_view'
     end
