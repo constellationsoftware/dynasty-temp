@@ -18,11 +18,9 @@ $(document).ajaxError (e, transport, status, exception) ->
 $(document).ajaxSuccess (e, transport) ->
     # If a redirect header is found, redirect!
     location = transport.getResponseHeader('location')
-    console.log(location)
     #window.location.reload() if location?
 
     response = $.parseJSON(transport.responseText)
-    console.log(response)
     if response? and errorBucket = $('#global-errors')
         for own attr, messages of response.errors
             for msg in messages

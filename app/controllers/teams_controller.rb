@@ -1,29 +1,29 @@
 class TeamsController < InheritedResources::Base
     before_filter :authenticate_user!
     defaults :resource_class => UserTeam
-    custom_actions :resource => :manage
+    custom_actions :resource => [ :manage, :account ]
 
     has_scope :with_player_contracts, :type => :boolean, :default => false, :only => :manage do |controller, scope|
-        scope.joins { players.contract }.includes { players.contract }
+        scope.joins{ players.contract }.includes{ players.contract }
     end
-    has_scope :with_schedules, :type => :boolean, :default => true, :only => :manage do |controller, scope|
-        scope.joins { schedules }.includes { schedules }
+    has_scope :manager_scopes, :type => :boolean, :default => true, :only => :manage do |controller, scope|
+        scope.with_games
+            .where{ (home_games.home_team_id == controller.request.params[:id]) | (away_games.away_team_id == controller.request.params[:id]) }
     end
 
     def manage
         manage! do |format|
-            #raise unless current_user === @team.user
-
-            #session[:user_team_id] = @team.id
-            max_week = Schedule.select{max(week).as('week')}.where{team_id == my{@team.id}}.first.week.to_i
-            week = Clock.first.week
-            game = @team.schedules.for_week(week).with_opponent.first
-            next_game = @team.schedules.for_week(week + 1).with_opponent
+            games = @team.games
+            max_week = games.size
+            week = games.find_index{ |game| game.home_team_score.nil? } || max_week
+            game = games[week - 1] if week > 0
+            next_game = games[week] if week
 
             if week > 0
-                last_weeks_players = @team.player_team_histories.where(:week => week)
-                last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
+                #last_weeks_players = @team.player_team_histories.where(:week => week)
+                #last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
             end
+
             # RESEARCH
             position_players = []
             positions = Position.select{[name, abbreviation]}.all
@@ -61,17 +61,14 @@ class TeamsController < InheritedResources::Base
             end
             payroll = payroll_total / max_week
 
-            # schedule stuff
-            games = @team.schedules
-
             data = {
                 :week => week,
                 :max_week => max_week,
                 :game => game,
-                :next_game => (next_game.nil? ? nil : next_game.first),
+                :next_game => next_game,
                 :review => {
-                    :last_weeks_players => last_weeks_players,
-                    :last_weeks_opponents => last_weeks_opponents,
+                    #:last_weeks_players => last_weeks_players,
+                    #:last_weeks_opponents => last_weeks_opponents,
                     :week => week
                 },
                 :roster => {
@@ -97,7 +94,7 @@ class TeamsController < InheritedResources::Base
                 },
 
                 :waiver => {
-                    :waiver_players => @team.league.player_team_records.where(:waiver => 1)
+                    :waiver_players => @team.league.player_team_records.where{ waiver == 1 }
                 },
 
                 :sidebar => {
@@ -108,34 +105,22 @@ class TeamsController < InheritedResources::Base
                     },
                     :schedule => {
                         :games => games,
-                        :record => Schedule.ratio(games)
+                        :record => @team.record
                     }
                 }
             }
             format.html { respond_with @team, :locals => data }
             #failure.html { redirect_to root_path, :flash => {:info => "You aren't authorized to do that!"} }
         end
-        return
-        # game outcome
-        #if  @team.schedules.where(:week => @team.games.last.week).first
-        @last_game = @team.schedules.where(:week => @team.games.last.week).first
-        #end
-        # Roster and positioning stuff
-        @my_lineup = UserTeamLineup.find_or_create_by_user_team_id(@team.id)
-
-        @my_season_payroll = @team.players.to_a.sum(&:amount)
-        @my_weekly_payroll = @my_season_payroll / @team.schedules.count
-
-        @my_starters = @team.player_team_records.where { depth == 1 }
-        @my_bench = @team.player_team_records.where(:depth => 0)
-        @my_ptr = @team.player_team_records
-        @my_qb = @my_ptr.qb
-        @my_wr = @my_ptr.wr
-        @my_rb = @my_ptr.rb
-        @my_te = @my_ptr.te
-        @my_k = @my_ptr.k
 
         # Waiver Wire Stuff
-        @waiver_players = @league.player_team_records.where(:waiver => 1)
+        #@waiver_players = @league.player_team_records.where(:waiver => 1)
+    end
+
+    def account
+        account! do |format|
+            @transactions = Account.where{ ((payable_id == my{ @team.id }) & (payable_type == my{ @team.class.to_s })) | ((receivable_id == my{ @team.id }) & (receivable_type == my{ @team.class.to_s })) }
+                .order{ created_at.desc }
+        end
     end
 end

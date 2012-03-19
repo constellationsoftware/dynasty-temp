@@ -10,16 +10,10 @@
       - games.each do |game|
         %tr
           %td= game.week
-          %td= game.opponent.name
-          %td
-            - if game.outcome == 1
-              Win
-            - elsif game.outcome == 0
-              Loss
-            - else
-              N/A
+          %td= game.opponent_for(@team).name
+          %td= @team.won?(game) ? 'Won' : 'Lost'
     %tfoot
       %tr
         %td{ :colspan => 2 } Record
         %td
-          #{record[:wins]} - #{record[:losses]}
+          #{record.inject(:+)} - #{ record.empty? ? 0 : record.size - record.inject(:+) }

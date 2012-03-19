@@ -6,6 +6,7 @@ class PlayerTeamRecord < ActiveRecord::Base
     belongs_to :team, :class_name => 'UserTeam', :foreign_key => :user_team_id
     belongs_to :lineup
     belongs_to :league
+    has_many :receipts, :as => :payable
 
     #shortcut associations that bypass the person table (actual person data is seldom useful)
     has_one :player_name,

@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
     has_many :stats, :as => :stat_coverage
     has_many :participants_events
     has_one :sub_season, :class_name => 'EventSubSeason'
-    has_one :season, :through => :sub_season
+    has_one :season, :class_name => 'SportsDb::Season', :through => :sub_season
     has_many :player_points, :class_name => 'PlayerEventPoint'
     has_many :players, :through => :player_points
 

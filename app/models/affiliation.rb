@@ -10,5 +10,5 @@ class Affiliation < ActiveRecord::Base
     belongs_to :conference
     has_many :stats, :as => :stat_membership
     has_and_belongs_to_many :documents
-    has_many :seasons, :foreign_key => :league_id, :conditions => ['affiliation_type = ?', 'league']
+    has_many :seasons, :class_name => 'SportsDb::Season', :foreign_key => :league_id, :conditions => ['affiliation_type = ?', 'league']
 end

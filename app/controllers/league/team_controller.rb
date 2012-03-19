@@ -13,7 +13,7 @@ class League::TeamController < SubdomainController
 
         if current_scopes.has_key? :with_games
             @games = @team.schedules
-            @ratio = Schedule.ratio(@games)
+            @ratio = Game.ratio(@games)
         end
     end
 end
