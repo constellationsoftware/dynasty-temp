@@ -1,14 +1,6 @@
 = javascript_include_tag 'team/manage' # Included JS Files
 = stylesheet_link_tag 'team/manage'
 
-:coffeescript
-  window.WEEK = #{week}
-  $ -> window.TM = new TeamManagerApp
-
-- content_for :navbar_right do
-  %div{ :style => 'display: inline-block;' }
-    %span.datebox.button.nice.small.black= Clock.first.time.strftime("%B %e, %Y")
-
 .container
   .row
     .panel

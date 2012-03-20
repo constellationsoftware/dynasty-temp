@@ -22,7 +22,7 @@ class Clock < ActiveRecord::Base
     end
 
     def reset
-        self.time = Date.new(2011, 9, 8).at_midnight
+        self.time = Season.current.at_midnight
         self.save!
     end
 

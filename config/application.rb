@@ -31,6 +31,7 @@ module Dynasty
         # Activate observers that should always be running.
         config.active_record.observers = :game_observer,
             :clock_observer,
+            :juggernaut_observer,
             :league_observer,
             :user_observer,
             :user_team_observer,

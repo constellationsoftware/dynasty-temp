@@ -4,9 +4,13 @@ class Game < ActiveRecord::Base
     has_many :transactions, :as => :eventable, :class_name => 'Account'
     belongs_to :home_team, :class_name => 'UserTeam'
     belongs_to :away_team, :class_name => 'UserTeam'
+    belongs_to :team, :class_name => 'UserTeam', :foreign_key => 'home_team_id'
     belongs_to :league
 
     scope :for_week, lambda { |x| where{ week == my{ x } } }
+    scope :with_teams, joins{[ home_team, away_team ]}.includes{[ home_team, away_team ]}
+    scope :with_home_team, joins{ home_team }.includes{ home_team }
+    scope :with_away_team, joins{ away_team }.includes{ away_team }
 
     def home?(team); home_team === team end
     def away?(team); !home?(team) end

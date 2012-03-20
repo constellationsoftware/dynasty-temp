@@ -1,6 +1,6 @@
 class ClockObserver < ActiveRecord::Observer
     def before_create(clock)
-        clock.time ||= Settings.clock.start
+        clock.time ||= Season.current.start_date.at_midnight
     end
 
     def before_update(clock)

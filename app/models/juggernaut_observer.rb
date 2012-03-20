@@ -2,24 +2,14 @@ class JuggernautObserver < ActiveRecord::Observer
     observe :clock
 
     def after_create(record)
-        publish(:create, record)
+        JuggernautPublisher.new.publish(:create, record)
     end
 
     def after_update(record)
-        publish(:update, record)
+        JuggernautPublisher.new.publish(:update, record)
     end
 
     def after_destroy(record)
-        publish(:destroy, record)
+        JuggernautPublisher.publish(:destroy, record)
     end
-
-    protected
-        def publish(type, record)
-            Juggernaut.publish('/observer', {
-                type:   type,
-                id:     record.id,
-                class:  record.class.name,
-                record: (record.respond_to? 'flatten') ? record.flatten : record
-            })
-        end
 end

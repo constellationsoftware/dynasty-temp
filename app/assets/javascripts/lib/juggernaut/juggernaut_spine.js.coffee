@@ -6,12 +6,13 @@ class JuggernautSpine extends JuggernautBase
 
     process: (msg) =>
         klass = window[msg.class]
+        console.log klass
         throw 'Unknown class' unless klass
         switch msg.type
             when 'create'
-                klass.create msg.record unless klass.exists(msg.record.id)
+                klass.create msg.record unless klass.exists(msg.id)
             when 'update'
-                klass.update msg.id, msg.record
+                klass.update msg.id, $.parseJSON(msg.record)
             when 'destroy'
                 klass.destroy msg.id
             else
