@@ -1,46 +1,64 @@
 .row
   .three.columns
     %h5 TeamName
-    = render :partial => "mockups/partials/heads_up"
+    = render :partial => "mockups/partials/heads_up_team"
   .two.columns
     %h5
+      Outcome
+    %strong
       Winner
+
     %table
-      %tr
-        %td
-          X
-        %td
-      %tr
-        %td
-        %td
-          X
-      %tr
-        %td
-          X
-        %td
-      %tr
-        %td
-        %td
-          X
-      %tr
-        %td
-          X
-        %td
-      %tr
-        %td
-        %td
-          X
-      %tr
-        %td
-          X
-        %td
-      %tr
-        %td
-        %td
-          X
+      %thead
+        %tr
+          %td <
+          %td >
+      %tbody
+
+        %tr
+          %td
+            X
+          %td
+        %tr
+          %td
+          %td
+            X
+        %tr
+          %td
+            X
+          %td
+        %tr
+          %td
+          %td
+            X
+        %tr
+          %td
+            X
+          %td
+        %tr
+          %td
+          %td
+            X
+        %tr
+          %td
+            X
+          %td
+        %tr
+          %td
+          %td
+            X
+        %tr
+          %td
+            X
+          %td
+        %tr
+          %td
+          %td
+            X
+
   .three.columns
     %h5 OpponentTeamName
-    = render :partial => "mockups/partials/heads_up"
+    = render :partial => "mockups/partials/heads_up_team"
 
   .four.columns
     = render :partial => "mockups/partials/game_review_summary"

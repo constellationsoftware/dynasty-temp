@@ -10,15 +10,15 @@
         %li
 
         %li.has-flyout.right
-          %a{:href => "#", :class => "main"}Research
+          %a{:href => "/mockups/player_news", :class => "main"}Player News
           %a{:href => "#", :class => "flyout-toggle"}
             %span
           %div.flyout.small.panel
             %dl
               %dd
-                %a{:href => "/mockups/player_research"} Player Research
-              %dd
                 %a{:href => "/mockups/player_news"} Player News
+              %dd
+                %a{:href => "/mockups/player_research"} Player Research
               %dd
                 %a{:href => "/mockups/headlines"} Headlines
               %dd
@@ -29,26 +29,11 @@
                 %a{:href => "http://blog.dynastyowner.com", :target => "_blank"} Blog
 
 
-        %li.has-flyout.right
-          %a{:href => "#", :class => "main"}Support
-          %a{:href => "#", :class => "flyout-toggle"}
-            %span
-          %div.flyout.small.panel
-            %h5.red
-              Move this to the bottom
-            %dl
-              %dd
-                %a{:href => "/mockups/rules"} Gameplay
-              %dd
-                %a{:href => "/mockups/terms_conditions"} Terms & Conditions
-              %dd
-                %a{:href => "/mockups/privacy"} Privacy
 
-        %li
-          %a{:href => "/mockups/contact", :class => "main"} Contact
+
         - unless user_signed_in?
           %li
-            %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"} Not Signed In
+            %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"} Register or Sign In
         - if user_signed_in?
           %li.has-flyout.right
             %a{:href => "#", :class => "main"}

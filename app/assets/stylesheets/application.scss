@@ -10,6 +10,21 @@ background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
+.footer-nav {
+  border-top: 10px solid #333;
+  background-color: #cccccc !important;
+  color: white !important;
+  -webkit-border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  padding-left: 5px;
+}
+
+.footer-nav ul li a {
+  color: white;
+}
+
+
 #player_detail {
   background-color: #fefefe;
   

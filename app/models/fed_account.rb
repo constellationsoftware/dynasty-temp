@@ -1,0 +1,2 @@
+class FedAccount < Account
+end

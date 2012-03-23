@@ -1,5 +1,6 @@
 class Season < ActiveRecord::Base
     self.table_name = 'dynasty_seasons'
+    has_many :transactions, :as => :eventable, :class_name => 'Account'
 
     def self.current(affiliate = 'nfl')
         season = self.where{ (affiliation == my{ affiliate }) & (current == 1) }.first

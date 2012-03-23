@@ -1,6 +1,6 @@
 .row
   .twelve.columns
-    %dl.nice.tabs.contained
+    %dl.simple.tabs.contained
       %dd
         %a{:href => "#game_review"}
           Game Review
@@ -8,14 +8,18 @@
         %a{:href => "#manage_roster"}
           Manage Roster
       %dd
-        %a{:href => "#trades_waiver"}
-          Trades & Waiver Wire
+        %a{:href => "http://test.lvh.me:5000/teams/6/manage#trades"}
+          Trades
       %dd
-        %a{:href => "#team_financials"}
+        %a{:href => "http://test.lvh.me:5000/teams/6/manage#waiver"}
+          Waiver Wire
+      %dd
+        %a{:href => "http://lvh.me:5000/admin/accounts?"}
           Team Financials
       %dd
-        %a{:href => "#league_information"}
-          League Information
+        %a{:href => "/mockups/league_review"}
+          League Review
+
     %ul.nice.tabs-content.contained
       %li.active{:id => "game_reviewTab"}
 
@@ -147,9 +151,13 @@
 
 
 
+      %li{:id => "manage_rosterTab"}
+        %h4
+          Manage Your Roster
+          = render :partial => "mockups/partials/manage_roster"
+
       %li{:id => "trades_waiverTab"}
-        Trades & Waiver WireContent
-      %li{:id => "team_financialsTab"}
-        Team Financials Content
-      %li{:id => "league_informationTab"}
-        League Information Content
+        %h4
+          Trades & Waiver Wire
+
+

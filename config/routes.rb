@@ -33,6 +33,13 @@ Dynasty::Application.routes.draw do
         get :signup
         get :signup_2
         get :signup_3
+        get :signup_4
+        get :signup_5
+
+
+        get :create_team
+
+        get :league_review
 
         get :user_control_panel
         get :team_control_panel

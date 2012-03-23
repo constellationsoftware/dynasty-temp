@@ -22,42 +22,53 @@
 
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
+  %script{:src => "/assets/jquery.tablesorter.js", :type => "text/javascript"}
   = csrf_meta_tag
+
+  :javascript
+    $(document).ready(function() {$("#myTable").tablesorter();});
 
 %body
   /*Dynasty Navigation Partial
   = render :partial => "mockups/partials/dynasty_nav"
-  .row
-    .twelve.columns
-      #global-errors
-        - flash.each do |type, msg|
-          %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+
   /* Main Page Content
   .row
     .container.main_yield
       .row
+        .twelve.columns
+          #global-errors
+            - flash.each do |type, msg|
+              %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+      .row
         .sub_header
           %h4.white= @title
       = yield
-
       .row
         .six.columns
           %h5
-          %h5 I'm serious as a heart attack
-          %p Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
-          %h5 No man, I don't eat pork
-          %p Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
-
+          %h5 Lorem ipsum dolor sit ame
+          %p
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
         .six.columns
           %h5
-          %h5 I'm serious as a heart attack
-          %p Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
-          %h5 No man, I don't eat pork
-          %p Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'?
+          %h5 At vero eos et accusamus
 
+          %p "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+      .row
+        %ul.nav-bar.footer-nav
+          %li
+            %a{:href => "/mockups/rules"} FAQs
+          %li
+            %a{:href => "/mockups/terms_conditions"} Terms & Conditions
+          %li
+            %a{:href => "/mockups/privacy"} Privacy
+          %li
+            %a{:href => "/mockups/contact"} Contact
 
   = render :partial => "mockups/partials/login_modal"
   = render :partial => "mockups/partials/zendesk"
   #footer
     %form
       %input{:type => "hidden"}
+

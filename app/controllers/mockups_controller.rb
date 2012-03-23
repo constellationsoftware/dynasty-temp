@@ -12,6 +12,10 @@ class MockupsController < ApplicationController
         @title = "Team Control Panel"
     end
 
+    def league_review
+        @title = "League Review"
+    end
+
 
     def login
         @title = "Login Mockup"
@@ -27,6 +31,21 @@ class MockupsController < ApplicationController
 
     def signup_3
         @title = "New User Signup"
+    end
+
+    def signup_4
+        @title = "Choose League"
+    end
+
+
+    def signup_5
+        @title = "Choose League"
+    end
+
+
+
+    def create_team
+        @title = "Create A Team"
     end
 
     def player_research
@@ -65,7 +84,7 @@ class MockupsController < ApplicationController
     end
 
     def rules
-        @title = "Rules of the Game"
+        @title = "FAQ"
     end
 
     def contact
