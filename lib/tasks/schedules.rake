@@ -4,6 +4,7 @@ namespace :dynasty do
             desc 'Generates scheduling plans for leagues'
             task :schedules => [:environment] do
                 schedule_configs = {}
+                season = Season.current
 
                 leagues = League.joins{ drafts }.where{ drafts.status == :finished }
                 leagues.each do |league|
@@ -19,7 +20,7 @@ namespace :dynasty do
                             home_team = league.teams[match[1].to_i - 1]
                             away_team = league.teams[match[2].to_i - 1]
                             Game.create :league_id => league.id,
-                                :week => i + 1,
+                                :date => season.start_date.advance(:weeks => i),
                                 :home_team_id => home_team.id,
                                 :away_team_id => away_team.id
                         end
@@ -32,6 +33,13 @@ namespace :dynasty do
                 YAML::load(File.open(file))
             end
 
+            ##
+            # Parse accepts the following formats in any combination:
+            # team0 at team1
+            # team 0 @ team 1
+            # Team #0 at Team #1
+            # Team0 @ Team1
+            # ...etc.
             def parse_matchup(matchup)
                 /team(?:[ #]+)?([\d]{1,2}) ?(?:at|@) ?team(?:[ #]+)?([\d]{1,2})/i.match matchup
             end

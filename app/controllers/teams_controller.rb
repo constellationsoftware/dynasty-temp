@@ -20,8 +20,8 @@ class TeamsController < InheritedResources::Base
             next_game = games[week] if week
 
             if week > 0
-                #last_weeks_players = @team.player_team_histories.where(:week => week)
-                #last_weeks_opponents = game.opponent.player_team_histories.where(:week => week)
+                #last_weeks_players = @team.player_team_snapshots.where(:week => week)
+                #last_weeks_opponents = game.opponent.player_team_snapshots.where(:week => week)
             end
 
             # RESEARCH

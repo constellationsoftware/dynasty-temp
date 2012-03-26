@@ -1,28 +1,15 @@
 class Clock < ActiveRecord::Base
-    self.table_name = 'dynasty_clocks'
-
-    has_many :leagues
+    self.table_name = 'dynasty_clock'
 
     def next_week
-        self.time = self.time.advance(:days => 7)
-        self.time if save
-
-=begin
-        PlayerTeamRecord.all.each do |ptr|
-            pth = PlayerTeamHistory.new
-            pth.player_id = ptr.player_id
-            pth.user_team_id = ptr.user_team_id
-            pth.week = self.week
-            pth.depth = ptr.depth
-            pth.league_id = ptr.league_id
-            pth.position_id = ptr.position_id
-            pth.save!
+        7.times do |i|
+            self.time = self.time.advance :days => 1
+            self.save!
         end
-=end
     end
 
     def reset
-        self.time = Date.new(2011, 9, 8).at_midnight
+        self.time = Season.current.start_date.at_midnight
         self.save!
     end
 
