@@ -10,9 +10,16 @@ class JuggernautPublisher < AbstractController::Base
         class_name = record.class.name
         instance_variable_set("@#{class_name.downcase}".to_sym, record) # instance variable for our template
 
-        leagues = record.leagues
-        clients = leagues.inject([]){ |aggregate, league| aggregate += JuggernautClient.find_all_by_league_id(league.id) }
+        if record.respond_to? 'leagues'
+            leagues = record.leagues
+            clients = leagues.inject([]){ |aggregate, league| aggregate += JuggernautClient.find_all_by_league_id(league.id) }
+        elsif record.respond_to? 'league'
+            clients = JuggernautClient.find_all_by_league_id(record.league.id)
+        else
+            clients = JuggernautClient.all
+        end
         channels = clients.collect{ |client| "/observer/#{client.uuid}" }
+
         unless channels.empty?
             Juggernaut.publish(channels, {
                 :type =>   type,

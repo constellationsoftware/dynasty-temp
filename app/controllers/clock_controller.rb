@@ -1,4 +1,4 @@
-class League::ClocksController < SubdomainController
+class ClockController < InheritedResources::Base
     custom_actions :resource => [ :next_week, :reset ]
     respond_to :html, :json
 
@@ -16,6 +16,6 @@ class League::ClocksController < SubdomainController
 
     protected
         def resource
-            @clock = @league.clock
+            @clock = Clock.first
         end
 end

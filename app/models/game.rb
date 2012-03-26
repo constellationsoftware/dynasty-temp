@@ -1,16 +1,18 @@
 class Game < ActiveRecord::Base
     self.table_name = 'dynasty_games'
 
-    has_many :transactions, :as => :eventable, :class_name => 'Account'
-    belongs_to :home_team, :class_name => 'UserTeam'
-    belongs_to :away_team, :class_name => 'UserTeam'
-    belongs_to :team, :class_name => 'UserTeam', :foreign_key => 'home_team_id'
+    belongs_to :home_team, :class_name => 'UserTeam', :inverse_of => :home_games
+    belongs_to :away_team, :class_name => 'UserTeam', :inverse_of => :away_games
     belongs_to :league
+    belongs_to :event, :class_name => 'Events::Base', :polymorphic => true, :conditions => { :type => 'Events::ScoreGames' }
+    has_many :transactions, :as => :eventable, :class_name => 'Account'
 
     scope :for_week, lambda { |x| where{ week == my{ x } } }
     scope :with_teams, joins{[ home_team, away_team ]}.includes{[ home_team, away_team ]}
     scope :with_home_team, joins{ home_team }.includes{ home_team }
     scope :with_away_team, joins{ away_team }.includes{ away_team }
+    scope :scored, where{ (home_team_score != nil) & (away_team_score != nil) }
+    scope :unscored, where{ (home_team_score == nil) | (away_team_score == nil) }
 
     def home?(team); home_team === team end
     def away?(team); !home?(team) end

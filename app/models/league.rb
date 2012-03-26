@@ -3,7 +3,6 @@ class League < ActiveRecord::Base
 
     extend FriendlyId
     friendly_id :name, :use => :slugged
-    money :default_balance, :cents => :default_balance_cents, :precision => 0
     money :balance, :cents => :balance_cents
 
     #TODO: Create views, access control for users, associate league standings, schedules, and trades for user_teams
@@ -13,11 +12,11 @@ class League < ActiveRecord::Base
     has_many :players, :through => :teams
     has_many :player_team_records, :through => :teams
     has_many :player_team_records
-    #  requires :attribute, :name, :size
     belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
-    belongs_to :clock, :inverse_of => :leagues
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable
+    has_many :games
+    has_many :events, :as => :source
 
     validates_presence_of :name, :size
     validates_uniqueness_of :name
@@ -36,42 +35,40 @@ class League < ActiveRecord::Base
 
     def calculate_game_points(from, to)
         weeks = ((to.to_date - Season.current.start_date) / 7).to_i
-        games = Game.where{ (league_id == my{ id }) & (week >> my{ weeks }) }
+        games = Game.with_teams
+            .where{ (league_id == my{ id }) & (week >> my{ weeks }) }
             .where{ (home_team_score == nil) & (away_team_score == nil) }
         games.each do |game|
-            #force_starters game.away_team
-            #force_starters game.home_team
             game.home_team_score = points_for_team game.home_team, from, to
             game.away_team_score = points_for_team game.away_team, from, to
-            game.save
+            game.save!
         end
-        return
-        self.teams.each do |team|
-=begin
-=end
-            points = points_for_team(team, from, to)
+    end
 
-            game = Game.new :team_id => team.id, :week => self.clock.week, :points => (points ? points : 0)
-            if game.save!
-                schedule = team.schedules.where('week = ?', self.clock.week).first
-                schedule.team_score = team.games.where('week = ?', self.clock.week).first.points
-                schedule.opponent_score = UserTeam.find(schedule.opponent_id).games.where('week = ?', self.clock.week).first.points
-                schedule.outcome = 1 if schedule.team_score > schedule.opponent_score
-                schedule.outcome = 0 if schedule.team_score < schedule.opponent_score
-                schedule.save
+    def calculate_luxury_taxes
+        soft_cap = Settings.team.soft_cap.to_money
+        payees = []
 
-                # calculate win/loss payouts
-                winnings = schedule.outcome == 1 ? Settings.game.winning_payout : Settings.game.losing_payout
-                self.game = team.games.where('week = ?', self.clock.week).first
-                self.game.winnings = winnings
-                self.game.save
-                team.balance += self.game.winnings.to_money
-                team.save
+        luxury_tax_collected = self.teams.inject(0.to_money) do |tax, team|
+            if team.balance > soft_cap
+                luxury_tax_payment = (team.balance - soft_cap) * Settings.team.luxury_tax_percentage / 100
+                team.balance -= luxury_tax_payment
+                tax += luxury_tax_payment
+            else
+                payees << team
             end
+            tax
+        end
+
+        # divide the cumulative luxury tax collected among the teams under the soft cap
+        luxury_tax_relief = luxury_tax_collected / payees.size
+        payees.each do |payee|
+            payee.balance += luxury_tax_relief
         end
     end
 
     def points_for_team(team, from, to)
+        # force_starters(team))
         starter_points = PlayerEventPoint.select{ sum(points).as('points') }
             .joins{[ event, player.team_link.team ]}
             .where{ player.team_link.team.id == my{ team.id } }
@@ -87,7 +84,7 @@ class League < ActiveRecord::Base
         starter_points.to_f + (bench_points.to_f / 3)
     end
 
-    # TODO: move this into the team model
+    # TODO: move this into the team model after it works
     def force_starters(team)
         continue unless team.id == 5
         # force empty player slots to be filled

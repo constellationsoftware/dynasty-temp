@@ -29,8 +29,7 @@ module Dynasty
         # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
         # Activate observers that should always be running.
-        config.active_record.observers = :game_observer,
-            :clock_observer,
+        config.active_record.observers = :clock_observer,
             :juggernaut_observer,
             :league_observer,
             :user_observer,

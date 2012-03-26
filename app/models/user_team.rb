@@ -10,10 +10,10 @@ class UserTeam < ActiveRecord::Base
     has_many :player_teams,
         :class_name => 'PlayerTeamRecord',
         :conditions => 'current = TRUE'
-    has_many :player_team_histories
+    has_many :player_team_snapshots
     has_many :players, :through => :player_team_records
-    has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :week
-    has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :week
+    has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
+    has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
     #has_many :games, :finder_sql => proc{ "SELECT * FROM #{Game.table_name} WHERE home_team_id = #{id} OR away_team_id = #{id}" }
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable

@@ -1,8 +1,13 @@
 class Account < ActiveRecord::Base
     self.table_name = 'dynasty_accounts'
+
     money :amount, :cents => :amount_cents
+    money :payable_balance, :cents => :payable_balance_cents
+    money :receivable_balance, :cents => :receivable_balance_cents
 
     belongs_to :payable, :polymorphic => true
     belongs_to :receivable, :polymorphic => true
-    belongs_to :eventable, :polymorphic => true
+    belongs_to :event, :class_name => 'Events::Base', :polymorphic => true
+
+    validates_with Validators::Account
 end

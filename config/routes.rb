@@ -96,12 +96,12 @@ Dynasty::Application.routes.draw do
                 resource :balance
             end
         end
+    end
 
-        resource :clock do
-            member do
-                get :next_week
-                get :reset
-            end
+    resource :clock, :controller => :clock, :except => [ :index, :delete ] do
+        member do
+            get :next_week
+            get :reset
         end
     end
 

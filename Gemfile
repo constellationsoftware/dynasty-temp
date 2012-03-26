@@ -61,7 +61,6 @@ gem 'timecop'
 gem 'traceroute'
 gem 'rest-client'
 
-
 group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
@@ -104,4 +103,5 @@ group :test do
     gem 'database_cleaner', '0.7.1'
     gem 'factory_girl', '2.3.2'
     gem 'minitest'
+    gem 'watchr'
 end

@@ -1,4 +1,5 @@
 ---
+week_start_day:             <%= :thursday %>
 league:
     capacity:               [ 16 ] # NOTE: changing this may require a new scheduling plan
     password_min_length:    6

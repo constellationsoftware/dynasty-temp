@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319192953) do
+ActiveRecord::Schema.define(:version => 20120323161409) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -860,16 +860,16 @@ ActiveRecord::Schema.define(:version => 20120319192953) do
     t.string   "payable_type"
     t.integer  "receivable_id"
     t.string   "receivable_type"
-    t.integer  "eventable_id",                 :null => false
-    t.string   "eventable_type",               :null => false
-    t.integer  "amount_cents",    :limit => 8, :null => false
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.integer  "amount_cents",             :limit => 8, :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "event_id"
+    t.string   "event_type"
+    t.integer  "receivable_balance_cents", :limit => 8
+    t.integer  "payable_balance_cents",    :limit => 8
   end
 
-  create_table "dynasty_clocks", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "dynasty_clock", :force => true do |t|
     t.datetime "time"
   end
 
@@ -907,42 +907,48 @@ ActiveRecord::Schema.define(:version => 20120319192953) do
   add_index "dynasty_event_subscriptions", ["user_id", "event_id", "notifier"], :name => "index_dynasty_notifications_on_user_id_and_event_id_and_notifier"
 
   create_table "dynasty_events", :force => true do |t|
-    t.string "name", :null => false
+    t.string   "type",         :limit => 32
+    t.integer  "source_id"
+    t.string   "source_type"
+    t.integer  "target_id"
+    t.string   "target_type"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.datetime "processed_at"
   end
-
-  add_index "dynasty_events", ["name"], :name => "index_dynasty_events_on_name", :unique => true
 
   create_table "dynasty_games", :force => true do |t|
     t.integer  "league_id"
     t.integer  "home_team_id",                                  :null => false
     t.integer  "away_team_id",                                  :null => false
-    t.integer  "week",                                          :null => false
     t.decimal  "home_team_score", :precision => 4, :scale => 1
     t.decimal  "away_team_score", :precision => 4, :scale => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "date"
+    t.integer  "event_id"
+    t.string   "event_type"
   end
 
-  add_index "dynasty_games", ["id", "week"], :name => "index_dynasty_games_on_id_and_week"
+  add_index "dynasty_games", ["id", "league_id", "date"], :name => "index_dynasty_games_on_id_and_league_id_and_date"
+  add_index "dynasty_games", ["league_id", "event_id", "event_type"], :name => "index_dynasty_games_on_league_id_and_event_id_and_event_type"
   add_index "dynasty_games", ["league_id", "home_team_id", "away_team_id"], :name => "index_dynasty_games_on_league_and_teams", :unique => true
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",                  :limit => 50,                   :null => false
-    t.integer  "size",                                :default => 15,   :null => false
+    t.string   "name",          :limit => 50,                   :null => false
+    t.integer  "size",                        :default => 15,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug"
-    t.integer  "default_balance_cents", :limit => 8,  :default => 0,    :null => false
-    t.boolean  "public",                              :default => true
-    t.string   "password",              :limit => 32
+    t.boolean  "public",                      :default => true
+    t.string   "password",      :limit => 32
     t.integer  "team_count"
-    t.integer  "clock_id"
-    t.integer  "balance_cents",         :limit => 8,  :default => 0
+    t.integer  "balance_cents", :limit => 8,  :default => 0
   end
 
-  add_index "dynasty_leagues", ["id", "clock_id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["id", "name", "size", "team_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
+  add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
@@ -1024,20 +1030,19 @@ ActiveRecord::Schema.define(:version => 20120319192953) do
   add_index "dynasty_player_positions", ["player_id", "position_id"], :name => "index_dynasty_player_positions_on_player_id_and_position_id", :unique => true
   add_index "dynasty_player_positions", ["position_id", "player_id"], :name => "index_dynasty_player_positions_on_position_id_and_player_id", :unique => true
 
-  create_table "dynasty_player_team_histories", :force => true do |t|
+  create_table "dynasty_player_team_snapshots", :force => true do |t|
     t.integer  "player_id"
-    t.integer  "user_team_id"
-    t.integer  "week"
-    t.integer  "depth"
-    t.integer  "position_id"
-    t.integer  "league_id"
+    t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "event_id"
+    t.string   "event_type"
+    t.integer  "lineup_id"
   end
 
-  add_index "dynasty_player_team_histories", ["player_id"], :name => "index_dynasty_player_team_histories_on_player_id"
-  add_index "dynasty_player_team_histories", ["user_team_id"], :name => "index_dynasty_player_team_histories_on_user_team_id"
-  add_index "dynasty_player_team_histories", ["week"], :name => "index_dynasty_player_team_histories_on_week"
+  add_index "dynasty_player_team_snapshots", ["player_id", "team_id", "event_id", "event_type"], :name => "index_dynasty_player_team_snapshots_on_all"
+  add_index "dynasty_player_team_snapshots", ["player_id"], :name => "index_dynasty_player_team_histories_on_player_id"
+  add_index "dynasty_player_team_snapshots", ["team_id"], :name => "index_dynasty_player_team_histories_on_user_team_id"
 
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"
