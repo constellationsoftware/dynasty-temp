@@ -25,7 +25,7 @@
     - unless action_name === 'new'
       = form.inputs :name => 'Notifications' do
         = form.semantic_fields_for :event_subscriptions do |sub|
-          = sub.input :event, :as => :select, :required => false, :collection => DynastyEvent.all.inject({}){ |h, event| h[event.name.humanize.pluralize] = event.id; h }
+          /= sub.input :event, :as => :select, :required => false, :collection => DynastyEvent.all.inject({}){ |h, event| h[event.name.humanize.pluralize] = event.id; h }
           = sub.input :notifier, :as => :select, :required => false, :collection => { 'Email' => 'Notifiers::Email', 'Growl' => 'Notifiers::Growl', 'Text' => 'Notifiers::Sms' }
     = form.submit 'Submit', :class => 'nice small radius blue button'
 

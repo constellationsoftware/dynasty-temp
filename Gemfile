@@ -8,10 +8,10 @@ gem 'activesupport', '~> 3.2.2'
 gem 'execjs'
 gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
-gem 'rails_config'
+gem 'rails_config', :git => 'git://github.com/railsjedi/rails_config.git'
 
 # Active Admin
-gem 'activeadmin'
+gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
 
 
 # AR Improvements
@@ -30,7 +30,7 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 # Templating & View Helpers
 gem 'haml'
 gem 'jquery-rails'
-gem 'formtastic', '~> 1.2.4'
+gem 'formtastic'#, '~> 1.2.4'
 gem 'jbuilder'
 gem 'gravtastic' # gravatar support
 gem 'country_select'
