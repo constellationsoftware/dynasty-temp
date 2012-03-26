@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120323161409) do
+ActiveRecord::Schema.define(:version => 20120326135556) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -968,6 +968,7 @@ ActiveRecord::Schema.define(:version => 20120323161409) do
     t.string   "free_agent_year"
     t.integer  "bye_week"
     t.string   "depth"
+    t.integer  "guaranteed"
   end
 
   add_index "dynasty_player_contracts", ["person_id", "amount", "bye_week"], :name => "index_player_contracts_player_amount_bye"
