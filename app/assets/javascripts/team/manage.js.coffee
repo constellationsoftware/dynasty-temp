@@ -1,2 +1,2 @@
-#= require ../lib/tablesorting
-#= require ../app
+#= require lib/tablesorting
+#= require apps/team_management

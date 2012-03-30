@@ -1,7 +1,6 @@
 class Games extends Spine.Controller
     constructor: ->
         super
-        @week = window.WEEK
         Game.bind 'refresh', @render
 
         # bind to global clock update event
@@ -12,7 +11,10 @@ class Games extends Spine.Controller
 
         $('ul#game_weeks li').each (i, e) ->
             $(e).removeClass('current')
-            $(e).addClass('current') if (i + 1) == clock.week
+            $(e).addClass('current') if i == clock.week
+
+        # this variable COULD be used to refresh just the (new) current game scoring
+        game = Game.findByAttribute 'week', clock.week
 
         # refresh the scoring
         Game.fetch()

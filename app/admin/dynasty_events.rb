@@ -1,3 +1,3 @@
-ActiveAdmin.register DynastyEvent do
-  
-end
+#ActiveAdmin.register DynastyEvent do
+#
+#end

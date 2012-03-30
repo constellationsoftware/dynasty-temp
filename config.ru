@@ -9,3 +9,7 @@ require ::File.expand_path('../config/environment', __FILE__)
 use Sass::Plugin::Rack
 
 run Dynasty::Application
+
+# load the banking configuration settings
+Settings.add_source! File.join(Rails.root, 'config', 'settings_banking.yml')
+Settings.reload!

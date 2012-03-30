@@ -9,3 +9,5 @@
 #= require_tree ./views
 #= require_tree ./models
 #= require_tree ./controllers
+#= require_self
+$ -> new TeamManager()

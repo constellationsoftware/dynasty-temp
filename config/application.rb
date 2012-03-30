@@ -29,8 +29,8 @@ module Dynasty
         # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
 
         # Activate observers that should always be running.
-        config.active_record.observers = :game_observer,
-            :clock_observer,
+        config.active_record.observers = :clock_observer,
+            :juggernaut_observer,
             :league_observer,
             :user_observer,
             :user_team_observer,
@@ -106,10 +106,6 @@ module Dynasty
              :password => '86kuzjspp1u4',
              :enable_starttls_auto => true
         }
-
-        # load the banking configuration settings
-        Settings.add_source! File.join(Rails.root, 'config', 'settings_banking.yml')
-        Settings.reload!
     end
 end
 
