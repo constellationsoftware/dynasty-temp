@@ -1,4 +1,4 @@
-ActiveAdmin.setup do |config|
+ ActiveAdmin.setup do |config|
     config.site_title = "DynastyBank"
 
     #config.namespace :account do |account|

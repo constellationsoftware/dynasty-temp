@@ -1,4 +1,12 @@
 Dynasty::Application.routes.draw do
+
+    # Authorize.net stuff
+    match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
+
+    match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
+
+    match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
+
   ActiveAdmin.routes(self)
 
     if Rails.env.development?
@@ -35,8 +43,6 @@ Dynasty::Application.routes.draw do
         get :signup_3
         get :signup_4
         get :signup_5
-
-
         get :create_team
 
         get :league_review
@@ -154,6 +160,7 @@ Dynasty::Application.routes.draw do
 
     resources :users do
         get :home
+        get :signup
     end
 
     resources :player_team_records do
@@ -179,7 +186,8 @@ Dynasty::Application.routes.draw do
             get 'roster'
         end
     end
-    
+
+    # TODO: Delete this shit.
     # these are routes for testing cancan roles
     match 'test_roles/user' => 'test_roles#user'
     match 'test_roles/team_owner' => 'test_roles#team_owner'
@@ -192,6 +200,7 @@ Dynasty::Application.routes.draw do
     match 'banking/dynasty_stats' => 'banking#dynasty_stats'
     match 'banking/team_stats/:id' => 'banking#team_stats'
     match 'banking/league_stats/:id' => 'banking#league_stats'
+
 
     # these are used for the banking simulation counter
     match 'banking/counter' => 'banking#counter'
@@ -210,7 +219,7 @@ Dynasty::Application.routes.draw do
     match 'banking/balance_table' => 'banking#balance_table'
     match 'banking/teams_balance_table/:id' => 'banking#teams_balance_table'
     match 'banking/teams_balance_total/:id' => 'banking#teams_balance_total'
-    
+
     root :controller => :users, :action => :home
 
     # Sample of regular route:

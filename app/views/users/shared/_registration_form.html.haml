@@ -1,39 +1,34 @@
-.row
-  .six.columns
-    = form.inputs :name => 'Basic Info' do
-      %span.blue.radius.label
-        By default your email address will be your username.
-      = form.input :email, :as => :email, :input_html => { :class => 'input-text' }
-      - if action_name === 'new'
-        = form.input :password, :input_html => { :class => 'input-text', :autocomplete => 'off' }
-        = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :class => 'input-text', :autocomplete => 'off' }
-      - else
-        = form.input :current_password, :required => true, :input_html => { :class => 'input-text', :autocomplete => 'off' }
-        = form.input :password, :label => 'Enter new password', :input_html => { :class => 'input-text', :autocomplete => 'off' }
-        = form.input :password_confirmation, :label => 'Confirm new password', :input_html => { :class => 'input-text', :autocomplete => 'off' }
-      = form.input :first_name, :as => :string, :required => true, :input_html => { :class => 'input-text' }
-      = form.input :last_name, :required => true, :input_html => { :class => 'input-text' }
-      - unless action_name === 'new'
-        = form.input :phone, :as => :phone, :required => false, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32, :class => 'input-text' }
-    = form.inputs :for => :address, :name => 'Address' do |address|
-      = address.input :street, :label => 'Address', :input_html => { :class => 'input-text' }
-      = address.input :street2, :label => 'Address 2', :hint => 'Apt. 123, Suite A, etc.', :input_html => { :class => 'input-text' }
-      = address.input :city, :input_html => { :class => 'input-text' }
-      = address.input :state, :label => 'State/Province', :input_html => { :class => 'input-text' }
-      = address.input :zip, :label => 'Zip/Postal Code', :input_html => { :class => 'input-text' }
-      = address.input :country, :as => :country, :include_blank => true, :input_html => { :class => 'input-text' }
-    - unless action_name === 'new'
-      = form.inputs :name => 'Notifications' do
-        = form.semantic_fields_for :event_subscriptions do |sub|
-          = sub.input :event, :as => :select, :required => false, :collection => DynastyEvent.all.inject({}){ |h, event| h[event.name.humanize.pluralize] = event.id; h }
-          = sub.input :notifier, :as => :select, :required => false, :collection => { 'Email' => 'Notifiers::Email', 'Growl' => 'Notifiers::Growl', 'Text' => 'Notifiers::Sms' }
-    = form.submit 'Submit', :class => 'nice small radius blue button'
+%h5
+= form.inputs :name => 'Basic Info' do
 
-  .six.columns
-    %h5
-      Explanation of Registration Process
-    %p
-      Text here explaining the registration flow, why its required, etc.
+  = form.input :email, :as => :email, :input_html => { :class => 'input-text' }
+  %span.blue.radius.label
+    By default your email address will be your username.
+  - if action_name === 'new'
+    = form.input :password, :input_html => { :class => 'input-text', :autocomplete => 'off' }
+    = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :class => 'input-text', :autocomplete => 'off' }
+  - else
+    = form.input :current_password, :required => true, :input_html => { :class => 'input-text', :autocomplete => 'off' }
+    = form.input :password, :label => 'Enter new password', :input_html => { :class => 'input-text', :autocomplete => 'off' }
+    = form.input :password_confirmation, :label => 'Confirm new password', :input_html => { :class => 'input-text', :autocomplete => 'off' }
+  = form.input :first_name, :as => :string, :required => true, :input_html => { :class => 'input-text'}
+  = form.input :last_name, :required => true, :input_html => { :class => 'input-text' }
+  - unless action_name === 'new'
+    = form.input :phone, :as => :phone, :required => false, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32, :class => 'input-text' }
+= form.inputs :for => :address, :name => 'Address' do |address|
+  = address.input :street, :label => 'Address', :input_html => { :class => 'input-text' }
+  = address.input :street2, :label => 'Address 2', :hint => 'Apt. 123, Suite A, etc.', :input_html => { :class => 'input-text' }
+  = address.input :city, :input_html => { :class => 'input-text' }
+  = address.input :state, :label => 'State/Province', :input_html => { :class => 'input-text' }
+  = address.input :zip, :label => 'Zip/Postal Code', :input_html => { :class => 'input-text' }
+  = address.input :country, :as => :country, :include_blank => true, :input_html => { :class => 'input-text' }
+- unless action_name === 'new'
+  = form.inputs :name => 'Notifications' do
+    = form.semantic_fields_for :event_subscriptions do |sub|
+      = sub.input :event, :as => :select, :required => false, :collection => DynastyEvent.all.inject({}){ |h, event| h[event.name.humanize.pluralize] = event.id; h }
+      = sub.input :notifier, :as => :select, :required => false, :collection => { 'Email' => 'Notifiers::Email', 'Growl' => 'Notifiers::Growl', 'Text' => 'Notifiers::Sms' }
+= form.submit 'Submit', :class => 'nice small radius blue button'
+
 
 
 

@@ -15,13 +15,7 @@ ActiveAdmin::Dashboards.build do
        end
      end
 
-     section "Teams" do
-         ul do
-             Team.all.collect do |team|
-                 li link_to(team.name, admin_team_path(team))
-             end
-         end
-     end
+
   
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can

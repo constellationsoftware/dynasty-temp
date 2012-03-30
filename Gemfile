@@ -13,6 +13,11 @@ gem 'rails_config'
 # Active Admin
 gem 'activeadmin'
 
+# Payment Processing
+
+gem 'activemerchant'
+gem "authorize-net", "~> 1.5.2"
+
 
 # AR Improvements
 gem 'squeel'

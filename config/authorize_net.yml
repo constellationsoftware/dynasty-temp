@@ -1,0 +1,8 @@
+default:
+  api_login_id: 325XVk2Wr7
+  api_transaction_key: 3K7eQ5Fb8y687H2z
+  merchant_hash_value:  325XVk2Wr7
+
+development: 
+test: 
+production: 
