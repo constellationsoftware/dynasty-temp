@@ -22,7 +22,7 @@
   - if @team
     :javascript
       window.CLIENT_ID = '#{@team.uuid}';
-  - ActionController::Base.asset_host = "https://dynasty.showoff.io/"
+  - ActionController::Base.asset_host = "http://dynastyowner.net:3000/"
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
   %script{:src => "/assets/jquery.tablesorter.js", :type => "text/javascript"}
