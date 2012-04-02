@@ -9,6 +9,7 @@ class Players extends Spine.Controller
 
         throw 'Error: Model class is not defined!' unless @model?
         @model.bind('refresh', @onRefresh)
+        @model.bind('drop', @reloadAll)
         @model.bind('changeDepth', @reloadAll)
         @model.fetch()
 

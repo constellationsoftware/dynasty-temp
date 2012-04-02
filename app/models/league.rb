@@ -6,6 +6,8 @@ class League < ActiveRecord::Base
     money :default_balance, :cents => :default_balance_cents, :precision => 0
     money :balance, :cents => :balance_cents
 
+    alias_attribute :team_count, :user_teams_count
+
     #TODO: Create views, access control for users, associate league standings, schedules, and trades for user_teams
     has_many :teams, :class_name => 'UserTeam'
     has_many :users, :through => :teams
@@ -13,7 +15,7 @@ class League < ActiveRecord::Base
     has_many :players, :through => :teams
     has_many :player_team_records, :through => :teams
     has_many :player_team_records
-    has_many :games, :through => :teams
+    has_many :games
     #  requires :attribute, :name, :size
     belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
     belongs_to :clock, :inverse_of => :leagues

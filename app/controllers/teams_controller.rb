@@ -83,7 +83,7 @@ class TeamsController < InheritedResources::Base
                     :my_players => PlayerTeamRecord.joins{player.name}.includes{player.name}
                         .where{user_team_id == my{@team.id}},
                     :their_players => PlayerTeamRecord.joins{[player.name, team]}.includes{[player.name, team]}
-                        .where{user_team_id != my{@team.id}}
+                        .where{ (user_team_id != my{@team.id}) & (team.league_id == my{ @team.league_id }) }
                         .order{[player.name.last_name, player.name.first_name]},
                     :open_trade_offers => Trade.open.find_all_by_initial_team_id(@team.id),
                     :open_trades_received => Trade.open.find_all_by_second_team_id(@team.id),

@@ -32,11 +32,11 @@ class Event < ActiveRecord::Base
     end
 
     def self.past
-        where('start_date_time <= ?', Clock.first.time)
+        #where('start_date_time <= ?', Clock.first.time)
     end
 
     def self.future
-        where('start_date_time >= ?', Clock.first.time)
+        #where('start_date_time >= ?', Clock.first.time)
     end
 
     scope :past_event, self.past

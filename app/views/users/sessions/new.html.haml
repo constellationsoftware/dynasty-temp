@@ -5,5 +5,6 @@
       %h3 Log in
       = semantic_form_for :user, :url => new_user_session_path, :html => { :class => 'nice login' } do |f|
         = render :partial => '/users/shared/login_form', :locals => { :form => f }
+        = f.action :submit, :button_html => { :class => 'nice small radius blue button' }
       = link_to 'Don\'t have an account? Create one!', new_user_registration_path
 

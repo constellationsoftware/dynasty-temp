@@ -1,5 +1,7 @@
 ---
-week_start_day:             <%= :thursday %>
+team_pay_day:               tuesday
+player_pay_day:             wednesday
+week_start_day:             thursday
 league:
     capacity:               [ 16 ] # NOTE: changing this may require a new scheduling plan
     password_min_length:    6

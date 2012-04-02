@@ -8,37 +8,37 @@
       .four.columns
         Cash:
       .three.columns
-        #{number_to_currency(@team.balance)}
+        #{(@team.balance)}
     .row
       .four.columns
         Wk.Pay:
       .three.columns
-        #{number_to_currency(payroll)}
+        #{(payroll).to_money.format}
 
     .row
       .four.columns
         S. Cap:
       .three.columns
-        #{number_to_currency(cap)}
+        #{(cap)}
     .row
       .four.columns
         Ssn.Pay:
       - if payroll_total > cap
         .three.columns.failure
-          #{number_to_currency(payroll_total)}
+          #{(payroll_total)}
       - if payroll_total <= cap
         .three.columns.success
-          #{number_to_currency(payroll_total)}
+          #{(payroll_total).to_money.format}
 
     .row
       - if payroll_total > cap
         .twelve.columns.failure
           %strong
-            #{number_to_currency(payroll_total - cap)} over cap!
+            #{(payroll_total - cap).to_money.format} over cap!
       - if payroll_total <= cap
         .twelve.columns.success
           %strong
-            #{number_to_currency(cap - payroll_total)} under cap!
+            #{(cap - payroll_total).to_money.format} under cap!
     %br
 
 

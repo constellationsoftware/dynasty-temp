@@ -4,7 +4,7 @@
     .one
     .two.columns
       %a{:href => "/mockups/"}
-        %img{:src => "https://dynasty.showoff.io/assets/logo_med.png"}
+        %img{:src => "/assets/logo_med.png"}
     .nine.columns.right#nav_top_row
       %ul.nav-bar.right
         %li
@@ -34,16 +34,17 @@
         - unless user_signed_in?
           %li
             %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"} Register or Sign In
+              = t :signed_out, :scope => :nav
         - if user_signed_in?
           %li.has-flyout.right
             %a{:href => "#", :class => "main"}
-              Signed in as:
-              = current_user.email
+              = t :signed_in, :attribute => current_user.email, :scope => :nav
+              = t '.signed_in'
             %a{:href => "#", :class => "flyout-toggle"}
               %span
             %div.flyout.small.panel
               %dl
                 %dd
-                  = link_to "Sign Out?", destroy_session_path(devise_mapping.singular), :method => :delete
+                  = link_to "Sign Out?", destroy_user_session_path
                 %dd
                   %a{:href => "#"} Manage Account

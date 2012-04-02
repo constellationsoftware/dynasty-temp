@@ -6,7 +6,7 @@ class Events::PlayerPayroll < Events::Base
             team.player_teams.each do |player_team|
                 player_payment = (player_team.player.contract.amount / Settings.season_weeks).to_money
                 resulting_balance = team.balance -= player_payment
-                if Account.create! :event => self,
+                if PlayerAccount.create! :event => self,
                     :amount => player_payment,
                     :receivable => player_team,
                     :payable => team,

@@ -25,7 +25,7 @@
 
         %ul#game_weeks
           - (1..max_week).each do |i|
-            %li{:class => ('current' if i === (week - 1))}
+            %li{:class => ('current' if i === (week))}
               %div= i
 
   .row

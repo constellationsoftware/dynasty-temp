@@ -3,7 +3,7 @@ class UserTeam < ActiveRecord::Base
     money :balance, :cents => :balance_cents
 
     belongs_to :user
-    belongs_to :league
+    belongs_to :league, :inverse_of => :teams, :counter_cache => true
     has_many :favorites
     has_many :picks, :foreign_key => 'team_id'
     has_many :player_team_records, :conditions => 'current = TRUE'
@@ -24,12 +24,14 @@ class UserTeam < ActiveRecord::Base
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
 
     # home and away games ordered by week by default
-    def games(order = 'week')
-        (self.home_games + self.away_games).sort{ |a, b| a.send(order) <=> b.send(order) }
+    def games(order = :date)
+        (self.home_games + self.away_games).sort{ |a, b| a.send(order.to_s) <=> b.send(order.to_s) }
     end
 
     def salary_total
-        UserTeam.joins { picks.player.contract }.select { coalesce(sum(picks.player.contract.amount), 0).as('total') }.where { id == my { self.id } }.first.total.to_f
+        UserTeam.joins{ picks.player.contract }
+            .select{ coalesce(sum(picks.player.contract.amount), 0).as('total') }
+            .where{ id == my { self.id } }.first.total.to_f
     end
 
     def is_offline

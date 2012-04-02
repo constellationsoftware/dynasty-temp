@@ -3,7 +3,7 @@
   %p
     = link_to 'Edit User Profile', edit_user_registration_path
     |
-    = link_to 'Create a League', '/leagues/new'
+    = link_to 'Create a League', new_league_path
     |
     .panel
       1) User Signup with successful bill   2) Create Team 3) User can create/join league
@@ -30,5 +30,5 @@
     %h5= league.name
     = link_to 'Edit', edit_league_path(league)
   - else
-    = link_to 'Create New League', '#', :class => 'small nice blue button radius disabled'
-    = link_to 'View League List', "#", :class => 'small nice black button radius disabled'
+    = link_to 'Create New League', new_league_path, :class => 'small nice blue button radius'
+    = link_to 'View League List', league_path, :class => 'small nice black button radius'

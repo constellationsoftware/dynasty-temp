@@ -1,5 +1,4 @@
-# cucumber features/banking.feature
-
+@wip
 Feature: Banking
 
   # display total users
