@@ -8,5 +8,6 @@ json.position               player_team.position.abbreviation
 json.depth                  player_team.depth
 json.bye_week               player_team.player_contract.bye_week
 json.contract               player_team.player_contract.amount.to_money.format
+json.guaranteed             player_team.guaranteed_remaining.to_money.format
 json.points_last_season     player_team.player_points.points
 json.points_per_dollar      player_team.player_points.points.to_f / player_team.player_contract.amount.to_f * 1000000

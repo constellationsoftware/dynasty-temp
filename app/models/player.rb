@@ -54,7 +54,7 @@ class Player < ActiveRecord::Base
     has_many :all_points, :class_name => 'PlayerPoint'
     has_many :points,
         :class_name => 'PlayerPoint',
-        :conditions => { :year => Season.current.year }
+        :conditions => proc{ { :year => Season.current.year } }
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :events, :through => :event_points
     has_one  :contract, :foreign_key => 'person_id'
@@ -75,7 +75,7 @@ class Player < ActiveRecord::Base
     }
 
     scope :drafted, lambda { |drafted_league|
-        joins{ team_link }.where { team_link.league_id == my{ drafted_league.id } }
+        joins{ team_link.team }.where { team_link.team.league_id == my{ drafted_league.id } }
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins{ points }.includes{ points }
@@ -211,9 +211,8 @@ class Player < ActiveRecord::Base
         #.where{player.team_link.depth == 1}
     end
 
-    def full_name
-        name.full_name
-    end
+    def full_name; name.full_name end
+    def last_name_first; (name.first_name && name.last_name) ? "#{name.last_name}, #{name.first_name}" : full_name end
 
     def points_last_season
         PlayerPoint.select(:points).where(:year => Season.current).find_by_player_id(self.id).andand.points

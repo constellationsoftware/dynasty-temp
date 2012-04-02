@@ -1,5 +1,5 @@
 class JuggernautObserver < ActiveRecord::Observer
-    observe :clock
+    #observe :clock
 
     def after_create(record)
         JuggernautPublisher.new.publish(:create, record)

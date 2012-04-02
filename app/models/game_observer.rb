@@ -1,6 +1,6 @@
 class GameObserver < ActiveRecord::Observer
     def before_update(game)
-        if game.played?
+        if game.scored?
             home_team = game.home_team
             away_team = game.away_team
 

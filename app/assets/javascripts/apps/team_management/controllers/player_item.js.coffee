@@ -6,7 +6,8 @@ class PlayerItem extends Spine.Controller
     events:
         'click [data-type=start]': 'onClickStart'
         'click [data-type=bench]': 'onClickBench'
-        'click [data-type=remove]': 'onClickRemove'
+        'click [data-type=removeStarter]': 'onClickDropStarter'
+        'click [data-type=removeBench]': 'onClickDropBench'
         'mouseover': 'onMouseOver'
         'mouseout': 'onMouseOut'
 
@@ -19,8 +20,18 @@ class PlayerItem extends Spine.Controller
     render: =>
         @html @view("player/#{@item.constructor.name.underscore()}")(@item)
 
-    onClickRemove: =>
-        @item.destroy() if confirm('Are you sure you want to drop this player?')
+    onClickDropStarter: => @dropPlayer 1
+    onClickDropBench: => @dropPlayer 0
+    dropPlayer: (depth) =>
+        klass = @item.constructor
+        id = if klass.name is 'Starter' then @item.player.id else @item.id
+
+        if confirm('Are you sure you want to drop this player?')
+            $.ajax "/player_team_records/#{id}/drop",
+                type: 'GET'
+                success: =>
+                    Starter.trigger('drop', @)
+                    BenchWarmer.trigger('drop', @)
 
     onClickStart: => @changeDepth 1
     onClickBench: => @changeDepth 0

@@ -1,0 +1,8 @@
+FactoryGirl.define do
+    factory :team, :class => UserTeam do
+        name        'Kibbles n Vicks'
+        balance     Settings.team.initial_balance
+        association :league, :factory => :bros
+        user
+    end
+end

@@ -1,49 +1,48 @@
+.row
+  .one
+  .two.columns
+    %a{:href => "/mockups/"}
+      %img{:src => "/assets/logo_med.png"}
+  .nine.columns.right#nav_top_row
+    %ul.nav-bar.right
+      %li
 
-#dynasty-navbar.fixed_nav
-  .row
-    .one
-    .two.columns
-      %a{:href => "/mockups/"}
-        %img{:src => "/assets/logo_med.png"}
-    .nine.columns.right#nav_top_row
-      %ul.nav-bar.right
+      %li.has-flyout.right
+        %a{:href => "/mockups/player_news", :class => "main"}Player News
+        %a{:href => "#", :class => "flyout-toggle"}
+          %span
+        %div.flyout.small.panel
+          %dl
+            %dd
+              %a{:href => "/mockups/player_news"} Player News
+            %dd
+              %a{:href => "/mockups/player_research"} Player Research
+            %dd
+              %a{:href => "/mockups/headlines"} Headlines
+            %dd
+              %a{:href => "/mockups/transactions_contracts"} Transactions & Contracts
+            %dd
+              %a{:href => "/mockups/depth_charts"} Depth Charts
+            %dd
+              %a{:href => "http://blog.dynastyowner.com", :target => "_blank"} Blog
+
+
+
+
+      - unless user_signed_in?
         %li
-
+          %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"}
+            = t :signed_out, :scope => :nav
+      - if user_signed_in?
         %li.has-flyout.right
-          %a{:href => "/mockups/player_news", :class => "main"}Player News
+          %a{:href => "#", :class => "main"}
+            = t :signed_in, :attribute => current_user.email, :scope => :nav
+            = t '.signed_in'
           %a{:href => "#", :class => "flyout-toggle"}
             %span
           %div.flyout.small.panel
             %dl
               %dd
-                %a{:href => "/mockups/player_news"} Player News
+                = link_to "Sign Out?", destroy_user_session_path
               %dd
-                %a{:href => "/mockups/player_research"} Player Research
-              %dd
-                %a{:href => "/mockups/headlines"} Headlines
-              %dd
-                %a{:href => "/mockups/transactions_contracts"} Transactions & Contracts
-              %dd
-                %a{:href => "/mockups/depth_charts"} Depth Charts
-              %dd
-                %a{:href => "http://blog.dynastyowner.com", :target => "_blank"} Blog
-
-
-
-
-        - unless user_signed_in?
-          %li
-            %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"} Register or Sign In
-        - if user_signed_in?
-          %li.has-flyout.right
-            %a{:href => "#", :class => "main"}
-              Signed in as:
-              = current_user.email
-            %a{:href => "#", :class => "flyout-toggle"}
-              %span
-            %div.flyout.small.panel
-              %dl
-                %dd
-                  = link_to "Sign Out?", destroy_session_path(devise_mapping.singular), :method => :delete
-                %dd
-                  %a{:href => "#"} Manage Account
+                %a{:href => "#"} Manage Account

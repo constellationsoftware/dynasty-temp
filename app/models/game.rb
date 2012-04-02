@@ -19,13 +19,13 @@ class Game < ActiveRecord::Base
     def opponent_for(team); home?(team) ? away_team : home_team end
 
     def score_for(team)
-        if played?
+        if scored?
             home?(team) ? home_team_score : away_team_score
         end
     end
 
     def won?(team)
-        if played?
+        if scored?
             if home?(team)
                 home_team_score >= away_team_score # home teams win ties
             else
@@ -34,7 +34,13 @@ class Game < ActiveRecord::Base
         end
     end
 
-    def played?
+    def scored?
         !(self.home_team_score.nil? || away_team_score.nil?)
+    end
+
+    def week
+        game_season = Season.for_date(self.date).first
+        # we add one since we're referenced off the start date
+        ((self.date - game_season.start_date) / 7).to_i + 1
     end
 end

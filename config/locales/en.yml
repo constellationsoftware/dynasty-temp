@@ -2,6 +2,20 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+    nav:
+        signed_in:  "Signed in as %{attribute}"
+        signed_out: "Register or Sign in"
+
+    formtastic:
+        titles:
+        labels:
+        hints:
+        placeholders:
+        actions:
+            user:
+                submit: 'Sign in'
+            submit: 'Submit'
+
     activerecord:
         errors:
             messages:

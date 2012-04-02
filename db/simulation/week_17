@@ -1,5 +1,0 @@
-week = '2000-04-29'
-week_number = 17
-
-# trophy charge
-Ledger.post({:description => "Championship trophy fee", :entries => [[-150,-1],[150,0]]})

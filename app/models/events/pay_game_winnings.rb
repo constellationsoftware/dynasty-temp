@@ -4,7 +4,7 @@ class Events::PayGameWinnings < Events::Base
 
     def process(game)
         process! do
-            if game.played?
+            if game.scored?
                 home_team = game.home_team
                 away_team = game.away_team
 

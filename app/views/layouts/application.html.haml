@@ -13,7 +13,7 @@
   -# Set the viewport width to device width for mobile
   %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
 
-  %title= @title
+  %title= yield :title
 
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team
@@ -22,15 +22,19 @@
 
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
-  %script{:src => "/assets/jquery.tablesorter.js", :type => "text/javascript"}
   = csrf_meta_tag
 
-  :javascript
-    $(document).ready(function() {$("#myTable").tablesorter();});
+  -# tablesorter not found? Perhaps you mean to include lib/tablesorting
+  -# REFACTOR: move this to appropriate 'assets/javascripts/{name}.js.coffee' file and include that instead
+  /%script{:src => "/assets/jquery.tablesorter.js", :type => "text/javascript"}
+  /:javascript
+  /  $(document).ready(function() {$("#myTable").tablesorter();});
 
 %body
+
   /*Dynasty Navigation Partial
-  = render :partial => "mockups/partials/dynasty_nav"
+  #dynasty-navbar.fixed_nav
+    = render :partial => "mockups/partials/dynasty_nav"
 
   /* Main Page Content
   .row
@@ -42,8 +46,8 @@
               %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
       .row
         .sub_header
-          %h4.white= @title
-      = yield
+          %h4.white= yield :title
+      #content= yield
       .row
         .six.columns
           %h5

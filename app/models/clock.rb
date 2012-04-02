@@ -6,11 +6,12 @@ class Clock < ActiveRecord::Base
             self.time = self.time.advance :days => 1
             self.save!
         end
+        JuggernautPublisher.new.publish(:update, self)
     end
 
     def reset
         self.time = Season.current.start_date.at_midnight
-        self.save!
+        JuggernautPublisher.new.publish(:update, self) if self.save!
     end
 
     def present
@@ -43,5 +44,19 @@ class Clock < ActiveRecord::Base
 
     def self.first_week
         return Date.new(2011, 9, 8).at_midnight
+    end
+
+    def is_team_payday?; days_to_pay_teams === 0 end
+    def days_to_pay_teams
+        self.time.days_to_week_start(Settings.team_pay_day.to_sym)
+    end
+
+    def is_player_payday?; days_to_pay_players === 0 end
+    def days_to_pay_players
+        self.time.days_to_week_start(Settings.player_pay_day.to_sym)
+    end
+
+    def season_ended?(season)
+        self.time > season.end_date.to_time
     end
 end

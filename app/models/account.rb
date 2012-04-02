@@ -10,4 +10,9 @@ class Account < ActiveRecord::Base
     belongs_to :event, :class_name => 'Events::Base', :polymorphic => true
 
     validates_with Validators::Account
+
+    scope :transactions_this_season, lambda{
+        season = Season.current
+        where{ transaction_datetime >> (season.start_date.to_time..season.end_date.to_time) }
+    }
 end

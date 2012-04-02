@@ -1,5 +1,5 @@
 Dynasty::Application.routes.draw do
-  ActiveAdmin.routes(self)
+    ActiveAdmin.routes(self)
 
     if Rails.env.development?
         mount UserMailer::Preview => 'mail_view'
@@ -11,14 +11,15 @@ Dynasty::Application.routes.draw do
     devise_for :users, :skip => [ :sessions, :registrations ], :controllers => { :sessions => 'users/sessions', :registrations => 'users/registrations' }
     as :user do
         #root :to => 'users#home'
-        get '/login' => 'users/sessions#new', :as => :new_user_session
-        post '/login' => 'users/sessions#create', :as => :user_session
-        delete '/logout' => 'users/sessions#destroy', :as => :destroy_user_session
+        get     '/login' => 'users/sessions#new', :as => :new_user_session
+        post    '/login' => 'users/sessions#create', :as => :user_session
+        delete  '/logout' => 'users/sessions#destroy', :as => :destroy_user_session
+        get     '/logout' => 'users/sessions#destroy', :as => :destroy_user_session
 
-        post '/profile' => 'users/registrations#create', :as => :create_user_registration
-        get '/register' => 'users/registrations#new', :as => :new_user_registration
-        get '/profile' => 'users/registrations#edit', :as => :user_registration
-        put '/profile' => 'users/registrations#update', :as => :edit_user_registration
+        post    '/profile' => 'users/registrations#create', :as => :create_user_registration
+        get     '/register' => 'users/registrations#new', :as => :new_user_registration
+        get     '/profile' => 'users/registrations#edit', :as => :user_registration
+        put     '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end
 
     resource :mockups do
@@ -105,6 +106,8 @@ Dynasty::Application.routes.draw do
                 resource :balance
             end
         end
+
+        resources :trades
     end
 
     resource :clock, :controller => :clock, :except => [ :index, :delete ] do
@@ -119,13 +122,19 @@ Dynasty::Application.routes.draw do
         get :manage, :on => :member
     end
 
+    resources :player_team_records do
+        member do
+            get :drop
+        end
+    end
+
     # The priority is based upon order of creation:
     # first created -> highest priority.
 
     resources :person_scores, :events, :positions, :trades,
               :user_teams, :user_team_person, :users, :person_phases, :display_names,
               :stats, :fix, :picks, :salaries, :players,
-              :persons, :people, :drafts, :leagues, :user_team_lineups, :player_team_records
+              :persons, :people, :drafts, :leagues, :user_team_lineups
 
     resources :teams do
         resources :display_name, :person_phases
@@ -210,7 +219,7 @@ Dynasty::Application.routes.draw do
     match 'banking/balance_table' => 'banking#balance_table'
     match 'banking/teams_balance_table/:id' => 'banking#teams_balance_table'
     match 'banking/teams_balance_total/:id' => 'banking#teams_balance_total'
-    
+
     root :controller => :users, :action => :home
 
     # Sample of regular route:

@@ -1,0 +1,46 @@
+---
+team_pay_day:               tuesday
+player_pay_day:             wednesday
+week_start_day:             thursday
+league:
+    capacity:               [ 16 ] # NOTE: changing this may require a new scheduling plan
+    password_min_length:    6
+    password_max_length:    32
+
+# WARNING: do NOT change this unless you want to invalidate current schedules,
+# modify the schedule generation task for a new scheduling plan,
+# and generate fresh schedules for all applicable leagues
+season_weeks:               15
+
+datetime_format:
+    date_full:              '%B %e, %Y'
+
+game:
+    winning_payout:                 5000000
+    losing_payout:                  2500000
+    playoff_bonus_percentage:       150
+
+team:
+    setup_fee:                      275         # NOTE: this is in USD
+    initial_balance:                25000000
+    soft_cap:                       30000000
+    hard_cap:                       80000000
+    min_cap:                        1000000
+    luxury_tax_percentage:          10
+    drop_player_fee_percentage:     2.5
+    add_player_fee_percentage:      2.5
+
+league:
+    new_team_contribution:          125000000
+    revenue_sharing_min_percentage: 20
+    revenue_sharing_max_percentage: 60
+    revenue_sharing_increment:      4           # yearly incremented percentage
+    trophy_fee:                     150000000
+
+trade:
+    fee_percentage:                 10
+    contest_fee:                    100000
+    retraction_fee_percentage:      50
+
+market:
+    listing_fee_percentage:         5

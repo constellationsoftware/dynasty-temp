@@ -7,9 +7,9 @@
         %th Opponent
         %th Outcome
     %tbody
-      - games.each do |game|
+      - games.each_with_index do |game, i|
         %tr
-          %td= game.week
+          %td= i + 1
           %td= game.opponent_for(@team).name
           %td= @team.won?(game) ? 'Won' : 'Lost'
     %tfoot

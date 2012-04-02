@@ -6,9 +6,10 @@
   - else
     = @position.toUpperCase()
 %td.contract= @player.contract if @player?
+%td.guaranteed= @guaranteed_remaining(@player) if @player?
 %td.bye_week= @player.bye_week if @player?
 %td.controlwrap
   -if @player?
     %div.controls.invisible
       %input{ type: 'button', value: 'Bench', data-type: 'bench' }
-      %input{ type: 'button', value: 'Drop', data-type: 'remove' }
+      %input{ type: 'button', value: 'Drop', data-type: 'removeStarter' }

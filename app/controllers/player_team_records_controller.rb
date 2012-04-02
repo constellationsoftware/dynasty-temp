@@ -19,14 +19,15 @@ class PlayerTeamRecordsController < InheritedResources::Base
     end
 
     def drop
-        update! do |format|
-            @player_team_record.details = "Dropped by #{@player_team_record.user_team.name} on #{Clock.first.nice_time}"
-            @player_team_record.user_team_id = 0
-            @player_team_record.waiver = 1
-            @player_team_record.save
+        @player_team_record = PlayerTeamRecord.find(params[:id])
+        #@player_team_record.details = "Dropped by #{@player_team_record.team.name} on #{Clock.first.time}"
+        @player_team_record.user_team_id = nil
+        @player_team_record.depth = 0
+        @player_team_record.waiver = 1
+        @player_team_record.save!
 
-            format.html { redirect_to :back }
-        end
+        #format.html { redirect_to :back }
+        render :text => '{}'
     end
 
     def bid
