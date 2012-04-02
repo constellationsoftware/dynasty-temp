@@ -195,7 +195,7 @@ class Draft < ActiveRecord::Base
     end
 
 
-    # finding the current user_team up to pick
+    # finding the current team up to pick
     def get_current_pick
         return self.picks.where(:player_id => nil).first
     end

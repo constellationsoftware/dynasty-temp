@@ -2,7 +2,7 @@ class JuggernautClient < SuperModel::Base
     include SuperModel::Redis::Model
     include SuperModel::Timestamp::Model
 
-    belongs_to :team, :class_name => 'UserTeam'
+    belongs_to :team
     validates_presence_of :team_id
 
     attributes :session_count
@@ -38,7 +38,7 @@ class JuggernautClient < SuperModel::Base
         client = find_by_uuid(uuid)
         unless client
             # get team id from UUID
-            team = UserTeam.find_by_uuid(uuid)
+            team = Team.find_by_uuid(uuid)
             client = self.new({ :team_id => team.id, :uuid => uuid, :league_id => team.league_id })
         end
         client.increment!

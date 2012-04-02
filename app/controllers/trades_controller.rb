@@ -16,15 +16,15 @@ class TradesController < ApplicationController
     # GET /trades/1.xml
     def show
         @trade = Trade.all
-        @user_team = UserTeam.where(:user_id => current_user.id).where(:league_id => current_user.league_id).first
-        @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@user_team.id)
-        @my_open_trades_received = Trade.open.find_all_by_second_team_id(@user_team.id)
+        @team = Team.where(:user_id => current_user.id).where(:league_id => current_user.league_id).first
+        @my_open_trades_offered = Trade.open.find_all_by_initial_team_id(@team.id)
+        @my_open_trades_received = Trade.open.find_all_by_second_team_id(@team.id)
 
-        @my_accepted_trades_offered = Trade.closed.accepted.find_all_by_initial_team_id(@user_team.id)
-        @my_accepted_trades_received = Trade.closed.accepted.find_all_by_second_team_id(@user_team.id)
+        @my_accepted_trades_offered = Trade.closed.accepted.find_all_by_initial_team_id(@team.id)
+        @my_accepted_trades_received = Trade.closed.accepted.find_all_by_second_team_id(@team.id)
 
-        @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@user_team.id)
-        @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@user_team.id)
+        @my_denied_trades_offered = Trade.closed.denied.find_all_by_initial_team_id(@team.id)
+        @my_denied_trades_received = Trade.closed.denied.find_all_by_second_team_id(@team.id)
 
         respond_to do |format|
             format.html # show.html.erb
@@ -36,9 +36,9 @@ class TradesController < ApplicationController
     # GET /trades/new.xml
     def new
         @trade = Trade.new
-        @user_team = UserTeam.where(:user_id => current_user.id).first
-        @my_players = @user_team.player_team_records
-        @other_teams = @league.teams.where('id != ?', @user_team.id)
+        @team = Team.where(:user_id => current_user.id).first
+        @my_players = @team.player_team_records
+        @other_teams = @league.teams.where('id != ?', @team.id)
         @other_players = []
         @other_teams.each do |ot|
             ot.player_team_records.each do |otp|
@@ -63,16 +63,16 @@ class TradesController < ApplicationController
         @trade = Trade.new(params[:trade])
         @offered_player = PlayerTeamRecord.find(@trade.offered_player_id)
         @requested_player = PlayerTeamRecord.find(@trade.requested_player_id)
-        @trade.initial_team_id = @offered_player.user_team_id
-        @trade.league_id = @offered_player.user_team.league_id
-        @trade.second_team_id = @requested_player.user_team_id
+        @trade.initial_team_id = @offered_player.team_id
+        @trade.league_id = @offered_player.team.league_id
+        @trade.second_team_id = @requested_player.team_id
         @trade.offered_at = Clock.first.time
         @trade.open = TRUE
         @trade.accepted = FALSE
         @trade.save
         respond_to do |format|
             if @trade.save
-                format.html { redirect_to :back, :flash => {:info => "You offered #{@requested_player.user_team.name} a trade!"} }
+                format.html { redirect_to :back, :flash => {:info => "You offered #{@requested_player.team.name} a trade!"} }
                 format.xml { render :xml => @trade, :status => :created, :location => @trade }
             else
                 format.html { render :action => "edit" }
@@ -104,7 +104,7 @@ class TradesController < ApplicationController
         @trade.denied_at = Clock.first.nice_time
         @trade.save
         respond_to do |format|
-            format.html { redirect_to :back, :flash => {:info => "You retracted your offer to #{@trade.requested_player.user_team.name}"} }
+            format.html { redirect_to :back, :flash => {:info => "You retracted your offer to #{@trade.requested_player.team.name}"} }
             format.xml { head :ok }
         end
     end
@@ -115,7 +115,7 @@ class TradesController < ApplicationController
         @trade.denied_at = Clock.first.nice_time
         @trade.save
         respond_to do |format|
-            format.html { redirect_to :back, :flash => {:info => "You rejected the offer from #{@trade.offered_player.user_team.name}"} }
+            format.html { redirect_to :back, :flash => {:info => "You rejected the offer from #{@trade.offered_player.team.name}"} }
             format.xml { head :ok }
         end
     end
@@ -139,8 +139,8 @@ class TradesController < ApplicationController
         @requested_ptr = @trade.requested_player
 
 
-        @offered_ptr.user_team_id = @second_team.id
-        @requested_ptr.user_team_id = @initial_team.id
+        @offered_ptr.team_id = @second_team.id
+        @requested_ptr.team_id = @initial_team.id
         @offered_ptr.depth = 0
         @requested_ptr.depth = 0
         @offered_ptr.details = "Traded from #{@initial_team.name}"
@@ -166,7 +166,7 @@ class TradesController < ApplicationController
 
 
         respond_to do |format|
-            format.html { redirect_to :back, :flash => {:info => "You accepted the offer from #{@trade.requested_player.user_team.name} to trade #{@requested_ptr.name} for #{@offered_ptr.name}"} }
+            format.html { redirect_to :back, :flash => {:info => "You accepted the offer from #{@trade.requested_player.team.name} to trade #{@requested_ptr.name} for #{@offered_ptr.name}"} }
             format.xml { head :ok }
         end
     end

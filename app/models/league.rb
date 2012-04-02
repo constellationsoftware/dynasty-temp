@@ -3,22 +3,16 @@ class League < ActiveRecord::Base
 
     extend FriendlyId
     friendly_id :name, :use => :slugged
-    money :default_balance, :cents => :default_balance_cents, :precision => 0
     money :balance, :cents => :balance_cents
 
-    alias_attribute :team_count, :user_teams_count
-
-    #TODO: Create views, access control for users, associate league standings, schedules, and trades for user_teams
+    # TODO: Create views, access control for users, associate league standings, schedules, and trades for teams
     has_many :teams
     has_many :users, :through => :teams
     has_many :drafts
     has_many :players, :through => :teams
     has_many :player_team_records, :through => :teams
-    has_many :player_team_records
     has_many :games
-    #  requires :attribute, :name, :size
     belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
-    belongs_to :clock, :inverse_of => :leagues
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable
 
@@ -50,15 +44,13 @@ class League < ActiveRecord::Base
         end
         return
         self.teams.each do |team|
-=begin
-=end
             points = points_for_team(team, from, to)
 
             game = Game.new :team_id => team.id, :week => self.clock.week, :points => (points ? points : 0)
             if game.save!
                 schedule = team.schedules.where('week = ?', self.clock.week).first
                 schedule.team_score = team.games.where('week = ?', self.clock.week).first.points
-                schedule.opponent_score = UserTeam.find(schedule.opponent_id).games.where('week = ?', self.clock.week).first.points
+                schedule.opponent_score = Team.find(schedule.opponent_id).games.where('week = ?', self.clock.week).first.points
                 schedule.outcome = 1 if schedule.team_score > schedule.opponent_score
                 schedule.outcome = 0 if schedule.team_score < schedule.opponent_score
                 schedule.save
@@ -94,14 +86,14 @@ class League < ActiveRecord::Base
     def force_starters(team)
         continue unless team.id == 5
         # force empty player slots to be filled
-        Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeamRecord.table_name}.user_team_id = #{team.id}"
+        Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeamRecord.table_name}.team_id = #{team.id}"
         empty_slots = Lineup.joins{[ position, player_teams.outer, player_teams.position.outer ]}
             .includes{[ position, player_teams.position ]}
             .where{ player_teams.player_id == nil }
         empty_slots.each do |slot|
             team_player = PlayerTeamRecord.select("#{PlayerTeamRecord.table_name}.*")
                 .joins{[ player.position_link, player.points ]}
-                .where{ (user_team_id == my{ team.id }) & (lineup_id == nil) }
+                .where{ (team_id == my{ team.id }) & (lineup_id == nil) }
                 .order{ player.points.points.desc }
             if slot.flex
                 team_player = team_player.where{ player.position_link.position_id >> my{ slot.position.positions.collect{ |x| x.id } } }

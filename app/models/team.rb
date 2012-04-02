@@ -1,37 +1,62 @@
 class Team < ActiveRecord::Base
-    has_many :american_football_action_plays
-    has_one :display_name,
-            :foreign_key => 'entity_id',
-            :conditions => ['entity_type = ?', 'teams']
+    self.table_name = 'dynasty_teams'
+    money :balance, :cents => :balance_cents
 
-    has_many :person_phases,
-             :foreign_key => 'membership_id',
-             :conditions => ['membership_type = ?', 'teams']
+    belongs_to :user
+    belongs_to :league, :inverse_of => :teams, :counter_cache => true
+    has_many :favorites
+    has_many :picks
+    has_many :player_team_records, :conditions => 'current = TRUE'
+    has_many :player_teams,
+        :class_name => 'PlayerTeamRecord',
+        :conditions => 'current = TRUE'
+    #has_many :player_team_snapshots
+    has_many :players, :through => :player_team_records
+    has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
+    has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
+    #has_many :games, :finder_sql => proc{ "SELECT * FROM #{Game.table_name} WHERE home_team_id = #{id} OR away_team_id = #{id}" }
+    has_many :payments, :as => :receivable
+    has_many :receipts, :as => :payable
 
-    has_many :people, :through => :person_phases
-    has_many :team_phases
-    belongs_to :division
-    has_many :outcome_totals, :as => :outcome_holder
-    has_many :affiliations, :through => :team_phases
-    has_many :participants_events, :as => :participant
-    has_many :stats, :as => :stat_holder
-    has_many :stats, :as => :stat_membership
-    belongs_to :publisher
-    belongs_to :site, :foreign_key => :home_site_id
-    has_and_belongs_to_many :documents, :join_table => "teams_documents"
-    has_and_belongs_to_many :medias, :join_table => "teams_media"
-    Team.includes(:affiliations => [:display_names])
+    scope :online, where(:is_online => true)
+    scope :offline, where(:is_online => false)
+    scope :with_players, joins{ players }.includes{ players }
+    scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
 
-    def games_played
-        games = self.participants_events
-        games.each do |p|
-            Event.find(p.event_id).summary
+    # home and away games ordered by week by default
+    def games(order = :date)
+        (self.home_games + self.away_games).sort{ |a, b| a.send(order.to_s) <=> b.send(order.to_s) }
+    end
+
+    def salary_total
+        Team.joins{ picks.player.contract }
+            .select{ coalesce(sum(picks.player.contract.amount), 0).as('total') }
+            .where{ id == my { self.id } }.first.total.to_f
+    end
+
+    def is_offline
+        self.offline
+    end
+
+    def record
+        record = self.games.collect do |game|
+            outcome = self.won? game
+            break if outcome.nil?
+            outcome ? 1 : 0
         end
+        record || []
     end
 
-    def name
-        self.display_name.full_name
+    def won?(game); game.won?(self) end
+    def lost?(game); !won?(game) end
+
+    # use uuid as a string
+    def uuid
+        uuid = self.read_attribute(:uuid)
+        UUIDTools::UUID.parse_raw(uuid).to_s unless uuid.nil?
     end
 
-
+    def self.find_by_uuid(uuid_s)
+        super UUIDTools::UUID.parse(uuid_s).raw
+    end
 end

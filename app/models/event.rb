@@ -49,22 +49,22 @@ class Event < ActiveRecord::Base
 
     def home_team
         @team = self.teams.where { alignment == 'home' }.map(&:participant_id)
-        Team.find(@team).first
+        SportsDb::Team.find(@team).first
     end
 
     def away_team
         @team = self.teams.where { alignment == 'away' }.map(&:participant_id)
-        Team.find(@team).first
+        SportsDb::Team.find(@team).first
     end
 
     def winner
         @team = self.teams.where { event_outcome == 'win' }.map(&:participant_id)
-        Team.find(@team).first
+        SportsDb::Team.find(@team).first
     end
 
     def loser
         @team = self.teams.where { event_outcome == 'loss' }.map(&:participant_id)
-        Team.find(@team).first
+        SportsDb::Team.find(@team).first
     end
 
 

@@ -30,7 +30,7 @@ Given /^I am managing a team$/ do
 end
 
 Then "I can navigate the following tabs:" do |table|
-  # session[:user_team_id] = @team_id
+  # session[:team_id] = @team_id
 
   table.raw.each do |tab, content|
     click_on(tab)

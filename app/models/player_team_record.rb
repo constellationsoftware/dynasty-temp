@@ -3,10 +3,8 @@ class PlayerTeamRecord < ActiveRecord::Base
 
     belongs_to :player
     belongs_to :position
-    belongs_to :user_team
-    belongs_to :team, :class_name => 'UserTeam', :foreign_key => :user_team_id
+    belongs_to :team
     belongs_to :lineup
-    #belongs_to :league
     has_one :league, :through => :team
     has_many :receipts, :class_name => 'PlayerAccount', :as => :payable
 

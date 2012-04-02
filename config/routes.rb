@@ -7,8 +7,6 @@ Dynasty::Application.routes.draw do
 
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
-  ActiveAdmin.routes(self)
-
     if Rails.env.development?
         mount UserMailer::Preview => 'mail_view'
     end
@@ -65,7 +63,7 @@ Dynasty::Application.routes.draw do
     end
 
 
-    scope :league, :module => 'league', :constraints => SubdomainConstraint do
+    scope :leagues, :module => 'leagues', :constraints => SubdomainConstraint do
         resources :auto_picks do
             collection do
                 post :sort
@@ -89,9 +87,7 @@ Dynasty::Application.routes.draw do
                 resources :picks do
                     get :test_update, :on => :member
                 end
-                resources :teams do
-                    get :balance
-                end
+                resources :teams
                 resource :team do
                     get :autopick, :on => :member
                 end
@@ -123,8 +119,11 @@ Dynasty::Application.routes.draw do
     end
 
     resources :teams do
-        get :account, :on => :member
-        get :manage, :on => :member
+        member do
+            get :account
+            get :manage
+            get :roster
+        end
     end
 
     resources :player_team_records do
@@ -136,14 +135,9 @@ Dynasty::Application.routes.draw do
     # The priority is based upon order of creation:
     # first created -> highest priority.
 
-    resources :person_scores, :events, :positions, :trades,
-              :user_teams, :user_team_person, :users, :person_phases, :display_names,
+    resources :person_scores, :events, :positions, :trades, :users, :person_phases, :display_names,
               :stats, :fix, :picks, :salaries, :players,
-              :persons, :people, :drafts, :leagues, :user_team_lineups
-
-    resources :teams do
-        resources :display_name, :person_phases
-    end
+              :persons, :people, :drafts, :leagues, :lineups
 
     resources :trades do
         get 'retract'
@@ -187,14 +181,9 @@ Dynasty::Application.routes.draw do
         resources :display_name
     end
 
-    resources :user_teams do
-        member do
-            get 'manage'
-            get 'roster'
-        end
-    end
-
     root :controller => :users, :action => :home
+
+    ActiveAdmin.routes(self)
 
     # Sample of regular route:
     #   match 'products/:id' => 'catalog#view'

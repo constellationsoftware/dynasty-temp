@@ -27,7 +27,7 @@
               You got
               = @week_results.team_score
               points and
-              = UserTeam.find(@week_results.opponent_id).name
+              = Team.find(@week_results.opponent_id).name
               got
               = @week_results.opponent_score
               points.

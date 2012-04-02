@@ -3,10 +3,10 @@ class RoundObserver < ActiveRecord::Observer
         if model.draft.rounds.count.odd?
             position = 1
         else
-            position = model.league.user_teams.count
+            position = model.league.teams.count
         end
-        model.league.user_teams.each do |user_team|
-            model.picking_orders.create(:user_team => user_team, :position => position)
+        model.league.teams.each do |team|
+            model.picking_orders.create(:team => team, :position => position)
             if model.draft.rounds.count.odd?
                 position += 1
             else
@@ -14,7 +14,7 @@ class RoundObserver < ActiveRecord::Observer
             end
         end
         if model.picking_orders.empty? then
-            model.errors.add(:picking_orders, "There are no available user_teams for this round")
+            model.errors.add(:picking_orders, "There are no available teams for this round")
             raise ActiveRecord::Rollback if model.picking_orders.empty?
         end
 

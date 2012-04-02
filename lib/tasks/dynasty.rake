@@ -130,7 +130,7 @@ namespace :dynasty do
 
             desc 'Generate initial autopicks'
             task :auto_picks => [:environment] do
-                UserTeam.all.each do |team|
+                Team.all.each do |team|
                     i = 0
                     Player.with_points_from_season.limit{ 500 }.order{ points.desc }.each do |player|
                         i += 1
@@ -243,8 +243,8 @@ namespace :dynasty do
                 # Set the non-flex-assigned positions
 
                 Lineup.all.each do |lineup|
-                    UserTeam.all.each do |user_team|
-                        ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id(lineup.andand.position_id).first
+                    Team.all.each do |team|
+                        ptr = PlayerTeamRecord.bench.where("team_id = ?", team.id).find_all_by_position_id(lineup.andand.position_id).first
                         if ptr != nil
                             ptr.lineup_id = lineup.id
                             ptr.depth = 1
@@ -254,8 +254,8 @@ namespace :dynasty do
                 end
 
                 # set offensive flex
-                UserTeam.all.each do |user_team|
-                    ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id([2,3,4]).first
+                Team.all.each do |team|
+                    ptr = PlayerTeamRecord.bench.where("team_id = ?", team.id).find_all_by_position_id([2,3,4]).first
                     if ptr != nil
                         ptr.lineup_id = 7
                         ptr.position_id = 15
@@ -264,8 +264,8 @@ namespace :dynasty do
                 end
 
                 # set defensive flex
-                UserTeam.all.each do |user_team|
-                    ptr = PlayerTeamRecord.bench.where("user_team_id = ?", user_team.id).find_all_by_position_id([12,13,14]).first
+                Team.all.each do |team|
+                    ptr = PlayerTeamRecord.bench.where("team_id = ?", team.id).find_all_by_position_id([12,13,14]).first
                     if ptr != nil
                         ptr.lineup_id = 15
                         ptr.position_id = 16

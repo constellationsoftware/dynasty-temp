@@ -4,10 +4,10 @@ class PersonPhase < ActiveRecord::Base
 
     belongs_to :membership #, :polymorphic => true
 
-    belongs_to :team,
-               :foreign_key => 'membership_id',
-               :conditions => ['membership_type = ?', 'teams']
-
+    belongs_to  :team,
+                :foreign_key => 'membership_id',
+                :conditions => ['membership_type = ?', 'teams'],
+                :class_name => 'SportsDb::Team'
 
     belongs_to :affiliation,
                :foreign_key => 'membership_id',

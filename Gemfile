@@ -118,5 +118,5 @@ group :test do
     gem 'factory_girl_rails'
     gem 'rb-fsevent'
     gem 'growl'
-    gem 'shoulda-matchers'
+    gem 'shoulda'
 end

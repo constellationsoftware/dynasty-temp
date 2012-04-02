@@ -47,7 +47,7 @@ class Player < ActiveRecord::Base
     has_one  :position_link, :class_name => 'PlayerPosition'
     has_one  :position, :through => :position_link
     has_one  :team_link, :class_name => 'PlayerTeamRecord'
-    has_many :teams, :through => :team_link, :class_name => 'UserTeam'
+    has_many :teams, :through => :team_link
     has_many :leagues, :through => :teams
     has_many :picks
     has_many :favorites
@@ -71,7 +71,7 @@ class Player < ActiveRecord::Base
     # SCOPES
     #
     scope :roster, lambda { |team|
-        joins{ team_link }.where{ team_link.user_team_id == my{ team.id } }
+        joins{ team_link }.where{ team_link.team_id == my{ team.id } }
     }
 
     scope :drafted, lambda { |drafted_league|
@@ -167,7 +167,7 @@ class Player < ActiveRecord::Base
                                 JOIN (
                                     SELECT position_id, COUNT(id) AS count
                                     FROM dynasty_player_teams
-                                    WHERE current = 1 AND user_team_id = #{sanitize(team.id)} AND depth = #{depth}
+                                    WHERE current = 1 AND team_id = #{sanitize(team.id)} AND depth = #{depth}
                                     GROUP BY position_id
                                 ) AS pt
                                 ON p.id = pt.position_id
@@ -250,14 +250,14 @@ class Player < ActiveRecord::Base
     end
 
     def self.get_position_counts(team, depth, designation)
-        team = team.id if team.is_a? UserTeam
+        team = team.id if team.is_a? Team
         Position.find_by_sql("
             SELECT id, abbreviation, designation, (
                 SELECT COUNT(*)
                 FROM dynasty_player_teams pt
                 JOIN dynasty_player_positions pp
                 ON pt.player_id = pp.player_id
-                WHERE user_team_id = #{sanitize(team)}
+                WHERE team_id = #{sanitize(team)}
                     AND pp.position_id = pos.id
                     AND depth = #{depth}
                     AND designation = '#{designation}'

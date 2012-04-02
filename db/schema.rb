@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120329222516) do
+ActiveRecord::Schema.define(:version => 20120402172039) do
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -938,19 +938,19 @@ ActiveRecord::Schema.define(:version => 20120329222516) do
   add_index "dynasty_games", ["league_id", "home_team_id", "away_team_id"], :name => "index_dynasty_games_on_league_and_teams", :unique => true
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",             :limit => 50,                   :null => false
-    t.integer  "size",                           :default => 15,   :null => false
+    t.string   "name",          :limit => 50,                   :null => false
+    t.integer  "size",                        :default => 15,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug"
-    t.boolean  "public",                         :default => true
-    t.string   "password",         :limit => 32
-    t.integer  "user_teams_count"
-    t.integer  "balance_cents",    :limit => 8,  :default => 0
+    t.boolean  "public",                      :default => true
+    t.string   "password",      :limit => 32
+    t.integer  "teams_count"
+    t.integer  "balance_cents", :limit => 8,  :default => 0
   end
 
-  add_index "dynasty_leagues", ["id", "name", "size", "user_teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
+  add_index "dynasty_leagues", ["id", "name", "size", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
   add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
@@ -1050,7 +1050,7 @@ ActiveRecord::Schema.define(:version => 20120329222516) do
 
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"
-    t.integer  "user_team_id"
+    t.integer  "team_id"
     t.boolean  "current"
     t.datetime "added_at"
     t.datetime "removed_at"
@@ -1064,9 +1064,9 @@ ActiveRecord::Schema.define(:version => 20120329222516) do
     t.integer  "lineup_id"
   end
 
-  add_index "dynasty_player_teams", ["player_id", "depth", "user_team_id", "current"], :name => "index_dynasty_player_teams_roster_api"
-  add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "user_team_id"], :name => "index_position_counts_by_team"
-  add_index "dynasty_player_teams", ["user_team_id", "player_id"], :name => "index_player_teams_league_user_player"
+  add_index "dynasty_player_teams", ["player_id", "depth", "team_id", "current"], :name => "index_dynasty_player_teams_roster_api"
+  add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "team_id"], :name => "index_position_counts_by_team"
+  add_index "dynasty_player_teams", ["team_id", "player_id"], :name => "index_player_teams_league_user_player"
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",             :limit => 32

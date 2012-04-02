@@ -21,7 +21,7 @@ class PlayerTeamRecordsController < InheritedResources::Base
     def drop
         @player_team_record = PlayerTeamRecord.find(params[:id])
         #@player_team_record.details = "Dropped by #{@player_team_record.team.name} on #{Clock.first.time}"
-        @player_team_record.user_team_id = nil
+        @player_team_record.team_id = nil
         @player_team_record.depth = 0
         @player_team_record.waiver = 1
         @player_team_record.save!
@@ -32,7 +32,7 @@ class PlayerTeamRecordsController < InheritedResources::Base
 
     def bid
         @player_team_record = PlayerTeamRecord.find(params[:id])
-        @bidder = UserTeam.find(session[:user_team_id])
+        @bidder = Team.find(session[:team_id])
 
         if @player_team_record.waiver_team_id.nil?
             @player_team_record.waiver_team_id = @bidder.id
@@ -40,7 +40,7 @@ class PlayerTeamRecordsController < InheritedResources::Base
         end
 
         if @player_team_record.waiver_team_id
-            @current_winner = UserTeam.find(@player_team_record.waiver_team_id)
+            @current_winner = Team.find(@player_team_record.waiver_team_id)
             @current_bid = @current_winner.waiver_order
             @player_team_record.save
         end
@@ -66,12 +66,12 @@ class PlayerTeamRecordsController < InheritedResources::Base
 
         if @player_team_record.waiver_team_id
             @player_team_record.waiver = 0
-            @player_team_record.user_team_id = @player_team_record.waiver_team_id
+            @player_team_record.team_id = @player_team_record.waiver_team_id
             @player_team_record.save
         end
 
         respond_to do |format|
-            format.html { redirect_to :back, :flash => {:info => "#{UserTeam.find(@player_team_record.waiver_team_id).name} won the bidding for #{@player_team_record.name}"} }
+            format.html { redirect_to :back, :flash => {:info => "#{Team.find(@player_team_record.waiver_team_id).name} won the bidding for #{@player_team_record.name}"} }
             format.xml { head :ok }
         end
     end

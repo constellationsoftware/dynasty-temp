@@ -10,8 +10,8 @@ class Round < ActiveRecord::Base
 #  requires :association, :draft
 #  locks :association, :draft
 
-    def current_user_team
+    def current_team
         picking_orders.where(
-            :position => picks.count + 1).first.user_team
+            :position => picks.count + 1).first.team
     end
 end

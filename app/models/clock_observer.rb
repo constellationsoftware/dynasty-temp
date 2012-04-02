@@ -78,7 +78,7 @@ class ClockObserver < ActiveRecord::Observer
             Events::Base.all.each do |event|
                 event.destroy
             end
-            UserTeam.all.each do |team|
+            Team.all.each do |team|
                 team.balance = Settings.team.initial_balance
                 team.save!
             end

@@ -3,7 +3,7 @@ class Document < ActiveRecord::Base
     has_one :document_content
     has_and_belongs_to_many :events, :join_table => "events_documents"
     has_and_belongs_to_many :persons, :join_table => "persons_documents"
-    has_and_belongs_to_many :teams, :join_table => "teams_documents"
+    has_and_belongs_to_many :teams, :join_table => "teams_documents", :class_name => 'SportsDb::Team'
     has_and_belongs_to_many :affiliations, :join_table => "affiliations_documents"
 end
 

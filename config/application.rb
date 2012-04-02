@@ -21,8 +21,6 @@ module Dynasty
             #{Rails.root}/lib/**/
             #{Rails.root}/app/models/**/
         ]
-        config.autoload_paths += Dir[""]
-        #config.autoload_paths += %W(#{config.root}/models/**/)
 
         # Only load the plugins named here, in the order given (default is alphabetical).
         # :all can be used as a placeholder for all plugins not explicitly named.
@@ -34,7 +32,7 @@ module Dynasty
             :account_observer,
             :league_observer,
             :user_observer,
-            :user_team_observer,
+            :team_observer,
             :trade_observer,
             :draft_observer,
             :pick_observer #, :cacher, :garbage_collector, :forum_observer, :juggernaut_observer

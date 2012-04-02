@@ -14,7 +14,7 @@ module Pusher
             @socket.bind('pusher_internal:member_added') do |result|
                 data = parse(result)
                 team = get_team_from_data(data) if data
-                if !(team.nil?) and team.is_a? UserTeam
+                if !(team.nil?) and team.is_a? Team
                     team.is_online = true
                     team.save()
                 end
@@ -23,7 +23,7 @@ module Pusher
             @socket.bind('pusher_internal:member_removed') do |result|
                 data = parse(result)
                 team = get_team_from_data(data) if data
-                if !(team.nil?) and team.is_a? UserTeam
+                if !(team.nil?) and team.is_a? Team
                     team.is_online = false
                     team.save()
                 end
@@ -59,7 +59,7 @@ module Pusher
 
         def get_team_from_data(data)
             begin
-                UserTeam.find_by_uuid(data['user_id'].to_s) unless data['user_id'] == 0
+                Team.find_by_uuid(data['user_id'].to_s) unless data['user_id'] == 0
             rescue Exception => e
                 PusherClient.logger.warn("Unexpected data format for data: #{data.inspect}. Expected a 'user_id' key; can not continue.")
             end
