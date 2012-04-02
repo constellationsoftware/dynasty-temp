@@ -7,7 +7,7 @@ class PlayersController < ApplicationController
         @phase = @person.person_phases.where(:membership_type => 'teams').first
         @nfl_team = @person.teams.first
         @hometown = Location.find(@person.hometown_location_id)
-        @league_ptr = @my_league.player_team_records.where(:player_id => @player.id).first
+        @league_ptr = @my_league.player_teams.where(:player_id => @player.id).first
         if @league_ptr && @league_ptr.team
             @current_team = @league_ptr.team.name
         else
@@ -24,7 +24,7 @@ class PlayersController < ApplicationController
         @team = Team.find(session[:team_id])
         @player = Player.find(params[:player_id])
 
-        ptr = PlayerTeamRecord.new
+        ptr = PlayerTeam.new
         ptr.current = TRUE
         ptr.player_id = @player.id
         ptr.details = "Added on #{Clock.first.nice_time} by #{@team.name}"

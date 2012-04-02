@@ -9,11 +9,11 @@
       0
   %td
     - if depth == :starter
-      = form_for player.team_link, :url => bench_player_team_record_path(player.team_link.id), :html => { :method => :put, :class => 'inline' } do |f|
+      = form_for player.team_link, :url => bench_player_team_path(player.team_link.id), :html => { :method => :put, :class => 'inline' } do |f|
         = f.hidden_field :depth, :value => 0
         = f.submit 'Bench', :class => "nice small radius white button"
     - elsif depth == :bench
-      = form_for player.team_link, :url => start_player_team_record_path(player.team_link.id), :html => { :method => :put, :class => 'inline' } do |f|
+      = form_for player.team_link, :url => start_player_team_path(player.team_link.id), :html => { :method => :put, :class => 'inline' } do |f|
         = f.hidden_field :depth, :value => 1
         = f.submit 'Start', :class => "nice small radius white button"
-    = link_to 'Drop', drop_player_team_record_path(player.team_link.id), :class => "nice small radius red button"
+    = link_to 'Drop', drop_player_team_path(player.team_link.id), :class => "nice small radius red button"

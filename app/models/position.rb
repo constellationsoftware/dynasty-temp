@@ -12,9 +12,9 @@ class Position < ActiveRecord::Base
     has_many :players,
              :through => :player_positions,
              :class_name => 'Player'
-    has_many :player_team_records,
+    has_many :player_teams,
              :through => :players,
-             :class_name => 'PlayerTeamRecord'
+             :class_name => 'PlayerTeam'
     enum :designation, [:o, :d]
 
     scope :offense, where{ designation == :o }

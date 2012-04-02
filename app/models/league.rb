@@ -10,7 +10,7 @@ class League < ActiveRecord::Base
     has_many :users, :through => :teams
     has_many :drafts
     has_many :players, :through => :teams
-    has_many :player_team_records, :through => :teams
+    has_many :player_teams, :through => :teams
     has_many :games
     belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
     has_many :payments, :as => :receivable
@@ -86,12 +86,12 @@ class League < ActiveRecord::Base
     def force_starters(team)
         continue unless team.id == 5
         # force empty player slots to be filled
-        Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeamRecord.table_name}.team_id = #{team.id}"
+        Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeam.table_name}.team_id = #{team.id}"
         empty_slots = Lineup.joins{[ position, player_teams.outer, player_teams.position.outer ]}
             .includes{[ position, player_teams.position ]}
             .where{ player_teams.player_id == nil }
         empty_slots.each do |slot|
-            team_player = PlayerTeamRecord.select("#{PlayerTeamRecord.table_name}.*")
+            team_player = PlayerTeam.select("#{PlayerTeam.table_name}.*")
                 .joins{[ player.position_link, player.points ]}
                 .where{ (team_id == my{ team.id }) & (lineup_id == nil) }
                 .order{ player.points.points.desc }

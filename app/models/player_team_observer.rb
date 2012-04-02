@@ -1,4 +1,4 @@
-class PlayerTeamRecordObserver < ActiveRecord::Observer
+class PlayerTeamObserver < ActiveRecord::Observer
     def before_update(player_team)
         # when someone JUST dropped a player
         if player_team.team_id.nil? && !(player_team.team_id_was.nil?)

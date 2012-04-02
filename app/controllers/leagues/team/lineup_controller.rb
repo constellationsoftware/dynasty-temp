@@ -5,7 +5,7 @@ class Leagues::Team::LineupController < SubdomainController
     protected
         def collection
             # adds a join condition on-the-fly to avoid Activerecord sticking it in the where clause
-            Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeamRecord.table_name}.team_id = #{@team_id}"
+            Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeam.table_name}.team_id = #{@team_id}"
             @lineups = end_of_association_chain.joins{[ position, player_teams.outer, player_teams.player_name.outer, player_teams.position.outer, player_teams.player_contract.outer ]}
                 .includes{[ position, player_teams.player_name, player_teams.position, player_teams.player_contract ]}
         end

@@ -5,5 +5,5 @@ class Lineup < ActiveRecord::Base
     has_many :flex_positions,
         :through => :position,
         :conditions => { :flex => true }
-    has_many :player_teams, :class_name => 'PlayerTeamRecord', :inverse_of => :lineup
+    has_many :player_teams, :class_name => 'PlayerTeam', :inverse_of => :lineup
 end

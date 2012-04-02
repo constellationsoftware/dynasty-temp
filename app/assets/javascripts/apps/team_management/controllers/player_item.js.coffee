@@ -27,7 +27,7 @@ class PlayerItem extends Spine.Controller
         id = if klass.name is 'Starter' then @item.player.id else @item.id
 
         if confirm('Are you sure you want to drop this player?')
-            $.ajax "/player_team_records/#{id}/drop",
+            $.ajax "/player_teams/#{id}/drop",
                 type: 'GET'
                 success: =>
                     Starter.trigger('drop', @)

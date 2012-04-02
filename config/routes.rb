@@ -126,7 +126,7 @@ Dynasty::Application.routes.draw do
         end
     end
 
-    resources :player_team_records do
+    resources :player_teams do
         member do
             get :drop
         end
@@ -164,7 +164,7 @@ Dynasty::Application.routes.draw do
         get :home
     end
 
-    resources :player_team_records do
+    resources :player_teams do
         member do
             put :start
             put :bench

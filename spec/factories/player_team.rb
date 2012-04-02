@@ -1,5 +1,5 @@
 FactoryGirl.define do
-    factory :player_team, :class => PlayerTeamRecord do
+    factory :player_team, :class => PlayerTeam do
         current     1
         team
         league      {|pt| pt.team.league }

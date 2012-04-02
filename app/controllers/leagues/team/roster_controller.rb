@@ -1,6 +1,6 @@
 class Leagues::Team::RosterController < SubdomainController
     before_filter :authenticate_user!, :get_team_id!
-    defaults :resource_class => PlayerTeamRecord, :collection_name => 'player_teams', :instance_name => 'player_team'
+    defaults :resource_class => PlayerTeam, :collection_name => 'player_teams', :instance_name => 'player_team'
     respond_to :json
 
     has_scope :bench, do |controller, scope|
@@ -13,7 +13,7 @@ class Leagues::Team::RosterController < SubdomainController
     has_scope :with_player_points, :type => :boolean
 
     def destroy
-        @player_team = PlayerTeamRecord.find(params[:id])
+        @player_team = PlayerTeam.find(params[:id])
         @player_team.details = "Dropped by #{@player_team.team.name} on #{Clock.first.nice_time}"
         @player_team.team_id = 0
         @player_team.waiver = 1

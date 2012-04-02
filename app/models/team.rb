@@ -6,12 +6,10 @@ class Team < ActiveRecord::Base
     belongs_to :league, :inverse_of => :teams, :counter_cache => true
     has_many :favorites
     has_many :picks
-    has_many :player_team_records, :conditions => 'current = TRUE'
-    has_many :player_teams,
-        :class_name => 'PlayerTeamRecord',
-        :conditions => 'current = TRUE'
+    has_many :player_teams, :conditions => 'current = TRUE'
+    has_many :player_teams
+    has_many :players, :through => :player_teams
     #has_many :player_team_snapshots
-    has_many :players, :through => :player_team_records
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
     #has_many :games, :finder_sql => proc{ "SELECT * FROM #{Game.table_name} WHERE home_team_id = #{id} OR away_team_id = #{id}" }

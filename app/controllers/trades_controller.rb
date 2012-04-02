@@ -37,11 +37,11 @@ class TradesController < ApplicationController
     def new
         @trade = Trade.new
         @team = Team.where(:user_id => current_user.id).first
-        @my_players = @team.player_team_records
+        @my_players = @team.player_teams
         @other_teams = @league.teams.where('id != ?', @team.id)
         @other_players = []
         @other_teams.each do |ot|
-            ot.player_team_records.each do |otp|
+            ot.player_teams.each do |otp|
                 @other_players << otp.id
             end
         end
@@ -61,8 +61,8 @@ class TradesController < ApplicationController
     # POST /trades.xml b
     def create
         @trade = Trade.new(params[:trade])
-        @offered_player = PlayerTeamRecord.find(@trade.offered_player_id)
-        @requested_player = PlayerTeamRecord.find(@trade.requested_player_id)
+        @offered_player = PlayerTeam.find(@trade.offered_player_id)
+        @requested_player = PlayerTeam.find(@trade.requested_player_id)
         @trade.initial_team_id = @offered_player.team_id
         @trade.league_id = @offered_player.team.league_id
         @trade.second_team_id = @requested_player.team_id

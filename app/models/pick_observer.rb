@@ -7,7 +7,7 @@ class PickObserver < ActiveRecord::Observer
     end
 
     def after_update(pick)
-        record = PlayerTeamRecord.create do |ptr|
+        record = PlayerTeam.create do |ptr|
             ptr.current = TRUE
             ptr.player_id = pick.player_id
             ptr.details = "Drafted in round #{pick.round} at #{pick.picked_at} by #{pick.team.name}"

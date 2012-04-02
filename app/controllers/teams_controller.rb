@@ -79,9 +79,9 @@ class TeamsController < InheritedResources::Base
                 },
                 #:research => { :all_players_by_position => position_players },
                 :trades => {
-                    :my_players => PlayerTeamRecord.joins{player.name}.includes{player.name}
+                    :my_players => PlayerTeam.joins{player.name}.includes{player.name}
                         .where{team_id == my{@team.id}},
-                    :their_players => PlayerTeamRecord.joins{[player.name, team]}.includes{[player.name, team]}
+                    :their_players => PlayerTeam.joins{[player.name, team]}.includes{[player.name, team]}
                         .where{ (team_id != my{@team.id}) & (team.league_id == my{ @team.league_id }) }
                         .order{[player.name.last_name, player.name.first_name]},
                     :open_trade_offers => Trade.open.find_all_by_initial_team_id(@team.id),
@@ -113,7 +113,7 @@ class TeamsController < InheritedResources::Base
         end
 
         # Waiver Wire Stuff
-        #@waiver_players = @league.player_team_records.where(:waiver => 1)
+        #@waiver_players = @league.player_teams.where(:waiver => 1)
     end
 
     def account

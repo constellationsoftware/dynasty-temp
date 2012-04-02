@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PlayerTeamRecord do
+describe PlayerTeam do
     let(:player_team) { build :player_team }
     let(:current_season) { Season.current }
 

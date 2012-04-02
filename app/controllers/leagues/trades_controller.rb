@@ -13,7 +13,7 @@ class Leagues::TradesController < SubdomainController
         def inject_create_params!
             trade_params = params[:trade]
 
-            requested_player = PlayerTeamRecord.find trade_params[:requested_player_id], :include => :team
+            requested_player = PlayerTeam.find trade_params[:requested_player_id], :include => :team
             trade_params[:initial_team_id] = @team_id
             trade_params[:second_team_id] = requested_player.team_id
         end

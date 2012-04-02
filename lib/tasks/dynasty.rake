@@ -244,7 +244,7 @@ namespace :dynasty do
 
                 Lineup.all.each do |lineup|
                     Team.all.each do |team|
-                        ptr = PlayerTeamRecord.bench.where("team_id = ?", team.id).find_all_by_position_id(lineup.andand.position_id).first
+                        ptr = PlayerTeam.bench.where("team_id = ?", team.id).find_all_by_position_id(lineup.andand.position_id).first
                         if ptr != nil
                             ptr.lineup_id = lineup.id
                             ptr.depth = 1
@@ -255,7 +255,7 @@ namespace :dynasty do
 
                 # set offensive flex
                 Team.all.each do |team|
-                    ptr = PlayerTeamRecord.bench.where("team_id = ?", team.id).find_all_by_position_id([2,3,4]).first
+                    ptr = PlayerTeam.bench.where("team_id = ?", team.id).find_all_by_position_id([2,3,4]).first
                     if ptr != nil
                         ptr.lineup_id = 7
                         ptr.position_id = 15
@@ -265,7 +265,7 @@ namespace :dynasty do
 
                 # set defensive flex
                 Team.all.each do |team|
-                    ptr = PlayerTeamRecord.bench.where("team_id = ?", team.id).find_all_by_position_id([12,13,14]).first
+                    ptr = PlayerTeam.bench.where("team_id = ?", team.id).find_all_by_position_id([12,13,14]).first
                     if ptr != nil
                         ptr.lineup_id = 15
                         ptr.position_id = 16

@@ -1,4 +1,4 @@
-class PlayerTeamRecord < ActiveRecord::Base
+class PlayerTeam < ActiveRecord::Base
     self.table_name = 'dynasty_player_teams'
 
     belongs_to :player
@@ -24,7 +24,7 @@ class PlayerTeamRecord < ActiveRecord::Base
         :foreign_key => :player_id
 
     attr_accessible :name, :position, :depth
-    validates_with Validators::PlayerTeamRecord, :on => :update
+    validates_with Validators::PlayerTeam, :on => :update
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
     scope :on_waiver_wire, where{ waiver == 1 }

@@ -1,5 +1,5 @@
 module Validators
-    class PlayerTeamRecord < ActiveModel::Validator
+    class PlayerTeam < ActiveModel::Validator
         def validate(record)
             if record.depth == 1
                 # figure out which slot it goes in (other than your mom's)
