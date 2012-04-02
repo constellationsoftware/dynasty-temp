@@ -9,7 +9,7 @@ class League < ActiveRecord::Base
     alias_attribute :team_count, :user_teams_count
 
     #TODO: Create views, access control for users, associate league standings, schedules, and trades for user_teams
-    has_many :teams, :class_name => 'UserTeam'
+    has_many :teams
     has_many :users, :through => :teams
     has_many :drafts
     has_many :players, :through => :teams

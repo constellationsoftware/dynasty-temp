@@ -66,7 +66,6 @@ Dynasty::Application.routes.draw do
 
 
     scope :league, :module => 'league', :constraints => SubdomainConstraint do
-        match 'account' => 'league#account'
         resources :auto_picks do
             collection do
                 post :sort
