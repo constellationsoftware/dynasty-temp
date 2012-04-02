@@ -110,9 +110,8 @@ group :test do
     gem 'database_cleaner', '0.7.1'
     gem 'guard-cucumber'
     gem 'email_spec'
-    gem 'guard-minitest'
     gem 'factory_girl_rails'
     gem 'rb-fsevent'
     gem 'growl'
-    gem 'shoulda'
+    gem 'shoulda-matchers'
 end

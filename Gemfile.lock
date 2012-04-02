@@ -177,8 +177,6 @@ GEM
     guard-cucumber (0.7.5)
       cucumber (>= 0.10)
       guard (>= 0.8.3)
-    guard-minitest (0.5.0)
-      guard (>= 0.4)
     guard-rspec (0.7.0)
       guard (>= 0.10.0)
     guard-spork (0.5.2)
@@ -310,10 +308,6 @@ GEM
       multi_json (~> 1.0)
       rubyzip
     sexp_processor (3.1.0)
-    shoulda (3.0.1)
-      shoulda-context (~> 1.0.0)
-      shoulda-matchers (~> 1.0.0)
-    shoulda-context (1.0.0)
     shoulda-matchers (1.0.0)
     signature (0.1.2)
       ruby-hmac
@@ -387,7 +381,6 @@ DEPENDENCIES
   gravtastic
   growl
   guard-cucumber
-  guard-minitest
   guard-rspec
   guard-spork
   haml
@@ -417,7 +410,7 @@ DEPENDENCIES
   ruby_parser
   sass-rails (~> 3.2.3)
   select_with_include
-  shoulda
+  shoulda-matchers
   spork-rails
   squeel
   supermodel!
