@@ -71,10 +71,10 @@ gem 'traceroute'
 gem 'rest-client'
 
 group :development do
-    # Debugging & Development
-    gem 'ruby-debug19', :require => 'ruby-debug'
-    gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
-    #gem 'query_trace'
+  # Debugging & Development
+  gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+  #gem 'query_trace'
 end
 
 group :production do
@@ -82,8 +82,8 @@ group :production do
 end
 
 group :development, :test do
-    gem 'rack'
-    gem 'rspec-rails'#, '2.7.0'
+  gem 'rack'
+  gem 'rspec-rails'#, '2.7.0'
 end
 
 
@@ -94,29 +94,29 @@ end
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-    gem 'sass-rails', '~> 3.2.3'
-    #gem 'compass-rails'
-    #gem 'extjs-rails-assets'
-    gem 'coffee-rails', '~> 3.2.1'
-    gem 'uglifier', '>=1.0.3'
-    gem 'zurb-foundation'
-    gem 'haml_coffee_assets'
+  gem 'sass-rails', '~> 3.2.3'
+  #gem 'compass-rails'
+  #gem 'extjs-rails-assets'
+  gem 'coffee-rails', '~> 3.2.1'
+  gem 'uglifier', '>=1.0.3'
+  gem 'zurb-foundation'
+  gem 'haml_coffee_assets'
 end
 
 group :test do
-    # Pretty printed test output
-    # Note: turn will have to be uninstalled if there are
-    # versions > 0.8.2 [lrg]
-    gem 'turn', '< 0.8.3'
-    gem 'spork-rails'
-    gem 'guard-spork'
-    gem 'guard-rspec'
-    gem 'cucumber-rails'#, '1.2.1', :require => false
-    gem 'database_cleaner', '0.7.1'
-    gem 'guard-cucumber'
-    gem 'email_spec'
-    gem 'factory_girl_rails'
-    gem 'rb-fsevent'
-    gem 'growl'
-    gem 'shoulda-matchers'
+  # Pretty printed test output
+  # Note: turn will have to be uninstalled if there are
+  # versions > 0.8.2 [lrg]
+  gem 'turn', '< 0.8.3'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'cucumber-rails'#, '1.2.1', :require => false
+  gem 'database_cleaner', '0.7.1'
+  gem 'guard-cucumber'
+  gem 'email_spec'
+  gem 'factory_girl_rails'
+  gem 'rb-fsevent'
+  gem 'growl'
+  gem 'shoulda'
 end
