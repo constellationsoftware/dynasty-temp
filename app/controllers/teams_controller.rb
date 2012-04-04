@@ -1,6 +1,5 @@
 class TeamsController < InheritedResources::Base
     before_filter :authenticate_user!
-    defaults :resource_class => UserTeam
     custom_actions :resource => [ :manage, :account ]
 
     has_scope :with_player_contracts, :type => :boolean, :default => false, :only => :manage do |controller, scope|
@@ -76,14 +75,14 @@ class TeamsController < InheritedResources::Base
                     #:bench => bench,
                     #:reserve => reserve,
                     #:week => week,
-                    #:game_lineup => @team.user_team_lineups.where('week = ?', week).first
+                    #:game_lineup => @team.team_lineups.where('week = ?', week).first
                 },
                 #:research => { :all_players_by_position => position_players },
                 :trades => {
-                    :my_players => PlayerTeamRecord.joins{player.name}.includes{player.name}
-                        .where{user_team_id == my{@team.id}},
-                    :their_players => PlayerTeamRecord.joins{[player.name, team]}.includes{[player.name, team]}
-                        .where{ (user_team_id != my{@team.id}) & (team.league_id == my{ @team.league_id }) }
+                    :my_players => PlayerTeam.joins{player.name}.includes{player.name}
+                        .where{team_id == my{@team.id}},
+                    :their_players => PlayerTeam.joins{[player.name, team]}.includes{[player.name, team]}
+                        .where{ (team_id != my{@team.id}) & (team.league_id == my{ @team.league_id }) }
                         .order{[player.name.last_name, player.name.first_name]},
                     :open_trade_offers => Trade.open.find_all_by_initial_team_id(@team.id),
                     :open_trades_received => Trade.open.find_all_by_second_team_id(@team.id),
@@ -94,7 +93,7 @@ class TeamsController < InheritedResources::Base
                 },
 
                 :waiver => {
-                    :waiver_players => @team.league.player_team_records.where{ waiver == 1 }
+                    :waiver_players => @team.player_teams.where{ waiver == 1 }
                 },
 
                 :sidebar => {
@@ -114,7 +113,7 @@ class TeamsController < InheritedResources::Base
         end
 
         # Waiver Wire Stuff
-        #@waiver_players = @league.player_team_records.where(:waiver => 1)
+        #@waiver_players = @league.player_teams.where(:waiver => 1)
     end
 
     def account

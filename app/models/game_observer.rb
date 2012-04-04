@@ -27,7 +27,7 @@ class GameObserver < ActiveRecord::Observer
     end
 
     def pay_players(team, game)
-        team.player_team_records.each do |player_team|
+        team.player_team.each do |player_team|
             player_payment = (player_team.player.contract.amount / Settings.season_weeks).to_money
             if Account.create! :amount => player_payment, :eventable => game, :receivable => player_team, :payable => team
                 team.balance -= player_payment

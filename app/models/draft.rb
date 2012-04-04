@@ -37,7 +37,7 @@ class Draft < ActiveRecord::Base
     # TODO: This needs some TLC ASAP. Only PTRs recently drafted should be removed, not all of them!
     def reset
         Pick.destroy_all(:draft_id => self.id) # destroy picks
-        # PlayerTeamRecord.destroy_all(:league_id => self.league_id)
+        # PlayerTeam.destroy_all(:league_id => self.league_id)
         self.create_pick_records # create new picks
 
         self.finished_at = nil
@@ -195,7 +195,7 @@ class Draft < ActiveRecord::Base
     end
 
 
-    # finding the current user_team up to pick
+    # finding the current team up to pick
     def get_current_pick
         return self.picks.where(:player_id => nil).first
     end

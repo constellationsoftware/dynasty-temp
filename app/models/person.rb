@@ -5,7 +5,7 @@ class Person < ActiveRecord::Base
             :foreign_key => 'entity_id',
             :conditions => ['entity_type = ?', 'persons']
 
-    has_many :teams, :through => :person_phases
+    has_many :teams, :through => :person_phases, :class_name => 'SportsDb::Team'
 
     has_many :person_phases
     has_many :positions, :through => :person_phases
@@ -72,7 +72,7 @@ class Person < ActiveRecord::Base
     #has_one  :person_score
     #has_many :person_scores
     #has_many :players
-    #has_many :user_teams, :through => :players
+    #has_many :teams, :through => :players
 
 
     def self.calculate_points_from_season(season)
@@ -103,7 +103,7 @@ class Person < ActiveRecord::Base
     end
 
     def current_team
-        Team.find(self.current_position.membership_id)
+        SportsDb::Team.find(self.current_position.membership_id)
     end
 
     def current_stats

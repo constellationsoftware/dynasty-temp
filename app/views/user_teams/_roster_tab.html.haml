@@ -45,7 +45,7 @@
               %td
                 #{number_to_currency(starter.player.contract.amount / @team.schedules.count)}
               %td
-                = link_to "Drop Contract", player_team_record_drop_path(starter.id), :class => "nice small red button"
+                = link_to "Drop Contract", player_team_drop_path(starter.id), :class => "nice small red button"
       - Position.all.each do |p|
         - @my_bench.each do |bench|
           - if bench.player.position == p
@@ -68,4 +68,4 @@
               %td
                 #{number_to_currency(bench.player.contract.amount / @team.schedules.count)}
               %td
-                = link_to "Drop Contract", player_team_record_drop_path(bench.id), :class => "nice small red button"
+                = link_to "Drop Contract", player_team_drop_path(bench.id), :class => "nice small red button"

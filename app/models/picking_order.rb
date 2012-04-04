@@ -1,11 +1,11 @@
 class PickingOrder < ActiveRecord::Base
     belongs_to :round
-    belongs_to :user_team
+    belongs_to :team
 
-    # requires :association, :user_team, :round
+    # requires :association, :team, :round
 
 
-    # locks :association, :user_team, :round
+    # locks :association, :team, :round
     # locks :attribute, :position
 
     validates_presence_of :position

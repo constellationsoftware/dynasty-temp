@@ -1,9 +1,10 @@
 class Stat < ActiveRecord::Base
 
-    belongs_to :person,
-               :conditions => ['stat_holder_type = ?', 'persons']
-    belongs_to :team,
-               :conditions => ['stat_holder_type = ?', 'teams']
+    belongs_to  :person,
+                :conditions => ['stat_holder_type = ?', 'persons']
+    belongs_to  :team,
+                :conditions => ['stat_holder_type = ?', 'teams'],
+                :class_name => 'SportsDb::Team'
 
 
     #belongs_to :stat_coverage, :polymorphic => true
