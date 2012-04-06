@@ -1,0 +1,39 @@
+.six.columns.centered
+  .panel
+    %h3 Your account has been created!
+    %h4 Your temporary password is: fom556
+    %p You can choose your permanent password when logged in.
+    %br
+    %strong
+      Name:
+    = @user.first_name
+    = @user.last_name
+    %br
+    %strong
+      Email:
+    = @user.email
+    %br
+    %strong
+      Phone:
+    = @user.phone
+    %br
+    %strong
+      Billing Address:
+    = @address.street
+    = @address.city
+    = @address.state
+    = @address.zip
+    %br
+    %strong
+      Shipping Address:
+    = @address.ship_street
+    = @address.ship_city
+    = @address.ship_state
+    = @address.ship_zip
+
+
+
+    %a{:href => '/login', :class => "nice blue button radius"}
+      Log In!
+
+
