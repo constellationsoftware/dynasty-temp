@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120402172039) do
+ActiveRecord::Schema.define(:version => 20120409092857) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.string   "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "addresses", :force => true do |t|
     t.integer "location_id",                  :null => false
@@ -36,18 +51,6 @@ ActiveRecord::Schema.define(:version => 20120402172039) do
   add_index "addresses", ["location_id"], :name => "IDX_FK_add_loc_id__loc_id"
   add_index "addresses", ["postal_code"], :name => "IDX_addresses_3"
   add_index "addresses", ["region"], :name => "IDX_addresses_2"
-
-  create_table "admin_notes", :force => true do |t|
-    t.integer  "resource_id",     :null => false
-    t.string   "resource_type",   :null => false
-    t.integer  "admin_user_id"
-    t.string   "admin_user_type"
-    t.text     "body"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "affiliation_phases", :force => true do |t|
     t.integer  "affiliation_id",          :null => false

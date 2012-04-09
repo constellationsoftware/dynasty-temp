@@ -34,7 +34,8 @@ class User < ActiveRecord::Base
     #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
 
-    has_many :teams
+    #has_many :teams
+    has_one :team
     has_many :leagues, :foreign_key => 'manager_id'
     has_one  :address, :class_name => 'UserAddress', :dependent => :destroy
     has_many :event_subscriptions, :class_name => 'DynastyEventSubscription'

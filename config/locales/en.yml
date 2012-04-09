@@ -6,6 +6,16 @@ en:
         signed_in:  "Signed in as %{attribute}"
         signed_out: "Register or Sign in"
 
+    my_team:
+        sub_sections:
+            review: Game Review
+            roster: Front Office
+            manage: Coach's Corner
+            trade: Trades
+            waiver: Waiver Wire
+            league_review: League Review
+            finance: Team Finances
+
     formtastic:
         titles:
         labels:

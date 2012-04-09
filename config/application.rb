@@ -106,6 +106,9 @@ module Dynasty
              :password => '86kuzjspp1u4',
              :enable_starttls_auto => true
         }
+
+        # prevent ActionController from calling helpers :all
+        config.action_controller.include_all_helpers = false
     end
 end
 

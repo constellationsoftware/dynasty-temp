@@ -34,6 +34,7 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
 # Templating & View Helpers
 gem 'haml'
+gem 'haml-rails'
 gem 'jquery-rails'
 gem 'formtastic'#, '~> 1.2.4'
 gem 'jbuilder'
@@ -73,7 +74,7 @@ gem 'rest-client'
 group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
-    gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+    gem 'rails-footnotes', '>= 3.7.5.rc4'
     #gem 'query_trace'
 end
 
@@ -84,6 +85,9 @@ end
 group :development, :test do
     gem 'rack'
     gem 'rspec-rails'#, '2.7.0'
+    gem 'jasmine'
+    gem 'jasminerice'
+    gem 'guard-jasmine'
 end
 
 
@@ -111,7 +115,7 @@ group :test do
     gem 'spork-rails'
     gem 'guard-spork'
     gem 'guard-rspec'
-    gem 'cucumber-rails'#, '1.2.1', :require => false
+    gem 'cucumber-rails', :require => false#, '1.2.1'
     gem 'database_cleaner', '0.7.1'
     gem 'guard-cucumber'
     gem 'email_spec'
@@ -119,4 +123,5 @@ group :test do
     gem 'rb-fsevent'
     gem 'growl'
     gem 'shoulda'
+
 end

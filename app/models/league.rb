@@ -30,6 +30,7 @@ class League < ActiveRecord::Base
     scope :filter_by_name, lambda{ |league_name|
         where{ name =~ "#{league_name}%" }
     }
+    scope :by_slug, lambda {|value| where{ slug == my{ value } } }
 
     def calculate_game_points(from, to)
         weeks = ((to.to_date - Season.current.start_date) / 7).to_i
@@ -116,4 +117,9 @@ class League < ActiveRecord::Base
 
     def is_public?; self.public === true end
     def is_private?; !(is_public?) end
+
+    def self.find_by_slug!(slug)
+        league = self.by_slug(slug).first
+        league.scoped
+    end
 end

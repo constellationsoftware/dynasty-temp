@@ -12,5 +12,3 @@
 #= require hamlcoffee
 
 #= require lib/util
-
-

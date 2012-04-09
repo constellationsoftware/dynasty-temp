@@ -47,7 +47,8 @@ fi
 # fi
 
 # If you use bundler, this might be useful to you:
-# if command -v bundle && [[ -s Gemfile ]]
-# then
-#   bundle install
-# fi
+#if command -v bundle && [[ -s Gemfile ]] &&
+#then
+#  bundle install
+#  bundle outdated
+#fi
