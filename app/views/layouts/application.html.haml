@@ -22,7 +22,7 @@
   - if @team
     :javascript
       window.CLIENT_ID = '#{@team.uuid}';
-  /- ActionController::Base.asset_host = "https://dynasty.showoff.io/"
+  - ActionController::Base.asset_host = "https://dynasty.showoff.io/"
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
   = csrf_meta_tag
@@ -49,7 +49,9 @@
               %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
       .row
         .sub_header
-          %h4.white= yield :title
+          %h4.white
+            = yield :title
+            = @title
       #content= yield
       .row
         .six.columns

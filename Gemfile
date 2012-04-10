@@ -58,8 +58,8 @@ gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
 
 # Deployment
-#gem 'capistrano'
-#gem 'capistrano-ext'
+gem 'capistrano'
+gem 'capistrano-ext'
 
 # Misc
 gem 'andand'

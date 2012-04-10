@@ -1,4 +1,64 @@
 %h4
-  Your offer has been recorded.
-%p
-  You will be notified if it is accepted or rejected.
+  You have received the following offers for your team.
+
+.row
+  .twelve.columns.centered
+    .panel
+      %table
+        %thead
+          %tr
+            %th
+              %h4
+                Name
+            %th
+              %h4
+                Email
+            %th
+              %h4
+                Offer Amount
+            %th
+
+            %th
+
+        %tbody
+          %tr
+            %td
+              %h4
+                FirstName LastName
+            %td
+              %h4
+                email@domain.com
+            %td
+              %h4
+                $500.00
+            %td
+              %a.button.nice.small.green{'data-reveal-id' => 'acceptOfferModal'}
+                Accept
+              %a.button.nice.small.red{'data-reveal-id' => 'rejectOfferModal'}
+                Reject
+
+
+#acceptOfferModal.reveal-modal
+  .row
+    %a.button.small.black.nice.radius.close-reveal-modal X
+    .twelve.columns.centered
+      %h4
+        Are you sure?
+      %a.nice.large.green.button{:href => "#"}
+        Yes, sell my team.
+      %a.nice.large.black.button{:href => "#"}
+        No, don't sell.
+
+#rejectOfferModal.reveal-modal
+  .row
+    %a.button.small.black.nice.radius.close-reveal-modal X
+    .twelve.columns.centered
+      %h4
+        Reject This Offer
+      %p
+        %input#offer.large_input{:type => 'text', :placeholder => 'Counter Offer?'}
+      %p
+        %a.nice.large.green.button{:href => "#"}
+          Reject Offer
+        %a.nice.large.black.button{:href => "#"}
+          Make Counter Offer

@@ -1,6 +1,5 @@
 class PaymentsController < ApplicationController
 
-
   helper :authorize_net
   protect_from_forgery :except => :relay_response
 
@@ -10,6 +9,7 @@ class PaymentsController < ApplicationController
     @title = 'Sign up for the 2012-2013 Season'
     @amount = 275.00
     @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
+
 
     @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
   end
@@ -24,6 +24,8 @@ class PaymentsController < ApplicationController
       render
     end
   end
+
+
   
   # GET
   # Displays a receipt.
@@ -34,12 +36,7 @@ class PaymentsController < ApplicationController
 
       @response_code = params[:x_response_code]
 
-
           @user = User.new
-
-
-
-
           @user.first_name = params[:x_first_name]
           @user.last_name = params[:x_last_name]
           @user.phone = params[:x_phone]
@@ -64,6 +61,28 @@ class PaymentsController < ApplicationController
           @address.save
 
       end
+
+
+  def purchase_dynasty_dollars
+    @title = 'Purchase Dynasty Dollars'
+    @user = current_user
+    @team = current_user.teams.first
+
+    @address = @user.address
+    @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
+
+    @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
+
+  end
+
+  def dynasty_dollars_receipt
+    @team = current_user.teams.first
+    @dollars_added = (params[:x_amount]).to_money
+    @starting_balance = @team.balance
+    @new_balance = @starting_balance + @dollars_added
+    @team.balance = @new_balance
+    @team.save
+  end
 
 
 

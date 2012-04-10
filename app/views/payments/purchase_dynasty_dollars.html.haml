@@ -9,51 +9,47 @@
 .six.columns.centered
   .panel
     %h4
-      Signup Heading
+      Purchase Dynasty Dollars
+    %h5
+      Current Team Balance:
+      = number_to_currency(@user.teams.first.balance, :unit => "DD$")
     %p
-      Signup message text. Explanation of charges & terms go here.
-    = form_for :sim_transaction, :class => 'nice', :url => AUTHORIZE_TRANSACTION_URL  do |f|
-      = sim_fields(@sim_transaction)
-
+      Please select a package:
+    = form_tag("/payments/dynasty_dollars_receipt", :method => "get") do |f|
+      //= form_for :sim_transaction, :class => 'nice', :url => payments_dynasty_dollars_receipts  do |f|
+      //= sim_fields(@sim_transaction)
+      = select_tag('x_amount',  options_for_select([['10 Million DD$: $10.00', 10000000.00], ['25 Million DD$: $25.00', 25000000.00], ['50 Million DD$: $50.00', 50000000.00], ['100 Million DD$: $100.00', 100000000.00]]))
       = hidden_field_tag 'x_test_request', "true"
       //= hidden_field_tag 'x_line_item', "#{@purchase_type}"
 
 
-      = field_set_tag do |f|
-        %h5
-          Billing Information
-        %strong
-          = label_tag 'x_amount', "2012-2013 Membership Fee: #{number_to_currency(@amount)}"
 
-        = label_tag 'x_card_num', 'Credit Card Number'
-        = text_field_tag 'x_card_num', '', :class => 'large_input', :size => 16 , :placeholder => '4111111111111111'
+      %h5
+        Billing Information
+      %strong
+        = label_tag 'x_amount', "2012-2013 Membership Fee: #{number_to_currency(@amount)}"
 
-        .row
-          .five.columns
-            = label_tag 'x_exp_date', 'Expiration Date (MMYY)'
-            = text_field_tag 'x_exp_date', '', :class => 'large_input', :size => 4, :placeholder => '1213'
-          .five.columns
-            = label_tag 'x_card_code', 'CCV'
-            = text_field_tag 'x_card_code', '', :class => 'large_input', :size => 4, :placeholder => '123'
+      = label_tag 'x_card_num', 'Credit Card Number'
+      = text_field_tag 'x_card_num', '', :class => 'large_input', :size => 16 , :placeholder => '4111111111111111'
+
+      .row
+        .five.columns
+          = label_tag 'x_exp_date', 'Expiration Date (MMYY)'
+          = text_field_tag 'x_exp_date', '', :class => 'large_input', :size => 4, :placeholder => '1213'
+        .five.columns
+          = label_tag 'x_card_code', 'CCV'
+          = text_field_tag 'x_card_code', '', :class => 'large_input', :size => 4, :placeholder => '123'
 
 
+      = hidden_field_tag 'x_first_name',   :value => @user.first_name
+      = hidden_field_tag 'x_last_name', :value => @user.last_name
+      = hidden_field_tag 'x_email',  :value => @user.email
+      = hidden_field_tag 'x_phone',  :value => @user.phone
+      = hidden_field_tag 'x_address', :value => @user.address.street
+      = hidden_field_tag 'x_city', :value => @user.address.city
+      = hidden_field_tag 'x_state', :value => @user.address.state
+      = hidden_field_tag 'x_zip', :value => @user.address.zip
 
-        = text_field_tag 'x_first_name', '', :class => 'large_input', :size => 16, :placeholder => 'First Name'
-        = text_field_tag 'x_last_name', '', :class => 'large_input', :size => 16, :placeholder => 'Last Name'
-        = email_field_tag 'x_email', '', :class => 'large_input', :size => 16, :placeholder => 'Email'
-        = phone_field_tag 'x_phone', '', :class => 'large_input', :size => 16, :placeholder => 'Phone'
-        = text_field_tag 'x_address', '', :class => 'large_input', :size => 16, :placeholder => 'Address'
-        = text_field_tag 'x_city', '', :class => 'large_input', :size => 16, :placeholder => 'City'
-        = select_tag 'x_state', options_for_select(us_states) , :class => 'large_input nice', :placeholder => 'State'
-        = text_field_tag 'x_zip', '', :class => 'large_input', :size => 16, :placeholder => 'Zip'
+      = submit_tag 'Purchase'
 
-      = field_set_tag do |f|
-        %h5
-          Shipping Information
-        %input{:name => "chkCopy", :onClick => "copyAddress();", :type => "checkbox", :value => ""} Same as billing address.
-        = text_field_tag 'x_ship_to_address', '', :class => 'large_input', :size => 16, :placeholder => 'Address'
-        = text_field_tag 'x_ship_to_city', '', :class => 'large_input', :size => 16, :placeholder => 'City'
-        = select_tag 'x_ship_to_state', options_for_select(us_states) , :class => 'large_input nice', :placeholder => 'State'
-        = text_field_tag 'x_ship_to_zip', '', :class => 'large_input', :size => 16, :placeholder => 'Zip'
 
-      = f.submit 'Purchase'

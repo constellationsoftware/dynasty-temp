@@ -5,6 +5,7 @@
     |
     = link_to 'Create a League', new_league_path
     |
+    = link_to 'Purchase Dynasty Dollars', '/payments/purchase_dynasty_dollars'
     .panel
       1) User Signup with successful bill   2) Create Team 3) User can create/join league
   %p
@@ -17,6 +18,9 @@
         %p
           Team Name:
           %strong= t.name
+        %p
+          Team Balance:
+          %strong= number_to_currency(t.balance)
 
         - if t.players.count > 0
           = link_to 'Manage Team', "#{manage_team_url(t, :subdomain => t.league.slug, :anchor => 'roster')}", :class => 'small nice black button radius'

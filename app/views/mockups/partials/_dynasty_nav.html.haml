@@ -30,11 +30,10 @@
 
 
 
-
         - unless user_signed_in?
           %li
             %a.button.nice.radius{"data-reveal-id" => "loginModal", :href => "#", "data-animation" => "fadeAndPop"}
-            = t :signed_out, :scope => :nav
+              = t :signed_out, :scope => :nav
         - if user_signed_in?
           %li.has-flyout.right
             %a{:href => "#", :class => "main"}
