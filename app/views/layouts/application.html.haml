@@ -22,7 +22,7 @@
   - if @team
     :javascript
       window.CLIENT_ID = '#{@team.uuid}';
-  - ActionController::Base.asset_host = "http://dynastyowner.net/"
+
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
   = csrf_meta_tag

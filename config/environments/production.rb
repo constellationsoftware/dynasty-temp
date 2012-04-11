@@ -20,6 +20,9 @@ Dynasty::Application.configure do
     # Generate digests for assets URLs
     config.assets.digest = true
 
+    # TODO: Set up a CDN for assets.
+    config.action_controller.asset_host = "http://dynastyowner.net/"
+
     # Only use best-standards-support built into browsers
     config.action_dispatch.best_standards_support = :builtin
 
