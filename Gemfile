@@ -35,6 +35,7 @@ gem 'money', :git => 'git://github.com/FOMNick/money.git'
 # Templating & View Helpers
 gem 'haml'
 gem 'jquery-rails'
+gem 'kendoui-rails'
 gem 'formtastic'#, '~> 1.2.4'
 gem 'jbuilder'
 gem 'gravtastic' # gravatar support

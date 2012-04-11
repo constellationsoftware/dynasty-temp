@@ -10,7 +10,7 @@
 #= require inflections
 #= require foundation
 #= require hamlcoffee
-
+#= require kendo/kendo.web.min
 #= require lib/util
 
 

@@ -67,7 +67,7 @@ THE SOFTWARE.
     String.demodulize() == String
       renders class names that are prepended by modules into just the class
 
-    String.tableize() == String
+    String.tableize() == String                    ds
       renders camel cased singular words into their underscored plural form
 
     String.classify() == String

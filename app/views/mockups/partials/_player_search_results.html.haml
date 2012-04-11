@@ -1,23 +1,22 @@
 .row
   %h5
     Results
-    %table
+    %table#grid
       %thead
         %tr
-          %td
-            Pos
-          %td
-            Num
-          %td
-            Name
-          %td
-            Status
-          %td{:colspan => "7"}
-            Quick Stats
-          %td
-            Team
-          %td.has-tip
-            Contract
+          %th{"data-field" => "pos"} Pos
+          %th{"data-field" => "num"} Num
+          %th{"data-field" => "name"} Name
+          %th{"data-field" => "status"} Status
+          %th{"data-field" => 'act'} act
+          %th{"data-field" => 'tds'} tds
+          %th{"data-field" => 'yd'} yd
+          %th{"data-field" => 'int'} int
+          %th{"data-field" => 'yds'} yds
+          %th{"data-field" => 'rtg'} rtg
+          %th{"data-field" => 'rate'} rate
+          %th{"data-field" => "team"} Team
+          %th.has-tip{"data-field" => "contract"} Contract
       %tbody
         %tr
           %td
@@ -183,7 +182,7 @@
           %td
             RTG
           %td
-            98.5
+            66.5
           %td
             TeamName
           %td
@@ -193,6 +192,34 @@
             QB
           %td
             15
+          %td
+            LastName, FirstName
+          %td
+            ACT
+          %td
+            TDS
+          %td
+            10
+          %td
+            INT
+          %td
+            5
+          %td
+            YDS
+            5,250
+          %td
+            RTG
+          %td
+            98.5
+          %td
+            TeamName
+          %td
+            Contract
+        %tr
+          %td
+            QB
+          %td
+            14
           %td
             LastName, FirstName
           %td
@@ -244,31 +271,14 @@
             TeamName
           %td
             Contract
-        %tr
-          %td
-            QB
-          %td
-            15
-          %td
-            LastName, FirstName
-          %td
-            ACT
-          %td
-            TDS
-          %td
-            10
-          %td
-            INT
-          %td
-            5
-          %td
-            YDS
-            5,250
-          %td
-            RTG
-          %td
-            98.5
-          %td
-            TeamName
-          %td
-            Contract
+
+    :javascript
+      $(document).ready(function() {
+          $("#grid").kendoGrid({
+              sortable: {
+                mode: "multiple",
+                allowUnsort: true
+              }
+
+          });
+      });
