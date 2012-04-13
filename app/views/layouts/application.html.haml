@@ -35,11 +35,16 @@
 
 %body
 
-  /*Dynasty Navigation Partial
-  #dynasty-navbar.fixed_nav
-    = render :partial => "mockups/partials/dynasty_nav"
-    .sub-nav
-      = yield :sub_nav
+  - unless user_signed_in?
+    #dynasty-navbar.fixed_nav
+      = render :partial => "mockups/partials/dynasty_nav"
+      .sub-nav
+        = yield :sub_nav
+  - if user_signed_in?
+    #dynasty-navbar-private.fixed_nav
+      = render :partial => "mockups/partials/dynasty_nav_private"
+      .sub-nav
+        = yield :sub_nav
 
   /* Main Page Content
   .row
@@ -76,8 +81,8 @@
             %a{:href => "/mockups/privacy"} Privacy
           %li
             %a{:href => "/mockups/contact"} Contact
-
-  = render :partial => "mockups/partials/login_modal"
+  - unless user_signed_in?
+    //= render :partial => "mockups/partials/login_modal"
   = render :partial => "mockups/partials/zendesk"
   #footer
     %form

@@ -2,8 +2,11 @@ Dynasty::Application.routes.draw do
     # Authorize.net stuff
 
     match '/payments/purchase_dynasty_dollars', :to => 'payments#purchase_dynasty_dollars', :as => 'payments_purchase_dynasty_dollars', :via => [:get]
+
     match '/payments/dynasty_dollars_receipt', :to => 'payments#dynasty_dollars_receipt', :as => 'payments_dynasty_dollars_receipt', :via => [:get]
+
     match '/payments/payment', :to => 'payments#payment', :as => 'payments_payment', :via => [:get]
+
     match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 

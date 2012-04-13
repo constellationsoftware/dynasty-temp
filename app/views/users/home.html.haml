@@ -1,13 +1,7 @@
 .panel
   %h4 User Control Panel
-  %p
-    = link_to 'Edit User Profile', edit_user_registration_path
-    |
-    = link_to 'Create a League', new_league_path
-    |
-    = link_to 'Purchase Dynasty Dollars', '/payments/purchase_dynasty_dollars'
-    .panel
-      1) User Signup with successful bill   2) Create Team 3) User can create/join league
+
+
   %p
   - if @team
     .panel

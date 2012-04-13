@@ -66,7 +66,7 @@ class PaymentsController < ApplicationController
   def purchase_dynasty_dollars
     @title = 'Purchase Dynasty Dollars'
     @user = current_user
-    @team = current_user.teams.first
+    @team = current_user.team
 
     @address = @user.address
     @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"

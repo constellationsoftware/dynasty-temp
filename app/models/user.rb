@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
     self.table_name = 'dynasty_users'
 
+    # Include default devise modules. Others available are:
+    #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
+
+
     include Gravtastic
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
 
@@ -30,9 +35,6 @@ class User < ActiveRecord::Base
     # has_and_belongs_to_many :roles
 
     # Setup accessible (or protected) attributes for your model
-    # Include default devise modules. Others available are:
-    #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
 
     #has_many :teams
     has_one :team

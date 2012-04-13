@@ -12,7 +12,7 @@
       Purchase Dynasty Dollars
     %h5
       Current Team Balance:
-      = number_to_currency(@user.teams.first.balance, :unit => "DD$")
+      = number_to_currency(@user.team.balance, :unit => "DD$")
     %p
       Please select a package:
     = form_tag("/payments/dynasty_dollars_receipt", :method => "get") do |f|

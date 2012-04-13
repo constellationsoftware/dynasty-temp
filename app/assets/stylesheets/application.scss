@@ -56,6 +56,10 @@ background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   line-height: 15px;
 }
 
+dl.sub-nav {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}
 .sub_header {
   background-color: #000055;
   color: #ffffff;
@@ -100,18 +104,56 @@ padding-top: 75px;
 
 .handle { font-size: 12px; color: #777; cursor: move; }
 .stack > *:not(.active) { display: none;}
+
 #dynasty-navbar {
     background-image: url("/assets/navbar_bg.png");
-    height: 83px;
+    height: 50px;
     background-repeat: repeat-x;
-    background-color: #000055;
+    background-color: none;
     box-shadow: 10px 10px 15px rgba(0,0,0,1);
+}
 
+#dynasty-navbar-private {
+  background-image: url("/assets/navbar_bg_private.png");
+  height: 83px;
+  background-repeat: repeat-x;
+  background-color: none;
+  box-shadow: 10px 10px 15px rgba(0,0,0,1);
 }
 
 #nav_top_row {
-  font-weight: bold;
+
   color: #ffffff;
+}
+#nav_bottom_row {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+
+    top: 50px;
+    text-align: right;
+
+  color: #000000;
+
+  text-align: right;
+  margin-right: 15px;
+  padding-right: 15px;
+  margin-bottom: 0px;
+
+}
+.black {
+  color: white;
+}
+dl.sub-nav {
+  text-align: right !important;
+  float: right;
+  padding-right: 15px;
+}
+dl.sub-nav dd{
+   font-weight: right !important;
+    font-size: 15px;
+    color: black;
+  margin-top: 3px;
 }
 .right-aligned {
   text-align: right;
@@ -125,7 +167,7 @@ padding-top: 75px;
   margin-top: 0px !important;
 }
 .nav-bar {
-margin-top: 6px;
+margin-top: 4px;
 background-color: transparent;
 border: 0px;
 }

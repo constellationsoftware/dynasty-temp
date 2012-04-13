@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
     include UrlHelper
     helper_method :get_alert_style_by_type
 
+
     #
     # Accepts an array of "sorter" hashes.
     # A "sorter" hash, as defined in Ext JS, consists of "property" and "direction" keys
