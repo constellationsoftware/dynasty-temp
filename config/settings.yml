@@ -3,14 +3,15 @@ team_pay_day:               tuesday
 player_pay_day:             wednesday
 week_start_day:             thursday
 league:
-    capacity:               [ 16 ] # NOTE: changing this may require a new scheduling plan
+    capacity:               12 # NOTE: changing this may require a new scheduling plan
     password_min_length:    6
     password_max_length:    32
 
 # WARNING: do NOT change this unless you want to invalidate current schedules,
 # modify the schedule generation task for a new scheduling plan,
 # and generate fresh schedules for all applicable leagues
-season_weeks:               15
+season_weeks:               11
+playoff_weeks:              3
 
 datetime_format:
     date_full:              '%B %e, %Y'

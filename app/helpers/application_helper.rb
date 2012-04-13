@@ -1,15 +1,6 @@
 module ApplicationHelper
-
-    def resource_name
-        :user
-    end
-
-    def resource
-        @resource ||= User.new
-    end
-
-    def devise_mapping
-        @devise_mapping ||= Devise.mappings[:user]
+    def controller_base_name
+        controller.class.name.tableize.gsub '_controllers', ''
     end
 
     def us_states

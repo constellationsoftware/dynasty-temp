@@ -6,7 +6,9 @@ class League < ActiveRecord::Base
     money :balance, :cents => :balance_cents
 
     # TODO: Create views, access control for users, associate league standings, schedules, and trades for teams
-    has_many :teams
+
+    # TODO: remove the class_name declaration as soon as the scoped controllers are cleaned up
+    has_many :teams, :class_name => '::Team'
     has_many :users, :through => :teams
     has_many :drafts
     has_many :players, :through => :teams
@@ -16,20 +18,23 @@ class League < ActiveRecord::Base
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable
 
-    validates_presence_of :name, :size
+    validates_presence_of :name
     validates_uniqueness_of :name
     validates_format_of :name, :with => /^[[:alnum:] ]+$/, :on => :create
-    validates_inclusion_of :size, :in => Settings.league.capacity
     validates_length_of :password,
         :minimum => Settings.league.password_min_length,
         :maximum => Settings.league.password_max_length,
         :if => lambda{ |league| league.is_private? }
+    #validates :teams, :length => { :maximum => Settings.league.capacity }
 
     scope :with_manager, joins{ manager }.includes{ manager }
     scope :with_teams, joins{ teams }.includes{ teams }
     scope :filter_by_name, lambda{ |league_name|
         where{ name =~ "#{league_name}%" }
     }
+    scope :by_slug, lambda {|value| where{ slug == my{ value } } }
+
+    #attr_accessor :teams
 
     def calculate_game_points(from, to)
         weeks = ((to.to_date - Season.current.start_date) / 7).to_i
@@ -68,15 +73,15 @@ class League < ActiveRecord::Base
 
     def points_for_team(team, from, to)
         starter_points = PlayerEventPoint.select{ sum(points).as('points') }
-            .joins{[ event, player.team_link.team ]}
-            .where{ player.team_link.team.id == my{ team.id } }
-            .where{ player.team_link.depth == 1 }
+            .joins{[ event, player.player_teams.team ]}
+            .where{ player.player_teams.team.id == my{ team.id } }
+            .where{ player.player_teams.depth == 1 }
             .where{ (event.start_date_time >= from) & (event.start_date_time < to) }
             .first.points
         bench_points = PlayerEventPoint.select{ sum(points).as('points') }
-            .joins{[ event, player.team_link.team ]}
-            .where{ player.team_link.team.id == my{ team.id } }
-            .where{ player.team_link.depth == 0 }
+            .joins{[ event, player.player_teams.team ]}
+            .where{ player.player_teams.team.id == my{ team.id } }
+            .where{ player.player_teams.depth == 0 }
             .where{ (event.start_date_time >= from) & (event.start_date_time < to) }
             .first.points
         starter_points.to_f + (bench_points.to_f / 3)
@@ -116,4 +121,9 @@ class League < ActiveRecord::Base
 
     def is_public?; self.public === true end
     def is_private?; !(is_public?) end
+
+    def self.find_by_slug!(slug)
+        league = self.by_slug(slug).first
+        league.scoped
+    end
 end

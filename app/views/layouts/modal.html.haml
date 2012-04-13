@@ -1,0 +1,7 @@
+.reveal-modal.panel{ :id => "#{ defined?(id) ? id : '' }" }
+  - if defined? title
+    .eleven.columns.centered
+      %h6= title
+  .row.twelve.columns.centered
+    = yield :modal_content
+  %a.close-reveal-modal ×

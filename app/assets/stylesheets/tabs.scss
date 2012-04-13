@@ -1,0 +1,75 @@
+$tab-background-color: #EEE;
+$tab-border-bolor: #DDD;
+$active-tab-background-color: #FFF;
+$inactive-tab-text-color: #DDD;
+$inactive-tab-background-color: #CCC;
+
+.tabs {
+    display: block;
+    //margin: 0 0 20px 0;
+    margin:  0 !important;
+    padding: 0;
+    height: 30px;
+    border-bottom: solid 1px $tab-border-bolor;
+
+    .tab {
+        width: auto;
+        float: left;
+        height: 30px;
+        background-color: $tab-background-color;
+
+        div {
+            height: 29px;
+            padding: 0 14px;
+            line-height: 30px;
+            border: solid 1px $tab-border-bolor;
+            margin: 0 -1px 0 0;
+            color: #555;
+            cursor: pointer;
+        }
+
+        &.active > div {
+            height: 30px;
+            background-color: $active-tab-background-color;
+            border-width: 1px 1px 0 1px;
+        }
+
+        &.inactive > div {
+            color: $inactive-tab-text-color;
+            background-color: $inactive-tab-background-color;
+            cursor: default;
+        }
+    }
+
+    dt {
+        width: auto;
+        padding: 0 9px 0 20px;
+        line-height: 30px;
+        float: left;
+        color: #999;
+        font-size: 11px;
+        text-transform: uppercase;
+        cursor: default;
+
+        &:first-child { padding: 0 9px 0 0; }
+    }
+}
+
+.tabs-content {
+    background-color: $active-tab-background-color;
+
+    .columns { text-align: center; }
+
+    & > li {
+        margin: 0;
+        padding: 20px;
+        border: solid 0 $tab-border-bolor;
+        border-width: 0 1px 1px 1px;
+    }
+
+    & > *:not(.active) {
+        //display: none !important;
+    }
+}
+
+.loading { text-align: center; }

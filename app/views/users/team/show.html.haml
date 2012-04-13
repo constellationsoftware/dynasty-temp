@@ -1,0 +1,20 @@
+= stylesheet_link_tag controller_class_name
+:coffeescript
+  window.urlFor = (model) ->
+    switch model
+      when 'Game' then "#{review_league_games_path(@team.league_id, :with_teams => true, :team_id => @team.id, :with_players => true, :with_points => true)}"
+      else throw 'Error: No route exists for' + model + '.'
+= javascript_include_tag controller_class_name
+
+.row
+  .twelve.columns
+    #team_management
+      %dl.tabs
+        - sub_sections.each do |sub_section|
+          %dd.tab.item{ 'data-name' => "#{sub_section}" }
+            %div= t sub_section, :scope => [ :my_team, :sub_sections ]
+
+      %ul.tabs-content
+        - sub_sections.each do |sub_section|
+          %li{ :id => sub_section, :class => 'loading' }
+            %img= image_tag 'shared/loading.gif'

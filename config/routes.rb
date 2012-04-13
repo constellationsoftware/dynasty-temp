@@ -1,5 +1,4 @@
 Dynasty::Application.routes.draw do
-
     # Authorize.net stuff
 
     match '/payments/purchase_dynasty_dollars', :to => 'payments#purchase_dynasty_dollars', :as => 'payments_purchase_dynasty_dollars', :via => [:get]
@@ -9,7 +8,6 @@ Dynasty::Application.routes.draw do
     match '/payments/payment', :to => 'payments#payment', :as => 'payments_payment', :via => [:get]
 
     match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
-
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
 
@@ -72,11 +70,21 @@ Dynasty::Application.routes.draw do
         get :terms_conditions
         get :privacy
         get :contact
-
     end
 
+    match '/manage' => 'users/team#show', :as => 'manage_team'
+    match '/front_office/:action', :controller => :front_office, :as => :front_office
+    match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
+    match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
 
-    scope :leagues, :module => 'leagues', :constraints => SubdomainConstraint do
+    resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
+    resources :leagues, :shallow => true do
+        resources :games do
+            get :review, :on => :collection
+        end
+    end
+
+    scope :module => :league, :constraints => SubdomainConstraint do
         resources :auto_picks do
             collection do
                 post :sort
@@ -101,16 +109,19 @@ Dynasty::Application.routes.draw do
                     get :test_update, :on => :member
                 end
                 resources :teams
+=begin
                 resource :team do
                     get :autopick, :on => :member
                 end
+=end
                 resources :players
             end
         end
 
         # The team in this case is always the user's team for this league
-        defaults :format => 'json' do
-            resource :team, :controller => :team, :module => :team do
+=begin
+        resource :team, :controller => :team, :module => :team do
+            defaults :format => 'json' do
                 resources :favorites
                 resources :roster do
                     get :bench, :on => :collection, :action => :index, :defaults => { :bench => 0 }
@@ -120,6 +131,7 @@ Dynasty::Application.routes.draw do
                 resource :balance
             end
         end
+=end
 
         resources :trades
     end
@@ -149,8 +161,7 @@ Dynasty::Application.routes.draw do
     # first created -> highest priority.
 
     resources :person_scores, :events, :positions, :trades, :users, :person_phases, :display_names,
-              :stats, :fix, :picks, :salaries, :players,
-              :persons, :people, :drafts, :leagues, :lineups
+              :stats, :picks, :players, :persons, :people, :drafts, :lineups
 
     resources :trades do
         get 'retract'
@@ -195,7 +206,6 @@ Dynasty::Application.routes.draw do
     end
 
     root :controller => :users, :action => :home
-
     ActiveAdmin.routes(self)
 
     # Sample of regular route:

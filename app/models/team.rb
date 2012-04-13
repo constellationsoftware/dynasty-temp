@@ -6,13 +6,11 @@ class Team < ActiveRecord::Base
     belongs_to :league, :inverse_of => :teams, :counter_cache => true
     has_many :favorites
     has_many :picks
-    has_many :player_teams, :conditions => 'current = TRUE'
     has_many :player_teams
     has_many :players, :through => :player_teams
     #has_many :player_team_snapshots
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
-    #has_many :games, :finder_sql => proc{ "SELECT * FROM #{Game.table_name} WHERE home_team_id = #{id} OR away_team_id = #{id}" }
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable
 
@@ -21,9 +19,12 @@ class Team < ActiveRecord::Base
     scope :with_players, joins{ players }.includes{ players }
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
 
+    #attr_accessor :player_teams
+
     # home and away games ordered by week by default
-    def games(order = :date)
-        (self.home_games + self.away_games).sort{ |a, b| a.send(order.to_s) <=> b.send(order.to_s) }
+    def games
+        #(self.home_games + self.away_games).sort{ |a, b| a.send(order.to_s) <=> b.send(order.to_s) }
+        Game.by_team(id).order{ date }
     end
 
     def salary_total

@@ -6,6 +6,7 @@ class LeaguesController < InheritedResources::Base
 
     def create
         create! do |success, failure|
+            resource.public = false
             resource.manager = current_user
             resource.save
             success.html{ redirect_to root_path }

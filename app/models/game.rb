@@ -7,12 +7,18 @@ class Game < ActiveRecord::Base
     belongs_to :event, :class_name => 'Events::Base', :polymorphic => true, :conditions => { :type => 'Events::ScoreGames' }
     has_many :transactions, :as => :eventable, :class_name => 'Account'
 
+    scope :by_league, lambda{ |value| where{ league_id == my{ value } } }
+    scope :by_team, lambda{ |value| where{ (home_team_id == my{ value }) | (away_team_id == my{ value }) } }
     scope :for_week, lambda { |x| where{ week == my{ x } } }
     scope :with_teams, joins{[ home_team, away_team ]}.includes{[ home_team, away_team ]}
     scope :with_home_team, joins{ home_team }.includes{ home_team }
     scope :with_away_team, joins{ away_team }.includes{ away_team }
     scope :scored, where{ (home_team_score != nil) & (away_team_score != nil) }
     scope :unscored, where{ (home_team_score == nil) | (away_team_score == nil) }
+    scope :with_players, joins{[
+        home_team.player_teams.outer, home_team.player_teams.lineup.outer, home_team.player_teams.player_name.outer,
+        away_team.player_teams.outer, away_team.player_teams.lineup.outer, away_team.player_teams.player_name.outer
+    ]}
 
     def home?(team); home_team === team end
     def away?(team); !home?(team) end

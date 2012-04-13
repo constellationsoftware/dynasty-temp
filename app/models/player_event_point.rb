@@ -5,29 +5,13 @@ class PlayerEventPoint < ActiveRecord::Base
     belongs_to :event
 
     scope :current, PlayerEventPoint.joins(:event).where('start_date_time < ?', Clock.first.time)
+    scope :by_player, lambda{ |value| where{ player_id == my{ value } } }
+    scope :in_range, lambda{ |range|
+        joins{ event }.where{ event.start_date_time >> my{ range } }
+    }
 
     def self.by_event(event, player)
         query = PlayerEventPoint.where('event_id = ?', event).where('player_id = ?', player)
         query.first
     end
-
-
-
-
-#def start_date_time
-#  self.event.start_date_time
-#end
-#
-#def self.past
-#  where('start_date_time <= ?', Clock.first.time)
-#end
-#
-#def self.future
-#  where('start_date_time >= ?', Clock.first.time)
-#end
-#
-#scope :past_event, self.past
-#scope :future_event, self.future
-
-
 end

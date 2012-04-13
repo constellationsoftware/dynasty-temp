@@ -1,10 +1,8 @@
 class Game extends Spine.Model
-    @configure 'Game', 'week', 'opponent', 'score', 'opponent_score', 'outcome'
+    @configure 'Game', 'date', 'week', 'team', 'score', 'opponent', 'opponent_score', 'won'
     @extend Spine.Model.Ajax
 
-    defaults: ->
-
-    @url: '/team/games'
+    @url: urlFor @name
     formatted_outcome: -> if @outcome then 'Won' else 'Lost'
     @total: ->
         wins = 0

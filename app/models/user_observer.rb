@@ -4,7 +4,7 @@ class UserObserver < ActiveRecord::Observer
     end
 
     def after_create(user)
-        address = user.build_address
-        address.save
+        #address = user.build_address
+        #address.save
     end
 end

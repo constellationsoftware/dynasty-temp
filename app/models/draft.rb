@@ -246,7 +246,7 @@ class Draft < ActiveRecord::Base
     # the supposedly best pick
     # TODO: hacky; refactor this sometime
     def best_player
-        Player.filter_positions(self.current_pick.team).available(self).with_points.with_contract.order { points.points.desc }.page(1).per(1).first
+        Player.filter_positions(self.current_pick.team).available(self.current_pick.team.league).with_points.with_contract.order { points.points.desc }.page(1).per(1).first
     end
 
     def create_pick_records

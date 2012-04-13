@@ -6,6 +6,22 @@ en:
         signed_in:  "Signed in as %{attribute}"
         signed_out: "Register or Sign in"
 
+    coaches_corner:
+        game_review:
+            tab_label:  "Week %{week}"
+            victory:    "You beat %{opponent}. Great Job!"
+            defeat:     "You lost to %{opponent}. Ya blew it!"
+
+    my_team:
+        sub_sections:
+            review: Game Review
+            roster: Front Office
+            manage: Coach's Corner
+            trade: Trades
+            waiver: Waiver Wire
+            league_review: League Review
+            finance: Team Finances
+
     formtastic:
         titles:
         labels:

@@ -1,0 +1,10 @@
+@import 'tabs';
+
+.won { color: #225c23 !important; }
+.lost { color: #870000 !important; }
+.roster {
+    float: left;
+    width: 100%;
+    text-align: center;
+    min-height: 200px;
+}
