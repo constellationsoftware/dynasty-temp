@@ -8,7 +8,7 @@
 #= require inflections
 #= require spine/lib/tab
 
-#= require_tree ./lib
+#= require spine/lib/view
 #= require_tree ./views
 #= require_tree ./models
 #= require_tree ./controllers

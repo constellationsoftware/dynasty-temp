@@ -1,3 +1,23 @@
+= javascript_include_tag controller_base_name
+= stylesheet_link_tag controller_base_name
+
 - content_for :sub_nav do
   = render :partial => 'shared/sub_nav'
 - content_for :title, 'Manage Roster'
+
+.row
+  .twelve.columns
+    %table#starter.roster.sortable
+      %thead
+        %tr
+          %th{ :class => "{sorter: 'text'}" }= t '.columns.position'
+          %th{ :class => "{sorter: 'text'}" }= t '.columns.depth'
+          %th{ :class => "{sorter: 'text'}" }= t '.columns.full_name'
+          %th{ :class => "{sorter: 'integer'}" }= t '.columns.bye'
+          %th{ :class => "{sorter: 'currency'}" }= t '.columns.amount'
+          %th{ :class => "{sorter: 'integer'}" }= t '.columns.points'
+          %th{ :class => "{sorter: 'integer'}" }= t '.columns.season_points'
+          %th.controlwrap
+      %tbody
+        - @lineups.each do |lineup|
+          = render :partial => 'player_row', :locals => { :lineup => lineup }

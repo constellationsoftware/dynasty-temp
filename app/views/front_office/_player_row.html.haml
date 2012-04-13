@@ -1,0 +1,26 @@
+- if player = get_player(lineup.player_teams.first.player_id)
+  %tr.lineup{ :data => { 'player-id' => lineup.player_teams.first.id, :positions => lineup.positions.collect{ |p| p.id } } }
+    %td
+      = lineup.position.abbreviation.upcase
+      = "(#{player.position.abbreviation.upcase})" if lineup.flex
+    %td= t ".depth.#{lineup.string.ordinalize}_string", :default => (t '.string_label.default')
+    %td
+      = player.name.full_name unless player.nil?
+    %td
+      = player.contract.bye_week unless player.nil?
+    %td
+      = number_to_currency(player.contract.amount) unless player.nil?
+    %td
+      = player.points.points
+    %td
+      = player.points_this_season
+    %td.controlwrap
+      = link_to '×', drop_player_team_path(lineup.player_teams.first.id), :confirm => (t '.confirmation', :name => player.name.full_name), :class => 'delete'
+      -#  = form_for player.player_teams, :url => bench_player_team_path(player.player_teams.id), :html => { :method => :put, :class => 'inline' } do |f|
+      -#    = f.hidden_field :depth, :value => 0
+      -#    = f.submit 'Bench', :class => "nice small radius white button"
+      -#- elsif depth == :bench
+      -#  = form_for player.player_teams, :url => start_player_team_path(player.player_teams.id), :html => { :method => :put, :class => 'inline' } do |f|
+      -#    = f.hidden_field :depth, :value => 1
+      -#    = f.submit 'Start', :class => "nice small radius white button"
+      -#= link_to 'Drop', drop_player_team_path(player.player_teams.id), :class => "nice small radius red button"

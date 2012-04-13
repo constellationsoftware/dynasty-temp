@@ -12,6 +12,23 @@ en:
             victory:    "You beat %{opponent}. Great Job!"
             defeat:     "You lost to %{opponent}. Ya blew it!"
 
+    front_office:
+        roster:
+            columns:
+                position:       'Position'
+                depth:          'Depth'
+                full_name:      'Full Name'
+                bye:            'Bye Week'
+                amount:         'Contract'
+                points:         'Points Last Season'
+                season_points:  'Points This Season'
+        player_row:
+            confirmation: "Are you sure you want to remove %{name} from your roster?"
+            depth:
+                default:    'Injured / Reserve'
+                1st_string:    'Starter'
+                2nd_string:    'Bench'
+
     my_team:
         sub_sections:
             review: Game Review

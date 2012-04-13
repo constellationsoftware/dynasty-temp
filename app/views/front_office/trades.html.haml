@@ -1,3 +1,108 @@
+= stylesheet_link_tag 'forms'
+
 - content_for :sub_nav do
   = render :partial => 'shared/sub_nav'
 - content_for :title, 'Manage Trades'
+
+.row
+  %h5
+  .panel
+    %h3 Offer A Trade
+    = semantic_form_for Trade.new do |f|
+      .row
+        .six.columns
+          = f.input :offered_player, :collection => @trades[:my_players], :member_label => :name, :prompt => "Choose A Player to Offer"
+          //= f.input :offered_cash, :label => "Offer some cash"
+          //= f.input :offered_picks, :label => "Offer picks"
+        .six.columns
+          = f.input :requested_player, :collection => @trades[:their_players], :group_by => :team, :group_association => :player_teams, :member_label => :name, :prompt => 'Choose A Player to Request'
+          //= f.input :requested_cash, :label => "Request some cash"
+          //= f.input :requested_picks, :label => "Request picks"
+      .row
+        .twelve.columns
+          = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"
+      .row
+        = f.submit 'Submit', :class => 'nice small radius blue button'
+  .panel
+    %h3 Open Trade Offers
+    - @trades[:open_trades_received].andand.each do |trade|
+      .panel
+        %strong
+          = link_to "Reject Trade", trade_retract_path(trade), :class => "success"
+          = link_to "Accept Trade", trade_accept_path(trade), :class => "failure"
+        I received an offer to trade
+        = trade.requested_player.name
+        for
+        = trade.offered_player.name
+        from
+        = trade.initial_team.name
+        on
+        = trade.offered_at.strftime("%B %e, %Y")
+        - if trade.message
+          %br
+          %strong
+            Message Attached:
+          #{trade.message}
+    - @trades[:open_trade_offers].andand.each do |trade|
+      .panel
+        %strong
+          = link_to "Retract Trade", trade_retract_path(trade), :class => "failure"
+        I offered
+        = trade.offered_player.name
+        to
+        = trade.second_team.name
+        for
+        = trade.requested_player.name
+        on
+        = trade.offered_at.strftime("%B %e, %Y")
+        - if trade.message
+          %br
+          %strong
+            Message Attached:
+          #{trade.message}
+  .panel
+    %h3 Accepted Trade Offers
+    - @trades[:accepted_trade_offers].andand.each do |trade|
+      %p
+
+        = trade.offered_player.name
+        to
+        = trade.second_team.name
+        for
+        = trade.requested_player.name
+        on
+        = trade.offered_at.strftime("%B %e, %Y")
+
+    - @trades[:accepted_trades_received].andand.each do |trade|
+      %p
+
+        = trade.requested_player.name
+        to
+        = trade.initial_team.name
+        for
+        = trade.offered_player.name
+        on
+        = trade.offered_at.strftime("%B %e, %Y")
+  .panel
+    %h3 Rejected Trades
+    - @trades[:denied_trade_offers].andand.each do |trade|
+      %p
+
+        = trade.offered_player.name
+        to
+        = trade.second_team.name
+        for
+        = trade.requested_player.name
+        on
+        = trade.offered_at.strftime("%B %e, %Y")
+
+    - @trades[:denied_trades_received].andand.each do |trade|
+      %p
+
+        = trade.requested_player.name
+        to
+        = trade.initial_team.name
+        for
+        = trade.offered_player.name
+        on
+        = trade.offered_at.strftime("%B %e, %Y")

@@ -1,8 +1,13 @@
+require 'app_responder'
+
 class ApplicationController < ActionController::Base
+    self.responder = AppResponder
     #protect_from_forgery :except => [ :auth, :post_message ]
     #before_filter :authenticate_user! :except => [:people, :persons]
     include UrlHelper
     helper_method :get_alert_style_by_type
+
+    respond_to :html
 
     #
     # Accepts an array of "sorter" hashes.
