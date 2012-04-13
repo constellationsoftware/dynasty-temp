@@ -74,7 +74,7 @@ gem 'rest-client'
 group :development do
   # Debugging & Development
   gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+  gem 'rails-footnotes', :group => :development
   #gem 'query_trace'
 end
 

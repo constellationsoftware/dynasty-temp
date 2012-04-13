@@ -12,6 +12,9 @@ background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
+#loginModal {
+  margin-top: 160px;
+}
 .footer-nav {
   border-top: 10px solid #333;
   background-color: #cccccc !important;
@@ -156,6 +159,7 @@ padding-right: 10px;
 
 body { padding-bottom: 60px; }
 .row { max-width: 1200px; }
+
 
 div.foundation-header {
     margin: 0 0 40px 0;

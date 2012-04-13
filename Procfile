@@ -5,5 +5,5 @@ web: bundle exec rails server thin start -p $PORT
 jobs: rake jobs:work
 pusher-presence: ./script/pusher
 juggernaut: ./script/juggernaut_listener
-redis: redis-server /usr/local/etc/redis.conf
+#redis: redis-server /usr/local/etc/redis.conf
 #log: tail -f -n 0 log/development.log

@@ -438,7 +438,7 @@ DEPENDENCIES
   pusher-client!
   rack
   rails (= 3.2.2)
-  rails-footnotes (>= 3.7.5.rc4)
+  rails-footnotes
   rails_config!
   rb-fsevent
   responders

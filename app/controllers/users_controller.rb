@@ -3,6 +3,11 @@ class UsersController < InheritedResources::Base
 
     def home
         @teams = current_user.teams
+
+        respond_to do |format|
+          format.html # index.html.erb
+          format.json { render :json => @teams }
+        end
     end
 
     def signup
