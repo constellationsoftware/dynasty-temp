@@ -286,4 +286,14 @@ class Player < ActiveRecord::Base
     def self.position_quantities; POSITION_QUANTITIES end
     def self.free_slots; FREE_SLOTS end
     def self.flex_positions; FLEX_POSITIONS end
+
+    def points_this_season
+        season = Season.current
+        PlayerEventPoint.joins{ event }
+            .where{ player_id == my{ self.id } }
+            .where{ event.start_date_time >> (season.start_date.at_midnight..Clock.first.time) }
+            .select{ sum(points).as('points') }
+            .first
+            .points or 0
+    end
 end

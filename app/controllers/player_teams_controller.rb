@@ -1,6 +1,6 @@
-class PlayerTeamsController < InheritedResources::Base
+class PlayerTeamsController < ApplicationController
     before_filter :authenticate_user!
-    custom_actions :resource => [ :drop ]
+    responders :flash
 
     def interpolation_options
         position = @player_team.position.name
@@ -20,14 +20,13 @@ class PlayerTeamsController < InheritedResources::Base
 
     def drop
         @player_team = PlayerTeam.find(params[:id])
-        #@player_team.details = "Dropped by #{@player_team.team.name} on #{Clock.first.time}"
         @player_team.team_id = nil
-        @player_team.depth = 0
-        @player_team.waiver = 1
-        @player_team.save!
 
-        #format.html { redirect_to :back }
-        render :text => '{}'
+        if @player_team.save
+            respond_with(@player_team) do |format|
+                format.html { redirect_to :back }
+            end
+        end
     end
 
     def bid
