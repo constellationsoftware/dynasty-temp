@@ -5,7 +5,7 @@ require 'rails/all'
 
 #require 'rails-extjs-direct'
 if defined?(Bundler)
-    Bundler.require *Rails.groups(:assets => %w(development test))
+    Bundler.require *Rails.groups(:assets => %w(development test integration))
 end
 
 module Dynasty
@@ -79,7 +79,7 @@ module Dynasty
         config.assets.version = '1.0'
 
         # Disable asset initialization on precompile for heroku deployment w/ devise authentication
-        config.assets.initialize_on_precompile = false
+        config.assets.initialize_on_precompile = true
 
         # set up a custom provider for the direct RPC root URL
         #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"
@@ -109,6 +109,11 @@ module Dynasty
 
         # prevent ActionController from calling helpers :all
         config.action_controller.include_all_helpers = false
+
+        config.generators do |g|
+            g.test_framework      :rspec, :fixture => true
+            g.fixture_replacement :fabrication
+        end
     end
 end
 

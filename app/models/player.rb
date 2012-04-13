@@ -45,14 +45,15 @@ class Player < ActiveRecord::Base
              :conditions => { :entity_type => 'persons' }
     has_one  :score, :class_name => 'PersonScore'
     has_one  :position_link, :class_name => 'PlayerPosition'
-    has_one  :position, :through => :position_link
-    has_one  :team_link, :class_name => 'PlayerTeam'
-    has_many :teams, :through => :team_link
+    has_one  :player_position
+    has_one  :position, :through => :player_position
+    has_many :player_teams
+    has_many :teams, :through => :player_teams
     has_many :leagues, :through => :teams
     has_many :picks
     has_many :favorites
     has_many :all_points, :class_name => 'PlayerPoint'
-    has_many :points,
+    has_one  :points,
         :class_name => 'PlayerPoint',
         :conditions => proc{ { :year => Season.current.year } }
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
@@ -71,11 +72,11 @@ class Player < ActiveRecord::Base
     # SCOPES
     #
     scope :roster, lambda { |team|
-        joins{ team_link }.where{ team_link.team_id == my{ team.id } }
+        joins{ player_teams }.where{ player_teams.team_id == my{ team.id } }
     }
 
     scope :drafted, lambda { |drafted_league|
-        joins{ team_link.team }.where { team_link.team.league_id == my{ drafted_league.id } }
+        joins{ player_teams.team }.where { player_teams.team.league_id == my{ drafted_league.id } }
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins{ points }.includes{ points }
@@ -93,10 +94,11 @@ class Player < ActiveRecord::Base
         with_points.where { points.year == my{ season } }
     }
     # filter out players that have been picked already in this draft
-    scope :available, lambda { |draft|
-        #joins{picks.outer}.where{(picks.draft_id == nil) | (picks.draft_id.not_eq my{draft.id})}
-        picks_subquery = Pick.select { distinct(player_id) }.where { (player_id != nil) & (draft_id == my { draft.id }) }
-        where { id.not_in picks_subquery }
+    scope :available, lambda { |l_id|
+        subquery = Team.select{ player_teams.player_id }
+            .joins{ player_teams }
+            .where{ (league_id == my{ l_id }) & (player_teams.player_id != nil) }
+        where{ id.not_in(subquery) }
     }
     scope :with_name, joins{ name }.includes{ name }
     scope :with_position, joins{ position }.includes{ position }
@@ -115,6 +117,20 @@ class Player < ActiveRecord::Base
         self.reflect_on_association(:favorites).options[:conditions] = "#{Favorite.table_name}.team_id = #{team.id}"
         joins{ favorites.outer }.includes{ favorites }
     }
+
+    scope :recommended, lambda{ |team_id, positions = nil|
+        positions ||= Lineup.with_positions.empty(team_id).order{ id }.first
+        position_ids = case positions
+            when Position;  [ positions.id ]
+            when Fixnum;    [ positions ]
+            when Lineup;    positions.positions.collect{ |p| p.id }
+        end
+
+        joins{[ position, points ]}
+            .where{ position.id >> (position_ids) }
+            .order{ points.points.desc }
+    }
+
     ##
     # This scope filters out positions on the starting lineup that have been
     # filled. Once a user has filled their starting lineup, all positions
@@ -208,7 +224,7 @@ class Player < ActiveRecord::Base
             .where{player.id == my{self.id}}
             .where('events.start_date_time BETWEEN ? AND ?', week_start, week_end)
             .first
-        #.where{player.team_link.depth == 1}
+        #.where{player.player_teams.depth == 1}
     end
 
     def full_name; name.full_name end

@@ -2,6 +2,4 @@
 = stylesheet_link_tag 'leagues/form'
 - if form.object.id.nil?
   = form.input :name, :required => true, :input_html => { :class => 'input-text' }
-= form.input :size, :as => :select, :required => true, :collection => Settings.leagues.sizes.sort, :include_blank => false, :input_html => { :class => 'input-text' }
-= form.input :public, :as => :select, :label => 'Type', :required => true, :collection => { 'Public' => true, 'Private' => false }, :include_blank => false, :input_html => { :class => 'input-text' }
 = form.input :password, :as => :string, :label => 'Passphrase', :required => false, :input_html => { :class => 'short input-text', :autocomplete => 'off' }, :wrapper_html => { :style => (form.object.public ? 'display: none;' : '') }

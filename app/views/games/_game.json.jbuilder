@@ -9,3 +9,6 @@ json.away_team do |json|
 end
 json.home_team_score    game.home_team_score
 json.away_team_score    game.away_team_score
+if @team && (@team.id === game.home_team_id || @team.id === game.away_team_id)
+    json.won            game.won? @team
+end

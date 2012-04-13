@@ -4,7 +4,8 @@ class PlayerTeam < ActiveRecord::Base
     belongs_to :player
     belongs_to :position
     belongs_to :team
-    belongs_to :lineup
+    has_one :league, :through => :team
+    belongs_to :lineup, :class_name => '::Lineup'
     has_one :league, :through => :team
     has_many :receipts, :class_name => 'PlayerAccount', :as => :payable
 
@@ -23,7 +24,7 @@ class PlayerTeam < ActiveRecord::Base
         :primary_key => :player_id,
         :foreign_key => :player_id
 
-    attr_accessible :name, :position, :depth
+    #attr_accessible :team, :league, :player, :lineup
     validates_with Validators::PlayerTeam, :on => :update
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }

@@ -29,7 +29,7 @@ if current_scopes[:with_favorites]
 end
 if current_scopes[:drafted]
     json.drafted_team do |json|
-        json.depth          player.team_link.depth
-        json.name           player.andand.team_link.andand.team.andand.name
+        json.depth          player.player_teams.depth
+        json.name           player.andand.player_teams.andand.team.andand.name
     end
 end

@@ -9,12 +9,18 @@ class GamesController < ApplicationController
     has_scope :with_players, :type => :boolean
     has_scope :with_teams, :type => :boolean, :default => true
 
+    def show
+        @game = apply_scopes(Game).where{ id == my{ params[:id] } }.first
+        current_user_team = current_user.team
+        @team = current_user_team unless @game.won?(current_user_team).nil?
+    end
+
     def index
         @games = apply_scopes(Game).all
     end
 
     def review
-        @games = apply_scopes(Game).all.sort{ |a, b| a.date <=> b.date }
+        @games = apply_scopes(Game).sort{ |a, b| a.date <=> b.date }
         raise 'Not scoped to a team' unless current_scopes[:team_id]
         @team = Team.find(params[:team_id])
         @games

@@ -34,6 +34,7 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 public/assets/*
+public/stylesheets/*
 
 Dynasty.esproj
 bundler_stubs

@@ -39,7 +39,7 @@ class TeamsController < InheritedResources::Base
             reserve = []
             payroll_total = 0
             players = Player.joins{[teams, position, contract]}
-                .includes{[position, contract, team_link]}
+                .includes{[position, contract, player_teams]}
                 .where{teams.id == my{@team.id}}
                 .order{[position.sort_order, position.designation.desc]}
             players = players.with_points_from_season('current') if week > 0
@@ -49,7 +49,7 @@ class TeamsController < InheritedResources::Base
                 #    :player => player,
                 #    :points => week > 0 ? player.points_for_week(week) : nil
                 #}
-                #case player.team_link.depth.to_i
+                #case player.player_teams.depth.to_i
                 #when 1
                 #    starters << player_data
                 #when 0

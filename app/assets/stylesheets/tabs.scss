@@ -58,6 +58,8 @@ $inactive-tab-background-color: #CCC;
 .tabs-content {
     background-color: $active-tab-background-color;
 
+    .columns { text-align: center; }
+
     & > li {
         margin: 0;
         padding: 20px;

@@ -74,7 +74,6 @@ gem 'rest-client'
 group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
-    gem 'rails-footnotes', '>= 3.7.5.rc4'
     #gem 'query_trace'
 end
 
@@ -88,6 +87,8 @@ group :development, :test do
     gem 'jasmine'
     gem 'jasminerice'
     gem 'guard-jasmine'
+    gem 'forgery', '0.5.0'
+    gem 'fabrication'
 end
 
 
@@ -105,6 +106,7 @@ group :assets do
     gem 'uglifier', '>=1.0.3'
     gem 'zurb-foundation'
     gem 'haml_coffee_assets'
+    gem 'i18n-js'
 end
 
 group :test do
@@ -123,5 +125,4 @@ group :test do
     gem 'rb-fsevent'
     gem 'growl'
     gem 'shoulda'
-
 end

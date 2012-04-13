@@ -16,15 +16,15 @@ class Events::ScoreGames < Events::Base
         def points_for_team(team, range)
             # force_starters(team))
             starter_points = PlayerEventPoint.select{ sum(points).as('points') }
-                .joins{[ event, player.team_link.team ]}
-                .where{ player.team_link.team.id == my{ team.id } }
-                .where{ player.team_link.depth == 1 }
+                .joins{[ event, player.player_teams.team ]}
+                .where{ player.player_teams.team.id == my{ team.id } }
+                .where{ player.player_teams.depth == 1 }
                 .where{ event.start_date_time >> (range) }
                 .first.points
             bench_points = PlayerEventPoint.select{ sum(points).as('points') }
-                .joins{[ event, player.team_link.team ]}
-                .where{ player.team_link.team.id == my{ team.id } }
-                .where{ player.team_link.depth == 0 }
+                .joins{[ event, player.player_teams.team ]}
+                .where{ player.player_teams.team.id == my{ team.id } }
+                .where{ player.player_teams.depth == 0 }
                 .where{ event.start_date_time >> (range) }
                 .first.points
             starter_points.to_f + (bench_points.to_f / 3)

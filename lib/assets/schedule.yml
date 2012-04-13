@@ -1,0 +1,88 @@
+---
+- # Week 1
+    - Team 3 at Team 1
+    - Team 4 at Team 2
+    - Team 6 at Team 5
+    - Team 10 at Team 8
+    - Team 7 at Team 9
+    - Team 12 at Team 11
+
+- # Week 2
+    - Team 4 at Team 3
+    - Team 1 at Team 5
+    - Team 2 at Team 6
+    - Team 11 at Team 7
+    - Team 9 at Team 10
+    - Team 8 at Team 12
+
+- # Week 3
+    - Team 2 at Team 1
+    - Team 5 at Team 3
+    - Team 6 at Team 4
+    - Team 7 at Team 8
+    - Team 11 at Team 9
+    - Team 12 at Team 10
+
+- # Week 4
+    - Team 5 at Team 2
+    - Team 1 at Team 4
+    - Team 3 at Team 6
+    - Team 11 at Team 8
+    - Team 7 at Team 10
+    - Team 9 at Team 12
+
+- # Week 5
+    - Team 6 at Team 1
+    - Team 2 at Team 3
+    - Team 4 at Team 5
+    - Team 8 at Team 9
+    - Team 10 at Team 11
+    - Team 7 at Team 12
+
+- # Week 6
+    - Team 12 at Team 1
+    - Team 11 at Team 2
+    - Team 9 at Team 4
+    - Team 8 at Team 5
+    - Team 7 at Team 6
+    - Team 3 at Team 10
+
+- # Week 7
+    - Team 2 at Team 7
+    - Team 6 at Team 8
+    - Team 3 at Team 9
+    - Team 1 at Team 10
+    - Team 5 at Team 11
+    - Team 4 at Team 12
+
+- # Week 8
+    - Team 8 at Team 1
+    - Team 10 at Team 2
+    - Team 12 at Team 3
+    - Team 7 at Team 4
+    - Team 9 at Team 5
+    - Team 6 at Team 11
+
+- # Week 9
+    - Team 8 at Team 2
+    - Team 11 at Team 3
+    - Team 10 at Team 4
+    - Team 12 at Team 5
+    - Team 9 at Team 6
+    - Team 1 at Team 7
+
+- # Week 10
+    - Team 9 at Team 1
+    - Team 8 at Team 3
+    - Team 10 at Team 6
+    - Team 5 at Team 7
+    - Team 4 at Team 11
+    - Team 2 at Team 12
+
+- # Week 11
+    - Team 12 at Team 6
+    - Team 3 at Team 7
+    - Team 4 at Team 8
+    - Team 2 at Team 9
+    - Team 5 at Team 10
+    - Team 1 at Team 11

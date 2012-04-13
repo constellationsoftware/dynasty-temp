@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     has_many :event_subscriptions, :class_name => 'DynastyEventSubscription'
     has_many :events, :through => :event_subscriptions
 
-    attr_accessible :roles, :email, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :address_attributes, :event_subscriptions_attributes
+    attr_accessible :roles, :email, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :address_attributes, :event_subscriptions_attributes, :address
     accepts_nested_attributes_for :address
     accepts_nested_attributes_for :event_subscriptions, :reject_if => lambda{ |attributes|
         attributes.all?{ |k,v| v.blank? }

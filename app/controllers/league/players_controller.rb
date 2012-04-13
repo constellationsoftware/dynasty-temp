@@ -6,7 +6,7 @@ class League::PlayersController < InheritedResources::Base
 
     has_scope :available, :type => :boolean, :only => :index do |controller, scope|
         team = controller.instance_variable_get("@team")
-        scope.available(team.league.draft)
+        scope.available(team.league)
     end
     has_scope :with_contract, :type => :boolean
     has_scope :with_points, :type => :boolean

@@ -1,6 +1,5 @@
-class League::TeamController < SubdomainController
+class TeamController < ApplicationController
     before_filter :authenticate_user!
-    defaults :resource_class => Team, :instance_name => 'team'
     respond_to :json
 
     has_scope :with_games, :type => :boolean do |controller, scope|

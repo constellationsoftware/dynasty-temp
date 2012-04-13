@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120409092857) do
+ActiveRecord::Schema.define(:version => 20120410231929) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -942,7 +942,6 @@ ActiveRecord::Schema.define(:version => 20120409092857) do
 
   create_table "dynasty_leagues", :force => true do |t|
     t.string   "name",          :limit => 50,                   :null => false
-    t.integer  "size",                        :default => 15,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
@@ -953,7 +952,7 @@ ActiveRecord::Schema.define(:version => 20120409092857) do
     t.integer  "balance_cents", :limit => 8,  :default => 0
   end
 
-  add_index "dynasty_leagues", ["id", "name", "size", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
+  add_index "dynasty_leagues", ["id", "name", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
   add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
@@ -961,7 +960,11 @@ ActiveRecord::Schema.define(:version => 20120409092857) do
   create_table "dynasty_lineups", :force => true do |t|
     t.integer "position_id"
     t.boolean "flex"
+    t.integer "string"
   end
+
+  add_index "dynasty_lineups", ["position_id", "flex"], :name => "index_dynasty_lineups_on_position_id_and_flex"
+  add_index "dynasty_lineups", ["string"], :name => "index_dynasty_lineups_on_string"
 
   create_table "dynasty_player_contracts", :force => true do |t|
     t.datetime "created_at"
@@ -1081,6 +1084,7 @@ ActiveRecord::Schema.define(:version => 20120409092857) do
 
   add_index "dynasty_positions", ["abbreviation", "id", "designation", "name", "sort_order"], :name => "index_dynasty_positions_on_abbr_id_des_name_sort"
   add_index "dynasty_positions", ["designation", "id"], :name => "index_dynasty_positions_on_flex_and_designation_and_id"
+  add_index "dynasty_positions", ["flex_position_id"], :name => "index_dynasty_positions_on_flex_position_id"
   add_index "dynasty_positions", ["id", "abbreviation"], :name => "index_dynasty_positions_on_id_and_abbreviation"
   add_index "dynasty_positions", ["name"], :name => "index_dynasty_positions_on_name"
   add_index "dynasty_positions", ["sort_order", "id", "designation", "abbreviation", "name"], :name => "index_dynasty_positions_on_sort_id_des_abbr_name"
@@ -1113,7 +1117,7 @@ ActiveRecord::Schema.define(:version => 20120409092857) do
   add_index "dynasty_team_favorites", ["team_id", "player_id", "sort_order"], :name => "index_favorites_team_player_sort"
 
   create_table "dynasty_teams", :force => true do |t|
-    t.integer "league_id",                                        :null => false
+    t.integer "league_id"
     t.string  "name",           :limit => 50,                     :null => false
     t.integer "user_id",                                          :null => false
     t.boolean "is_online",                     :default => false, :null => false
@@ -1846,14 +1850,12 @@ ActiveRecord::Schema.define(:version => 20120409092857) do
   end
 
   create_table "positions", :force => true do |t|
-    t.integer "affiliation_id",                   :null => false
-    t.string  "abbreviation",      :limit => 100, :null => false
-    t.integer "position_group_id"
+    t.integer "affiliation_id",                :null => false
+    t.string  "abbreviation",   :limit => 100, :null => false
   end
 
   add_index "positions", ["abbreviation"], :name => "IDX_positions_1"
   add_index "positions", ["affiliation_id"], :name => "IDX_FK_pos_aff_id__aff_id"
-  add_index "positions", ["position_group_id"], :name => "index_positions_on_position_group_id"
 
   create_table "publishers", :force => true do |t|
     t.string "publisher_key",  :limit => 100, :null => false
