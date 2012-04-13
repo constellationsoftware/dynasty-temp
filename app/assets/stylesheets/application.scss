@@ -1,14 +1,13 @@
-<<<<<<< HEAD
+@import 'foundation';
 /*
- *= require foundation
  *= require kendo/kendo.common.min
  *= require kendo/kendo.default.min
  *= require_self
  */
-=======
-@import 'foundation';
 
->>>>>>> refs/heads/nick/wip
+
+
+
 body {
 background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;

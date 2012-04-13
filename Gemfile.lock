@@ -465,10 +465,6 @@ DEPENDENCIES
   pusher-client!
   rack
   rails (= 3.2.2)
-<<<<<<< HEAD
-  rails-footnotes
-=======
->>>>>>> refs/heads/nick/wip
   rails_config!
   rb-fsevent
   responders
