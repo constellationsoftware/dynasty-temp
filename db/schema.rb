@@ -908,6 +908,12 @@ ActiveRecord::Schema.define(:version => 20120410231929) do
     t.datetime "updated_at",                   :null => false
   end
 
+  create_table "dynasty_clock", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "time"
+  end
+
   create_table "dynasty_clocks", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -991,7 +997,7 @@ ActiveRecord::Schema.define(:version => 20120410231929) do
   end
 
   add_index "dynasty_leagues", ["id", "clock_id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
-  add_index "dynasty_leagues", ["id", "name", "team_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
+  add_index "dynasty_leagues", ["id", "name", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 

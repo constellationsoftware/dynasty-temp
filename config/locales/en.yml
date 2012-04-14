@@ -5,7 +5,11 @@ en:
     nav:
         signed_in:  "Signed in as %{attribute}"
         signed_out: "Register or Sign in"
-
+        tutorials: "Walk-Throughs"
+        video1: "Video 1"
+        video2: "Video 2"
+        video3: "Video 3"
+        video4: "Video 4"
     coaches_corner:
         game_review:
             tab_label:  "Week %{week}"

@@ -2,17 +2,14 @@ Dynasty::Application.routes.draw do
     # Authorize.net stuff
 
     match '/payments/purchase_dynasty_dollars', :to => 'payments#purchase_dynasty_dollars', :as => 'payments_purchase_dynasty_dollars', :via => [:get]
-
     match '/payments/dynasty_dollars_receipt', :to => 'payments#dynasty_dollars_receipt', :as => 'payments_dynasty_dollars_receipt', :via => [:get]
-
     match '/payments/payment', :to => 'payments#payment', :as => 'payments_payment', :via => [:get]
-
     match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
 
     if Rails.env.development?
-        mount UserMailer::Preview => 'mail_view'
+      mount UserMailer::Preview => 'mail_view'
     end
 
     resources :messages, :schedules, :photos, :dynasty_player_contracts
@@ -48,7 +45,6 @@ Dynasty::Application.routes.draw do
         get :signup_5
         get :create_team
 
-
         get :team_marketplace
         get :sell_team
         get :purchase_team
@@ -74,8 +70,10 @@ Dynasty::Application.routes.draw do
 
     match '/manage' => 'users/team#show', :as => 'manage_team'
     match '/front_office/:action', :controller => :front_office, :as => :front_office
+    match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
+    match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
     match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-    match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
+    #match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
 
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do

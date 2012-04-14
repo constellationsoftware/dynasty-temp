@@ -1,0 +1,11 @@
+.row
+  //Logo
+  = render :partial => "shared/dynasty_logo"
+
+  // Primary Nav
+  .nine.columns.right#nav_top_row
+    %ul.nav-bar.right
+      = render :partial => "shared/dynasty_nav_flyouts"
+      %li
+        %a.main{:href => "/payments/payment"} Create an Account.
+

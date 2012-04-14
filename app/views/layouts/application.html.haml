@@ -35,55 +35,48 @@
 
 %body
 
+  -# Display the public sitewide nav bar
   - unless user_signed_in?
-    #dynasty-navbar.fixed_nav
-      = render :partial => "mockups/partials/dynasty_nav"
-      .sub-nav
-        = yield :sub_nav
+    #dynasty-navbar.fixed_nav.container
+      = render :partial => "shared/dynasty_nav"
+
+  -# Display the private sitewide nav bar
   - if user_signed_in?
-    #dynasty-navbar-private.fixed_nav
-      = render :partial => "mockups/partials/dynasty_nav_private"
-      .sub-nav
-        = yield :sub_nav
+    #dynasty-navbar.private.fixed_nav
+      = render :partial => "/shared/dynasty_nav_private"
+
 
   /* Main Page Content
   .row
     .container.main_yield
       .row
         .twelve.columns
+
+          -# Show error messages
           #global-errors
             - flash.each do |type, msg|
               %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+
+      -# Page Header
       .row
         .sub_header
           %h4.white
+            -#Refactor: Switch affected pages to follow same structure
             = yield :title
             = @title
-      #content= yield
-      .row
-        .six.columns
-          %h5
-          %h5 Lorem ipsum dolor sit ame
-          %p
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-        .six.columns
-          %h5
-          %h5 At vero eos et accusamus
 
-          %p "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-      .row
-        %ul.nav-bar.footer-nav
-          %li
-            %a{:href => "/mockups/rules"} FAQs
-          %li
-            %a{:href => "/mockups/terms_conditions"} Terms & Conditions
-          %li
-            %a{:href => "/mockups/privacy"} Privacy
-          %li
-            %a{:href => "/mockups/contact"} Contact
+      -# Main Page Content
+      #content
+        = yield
+
+      -# Page Footer
+      = render :partial => "shared/dynasty_footer"
+
+  -# Modals
   - unless user_signed_in?
-    //= render :partial => "mockups/partials/login_modal"
-  = render :partial => "mockups/partials/zendesk"
+    //TODO: I had to comment this out to keep the page from throwing an error. The login modals need cleaned up anyway
+    //= render :partial => "shared/login_modal"
+  = render :partial => "shared/zendesk"
   #footer
     %form
       %input{:type => "hidden"}

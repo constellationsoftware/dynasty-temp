@@ -7,7 +7,7 @@
 
 
 
-
+/* REFACTOR: This needs cleaned up big time. I'll try to sort it out this weekend. -Ben */
 body {
 background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -56,9 +56,8 @@ background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   line-height: 15px;
 }
 
-dl.sub-nav {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
+.main .sub {
+
 }
 .sub_header {
   background-color: #000055;
@@ -100,61 +99,66 @@ padding-top: 75px;
   z-index: 1000;
   position: fixed;
   width: 100%;
+  max-width: 100% ;
+  min-width: 100%;
+
 }
 
 .handle { font-size: 12px; color: #777; cursor: move; }
 .stack > *:not(.active) { display: none;}
 
+// NAV BARS
 #dynasty-navbar {
     background-image: url("/assets/navbar_bg.png");
     height: 50px;
     background-repeat: repeat-x;
     background-color: none;
     box-shadow: 10px 10px 15px rgba(0,0,0,1);
+
+    .row {
+      margin-bottom: 0 !important;
+      padding: 0 !important;
+    }
+
+    #nav_top_row {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
 }
 
-#dynasty-navbar-private {
+img#logo {
+  width:  160px !important;
+  height: 113px !important;
+  position: fixed;
+  z-index: 2000;
+
+}
+
+#dynasty-navbar.private {
   background-image: url("/assets/navbar_bg_private.png");
   height: 83px;
-  background-repeat: repeat-x;
-  background-color: none;
-  box-shadow: 10px 10px 15px rgba(0,0,0,1);
+
+
 }
 
 #nav_top_row {
-
+  margin: 0 !important;
+  padding: 0 !important;
   color: #ffffff;
 }
 #nav_bottom_row {
-    z-index: 1;
-    position: absolute;
-    width: 100%;
+  ul li {
+    height: 30px !important;
+  }
+  }
 
-    top: 50px;
-    text-align: right;
 
-  color: #000000;
 
-  text-align: right;
-  margin-right: 15px;
-  padding-right: 15px;
-  margin-bottom: 0px;
 
-}
 .black {
   color: white;
 }
-dl.sub-nav {
-  text-align: right !important;
-  float: right;
-  padding-right: 15px;
-}
-dl.sub-nav dd{
-   font-weight: right !important;
-    font-size: 15px;
-    color: black;
-  margin-top: 3px;
-}
+
 .right-aligned {
   text-align: right;
   float: right;
@@ -167,26 +171,21 @@ dl.sub-nav dd{
   margin-top: 0px !important;
 }
 .nav-bar {
-margin-top: 4px;
+margin-top: 4px !important;
+  margin-bottom: 0 !important;
+  margin-left: 0;
 background-color: transparent;
 border: 0px;
 }
-
-.flyout {
-
-}  
-dd {
-padding: 5px;
-}
-.flyout-toggle {
-
-}
-
 .nav-bar li {
-border-right: 0px;
-padding-right: 10px;
+  border-right: 0px;
+  padding-right: 10px;
 
 }
+
+
+
+
 
 #dynasty-navbar a {
     font-weight: 500;

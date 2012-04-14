@@ -1,0 +1,38 @@
+.row
+  //Logo
+  = render :partial => "shared/dynasty_logo"
+
+  // Primary Nav
+  .nine.columns.right#nav_top_row
+    %ul.nav-bar.right
+      = render :partial => "shared/dynasty_nav_flyouts"
+      %li.has-flyout.right
+        %a{:href => "#", :class => "main"}
+          = t :signed_in, :attribute => current_user.email, :scope => :nav
+        %a{:href => "#", :class => "flyout-toggle"}
+          %span
+        %div.flyout.small.panel
+          %dl
+            %dd
+              = link_to 'Edit User Profile', edit_user_registration_path
+            %dd
+              = link_to "Sign Out?", destroy_user_session_path
+            %dd
+              %a{:href => "#"} Manage Account
+
+// Secondary Nav
+
+.row
+  .three.columns
+  .nine.columns.right#nav_bottom_row
+    %ul.nav-bar.right
+      %li
+        %a{:href => "/coaches_corner_home", :class => "main sub"} Coaches Corner
+      %li
+        %a{:href => "/front_office_home", :class => "main sub"} Front Office
+
+      %li
+        %a{:href => "/mockups/team_marketplace", :class => "main sub"} Team Marketplace
+      %li
+        %a{:href => "/payments/purchase_dynasty_dollars", :class => "main sub"} Purchase Dynasty Dollars
+

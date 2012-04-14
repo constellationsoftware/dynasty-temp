@@ -1,5 +1,8 @@
-%ul.nav-bar.right
-  - @sub_pages.each do |sub_page|
-    %li
-      = link_to sub_page.to_s.titleize, send("#{controller_base_name}_path", :action => sub_page),
-        :class => "#{controller.action_name === sub_page.to_s ? 'current' : ''}"
+.row
+  .eight.column
+    %ul.nav-bar
+      - @sub_pages.each do |sub_page|
+        %li
+          = link_to sub_page.to_s.titleize, send("#{controller_base_name}_path", :action => sub_page),
+            :class => "#{controller.action_name === sub_page.to_s ? 'current' : ''} main"
+
