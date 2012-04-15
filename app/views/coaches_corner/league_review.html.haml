@@ -1,3 +1,31 @@
+/= javascript_include_tag controller.action_name
+= stylesheet_link_tag controller_base_name
+
 - content_for :sub_nav do
   = render :partial => 'shared/sub_nav'
 - content_for :title, 'League Review'
+
+.row
+  %dl.tabs
+    - @games.each_with_index do |game, i|
+      - week = i + 1
+      %dd.tab{ :id => "week_#{week}" }
+        %a{ :href => "#week_#{week}" }
+          = t '.tab_label', :week => week
+  %ul.tabs-content
+    - @games.each_with_index do |games, i|
+      - week = i + 1
+      %li{ :id => "week_#{week}Tab" }
+        - games.each do |game|
+          .row
+            %h6.five.columns
+              %strong
+                = game.away_team.name
+                = "(#{game.away_team_score})" if game.scored?
+            %h6.two.columns @
+            %h6.five.columns
+              %strong
+                = game.home_team.name
+                = "(#{game.home_team_score})" if game.scored?
+            %br
+            %br

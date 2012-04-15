@@ -8,5 +8,7 @@ $ ->
             ->
                 originParent = origin.closest('.roster')
                 target = originParent.siblings('.roster').first()
-                console.log target
+                console.log target, data
+                for row in target.children('tr.lineup')
+                    console.log row
         )

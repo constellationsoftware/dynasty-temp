@@ -11,6 +11,8 @@ en:
             tab_label:  "Week %{week}"
             victory:    "You beat %{opponent}. Great Job!"
             defeat:     "You lost to %{opponent}. Ya blew it!"
+        league_review:
+            tab_label:  "Week %{week}"
 
     front_office:
         roster:

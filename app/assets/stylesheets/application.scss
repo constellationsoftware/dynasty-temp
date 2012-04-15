@@ -339,4 +339,7 @@ div.sub-nav {
 }
 
 a.current { color: #E91C21; }
-div.reveal-modal.panel { margin-top: 75px; }
+div.reveal-modal.panel {
+    margin: 0;
+    margin-top: 75px;
+}
