@@ -9,6 +9,7 @@ class CoachesCornerController < ApplicationController
         @lineups = Lineup.with_positions.joins{[ player_teams, player_teams.player.outer ]}
             .includes{[ player_teams ]}
             .where{ player_teams.team_id == my{ @team.id } }
+            .order{ id }
     end
 
     def game_review
@@ -18,7 +19,15 @@ class CoachesCornerController < ApplicationController
     end
 
     def league_review
-
+        @team = current_user.team
+        @games = []
+        games = @team.league.games.order{ date }
+        games_per_week = (Settings.league.capacity / 2)
+        weeks = Settings.season_weeks
+        (weeks).times do |i|
+            @games << games.shift(games_per_week)
+        end
+        @week = Clock.first.week
     end
 
     def get_player(player_id)

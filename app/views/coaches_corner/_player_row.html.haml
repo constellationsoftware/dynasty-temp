@@ -4,7 +4,7 @@
     %td
       = lineup.position.abbreviation.upcase
       = "(#{player.position.abbreviation.upcase})" if lineup.flex
-    %td
+    %td.name
       = player.name.full_name unless player.nil?
     %td
       = player.contract.bye_week unless player.nil?
