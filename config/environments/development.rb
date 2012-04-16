@@ -27,7 +27,7 @@ Dynasty::Application.configure do
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.serve_static_assets = true
+    config.serve_static_assets = false
     config.assets.compile = true
     config.assets.debug = true
 

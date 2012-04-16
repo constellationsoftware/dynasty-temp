@@ -8,7 +8,7 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require inflections
-#= require foundation
 #= require hamlcoffee
-#= require kendo/kendo.web.min
+#= require twitter/bootstrap
 #= require lib/util
+

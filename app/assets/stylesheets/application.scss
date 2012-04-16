@@ -1,7 +1,6 @@
-@import 'foundation';
+//@import 'foundation';
 /*
- *= require kendo/kendo.common.min
- *= require kendo/kendo.default.min
+ *= require bootstrap_and_overrides
  *= require_self
  */
 
@@ -14,6 +13,7 @@ background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  padding: 50px;
 }
 
 #loginModal {
