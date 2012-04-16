@@ -61,7 +61,6 @@ Dynasty::Application.routes.draw do
     match '/manage' => 'users/team#show', :as => 'manage_team'
     match '/front_office/:action', :controller => :front_office, :as => :front_office
     match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-    match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
 
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do

@@ -5,10 +5,10 @@ class FrontOfficeController < ApplicationController
 
     def roster
         @team = current_user.team
-        @lineups = Lineup.with_positions.joins{[ player_teams, player_teams.player.outer ]}
-            .includes{[ player_teams ]}
-            .where{ player_teams.team_id == my{ @team.id } }
-            .order{ position_id }
+        Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeam.table_name}.team_id = #{@team.id}"
+        @lineups = Lineup.with_positions.joins{ player_teams.outer }
+            .includes{ player_teams }
+            .order{ id }
     end
 
     def trades
