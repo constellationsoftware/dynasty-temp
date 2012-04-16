@@ -14,6 +14,10 @@ class DraftObserver < ActiveRecord::Observer
                     :round => round + 1
             end
         end
+
+        # apply league trophy fee
+        trophy_event = Events::PayTrophyFee.create!
+        trophy_event.process draft.league
     end
 end
 
