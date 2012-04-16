@@ -9,6 +9,7 @@
 #= require jquery_ujs
 #= require inflections
 #= require hamlcoffee
-#= require twitter/bootstrap
+
+#= require bootstrap
 #= require lib/util
 

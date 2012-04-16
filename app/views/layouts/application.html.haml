@@ -11,8 +11,6 @@
   -# Uncomment to make IE8 render like IE7
   -# meta http-equiv="X-UA-Compatible" content="IE=7"
   -# Set the viewport width to device width for mobile
-
-  %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
   %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
 
@@ -37,20 +35,20 @@
 
   -# Display the public sitewide nav bar
   - unless user_signed_in?
-    #dynasty-navbar.fixed_nav.container
+    #dynasty_navbar.fixed_nav.container
       = render :partial => "shared/dynasty_nav"
 
   -# Display the private sitewide nav bar
   - if user_signed_in?
-    #dynasty-navbar.private.fixed_nav
+    #dynasty-navbar.fixed_nav.container
       = render :partial => "/shared/dynasty_nav_private"
 
 
   /* Main Page Content
-  .row
-    .container.main_yield
+  .container
+    .main_yield
       .row
-        .twelve.columns
+        .span12
 
           -# Show error messages
           #global-errors
@@ -58,17 +56,15 @@
               %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
 
       -# Page Header
-      .row
-        .sub_header
-          %h4.white
-            -#Refactor: Switch affected pages to follow same structure
-            = yield :title
-            = @title
+      %h2
+        -#Refactor: Switch affected pages to follow same structure
+        = yield :title
+        = @title
 
       -# Main Page Content
       #content
         = yield
-        %input.btn.primary{:type => "button", :value => "Click me"}
+
       -# Page Footer
       = render :partial => "shared/dynasty_footer"
 

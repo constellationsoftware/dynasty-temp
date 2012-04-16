@@ -1,32 +1,33 @@
-%li.has-flyout
-  %a{:href => "#", :class => "main"}= t('nav.tutorials')
-  %a.flyout-toggle{:href => "#"}
-    %span
-    .flyout.small.panel
-      %dl
-        %dd
-          %a = t nav.video1
-        %dd
-          %a = t nav.video2
-        %dd
-          %a = t nav.video3
-        %dd
-          %a = t nav.video4
-%li.has-flyout
-  %a{:href => "/mockups/player_news", :class => "main"}Player News
-  %a.flyout-toggle{:href => "#"}
-    %span
-  .flyout.small.panel
-    %dl
-      %dd
-        %a{:href => "/mockups/player_news"} Player News
-      %dd
-        %a{:href => "/mockups/player_research"} Player Research
-      %dd
-        %a{:href => "/mockups/headlines"} Headlines
-      %dd
-        %a{:href => "/mockups/transactions_contracts"} Transactions & Contracts
-      %dd
-        %a{:href => "/mockups/depth_charts"} Depth Charts
-      %dd
-        %a{:href => "http://blog.dynastyowner.com", :target => "_blank"} Blog
+%li.dropdown
+  %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+    Tutorial
+    %b.caret
+
+    %ul.dropdown-menu
+      %li
+        %a= t 'nav.video1'
+      %li
+        %a= t 'nav.video2'
+      %li
+        %a= t 'nav.video3'
+      %li
+        %a= t 'nav.video4'
+
+%li.dropdown
+  %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+    Player News
+    %b.caret
+    %ul.dropdown-menu
+      %li
+        %p
+          %a{:href => '/mockups/player_news'} Player News
+      %li
+        %a{:href => '/mockups/player_research'} Player Research
+      %li
+        %a{:href => '/mockups/headlines'} Headlines
+      %li
+        %a{:href => '/mockups/transactions_contracts'} Transactions & Contracts
+      %li
+        %a{:href => '/mockups/depth_charts'} Depth Charts
+      %li
+        %a{:href => 'http://blog.dynastyowner.com', :target => '_blank'} Blog

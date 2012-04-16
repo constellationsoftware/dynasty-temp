@@ -1,4 +1,16 @@
 Dynasty::Application.routes.draw do
+  get "research/team"
+
+  get "research/player"
+
+  get "research/news"
+
+  get "research/transactions"
+
+  get "research/contracts"
+
+  get "research/depth_charts"
+
     # Authorize.net stuff
 
     match '/payments/purchase_dynasty_dollars', :to => 'payments#purchase_dynasty_dollars', :as => 'payments_purchase_dynasty_dollars', :via => [:get]
@@ -173,6 +185,7 @@ Dynasty::Application.routes.draw do
 
     resources :players do
         get 'show'
+        get 'research'
         get 'add'
         post 'add'
         member do

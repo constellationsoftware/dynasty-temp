@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+
     def show
         @team = Team.find(session[:team_id])
         @my_league = @team.league
