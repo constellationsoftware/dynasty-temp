@@ -1,13 +1,19 @@
 class DraftObserver < ActiveRecord::Observer
-    def after_create(model)
-        model.create_pick_records
+    def after_create(draft)
+        # generate picks for draft
+        teams = draft.league.teams.sort
+        teams_reverse = teams.reverse
 
-        ## This restarts the worker process
-        #This is not a well documented feature, for more info start here:
-        # http://groups.google.com/group/heroku/browse_thread/thread/bcdcf4e99bd35108
-        #and also http://rubydoc.info/github/heroku/heroku
-        #Heroku::Client.new('ben@frontofficemedia.com', 'fom556').ps_restart('dynastyowner', :ps => 'worker.1')
-
+        rounds = Lineup.count
+        rounds.times do |round|
+            t = round.even? ? teams : teams_reverse
+            t.each_with_index do |team, i|
+                Pick.create :draft_id => draft.id,
+                    :team_id => team.id,
+                    :pick_order => (i + 1) + (teams.size * round),
+                    :round => round + 1
+            end
+        end
     end
 end
 

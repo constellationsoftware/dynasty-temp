@@ -31,6 +31,10 @@ en:
                 1st_string:    'Starter'
                 2nd_string:    'Bench'
 
+    user_cp:
+        schedule_draft:     'Schedule Draft'
+        draft_date_format:  '%A %B %d, %Y'
+
     my_team:
         sub_sections:
             review: Game Review

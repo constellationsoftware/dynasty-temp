@@ -29,6 +29,9 @@
     - league = current_user.leagues.first
     %h5= league.name
     = link_to 'Edit', edit_league_path(league)
+    - if league.teams.count === Settings.league.capacity && league.draft.nil?
+      |
+      = link_to (I18n.t 'schedule_draft', :scope => :user_cp), edit_league_path(league)
   - else
     = link_to 'Create New League', new_league_path, :class => 'small nice blue button radius'
     = link_to 'View League List', leagues_path, :class => 'small nice black button radius'

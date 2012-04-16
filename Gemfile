@@ -8,7 +8,7 @@ gem 'activesupport', '~> 3.2.2'
 gem 'execjs'
 gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
-gem 'rails_config', :git => 'git://github.com/railsjedi/rails_config.git'
+gem 'rails_config', '0.2.5'
 
 # Active Admin
 gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'

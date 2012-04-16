@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120410231929) do
+ActiveRecord::Schema.define(:version => 20120416044708) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -51,6 +51,18 @@ ActiveRecord::Schema.define(:version => 20120410231929) do
   add_index "addresses", ["location_id"], :name => "IDX_FK_add_loc_id__loc_id"
   add_index "addresses", ["postal_code"], :name => "IDX_addresses_3"
   add_index "addresses", ["region"], :name => "IDX_addresses_2"
+
+  create_table "admin_notes", :force => true do |t|
+    t.integer  "resource_id",     :null => false
+    t.string   "resource_type",   :null => false
+    t.integer  "admin_user_id"
+    t.string   "admin_user_type"
+    t.text     "body"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "affiliation_phases", :force => true do |t|
     t.integer  "affiliation_id",          :null => false
@@ -893,11 +905,10 @@ ActiveRecord::Schema.define(:version => 20120410231929) do
   add_index "dynasty_draft_picks", ["team_id"], :name => "index_dynasty_draft_picks_on_team_id"
 
   create_table "dynasty_drafts", :force => true do |t|
-    t.datetime "started_at"
+    t.datetime "start_datetime"
     t.datetime "finished_at"
-    t.integer  "league_id",                                     :null => false
-    t.integer  "number_of_rounds",              :default => 30, :null => false
-    t.integer  "current_pick_id",  :limit => 2
+    t.integer  "league_id",                    :null => false
+    t.integer  "current_pick_id", :limit => 2
     t.string   "status"
   end
 
