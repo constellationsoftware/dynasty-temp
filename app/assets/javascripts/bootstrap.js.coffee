@@ -1,6 +1,10 @@
+
+
 jQuery ->
-  $("a[rel=popover]").popover()
+  $("a[rel='tooltip']").tooltip()
+  $("a[rel='popover']").popover()
+  $('.logo').popover()
   $(".tooltip").tooltip()
-  $("a[rel=tooltip]").tooltip()
   $('.dropdown-toggle').dropdown()
   $(".collapse").collapse()
+

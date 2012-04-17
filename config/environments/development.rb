@@ -29,7 +29,7 @@ Dynasty::Application.configure do
     config.assets.enabled = true
     config.serve_static_assets = false
     config.assets.compile = true
-    config.assets.debug = true
+    config.assets.debug = false
 
 
 

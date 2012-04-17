@@ -3,31 +3,40 @@
     Tutorial
     %b.caret
 
-    %ul.dropdown-menu
-      %li
-        %a= t 'nav.video1'
-      %li
-        %a= t 'nav.video2'
-      %li
-        %a= t 'nav.video3'
-      %li
-        %a= t 'nav.video4'
+  %ul.dropdown-menu
+    %li
+      %a= t 'nav.video1' |
+      %i.icon-star &nbsp;
+    %li
+      %a= t 'nav.video2' |
+      %i.icon-star &nbsp;
+    %li
+      %a= t 'nav.video3' |
+      %i.icon-star &nbsp;
+    %li
+      %a= t 'nav.video4' |
+      %i.icon-star &nbsp;
 
 %li.dropdown
   %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
     Player News
     %b.caret
-    %ul.dropdown-menu
-      %li
-        %p
-          %a{:href => '/mockups/player_news'} Player News
-      %li
-        %a{:href => '/mockups/player_research'} Player Research
-      %li
-        %a{:href => '/mockups/headlines'} Headlines
-      %li
-        %a{:href => '/mockups/transactions_contracts'} Transactions & Contracts
-      %li
-        %a{:href => '/mockups/depth_charts'} Depth Charts
-      %li
-        %a{:href => 'http://blog.dynastyowner.com', :target => '_blank'} Blog
+  %ul.dropdown-menu
+    %li
+      %a{:href => '/mockups/player_news'}
+        %i.icon-star &nbsp; Player News
+    %li
+      %a{:href => '/mockups/player_research'}
+        %i.icon-star &nbsp; Player Research
+    %li
+      %a{:href => '/mockups/headlines'}
+        %i.icon-star &nbsp; Headlines
+    %li
+      %a{:href => '/mockups/transactions_contracts'}
+        %i.icon-star &nbsp; Transactions & Contracts
+    %li
+      %a{:href => '/mockups/depth_charts'}
+        %i.icon-star &nbsp; Depth Charts
+    %li
+      %a{:href => 'http://blog.dynastyowner.com', :target => '_blank'}
+        %i.icon-star &nbsp; Blog

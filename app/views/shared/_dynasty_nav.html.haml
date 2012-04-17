@@ -1,21 +1,3 @@
-.navbar.navbar-fixed-top
-  .navbar-inner
-    .container
-      // Brand and Logo Stay Here
-      = render :partial => "shared/dynasty_logo"
-      // Collapsible nav for tablets/phones
-      .row
-        .span10.offset2
-          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          // Hidden at 940 PX or less
-          .nav-collapse
-            // Primary Nav
-            %ul.nav.pull-right
-              = render :partial => "shared/dynasty_nav_dropdowns"
-              %li
-                .btn-group
-                  %a.btn.btn-inverse{:href => "/payments/payment"} Create an Account.
+= render :partial => "shared/nav_wrapper"
+%a.btn.btn-inverse{:href => "/payments/payment"} Create an Account.
 

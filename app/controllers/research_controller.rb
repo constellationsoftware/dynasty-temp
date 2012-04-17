@@ -1,4 +1,9 @@
 class ResearchController < ApplicationController
+
+  def index
+    @teams = SportsDb::Team.nfl.includes(:display_name)
+  end
+
   def team
   end
 

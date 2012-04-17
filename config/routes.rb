@@ -1,15 +1,14 @@
 Dynasty::Application.routes.draw do
-  get "research/team"
 
-  get "research/player"
 
-  get "research/news"
+  # Player News Research Pages
 
-  get "research/transactions"
-
-  get "research/contracts"
-
-  get "research/depth_charts"
+    match "research/team",            :to => 'research#team', :as => 'research_team', :via => [:get]
+    match "research/player",          :to => 'research#player', :as => 'research_player', :via => [:get]
+    match "research/news",            :to => 'research#news', :as => 'research_news', :via => [:get]
+    match "research/transactions",    :to => 'research#transactions', :as => 'research_transactions', :via => [:get]
+    match "research/contracts",       :to => 'research#contracts', :as => 'research_contracts', :via => [:get]
+    match "research/depth_charts",    :to => 'research#depth_charts', :as => 'research_team', :via => [:get]
 
     # Authorize.net stuff
 

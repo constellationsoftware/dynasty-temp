@@ -1,0 +1,6 @@
+class SportsDb::Base
+
+  self.abstract_class = true
+
+  #Todo: detail this model
+end

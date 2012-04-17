@@ -1,8 +1,25 @@
+/* @override */
+
 //@import 'foundation';
 /*
  *= require bootstrap_and_overrides
  *= require_self
  */
+
+//fix button in navbar
+.navbar .btn-group {
+  margin: 0px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.pad-right {
+  padding-right: 5px;
+}
+
+.navbar .divider-vertical {
+  height: 40px;
+}
 .subnav {
   width: 100%;
   height: 36px;
@@ -148,8 +165,8 @@ padding-top: 75px;
 
 
   .logo {
-     position: fixed;
-     margin-bottom: -50px !important;
+    float:  left;
+     margin-bottom: -150px !important;
 
   }
 }

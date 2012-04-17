@@ -23,6 +23,12 @@ class SportsDb::Team < ActiveRecord::Base
     has_and_belongs_to_many :documents, :join_table => "teams_documents"
     has_and_belongs_to_many :medias, :join_table => "teams_media"
 
+
+    def self.nfl
+      where(:publisher_id => 3)
+    end
+
+
     def games_played
         games = self.participants_events
         games.each do |p|
