@@ -2311,9 +2311,15 @@ ActiveRecord::Schema.define(:version => 20120416044708) do
   add_index "team_phases", ["team_id"], :name => "FK_tea_aff_pha_tea_id__tea_id"
 
   create_table "teams", :force => true do |t|
-    t.string  "team_key",     :limit => 100, :null => false
-    t.integer "publisher_id",                :null => false
+    t.string  "division-name",     :limit => 100
+    t.string  "team_key",          :limit => 100,                 :null => false
+    t.integer "publisher_id",                                     :null => false
     t.integer "home_site_id"
+    t.string  "conference-name",   :limit => 50,  :default => ""
+    t.string  "division-key",      :limit => 50
+    t.string  "location-name",     :limit => 100
+    t.string  "nickname",          :limit => 100
+    t.string  "team-abbreviation", :limit => 20
   end
 
   add_index "teams", ["home_site_id"], :name => "FK_tea_hom_sit_id__sit_id"

@@ -29,7 +29,9 @@ Dynasty::Application.configure do
     config.assets.enabled = true
     config.serve_static_assets = false
     config.assets.compile = true
-    config.assets.debug = false
+
+    # Set to false for individual stylesheets
+    config.assets.debug = true
 
 
 
@@ -77,10 +79,10 @@ Pusher.secret = 'cf5b7ef9fae37eefa146'
 # Enables Ruby Debug while using POW
 # Instructions: http://m.onkey.org/using-ruby-debug-with-pow
 unless $rails_rake_task
-    require 'ruby-debug'
-
-    Debugger.settings[:autoeval] = true
-    Debugger.settings[:autolist] = 1
-    Debugger.settings[:reload_source_on_change] = true
-    Debugger.start_remote
+    #require 'ruby-debug'
+    #
+    #Debugger.settings[:autoeval] = true
+    #Debugger.settings[:autolist] = 1
+    #Debugger.settings[:reload_source_on_change] = true
+    #Debugger.start_remote
 end
