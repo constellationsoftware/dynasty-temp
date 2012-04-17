@@ -12,7 +12,7 @@ class Draft < ActiveRecord::Base
     belongs_to :league
     has_many :teams, :through => :league
     has_many :users, :through => :teams
-    has_many :picks
+    has_many :picks, :dependent => :destroy
     belongs_to :current_pick, :class_name => 'Pick'
 
     default_scope order { [isnull(finished_at).desc, id.desc, finished_at.desc] }
@@ -21,6 +21,8 @@ class Draft < ActiveRecord::Base
     scope :finished, where { status.eq 'finished' }
 
     enum :status, [:started, :finished, :paused]
+
+    attr_accessible :start_datetime
 
     def start
         # Sets up parameters necessary to start the draft
@@ -248,30 +250,4 @@ class Draft < ActiveRecord::Base
     def best_player
         Player.filter_positions(self.current_pick.team).available(self.current_pick.team.league).with_points.with_contract.order { points.points.desc }.page(1).per(1).first
     end
-
-    def create_pick_records
-        # generate picks
-        i = 0
-        round = 1
-        teams = self.league.teams
-
-        self.number_of_rounds.times do
-            if round.odd?
-                roundsort = teams.sort
-            else
-                roundsort = teams.sort.reverse
-            end
-            roundsort.each do |team|
-                i += 1
-                pick = Pick.new
-                pick.draft_id = self.id
-                pick.team_id = team.id
-                pick.pick_order = i
-                pick.round = round
-                pick.save!
-            end
-            round += 1
-        end
-    end
-
 end

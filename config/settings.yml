@@ -13,5 +13,6 @@ league:
 season_weeks:               11
 playoff_weeks:              3
 
+# TODO: figure out the best way to pull these out into the localization file where it belongs
 datetime_format:
     date_full:              '%B %e, %Y'

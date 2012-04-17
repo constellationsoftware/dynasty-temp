@@ -2,6 +2,11 @@
 String::capitalize = () ->
     (this.split(/\s+/).map (word) -> word[0].toUpperCase() + word[1..-1].toLowerCase()).join ' '
 
+String::lpad = (length, padString) ->
+    str = @
+    str = (padString + str) while (str.length < length)
+    str
+
 # default options for Ajax requests through JQuery
 $.ajaxSetup
     dataType: 'json'

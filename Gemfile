@@ -8,7 +8,6 @@ gem 'activesupport', '~> 3.2.2'
 gem 'execjs'
 gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
-gem 'rails_config', :git => 'git://github.com/railsjedi/rails_config.git'
 
 # Active Admin
 gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
@@ -60,6 +59,8 @@ gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
 
 # Deployment
+#gem 'capistrano'
+#gem 'capistrano-ext'
 gem 'capistrano'
 gem 'capistrano-ext'
 
@@ -90,7 +91,6 @@ group :development, :test do
     gem 'guard-jasmine'
     gem 'forgery', '0.5.0'
     gem 'fabrication'
-
 end
 
 

@@ -3,3 +3,8 @@
 - if form.object.id.nil?
   = form.input :name, :required => true, :input_html => { :class => 'input-text' }
 = form.input :password, :as => :string, :label => 'Passphrase', :required => false, :input_html => { :class => 'short input-text', :autocomplete => 'off' }, :wrapper_html => { :style => (form.object.public ? 'display: none;' : '') }
+- unless @league.draft.nil?
+  = form.inputs :for => :draft, :name => 'Schedule Draft' do |draft|
+    = draft.input :start_datetime, :as => :select, :label => 'Draft Date', :include_blank => false, :collection => @draft_date_collection,
+      :input_html => { :class => 'input-text' }
+    = draft.input :start_datetime, :as => :time_select, :include_blank => false, :ampm => true, :minute_step => 15

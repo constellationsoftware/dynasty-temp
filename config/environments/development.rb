@@ -64,6 +64,10 @@ Dynasty::Application.configure do
     #                :text => "Text body",
     #                :html => "<b>HTML</b> version of the body!"
     #
+
+    # load the banking configuration settings
+    Settings.add_source! File.join(Rails.root, 'config', 'settings_banking.yml')
+    Settings.reload!
 end
 
 Pusher.app_id = '10193'

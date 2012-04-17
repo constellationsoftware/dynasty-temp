@@ -13,9 +13,27 @@ class LeaguesController < InheritedResources::Base
         end
     end
 
+    def edit
+        edit! do
+            if @league.teams.count === Settings.league.capacity
+                dates = (Season.current.start_date.prev_week(:friday)..Season.current.start_date.prev_week(:sunday))
+                @draft_date_collection = {}
+                dates.each{ |date|
+                    @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
+                }
+                @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
+            end
+        end
+    end
+
     def update
-        update! do |success, failure|
-            success.html{ redirect_to root_path }
+        if @league = League.find(params[:id])
+            if params[:league].has_key? :draft_attributes
+                # delete main attribute since values are handled through JS
+                params[:league][:draft_attributes].delete :start_datetime
+            end
+            @league.update_attributes! params[:league]
+            respond_with @league
         end
     end
 

@@ -10,7 +10,8 @@ class League < ActiveRecord::Base
     # TODO: remove the class_name declaration as soon as the scoped controllers are cleaned up
     has_many :teams, :class_name => '::Team'
     has_many :users, :through => :teams
-    has_many :drafts
+    has_one :draft
+    #has_many :drafts
     has_many :players, :through => :teams
     has_many :player_teams, :through => :teams
     has_many :games
@@ -34,7 +35,8 @@ class League < ActiveRecord::Base
     }
     scope :by_slug, lambda {|value| where{ slug == my{ value } } }
 
-    #attr_accessor :teams
+    accepts_nested_attributes_for :draft
+    attr_accessible :draft_attributes, :password, :public
 
     def calculate_game_points(from, to)
         weeks = ((to.to_date - Season.current.start_date) / 7).to_i
@@ -112,11 +114,6 @@ class League < ActiveRecord::Base
                 team_player.save
             end
         end
-    end
-
-    # gets the active draft (if any)
-    def draft
-        self.drafts.first
     end
 
     def is_public?; self.public === true end
