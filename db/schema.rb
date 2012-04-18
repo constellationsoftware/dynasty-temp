@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416044708) do
+ActiveRecord::Schema.define(:version => 20120418144619) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -51,18 +51,6 @@ ActiveRecord::Schema.define(:version => 20120416044708) do
   add_index "addresses", ["location_id"], :name => "IDX_FK_add_loc_id__loc_id"
   add_index "addresses", ["postal_code"], :name => "IDX_addresses_3"
   add_index "addresses", ["region"], :name => "IDX_addresses_2"
-
-  create_table "admin_notes", :force => true do |t|
-    t.integer  "resource_id",     :null => false
-    t.string   "resource_type",   :null => false
-    t.integer  "admin_user_id"
-    t.string   "admin_user_type"
-    t.text     "body"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-  end
-
-  add_index "admin_notes", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "affiliation_phases", :force => true do |t|
     t.integer  "affiliation_id",          :null => false
@@ -1051,19 +1039,16 @@ ActiveRecord::Schema.define(:version => 20120416044708) do
   add_index "dynasty_player_positions", ["player_id", "position_id"], :name => "index_dynasty_player_positions_on_player_id_and_position_id", :unique => true
   add_index "dynasty_player_positions", ["position_id", "player_id"], :name => "index_dynasty_player_positions_on_position_id_and_player_id", :unique => true
 
-  create_table "dynasty_player_team_snapshots", :force => true do |t|
-    t.integer  "player_id"
+  create_table "dynasty_player_team_points", :force => true do |t|
     t.integer  "team_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "event_id"
-    t.string   "event_type"
+    t.integer  "game_id"
     t.integer  "lineup_id"
+    t.integer  "player_point_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
-  add_index "dynasty_player_team_snapshots", ["player_id", "team_id", "event_id", "event_type"], :name => "index_dynasty_player_team_snapshots_on_all"
-  add_index "dynasty_player_team_snapshots", ["player_id"], :name => "index_dynasty_player_team_histories_on_player_id"
-  add_index "dynasty_player_team_snapshots", ["team_id"], :name => "index_dynasty_player_team_histories_on_user_team_id"
+  add_index "dynasty_player_team_points", ["team_id", "game_id", "player_point_id", "lineup_id"], :name => "index_dynasty_player_team_points_on_all"
 
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"

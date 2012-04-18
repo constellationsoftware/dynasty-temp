@@ -7,7 +7,9 @@
   %td= player.name.full_name unless player.nil?
   %td= player.contract.bye_week unless player.nil?
   %td= number_to_currency(player.contract.amount) unless player.nil?
-  %td= player.points.points unless player.nil?
-  %td= player.points_this_season unless player.nil?
   %td.controlwrap
-    = link_to '×', drop_player_team_path(lineup.player_teams.first.id), :confirm => (t '.confirmation', :name => player.name.full_name), :class => 'delete' unless player.nil?
+    - if player.nil?
+      = link_to t('.add_player_label'), '#', :class => 'add'
+    - else
+      = link_to t('.trade_player_label'), "trades?pid=#{lineup.player_teams.first.id}", :class => 'trade'
+      = link_to '×', drop_player_team_path(lineup.player_teams.first.id), :confirm => (t '.confirmation', :name => player.name.full_name), :class => 'delete' unless player.nil?

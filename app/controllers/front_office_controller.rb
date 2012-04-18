@@ -13,9 +13,10 @@ class FrontOfficeController < ApplicationController
 
     def trades
         @team = current_user.team
+        players = PlayerTeam.joins{ player.name }.includes{ player.name }.where{ team_id == my{ @team.id } }
+        @new_trade = Trade.new(:offered_player => players.first)
         @trades = {
-            :my_players => PlayerTeam.joins{ player.name }.includes{ player.name }
-                .where{ team_id == my{ @team.id } },
+            :my_players => players,
             :their_players => PlayerTeam.joins{[player.name, team]}.includes{[player.name, team]}
                 .where{ (team_id != my{@team.id}) & (team.league_id == my{ @team.league_id }) }
                 .order{[player.name.last_name, player.name.first_name]},

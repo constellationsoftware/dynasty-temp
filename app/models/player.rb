@@ -229,6 +229,7 @@ class Player < ActiveRecord::Base
 
     def full_name; name.full_name end
     def last_name_first; (name.first_name && name.last_name) ? "#{name.last_name}, #{name.first_name}" : full_name end
+    def first_initial_last; name.first_name.nil? ? name.last_name : "#{name.first_name.first}. #{name.last_name}" end
 
     def points_last_season
         PlayerPoint.select(:points).where(:year => Season.current).find_by_player_id(self.id).andand.points

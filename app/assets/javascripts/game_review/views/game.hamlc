@@ -2,51 +2,36 @@
   .row
     %h5.twelve.columns
       = I18n.t("coaches_corner.game_review.#{if @game.won? then 'victory' else 'defeat'}", { opponent: @game.opponent().name })
+
 .row
-  %h6.five.columns
-    %strong= "#{@game.away_team.name}"
-      = "(#{@game.away_team_score})" if @game.scored()
-    - if @game.scored()
-      - if @game.away_team.players? and @game.away_team.players.length > 0
-        %table{ 'style' => 'margin: 0 auto;' }
-          %thead
-            %tr
-              %td Pos
-              %td Name
-              %td Points
-              /%td Exp/Age
-          %tbody
-            - for player in @game.away_team.players
-              %tr
-                %td= player.position.toUpperCase()
-                %td= player.name.full_name
-                  - #%a{ 'href' => "/mockups/player_detail" }= player.name.full_name
-                %td= if player.depth is 1 then player.points else (player.points / 3).toFixed(1)
-                /%td (4) 27
-      - else
-        %p Team is empty
-
-  %h6.two.columns @
-
-  %h6.five.columns
-    %strong= "#{@game.home_team.name}"
-      = "(#{@game.home_team_score})" if @game.scored()
-    - if @game.scored()
-      - if @game.home_team.players? and @game.home_team.players.length > 0
-        %table{ 'style' => 'margin: 0 auto;' }
-          %thead
-            %tr
-              %td Pos
-              %td Name
-              %td Points
-              /%td Exp/Age
-          %tbody
-            - for player in @game.home_team.players
-              %tr
-                %td= player.position.toUpperCase()
-                %td= player.name.full_name
-                  - #%a{ 'href' => "/mockups/player_detail" }= player.name.full_name
-                %td= if player.depth is 1 then player.points else (player.points / 3).toFixed(1)
-                /%td (4) 27
-      - else
-        %p Team is empty
+  %table{ 'style': 'margin: 0 auto; width: 100%' }
+    %thead
+      %tr
+        %th.header{ 'colspan': 2 }
+          %h5 Home
+        %th.header
+        %th.header{ 'colspan': 2 }
+          %h5 Away
+      %tr
+        %th.header{ 'colspan': 2 }
+          %h6= @game.home_team.name
+        %th.header
+          %h6 vs.
+        %th.header{ 'colspan': 2 }
+          %h6= @game.away_team.name
+      - if @game.home_team.lineup?
+        %tr
+          %th.name{ 'style': 'width: 35%' } Name
+          %th.points{ 'style': 'width: 10%' } Points
+          %th.position{ 'style': 'width: 10%' } Position
+          %th.points{ 'style': 'width: 10%' } Points
+          %th.name{ 'style': 'width: 35%' } Name
+    %tbody
+      - if @game.home_team.lineup?
+        - for player, i in (@game.home_team.lineup)
+          %tr
+            %td= player.name
+            %td= player.points or 0
+            %td= player.position.toUpperCase()
+            %td= @game.away_team.lineup[i].points or 0
+            %td= @game.away_team.lineup[i].name

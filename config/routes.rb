@@ -64,9 +64,7 @@ Dynasty::Application.routes.draw do
 
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do
-        resources :games do
-            get :review, :on => :collection
-        end
+        resources :games
     end
 
     scope :module => :league, :constraints => SubdomainConstraint do

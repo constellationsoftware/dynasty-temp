@@ -27,9 +27,11 @@ en:
         player_row:
             confirmation: "Are you sure you want to remove %{name} from your roster?"
             depth:
-                default:    'Injured / Reserve'
-                1st_string:    'Starter'
-                2nd_string:    'Bench'
+                default:        'Injured / Reserve'
+                1st_string:     'Starter'
+                2nd_string:     'Bench'
+            add_player_label:   'Add Player'
+            trade_player_label: 'Trade'
 
     user_cp:
         schedule_draft:     'Schedule Draft'

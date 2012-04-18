@@ -8,7 +8,6 @@ class Team < ActiveRecord::Base
     has_many :picks
     has_many :player_teams
     has_many :players, :through => :player_teams
-    #has_many :player_team_snapshots
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
     has_many :payments, :as => :receivable

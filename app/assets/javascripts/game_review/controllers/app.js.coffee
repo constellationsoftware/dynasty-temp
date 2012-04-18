@@ -26,8 +26,7 @@ class GameReview extends Spine.Controller
                 id: id
                 processData: true
                 data:
-                    with_players: true
-                    with_points: true
+                    with_lineup: true
 
     render: (games) =>
         for game in games

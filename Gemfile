@@ -70,6 +70,7 @@ gem 'ruby_parser'
 gem 'timecop'
 gem 'traceroute'
 gem 'rest-client'
+gem 'trollop'
 
 group :development do
     # Debugging & Development

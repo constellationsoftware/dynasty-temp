@@ -18,13 +18,13 @@
       - week = i + 1
       %li{ :id => "week_#{week}Tab",
         :class => game_review_tab_class(game.won?(@team), @week === week || (@week.zero? && i.zero?)) }
-        - if game.scored?
-          .row
-            %h5.twelve.columns
-              = t ".#{game.won?(@team) ? 'victory' : 'defeat'}", :opponent => game.opponent_for(@team).name
-        .row
-          %h6.five.columns
-            %strong= game.away_team.name
-          %h6.two.columns @
-          %h6.five.columns
-            %strong= game.home_team.name
+        -#- if game.scored?
+        -#  .row
+        -#    %h5.twelve.columns
+        -#      = t ".#{game.won?(@team) ? 'victory' : 'defeat'}", :opponent => game.opponent_for(@team).name
+        -#.row
+        -#  %h6.five.columns
+        -#    %strong= game.away_team.name
+        -#  %h6.two.columns vs.
+        -#  %h6.five.columns
+        -#    %strong= game.home_team.name
