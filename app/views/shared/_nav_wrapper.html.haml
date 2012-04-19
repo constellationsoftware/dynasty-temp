@@ -1,19 +1,86 @@
-.navbar.navbar-fixed-top
+#dynasty-navbar.navbar.navbar-fixed-top
   .navbar-inner
     .container
       // Brand and Logo Stay Here
-      = render :partial => 'shared/dynasty_logo'
+      //%img.logo.visible-desktop.pull_left{:src => "/assets/logo_small.png"}
+      //%img.logo.hidden-desktop.pull_left{:src => "/assets/navbar_logo.png"}
       // Collapsible nav for tablets/phones
       .row
-        .span8.offset4
-          %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          // Hidden at 940 PX or less
-          .nav-collapse
-            // Primary Nav
-            %ul.nav.pull-right
-              = render :partial => 'shared/dynasty_nav_dropdowns'
+
+        %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        // Hidden at 940 PX or less
+        .nav-collapse
+          // Primary Nav
+          %ul.nav.pull-right
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                Tutorial
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a= t 'nav.video1' |
+                %li
+                  %a= t 'nav.video2' |
+                %li
+                  %a= t 'nav.video3' |
+                %li
+                  %a= t 'nav.video4' |
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                Player News
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => '/mockups/player_news'} Player News
+                %li
+                  %a{:href => '/mockups/player_research'} Player Research
+                %li
+                  %a{:href => '/mockups/headlines'} Headlines
+                %li
+                  %a{:href => '/mockups/transactions_contracts'} Transactions & Contracts
+                %li
+                  %a{:href => '/mockups/depth_charts'} Depth Charts
+                %li
+                  %a{:href => 'http://blog.dynastyowner.com', :target => '_blank'} Blog
+            %li.divider-vertical
+            %li
+              .btn-group
+                - unless user_signed_in?
+                  %a.btn.btn-inverse{:href => "/payments/payment"}
+                    Create an Account.
+
+                - if user_signed_in?
+                  // Secondary Nav
+                  %a.btn.btn-primary
+                    %i.icon-user.icon-white
+                    = t :signed_in, :attribute => current_user.email, :scope => :nav
+                  %a.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                    %b.caret
+
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => edit_user_registration_path}
+                        %i.icon-pencil.pad-right &nbsp; Edit Profile
+                    %li
+                      %a{:href => '#'}
+                        %i.icon-cog.pad-right &nbsp; Manage Account
+                    %li.divider
+                    %li
+                      %a{:href => destroy_user_session_path}
+                        %i.icon-off.pad-right &nbsp; Sign Out?
+    - if user_signed_in?
+      .subnav.subnav-fixed
+        .container
+          .navbar-inner
+            %ul.nav.nav-pills.pull-right
               %li
-                .btn-group
+                %a{:href => '/coaches_corner_home'} Coaches Corner
+              %li
+                %a{:href => '/front_office_home'} Front Office
+              %li
+                %a{:href => '/mockups/team_marketplace'} Team Marketplace
+              %li
+                %a{:href => '/payments/purchase_dynasty_dollars'} Purchase Dynasty Dollars

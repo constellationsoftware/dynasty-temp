@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120416044708) do
+ActiveRecord::Schema.define(:version => 20120418032056) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -2020,9 +2020,14 @@ ActiveRecord::Schema.define(:version => 20120416044708) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
+
+  add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "roles_copy", :force => true do |t|
     t.string "role_key",  :limit => 100, :null => false
@@ -2311,15 +2316,16 @@ ActiveRecord::Schema.define(:version => 20120416044708) do
   add_index "team_phases", ["team_id"], :name => "FK_tea_aff_pha_tea_id__tea_id"
 
   create_table "teams", :force => true do |t|
-    t.string  "division-name",     :limit => 100
     t.string  "team_key",          :limit => 100,                 :null => false
     t.integer "publisher_id",                                     :null => false
     t.integer "home_site_id"
     t.string  "conference-name",   :limit => 50,  :default => ""
     t.string  "division-key",      :limit => 50
     t.string  "location-name",     :limit => 100
+    t.string  "division-name",     :limit => 100
     t.string  "nickname",          :limit => 100
     t.string  "team-abbreviation", :limit => 20
+    t.string  "league_id",         :limit => 20,  :default => "", :null => false
   end
 
   add_index "teams", ["home_site_id"], :name => "FK_tea_hom_sit_id__sit_id"
@@ -2517,6 +2523,13 @@ ActiveRecord::Schema.define(:version => 20120416044708) do
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "users_roles", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "role_id"
+  end
+
+  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
 
   create_table "versions", :force => true do |t|
     t.integer  "versioned_id"

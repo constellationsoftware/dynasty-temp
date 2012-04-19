@@ -1,14 +1,21 @@
 class ResearchController < ApplicationController
 
   def index
+   @players = Player.current.with_contract.all
+
     @teams = SportsDb::Team.nfl.includes(:display_name)
+
+
   end
 
   def team
   end
 
   def player
+    @players = Player.all
+    render :json => @players
   end
+
 
   def news
   end

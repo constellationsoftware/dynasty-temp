@@ -1,6 +1,6 @@
 .row
-  .eight.column
-    %ul.nav-bar
+  .subnav2
+    %ul.nav.nav-pills
       - @sub_pages.each do |sub_page|
         %li
           = link_to sub_page.to_s.titleize, send("#{controller_base_name}_path", :action => sub_page),

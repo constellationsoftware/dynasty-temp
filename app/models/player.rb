@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: persons
+#
+#  id                        :integer(4)      not null, primary key
+#  person_key                :string(100)     not null
+#  publisher_id              :integer(4)      not null
+#  gender                    :string(20)
+#  birth_date                :string(30)
+#  death_date                :string(30)
+#  final_resting_location_id :integer(4)
+#  birth_location_id         :integer(4)
+#  hometown_location_id      :integer(4)
+#  residence_location_id     :integer(4)
+#  death_location_id         :integer(4)
+#
+
 class Player < ActiveRecord::Base
     self.table_name = 'persons'
 
@@ -60,14 +77,32 @@ class Player < ActiveRecord::Base
     has_many :events, :through => :event_points
     has_one  :contract, :foreign_key => 'person_id'
 
+
+
     def contract_depth
         self.contract.depth
+    end
+
+    def real_team
+      SportsDb::Team.find(self.current_position.membership_id)
     end
 
     def amount
         self.contract.amount
     end
 
+    def self.current
+      with_points_from_season(2011)
+    end
+
+    def fname
+      self.display_name.last_with_first_initial
+    end
+
+
+    def self.research
+      current.with_contract.includes(:contract, :real_team, :fname, :display_name, :position, :real_team)
+    end
     #
     # SCOPES
     #

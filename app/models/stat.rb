@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: stats
+#
+#  id                   :integer(4)      not null, primary key
+#  stat_repository_type :string(100)
+#  stat_repository_id   :integer(4)      not null
+#  stat_holder_type     :string(100)
+#  stat_holder_id       :integer(4)
+#  stat_coverage_type   :string(100)
+#  stat_coverage_id     :integer(4)
+#  stat_membership_type :string(40)
+#  stat_membership_id   :integer(4)
+#  context              :string(40)      not null
+#  scope                :string(255)
+#  start_date_time      :datetime
+#
+
 class Stat < ActiveRecord::Base
 
     belongs_to  :person,

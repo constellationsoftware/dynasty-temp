@@ -4,29 +4,29 @@
       %strong
         #{@team.name} Financials
     .row
-      .four.columns
+      .span4
         Cash:
-      .three.columns
+      .span3
         #{number_to_currency(@team.balance)}
     .row
-      .four.columns
+      .span4
         Wk.Pay:
-      .three.columns
+      .span3
         #{number_to_currency(@my_weekly_payroll)}
 
     .row
-      .four.columns
+      .span4
         S. Cap:
-      .three.columns
+      .span3
         #{number_to_currency(@cap)}
     .row
-      .four.columns
+      .span4
         Ssn.Pay:
       - if @my_season_payroll > @cap
-        .three.columns.failure
+        .span3.failure
           #{number_to_currency(@my_season_payroll)}
       - if @my_season_payroll <= @cap
-        .three.columns.success
+        .span3.success
           #{number_to_currency(@my_season_payroll)}
 
     .row

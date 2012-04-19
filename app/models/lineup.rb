@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: dynasty_lineups
+#
+#  id          :integer(4)      not null, primary key
+#  position_id :integer(4)
+#  flex        :boolean(1)
+#  string      :integer(4)
+#
+
 class Lineup < ActiveRecord::Base
     self.table_name = 'dynasty_lineups'
 

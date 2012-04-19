@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: persons
+#
+#  id                        :integer(4)      not null, primary key
+#  person_key                :string(100)     not null
+#  publisher_id              :integer(4)      not null
+#  gender                    :string(20)
+#  birth_date                :string(30)
+#  death_date                :string(30)
+#  final_resting_location_id :integer(4)
+#  birth_location_id         :integer(4)
+#  hometown_location_id      :integer(4)
+#  residence_location_id     :integer(4)
+#  death_location_id         :integer(4)
+#
+
 class Person < ActiveRecord::Base
     self.table_name = 'persons'
     has_one :photo
@@ -95,7 +112,7 @@ class Person < ActiveRecord::Base
 
 
     def self.current_player
-        self.with_points_from_season(season = 'last')
+        self.season_points(season = '2011')
     end
 
     def current_position
@@ -105,6 +122,8 @@ class Person < ActiveRecord::Base
     def current_team
         SportsDb::Team.find(self.current_position.membership_id)
     end
+
+
 
     def current_stats
         self.stats.current.event_stat

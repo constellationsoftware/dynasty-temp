@@ -1,16 +1,16 @@
 .row
-  .four.columns Cash:
-  .three.columns= @balance
+  .span4 Cash:
+  .span3= @balance
 .row
-  .four.columns Wk.Pay:
-  .three.columns= @payroll
+  .span4 Wk.Pay:
+  .span3= @payroll
 
 .row
-  .four.columns S. Cap:
-  .three.columns= @cap
+  .span4 S. Cap:
+  .span3= @cap
 .row
-  .four.columns Ssn.Pay:
-  .three.columns{ class: if @payroll_total < @cap then 'success' else 'failure' }= @payroll_total
+  .span4 Ssn.Pay:
+  .span3{ class: if @payroll_total < @cap then 'success' else 'failure' }= @payroll_total
 
 .row
   .twelve.columns{ class: if @deficit then 'failure' else 'success' }

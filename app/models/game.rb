@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: dynasty_games
+#
+#  id              :integer(4)      not null, primary key
+#  league_id       :integer(4)
+#  home_team_id    :integer(4)      not null
+#  away_team_id    :integer(4)      not null
+#  home_team_score :decimal(4, 1)
+#  away_team_score :decimal(4, 1)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  date            :date
+#
+
 class Game < ActiveRecord::Base
     self.table_name = 'dynasty_games'
 

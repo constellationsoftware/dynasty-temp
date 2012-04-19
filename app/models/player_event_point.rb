@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: dynasty_player_event_points
+#
+#  id                   :integer(4)      not null, primary key
+#  player_id            :integer(4)      default(0), not null
+#  event_id             :integer(4)      default(0), not null
+#  points               :integer(4)      default(0), not null
+#  defensive_points     :integer(4)      default(0), not null
+#  fumbles_points       :integer(4)      default(0), not null
+#  passing_points       :integer(4)      default(0), not null
+#  rushing_points       :integer(4)      default(0), not null
+#  sacks_against_points :integer(4)      default(0), not null
+#  scoring_points       :integer(4)      default(0), not null
+#  special_teams_points :integer(4)      default(0), not null
+#  created_at           :datetime
+#  updated_at           :datetime
+#  event_date           :datetime
+#
+
 class PlayerEventPoint < ActiveRecord::Base
     self.table_name = 'dynasty_player_event_points'
     belongs_to :player

@@ -7,4 +7,4 @@ jQuery ->
   $(".tooltip").tooltip()
   $('.dropdown-toggle').dropdown()
   $(".collapse").collapse()
-
+  $('.tab-pane').tab()

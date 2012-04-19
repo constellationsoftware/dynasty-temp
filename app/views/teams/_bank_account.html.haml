@@ -5,29 +5,29 @@
 
   %div#account-summary
     .row
-      .four.columns
+      .span4
         Cash:
-      .three.columns
+      .span3
         #{(@team.balance)}
     .row
-      .four.columns
+      .span4
         Wk.Pay:
-      .three.columns
+      .span3
         #{(payroll).to_money.format}
 
     .row
-      .four.columns
+      .span4
         S. Cap:
-      .three.columns
+      .span3
         #{(cap)}
     .row
-      .four.columns
+      .span4
         Ssn.Pay:
       - if payroll_total > cap
-        .three.columns.failure
+        .span3.failure
           #{(payroll_total)}
       - if payroll_total <= cap
-        .three.columns.success
+        .span3.success
           #{(payroll_total).to_money.format}
 
     .row

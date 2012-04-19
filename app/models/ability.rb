@@ -3,8 +3,26 @@ class Ability
 
   def initialize(user)
 
-      unless user
-          can :read
+      # Rolify user Roles: Edit the Ability model class, add these lines in the initialize method:
+      # Use the resourcify method in all models you want to put a role on. For example, if we have the Forum model:
+      #
+      #  class Forum < ActiveRecord::Base
+      #    resourcify
+      # end
+
+      if user.has_role? :guest
+          can :read, :all
+      end
+
+      if user.has_role? :customer
+        can :manage, User
+      end
+
+      if user.has_role? :admin
+        can :manage, :all
+      else
+        can :manage, Team if user.has_role?(:owner, Team)
+        can :manage, League, :id => League.with_role(:commissioner).map{|league| league.id}
       end
     # Define abilities for the passed in user here. For example:
     #

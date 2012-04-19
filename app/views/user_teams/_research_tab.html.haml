@@ -8,5 +8,5 @@
           = position.name
       - @all_players.each do |player|
         - if player.position == position
-          .three.columns
+          .span3
             = link_to "#{player.name.full_name} (#{player.contract_depth})", player

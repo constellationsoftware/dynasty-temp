@@ -11,5 +11,6 @@
 #= require hamlcoffee
 #= require twitter/bootstrap
 #= require bootstrap
+#= require dataTables/jquery.dataTables
 #= require lib/util
-
+#= require subnav

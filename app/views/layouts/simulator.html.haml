@@ -28,7 +28,7 @@
 %body
   #dynasty-navbar.container
     .row
-      .three.columns
+      .span3
         %h1
           = image_tag 'navbar_logo.png'
           = yield :navbar_left
@@ -47,7 +47,7 @@
             %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
         = yield
 
-      .three.columns
+      .span3
         - if user_signed_in?
           .panel
             .alert-box.success

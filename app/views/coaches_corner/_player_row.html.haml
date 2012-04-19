@@ -11,8 +11,9 @@
     %td
       = number_to_currency(player.contract.amount) unless player.nil?
     %td
-      = link_to (image_tag "shared/#{player.nil? ? 'user_add.png' : 'user_go.png'}", :title => 'Swap Player'), '#',
-        { :data => { 'reveal-id' => 'swap_player' } }
+
+      = link_to (image_tag "shared/#{player.nil? ? 'user_add.png' : 'user_go.png'}", :title => 'Swap Player', :class => 'btn'), '#',
+        { :data => { :target => '#swap_player', :toggle => 'modal' } }
       -#  = form_for player.player_teams, :url => bench_player_team_path(player.player_teams.id), :html => { :method => :put, :class => 'inline' } do |f|
       -#    = f.hidden_field :depth, :value => 0
       -#    = f.submit 'Bench', :class => "nice small radius white button"

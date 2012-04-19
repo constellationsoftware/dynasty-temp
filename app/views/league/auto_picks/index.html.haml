@@ -3,12 +3,12 @@
     = content_tag_for :li, auto_pick do
       %table
         %tr
-          %td.three.columns
+          %td.span3
             %span.handle [drag]
             = link_to h(auto_pick.player.name.full_name), auto_pick
           %td.one.columns
             = auto_pick.player.position.andand.abbreviation.andand.upcase
-          %td.three.columns
+          %td.span3
             Salary:
             = number_to_currency(auto_pick.player.contract.amount.to_money)
           %td.one.columns

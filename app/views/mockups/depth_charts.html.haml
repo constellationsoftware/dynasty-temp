@@ -1,6 +1,6 @@
 = render :partial => "shared/team_search_control"
 .row
-  .three.columns.panel
+  .span3.panel
     List of Teams
     %select.teamroster{:name => "filter", :onchange => "document.forms['teamQuickSearchForm'].submit();"}
       %option Select a Team
@@ -37,7 +37,7 @@
       %option{:value => "Tennessee Titans    "} Tennessee Titans
       %option{:value => "Washington Redskins "} Washington Redskins
 
-.three.columns.panel
+.span3.panel
   List of Teams
   %select.teamroster{:name => "filter", :onchange => "document.forms['teamQuickSearchForm'].submit();"}
     %option Sort By Division & Conference

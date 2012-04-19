@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: dynasty_drafts
+#
+#  id              :integer(4)      not null, primary key
+#  start_datetime  :datetime
+#  finished_at     :datetime
+#  league_id       :integer(4)      not null
+#  current_pick_id :integer(2)
+#  status          :string(255)
+#
+
 class Draft < ActiveRecord::Base
     self.table_name = 'dynasty_drafts'
     include EnumSimulator

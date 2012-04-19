@@ -6,5 +6,5 @@
         %p
           %strong #{position[:name]}
         - position[:players].each do |player|
-          .three.columns
+          .span3
             = link_to "#{player.name.full_name} (#{player.contract.depth ? player.contract.depth_formatted : "n/a"})", player

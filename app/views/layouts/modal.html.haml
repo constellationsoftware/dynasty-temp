@@ -1,7 +1,16 @@
-.reveal-modal.panel{ :id => "#{ defined?(id) ? id : '' }" }
-  - if defined? title
-    .eleven.columns.centered
-      %h6= title
-  .row.twelve.columns.centered
+:javascript
+  $('#swap_player').modal({ backdrop: true, keyboard: true});
+
+
+
+.modal.fade{ :id => "#{ defined?(id) ? id : '' }" }
+  .modal-header
+    %a.close{:data => {:dismiss => "modal"}}×
+    - if defined? title
+      %h3= title
+
+  .modal-body
     = yield :modal_content
-  %a.close-reveal-modal ×
+
+  .modal-footer
+    = yield :modal_footer

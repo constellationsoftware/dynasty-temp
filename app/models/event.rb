@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id                    :integer(4)      not null, primary key
+#  event_key             :string(100)     not null
+#  publisher_id          :integer(4)      not null
+#  start_date_time       :datetime
+#  site_id               :integer(4)
+#  site_alignment        :string(100)
+#  event_status          :string(100)
+#  duration              :string(100)
+#  attendance            :string(100)
+#  last_update           :datetime
+#  event_number          :string(32)
+#  round_number          :string(32)
+#  time_certainty        :string(100)
+#  broadcast_listing     :string(255)
+#  start_date_time_local :datetime
+#  medal_event           :string(100)
+#  series_index          :string(40)
+#
+
 class Event < ActiveRecord::Base
     default_scope :order => 'start_date_time ASC'
     #default_scope where('start_date_time <= ?', Time.now)

@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: dynasty_trades
+#
+#  id                  :integer(4)      not null, primary key
+#  league_id           :integer(4)      not null
+#  initial_team_id     :integer(4)      not null
+#  second_team_id      :integer(4)      not null
+#  player_id           :integer(4)
+#  accepted            :boolean(1)
+#  open                :boolean(1)
+#  offered_at          :datetime
+#  accepted_at         :datetime
+#  denied_at           :datetime
+#  offered_player_id   :integer(4)
+#  requested_player_id :integer(4)
+#  offered_cash        :integer(4)
+#  requested_cash      :integer(4)
+#  offered_picks       :string(255)
+#  requested_picks     :string(255)
+#  message             :text
+#
+
 class Trade < ActiveRecord::Base
     self.table_name = 'dynasty_trades'
     belongs_to :initial_team, :class_name => 'Team'

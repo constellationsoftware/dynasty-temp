@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: dynasty_clock
+#
+#  id         :integer(4)      not null, primary key
+#  created_at :datetime
+#  updated_at :datetime
+#  time       :datetime
+#
+
 class Clock < ActiveRecord::Base
     self.table_name = 'dynasty_clock'
 

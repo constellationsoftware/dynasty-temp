@@ -1,3 +1,20 @@
+# == Schema Information
+#
+# Table name: dynasty_teams
+#
+#  id             :integer(4)      not null, primary key
+#  league_id      :integer(4)
+#  name           :string(50)      not null
+#  user_id        :integer(4)      not null
+#  is_online      :boolean(1)      default(FALSE), not null
+#  uuid           :binary(255)
+#  last_socket_id :string(255)
+#  balance_cents  :integer(8)      default(0), not null
+#  autopick       :boolean(1)      default(FALSE)
+#  waiver_order   :integer(4)
+#  draft_order    :integer(4)
+#
+
 class SportsDb::Team < ActiveRecord::Base
     self.table_name = 'teams'
 
@@ -13,6 +30,7 @@ class SportsDb::Team < ActiveRecord::Base
     has_many :people, :through => :person_phases
     has_many :team_phases
     belongs_to :division
+    belongs_to :league
     has_many :outcome_totals, :as => :outcome_holder
     has_many :affiliations, :through => :team_phases
     has_many :participants_events, :as => :participant
@@ -25,7 +43,8 @@ class SportsDb::Team < ActiveRecord::Base
 
 
     def self.nfl
-      where(:publisher_id => 3)
+      where("league_id = ?", 9)
+
     end
 
 
@@ -39,6 +58,11 @@ class SportsDb::Team < ActiveRecord::Base
     def name
         self.display_name.full_name
     end
+
+    def current_players
+        self.person_phases.current_phase
+    end
+
 
 
 end

@@ -33,32 +33,45 @@ gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'select_with_include'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
+gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+
+
+
 # Templating & View Helpers
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kendoui-rails'
 gem 'formtastic' # '~> 1.2.4'
+gem 'simple_form'
+
 gem 'jbuilder'
+gem 'rabl'
+gem 'gon'
+
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
+
 
 # Authentication & Permissions
 # gem 'authlogic'
 gem 'devise'
 gem 'cancan'
+gem 'rolify'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
 
 # Servers, Workers, Sockets & Push
 gem 'foreman'
 gem 'thin'
+gem 'redis'
 gem 'juggernaut'
 gem 'pusher', '= 0.8.5'
 gem 'pusher-client', :git => 'git://github.com/logankoester/pusher-client.git'
 gem 'em-http-request' # required for async pusher requests
 gem 'delayed_job', '< 3.0'
+
 
 # Deployment
 gem 'capistrano'
@@ -104,6 +117,12 @@ group :assets do
   gem 'sass-rails', '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+
+
+  #for datatables
+  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-ui-rails'
+  gem 'will_paginate'
 
   #gem 'compass-rails'
   #gem 'extjs-rails-assets'

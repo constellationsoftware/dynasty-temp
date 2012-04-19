@@ -3,7 +3,7 @@
     %h5.twelve.columns
       = I18n.t("coaches_corner.game_review.#{if @game.won? then 'victory' else 'defeat'}", { opponent: @game.opponent().name })
 .row
-  %h6.five.columns
+  %h6.span5
     %strong= "#{@game.away_team.name}"
       = "(#{@game.away_team_score})" if @game.scored()
     - if @game.scored()
@@ -28,7 +28,7 @@
 
   %h6.two.columns @
 
-  %h6.five.columns
+  %h6.span5
     %strong= "#{@game.home_team.name}"
       = "(#{@game.home_team_score})" if @game.scored()
     - if @game.scored()

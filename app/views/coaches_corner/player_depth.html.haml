@@ -9,9 +9,9 @@
 /= render :partial => 'shared/modal', :locals => { :id => 'swap_player', :title => 'Who do you want to swap with?' }
 
 .row
-  .twelve.columns
+  .span12
     %h5 Starters
-    %table#starter.roster
+    %table#starter.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
           %th Position
@@ -37,5 +37,5 @@
           = render :partial => 'player_row', :locals => { :lineup => lineup, :string => 2 }
 
 
-= content_for :modal_content do
-  HI
+= content_for :modal_content
+

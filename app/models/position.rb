@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: dynasty_positions
+#
+#  id               :integer(4)      not null, primary key
+#  name             :string(32)
+#  abbreviation     :string(5)
+#  designation      :string(1)       not null
+#  sort_order       :integer(4)
+#  flex_position_id :integer(4)
+#
+
 class Position < ActiveRecord::Base
     include EnumSimulator
 

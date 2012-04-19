@@ -2,7 +2,7 @@ Dynasty::Application.routes.draw do
 
 
   # Player News Research Pages
-
+    match "research",                 :to => 'research#index', :as => 'research_index', :via => [:get]
     match "research/team",            :to => 'research#team', :as => 'research_team', :via => [:get]
     match "research/player",          :to => 'research#player', :as => 'research_player', :via => [:get]
     match "research/news",            :to => 'research#news', :as => 'research_news', :via => [:get]

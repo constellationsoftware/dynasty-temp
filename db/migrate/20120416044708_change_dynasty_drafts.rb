@@ -9,3 +9,5 @@ class ChangeDynastyDrafts < ActiveRecord::Migration
         rename_column :dynasty_drafts, :start_datetime, :started_at
     end
 end
+
+
