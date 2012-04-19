@@ -41,6 +41,13 @@ GIT
       sass (>= 3.1.0)
 
 GIT
+  remote: git://github.com/josevalim/active_model_serializers.git
+  revision: d1758ac619738aac58e5e8ee717d6b074b03d422
+  specs:
+    active_model_serializers (0.1.0)
+      activemodel (~> 3.0)
+
+GIT
   remote: git://github.com/logankoester/pusher-client.git
   revision: 3d38c8bc6d85602f51a148c003eafb0dbdbeae3b
   specs:
@@ -316,6 +323,9 @@ GEM
       net-ssh (>= 1.99.1)
     nokogiri (1.5.2)
     orm_adapter (0.0.7)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -454,6 +464,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   activeadmin!
   activemerchant
   activesupport (~> 3.2.2)
@@ -509,6 +520,7 @@ DEPENDENCIES
   meta_search (>= 1.1.0.pre)
   money!
   mysql2
+  paper_trail
   pusher (= 0.8.5)
   pusher-client!
   rabl

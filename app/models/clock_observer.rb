@@ -83,7 +83,7 @@ class ClockObserver < ActiveRecord::Observer
                 team.save!
             end
             League.all.each do |league|
-                league.balance = (Settings.league.new_team_contribution * league.size)
+                league.balance = (Settings.league.new_team_contribution * Settings.league.capacity)
                 league.save!
             end
             Trade.all.each { |trade| trade.destroy }

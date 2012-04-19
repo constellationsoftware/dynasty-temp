@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418032056) do
+ActiveRecord::Schema.define(:version => 20120419030344) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -906,6 +906,7 @@ ActiveRecord::Schema.define(:version => 20120418032056) do
     t.integer  "amount_cents",    :limit => 8, :null => false
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
+    t.datetime "transaction_datetime",         :null => false
   end
 
   create_table "dynasty_clock", :force => true do |t|

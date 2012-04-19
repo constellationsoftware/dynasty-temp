@@ -33,9 +33,13 @@ gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'select_with_include'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 
+# Data Tools
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-
-
+gem 'paper_trail'
+gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
+gem 'jbuilder'
+gem 'rabl'
+gem 'gon'
 
 # Templating & View Helpers
 gem 'haml'
@@ -45,9 +49,7 @@ gem 'kendoui-rails'
 gem 'formtastic' # '~> 1.2.4'
 gem 'simple_form'
 
-gem 'jbuilder'
-gem 'rabl'
-gem 'gon'
+
 
 gem 'gravtastic' # gravatar support
 gem 'country_select'
