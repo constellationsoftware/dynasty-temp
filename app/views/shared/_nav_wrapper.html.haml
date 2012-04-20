@@ -29,24 +29,10 @@
                 %li
                   %a= t 'nav.video4' |
 
-            %li.dropdown
-              %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                Player Research
-                %b.caret
-              %ul.dropdown-menu
 
-                %li
-                  %a{:href => '/research'} Player Research
-                %li
-                  %a{:href => '/mockups/player_news'} Player News
-                %li
-                  %a{:href => '/mockups/headlines'} Headlines
-                %li
-                  %a{:href => '/mockups/transactions_contracts'} Transactions & Contracts
-                %li
-                  %a{:href => '/mockups/depth_charts'} Depth Charts
-                %li
-                  %a{:href => 'http://blog.dynastyowner.com', :target => '_blank'} Blog
+            %li
+              %a{:href => '/research'} Player Research
+
             %li.divider-vertical
             %li
               .btn-group
@@ -83,14 +69,17 @@
               %li
                 %a
                   .span.badge.badge-inverse
-                    = Clock.first.time.strftime(Settings.datetime_format.date_full)
-                    \:
-                    = current_user.team.name
+                    - if current_user.team
+                      = current_user.team.name
+              %li
+                %a{:href => '/mockups/league_review'} League Review
               %li
                 %a{:href => '/coaches_corner_home'} Coaches Corner
               %li
                 %a{:href => '/front_office_home'} Front Office
               %li
                 %a{:href => '/mockups/team_marketplace'} Team Marketplace
+              %li
+                %a{:href => '/front_office/financials'} Team Financials
               %li
                 %a{:href => '/payments/purchase_dynasty_dollars'} Purchase Dynasty Dollars

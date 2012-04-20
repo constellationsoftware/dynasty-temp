@@ -1,6 +1,7 @@
 
 
 jQuery ->
+
   $("a[rel='tooltip']").tooltip()
   $("a[rel='popover']").popover()
   $('.logo').popover()
