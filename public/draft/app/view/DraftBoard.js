@@ -16,58 +16,60 @@ Ext.define('DynastyDraft.view.DraftBoard', {
             xtype: 'gridcolumn',
             hideable: false,
             groupable: false,
-            flex: 0.15,
+            flex: 0.15
         },
+/*
         {
             text: 'Depth',
             dataIndex: 'depth',
             xtype: 'gridcolumn',
             hideable: false,
             groupable: false,
-            flex: 0.15,
+            flex: 0.15
         },
+*/
         {
             text: 'DB Player Name',
             dataIndex: 'full_name',
             xtype: 'gridcolumn',
             hideable: false,
             groupable: false,
-            flex: 1,
+            flex: 1
         },
 
         {
             text: 'Team',
-            dataIndex: 'drafted_team',
+            dataIndex: 'team',
             xtype: 'gridcolumn',
-            align: 'right',
+            align: 'right'
         },
         {
             text: 'Bye Week',
             dataIndex: 'bye_week',
             xtype: 'numbercolumn',
             align: 'right',
-            format: '0',
+            format: '0'
         },
         {
             text: 'Points Last Season',
-            dataIndex: 'points_last_season',
+            dataIndex: 'points',
             xtype: 'numbercolumn',
             align: 'right',
-            format: '0',
+            format: '0'
         },
         {
             text: 'Salary',
-            dataIndex: 'contract_amount',
+            dataIndex: 'contract',
             xtype: 'numbercolumn',
             align: 'right',
-            format: '$0,000',
+            format: '$0,000'
         },
         {
             text: 'Points Per $1MM ',
             dataIndex: 'points_per_dollar',
             xtype: 'numbercolumn',
             align: 'right',
-            format: '0',
+            format: '0'
         }
     ],
 

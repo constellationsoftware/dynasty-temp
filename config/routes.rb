@@ -61,10 +61,22 @@ Dynasty::Application.routes.draw do
     match '/manage' => 'users/team#show', :as => 'manage_team'
     match '/front_office/:action', :controller => :front_office, :as => :front_office
     match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-
+    match '/roster' => 'front_office#roster'
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do
         resources :games
+    end
+    resource :draft do
+        post :auth
+        post :start
+        post :finish
+        post :reset
+        get :postpone
+        post :postpone
+        get :autopick
+    end
+    resources :lineups do
+        get :roster, :on => :collection
     end
 
     scope :module => :league, :constraints => SubdomainConstraint do
@@ -135,9 +147,8 @@ Dynasty::Application.routes.draw do
     end
 
     resources :player_teams do
-        member do
-            get :drop
-        end
+        get :league_roster, :on => :collection
+        get :drop, :on => :member
     end
 
     # The priority is based upon order of creation:

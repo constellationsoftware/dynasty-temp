@@ -11,7 +11,7 @@ class League < ActiveRecord::Base
     has_many :teams, :class_name => '::Team'
     has_many :users, :through => :teams
     has_one :draft
-    #has_many :drafts
+    has_many :drafts
     has_many :players, :through => :teams
     has_many :player_teams, :through => :teams
     has_many :games

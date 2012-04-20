@@ -1,8 +1,6 @@
 window.Ext.define 'Ext.override.data.Store',
     override: 'Ext.data.Store'
 
-    constructor: -> @callOverridden arguments
-
     ###
     # @cfg {Boolean/String} remoteSortUseMapping
     # If set to "true", uses the field mapping property (if set) for the sorter, rather than the field name.

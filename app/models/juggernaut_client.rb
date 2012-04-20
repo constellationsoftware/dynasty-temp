@@ -22,7 +22,8 @@ class JuggernautClient < SuperModel::Base
     def self.subscribe
         Juggernaut.subscribe do |event, data|
             puts "Subscription request params: #{data.inspect}"
-            uuid = data['meta'] && data['meta']['id']
+            data.default = {}
+            uuid = data['meta']['id']
             next unless uuid
 
             case event

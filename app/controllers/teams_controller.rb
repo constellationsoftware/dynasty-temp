@@ -1,6 +1,5 @@
-class TeamsController < InheritedResources::Base
+class TeamsController < ApplicationController
     before_filter :authenticate_user!
-    custom_actions :resource => [ :manage, :account ]
 
     has_scope :with_player_contracts, :type => :boolean, :default => false, :only => :manage do |controller, scope|
         scope.joins{ players.contract }.includes{ players.contract }
@@ -8,6 +7,12 @@ class TeamsController < InheritedResources::Base
     has_scope :manager_scopes, :type => :boolean, :default => true, :only => :manage do |controller, scope|
         scope.with_games
             .where{ (home_games.home_team_id == controller.request.params[:id]) | (away_games.away_team_id == controller.request.params[:id]) }
+    end
+    has_scope :with_picks, :type => :boolean
+
+    def index
+        @team = current_user.team
+        @teams = apply_scopes(resource_class).where{ league_id == my{ @team.league_id } }
     end
 
     def manage

@@ -14,6 +14,12 @@ class Lineup < ActiveRecord::Base
         subquery = PlayerTeam.select{ lineup_id }.where{ (team_id == (my_team_id)) & (lineup_id != nil) }
         where{ id << subquery }
     }
+    # if you don't need flex positions included, use the 'lineup' scope on Position
+    scope :by_position, lambda{ |pid|
+        joins{[ position, flex_positions.outer ]}
+            .where{ (position.id == my{ pid }) | (flex_positions.id == my{ pid }) }
+            .order{ id }
+    }
 
     def positions
         self.flex ? self.flex_positions : [ self.position ]

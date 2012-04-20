@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120418144619) do
+ActiveRecord::Schema.define(:version => 20120418203617) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -895,13 +895,13 @@ ActiveRecord::Schema.define(:version => 20120418144619) do
   create_table "dynasty_drafts", :force => true do |t|
     t.datetime "start_datetime"
     t.datetime "finished_at"
-    t.integer  "league_id",                    :null => false
-    t.integer  "current_pick_id", :limit => 2
-    t.string   "status"
+    t.integer  "league_id"
+    t.integer  "pick_id",        :limit => 2
+    t.string   "state"
   end
 
   add_index "dynasty_drafts", ["league_id"], :name => "index_drafts_league"
-  add_index "dynasty_drafts", ["status"], :name => "index_drafts_on_status"
+  add_index "dynasty_drafts", ["state"], :name => "index_dynasty_drafts_on_state"
 
   create_table "dynasty_event_subscriptions", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -949,8 +949,10 @@ ActiveRecord::Schema.define(:version => 20120418144619) do
     t.string   "password",      :limit => 32
     t.integer  "teams_count"
     t.integer  "balance_cents", :limit => 8,  :default => 0
+    t.integer  "draft_id"
   end
 
+  add_index "dynasty_leagues", ["draft_id"], :name => "index_dynasty_leagues_on_draft_id"
   add_index "dynasty_leagues", ["id", "name", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
   add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"

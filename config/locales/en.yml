@@ -75,6 +75,10 @@ en:
                         password:
                             too_short: 'Passphrase must be longer than %{count} characters'
                             too_long: 'Passphrase must be shorter than %{count} characters'
+                pick:
+                    exclusion:          'This player was already picked for this league'
+                    not_next_pick:      'This was not the next pick in line for the draft'
+                    draft_not_ready:    'The draft was not ready accept draft picks'
 
     flash:
         league:

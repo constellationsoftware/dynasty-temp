@@ -1,12 +1,16 @@
 class PickObserver < ActiveRecord::Observer
     def before_save(pick)
         # if a player was picked, update the timestamp
-        if !!pick.player
-            pick.picked_at = Time.now
-        end
+        pick.picked_at = Time.now unless pick.player.nil?
     end
 
     def after_update(pick)
+        # TODO: assign lineup ID more intelligently i.e. don't stick a player in a flex just because it's available. They might have wanted them on the bench
+        # create PlayerTeam (lineup will be assigned procedurally for the moment)
+        PlayerTeam.create! :team_id => pick.team_id, :player_id => pick.player_id
+
+        pick.draft.picked!
+=begin
         record = PlayerTeam.create do |ptr|
             ptr.current = TRUE
             ptr.player_id = pick.player_id
@@ -34,5 +38,6 @@ class PickObserver < ActiveRecord::Observer
                 team.save
             }
         end
+=end
     end
 end

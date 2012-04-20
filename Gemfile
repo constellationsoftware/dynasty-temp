@@ -31,6 +31,7 @@ gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'select_with_include'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
+gem 'transitions', :require => [ 'transitions', 'active_model/transitions' ]
 
 # Templating & View Helpers
 gem 'haml'
@@ -70,7 +71,6 @@ gem 'ruby_parser'
 gem 'timecop'
 gem 'traceroute'
 gem 'rest-client'
-gem 'trollop'
 
 group :development do
     # Debugging & Development

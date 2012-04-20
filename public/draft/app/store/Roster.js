@@ -2,7 +2,7 @@ Ext.define('DynastyDraft.store.Roster', {
     extend: 'Ext.data.Store',
 
     model: 'DynastyDraft.model.Roster',
-    groupField: 'position',
+    //groupField: 'position',
     autoLoad: true,
 
     proxy: {
@@ -11,15 +11,14 @@ Ext.define('DynastyDraft.store.Roster', {
         pageParam: undefined,
         startParam: undefined,
         limitParam: undefined,
-        url: '/team/roster',
-        reader: {
-            type: 'json'
-        },
+        groupParam: undefined,
+        url: '/lineups/roster',
+        reader: 'json',
         extraParams: {
-            with_player_points: true,
-            with_player_contract: true,
-            with_player_name: true,
-            with_position: true
+            with_points: true,
+            with_contract: true,
+            with_name: true,
+            with_positions: true
         }
     }
 });

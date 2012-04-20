@@ -11,7 +11,7 @@ Ext.define('DynastyDraft.view.Picks', {
             '<div class="pick">',
                 '<div class="team_image"></div>',
                 '<div class="info">',
-                    '<p style="overflow: hidden">{team_name}</p>',
+                    '<p title="{team_name}" style="overflow: hidden; white-space: nowrap;">{team_name}</p>',
                     '<p class="round">Round: {round} Pick: {pick}</p>',
                 '</div>',
             '</div>',

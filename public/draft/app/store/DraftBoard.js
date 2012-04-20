@@ -2,18 +2,20 @@ Ext.define('DynastyDraft.store.DraftBoard', {
     extend: 'Ext.data.Store',
 
     model: 'DynastyDraft.model.DraftedPlayers',
-    groupField: 'drafted_team',
+    groupField: 'team_id',
+    remoteSort: false,
 
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/draft/players',
+        url: '/player_teams/league_roster',
         pageParam: undefined,
         startParam: undefined,
         limitParam: undefined,
+        groupParam: undefined,
         reader: {
             type: 'json',
-            root: 'players'
+            useSimpleAccessors: true
         },
         extraParams: {
             drafted: true,

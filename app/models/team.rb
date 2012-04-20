@@ -17,6 +17,7 @@ class Team < ActiveRecord::Base
     scope :offline, where(:is_online => false)
     scope :with_players, joins{ players }.includes{ players }
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
+    scope :with_picks, joins{ picks }.includes{ picks }
 
     #attr_accessor :player_teams
 
@@ -57,4 +58,7 @@ class Team < ActiveRecord::Base
     def self.find_by_uuid(uuid_s)
         super UUIDTools::UUID.parse(uuid_s).raw
     end
+
+    def online?; self.is_online end
+    def autopicking?; self.autopick end
 end

@@ -111,9 +111,11 @@ Ext.define('DynastyDraft.view.Viewport', {
                         disabled: true
                     }, {
                         xtype: 'button',
-                        text: 'Set Autopick',
+                        text: (AUTOPICK ? 'Disable Autopick' : 'Enable Autopick'),
                         itemId: 'autopick',
                         scale: 'large',
+                        enableToggle: true,
+                        pressed: AUTOPICK,
                         width: 100
                     }]
                 }, {
