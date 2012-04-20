@@ -32,8 +32,6 @@ class Team < ActiveRecord::Base
     has_many :accounts, :as => :receivable
     has_many :accounts, :as => :payable
 
-
-
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
     scope :with_players, joins{ players }.includes{ players }
@@ -54,6 +52,7 @@ class Team < ActiveRecord::Base
     def all_accounts
       accounts = self.payments + self.receipts
       accounts.sort! { |a, b|  a.transaction_datetime <=> b.transaction_datetime }
+
     end
 
     # home and away games ordered by week by default
