@@ -13,6 +13,9 @@ class GameReview extends Spine.Controller
         current_week = if current_game? then current_game.week else 1
         @html @view('review')(games: games, week: current_week)
 
+
+
+
     onWeekChange: (week, hash) =>
         console.log 'find by week' + week, Game.records
         game = Game.findByAttribute('week', parseInt(week))

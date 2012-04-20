@@ -28,15 +28,17 @@
                   %a= t 'nav.video3' |
                 %li
                   %a= t 'nav.video4' |
+
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                Player News
+                Player Research
                 %b.caret
               %ul.dropdown-menu
+
+                %li
+                  %a{:href => '/research'} Player Research
                 %li
                   %a{:href => '/mockups/player_news'} Player News
-                %li
-                  %a{:href => '/mockups/player_research'} Player Research
                 %li
                   %a{:href => '/mockups/headlines'} Headlines
                 %li
@@ -51,6 +53,8 @@
                 - unless user_signed_in?
                   %a.btn.btn-inverse{:href => "/payments/payment"}
                     Create an Account.
+                  %a.btn.btn-inverse{:href => "/login"}
+                    Sign In
 
                 - if user_signed_in?
                   // Secondary Nav
@@ -75,9 +79,13 @@
       .subnav.subnav-fixed
         .container
           .navbar-inner
-            %ul.nav.nav-pills.pull-left
-              %li= Clock.first.time.strftime(Settings.datetime_format.date_full)
             %ul.nav.nav-pills.pull-right
+              %li
+                %a
+                  .span.badge.badge-inverse
+                    = Clock.first.time.strftime(Settings.datetime_format.date_full)
+                    \:
+                    = current_user.team.name
               %li
                 %a{:href => '/coaches_corner_home'} Coaches Corner
               %li

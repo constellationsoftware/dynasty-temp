@@ -6,11 +6,11 @@
 
     %h5
       Initial Team Balance:
-      = number_to_currency(@starting_balance, :unit => "DD$")
+      = @starting_balance.format
     %h5
       Package Purchased:
       = number_to_currency(params[:x_amount], :unit => "DD$")
     %h5
       Current Team Balance:
-      = number_to_currency(@team.balance, :unit => "DD$")
+      = @team.balance.format
 

@@ -76,7 +76,7 @@ class PaymentsController < ApplicationController
   end
 
   def dynasty_dollars_receipt
-    @team = current_user.teams.first
+    @team = current_user.team
     @dollars_added = (params[:x_amount]).to_money
     @starting_balance = @team.balance
     @new_balance = @starting_balance + @dollars_added

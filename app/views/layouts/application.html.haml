@@ -38,22 +38,22 @@
   = render :partial => "shared/nav_wrapper"
 
   /* Main Page Content
-  .container
-    .main_yield
-      .row
-        .span12
+  .container.main_yield
 
-          -# Show error messages
-          #global-errors
-            - flash.each do |type, msg|
-              %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
-      #content
-        -if @sub_pages
-          = render 'shared/sub_nav'
-        %h2
-          = yield :title
+    .row
+      .span12
 
-        = yield
+        -# Show error messages
+        #global-errors
+          - flash.each do |type, msg|
+            %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+    #content
+      -if @sub_pages
+        = render 'shared/sub_nav'
+      %h2
+        = yield :title
+
+      = yield
 
     -# Page Footer
     = render :partial => "shared/dynasty_footer"

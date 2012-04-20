@@ -67,6 +67,8 @@ class Team < ActiveRecord::Base
             .where{ id == my { self.id } }.first.total.to_f
     end
 
+    def
+
     def is_offline
         self.offline
     end

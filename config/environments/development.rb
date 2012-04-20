@@ -14,7 +14,7 @@ Dynasty::Application.configure do
 
     # Show full error reports and disable caching
     config.consider_all_requests_local = true
-    config.action_controller.perform_caching = true
+    config.action_controller.perform_caching = false
 
     # Don't care if the mailer can't send
     config.action_mailer.raise_delivery_errors = false
@@ -28,7 +28,7 @@ Dynasty::Application.configure do
     # Enable the asset pipeline
     config.assets.enabled = true
     config.serve_static_assets = true
-    config.assets.compile = true
+    config.assets.compile = false
 
     # Set to true for individual stylesheets
     config.assets.debug = true
