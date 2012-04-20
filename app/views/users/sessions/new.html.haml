@@ -1,6 +1,6 @@
 = stylesheet_link_tag 'forms'
-.row.twelve.columns.centered
-  .six.columns.centered
+.row.span12.centered
+  .span6.centered
     .panel
       %h3 Log in
       = semantic_form_for :user, :url => new_user_session_path, :html => { :class => 'nice login' } do |f|

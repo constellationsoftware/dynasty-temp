@@ -36,7 +36,7 @@
   .row
     .container.main_yield
       .row
-        .twelve.columns
+        .span12
           #global-errors
             - flash.each do |type, msg|
               %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
@@ -45,12 +45,12 @@
           %h4.white= @title
       = yield
       .row
-        .six.columns
+        .span6
           %h5
           %h5 Lorem ipsum dolor sit ame
           %p
             Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-        .six.columns
+        .span6
           %h5
           %h5 At vero eos et accusamus
 

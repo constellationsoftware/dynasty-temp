@@ -1,6 +1,6 @@
 %li.active#startersTab
   .row
-    .six.columns
+    .span6
       Your Current Starters
       %p
         %strong
@@ -30,7 +30,7 @@
         %strong
           Starting K:
           = @my_lineup.k.andand.name || "Not Set!"
-    .six.columns
+    .span6
       %h5
         Choose Your Starters!
       = semantic_form_for @my_lineup do |f|

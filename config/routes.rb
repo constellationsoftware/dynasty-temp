@@ -84,12 +84,10 @@ Dynasty::Application.routes.draw do
     match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
     match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
     match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-<<<<<<< HEAD
-    #match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
+    match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
 
-=======
     match '/roster' => 'front_office#roster'
->>>>>>> d9c6ed8dcd0583c60183861168d2d685bfd0801a
+
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do
         resources :games

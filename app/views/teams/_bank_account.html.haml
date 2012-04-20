@@ -32,11 +32,11 @@
 
     .row
       - if payroll_total > cap
-        .twelve.columns.failure
+        .span12.failure
           %strong
             #{(payroll_total - cap).to_money.format} over cap!
       - if payroll_total <= cap
-        .twelve.columns.success
+        .span12.success
           %strong
             #{(cap - payroll_total).to_money.format} under cap!
     %br

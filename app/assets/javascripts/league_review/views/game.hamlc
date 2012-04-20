@@ -1,6 +1,6 @@
 - if @game.scored()
   .row
-    %h5.twelve.columns
+    %h5.span12
       = I18n.t("coaches_corner.game_review.#{if @game.won? then 'victory' else 'defeat'}", { opponent: @game.opponent().name })
 .row
   %h6.span5

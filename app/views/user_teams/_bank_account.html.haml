@@ -31,11 +31,11 @@
 
     .row
       - if @my_season_payroll > @cap
-        .twelve.columns.failure
+        .span12.failure
           %strong
             #{number_to_currency(@my_season_payroll - @cap)} over cap!
       - if @my_season_payroll <= @cap
-        .twelve.columns.success
+        .span12.success
           %strong
             #{number_to_currency(@cap - @my_season_payroll)} under cap!
     %br

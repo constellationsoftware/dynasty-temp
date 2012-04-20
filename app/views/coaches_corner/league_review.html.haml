@@ -17,29 +17,16 @@
       .tab-pane{ :id => "week_#{week}Tab" }
         - games.each do |game|
           .row
-<<<<<<< HEAD
+
             .span5
-              %h6
+              %h3
                 %strong
                   = game.away_team.name
                   = "(#{game.away_team_score})" if game.scored?
             .span2
-              %h6 @
-            .span5
-              %h6
+              %h3 @
+            .span3
+              %h3
                 %strong
                   = game.home_team.name
                   = "(#{game.home_team_score})" if game.scored?
-=======
-            %h6.five.columns
-              %strong
-                = game.away_team.name
-                = "(#{game.away_team_score})" if game.scored?
-            %h6.two.columns vs.
-            %h6.five.columns
-              %strong
-                = game.home_team.name
-                = "(#{game.home_team_score})" if game.scored?
->>>>>>> d9c6ed8dcd0583c60183861168d2d685bfd0801a
-            %br
-            %br

@@ -22,7 +22,8 @@
       %tbody
         - @lineups.each do |lineup|
           = render :partial => 'player_row', :locals => { :lineup => lineup, :string => 1 }
-
+.row
+  .span12
     %h5 Bench
     %table#bench.roster
       %thead

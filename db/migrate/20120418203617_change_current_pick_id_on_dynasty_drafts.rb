@@ -1,6 +1,5 @@
 class ChangeCurrentPickIdOnDynastyDrafts < ActiveRecord::Migration
     def up
-        remove_index :dynasty_drafts, :status
         rename_column :dynasty_drafts, :current_pick_id, :pick_id
         rename_column :dynasty_drafts, :status, :state
         add_index :dynasty_drafts, :state

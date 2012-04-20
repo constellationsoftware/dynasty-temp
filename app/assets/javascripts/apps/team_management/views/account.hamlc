@@ -13,6 +13,6 @@
   .span3{ class: if @payroll_total < @cap then 'success' else 'failure' }= @payroll_total
 
 .row
-  .twelve.columns{ class: if @deficit then 'failure' else 'success' }
+  .span12{ class: if @deficit then 'failure' else 'success' }
     %strong= "#{@cap_difference} #{if @deficit then "over" else "under"} cap!"
 %br

@@ -5,7 +5,7 @@
     %h3
       Starters
     .row
-      .six.columns
+      .span6
         %table
           %thead
             %tr
@@ -33,7 +33,7 @@
                 %td
                   = player.points_for_week(week).andand.fumbles_points
                   = player.points_for_week(week).andand.sacks_against_points
-      .six.columns
+      .span6
         %table
           %thead
             %tr
@@ -64,7 +64,7 @@
     %h3
       Bench
     .row
-      .six.columns
+      .span6
         %table
           %thead
             %tr
@@ -92,7 +92,7 @@
                 %td
                   = player.points_for_week(week).andand.fumbles_points.to_i / 3
                   = player.points_for_week(week).andand.sacks_against_points.to_i / 3
-      .six.columns
+      .span6
         %table
           %thead
             %tr

@@ -43,7 +43,7 @@
             %h5
               Game Scoring Breakdown
           .row
-            .your_score_breakdown.six.columns
+            .your_score_breakdown.span6
               %p
                 QB: #{@game_lineup.andand.qb.name}:     #{@game_lineup.andand.qb.andand.player.event_points.current.last.andand.points}
               %p
@@ -58,7 +58,7 @@
                 TE: #{@game_lineup.andand.te.name}:     #{@game_lineup.andand.te.andand.player.event_points.current.last.andand.points}
               %p
                 K: #{@game_lineup.andand.k.name}:       #{@game_lineup.andand.k.andand.player.event_points.current.last.andand.points}
-            .opponent_score_breakdown.six.columns
+            .opponent_score_breakdown.span6
               %p
                 QB: #{@opponent_lineup.andand.qb.name}:     #{@opponent_lineup.andand.qb.andand.player.event_points.current.last.andand.points}
               %p

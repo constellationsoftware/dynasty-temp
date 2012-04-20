@@ -1,9 +1,9 @@
 / Modal Partial
 - unless user_signed_in?
   #loginModal.reveal-modal
-    .row.twelve.columns.centered
+    .row.span12.centered
       .row
-        .six.columns
+        .span6
           %h5 Sign In
           = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
             = f.label :email
@@ -14,7 +14,7 @@
             %br
             = f.submit "Sign in" , :class => "nice large radius blue button"
 
-        .six.columns
+        .span6
           %h5 New User? Sign up!
           %p Creating an account only takes a few minutes. Get started now!
           %a{:href => "/payments/payment", :class => "nice large radius green button"} Create an Account!

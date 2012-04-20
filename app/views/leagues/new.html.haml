@@ -1,6 +1,6 @@
 = stylesheet_link_tag 'forms'
 = semantic_form_for @league, :url => new_league_path, :html => { :class => 'nice' } do |f|
-  .row.twelve.columns.centered
+  .row.span12.centered
     .panel
       %h3 Create a league
       = render :partial => 'form', :locals => { :form => f }
