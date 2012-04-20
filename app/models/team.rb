@@ -29,8 +29,10 @@ class Team < ActiveRecord::Base
     #has_many :player_team_snapshots
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
-    has_many :payments, :as => :receivable
-    has_many :receipts, :as => :payable
+    has_many :accounts, :as => :receivable
+    has_many :accounts, :as => :payable
+
+
 
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
@@ -38,6 +40,21 @@ class Team < ActiveRecord::Base
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
 
     #attr_accessor :player_teams
+
+
+
+    def payments
+      Account.where(:payable_id => self.id).all
+    end
+
+    def receipts
+      Account.where(:receivable_id => self.id).all
+    end
+
+    def all_accounts
+      accounts = self.payments + self.receipts
+      accounts.sort! { |a, b|  a.transaction_datetime <=> b.transaction_datetime }
+    end
 
     # home and away games ordered by week by default
     def games

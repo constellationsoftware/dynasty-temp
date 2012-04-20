@@ -3,6 +3,8 @@ module ApplicationHelper
         controller.class.name.tableize.gsub '_controllers', ''
     end
 
+
+
     def us_states
         [
             ['Alabama', 'AL'],
@@ -59,5 +61,9 @@ module ApplicationHelper
             ['Wyoming', 'WY']
         ]
     end
+
+
+
+
 
 end

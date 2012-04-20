@@ -1,20 +1,29 @@
 class PlayersController < ApplicationController
 
     def show
-        @team = Team.find(session[:team_id])
-        @my_league = @team.league
-        @player = Player.find(params[:id])
-        @person = Person.find(params[:id])
-        @phase = @person.person_phases.where(:membership_type => 'teams').first
-        @nfl_team = @person.teams.first
-        @hometown = Location.find(@person.hometown_location_id)
-        @league_ptr = @my_league.player_teams.where(:player_id => @player.id).first
-        if @league_ptr && @league_ptr.team
-            @current_team = @league_ptr.team.name
-        else
-            @current_team = "Not signed!"
+        @path = @
+        @player = Player.current.with_contract.with_name.with_all_points.with_points_from_season(2011).includes(:contract, :name, :position, :points, :event_points).find(params[:id])
+        #REFACTOR obviously this is shit, but my brain is fried.
+
+        if user_signed_in?
+          @league = League.find(current_user.team.league_id)
+          @league_players = @league.players.all
+
+          if @league_players.include?(@player)
+            @player_team = @league.player_teams.joins(:player).first
+              if @player_team.team == @current_user.team
+                @message = @current_user
+              else
+                @message = 1
+                @trade_team = @player_team.team
+
+              end
+          end
+          else
+          @message = 0
         end
-        
+
+
         respond_to do |format|
             format.html # show.html.erb
             format.json { render json: @player }

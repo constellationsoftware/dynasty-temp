@@ -1,15 +1,47 @@
-/* @override */
+
 
 //@import 'foundation';
 /*
  *= require bootstrap_and_overrides
  *= require jquery.ui.core
  *= require jquery.ui.theme
- *= require dataTables/src/demo_table_jui
+ *= require dataTables/jquery.dataTables
+ *= require dataTables/jquery.dataTables.bootstrap
  *= require_self
+
  */
 
-// body css
+// datatables bootstrap
+
+div.dataTables_length label {
+  width: 460px;
+  float: left;
+  text-align: left;
+}
+
+div.dataTables_length select {
+  width: 75px;
+}
+
+div.dataTables_filter label {
+  float: right;
+  width: 460px;
+}
+
+div.dataTables_info {
+  padding-top: 8px;
+}
+
+div.dataTables_paginate {
+  float: right;
+  margin: 0;
+}
+
+table {
+  margin: 1em 0;
+  clear: both;
+}
+
 
 //fix button in navbar
 .navbar .btn-group {
@@ -23,7 +55,7 @@
 }
 .dropdown-menu {
   z-index:10000000;
-  box-shadow: 3px 3px 10px 5px #000, 0 0 4px rgba(0, 0, 0, .5) inset;
+
 }
 .pad-right {
   padding-right: 5px;

@@ -15,8 +15,9 @@
 #  death_location_id         :integer(4)
 #
 
-class Player < ActiveRecord::Base
+class Player < Person
     self.table_name = 'persons'
+
 
     POSITION_QUANTITIES = [{
         # BENCH
@@ -72,37 +73,70 @@ class Player < ActiveRecord::Base
     has_many :all_points, :class_name => 'PlayerPoint'
     has_one  :points,
         :class_name => 'PlayerPoint',
-        :conditions => proc{ { :year => Season.current.year } }
+        :conditions => proc{ { :year => Season.current.year } },
+        :order => 'points DESC'
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
-    has_many :events, :through => :event_points
+    has_many :real_events, :through => :event_points, :class_name => 'Event'
     has_one  :contract, :foreign_key => 'person_id'
 
 
+    def all_leagues
+
+    end
+
+
+
+    def in_league
+
+
+    end
+
+    def on_team
+
+    end
+
+
+
+    def self.research
+      current.with_contract.with_name.with_points_from_season(2011).includes(:contract, :name, :position, :points)
+    end
 
     def contract_depth
         self.contract.depth
     end
 
     def real_team
-      SportsDb::Team.find(self.current_position.membership_id)
+      @real_team = SportsDb::Team.find(self.person_phases.current.first.membership_id)
     end
+
+   ## def team_short
+   ##   location = self.real_team{:location-name}
+   ##   @team_short = " #{self.real_team.nickname}"
+   ## end
+
+    def season_points
+      self.all_points.all
+    end
+
+    def phase
+      person_phases.current.first
+    end
+
 
     def amount
         self.contract.amount
     end
 
     def self.current
-      with_points_from_season(2011)
+      with_points_from_season(2011).with_position
     end
 
     def fname
-      self.display_name.last_with_first_initial
+      @fname = self.display_name.last_with_first_initial
     end
 
 
-    def self.research
-      current.with_contract.includes(:contract, :real_team, :fname, :display_name, :position, :real_team)
-    end
+
     #
     # SCOPES
     #
@@ -266,11 +300,17 @@ class Player < ActiveRecord::Base
     def last_name_first; (name.first_name && name.last_name) ? "#{name.last_name}, #{name.first_name}" : full_name end
 
     def points_last_season
-        PlayerPoint.select(:points).where(:year => Season.current).find_by_player_id(self.id).andand.points
+        PlayerPoint.select(:points).where(:year => 2011).find_by_player_id(self.id).andand.points
     end
 
     def points_per_dollar
-        (self.points_last_season.to_f / self.contract.amount.to_f) * 1000000
+
+        if self.points_last_season > 0
+          ( self.contract.amount.to_f / self.points_last_season.to_f  ).to_i
+        else
+          "--"
+        end
+
     end
 
     def flatten

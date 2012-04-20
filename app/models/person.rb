@@ -22,7 +22,7 @@ class Person < ActiveRecord::Base
             :foreign_key => 'entity_id',
             :conditions => ['entity_type = ?', 'persons']
 
-    has_many :teams, :through => :person_phases, :class_name => 'SportsDb::Team'
+    has_many :real_teams, :through => :person_phases, :class_name => 'SportsDb::Team'
 
     has_many :person_phases
     has_many :positions, :through => :person_phases
@@ -96,6 +96,12 @@ class Person < ActiveRecord::Base
         joins { [stats, stats.sub_season.season] }.includes { stats }.where { stats.sub_season.season.season_key == "#{season}" }.where { stats.stat_membership_type == "teams" }
     end
 
+    def hometown
+      Location.find(@person.hometown_location_id)
+    end
+
+
+
     # TODO: remove from here once player model is used exclusively
     def self.with_points_from_season(season = 'last')
         if season.is_a? String
@@ -119,10 +125,15 @@ class Person < ActiveRecord::Base
         self.person_phases.current_phase.first
     end
 
+
+
     def current_team
         SportsDb::Team.find(self.current_position.membership_id)
     end
 
+    def real_team
+      @real_team = SportsDb::Team.find(self.current_position.membership_id)
+    end
 
 
     def current_stats

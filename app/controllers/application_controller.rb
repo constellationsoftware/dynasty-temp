@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
     include UrlHelper
     helper_method :get_alert_style_by_type
 
+    helper  :all
+    before_filter :set_current_clock
+
+
+
     respond_to :html
 
     #
@@ -79,4 +84,14 @@ class ApplicationController < ActionController::Base
             SET_SUB_PAGES
             before_filter :set_sub_pages
         end
+
+    # Instantiates a clock for views
+
+
+    def set_current_clock
+      if session[:clock].nil?
+        @clock = Clock.first
+        session[:clock] = @clock
+      end
+    end
 end

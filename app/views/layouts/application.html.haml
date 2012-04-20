@@ -20,8 +20,10 @@
   - if @team
     :javascript
       window.CLIENT_ID = '#{@team.uuid}';
+
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
+
   = csrf_meta_tag
 
   -# tablesorter not found? Perhaps you mean to include lib/tablesorting
@@ -45,14 +47,6 @@
           #global-errors
             - flash.each do |type, msg|
               %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
-
-      -# Page Header
-
-
-
-
-
-      -# Main Page Content
       #content
         -if @sub_pages
           = render 'shared/sub_nav'

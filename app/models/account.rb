@@ -32,4 +32,6 @@ class Account < ActiveRecord::Base
         season = Season.current
         where{ transaction_datetime >> (season.start_date.to_time..season.end_date.to_time) }
     }
+
+
 end

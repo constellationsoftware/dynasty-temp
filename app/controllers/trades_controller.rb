@@ -60,11 +60,12 @@ class TradesController < ApplicationController
     # POST /trades
     # POST /trades.xml b
     def create
-        @trade = Trade.new(params[:trade])
+        @trade = League::Trade.new(params[:trade])
         @offered_player = PlayerTeam.find(@trade.offered_player_id)
         @requested_player = PlayerTeam.find(@trade.requested_player_id)
         @trade.initial_team_id = @offered_player.team_id
         @trade.second_team_id = @requested_player.team_id
+        @trade.league_id = current_user.team.league_id
         @trade.offered_at = Clock.first.time
         @trade.open = TRUE
         @trade.accepted = FALSE

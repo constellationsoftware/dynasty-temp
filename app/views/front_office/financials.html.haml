@@ -1,0 +1,36 @@
+= javascript_include_tag controller_base_name
+= stylesheet_link_tag controller_base_name
+
+- content_for :sub_nav do
+  = render :partial => 'shared/sub_nav'
+- content_for :title, 'Team Financials'
+
+= @accounts.first.inspect
+.row
+  .twelve.columns
+    %table.team-financials-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %thead
+        %tr
+          %th id
+          %th Payment From
+          %th Type
+          %th Paid To
+          %th Receipt Type
+          %th Event
+          %th Event Type
+          %th Amount
+          %th Date
+
+      %tbody
+        - @accounts.each do |a|
+          %tr
+            %td= a.id
+            %td= a.payable.andand.name ||= "The Fed"
+            %td= a.payable_type ||= "Fee"
+            %td= a.receivable.andand.name ||= "The Fed"
+            %td= a.receivable_type  ||= "Fee"
+            %th= a.event_id
+            %th= a.event_type
+            %th= number_to_currency(0.01 * a.amount_cents)
+            %th
+              = time_tag a.transaction_datetime

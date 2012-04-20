@@ -16,6 +16,7 @@ class League::TradesController < InheritedResources::Base
             requested_player = PlayerTeam.find trade_params[:requested_player_id], :include => :team
             trade_params[:initial_team_id] = @team_id
             trade_params[:second_team_id] = requested_player.team_id
+            trade_params[:league_id] = @team.league.id
         end
 
         def get_team_id!

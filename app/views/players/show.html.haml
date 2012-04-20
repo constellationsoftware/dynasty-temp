@@ -1,29 +1,27 @@
+
+
 .row.person
   .panel
     .row
-      .two.columns
+      .span2
         = image_tag 'headshot.png'
-        B:
-        = @person.birth_date
-        #{@hometown.city}, #{@hometown.area}
-        Height: #{@person.person_phases.first.height}
-        Weight: #{@person.person_phases.first.weight}
-      .ten.columns
+        = "#{@player.birth_date} "
+        Height: #{@player.phase.height}
+        Weight: #{@player.phase.weight}
+      .span5
         %h4
           %strong
             = @player.name.full_name
           \#
-          = @person.person_phases.first.uniform_number
+          = @player.phase.uniform_number
         %h5
-          = @nfl_team.display_name.full_name
+          = @player.real_team.location_name
+          = @player.real_team.nickname
           = @player.position.abbreviation.upcase
-          (#{@phase.regular_position_depth})
+          (#{@player.phase.regular_position_depth})
+
           2011-2012 Bye Week:
           = @player.contract.bye_week
-        .span.button.small.black.radius.nice
-          = @current_team
-        - if @league_ptr.nil?
-          = link_to "Add Player", add_player_path, :class => "nice small blue radius button"
 
         %p
           Contract Summary: $
@@ -38,88 +36,111 @@
         %p
           Free Agent:
           = @player.contract.free_agent_year
+      .span4
+        - if user_signed_in?
+          .well
+            - if @league_players.include?(@player)
+              %h6
+                = @current_user.team.league.name
+              -if @player_team == @current_user.team
+                %h5
+                  On Your Team
+              -else
+                .btn-group
+                  %a.btn.dropdown-toggle{:data => {:toggle => 'dropdown'}}
+                    = @player.position.name
+                    for
+                    = @player_team.team.name
+                    %span.caret
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => "/front_office/trades?"}
+                        Offer A Trade
 
 
+
+  %br
+  %br
   .panel
     %h5
       This Season's Performance
     .row
-      .twelve.columns
-        %table.twelve.columns
+      .span12
+        %table.career-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
           %thead
             %tr
-              %td
+              %th
                 Event Date
-              %td
+              %th
                 PTS
-              %td
+              %th
                 Pass
-              %td
+              %th
                 Rush
-              %td
+              %th
                 Def
-              %td
+              %th
                 Score
-              %td
+              %th
                 ST
-              %td
+              %th
                 Sck
-              %td
+              %th
                 Fmbl
-              %td
+              %th
                 *
           %tbody
           - @player.event_points.current.each do |pep|
             %tr
-              %td
+              %th
                 = pep.event.start_date_time.strftime("%B %e, %Y")
-              %td
+              %th
                 = pep.points
-              %td
+              %th
                 = pep.passing_points
-              %td
+              %th
                 = pep.rushing_points
-              %td
+              %th
                 = pep.defensive_points
-              %td
+              %th
                 = pep.scoring_points
-              %td
+              %th
                 = pep.special_teams_points
-              %td
+              %th
                 = pep.sacks_against_points
-              %td
+              %th
                 = pep.fumbles_points
-              %td
+              %th
   .panel
     %h5
       Career Performance
     .row
-      .twelve.columns
-        %table.twelve.columns
+      .span12
+        %table.career-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
           %thead
             %tr
-              %td
+              %th
                 Season
-              %td
+              %th
                 PTS
-              %td
+              %th
                 Pass
-              %td
+              %th
                 Rush
-              %td
+              %th
                 Def
-              %td
+              %th
                 Score
-              %td
+              %th
                 ST
-              %td
+              %th
                 Sck
-              %td
+              %th
                 Fmbl
-              %td
+              %th
                 Games
           %tbody
-          - @player.points.each do |psp|
+          - @player.season_points.each do |psp|
             %tr
               %td
                 = psp.year
@@ -142,74 +163,3 @@
               %td
                 = psp.games_played
 
-
-  //- if @player.position.position.id = 1
-  = render :partial => "quarterback"
-
-
-
-  //- @player.stat_events.each do |event|
-  //  %li
-  //    .week
-  //      Week
-  //      - if event.event_passing_stats(params[:id])
-  //        .passing_stats
-  //          %h5
-  //            Passing - Fantasy Points Earned:
-  //            = event.event_passing_stats(params[:id]).stat_repository.score_modifier
-  //          %p
-  //            Attempts:
-  //
-  //            Completions:
-  //
-  //            Percentage:
-  //
-  //            \%
-  //            Passing Yards:
-  //
-  //            Receiving Yards:
-  //            = event.event_passing_stats(params[:id]).stat_repository.receptions_yards
-  //            Touchdowns:
-  //
-  //            Interceptions:
-  //            = event.event_passing_stats(params[:id]).stat_repository.passes_interceptions
-  //            Passer Rating:
-  //            = event.event_passing_stats(params[:id]).stat_repository.passer_rating
-  //      - if event.event_rushing_stats(params[:id])
-  //        .rushing_stats
-  //          %h5
-  //            Rushing - Fantasy Points Earned:
-  //            = event.event_rushing_stats(params[:id]).stat_repository.score_modifier
-  //          %p
-  //            Rushing Yards:
-  //
-  //            Rushing TD's:
-  //            = event.event_rushing_stats(params[:id]).stat_repository.rushes_touchdowns
-  //      - if event.event_defensive_stats(params[:id])
-  //        .defensive-stats
-  //          %h5
-  //            Defense - Fantasy Points Earned:
-  //            = event.event_fumbles_stats(params[:id]).stat_repository.score_modifier
-  //          %p
-  //            Tackles (Solo):
-  //            = event.event_defensive_stats(params[:id]).stat_repository.tackles_solo
-  //      - if event.event_fumbles_stats(params[:id])
-  //        .fumbles_stats
-  //          %h5
-  //            Fumbles - Fantasy Points Lost:
-  //            = event.event_fumbles_stats(params[:id]).stat_repository.score_modifier
-  //          %p
-  //            Fumbles Committed:
-  //
-  //      - if event.event_sacks_stats(params[:id])
-  //        .sacks_stats
-  //          %h5
-  //            Sacks Stats
-  //      - if event.event_scoring_stats(params[:id])
-  //        .scoring_stats
-  //          %h5
-  //            Scoring Stats
-  //      - if event.event_special_teams_stats(params[:id])
-  //        .special_teams_stats
-  //          %h5
-  //            Special Teams Stats

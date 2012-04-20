@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419030344) do
+ActiveRecord::Schema.define(:version => 20120419041251) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -901,12 +901,12 @@ ActiveRecord::Schema.define(:version => 20120419030344) do
     t.string   "payable_type"
     t.integer  "receivable_id"
     t.string   "receivable_type"
-    t.integer  "eventable_id",                 :null => false
-    t.string   "eventable_type",               :null => false
-    t.integer  "amount_cents",    :limit => 8, :null => false
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.datetime "transaction_datetime",         :null => false
+    t.integer  "event_id",                          :null => false
+    t.string   "event_type",                        :null => false
+    t.integer  "amount_cents",         :limit => 8, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.datetime "transaction_datetime"
   end
 
   create_table "dynasty_clock", :force => true do |t|

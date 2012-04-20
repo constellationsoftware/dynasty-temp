@@ -55,6 +55,7 @@ class PlayerTeam < ActiveRecord::Base
     scope :bench, where{ lineup_id == nil }
 
 
+
     scope :with_player_name, joins{ player_name }.includes{ player_name }
     scope :with_player_contract, joins{ player_contract }.includes{ player_contract }
     scope :with_position, joins{ position }.includes{ position }

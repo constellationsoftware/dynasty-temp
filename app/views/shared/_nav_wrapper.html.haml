@@ -75,6 +75,8 @@
       .subnav.subnav-fixed
         .container
           .navbar-inner
+            %ul.nav.nav-pills.pull-left
+              %li= Clock.first.time.strftime(Settings.datetime_format.date_full)
             %ul.nav.nav-pills.pull-right
               %li
                 %a{:href => '/coaches_corner_home'} Coaches Corner

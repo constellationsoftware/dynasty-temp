@@ -1,5 +1,5 @@
 class FrontOfficeController < ApplicationController
-    sub_pages :roster, :trades, :waivers
+    sub_pages :roster, :trades, :waivers, :financials
     respond_to :html
     helper_method :get_player
 
@@ -30,6 +30,11 @@ class FrontOfficeController < ApplicationController
 
     def waivers
 
+    end
+
+    def financials
+      @team = current_user.team
+      @accounts = @team.all_accounts
     end
 
     def get_player(player_id)

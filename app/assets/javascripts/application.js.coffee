@@ -12,5 +12,8 @@
 #= require twitter/bootstrap
 #= require bootstrap
 #= require dataTables/jquery.dataTables
+#= require dataTables/jquery.dataTables.bootstrap
 #= require lib/util
 #= require subnav
+
+##json.date clock.time.strftime(Settings.datetime_format.date_full)
