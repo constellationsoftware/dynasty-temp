@@ -27,8 +27,8 @@ class PlayerTeam < ActiveRecord::Base
         :primary_key => :player_id,
         :foreign_key => :player_id
 
-    #attr_accessible :team, :league, :player, :lineup
-    validates_with Validators::PlayerTeam, :on => :update
+    attr_accessible :lineup, :lineup_id
+    #validates_with Validators::PlayerTeam, :on => :update
     validates_presence_of :player_id
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
