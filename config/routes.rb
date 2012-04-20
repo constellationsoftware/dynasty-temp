@@ -1,7 +1,6 @@
 Dynasty::Application.routes.draw do
 
-
-  # Player News Research Pages
+    # Player News Research Pages
     match "research",                 :to => 'research#index', :as => 'research_index', :via => [:get]
     match "research/team",            :to => 'research#team', :as => 'research_team', :via => [:get]
     match "research/player",          :to => 'research#player', :as => 'research_player', :via => [:get]
@@ -84,9 +83,8 @@ Dynasty::Application.routes.draw do
     match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
     match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
     match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-    match '/koaches_korner/:action', :controller => :coaches_corner, :as => :coaches_corner
-
     match '/roster' => 'front_office#roster'
+    
 
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do

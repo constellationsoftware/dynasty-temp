@@ -1,30 +1,12 @@
 - if !(string.nil?) && lineup.string === string
-  - player = get_player(lineup.player_teams.first.player_id)
-  %tr.lineup{ :data => { 'player-id' => lineup.player_teams.first.id, :positions => lineup.positions.collect{ |p| p.id } } }
-    %td
+  - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
+  %tr.lineup{ :data => { :id => lineup.id,
+    :compatible => Lineup.by_position(lineup.position_id).collect{ |l| l.id unless l === lineup }.compact } }
+    %td.position<
       = lineup.position.abbreviation.upcase
-      = "(#{player.position.abbreviation.upcase})" if lineup.flex
-
-    %td.name
-      %a{:href=> "/players/#{player.id}"}
-        = player.name.full_name unless player.nil?
-    %td= player.contract.bye_week unless player.nil?
-    %td= player.points_this_season unless player.nil?
-    %td
-
-      = link_to (image_tag "shared/#{player.nil? ? 'user_add.png' : 'user_go.png'}", :title => 'Swap Player', :class => 'btn'), '#',
-        { :data => { :target => '#swap_player', :toggle => 'modal' } }
-
-      -#  = form_for player.player_teams, :url => bench_player_team_path(player.player_teams.id), :html => { :method => :put, :class => 'inline' } do |f|
-      -#    = f.hidden_field :depth, :value => 0
-      -#    = f.submit 'Bench', :class => "nice small radius white button"
-      -#- elsif depth == :bench
-      -#  = form_for player.player_teams, :url => start_player_team_path(player.player_teams.id), :html => { :method => :put, :class => 'inline' } do |f|
-      -#    = f.hidden_field :depth, :value => 1
-      -#    = f.submit 'Start', :class => "nice small radius white button"
-      -#= link_to 'Drop', drop_player_team_path(player.player_teams.id), :class => "nice small radius red button"
-
-
-
-
-
+      = "(#{player.position.abbreviation.upcase})" if lineup.flex && !(player.nil?)
+    %td.player.name= player.name.full_name unless player.nil?
+    %td.player.bye= player.contract.bye_week unless player.nil?
+    %td.player.points= player.points_this_season unless player.nil?
+    %td= link_to (image_tag "shared/#{player.nil? ? 'user_add.png' : 'user_go.png'}", :title => 'Swap Player'), '#',
+      { :data => { 'reveal-id' => 'swap_player' } }
