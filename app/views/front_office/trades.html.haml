@@ -11,13 +11,13 @@
     = semantic_form_for Trade.new do |f|
       .row
         .six.columns
-          = f.input :offered_player, :collection => @trades[:my_players], :member_label => :name, :prompt => "Choose A Player to Offer"
-          //= f.input :offered_cash, :label => "Offer some cash"
-          //= f.input :offered_picks, :label => "Offer picks"
+          = f.input :offered_player, :as => :select, :collection => options_from_collection_for_select(@trades[:my_players], :id, :name, params[:pid])
+          /= f.input :offered_cash, :label => "Offer some cash"
+          /= f.input :offered_picks, :label => "Offer picks"
         .six.columns
           = f.input :requested_player, :collection => @trades[:their_players], :group_by => :team, :group_association => :player_teams, :member_label => :name, :prompt => 'Choose A Player to Request'
-          //= f.input :requested_cash, :label => "Request some cash"
-          //= f.input :requested_picks, :label => "Request picks"
+          /= f.input :requested_cash, :label => "Request some cash"
+          /= f.input :requested_picks, :label => "Request picks"
       .row
         .twelve.columns
           = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"

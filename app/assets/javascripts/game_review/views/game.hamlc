@@ -50,3 +50,38 @@
                 /%td (4) 27
       - else
         %p Team is empty
+
+
+.row
+  %table{ 'style': 'margin: 0 auto; width: 100%' }
+    %thead
+      %tr
+        %th.header{ 'colspan': 2 }
+          %h5 Home
+        %th.header
+        %th.header{ 'colspan': 2 }
+          %h5 Away
+      %tr
+        %th.header{ 'colspan': 2 }
+          %h6= @game.home_team.name
+        %th.header
+          %h6 vs.
+        %th.header{ 'colspan': 2 }
+          %h6= @game.away_team.name
+      - if @game.home_team.lineup?
+        %tr
+          %th.name{ 'style': 'width: 35%' } Name
+          %th.points{ 'style': 'width: 10%' } Points
+          %th.position{ 'style': 'width: 10%' } Position
+          %th.points{ 'style': 'width: 10%' } Points
+          %th.name{ 'style': 'width: 35%' } Name
+    %tbody
+      - if @game.home_team.lineup?
+        - for player, i in (@game.home_team.lineup)
+          %tr
+            %td= player.name
+            %td= player.points or 0
+            %td= player.position.toUpperCase()
+            %td= @game.away_team.lineup[i].points or 0
+            %td= @game.away_team.lineup[i].name
+

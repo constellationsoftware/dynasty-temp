@@ -441,6 +441,7 @@ GEM
     timecop (0.3.5)
     traceroute (0.2.1)
       rails (>= 3.0.0)
+    transitions (0.0.14)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -546,6 +547,7 @@ DEPENDENCIES
   thin
   timecop
   traceroute
+  transitions
   turn (< 0.8.3)
   twitter-bootstrap-rails!
   uglifier (>= 1.0.3)

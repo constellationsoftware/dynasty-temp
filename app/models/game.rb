@@ -21,6 +21,8 @@ class Game < ActiveRecord::Base
     belongs_to :league
     belongs_to :event, :class_name => 'Events::Base', :polymorphic => true, :conditions => { :type => 'Events::ScoreGames' }
     has_many :transactions, :as => :eventable, :class_name => 'Account'
+    has_many :player_team_points
+    has_many :scores, :through => :player_team_points, :source => :score
 
     scope :by_league, lambda{ |value| where{ league_id == my{ value } } }
     scope :by_team, lambda{ |value| where{ (home_team_id == my{ value }) | (away_team_id == my{ value }) } }
@@ -30,10 +32,8 @@ class Game < ActiveRecord::Base
     scope :with_away_team, joins{ away_team }.includes{ away_team }
     scope :scored, where{ (home_team_score != nil) & (away_team_score != nil) }
     scope :unscored, where{ (home_team_score == nil) | (away_team_score == nil) }
-    scope :with_players, joins{[
-        home_team.player_teams.outer, home_team.player_teams.lineup.outer, home_team.player_teams.player_name.outer,
-        away_team.player_teams.outer, away_team.player_teams.lineup.outer, away_team.player_teams.player_name.outer
-    ]}
+    scope :with_points, joins{ scores }.includes{ scores }
+
 
     def home?(team); home_team === team end
     def away?(team); !home?(team) end
@@ -42,6 +42,13 @@ class Game < ActiveRecord::Base
     def score_for(team)
         if scored?
             home?(team) ? home_team_score : away_team_score
+        end
+    end
+
+    def player_points_for(team)
+        if scored?
+            player_team_points.find_all{ |ptp| ptp.team_id === team.id }
+                .sort{ |a, b| a.lineup_id <=> b.lineup_id }
         end
     end
 

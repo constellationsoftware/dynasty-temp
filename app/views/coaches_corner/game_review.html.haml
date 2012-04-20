@@ -18,6 +18,7 @@
       - week = i + 1
       .tab-pane{ :id => "week_#{week}Tab",
         :class => game_review_tab_class(game.won?(@team), @week === week || (@week.zero? && i.zero?)) }
+<<<<<<< HEAD
         - if game.scored?
           .row
             .span12
@@ -33,3 +34,15 @@
   $(function () {
     $('.tabs a:first').tab('show')
   })
+=======
+        -#- if game.scored?
+        -#  .row
+        -#    %h5.twelve.columns
+        -#      = t ".#{game.won?(@team) ? 'victory' : 'defeat'}", :opponent => game.opponent_for(@team).name
+        -#.row
+        -#  %h6.five.columns
+        -#    %strong= game.away_team.name
+        -#  %h6.two.columns vs.
+        -#  %h6.five.columns
+        -#    %strong= game.home_team.name
+>>>>>>> d9c6ed8dcd0583c60183861168d2d685bfd0801a

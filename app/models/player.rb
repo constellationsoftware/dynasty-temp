@@ -144,8 +144,8 @@ class Player < Person
         joins{ player_teams }.where{ player_teams.team_id == my{ team.id } }
     }
 
-    scope :drafted, lambda { |drafted_league|
-        joins{ player_teams.team }.where { player_teams.team.league_id == my{ drafted_league.id } }
+    scope :drafted, lambda { |lid|
+        joins{ player_teams.team }.where { player_teams.team.league_id == my{ lid } }
     }
     scope :with_contract, joins { contract }.includes { contract }
     scope :with_points, joins{ points }.includes{ points }
@@ -180,10 +180,10 @@ class Player < Person
             name.first_name
         ]}
         query = query.where{ name.full_name.like "%#{sanitize(value)}%" } unless value.nil?
-        return query
+        query
     }
-    scope :with_favorites, lambda{ |team|
-        self.reflect_on_association(:favorites).options[:conditions] = "#{Favorite.table_name}.team_id = #{team.id}"
+    scope :with_favorites, lambda{ |tid|
+        self.reflect_on_association(:favorites).options[:conditions] = "#{Favorite.table_name}.team_id = #{tid}"
         joins{ favorites.outer }.includes{ favorites }
     }
 
@@ -298,6 +298,7 @@ class Player < Person
 
     def full_name; name.full_name end
     def last_name_first; (name.first_name && name.last_name) ? "#{name.last_name}, #{name.first_name}" : full_name end
+    def first_initial_last; name.first_name.nil? ? name.last_name : "#{name.first_name.first}. #{name.last_name}" end
 
     def points_last_season
         PlayerPoint.select(:points).where(:year => 2011).find_by_player_id(self.id).andand.points

@@ -13,7 +13,7 @@ Ext.define('DynastyDraft.store.Players', {
     proxy: {
         type: 'rest',
         format: 'json',
-        url: '/draft/players',
+        url: '/players',
         sortParam: 'sorters',
         filterParam: 'filters',
         reader: {

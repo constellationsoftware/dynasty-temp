@@ -6,17 +6,18 @@ class Fakeout
     # START Customizing
 
     # these are the model names we're going to fake
-    MODELS = %w( Account Clock Pick Draft Events::Base Game League PlayerTeam Favorite Team Trade User UserAddress )
+    MODELS = %w( Account Clock Pick Draft Events::Base Game League PlayerTeamPoint PlayerTeam Favorite Team Trade User UserAddress )
 
     attr_accessor :size, :season
 
-    def initialize(size, prompt = true)
+    def initialize(size, fabricator)
         @size = size
         @season = Season.current
+        @fabricator = ("league_#{fabricator}").to_sym
     end
 
     def fakeout
-        puts "Generating #{@size} #{@size === 1 ? 'league' : 'leagues'}"
+        puts "Generating #{@size} #{@size === 1 ? 'league' : 'leagues'} using fabricator: #{@fabricator.to_s}"
         Fakeout.disable_mailers
 
 =begin
@@ -35,9 +36,8 @@ class Fakeout
 
         # create a single clock
         Clock.create! :time => @season.start_date.at_midnight
-
         # create leagues
-        @size.times { Fabricate :full_league }
+        @size.times { Fabricate @fabricator }
         League.all.each do |league|
             GameScheduler.instance.schedule(league.teams) if league.teams.size === Settings.league.capacity
         end
@@ -56,8 +56,8 @@ class Fakeout
         (STDIN.gets =~ /^y|^Y/) ? true : exit(0)
     end
 
-    def self.clean(prompt = true)
-        self.prompt if prompt
+    def self.clean(no_prompt = false)
+        self.prompt unless no_prompt
         puts 'Cleaning all ...'
         Fakeout.disable_mailers
         MODELS.each do |model|
@@ -81,41 +81,46 @@ end
 # TODO: add an option to clear everything and start from scratch with initial seed data?
 namespace :db do
     desc "clean away all data"
-    task :clean, [:no_prompt] => :environment do |t, args|
-        #Fakeout.clean(args.no_prompt.nil?)
-        Fakeout.clean(false)
+    task :clean, [:fabricator, :no_prompt] => :environment do |t, args|
+        no_prompt = args[:no_prompt] || false
+        Fakeout.clean(no_prompt)
         # Rake::Task['db:seed'].invoke
     end
 
     namespace :populate do
         desc "fake out a tiny dataset"
-        task :tiny, [:no_prompt] => :clean do |t, args|
+        task :tiny, [:fabricator, :no_prompt] => :clean do |t, args|
             size = 1
-            Fakeout.new(size).fakeout
+            fabricator = args[:fabricator] || 'full'
+            Fakeout.new(size, fabricator).fakeout
         end
 
         desc "fake out a small dataset"
-        task :small, [:no_prompt] => :clean do |t, args|
+        task :small, [:fabricator, :no_prompt] => :clean do |t, args|
             size = 20# + rand(50)
-            Fakeout.new(size).fakeout
+            fabricator = args[:fabricator] || 'full'
+            Fakeout.new(size, fabricator).fakeout
         end
 
         desc "fake out a medium dataset"
-        task :medium, [:no_prompt] => :clean do |t, args|
+        task :medium, [:fabricator, :no_prompt] => :clean do |t, args|
             size = 250 + rand(250)
-            Fakeout.new(size).fakeout
+            fabricator = args[:fabricator] || 'full'
+            Fakeout.new(size, fabricator).fakeout
         end
 
         desc "fake out a large dataset"
-        task :large, [:no_prompt] => :clean do |t, args|
+        task :large, [:fabricator, :no_prompt] => :clean do |t, args|
             size = 1000 + rand(500)
-            Fakeout.new(size).fakeout
+            fabricator = args[:fabricator] || 'full'
+            Fakeout.new(size, fabricator).fakeout
         end
 
         desc "fake out a huge dataset"
-        task :large, [:no_prompt] => :clean do |t, args|
+        task :large, [:fabricator, :no_prompt] => :clean do |t, args|
             size = 3000 + rand(1000)
-            Fakeout.new(size).fakeout
+            fabricator = args[:fabricator] || 'full'
+            Fakeout.new(size, fabricator).fakeout
         end
     end
 end

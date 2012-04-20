@@ -5,11 +5,15 @@ Ext.define('DynastyDraft.store.Teams', {
     autoLoad: true,
 
     proxy: {
+        pageParam: undefined,
+        startParam: undefined,
+        limitParam: undefined,
         type: 'rest',
-        url: '/draft/teams',
-        reader: {
-        	type: 'json',
-        	root: 'teams'
+        url: '/teams',
+        reader: 'json',
+
+        extraParams: {
+            with_picks: true
         }
     }
 });

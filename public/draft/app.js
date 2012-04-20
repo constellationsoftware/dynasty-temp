@@ -1,7 +1,7 @@
 Ext.Loader.setConfig({
     enabled: true,
     disableCaching: true,
-    paths: { '<appName>': '.', 'Ext': '/assets/extjs/src', 'Ext.ux': '/assets/lib/extjs/ux', 'Ext.override': '/assets/lib/extjs/overrides' }
+    paths: { '<appName>': '.', 'Ext': '/assets/extjs/src', 'Ext.ux': '/assets/lib/extjs/ux', 'Ext.override': '/assets/lib/extjs' }
 });
 
 var app;
@@ -14,7 +14,9 @@ Ext.application({
         'DynastyDraft.data.Socket',
         'DynastyDraft.window.Notification',
         'Ext.window.MessageBox',
-        'Ext.override.data.Store'
+        'Ext.override.data.Store',
+        'Ext.override.data.proxy.Server',
+        'Ext.override.data.reader.Json'
     ],
 
     models: [
@@ -38,7 +40,7 @@ Ext.application({
         app = this;
 
         Ext.getBody().removeCls('loading');
-        if (DRAFT_STATUS === 'finished') { this.showDraftFinishedDialog(); }
+        if (DRAFT_STATE === 'finished') { this.showDraftFinishedDialog(); }
 
         Ext.tip.QuickTipManager.init();
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
@@ -48,6 +50,7 @@ Ext.application({
         // subscribe to a global "draft events" channel
         var events = {
             'pusher:subscription_succeeded': this.onDraftJoin,
+            'draft:starting': this.onStarting,
             'draft:pick:update': this.onPickUpdate,
             //'draft:pause': this.onDraftPaused,
             //'draft:resume': this.onDraftResumed,
@@ -58,7 +61,7 @@ Ext.application({
         events['draft:pick:start-' + CLIENT_ID] = this.startPicking;
         events['draft:pick:resume-' + CLIENT_ID] = this.resumePicking;
 
-        DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL_PREFIX + this.getSubDomain(), events, this);
+        DynastyDraft.data.Socket.subscribe(this.LEAGUE_CHANNEL_PREFIX + LEAGUE_SLUG, events, this);
 
         // initialize the socket service
         DynastyDraft.data.Socket.init();
@@ -111,6 +114,10 @@ Ext.application({
         this.fireEvent(this.STATUS_RESUMED);
     },
     */
+
+    onStarting: function() {
+        this.fireEvent(this.STATUS_STARTING);
+    },
 
     onDraftReset: function(data) {
         var t = setTimeout('window.location.reload()', 5000);
@@ -205,6 +212,7 @@ Ext.application({
     },
 
     //statics: {
+        STATUS_STARTING:        'starting',
         STATUS_STARTED:         'started',
         STATUS_PICKING:         'picking',
         STATUS_PICKED:          'picked',

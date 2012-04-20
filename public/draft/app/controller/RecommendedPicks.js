@@ -15,8 +15,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         ref: 'filterCtl',
         selector: '#recommendedpickwrap combo#filter'
     }, {
-        ref: 'autopickBox',
-        selector: '#recommendedpickwrap combo#autopick'
+        ref: 'autopickButton',
+        selector: '#recommendedpickwrap button#autopick'
     }, {
         ref: 'submitButton',
         selector: '#recommendedpickwrap button#submit'
@@ -81,11 +81,13 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             if (view.isDisabled()) {
                 view.setDisabled(false);
             }
-        }, this);    
+        }, this);
+        this.application.addListener(this.application.STATUS_STARTING, function() {
+            this.setStatusMessage('The draft will be starting in a few moments...');
+        }, this);
     },
 
     onLaunch: function() {
-        if (DRAFT_STATUS === 'finished') { return; }
         // create the load mask
         this.loadMask = Ext.create('Ext.LoadMask', this.getDataViewContainer(), {
             msg: 'Waiting for draft start...'
@@ -335,16 +337,28 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
             'This cannot be undone! Are you sure you want to auto-pick your remaining players?',
             function() {
                 Ext.Ajax.request({
-                    url: '/draft/team/autopick',
+                    url: '/draft/autopick',
                     method: 'GET',
-                    params: { autopick: true },
-                    success: function() {
+                    success: function(request) {
+                        pressed = Ext.JSON.decode(request.responseText);
+
+                        // set autopick button state to the autopick state of the team
+                        var button = this.getAutopickButton();
+                        button.toggle(pressed, true);
+                        switch (button.getText()) {
+                        case 'Enable Autopick': button.setText('Disable Autopick'); break;
+                        case 'Disable Autopick': button.setText('Enable Autopick'); break;
+                        }
+
                         // update the default "waiting" status message
                         this.waitingStatusMsg = 'Waiting for the draft to finish...';
 
-                        // select the first record and force the pick
-                        this.getDataView().getSelectionModel().select(0);
-                        this.makePick(true);
+                        // select the first record and force the pick if it's our turn
+                        var view = this.getDataView();
+                        if (!view.isDisabled()) {
+                            this.getDataView().getSelectionModel().select(0);
+                            this.makePick(true);
+                        }
                     },
                     failure: function() {
                         Ext.Msg.show({

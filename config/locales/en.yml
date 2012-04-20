@@ -31,9 +31,11 @@ en:
         player_row:
             confirmation: "Are you sure you want to remove %{name} from your roster?"
             depth:
-                default:    'Injured / Reserve'
-                1st_string:    'Starter'
-                2nd_string:    'Bench'
+                default:        'Injured / Reserve'
+                1st_string:     'Starter'
+                2nd_string:     'Bench'
+            add_player_label:   'Add Player'
+            trade_player_label: 'Trade'
 
     user_cp:
         schedule_draft:     'Schedule Draft'
@@ -77,6 +79,10 @@ en:
                         password:
                             too_short: 'Passphrase must be longer than %{count} characters'
                             too_long: 'Passphrase must be shorter than %{count} characters'
+                pick:
+                    exclusion:          'This player was already picked for this league'
+                    not_next_pick:      'This was not the next pick in line for the draft'
+                    draft_not_ready:    'The draft was not ready accept draft picks'
 
     flash:
         league:

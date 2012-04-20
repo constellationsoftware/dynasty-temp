@@ -21,7 +21,7 @@ class LeaguesController < InheritedResources::Base
                 dates.each{ |date|
                     @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
                 }
-                @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
+                draft = @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
             end
         end
     end

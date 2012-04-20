@@ -15,8 +15,6 @@
           %th{ :class => "{sorter: 'text'}" }= t '.columns.full_name'
           %th{ :class => "{sorter: 'integer'}" }= t '.columns.bye'
           %th{ :class => "{sorter: 'currency'}" }= t '.columns.amount'
-          %th{ :class => "{sorter: 'integer'}" }= t '.columns.points'
-          %th{ :class => "{sorter: 'integer'}" }= t '.columns.season_points'
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|

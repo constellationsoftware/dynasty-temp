@@ -1,10 +1,12 @@
 %script{ :src => 'http://js.pusherapp.com/1.10/pusher.min.js', :type => 'text/javascript' }
 :javascript
   var CLIENT_ID = '#{@team.uuid}';
+  var LEAGUE_SLUG = '#{@team.league.slug}';
   var SOCKET_APP_KEY = '#{Pusher.key}';
-  var DRAFT_STATUS = '#{@draft.status}';
+  var DRAFT_STATE = '#{@draft.state}';
   var USER_BALANCE = #{@team.balance};
   var SALARY_TOTAL = #{@team.salary_total};
+  var AUTOPICK = #{!!@team.autopick};
 = stylesheet_link_tag '/draft/resources/css/dynasty_theme'
 = javascript_include_tag 'apps/draft'
 = javascript_include_tag '/draft/app'

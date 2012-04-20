@@ -19,7 +19,7 @@ if current_scopes[:with_position] || current_scopes[:filter_positions]
 end
 if current_scopes[:with_points]
     json.points do |json|
-        json.points         player.points.first.points
+        json.points         player.points.points
     end
 end
 if current_scopes[:with_favorites]

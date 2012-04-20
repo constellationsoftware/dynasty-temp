@@ -1,4 +1,6 @@
 json.players @players do |json, player|
     json.partial! 'player', :player => player
 end
-json.total @total if @total
+if current_scopes[:page]
+    json.total @players.total_count
+end

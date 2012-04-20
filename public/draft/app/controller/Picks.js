@@ -6,7 +6,7 @@ Ext.define('DynastyDraft.controller.Picks', {
 
     refs: [{
         ref: 'picksSlider',
-        selector: 'viewport picks',
+        selector: 'viewport picks'
     }, {
         ref: 'balanceView',
         selector: 'viewport #user-balance'
@@ -36,7 +36,6 @@ Ext.define('DynastyDraft.controller.Picks', {
      * view and initialize it.
      */
     onTeamsLoaded: function(teamStore, records) {
-        if (DRAFT_STATUS === 'finished') { return; }
         var pickOrder = this.getPickOrderStore(),
             picksStore = this.getPicksStore(),
             pickRecordsRaw = [],

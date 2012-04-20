@@ -12,12 +12,17 @@ Ext.define('DynastyDraft.data.RailsCrudWriter', {
      * a record that already has an ID, and we'll get a warning.
      */
     getRecordData: function(record) {
-        var data = this.callParent(arguments),
-        	isPhantom = record.phantom === true;
+        var data = this.callParent(arguments);
 
-        if (!isPhantom && data.hasOwnProperty(record.idProperty)) {
+        // remove id property if present
+        if (data.hasOwnProperty(record.idProperty)) {
             delete data[record.idProperty];
         }
-        return data;
+
+        // reformat data hash so properties are wrapped in model names
+        modelName = record.$className.split('.').pop().underscore();
+        ret = {};
+        ret[modelName] = data;
+        return ret;
     }
 });

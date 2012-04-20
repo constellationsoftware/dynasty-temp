@@ -45,9 +45,13 @@ class PlayerTeam < ActiveRecord::Base
         :class_name => 'PlayerPoint',
         :primary_key => :player_id,
         :foreign_key => :player_id
+    has_many :player_event_points,
+        :primary_key => :player_id,
+        :foreign_key => :player_id
 
     #attr_accessible :team, :league, :player, :lineup
     validates_with Validators::PlayerTeam, :on => :update
+    validates_presence_of :player_id
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
     scope :on_waiver_wire, where{ waiver == 1 }

@@ -22,3 +22,9 @@
       -#    = f.hidden_field :depth, :value => 1
       -#    = f.submit 'Start', :class => "nice small radius white button"
       -#= link_to 'Drop', drop_player_team_path(player.player_teams.id), :class => "nice small radius red button"
+    %td.name= player.name.full_name unless player.nil?
+    %td= player.contract.bye_week unless player.nil?
+    %td= player.points_this_season unless player.nil?
+    %td= link_to (image_tag "shared/#{player.nil? ? 'user_add.png' : 'user_go.png'}", :title => 'Swap Player'), '#',
+      { :data => { 'reveal-id' => 'swap_player' } }
+

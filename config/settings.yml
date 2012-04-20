@@ -7,11 +7,10 @@ league:
     password_min_length:    6
     password_max_length:    32
 
-# WARNING: do NOT change this unless you want to invalidate current schedules,
-# modify the schedule generation task for a new scheduling plan,
-# and generate fresh schedules for all applicable leagues
 season_weeks:               11
 playoff_weeks:              3
+
+bench_score_divisor:        3
 
 # TODO: figure out the best way to pull these out into the localization file where it belongs
 datetime_format:
