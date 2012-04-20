@@ -11,5 +11,5 @@
     - if player.nil?
       = link_to t('.add_player_label'), '#', :class => 'btn btn-primary'
     - else
-      = link_to t('.trade_player_label'), "trades?pid=#{lineup.player_teams.first.id}", :class => 'trade'
+      = link_to t('.trade_player_label'), "/front_office/trades?pid=#{lineup.player_teams.first.id}", :class => 'trade'
       = link_to '×', drop_player_team_path(lineup.player_teams.first.id), :confirm => (t '.confirmation', :name => player.name.full_name), :class => 'delete' unless player.nil?

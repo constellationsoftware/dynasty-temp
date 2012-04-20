@@ -282,6 +282,7 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.6.6)
+    json_pure (1.6.6)
     juggernaut (2.1.1)
       redis
     kaminari (0.13.0)
@@ -412,6 +413,11 @@ GEM
       shoulda-matchers (~> 1.0.0)
     shoulda-context (1.0.0)
     shoulda-matchers (1.0.0)
+    showoff-io (0.3.0)
+      highline (>= 1.6.1)
+      json_pure
+      net-ssh (>= 2.1.0)
+      rest-client
     signature (0.1.2)
       ruby-hmac
     simple_form (2.0.1)
@@ -539,6 +545,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   select_with_include
   shoulda
+  showoff-io
   simple_form
   spork-rails
   squeel

@@ -36,10 +36,12 @@
         %tbody
           - @players.each do |player|
             %tr{:id => dom_id(player)}
-              %td= player.fname
+              %td
+                %a{:href => "/players/#{player.id}"}
+                  = player.fname
               %td= player.position.abbreviation.upcase
               %td= player.position.designation
-              %td= player.real_team.nickname
+              %td= player.real_team.display_name.last_name
               %td= player.contract.bye_week
               %td= player.contract.amount
               %td= player.contract.summary

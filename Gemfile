@@ -109,7 +109,7 @@ group :development, :test do
   gem 'fabrication'
 end
 
-
+gem 'showoff-io'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 

@@ -14,8 +14,8 @@
           \#
           = @player.phase.uniform_number
         %h5
-          = @player.real_team.location_name
-          = @player.real_team.nickname
+          = @player.real_team.display_name.first_name
+          = @player.real_team.display_name.last_name
           = @player.position.abbreviation.upcase
           (#{@player.phase.regular_position_depth})
 

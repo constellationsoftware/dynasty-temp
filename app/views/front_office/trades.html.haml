@@ -5,12 +5,12 @@
 - content_for :title, 'Manage Trades'
 
 .row
-  %h5
-  .panel
+  .container
     %h3 Offer A Trade
     = semantic_form_for Trade.new do |f|
       .row
-        .span6
+        .span1
+        .span5
           = f.input :offered_player, :as => :select, :collection => options_from_collection_for_select(@trades[:my_players], :id, :name, params[:pid])
           /= f.input :offered_cash, :label => "Offer some cash"
           /= f.input :offered_picks, :label => "Offer picks"

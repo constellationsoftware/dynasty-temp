@@ -10,7 +10,7 @@
         %strong= @team.name
       %p
         Team Balance:
-        %strong= "$D #{@team.balance}"
+        %strong= @team.balance.format
 
 
       - if @team.players.count > 0
