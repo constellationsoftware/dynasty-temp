@@ -1,16 +1,16 @@
 class UsersController < InheritedResources::Base
-    before_filter :authenticate_user!, :except => :signup
+    before_filter :authenticate_user!
 
-    def home
-        @team = current_user.team
+    def test_mail
+        @user = current_user
 
-        respond_to do |format|
-          format.html # index.html.erb
-          format.json { render :json => @team }
-        end
-    end
-
-    def signup
-
+        Users::Mailer.welcome(@user).deliver
+=begin
+        puts "https://api:#{$MAILGUN_API_KEY}@api.mailgun.net/v2/samples.mailgun.org/messages"
+        RestClient.post("https://api:#{$MAILGUN_API_KEY}" \
+            "@dynastyowner.mailgun.org/v2/samples.mailgun.org/messages",
+            :address => @user.email,
+            :description => "Mailgun developers list")
+=end
     end
 end

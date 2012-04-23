@@ -17,9 +17,8 @@ Dynasty::Application.routes.draw do
     match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
-
     if Rails.env.development?
-      mount UserMailer::Preview => 'mail_view'
+        mount Users::Mailer::Preview => 'mail_view'
     end
 
     resources :messages, :schedules, :photos, :dynasty_player_contracts
@@ -83,9 +82,9 @@ Dynasty::Application.routes.draw do
     match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
     match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
     match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
+    match '/coaches_corner/swap/:from_id/with/:to_id', :controller => :coaches_corner, :action => :swap
     match '/roster' => 'front_office#roster'
     
-
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do
         resources :games

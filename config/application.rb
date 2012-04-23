@@ -94,6 +94,7 @@ module Dynasty
         # Actionmailer config including Mailgun settings
         #
         $MAILGUN_API_KEY = 'key-8po38nxi-4-g6p8tx1zem4lnxzwlgh61'
+=begin
         config.action_mailer.delivery_method = :smtp
         config.action_mailer.perform_deliveries = true
         config.action_mailer.raise_delivery_errors = true
@@ -106,6 +107,19 @@ module Dynasty
              :password => '86kuzjspp1u4',
              :enable_starttls_auto => true
         }
+=end
+        config.action_mailer.delivery_method = :smtp
+        config.action_mailer.smtp_settings = {
+            :address              => 'smtp.gmail.com',
+            :port                 => 587,
+            :domain               => 'baci.lindsaar.net',
+            :user_name            => 'nick@frontofficemedia.com',
+            :password             => 'frontoffice556',
+            :authentication       => 'plain',
+            :enable_starttls_auto => true
+        }
+        #config.action_mailer.default_url_options = { :host => config.domain }
+        #config.action_mailer.asset_host = "http://" + config.domain
 
         # prevent ActionController from calling helpers :all
         config.action_controller.include_all_helpers = false

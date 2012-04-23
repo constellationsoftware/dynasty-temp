@@ -5,6 +5,10 @@ module Users
             #DynastyEvent.reflect_on_association(:event_subscriptions).options[:conditions] = "#{DynastyEventSubscription.table_name}.user_id = #{@user.id}"
             #@notification_settings = DynastyEvent.joins{[ event_subscriptions.outer, event_subscriptions.user.outer ]}.eager_load{[ event_subscriptions, event_subscriptions.user ]}
         end
+
+        def after_sign_up_path_for(resource)
+            Users::Mailer.welcome(resource).deliver
+        end
 =begin
         def clean_select_multiple_params(hash = params)
             puts hash.inspect
