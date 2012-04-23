@@ -38,6 +38,15 @@ Dynasty::Application.routes.draw do
         put     '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end
 
+    match '/front_office' => 'front_office#roster'
+    match '/front_office/:action', :controller => :front_office, :as => :front_office
+    #match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
+    #match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
+    match '/coachs_corner', :controller => :coaches_corner, :action => :game_review
+    match '/coachs_corner/:action', :controller => :coaches_corner, :as => 'coaches_corner'
+    #match '/coaches_corner/swap/:from_id/with/:to_id', :controller => :coaches_corner, :action => :swap
+    #match '/roster' => 'front_office#roster'
+
     resource :mockups do
         get :index
         get :login
@@ -77,14 +86,6 @@ Dynasty::Application.routes.draw do
         get :contact
     end
 
-    match '/manage' => 'users/team#show', :as => 'manage_team'
-    match '/front_office/:action', :controller => :front_office, :as => :front_office
-    match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
-    match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
-    match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-    match '/coaches_corner/swap/:from_id/with/:to_id', :controller => :coaches_corner, :action => :swap
-    match '/roster' => 'front_office#roster'
-    
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do
         resources :games

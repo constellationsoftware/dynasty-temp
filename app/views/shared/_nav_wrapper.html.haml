@@ -87,9 +87,9 @@
                     \:
                     = current_user.team.name
               %li
-                %a{:href => '/coaches_corner_home'} Coaches Corner
+                %a{:href => '/coachs_corner'}= I18n.t :coaches_corner, :scope => [ :nav, :subnav ]
               %li
-                %a{:href => '/front_office_home'} Front Office
+                %a{:href => '/front_office'}= I18n.t :front_office, :scope => [ :nav, :subnav ]
               %li
                 %a{:href => '/mockups/team_marketplace'} Team Marketplace
               %li
