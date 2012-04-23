@@ -103,58 +103,6 @@ Dynasty::Application.routes.draw do
         get :roster, :on => :collection
     end
 
-    scope :module => :league, :constraints => SubdomainConstraint do
-        resources :auto_picks do
-            collection do
-                post :sort
-            end
-        end
-        resource :draft, :defaults => {:format => 'html'} do
-            member do
-                defaults :format => 'text' do
-                    post :auth
-                    post :start
-                    get :start
-                    post :reset
-                    get :reset
-                    get :finish
-
-                    post :send_message
-                end
-            end
-
-            defaults :format => 'json' do
-                resources :picks do
-                    get :test_update, :on => :member
-                end
-                resources :teams
-=begin
-                resource :team do
-                    get :autopick, :on => :member
-                end
-=end
-                resources :players
-            end
-        end
-
-        # The team in this case is always the user's team for this league
-=begin
-        resource :team, :controller => :team, :module => :team do
-            defaults :format => 'json' do
-                resources :favorites
-                resources :roster do
-                    get :bench, :on => :collection, :action => :index, :defaults => { :bench => 0 }
-                end
-                resources :lineup
-                resources :games
-                resource :balance
-            end
-        end
-=end
-
-        resources :trades
-    end
-
     resource :clock, :controller => :clock, :except => [ :index, :delete ] do
         member do
             get :next_week
