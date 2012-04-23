@@ -1,9 +1,6 @@
 = javascript_include_tag controller_base_name
 = stylesheet_link_tag controller_base_name
-
-- content_for :sub_nav do
-  = render :partial => 'shared/sub_nav'
-- content_for :title, 'Manage Roster'
+- content_for :title, t('.title')
 
 .row
   .span12.well

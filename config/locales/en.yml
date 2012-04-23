@@ -19,14 +19,19 @@ en:
 
     coaches_corner:
         game_review:
-            tab_label:  "Week %{week}"
-            victory:    "You beat %{opponent}. Great Job!"
-            defeat:     "You lost to %{opponent}. Ya blew it!"
+            title:          'Game Review'
+            tab_label:      "Week %{week}"
+            victory:        "You beat %{opponent}. Great Job!"
+            defeat:         "You lost to %{opponent}. Ya blew it!"
         league_review:
-            tab_label:  "Week %{week}"
+            title:          'League Review'
+            tab_label:      "Week %{week}"
+        manage_starters:
+            title:          'Manage Starters'
 
     front_office:
         roster:
+            title:          'Manage Roster'
             columns:
                 position:       'Position'
                 depth:          'Depth'
@@ -35,6 +40,13 @@ en:
                 amount:         'Contract'
                 points:         'Points Last Season'
                 season_points:  'Points This Season'
+        trades:
+            title:          'Trades'
+        waivers:
+            title:          'Waiver Wire'
+        financials:
+            title:          'Financials'
+
         player_row:
             confirmation: "Are you sure you want to remove %{name} from your roster?"
             depth:

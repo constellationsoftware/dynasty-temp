@@ -1,10 +1,10 @@
 class CoachesCornerController < ApplicationController
     include CoachesCornerHelper
     before_filter :authenticate_user!, :set_team
-    sub_pages :player_depth, :game_review, :league_review
+    sub_pages :game_review, :league_review, :manage_starters
     helper_method :get_player
 
-    def player_depth
+    def manage_starters
         Lineup.reflect_on_association(:player_teams).options[:conditions] = "#{PlayerTeam.table_name}.team_id = #{@team.id}"
         @lineups = Lineup.with_positions.joins{ player_teams.outer }
             .includes{ player_teams }
