@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423180146) do
+ActiveRecord::Schema.define(:version => 20120423183212) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -1192,16 +1192,16 @@ ActiveRecord::Schema.define(:version => 20120423180146) do
   add_index "dynasty_users", ["first_name"], :name => "index_dynasty_users_on_name"
   add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
 
-  create_table "dynasty_waiver_wires", :force => true do |t|
+  create_table "dynasty_waivers", :force => true do |t|
     t.integer  "player_team_id"
     t.integer  "team_id"
     t.datetime "end_datetime"
-    t.integer  "player_point_id"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
-  add_index "dynasty_waiver_wires", ["player_team_id", "team_id"], :name => "index_dynasty_waiver_wires_on_teams"
+  add_index "dynasty_waivers", ["end_datetime"], :name => "index_dynasty_waivers_on_end_datetime"
+  add_index "dynasty_waivers", ["player_team_id", "team_id"], :name => "index_dynasty_waiver_wires_on_teams"
 
   create_table "event_action_fouls", :force => true do |t|
     t.integer "event_state_id",                :null => false
