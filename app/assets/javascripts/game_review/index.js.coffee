@@ -13,22 +13,7 @@
 #= require_tree ./models
 #= require_tree ./controllers
 #= require_self
-$ ->
-     window.app = new GameReview()
-
-
-     $('#container .nav').on 'show', (e) ->
-       data = e.target.data()
-       game = Game.find data.game
-       if game
-         console.log "Game found! (do nothing)"
-       else
-         Game.fetch
-           id: data.id
-           processData: true
-           data: with_lineup: true
-
-
+$ -> window.app = new GameReview()
 #    elements:
 #        '#week_1Tab': 'week1Content'
 #        '#week_2Tab': 'week2Content'

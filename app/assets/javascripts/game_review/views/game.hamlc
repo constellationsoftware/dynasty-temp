@@ -1,4 +1,4 @@
-%h1 TEST
+%h1
 - if @game.scored()
   %h5
     HO!

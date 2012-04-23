@@ -90,6 +90,7 @@ Dynasty::Application.routes.draw do
     resources :leagues, :shallow => true do
         resources :games
     end
+    resources :games
     resource :draft do
         post :auth
         post :start
