@@ -11,8 +11,6 @@
       %p
         Team Balance:
         %strong= @team.balance.format
-
-
       - if @team.players.count > 0
         = link_to 'Manage Team', "/coaches_corner_home", :class => 'btn btn-primary'
 
