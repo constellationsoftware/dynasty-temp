@@ -1,0 +1,13 @@
+.game{ :class => "#{game.played?(@team) ? 'played' : ''}" }
+  .row.accordion-group
+    %a.accordion-toggle{ :href => "#game#{game.id}",
+      :data => { :toggle => 'collapse', :parent => "#week#{week}" } }
+      .span4= game.home_team.name
+      .span1= game.home_team_score
+      .span2 vs.
+      .span1= game.away_team_score
+      .span4= game.away_team.name
+      -#- if game.scored?
+      -#  %h5= t ".#{game.won?(@team) ? 'victory' : 'defeat'}", :opponent => game.opponent_for(@team).name
+  .row.collapse.content{ :id => "game#{game.id}", :data => { :game => game.id } }
+    .span12= image_tag 'shared/loading.gif'

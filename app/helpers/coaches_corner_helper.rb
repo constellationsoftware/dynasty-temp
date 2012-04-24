@@ -1,10 +1,9 @@
 module CoachesCornerHelper
-    def game_review_tab_class(won, active)
+    def game_review_tab_class(game, team)
         classes = []
-        unless won.nil?
-            classes << (won ? 'won' : 'lost')
+        if game.scored?
+            classes << (game.won?(team) ? 'won' : 'lost')
         end
-        classes << 'active' if active
         classes
     end
 end

@@ -4,6 +4,7 @@
 #= require spine/lib/route
 #= require spine/lib/list
 #= require spine/lib/ajax
+#= require spine/lib/tab
 #= require lib/juggernaut/juggernaut_spine
 #= require spine/lib/view
 #= require i18n

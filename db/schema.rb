@@ -1069,7 +1069,6 @@ ActiveRecord::Schema.define(:version => 20120423183212) do
     t.integer  "team_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "depth",      :default => 0, :null => false
     t.integer  "lineup_id"
   end
 

@@ -2,34 +2,28 @@
 = stylesheet_link_tag controller_base_name
 - content_for :title, t('.title')
 
-.tabbable
+:coffeescript
+  $ ->
+    $('#game-review .game').not('.played').hide()
+    $('#game-filter').on 'click', (e) ->
+      btn = $(e.target)
+
+      if btn.hasClass('active')
+        btn.text('Show All Games')
+        $('#game-review .game').not('.played').hide()
+      else
+        btn.text('Show Only My Games')
+        $('#game-review .game').not('.played').show()
+
+%button.btn{ :id => 'game-filter', :data => { :toggle => 'button' } } Show All Games
+#game-review.tabbable
   %ul.nav.nav-tabs
-    - @games.each_with_index do |game, i|
-      - week = i + 1
-      %li.tab{ :id => "week_#{week}", 'data-game' => "#{game.id}" }
-        %a{ :href => "#week_#{week}Tab",
-          :data => {:toggle => "tab"},
-          :class => game_review_tab_class(game.won?(@team), @week === week || (@week.zero? && i.zero?)) }
+    - (1..@game_weeks.size).each do |week|
+      %li.tab{ :class => "#{@week === week || (@week.zero? && i.zero?) ? 'active' : ''}" }
+        %a{ :href => "#week#{week}", :data => { :toggle => 'tab' } }
           = t '.tab_label', :week => week
   .tab-content
-    - @games.each_with_index do |game, i|
-      - week = i + 1
-      %li.tab-pane{ :id => "week_#{week}Tab",
-        :class => game_review_tab_class(game.won?(@team), @week === week || (@week.zero? && i.zero?)) }
-        - if game.scored?
-          .row
-            .span12
-              %h5= t ".#{game.won?(@team) ? 'victory' : 'defeat'}", :opponent => game.opponent_for(@team).name
-        .row
-          .span5
-            %h6= game.away_team.name
-          .span2
-            %h6 @
-          .span5
-            %h6= game.home_team.name
-        .content
-:javascript
-  $(function () {
-    $('.tabs a:first').tab('show')
-  })
-
+    - (1..@game_weeks.size).each_with_index do |week, i|
+      %li.tab-pane{ :id => "week#{week}", :class => "#{@week === week || (@week.zero? && i.zero?) ? 'active' : ''}" }
+        - @game_weeks[i].each do |game|
+          = render :partial => (game.scored? ? 'game_row_scored' : 'game_row'), :locals => { :game => game, :week => week }
