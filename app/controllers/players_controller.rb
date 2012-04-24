@@ -73,6 +73,9 @@ class PlayersController < ApplicationController
       end
 
 
+      @open_slots = Lineup.empty(current_user.team.id).by_position(@player.position.id).all
+      @closed_slots = current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).all
+
       respond_to do |format|
           format.html # show.html.erb
           format.json { render json: @player }

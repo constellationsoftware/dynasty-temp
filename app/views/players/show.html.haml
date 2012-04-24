@@ -55,9 +55,16 @@
                     %li
                       %a{:href => "/front_office/trades?"}
                         Offer A Trade
-
-
-
+            - else
+              .btn-group
+                %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.id)}
+                  = "Add #{@player.name.full_name}"
+              %h6
+                Open Lineup Slot #:
+                = @open_slots.first.id
+              %h6
+                = "Current #{@player.position.name}s:"
+                = current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).first.name
   %br
   %br
   .panel
@@ -161,6 +168,3 @@
                 = psp.fumbles_points
               %td
                 = psp.games_played
-
-=======
->>>>>>> d9c6ed8dcd0583c60183861168d2d685bfd0801a

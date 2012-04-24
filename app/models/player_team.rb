@@ -69,6 +69,8 @@ class PlayerTeam < ActiveRecord::Base
         self.player.name.full_name
     end
 
+
+
     def guaranteed_remaining
         contract = self.player.contract
         return 0 if contract.guaranteed.nil? || contract.guaranteed === 0

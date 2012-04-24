@@ -211,6 +211,7 @@ Dynasty::Application.routes.draw do
         member do
             put :start
             put :bench
+            get 'create'
             get 'drop'
             get 'add'
             get 'bid'
