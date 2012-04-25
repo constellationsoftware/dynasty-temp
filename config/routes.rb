@@ -100,6 +100,8 @@ Dynasty::Application.routes.draw do
         post :postpone
         get :autopick
     end
+
+    match 'lineups/swap/:from/with/:to' => 'lineups#swap', :via => :post
     resources :lineups do
         get :roster, :on => :collection
     end

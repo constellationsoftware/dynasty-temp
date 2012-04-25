@@ -23,11 +23,15 @@ en:
             tab_label:      "Week %{week}"
             victory:        "You beat %{opponent}. Great Job!"
             defeat:         "You lost to %{opponent}. Ya blew it!"
-        league_review:
-            title:          'League Review'
-            tab_label:      "Week %{week}"
         manage_starters:
             title:          'Manage Starters'
+            modal_title:    'Which player to swap?'
+        player_row:
+            labels:
+                add:        'Add Player'
+                trade:      'Trade'
+                1st_string: 'Bench'
+                2nd_string: 'Start'
 
     front_office:
         roster:
@@ -53,8 +57,6 @@ en:
                 default:        'Injured / Reserve'
                 1st_string:     'Starter'
                 2nd_string:     'Bench'
-            add_player_label:   'Add Player'
-            trade_player_label: 'Trade'
 
     user_cp:
         schedule_draft:     'Schedule Draft'

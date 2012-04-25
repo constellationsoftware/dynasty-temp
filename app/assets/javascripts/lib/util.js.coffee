@@ -1,3 +1,6 @@
+#= require templates/alert
+#= require_self
+
 # capitalize method for String
 String::capitalize = () ->
     (this.split(/\s+/).map (word) -> word[0].toUpperCase() + word[1..-1].toLowerCase()).join ' '
@@ -35,3 +38,18 @@ $(document).ajaxSuccess (e, transport) ->
 $(document).ajaxSend () ->
     errorBucket = $('#global-errors')
     errorBucket.children().remove() if errorBucket?
+
+class Alert
+    defaults:
+        message: 'An error occurred.'
+        closeable: true
+
+    constructor: (el, options = {}) ->
+        throw 'You must specify an element to receive the error message!' unless el?
+        onClose = null
+        if options.hasOwnProperty('close')
+            onClose = options.close
+            delete options.close
+        alert = $(el).append JST.alert $.extend @defaults, options
+        alert.one 'close', onClose if onClose?
+window.Alert = Alert
