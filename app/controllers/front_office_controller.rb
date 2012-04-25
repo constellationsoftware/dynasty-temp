@@ -1,4 +1,5 @@
 class FrontOfficeController < ApplicationController
+    before_filter :authenticate_user!
     sub_pages :roster, :trades, :waivers, :financials
     respond_to :html
     helper_method :get_player

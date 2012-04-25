@@ -46,13 +46,10 @@ class PlayerTeamsController < ApplicationController
       @player_team.player_id = params[:id]
       @player_team.team_id = params[:team_id]
       @player_team.lineup_id = params[:lineup]
-      @player_team.position_id = @lineup.position_id
-      @player_team.depth = @lineup.string
 
 
-      if @player_team.save
-        redirect_to :back
-      end
+
+
       redirect_to :back
     end
 

@@ -59,7 +59,7 @@ class PlayersController < ApplicationController
         @league_players = @league.players.all
 
         if @league_players.include?(@player)
-          @player_team = @league.player_teams.joins(:player).first
+          @player_team = @league.player_teams.joins(:player).where(:player_id => @player.id).first
             if @player_team.team == @current_user.team
               @message = @current_user
             else

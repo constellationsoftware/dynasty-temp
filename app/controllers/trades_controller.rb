@@ -36,16 +36,19 @@ class TradesController < ApplicationController
     # GET /trades/new.xml
     def new
         @trade = Trade.new
-        @team = Team.where(:user_id => current_user.id).first
+        @team = current_user.team
+        @league = @team.league
+        @selected_player = PlayerTeam.find(params[:pid])
         @my_players = @team.player_teams
         @other_teams = @league.teams.where('id != ?', @team.id)
         @other_players = []
+
+
         @other_teams.each do |ot|
             ot.player_teams.each do |otp|
                 @other_players << otp.id
             end
         end
-        @requestable_players = Player.find(@other_players)
         respond_to do |format|
             format.html # new.html.erb
             format.xml { render :xml => @trade }
@@ -65,14 +68,14 @@ class TradesController < ApplicationController
         @requested_player = PlayerTeam.find(@trade.requested_player_id)
         @trade.initial_team_id = @offered_player.team_id
         @trade.second_team_id = @requested_player.team_id
-        @trade.league_id = current_user.team.league_id
+
         @trade.offered_at = Clock.first.time
         @trade.open = TRUE
         @trade.accepted = FALSE
         @trade.save
         respond_to do |format|
             if @trade.save
-                format.html { redirect_to :back, :flash => {:info => "You offered #{@requested_player.team.name} a trade!"} }
+                format.html { redirect_to '/front_office/trades', :flash => {:info => "You offered #{@requested_player.team.name} a trade!"} }
                 format.xml { render :xml => @trade, :status => :created, :location => @trade }
             else
                 format.html { render :action => "edit" }

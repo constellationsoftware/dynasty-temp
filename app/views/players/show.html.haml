@@ -1,4 +1,3 @@
-
 .row.person
   .panel
     .row
@@ -39,9 +38,8 @@
         - if user_signed_in?
           .well
             - if @league_players.include?(@player)
-              %h6
-                = @current_user.team.league.name
-              -if @player_team == @current_user.team
+              %h5
+              -if @player_team.team == @current_user.team
                 %h5
                   On Your Team
               -else
@@ -53,18 +51,28 @@
                     %span.caret
                   %ul.dropdown-menu
                     %li
-                      %a{:href => "/front_office/trades?"}
+                      %a{:href => "/trades/new?pid=#{@player_team.id}"}
                         Offer A Trade
             - else
               .btn-group
-                %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.id)}
-                  = "Add #{@player.name.full_name}"
-              %h6
-                Open Lineup Slot #:
-                = @open_slots.first.id
-              %h6
-                = "Current #{@player.position.name}s:"
-                = current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).first.name
+
+                - if @open_slots.first
+                  %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.andand.id)}
+                    = "Add #{@player.name.full_name}"
+
+                - else
+                  %h5
+                    = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.pluralize}:"
+                  %ul.nav.nav-list
+                    - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do |pt|
+                      %li
+                        .btn-group
+                          %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
+                            = pt.name
+                            %span.caret
+                          %ul.dropdown-menu
+                            = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
+
   %br
   %br
   .panel
@@ -75,10 +83,8 @@
         %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
           %thead
             %tr
-              %th
-                Event Date
-              %th
-                PTS
+              %th Event Date
+              %th PTS
               %th
                 Pass
               %th
@@ -93,30 +99,19 @@
                 Sck
               %th
                 Fmbl
-              %th
-                *
+
           %tbody
           - @player.event_points.current.each do |pep|
-            %tr
-              %th
-                = pep.event.start_date_time.strftime("%B %e, %Y")
-              %th
-                = pep.points
-              %th
-                = pep.passing_points
-              %th
-                = pep.rushing_points
-              %th
-                = pep.defensive_points
-              %th
-                = pep.scoring_points
-              %th
-                = pep.special_teams_points
-              %th
-                = pep.sacks_against_points
-              %th
-                = pep.fumbles_points
-              %th
+            %tr{:id => dom_id(pep)}
+              %th= pep.event.start_date_time.strftime("%B %e, %Y")
+              %th= pep.points
+              %th= pep.passing_points
+              %th= pep.rushing_points
+              %th= pep.defensive_points
+              %th= pep.scoring_points
+              %th= pep.special_teams_points
+              %th= pep.sacks_against_points
+              %th= pep.fumbles_points
   .panel
     %h5
       Career Performance
@@ -147,24 +142,14 @@
                 Games
           %tbody
           - @player.season_points.each do |psp|
-            %tr
-              %td
-                = psp.year
-              %td
-                = psp.points
-              %td
-                = psp.passing_points
-              %td
-                = psp.rushing_points
-              %td
-                = psp.defensive_points
-              %td
-                = psp.scoring_points
-              %td
-                = psp.special_teams_points
-              %td
-                = psp.sacks_against_points
-              %td
-                = psp.fumbles_points
-              %td
-                = psp.games_played
+            %tr{:id => dom_id(psp)}
+              %td= psp.year
+              %td= psp.points
+              %td= psp.passing_points
+              %td= psp.rushing_points
+              %td= psp.defensive_points
+              %td= psp.scoring_points
+              %td= psp.special_teams_points
+              %td= psp.sacks_against_points
+              %td= psp.fumbles_points
+              %td= psp.games_played

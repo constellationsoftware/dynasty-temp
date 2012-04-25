@@ -1,26 +1,45 @@
 = stylesheet_link_tag 'forms'
 - content_for :title, t('.title')
 
-.row
-  .container
+.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      %a{:href=>"#tab1", "data-toggle" => "tab"} Offer a Trade
+    %li
+      %a{:href=>"#tab2", "data-toggle" => "tab"} Open Trades
+    %li
+      %a{:href=>"#tab3", "data-toggle" => "tab"}Closed Trades
+
+.tab-content
+  .tab-pane#tab1.active
     %h3 Offer A Trade
-    = semantic_form_for Trade.new do |f|
-      .row
-        .span1
-        .span5
-          = f.input :offered_player, :as => :select, :collection => options_from_collection_for_select(@trades[:my_players], :id, :name, params[:pid])
-          /= f.input :offered_cash, :label => "Offer some cash"
-          /= f.input :offered_picks, :label => "Offer picks"
-        .span6
-          = f.input :requested_player, :collection => @trades[:their_players], :group_by => :team, :group_association => :player_teams, :member_label => :name, :prompt => 'Choose A Player to Request'
-          /= f.input :requested_cash, :label => "Request some cash"
-          /= f.input :requested_picks, :label => "Request picks"
-      .row
-        .span12
-          = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"
-      .row
-        = f.submit 'Submit', :class => 'nice small radius blue button'
-  .panel
+    %p Choose a player you would like to trade for from the list below, and click Trade!:
+    %table.all-players-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %thead
+        %tr
+          %th Player Name
+          %th Position
+          %th Team Name
+          %th
+      %tbody
+        - @trades[:their_players].each do |ptr|
+          %tr
+            %td
+              .btn-group
+
+                %a.btn.btn-mini.btn-primary{:href => "/players/#{ptr.player.id}"}
+                  = ptr.player.name.full_name
+                %a.btn.btn-mini.btn-primary{:href => "/trades/new?pid=#{ptr.id}"}
+                  Trade!
+            %td= ptr.lineup.position.abbreviation.upcase
+            %td= ptr.team.name
+            %td
+
+
+
+
+
+  .tab-pane#tab2
     %h3 Open Trade Offers
     - @trades[:open_trades_received].andand.each do |trade|
       .panel
@@ -57,7 +76,7 @@
           %strong
             Message Attached:
           #{trade.message}
-  .panel
+  .tab-pane#tab3
     %h3 Accepted Trade Offers
     - @trades[:accepted_trade_offers].andand.each do |trade|
       %p
@@ -80,7 +99,7 @@
         = trade.offered_player.name
         on
         = trade.offered_at.strftime("%B %e, %Y")
-  .panel
+
     %h3 Rejected Trades
     - @trades[:denied_trade_offers].andand.each do |trade|
       %p

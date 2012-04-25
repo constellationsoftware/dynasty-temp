@@ -1,16 +1,18 @@
-.container
-  .span6
-  %p
-    = @league.inspect
-    = current_user.inspect
-    = session.inspect
-    = @team.name
-    = @league.players
+= semantic_form_for Trade.new do |f|
   %h3
-    Offer A Trade
-  = semantic_form_for @trade,  do |f|
-    = f.input :offered_player_id, :as => :select, :collection => @my_players, :label => "Choose A Player to Offer:"
-    = f.label "Choose A Player to Request"
-    = f.grouped_collection_select :requested_player_id, @other_teams.order(:name), :players, :name, :id, :full_name, :include_blank => true
-    = f.buttons do
-      = f.commit_button
+    Offer a New Trade
+  .container
+    .span6
+      %h5
+        Requested Player:
+        = @selected_player.name
+        ,
+        = @selected_player.lineup.position.abbreviation.upcase
+        for
+        = @selected_player.team.name
+
+    .span6
+      = f.input :requested_player_id, :as => :hidden, :value => @selected_player.id
+      = f.input :offered_player, :as => :select, :collection => options_from_collection_for_select(@my_players, :id, :name, params[:pid])
+      = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"
+      = f.submit 'Submit', :class => 'nice small radius blue button'

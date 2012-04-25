@@ -134,6 +134,7 @@ Dynasty::Application.routes.draw do
         get 'retract'
         get 'accept'
         get 'reject'
+        get 'create'
         member do
             get 'edit'
             get 'retract'
