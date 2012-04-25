@@ -1,5 +1,6 @@
 @import 'tabs';
 
+
 .won { color: #225c23 !important; }
 .lost { color: #870000 !important; }
 .roster {
@@ -16,4 +17,29 @@
 
     .title { margin-bottom: 20px; }
     a { display: block; }
+}
+
+#game-review {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+
+    .accordion-group {
+        background-color: white;
+    }
+
+    a {
+        height: 22px;
+        line-height: 26px;
+
+        color: #999;
+        &:hover { color: #555; }
+    }
+    
+    .game.played {
+        a {
+            color: #08c;
+            &:hover { color: #005580; }
+        }
+    }
 }

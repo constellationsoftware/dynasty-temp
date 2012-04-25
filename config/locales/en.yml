@@ -3,23 +3,35 @@
 
 en:
     nav:
-        signed_in:  "Signed in as %{attribute}"
-        signed_out: "Register or Sign in"
-        tutorials: "Walk-Throughs"
-        video1: "Video 1"
-        video2: "Video 2"
-        video3: "Video 3"
-        video4: "Video 4"
+        signed_in:      "Signed in as %{attribute}"
+        signed_out:     "Register or Sign in"
+        tutorials:      "Walk-Throughs"
+        video1:         "Video 1"
+        video2:         "Video 2"
+        video3:         "Video 3"
+        video4:         "Video 4"
+
+        subnav:
+            coaches_corner:         "Coach's Corner"
+            front_office:           'Front Office'
+            marketplace:            'Team Marketplace'
+            buy_dynasty_dollars:    'Purchase Dynasty Dollars'
+
     coaches_corner:
         game_review:
-            tab_label:  "Week %{week}"
-            victory:    "You beat %{opponent}. Great Job!"
-            defeat:     "You lost to %{opponent}. Ya blew it!"
+            title:          'Game Review'
+            tab_label:      "Week %{week}"
+            victory:        "You beat %{opponent}. Great Job!"
+            defeat:         "You lost to %{opponent}. Ya blew it!"
         league_review:
-            tab_label:  "Week %{week}"
+            title:          'League Review'
+            tab_label:      "Week %{week}"
+        manage_starters:
+            title:          'Manage Starters'
 
     front_office:
         roster:
+            title:          'Manage Roster'
             columns:
                 position:       'Position'
                 depth:          'Depth'
@@ -28,6 +40,13 @@ en:
                 amount:         'Contract'
                 points:         'Points Last Season'
                 season_points:  'Points This Season'
+        trades:
+            title:          'Trades'
+        waivers:
+            title:          'Waiver Wire'
+        financials:
+            title:          'Financials'
+
         player_row:
             confirmation: "Are you sure you want to remove %{name} from your roster?"
             depth:
@@ -40,16 +59,6 @@ en:
     user_cp:
         schedule_draft:     'Schedule Draft'
         draft_date_format:  '%A %B %d, %Y'
-
-    my_team:
-        sub_sections:
-            review: Game Review
-            roster: Front Office
-            manage: Coach's Corner
-            trade: Trades
-            waiver: Waiver Wire
-            league_review: League Review
-            finance: Team Finances
 
     formtastic:
         titles:

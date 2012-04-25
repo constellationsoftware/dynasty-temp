@@ -1,7 +1,7 @@
 - if !(string.nil?) && lineup.string === string
   - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
   %tr.lineup{ :data => { :id => lineup.id,
-    :compatible => Lineup.by_position(lineup.position_id).collect{ |l| l.id unless l === lineup }.compact } }
+    :compatible => Lineup.by_position(player.nil? ? lineup.position_id : player.position.id).collect{ |l| l.id unless l === lineup }.compact } }
     %td.position<
       = lineup.position.abbreviation.upcase
       = "(#{player.position.abbreviation.upcase})" if lineup.flex && !(player.nil?)

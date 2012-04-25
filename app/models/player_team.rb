@@ -5,17 +5,6 @@
 #  id             :integer(4)      not null, primary key
 #  player_id      :integer(4)
 #  team_id        :integer(4)
-#  current        :boolean(1)
-#  added_at       :datetime
-#  removed_at     :datetime
-#  details        :string(255)
-#  created_at     :datetime
-#  updated_at     :datetime
-#  position_id    :integer(4)
-#  depth          :integer(4)      default(0), not null
-#  waiver         :boolean(1)
-#  waiver_team_id :integer(4)
-#  league_id      :integer(4)
 #  lineup_id      :integer(4)
 #
 
@@ -54,12 +43,8 @@ class PlayerTeam < ActiveRecord::Base
     validates_presence_of :player_id
 
     scope :has_depth, lambda{ |d| where{ depth == my{ d } } }
-    scope :on_waiver_wire, where{ waiver == 1 }
     scope :starter, where{ lineup_id >= 1 }
     scope :bench, where{ lineup_id == nil }
-
-
-
     scope :with_player_name, joins{ player_name }.includes{ player_name }
     scope :with_player_contract, joins{ player_contract }.includes{ player_contract }
     scope :with_position, joins{ position }.includes{ position }

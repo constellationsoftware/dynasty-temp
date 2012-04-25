@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120420153413) do
+ActiveRecord::Schema.define(:version => 20120423183212) do
 
   create_table "active_admin_comments", :force => true do |t|
-    t.integer  "resource_id",   :null => false
+    t.string   "resource_id",   :null => false
     t.string   "resource_type", :null => false
     t.integer  "author_id"
     t.string   "author_type"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "namespace"
   end
 
@@ -901,17 +901,19 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
     t.string   "payable_type"
     t.integer  "receivable_id"
     t.string   "receivable_type"
-    t.integer  "event_id",                          :null => false
-    t.string   "event_type",                        :null => false
-    t.integer  "amount_cents",         :limit => 8, :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
-    t.datetime "transaction_datetime"
+    t.integer  "amount_cents",             :limit => 8, :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+    t.integer  "event_id"
+    t.string   "event_type"
+    t.integer  "receivable_balance_cents", :limit => 8
+    t.integer  "payable_balance_cents",    :limit => 8
+    t.datetime "transaction_datetime",                  :null => false
   end
 
+  add_index "dynasty_accounts", ["transaction_datetime"], :name => "index_dynasty_accounts_on_transaction_datetime"
+
   create_table "dynasty_clock", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.datetime "time"
   end
 
@@ -947,7 +949,6 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   end
 
   add_index "dynasty_drafts", ["league_id"], :name => "index_drafts_league"
-  add_index "dynasty_drafts", ["state"], :name => "index_drafts_on_status"
   add_index "dynasty_drafts", ["state"], :name => "index_dynasty_drafts_on_state"
 
   create_table "dynasty_event_subscriptions", :force => true do |t|
@@ -959,13 +960,13 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   add_index "dynasty_event_subscriptions", ["user_id", "event_id", "notifier"], :name => "index_dynasty_notifications_on_user_id_and_event_id_and_notifier"
 
   create_table "dynasty_events", :force => true do |t|
-    t.string   "type"
+    t.string   "type",         :limit => 32
     t.integer  "source_id"
     t.string   "source_type"
     t.integer  "target_id"
     t.string   "target_type"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
     t.datetime "processed_at"
   end
 
@@ -978,29 +979,30 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "date"
+    t.integer  "event_id"
+    t.string   "event_type"
   end
 
   add_index "dynasty_games", ["id", "league_id", "date"], :name => "index_dynasty_games_on_id_and_league_id_and_date"
+  add_index "dynasty_games", ["league_id", "event_id", "event_type"], :name => "index_dynasty_games_on_league_id_and_event_id_and_event_type"
   add_index "dynasty_games", ["league_id", "home_team_id", "away_team_id"], :name => "index_dynasty_games_on_league_and_teams", :unique => true
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",                  :limit => 50,                   :null => false
+    t.string   "name",          :limit => 50,                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "manager_id"
     t.string   "slug"
-    t.integer  "default_balance_cents", :limit => 8,  :default => 0,    :null => false
-    t.boolean  "public",                              :default => true
-    t.string   "password",              :limit => 32
+    t.boolean  "public",                      :default => true
+    t.string   "password",      :limit => 32
     t.integer  "teams_count"
-    t.integer  "clock_id"
-    t.integer  "balance_cents",         :limit => 8,  :default => 0
+    t.integer  "balance_cents", :limit => 8,  :default => 0
     t.integer  "draft_id"
   end
 
   add_index "dynasty_leagues", ["draft_id"], :name => "index_dynasty_leagues_on_draft_id", :unique => true
-  add_index "dynasty_leagues", ["id", "clock_id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["id", "name", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
+  add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
   add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
@@ -1116,23 +1118,12 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   create_table "dynasty_player_teams", :force => true do |t|
     t.integer  "player_id"
     t.integer  "team_id"
-    t.boolean  "current"
-    t.datetime "added_at"
-    t.datetime "removed_at"
-    t.string   "details"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "position_id"
-    t.integer  "depth",          :default => 0, :null => false
-    t.boolean  "waiver"
-    t.integer  "waiver_team_id"
-    t.integer  "league_id"
     t.integer  "lineup_id"
   end
 
-  add_index "dynasty_player_teams", ["league_id", "team_id", "player_id"], :name => "index_player_teams_league_user_player"
-  add_index "dynasty_player_teams", ["player_id", "depth", "team_id", "current"], :name => "index_dynasty_player_teams_roster_api"
-  add_index "dynasty_player_teams", ["position_id", "depth", "id", "current", "team_id"], :name => "index_position_counts_by_team"
+  add_index "dynasty_player_teams", ["player_id", "team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_player_and_team_and_lineup"
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",             :limit => 32
@@ -1203,10 +1194,8 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   add_index "dynasty_teams", ["uuid"], :name => "index_user_teams_on_uuid", :length => {"uuid"=>16}
 
   create_table "dynasty_trades", :force => true do |t|
-    t.integer  "league_id",           :null => false
     t.integer  "initial_team_id",     :null => false
     t.integer  "second_team_id",      :null => false
-    t.integer  "player_id"
     t.boolean  "accepted"
     t.boolean  "open"
     t.datetime "offered_at"
@@ -1222,17 +1211,13 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   end
 
   create_table "dynasty_user_addresses", :force => true do |t|
-    t.string  "ship_city",   :limit => 50
-    t.string  "street2",     :limit => 64
-    t.string  "ship_state",  :limit => 32
-    t.string  "city",        :limit => 50
-    t.string  "ship_zip",    :limit => 10
-    t.string  "zip",         :limit => 10
-    t.string  "state",       :limit => 32
-    t.string  "country",     :limit => 64
-    t.string  "street",      :limit => 128
-    t.integer "user_id",                    :null => false
-    t.string  "ship_street", :limit => 64
+    t.string  "street2", :limit => 64
+    t.string  "city",    :limit => 50
+    t.string  "zip",     :limit => 10
+    t.string  "state",   :limit => 32
+    t.string  "country", :limit => 64
+    t.string  "street",  :limit => 128
+    t.integer "user_id",                :null => false
   end
 
   create_table "dynasty_user_team_schedules", :force => true do |t|
@@ -1275,6 +1260,17 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "dynasty_users", ["first_name"], :name => "index_dynasty_users_on_name"
   add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
+
+  create_table "dynasty_waivers", :force => true do |t|
+    t.integer  "player_team_id"
+    t.integer  "team_id"
+    t.datetime "end_datetime"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "dynasty_waivers", ["end_datetime"], :name => "index_dynasty_waivers_on_end_datetime"
+  add_index "dynasty_waivers", ["player_team_id", "team_id"], :name => "index_dynasty_waiver_wires_on_teams"
 
   create_table "event_action_fouls", :force => true do |t|
     t.integer "event_state_id",                :null => false
@@ -2042,9 +2038,6 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
     t.datetime "updated_at",    :null => false
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], :name => "index_roles_on_name"
-
   create_table "roles_copy", :force => true do |t|
     t.string "role_key",  :limit => 100, :null => false
     t.string "role_name", :limit => 100
@@ -2332,16 +2325,9 @@ ActiveRecord::Schema.define(:version => 20120420153413) do
   add_index "team_phases", ["team_id"], :name => "FK_tea_aff_pha_tea_id__tea_id"
 
   create_table "teams", :force => true do |t|
-    t.string  "team_key",          :limit => 100,                 :null => false
-    t.integer "publisher_id",                                     :null => false
+    t.string  "team_key",     :limit => 100, :null => false
+    t.integer "publisher_id",                :null => false
     t.integer "home_site_id"
-    t.string  "conference-_",      :limit => 50,  :default => ""
-    t.string  "division_key",      :limit => 50
-    t.string  "location_name",     :limit => 100
-    t.string  "division_name",     :limit => 100
-    t.string  "nickname",          :limit => 100
-    t.string  "team_abbreviation", :limit => 20
-    t.string  "league_id",         :limit => 20,  :default => "", :null => false
   end
 
   add_index "teams", ["home_site_id"], :name => "FK_tea_hom_sit_id__sit_id"

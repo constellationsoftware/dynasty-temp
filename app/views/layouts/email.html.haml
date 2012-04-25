@@ -2,8 +2,5 @@
 %head
   %meta{ :charset => "utf-8" }
 %body
-  #navbar.container
-    = link_to (image_tag 'navbar_logo.png'), root_path
-
-  #content.container
-    = yield
+  /#navbar.container= image_tag attachments['navbar_logo.png'].url
+  #content.container= yield

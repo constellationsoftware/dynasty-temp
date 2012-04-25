@@ -66,6 +66,10 @@ class Game < ActiveRecord::Base
         !(self.home_team_score.nil? || away_team_score.nil?)
     end
 
+    def played?(team)
+        team === self.home_team || team === self.away_team
+    end
+
     def week
         game_season = Season.for_date(self.date).first
         # we add one since we're referenced off the start date

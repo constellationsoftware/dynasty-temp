@@ -17,9 +17,8 @@ Dynasty::Application.routes.draw do
     match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
-
     if Rails.env.development?
-      mount UserMailer::Preview => 'mail_view'
+        mount Users::Mailer::Preview => 'mail_view'
     end
 
     resources :messages, :schedules, :photos, :dynasty_player_contracts
@@ -38,6 +37,15 @@ Dynasty::Application.routes.draw do
         get     '/profile' => 'users/registrations#edit', :as => :user_registration
         put     '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end
+
+    match '/front_office' => 'front_office#roster'
+    match '/front_office/:action', :controller => :front_office, :as => :front_office
+    #match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
+    #match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
+    match '/coachs_corner', :controller => :coaches_corner, :action => :game_review
+    match '/coachs_corner/:action', :controller => :coaches_corner, :as => 'coaches_corner'
+    #match '/coaches_corner/swap/:from_id/with/:to_id', :controller => :coaches_corner, :action => :swap
+    #match '/roster' => 'front_office#roster'
 
     resource :mockups do
         get :index
@@ -78,18 +86,11 @@ Dynasty::Application.routes.draw do
         get :contact
     end
 
-    match '/manage' => 'users/team#show', :as => 'manage_team'
-    match '/front_office/:action', :controller => :front_office, :as => :front_office
-    match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
-    match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
-    match '/coaches_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
-    match '/roster' => 'front_office#roster'
-    
-
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     resources :leagues, :shallow => true do
         resources :games
     end
+    resources :games
     resource :draft do
         post :auth
         post :start
@@ -101,58 +102,6 @@ Dynasty::Application.routes.draw do
     end
     resources :lineups do
         get :roster, :on => :collection
-    end
-
-    scope :module => :league, :constraints => SubdomainConstraint do
-        resources :auto_picks do
-            collection do
-                post :sort
-            end
-        end
-        resource :draft, :defaults => {:format => 'html'} do
-            member do
-                defaults :format => 'text' do
-                    post :auth
-                    post :start
-                    get :start
-                    post :reset
-                    get :reset
-                    get :finish
-
-                    post :send_message
-                end
-            end
-
-            defaults :format => 'json' do
-                resources :picks do
-                    get :test_update, :on => :member
-                end
-                resources :teams
-=begin
-                resource :team do
-                    get :autopick, :on => :member
-                end
-=end
-                resources :players
-            end
-        end
-
-        # The team in this case is always the user's team for this league
-=begin
-        resource :team, :controller => :team, :module => :team do
-            defaults :format => 'json' do
-                resources :favorites
-                resources :roster do
-                    get :bench, :on => :collection, :action => :index, :defaults => { :bench => 0 }
-                end
-                resources :lineup
-                resources :games
-                resource :balance
-            end
-        end
-=end
-
-        resources :trades
     end
 
     resource :clock, :controller => :clock, :except => [ :index, :delete ] do

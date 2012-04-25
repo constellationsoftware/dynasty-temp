@@ -159,11 +159,11 @@ table {
 
 /* REFACTOR: This needs cleaned up big time. I'll try to sort it out this weekend. -Ben */
 body {
-  background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  //background: url("/assets/bg_fade.jpg") no-repeat center center fixed;
+  //-webkit-background-size: cover;
+  //-moz-background-size: cover;
+  //-o-background-size: cover;
+  //background-size: cover;
   //background:
   //  -webkit-linear-gradient(63deg, #151515 5px, transparent 5px) 0 5px,
   //  -webkit-linear-gradient(243deg, #151515 5px, transparent 5px) 10px 0px,
@@ -208,11 +208,11 @@ body {
 }
 
 .main_yield {
-  background-color: rgba(100%, 100%, 100%, .90);
-  min-width: 960px;
-  max-width: 95%;
-  padding: 25px;
-  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+ // background-color: rgba(100%, 100%, 100%, .90);
+ // min-width: 960px;
+ // max-width: 95%;
+ // padding: 25px;
+ // box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .stats_small {
