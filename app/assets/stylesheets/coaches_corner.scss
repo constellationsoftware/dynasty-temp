@@ -10,13 +10,22 @@
     min-height: 200px;
 }
 
-#swap_player {
-    width: 300px;
-    margin-left: -150px;
-    text-align: center;
+.roster button { width: 70px; }
 
-    .title { margin-bottom: 20px; }
-    a { display: block; }
+#swap_player {
+    text-align: center;
+    width: 400px;
+    margin-left: -200px;
+
+    .modal-body {
+        margin: 0 20px 0 20px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        &:not(:last-child) { margin-bottom: 10px; }
+    }
 }
 
 #game-review {

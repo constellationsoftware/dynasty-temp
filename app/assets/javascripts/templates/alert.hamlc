@@ -1,0 +1,4 @@
+.alert.alert-block.fade.in{ class: if @type then 'alert-'+@type else '' }
+  - unless @closeable is false
+    %a.close{ data: { dismiss: 'alert' } }×
+  .message= @message

@@ -11,17 +11,6 @@ class CoachesCornerController < ApplicationController
             .order{ id }
     end
 
-    def swap
-        @team = current_user.team
-        from_player = PlayerTeam.find_by_team_id_and_lineup_id @team.id, params[:from_id]
-        to_player = PlayerTeam.find_by_team_id_and_lineup_id @team.id, params[:to_id]
-        if from_player || to_player
-            from_player.update_attributes! :lineup_id => params[:to_id].to_i if from_player
-            to_player.update_attributes! :lineup_id => params[:from_id].to_i if to_player
-            render :json => true
-        end
-    end
-
     def game_review
         @game_weeks = []
         games = @team.league.games.order{ date }

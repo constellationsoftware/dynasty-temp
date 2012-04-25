@@ -1,3 +1,10 @@
-.reveal-modal{ :id => "#{ defined?(id) ? id : '' }" }
-  .row.main
-  %a.close-reveal-modal ×
+.modal.fade{ :id => "#{ defined?(id) ? id : '' }" }
+  .modal-header
+    %a.close{ :data => { :dismiss => 'modal' } }×
+    - if defined?(title)
+      %h3.title= title
+  .modal-alert
+  .modal-body
+  - if defined?(form) && form
+    .modal-footer
+      %a.btn{ :href => '#', :data => { :dismiss => 'modal' } } Close

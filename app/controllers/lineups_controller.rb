@@ -21,6 +21,17 @@ class LineupsController < ApplicationController
             .order{ id }
     end
 
+    def swap
+        @team = current_user.team
+        from_player = PlayerTeam.find_by_team_id_and_lineup_id @team.id, params[:from]
+        to_player = PlayerTeam.find_by_team_id_and_lineup_id @team.id, params[:to]
+        if from_player || to_player
+            from_player.update_attributes! :lineup_id => params[:to].to_i if from_player
+            to_player.update_attributes! :lineup_id => params[:from].to_i if to_player
+            render :json => true
+        end
+    end
+
     def get_player(player_id)
         Player.where{ id == my{ player_id } }
             .joins{[ name, contract, position, points ]}

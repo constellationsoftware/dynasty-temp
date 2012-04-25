@@ -1,9 +1,4 @@
-- if @title
-  .eleven.columns.centered.title
-    %h6= @title
-.content
-  %ul
-    - for player in @players
-      %li
-        %a.nice.blue.button.radius{ href: '#', data: { from: @id, to: player.id } }
-          = "#{player.name} (#{player.position}, #{player.depth})"
+- for player in @lineups
+  %button.btn{ href: '#',
+    autocomplete: 'off',
+    data: { from: @id, to: player.id, loading-text: 'Submitting...' } }= "#{player.position}: #{player.name}"
