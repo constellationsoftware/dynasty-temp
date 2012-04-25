@@ -1,7 +1,11 @@
 = javascript_include_tag controller.action_name
 = stylesheet_link_tag controller_base_name
-= render :partial => 'shared/modal', :locals => { :id => 'swap_player' }
+= render :partial => 'shared/modal', :locals => { :id => 'swap_player', :title => t('.modal_title') }
+:coffeescript
+  $('#swap_player').modal
+    show: false
 - content_for :title, t('.title')
+- content_for :section_title, "Coach\'s Corner"
 
 .row
   .span12
@@ -16,10 +20,10 @@
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
-          = render :partial => 'player_row', :locals => { :lineup => lineup, :string => 1 }
+          = render :partial => 'player_row', :locals => { :lineup => lineup } if lineup.string === 1
 
     %h5 Bench
-    %table#bench.roster.table-bordered.table-striped.table-condensed.roster
+    %table#bench.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
           %th Position
@@ -29,4 +33,4 @@
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
-          = render :partial => 'player_row', :locals => { :lineup => lineup, :string => 2 }
+          = render :partial => 'player_row', :locals => { :lineup => lineup } if lineup.string === 2

@@ -1,7 +1,7 @@
 class CoachesCornerController < ApplicationController
     include CoachesCornerHelper
     before_filter :authenticate_user!, :set_team
-    sub_pages :game_review, :league_review, :manage_starters
+    sub_pages :game_review,  :manage_starters
     helper_method :get_player
 
     def manage_starters

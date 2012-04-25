@@ -46,12 +46,15 @@
         -# Show error messages
         #global-errors
           - flash.each do |type, msg|
-            %div.alert-box{ :class => get_alert_style_by_type(type) }= msg
+            %div.alert{ :class => get_alert_style_by_type(type) }= msg
     #content
-      -if @sub_pages
-        = render 'shared/sub_nav'
-      %h2
-        = yield :title
+      .page_header
+        %h4
+          %em
+            -if @sub_pages
+              = yield :section_title
+              \:
+            = yield :title
 
       = yield
 

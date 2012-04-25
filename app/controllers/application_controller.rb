@@ -69,13 +69,13 @@ class ApplicationController < ActionController::Base
         def get_alert_style_by_type(type)
             case type
                 when :notice;
-                    'notice'
+                    'alert-info'
                 when :success;
-                    'success'
+                    'alert-success'
                 when :warning, :alert;
-                    'warning'
+                    'alert-info'
                 when :failure, :error;
-                    'error'
+                    'alert-error'
             end
         end
 

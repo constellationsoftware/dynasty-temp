@@ -1,312 +1,16 @@
-.row
-  .subnav2
-    %ul.nav.nav-pills
-      %li
-        %a{:href => "#team_rankings"}
-          Team Rankings
-      %li
-        %a{:href => "#game_review"}
-          Game Review
-
-      %li
-        %a{:href => "#league_discussion"}
-          Discussion
-
-  %ul.nice.tabs-content.contained
-    %li.active{:id => "game_reviewTab"}
-
-      %dl.tabs
-        %dd
-          %a{:href => "#week_1"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W1
-        %dd
-          %a{:href => "#week_2"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W2
-        %dd
-          %a{:href => "#week_3"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W3
-        %dd
-          %a{:href => "#week_4"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W4
-        %dd
-          %a{:href => "#week_5"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W5
-        %dd
-          %a{:href => "#week_6"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W6
-        %dd
-          %a{:href => "#week_7"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W7
-        %dd
-          %a{:href => "#week_8"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W8
-        %dd
-          %a{:href => "#week_9"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W9
-        %dd
-          %a{:href => "#week_10"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W10
-        %dd
-          %a{:href => "#week_11"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W11
-        %dd
-          %a{:href => "#week_12"}
-            %table
-              %tbody
-                %tr
-                  %td
-                    W12
-
-      %ul.tabs-content
-        %li{:id=> "week_1Tab"}
-          %h5 Week 1
-          = render :partial => "shared/league_week_review"
-
-        %li{:id=> "week_2Tab"}
-          %h5 Week 2
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_3Tab"}
-          %h5 Week 3
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_4Tab"}
-          %h5 Week 4
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_5Tab"}
-          %h5 Week 5
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_6Tab"}
-          %h5 Week 6
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_7Tab"}
-          %h5 Week 7
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_8Tab"}
-          %h5 Week 8
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_9Tab"}
-          %h5 Week 9
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_10Tab"}
-          %h5 Week 10
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_11Tab"}
-          %h5 Week 11
-          = render :partial => "shared/league_week_review"
-        %li{:id=> "week_12Tab"}
-          %h5 Week 12
-          = render :partial => "shared/league_week_review"
-
-
-
-
-    %li{:id => "team_rankingsTab"}
+- content_for :title, "League Review"
+.tabbable
+  %ul.nav.nav-tabs
+    %li.active
+      %a{:href => "#tab1", :data => {:toggle => "tab"}} Commissioner Notes
+    %li
+      %a{:href => "#tab2", :data => {:toggle => "tab"}} Discussion Board
+    %li
+      %a{:href => "#tab3", :data => {:toggle => "tab"}} Team Standings
+  .tab-content
+    .tab-pane.active#tab1
       %h4
-        Team Rankings
-      %table
-        %thead
-          %tr
-            %td
-              Rank
-            %td
-              Team Name
-            %td
-              Wins
-            %td
-              Losses
-        %tbody
-          %tr
-            %td
-              1
-            %td
-              TeamName
-            %td
-              16
-            %td
-              0
-          %tr
-            %td
-              2
-            %td
-              TeamName
-            %td
-              15
-            %td
-              1
-          %tr
-            %td
-              3
-            %td
-              TeamName
-            %td
-              14
-            %td
-              2
-          %tr
-            %td
-              4
-            %td
-              TeamName
-            %td
-              13
-            %td
-              3
-          %tr
-            %td
-              5
-            %td
-              TeamName
-            %td
-              12
-            %td
-              4
-          %tr
-            %td
-              6
-            %td
-              TeamName
-            %td
-              11
-            %td
-              5
-          %tr
-            %td
-              7
-            %td
-              TeamName
-            %td
-              10
-            %td
-              6
-          %tr
-            %td
-              8
-            %td
-              TeamName
-            %td
-              9
-            %td
-              7
-          %tr
-            %td
-              9
-            %td
-              TeamName
-            %td
-              8
-            %td
-              8
-          %tr
-            %td
-              10
-            %td
-              TeamName
-            %td
-              7
-            %td
-              9
-          %tr
-            %td
-              11
-            %td
-              TeamName
-            %td
-              6
-            %td
-              10
-          %tr
-            %td
-              12
-            %td
-              TeamName
-            %td
-              5
-            %td
-              11
-          %tr
-            %td
-              13
-            %td
-              TeamName
-            %td
-              4
-            %td
-              12
-          %tr
-            %td
-              14
-            %td
-              TeamName
-            %td
-              3
-            %td
-              13
-          %tr
-            %td
-              15
-            %td
-              TeamName
-            %td
-              1
-            %td
-              15
-          %tr
-            %td
-              16
-            %td
-              TeamName
-            %td
-              0
-            %td
-              16
-
-    %li{:id => "league_discussionTab"}
-      %h4
-        Comissioner Notes & Discussion
-
+        Comissioner Notes
       .row
         .span6
           %h5
@@ -319,19 +23,22 @@
             Entry2
           %p
             Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
+    .tab-pane#tab2
+      %h4
+        SmackTalk Board
+      %h6
+        Entry1
+      %p
+        Entry text. Entry text. Entry Text.
+      %h6
+        Entry2
+      %p
+        Entry text. Entry text. Entry Text.
+      %h6
+        Entry3
+      %p
+        Entry text. Entry text. Entry Text.
 
-        .span6
-          %h5
-            SmackTalk Board
-          %h6
-            Entry1
-          %p
-            Entry text. Entry text. Entry Text.
-          %h6
-            Entry2
-          %p
-            Entry text. Entry text. Entry Text.
-          %h6
-            Entry3
-          %p
-            Entry text. Entry text. Entry Text.
+    .tab-pane#tab3
+      %h4
+        Team Standings

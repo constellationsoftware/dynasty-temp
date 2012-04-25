@@ -9,6 +9,11 @@
 
  */
 
+.page_header {
+  border-bottom: 1px #333333 solid;
+  margin-bottom: 10px;
+}
+
 // datatables bootstrap
 
 div.dataTables_length label {
@@ -242,10 +247,10 @@ body {
 }
 
 .large_input {
-  font-size: 36px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  display: block;
+ // font-size: 36px;
+ // margin-bottom: 10px;
+ // margin-top: 10px;
+ // display: block;
 }
 
 nice.tabs-content.contained {

@@ -1,7 +1,7 @@
 = javascript_include_tag controller.action_name
 = stylesheet_link_tag controller_base_name
 - content_for :title, t('.title')
-
+- content_for :section_title, "Coach\'s Corner"
 :coffeescript
   $ ->
     $('#game-review .game').not('.played').hide()
@@ -9,13 +9,13 @@
       btn = $(e.target)
 
       if btn.hasClass('active')
-        btn.text('Show All Games')
+        btn.text('Showing Only My Games')
         $('#game-review .game').not('.played').hide()
       else
-        btn.text('Show Only My Games')
+        btn.text('Showing All Games')
         $('#game-review .game').not('.played').show()
 
-%button.btn{ :id => 'game-filter', :data => { :toggle => 'button' } } Show All Games
+%button.btn{ :id => 'game-filter', :data => { :toggle => 'button' } } Showing Only My Games
 #game-review.tabbable
   %ul.nav.nav-tabs
     - (1..@game_weeks.size).each do |week|
