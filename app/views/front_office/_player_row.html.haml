@@ -9,7 +9,7 @@
   %td= number_to_currency(player.contract.amount) unless player.nil?
   %td.controlwrap
     - if player.nil?
-      = link_to t('.add_player_label'), '#', :class => 'btn btn-primary'
+      = link_to "Add Player", '/research/', :class => 'btn btn-primary btn-mini'
     - else
-      = link_to t('.trade_player_label'), "/front_office/trades?pid=#{lineup.player_teams.first.id}", :class => 'trade'
+      = link_to "Trade Player", "/front_office/trades?pid=#{lineup.player_teams.first.id}", :class => 'trade'
       = link_to '×', drop_player_team_path(lineup.player_teams.first.id), :confirm => (t '.confirmation', :name => player.name.full_name), :class => 'delete' unless player.nil?

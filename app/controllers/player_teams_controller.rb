@@ -49,8 +49,11 @@ class PlayerTeamsController < ApplicationController
 
 
 
-
-      redirect_to :back
+      if @player_team.save
+        redirect_to :back
+      else
+        redirect_to :back
+      end
     end
 
     def bench
