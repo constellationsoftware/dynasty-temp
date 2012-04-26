@@ -10,7 +10,7 @@ class LeaguesController < InheritedResources::Base
     def create
         @league = League.new(params[:league])
         if @league.save!
-            current_user.add_role :manager, @league
+            current_user.add_role 'manager', @league
             current_user.team.league_id = @league.id
             current_user.team.save
             redirect_to root_path

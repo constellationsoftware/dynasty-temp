@@ -69,19 +69,33 @@ class Team < ActiveRecord::Base
             .where{ id == my { self.id } }.first.total.to_f
     end
 
-    def
+    def games_played
+      self.games.scored
+    end
 
     def is_offline
         self.offline
     end
 
     def record
-        record = self.games.collect do |game|
+        record = self.games_played.collect do |game|
             outcome = self.won? game
             break if outcome.nil?
             outcome ? 1 : 0
         end
         record || []
+    end
+
+    def games_won
+      self.record.sum
+    end
+
+    def games_lost
+      self.games_played.count - self.games_won.to_i
+    end
+
+    def rating
+      self.games_won - self.games_lost
     end
 
     def won?(game); game.won?(self) end

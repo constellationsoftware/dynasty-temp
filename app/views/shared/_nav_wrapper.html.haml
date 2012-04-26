@@ -1,3 +1,6 @@
+=javascript_include_tag 'clock'
+
+
 #dynasty-navbar.navbar.navbar-fixed-top
   .navbar-inner
     .container
@@ -31,7 +34,7 @@
 
 
             %li
-              %a{:href => '/research', :class => "#{controller_name === "research" || "player"  ? 'active' : ''}"} Player Research
+              %a{:href => '/research', :class => "#{controller_name === ("research" or "player")  ? 'active' : ''}"} Player Research
 
             %li.divider-vertical
             %li
@@ -68,6 +71,9 @@
       .subnav.subnav-fixed
         .container
           .navbar-inner
+            %ul.nav.nav-pills.pull-left
+              %li
+                %a#date= Clock.first.time.strftime(Settings.datetime_format.date_full)
             %ul.nav.nav-pills.pull-right
 
               %li.dropdown

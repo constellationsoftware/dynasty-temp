@@ -29,6 +29,8 @@ class TeamsController < ApplicationController
         @teams = apply_scopes(resource_class).where{ league_id == my{ @team.league_id } }
     end
 
+
+
     def update
       @team = Team.find(params[:id])
 
