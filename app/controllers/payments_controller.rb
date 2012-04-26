@@ -26,45 +26,50 @@ class PaymentsController < ApplicationController
   end
 
 
-  
+
   # GET
   # Displays a receipt.
   def receipt
-      @title = 'Your transaction has been completed.'
+    @title = 'Your transaction has been completed.'
     @auth_code = params[:x_auth_code]
     @avs_code = params[:x_avs_code]
 
-      @response_code = params[:x_response_code]
+    @response_code = params[:x_response_code]
 
-          @user = User.new(
-          :first_name => params[:x_first_name],
-          :last_name => params[:x_last_name],
-          :phone => params[:x_phone],
-          :email => params[:x_email],
-          :password => 'fom556',
-          :encrypted_password => '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C',
-          )
+    @user = User.new(
+        :first_name => params[:x_first_name],
+        :last_name => params[:x_last_name],
+        :phone => params[:x_phone],
+        :email => params[:x_email],
+        :password => 'fom556',
+        :encrypted_password => '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C',
+    )
 
-          @address = @user.create_address(
-             :user_id => @user.id,
-             :street => params[:x_address],
-             :city => params[:x_city],
-             :state => params[:x_state],
-             :zip => params[:x_zip],
-             :ship_street => params[:x_ship_to_address],
-             :ship_city => params[:x_ship_to_city],
-             :ship_state => params[:x_ship_to_state],
-             :ship_zip => params[:x_ship_to_zip],
-          )
+    @user.save!
 
 
 
 
-      @user.save!
+    @address = @user.create_address(
+        :street => params[:x_address],
+        :city => params[:x_city],
+        :state => params[:x_state],
+        :zip => params[:x_zip]
 
-      @address.save!
+    )
+    @address.save!
 
-      end
+    @ship_address = @user.create_address(
+
+        :street => params[:x_ship_to_address],
+        :city => params[:x_ship_to_city],
+        :state => params[:x_ship_to_state],
+        :zip => params[:x_ship_to_zip],
+    )
+
+    @ship_address.save!
+
+  end
 
 
   def purchase_dynasty_dollars
