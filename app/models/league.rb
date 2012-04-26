@@ -6,7 +6,6 @@
 #  name                  :string(50)      not null
 #  created_at            :datetime
 #  updated_at            :datetime
-#  manager_id            :integer(4)
 #  slug                  :string(255)
 #  default_balance_cents :integer(8)      default(0), not null
 #  public                :boolean(1)      default(TRUE)
@@ -17,7 +16,7 @@
 #
 
 class League < ActiveRecord::Base
-  resourcify
+    resourcify
     self.table_name = 'dynasty_leagues'
 
     extend FriendlyId
@@ -29,12 +28,11 @@ class League < ActiveRecord::Base
     # TODO: remove the class_name declaration as soon as the scoped controllers are cleaned up
     has_many :teams, :class_name => '::Team'
     has_many :users, :through => :teams
-    has_one :draft
-    has_many :drafts
+    has_one  :draft
+    #has_many :drafts
     has_many :players, :through => :teams
     has_many :player_teams, :through => :teams
     has_many :games
-    belongs_to :manager, :class_name => 'User', :inverse_of => :leagues
     has_many :payments, :as => :receivable
     has_many :receipts, :as => :payable
 
@@ -47,7 +45,6 @@ class League < ActiveRecord::Base
         :if => lambda{ |league| league.is_private? }
     #validates :teams, :length => { :maximum => Settings.league.capacity }
 
-    scope :with_manager, joins{ manager }.includes{ manager }
     scope :with_teams, joins{ teams }.includes{ teams }
     scope :filter_by_name, lambda{ |league_name|
         where{ name =~ "#{league_name}%" }
@@ -55,7 +52,7 @@ class League < ActiveRecord::Base
     scope :by_slug, lambda {|value| where{ slug == my{ value } } }
 
     accepts_nested_attributes_for :draft
-    attr_accessible :draft_attributes, :password, :public
+    attr_accessible :name, :password, :public, :draft_attributes
 
     def calculate_game_points(from, to)
         weeks = ((to.to_date - Season.current.start_date) / 7).to_i

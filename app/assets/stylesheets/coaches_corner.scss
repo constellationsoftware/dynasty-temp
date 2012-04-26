@@ -1,6 +1,5 @@
 @import 'tabs';
 
-
 .won { color: #225c23 !important; }
 .lost { color: #870000 !important; }
 .roster {
@@ -10,7 +9,8 @@
     min-height: 200px;
 }
 
-.roster button { width: 70px; }
+.roster .lineup button { width: 70px; }
+.roster .reserve button { width: 100px; }
 
 #swap_player {
     text-align: center;

@@ -1,30 +1,28 @@
 .panel
   %h4 User Control Panel
-  - if @team
-    .well
-      %p
-        League Name:
-        %strong= @team.league.name
-      %p
-        Team Name:
-        %strong= @team.name
-      %p
-        Team Balance:
-        %strong= @team.balance.format
-      - if @team.players.count > 0
-        = link_to 'Manage Team', "/coaches_corner_home", :class => 'btn btn-primary'
+  - if current_user.team
+    - team = current_user.team
+    - if team.league
+      .well
+        %p
+          League Name:
+          %strong= team.league.name
+          - if current_user.has_role? :manager, team.league
+            = link_to 'Edit', edit_league_path(team.league), :class => "btn btn-mini btn-inverse"
+            - if team.league.teams.count === Settings.league.capacity && team.league.draft.nil?
+              = link_to (I18n.t 'schedule_draft', :scope => :user_cp), edit_league_path(team.league), :class => "btn btn-mini btn-danger"
+        %p
+          Team Name:
+          %strong= team.name
+        %p
+          Team Balance:
+          %strong= team.balance.format
 
-      - if @team.players.count < 1
-        - unless @team.league.draft.nil? || @team.league.draft.status === :finished
-          = link_to 'Go to The Draft',  "#{draft_url(:subdomain => @team.league.slug)}", :class => 'btn btn-primary'
-          = link_to 'Set AutoPick Order', auto_pick_url, :class => 'btn btn-primary'
-  - elsif current_user.leagues.size > 0
-    - league = current_user.leagues.first
-    %h5= league.name
-    = link_to 'Edit', edit_league_path(league)
-    - if league.teams.count === Settings.league.capacity && league.draft.nil?
-      |
-      = link_to (I18n.t 'schedule_draft', :scope => :user_cp, :class => "btn btn-primary"), edit_league_path(league)
+        - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
+          /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
+          = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary'
+    - else
+      = link_to t('.labels.join_league'), leagues_path, :class => 'btn btn-inverse'
+      = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
   - else
-    = link_to 'Create New League', new_league_path, :class => 'btn btn-primary'
-    = link_to 'Join A League', leagues_path, :class => 'btn btn-primary'
+    = link_to t('.labels.create_team'), new_team_path

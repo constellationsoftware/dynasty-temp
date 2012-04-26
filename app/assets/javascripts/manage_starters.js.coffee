@@ -1,20 +1,26 @@
 #= require templates/player_depth
 
 $ ->
-    $('#starter button[href="#swap_player"]').on 'click', ->
+    $('#manage_starters button[href="#swap_player"]').on 'click', ->
         source = $(@)
-        row = source.closest '.lineup'
+        return false if source.hasClass('disabled')
+        row = source.closest '.slot'
         player = row.children('.name').first().text()
         lineups = []
         for lineup_id in source.data().compatible
-            lineup = $(".lineup[data-id='#{lineup_id}']")
-            if lineup?
+            # for reserve slots, restrict eligible to empty lineup slots
+            lineup = $(".slot#{if row.hasClass('reserve') then '.empty' else ''}[data-id='#{lineup_id}']").first()
+            if lineup.length > 0
                 lineups.push
                     id:         lineup.data().id
                     name:       lineup.children('.name').first().text() or 'Empty'
                     position:   lineup.children('.position').first().text()
         $('#swap_player .title').first().text("Swap #{player} for which slot?")
-        $('#swap_player .modal-body').first().html(JST.player_depth(id: row.data().id, lineups: lineups))
+        $('#swap_player .modal-body').first().html(JST.player_depth
+            id: row.data().id,
+            lineups: lineups,
+            action: if row.hasClass('reserve') then 'unite' else 'swap'
+        )
 
     # clear the content when we close the modal
     $('#swap_player').on 'hidden', ->
@@ -28,13 +34,38 @@ $ ->
         source.siblings('.btn').attr 'disabled', true
 
         success = (request) ->
-            fromEls = $(".lineup[data-id='#{data.from}']").children('.player')
+            from = $(".slot[data-id='#{data.from}']")
+            fromEls = from.children('.player')
             fromContent = ($(el).text().toString() for el in fromEls)
-            toEls = $(".lineup[data-id='#{data.to}'] .player")
+
+            to = $(".slot[data-id='#{data.to}']")
+            toEls =  to.children('.player')
             toContent = ($(el).text().toString() for el in toEls)
 
             fromEls.text((i, e) -> toContent[i])
             toEls.text((i, e) -> fromContent[i])
+
+            if data.action is 'swap'
+                # if we're swapping into an empty row, toggle the empty class
+                if from.hasClass('empty')
+                    from.removeClass('empty')
+                    to.addClass('empty')
+                else if to.hasClass('empty')
+                    to.removeClass('empty')
+                    from.addClass('empty')
+            else if data.action is 'unite'
+                to.removeClass('empty')
+                from.remove()
+
+            # additionally, we need to en/disable reserve buttons depending on the empty slot loadout
+            $('#injury-reserve .slot button').each ->
+                self = $(@)
+                self.addClass('disabled')
+                for lineup_id in self.data().compatible
+                    empty_lineups = $(".slot.empty[data-id='#{lineup_id}']")
+                    if empty_lineups.length > 0
+                        self.removeClass('disabled')
+                        return
 
             # close the modal
             $('#swap_player').modal 'hide'
@@ -45,5 +76,5 @@ $ ->
                 close: ->
                     source.button 'reset'
                     source.siblings('.btn').attr 'disabled', false
-        $.post("/lineups/swap/#{data.from}/with/#{data.to}").success(success).error(failure)
+        $.post("/lineups/#{data.action}/#{data.from}/with/#{data.to}").success(success).error(failure)
         e.preventDefault()

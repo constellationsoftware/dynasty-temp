@@ -15,8 +15,10 @@
 #  draft_order    :integer(4)
 #
 
+# TODO: get rid of last_socket_id when Pusher is removed
+# TODO: get rid of waiver_order and draft_order attributes?
 class Team < ActiveRecord::Base
-  resourcify
+    resourcify
     self.table_name = 'dynasty_teams'
     money :balance, :cents => :balance_cents
 
@@ -26,6 +28,8 @@ class Team < ActiveRecord::Base
     has_many :picks
     has_many :player_teams
     has_many :players, :through => :player_teams
+    has_many :reserve_player_teams, :class_name => 'PlayerTeam', :foreign_key => :team_id, :conditions => { :lineup_id => nil }
+    has_many :reserve_players, :through => :reserve_player_teams, :source => :player
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
     has_many :accounts, :as => :receivable
@@ -37,9 +41,9 @@ class Team < ActiveRecord::Base
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
     scope :with_picks, joins{ picks }.includes{ picks }
 
-    #attr_accessor :player_teams
-
-
+    attr_accessible :name, :motto
+    validates_presence_of :name
+    validates_uniqueness_of :name
 
     def payments
       Account.where(:payable_id => self.id).all

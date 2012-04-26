@@ -6,7 +6,7 @@ class Fakeout
     # START Customizing
 
     # these are the model names we're going to fake
-    MODELS = %w( Account Clock Pick Draft Events::Base Game League PlayerTeamPoint PlayerTeam Favorite Team Trade User UserAddress )
+    MODELS = %w( Account Clock Pick Draft Events::Base Game League PlayerTeamPoint PlayerTeam Favorite Team Trade User UserAddress Waiver )
 
     attr_accessor :size, :season
 

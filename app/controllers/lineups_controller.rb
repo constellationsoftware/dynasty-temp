@@ -25,9 +25,30 @@ class LineupsController < ApplicationController
         @team = current_user.team
         from_player = PlayerTeam.find_by_team_id_and_lineup_id @team.id, params[:from]
         to_player = PlayerTeam.find_by_team_id_and_lineup_id @team.id, params[:to]
+
         if from_player || to_player
-            from_player.update_attributes! :lineup_id => params[:to].to_i if from_player
-            to_player.update_attributes! :lineup_id => params[:from].to_i if to_player
+            if from_player && to_player # if we need to swap player for player, this avoids unique index collisions
+                from_player.lineup_id = nil
+                from_player.save!
+            end
+            if to_player
+                to_player.lineup_id = params[:from].to_i
+                to_player.save!
+            end
+            if from_player
+                from_player.lineup_id = params[:to].to_i
+                from_player.save!
+            end
+            render :json => true
+        end
+    end
+
+    def unite # Goofy verb, I know. Try to find a GOOD antonym for "reserve" if you don't like it.
+        @team = current_user.team
+        player = PlayerTeam.find_by_team_id_and_player_id_and_lineup_id @team.id, params[:from], nil
+        if player
+            player.lineup_id = params[:to]
+            player.save!
             render :json => true
         end
     end

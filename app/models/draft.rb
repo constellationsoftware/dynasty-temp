@@ -106,7 +106,7 @@ class Draft < ActiveRecord::Base
                     .with_contract
                     .with_favorites(pick.team_id)
                     .order{ points.points.desc }
-                    .page(1).per(5)
+                    .limit(5)
 
                 payload = Jbuilder.encode do |json|
                     json.(players) do |json, player|
@@ -189,10 +189,12 @@ class Draft < ActiveRecord::Base
             Lineup.count.times do |round|
                 t = round.even? ? teams : teams_reverse
                 t.each_with_index do |team, i|
-                    Pick.create :draft_id => self.id,
+                    Pick.create({
+                        :draft_id => self.id,
                         :team_id => team.id,
                         :pick_order => (i + 1) + (teams.size * round),
                         :round => round + 1
+                    }, :without_protection => true)
                 end
             end
         end

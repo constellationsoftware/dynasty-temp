@@ -1,4 +1,4 @@
 - for player in @lineups
   %button.btn{ href: '#',
     autocomplete: 'off',
-    data: { from: @id, to: player.id, loading-text: 'Submitting...' } }= "#{player.position}: #{player.name}"
+    data: { action: @action, from: @id, to: player.id, loading-text: 'Submitting...' } }= "#{player.position}: #{player.name}"

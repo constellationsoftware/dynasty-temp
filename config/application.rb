@@ -5,7 +5,7 @@ require 'rails/all'
 
 #require 'rails-extjs-direct'
 if defined?(Bundler)
-    Bundler.require *Rails.groups(:assets => %w(development test integration))
+    Bundler.require *Rails.groups(:assets => %w(development integration))
 end
 
 module Dynasty

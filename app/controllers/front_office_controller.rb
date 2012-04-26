@@ -35,8 +35,8 @@ class FrontOfficeController < ApplicationController
     end
 
     def financials
-      @team = current_user.team
-      @accounts = @team.all_accounts
+        @team = current_user.team
+        @accounts = @team.all_accounts
     end
 
     def get_player(player_id)

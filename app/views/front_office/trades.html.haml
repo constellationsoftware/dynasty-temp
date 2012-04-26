@@ -31,7 +31,7 @@
                   = ptr.player.name.full_name
                 %a.btn.btn-mini.btn-primary{:href => "/trades/new?pid=#{ptr.id}"}
                   Trade!
-            %td= ptr.lineup.position.abbreviation.upcase
+            %td= ptr.player.position.abbreviation.upcase
             %td= ptr.team.name
             %td
 
@@ -44,8 +44,8 @@
     - @trades[:open_trades_received].andand.each do |trade|
       .panel
         %strong
-          = link_to "Reject Trade", trade_retract_path(trade), :class => "success"
-          = link_to "Accept Trade", trade_accept_path(trade), :class => "failure"
+          = link_to "Accept Trade", trade_accept_path(trade), :class => "success"
+          = link_to "Reject Trade", trade_retract_path(trade), :class => "failure"
         I received an offer to trade
         = trade.requested_player.name
         for

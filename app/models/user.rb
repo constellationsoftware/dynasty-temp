@@ -28,15 +28,12 @@
 #
 
 class User < ActiveRecord::Base
-	rolify
     self.table_name = 'dynasty_users'
-
-
+    rolify
 
     # Include default devise modules. Others available are:
     #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
-
 
     include Gravtastic
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
@@ -61,13 +58,6 @@ class User < ActiveRecord::Base
     #                  :html => "Your username is <strong>XYZ</strong> and your password is <em>PQR!</em>"
     #end
 
-
-    # Include default devise modules. Others available are:
-    # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    # has_and_belongs_to_many :roles
-
-    # Setup accessible (or protected) attributes for your model
-
     #has_many :teams
     has_one :team
     has_many :leagues, :foreign_key => 'manager_id'
@@ -86,32 +76,5 @@ class User < ActiveRecord::Base
 
     validates_presence_of :first_name, :last_name
 
-    # ALWAYS add new roles add the end of this list
-    ROLES = %w[admin user team_owner league_founder league_commissioner banker]
-
-    def roles=(roles)
-        self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.sum
-    end
-
-   def team_league
-     team.league
-   end
-
-    def roles
-        ROLES.reject do |r|
-            ((roles_mask || 0) & 2**ROLES.index(r)).zero?
-        end
-    end
-
-    def is?(role)
-        roles.include?(role.to_s)
-    end
-
-    def role_symbols
-        roles.map(&:to_sym)
-    end
-
-    def full_name
-        "#{self.first_name} #{self.last_name}"
-    end
+    def full_name; "#{self.first_name} #{self.last_name}" end
 end
