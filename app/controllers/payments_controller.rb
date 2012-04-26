@@ -45,7 +45,8 @@ class PaymentsController < ApplicationController
           @user.encrypted_password = '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C'
           @user.save!
 
-          @address = @user.address
+          @address = UserAddress.new
+          @address.user = @user
           @address.street = params[:x_address]
           @address.city = params[:x_city]
           @address.state = params[:x_state]
