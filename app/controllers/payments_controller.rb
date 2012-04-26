@@ -46,6 +46,7 @@ class PaymentsController < ApplicationController
           )
 
           @address = @user.create_address(
+             :user_id => @user.id,
              :street => params[:x_address],
              :city => params[:x_city],
              :state => params[:x_state],
