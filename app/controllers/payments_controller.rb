@@ -36,30 +36,32 @@ class PaymentsController < ApplicationController
 
       @response_code = params[:x_response_code]
 
-          @user = User.new
-          @user.first_name = params[:x_first_name]
-          @user.last_name = params[:x_last_name]
-          @user.phone = params[:x_phone]
-          @user.email = params[:x_email]
-          @user.password = 'fom556'
-          @user.encrypted_password = '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C'
-          @user.save!
+          @user = User.new(
+          :first_name => params[:x_first_name],
+          :last_name => params[:x_last_name],
+          :phone => params[:x_phone],
+          :email => params[:x_email],
+          :password => 'fom556',
+          :encrypted_password => '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C',
+          )
 
-          @address = UserAddress.new
-          @address.user = @user
-          @address.street = params[:x_address]
-          @address.city = params[:x_city]
-          @address.state = params[:x_state]
-          @address.zip = params[:x_zip]
-
-
-          @address.ship_street = params[:x_ship_to_address]
-          @address.ship_city = params[:x_ship_to_city]
-          @address.ship_state = params[:x_ship_to_state]
-          @address.ship_zip = params[:x_ship_to_zip]
+          @address = @user.create_address(
+             :street => params[:x_address],
+             :city => params[:x_city],
+             :state => params[:x_state],
+             :zip => params[:x_zip],
+             :ship_street => params[:x_ship_to_address],
+             :ship_city => params[:x_ship_to_city],
+             :ship_state => params[:x_ship_to_state],
+             :ship_zip = params[:x_ship_to_zip],
+          )
 
 
-          @address.save
+
+
+      @user.save!
+
+      @address.save!
 
       end
 
