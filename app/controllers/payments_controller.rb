@@ -53,7 +53,7 @@ class PaymentsController < ApplicationController
              :ship_street => params[:x_ship_to_address],
              :ship_city => params[:x_ship_to_city],
              :ship_state => params[:x_ship_to_state],
-             :ship_zip = params[:x_ship_to_zip],
+             :ship_zip => params[:x_ship_to_zip],
           )
 
 
