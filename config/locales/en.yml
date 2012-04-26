@@ -2,6 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+    users:
+        home:
+            labels:
+                create_team:    'Create Team'
+                join_league:    'Join Existing League'
+                create_league:  'Create New League'
     nav:
         signed_in:      "Signed in as %{attribute}"
         signed_out:     "Register or Sign in"

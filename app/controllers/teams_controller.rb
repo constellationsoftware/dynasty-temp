@@ -12,6 +12,18 @@ class TeamsController < ApplicationController
     end
     has_scope :with_picks, :type => :boolean
 
+    def new
+        @team = Team.new
+    end
+
+    def create
+        @team = Team.new(params[:team])
+        @team.user_id = current_user.id
+        if @team.save!
+            redirect_to root_path
+        end
+    end
+
     def index
         @team = current_user.team
         @teams = apply_scopes(resource_class).where{ league_id == my{ @team.league_id } }

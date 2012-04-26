@@ -2,9 +2,8 @@
 = stylesheet_link_tag 'leagues/form'
 - if form.object.id.nil?
   = form.input :name, :required => true, :input_html => { :class => 'input-text' }
-= form.input :password, :as => :string, :label => 'Passphrase', :required => false, :input_html => { :class => 'short input-text', :autocomplete => 'off' }, :wrapper_html => { :style => (form.object.public ? 'display: none;' : '') }
+= form.input :password, :as => :string, :label => 'Passphrase', :required => false, :input_html => { :class => 'short input-text', :autocomplete => 'off' }
 - unless @league.draft.nil?
-  = form.inputs :for => :draft, :name => 'Schedule Draft' do |draft|
-    = draft.input :start_datetime, :as => :select, :label => 'Draft Date', :include_blank => false, :collection => @draft_date_collection,
-      :input_html => { :class => 'input-text' }
-    = draft.input :start_datetime, :as => :time_select, :include_blank => false, :ampm => true, :minute_step => 15
+  = form.simple_fields_for :draft do |draft|
+    = draft.input :start_datetime, :as => :collection_select, :label => 'Draft Date', :include_blank => false, :collection => @draft_date_collection#, :input_html => { :class => 'input-text' }
+    = draft.input :start_datetime, :as => :time, :include_blank => false, :ampm => true, :minute_step => 15

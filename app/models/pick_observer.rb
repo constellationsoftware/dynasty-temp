@@ -7,7 +7,7 @@ class PickObserver < ActiveRecord::Observer
     def after_update(pick)
         # TODO: assign lineup ID more intelligently i.e. don't stick a player in a flex just because it's available. They might have wanted them on the bench
         # create PlayerTeam (lineup will be assigned procedurally for the moment)
-        PlayerTeam.create! :team_id => pick.team_id, :player_id => pick.player_id
+        PlayerTeam.create!({ :team_id => pick.team_id, :player_id => pick.player_id }, :without_protection => true)
 
         pick.draft.picked!
 =begin
