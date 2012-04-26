@@ -1,155 +1,178 @@
+- content_for :title, "Player Research: #{@player.name.full_name}"
+
 .row.person
-  .panel
-    .row
-      .span2
-        = image_tag 'headshot.png'
-        = "#{@player.birth_date} "
-        Height: #{@player.phase.height}
-        Weight: #{@player.phase.weight}
-      .span5
-        %h4
-          %strong
-            = @player.name.full_name
-          \#
-          = @player.phase.uniform_number
-        %h5
-          = @player.real_team.display_name.first_name
-          = @player.real_team.display_name.last_name
-          = @player.position.abbreviation.upcase
-          (#{@player.phase.regular_position_depth})
+  .span2
+    = image_tag 'headshot.png'
+    = "#{@player.birth_date} "
+    Height: #{@player.phase.height}
+    Weight: #{@player.phase.weight}
+  .span5
+    %h4
+      %strong
+        = @player.name.full_name
+      \#
+      = @player.phase.uniform_number
+    %h5
+      = @player.real_team.display_name.first_name
+      = @player.real_team.display_name.last_name
+      = @player.position.abbreviation.upcase
+      (#{@player.phase.regular_position_depth})
 
-          2011-2012 Bye Week:
-          = @player.contract.bye_week
+      2011-2012 Bye Week:
+      = @player.contract.bye_week
 
-        %p
-          Contract Summary: $
-          = @player.contract.summary
-          over
-          = @player.contract.length
-          years, ending in
-          = @player.contract.end_year
-        %p
-          Yearly Salary: $
-          = @player.contract.amount
-        %p
-          Free Agent:
-          = @player.contract.free_agent_year
-      .span4
-        - if user_signed_in?
-          .well
-            - if @league_players.include?(@player)
-              %h5
-              -if @player_team.team == @current_user.team
-                %h5
-                  On Your Team
-              -else
-                .btn-group
-                  %a.btn.dropdown-toggle{:data => {:toggle => 'dropdown'}}
-                    = @player.position.name
-                    for
-                    = @player_team.team.name
-                    %span.caret
-                  %ul.dropdown-menu
-                    %li
-                      %a{:href => "/trades/new?pid=#{@player_team.id}"}
-                        Offer A Trade
+    %p
+      Contract Summary: $
+      = @player.contract.summary
+      over
+      = @player.contract.length
+      years, ending in
+      = @player.contract.end_year
+    %p
+      Yearly Salary: $
+      = @player.contract.amount
+    %p
+      Free Agent:
+      = @player.contract.free_agent_year
+
+
+
+  .span5
+    - if user_signed_in?
+      .well
+        - if @league_players.include?(@player)
+          %h5
+          -if @player_team.team == @current_user.team
+            %h5
+              On Your Team
+          -else
+            .btn-group
+              %a.btn.dropdown-toggle{:data => {:toggle => 'dropdown'}}
+                = @player.position.name
+                for
+                = @player_team.team.name
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{:href => "/trades/new?pid=#{@player_team.id}"}
+                    Offer A Trade
+        - else
+          .btn-group
+
+            - if @open_slots.first
+              %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.andand.id)}
+                = "Add #{@player.name.full_name}"
+
             - else
-              .btn-group
-
-                - if @open_slots.first
-                  %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.andand.id)}
-                    = "Add #{@player.name.full_name}"
-
-                - else
-                  %h5
-                    = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.pluralize}:"
-                  %ul.nav.nav-list
-                    - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do |pt|
-                      %li
-                        .btn-group
-                          %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
-                            = pt.name
-                            %span.caret
-                          %ul.dropdown-menu
-                            = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
-
+              %h5
+                = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.pluralize}:"
+              %ul.nav.nav-list
+                - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do |pt|
+                  %li
+                    .btn-group
+                      %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
+                        = pt.name
+                        %span.caret
+                      %ul.dropdown-menu
+                        = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
   %br
   %br
-  .panel
-    %h5
-      This Season's Performance
-    .row
-      .span12
-        %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
-          %thead
-            %tr
-              %th Event Date
-              %th PTS
-              %th
-                Pass
-              %th
-                Rush
-              %th
-                Def
-              %th
-                Score
-              %th
-                ST
-              %th
-                Sck
-              %th
-                Fmbl
 
-          %tbody
-          - @player.event_points.current.each do |pep|
-            %tr{:id => dom_id(pep)}
-              %th= pep.event.start_date_time.strftime("%B %e, %Y")
-              %th= pep.points
-              %th= pep.passing_points
-              %th= pep.rushing_points
-              %th= pep.defensive_points
-              %th= pep.scoring_points
-              %th= pep.special_teams_points
-              %th= pep.sacks_against_points
-              %th= pep.fumbles_points
-  .panel
-    %h5
-      Career Performance
+.row
+  .span8
     .row
-      .span12
-        %table.career-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
-          %thead
-            %tr
-              %th
-                Season
-              %th
-                PTS
-              %th
-                Pass
-              %th
-                Rush
-              %th
-                Def
-              %th
-                Score
-              %th
-                ST
-              %th
-                Sck
-              %th
-                Fmbl
-              %th
-                Games
-          %tbody
-          - @player.season_points.each do |psp|
-            %tr{:id => dom_id(psp)}
-              %td= psp.year
-              %td= psp.points
-              %td= psp.passing_points
-              %td= psp.rushing_points
-              %td= psp.defensive_points
-              %td= psp.scoring_points
-              %td= psp.special_teams_points
-              %td= psp.sacks_against_points
-              %td= psp.fumbles_points
-              %td= psp.games_played
+      %h3
+        This Season's Performance
+      %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+        %thead
+          %tr
+            %th Event Date
+            %th PTS
+            %th
+              Pass
+            %th
+              Rush
+            %th
+              Def
+            %th
+              Score
+            %th
+              ST
+            %th
+              Sck
+            %th
+              Fmbl
+
+        %tbody
+        - @player.event_points.current.each do |pep|
+          %tr{:id => dom_id(pep)}
+            %th= pep.event.start_date_time.strftime("%B %e, %Y")
+            %th= pep.points
+            %th= pep.passing_points
+            %th= pep.rushing_points
+            %th= pep.defensive_points
+            %th= pep.scoring_points
+            %th= pep.special_teams_points
+            %th= pep.sacks_against_points
+            %th= pep.fumbles_points
+
+    .row
+      %h3
+        Career Performance
+      %table.career-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+        %thead
+          %tr
+            %th
+              Season
+            %th
+              PTS
+            %th
+              Pass
+            %th
+              Rush
+            %th
+              Def
+            %th
+              Score
+            %th
+              ST
+            %th
+              Sck
+            %th
+              Fmbl
+            %th
+              Games
+        %tbody
+        - @player.season_points.each do |psp|
+          %tr{:id => dom_id(psp)}
+            %td= psp.year
+            %td= psp.points
+            %td= psp.passing_points
+            %td= psp.rushing_points
+            %td= psp.defensive_points
+            %td= psp.scoring_points
+            %td= psp.special_teams_points
+            %td= psp.sacks_against_points
+            %td= psp.fumbles_points
+            %td= psp.games_played
+  - cache do
+    .span4
+      .well
+        %h3
+          Player News
+        %dl
+        - @rss.items.each_with_index do |item, i|
+          - if i <= 5
+            %dt
+              %strong
+                = item.title
+              %em
+                Date:
+                = distance_of_time_in_words(Time.now, item.pubDate)
+                ago
+            %dd
+              = item.description
+              %br
+              %a{:href => "#{item.link}", :target => "_blank"} Full Article
+              %br
+              %br

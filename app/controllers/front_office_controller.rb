@@ -1,6 +1,6 @@
 class FrontOfficeController < ApplicationController
     before_filter :authenticate_user!
-    sub_pages :roster, :trades, :waivers, :financials
+    sub_pages :roster, :trades, :waivers
     respond_to :html
     helper_method :get_player
 
@@ -34,10 +34,7 @@ class FrontOfficeController < ApplicationController
 
     end
 
-    def financials
-      @team = current_user.team
-      @accounts = @team.all_accounts
-    end
+
 
     def get_player(player_id)
         Player.where{ id == my{ player_id } }

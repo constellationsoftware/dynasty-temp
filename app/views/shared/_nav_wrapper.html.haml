@@ -31,7 +31,7 @@
 
 
             %li
-              %a{:href => '/research'} Player Research
+              %a{:href => '/research', :class => "#{controller_name === "research" || "player"  ? 'active' : ''}"} Player Research
 
             %li.divider-vertical
             %li
@@ -69,10 +69,9 @@
         .container
           .navbar-inner
             %ul.nav.nav-pills.pull-right
-              %li
-                %a{:href => '/mockups/league_review'} League Review
+
               %li.dropdown
-                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}} Coach's Corner
+                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "coaches_corner" ? 'active' : ''}"} Coach's Corner
                 %ul.dropdown-menu
                   %li
                     %a{:href => '/coachs_corner/game_review'}
@@ -82,8 +81,11 @@
                     %a{:href => '/coachs_corner/manage_starters'}
                       &nbsp;
                       %i.icon-cog.pad-right &nbsp; Manage Starters
+
+
+
               %li.dropdown
-                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}} Front Office
+                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "front_office" ? 'active' : ''}"} Front Office
                 %ul.dropdown-menu
                   %li
                     %a{:href => '/front_office/roster'}
@@ -96,6 +98,9 @@
                       &nbsp;
                       %i.icon-cog.pad-right &nbsp; Waiver Wire
               %li
-                %a{:href => '/front_office/financials'} Team Financials
+                %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
+
               %li
-                %a{:href => '/payments/purchase_dynasty_dollars'} Purchase Dynasty Dollars
+                %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
+              %li
+                %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === "purchase_dynasty_dollars" ? 'active' : ''}"} Purchase Dynasty Dollars

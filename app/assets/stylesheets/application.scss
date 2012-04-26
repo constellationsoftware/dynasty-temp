@@ -9,6 +9,23 @@
 
  */
 
+
+.person {
+  border-bottom: 1px #0000000 solid !important;
+  margin-bottom: 5px !important;
+}
+#dynasty-navbar .active {
+  color: white !important;
+  background-color: #000000;
+}
+
+.subnav .active {
+  color: white;
+  background-color: #000099 !important;
+  margin-top: 3px !important;
+  margin-bottom: 0px !important;
+  padding: 5px !important;
+}
 .page_header {
   border-bottom: 1px #333333 solid;
   margin-bottom: 10px;

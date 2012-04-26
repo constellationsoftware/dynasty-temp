@@ -1,5 +1,7 @@
 class TeamsController < ApplicationController
     before_filter :authenticate_user!
+    respond_to :html
+    helper_method :get_player
 
     has_scope :with_player_contracts, :type => :boolean, :default => false, :only => :manage do |controller, scope|
         scope.joins{ players.contract }.includes{ players.contract }
@@ -27,6 +29,11 @@ class TeamsController < ApplicationController
           format.xml { render :xml => @team.errors, :status => :unprocessable_entity }
         end
       end
+    end
+
+    def financials
+      @team = current_user.team
+      @accounts = @team.all_accounts
     end
 
     def manage

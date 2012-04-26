@@ -1,9 +1,14 @@
 - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
 %tr.lineup{ :data => { :id => lineup.id } }
   %td.position= lineup.flex ? lineup.flex_positions.collect{ |p| p.abbreviation.upcase }.join('/') : lineup.position.abbreviation.upcase
-  %td.player.name= player.name.full_name unless player.nil?
-  %td.player.bye= player.contract.bye_week unless player.nil?
+  %td.player.name
+    %a{:href => "/players/#{player.id}"}
+      = player.name.full_name unless player.nil?
+    = player.position.abbreviation.upcase
+    = player.real_team.name
   %td.player.points= player.points_this_season unless player.nil?
+  %td.player.points.projected NA
+  %td.player.bye= player.contract.bye_week unless player.nil?
   %td
     %button.btn.btn-mini{ :href => '#swap_player',
       :data => { :toggle => 'modal',

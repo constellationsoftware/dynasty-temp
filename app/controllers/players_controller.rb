@@ -1,5 +1,10 @@
+require 'rss'
+require 'open-uri'
+
 class PlayersController < ApplicationController
   before_filter :authenticate_user!
+
+
   respond_to :html, :json
 
         has_scope :with_name
@@ -50,6 +55,14 @@ class PlayersController < ApplicationController
 
 
   def show
+
+      player = Player.find(params[:id])
+      feed_url = "http://search.nfl.com/urss?q=#{player.name.last_name}"
+      open(feed_url) do |http|
+        response = http.read
+        @rss = RSS::Parser.parse(response, false)
+
+      end
 
       @player = Player.current.with_contract.with_name.with_all_points.with_points_from_season(2011).includes(:contract, :name, :position, :points, :event_points).find(params[:id])
       #REFACTOR obviously this is shit, but my brain is fried.

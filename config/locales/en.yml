@@ -110,7 +110,6 @@ en:
                         failure: "Couldn't drop %{resource_player_name}"
         actions:
             create:
-                success: "%{resource_name} was successfully created"
                 failure: "%{resource_name} could not be created"
             update:
                 success: "%{resource_name} was successfully updated"

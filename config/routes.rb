@@ -9,6 +9,9 @@ Dynasty::Application.routes.draw do
     match "research/contracts",       :to => 'research#contracts', :as => 'research_contracts', :via => [:get]
     match "research/depth_charts",    :to => 'research#depth_charts', :as => 'research_team', :via => [:get]
 
+    # Team Financials
+    match "financials",               :to => 'teams#financials', :as => 'team_financials', :via => [:get]
+
     # Authorize.net stuff
 
     match '/payments/purchase_dynasty_dollars', :to => 'payments#purchase_dynasty_dollars', :as => 'payments_purchase_dynasty_dollars', :via => [:get]
@@ -114,7 +117,9 @@ Dynasty::Application.routes.draw do
     end
 
     resources :teams do
+
         member do
+
             get :account
             get :manage
             get :roster
