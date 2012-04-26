@@ -18,7 +18,7 @@
 %button.btn{ :id => 'game-filter', :data => { :toggle => 'button' } } Show All Games
 #game-review.tabbable
   %ul.nav.nav-tabs
-    - (1..@game_weeks.size).each do |week|
+    - (1..@game_weeks.size).each_with_index do |week, i|
       %li.tab{ :class => "#{@week === week || (@week.zero? && i.zero?) ? 'active' : ''}" }
         %a{ :href => "#week#{week}", :data => { :toggle => 'tab' } }
           = t '.tab_label', :week => week

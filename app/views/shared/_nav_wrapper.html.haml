@@ -84,8 +84,7 @@
                 %a
                   .span.badge.badge-inverse
                     = Clock.first.time.strftime(Settings.datetime_format.date_full)
-                    \:
-                    = current_user.team.name
+                    = ": #{current_user.team.name}" unless current_user.team.nil?
               %li
                 %a{:href => '/coachs_corner'}= I18n.t :coaches_corner, :scope => [ :nav, :subnav ]
               %li

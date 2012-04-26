@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120423183212) do
+ActiveRecord::Schema.define(:version => 20120426160932) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -908,7 +908,6 @@ ActiveRecord::Schema.define(:version => 20120423183212) do
     t.datetime "start_datetime"
     t.datetime "finished_at"
     t.integer  "league_id"
-    t.integer  "pick_id",        :limit => 2
     t.string   "state"
   end
 
@@ -955,19 +954,15 @@ ActiveRecord::Schema.define(:version => 20120423183212) do
     t.string   "name",          :limit => 50,                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "manager_id"
     t.string   "slug"
     t.boolean  "public",                      :default => true
     t.string   "password",      :limit => 32
     t.integer  "teams_count"
     t.integer  "balance_cents", :limit => 8,  :default => 0
-    t.integer  "draft_id"
   end
 
-  add_index "dynasty_leagues", ["draft_id"], :name => "index_dynasty_leagues_on_draft_id", :unique => true
   add_index "dynasty_leagues", ["id", "name", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
   add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
-  add_index "dynasty_leagues", ["manager_id"], :name => "index_leagues_on_manager_id"
   add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
 
   create_table "dynasty_lineups", :force => true do |t|
@@ -1127,6 +1122,7 @@ ActiveRecord::Schema.define(:version => 20120423183212) do
     t.boolean "autopick",                      :default => false
     t.integer "waiver_order"
     t.integer "draft_order"
+    t.string  "motto"
   end
 
   add_index "dynasty_teams", ["balance_cents"], :name => "index_dynasty_teams_on_balance_cents"
@@ -1181,15 +1177,12 @@ ActiveRecord::Schema.define(:version => 20120423183212) do
     t.string   "authentication_token"
     t.datetime "last_seen"
     t.string   "first_name",             :limit => 50,                  :null => false
-    t.string   "role"
-    t.integer  "roles_mask"
     t.string   "phone",                  :limit => 32
     t.string   "last_name",              :limit => 50,                  :null => false
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "dynasty_users", ["first_name"], :name => "index_dynasty_users_on_name"
-  add_index "dynasty_users", ["role"], :name => "index_dynasty_users_on_role"
 
   create_table "dynasty_waivers", :force => true do |t|
     t.integer  "player_team_id"
@@ -1900,11 +1893,11 @@ ActiveRecord::Schema.define(:version => 20120423183212) do
   end
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
+    t.string   "name",          :limit => 32
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"

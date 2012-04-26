@@ -36,7 +36,7 @@ class Events::ScoreGames < Events::Base
                 .order{ lineup_id }
                 .select{[ player_id, lineup_id, lineup.string, player_event_points.id.as('points_id'), player_event_points.points ]}
 
-            game_points = players.inject(0) do |sum, player|
+            game_points = players.inject(0.to_f) do |sum, player|
                 player_lineup_ids << player['lineup_id']
 
                 # create historical score record
@@ -44,7 +44,8 @@ class Events::ScoreGames < Events::Base
                     :game_id => game.id,
                     :lineup_id => player['lineup_id'],
                     :player_point_id => player['points_id']
-                sum + (player['points'] / (player['string'] === 2 ? Settings.bench_score_divisor : 1)).to_f
+                ret = sum + ((player['points'].to_f / (player['string'] === 2 ? Settings.bench_score_divisor : 1)).round(1))
+                ret.round(1)
             end
 
             # create records for lineups which didn't have either players or points for the players

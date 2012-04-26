@@ -1,7 +1,7 @@
 = stylesheet_link_tag 'forms'
-= semantic_form_for @league, :url => league_path(@league), :method => :put, :html => { :class => 'nice' } do |f|
-  .row.span12.centered
-    .panel
+.row.span12.centered
+  .panel
+    = simple_form_for @league, :url => league_path(@league) do |f|
       %h3 Edit #{@league.name}
       = render :partial => 'form', :locals => { :form => f }
-      = f.submit 'Submit', :class => 'nice small radius blue button'
+      = f.button :submit, 'Submit'

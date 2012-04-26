@@ -9,7 +9,7 @@
 #
 
 class PlayerTeam < ActiveRecord::Base
-  resourcify
+    resourcify
     self.table_name = 'dynasty_player_teams'
 
     belongs_to :player
