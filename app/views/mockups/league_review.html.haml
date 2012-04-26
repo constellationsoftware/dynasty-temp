@@ -1,44 +1,95 @@
 - content_for :title, "League Review"
-.tabbable
-  %ul.nav.nav-tabs
-    %li.active
-      %a{:href => "#tab1", :data => {:toggle => "tab"}} Commissioner Notes
-    %li
-      %a{:href => "#tab2", :data => {:toggle => "tab"}} Discussion Board
-    %li
-      %a{:href => "#tab3", :data => {:toggle => "tab"}} Team Standings
-  .tab-content
-    .tab-pane.active#tab1
-      %h4
-        Comissioner Notes
-      .row
-        .span6
-          %h5
-            Thread Name
-          %h6
-            Entry1
-          %p
-            Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
-          %h6
-            Entry2
-          %p
-            Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
-    .tab-pane#tab2
-      %h4
-        SmackTalk Board
-      %h6
-        Entry1
-      %p
-        Entry text. Entry text. Entry Text.
-      %h6
-        Entry2
-      %p
-        Entry text. Entry text. Entry Text.
-      %h6
-        Entry3
-      %p
-        Entry text. Entry text. Entry Text.
+.row
+  .span8
+    .tabbable
+      %ul.nav.nav-tabs
+        %li.active
+          %a{:href => "#tab1", :data => {:toggle => "tab"}} Commissioner Notes
+        %li
+          %a{:href => "#tab2", :data => {:toggle => "tab"}} Discussion Board
 
-    .tab-pane#tab3
-      %h4
-        Team Standings
+      .tab-content
+        .tab-pane.active#tab1
+          %h4
+            Comissioner Notes
+          .row
+            .span8
+              %dl
+                %dt
+                  Entry1
+                %dd
+                  Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
+                %dt
+                  Entry2
+                %dd
+                  Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
+                %dt
+                  Entry3
+                %dd
+                  Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
+                %dt
+                  Entry 4
+                %dd
+                  Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text. Entry text. Entry text. Entry Text. Entry Text.
+
+
+        .tab-pane#tab2
+          %h4
+            Discussion Board
+          %dl
+
+            %dt
+              Entry1
+            %dd
+              Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text. Entry text. Entry text. Entry Text.
+            %dt
+              Entry2
+            %dd
+              Entry text. Entry text. Entry Text.  Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.
+            %dt
+              Entry3
+            %dd
+              Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.
+            %dt
+              Entry4
+            %dd
+              Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text. Entry text. Entry text. Entry Text.
+            %dt
+              Entry5
+            %dd
+              Entry text. Entry text. Entry Text.  Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.
+            %dt
+              Entry6
+            %dd
+              Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.
+
+  .span4
+    %h4
+      Team Standings
+    %table.table-striped.table-condensed.table-bordered
+      %thead
+        %tr
+          %th
+            Rank
+          %th
+            Team
+          %th
+            Wins
+          %th
+            Losses
+      %tbody
+
+      - @teams.each_with_index do |team, i|
+        %tr
+          %td= i += 1
+          %td
+            %p
+              %strong
+                = team.name
+              %br
+                %em
+                  = team.motto
+
+          %td= team.games_won
+          %td= team.games_lost
+

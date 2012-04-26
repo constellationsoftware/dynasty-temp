@@ -14,6 +14,8 @@ class MockupsController < ApplicationController
 
   def league_review
     @title = "League Review"
+    @teams = current_user.team.league.teams.all
+    @teams.sort!{|a, b| b.rating <=> a.rating }
   end
 
 
