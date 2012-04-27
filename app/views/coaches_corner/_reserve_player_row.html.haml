@@ -1,8 +1,12 @@
 %tr.slot.reserve{ :data => { :id => player.id } }
   %td.position= player.position.abbreviation.upcase
-  %td.player.name= player.name.full_name
-  %td.player.bye= player.contract.bye_week
+  %td.player.name
+    = link_to player_path(player) do
+      %span.name= player.name.full_name
+    %span.position= player.position.abbreviation.upcase
+    %span.team= player.real_team.name
   %td.player.points= player.points_this_season
+  %td.player.bye= player.contract.bye_week
   %td
     - empty_slots = Lineup.empty(@team.id).by_position(player.position.id)
     %button.btn.btn-mini{ :href => '#swap_player',

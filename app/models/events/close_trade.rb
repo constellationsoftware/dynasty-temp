@@ -49,13 +49,13 @@ class Events::CloseTrade < Events::Base
                 :event => self,
                 :receivable => league,
                 :receivable_balance => league.balance,
-                :payable => team.league,
+                :payable => team,
                 :payable_balance => team.balance
             # other half to the fed
             team.balance -= (fee / 2)
             fee_to_fed = Account.new :amount => (fee / 2),
                 :event => self,
-                :payable => team.league,
+                :payable => team,
                 :payable_balance => team.balance
             if fee_to_league.save! && fee_to_fed.save!
                 team.save!
