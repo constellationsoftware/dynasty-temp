@@ -5,8 +5,9 @@
   .navbar-inner
     .container
       // Brand and Logo Stay Here
-      %img.logo.visible-desktop.pull_left{:src => "/assets/logo_small.png"}
-      %img.logo.hidden-desktop.pull_left{:src => "/assets/navbar_logo.png"}
+      %a.logo{:href=>'/'}
+        %img.logo.visible-desktop.pull_left{:src => "/assets/logo_small.png"}
+        %img.logo.hidden-desktop.pull_left{:src => "/assets/navbar_logo.png"}
       // Collapsible nav for tablets/phones
       .row
 

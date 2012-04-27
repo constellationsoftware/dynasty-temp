@@ -31,8 +31,10 @@ class FrontOfficeController < ApplicationController
     end
 
     def waivers
-
+        @waivers = Waiver.current.all
     end
+
+
 
 
 

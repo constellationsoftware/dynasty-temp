@@ -5,6 +5,7 @@ jQuery ->
   $('.logo').popover()
   $(".tooltip").tooltip()
   $('.dropdown-toggle').dropdown()
+
   #$(".collapse").collapse() # opens all current accordions or something?
   $('.tab-pane').tab()
   $(".all-players-data").dataTable
@@ -24,4 +25,5 @@ jQuery ->
   $(".team-financials-data").dataTable
     sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
     sPaginationType: "bootstrap"
+    iDisplayLength: 25
     sScrollY: 500

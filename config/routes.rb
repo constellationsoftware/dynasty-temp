@@ -129,6 +129,7 @@ Dynasty::Application.routes.draw do
     resources :player_teams do
         get :league_roster, :on => :collection
         get :drop, :on => :member
+        get :bid, :on => :member
     end
 
     # The priority is based upon order of creation:

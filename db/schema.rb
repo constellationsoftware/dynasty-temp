@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120426160932) do
+ActiveRecord::Schema.define(:version => 20120427160405) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -1253,6 +1253,16 @@ ActiveRecord::Schema.define(:version => 20120426160932) do
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "dynasty_users", ["first_name"], :name => "index_dynasty_users_on_name"
+
+  create_table "dynasty_waiver_bids", :force => true do |t|
+    t.integer  "waiver_id"
+    t.integer  "team_id"
+    t.integer  "bid_cents"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "dynasty_waiver_bids", ["team_id", "waiver_id"], :name => "index_dynasty_waiver_bids_on_teams"
 
   create_table "dynasty_waivers", :force => true do |t|
     t.integer  "player_team_id"

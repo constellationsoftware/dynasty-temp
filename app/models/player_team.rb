@@ -19,7 +19,7 @@ class PlayerTeam < ActiveRecord::Base
     belongs_to :lineup, :class_name => '::Lineup'
     has_one :league, :through => :team
     has_many :receipts, :class_name => 'PlayerAccount', :as => :payable
-
+    has_many :waivers
     # shortcut associations that bypass the person table (actual person data is seldom useful)
     has_one :player_name,
         :class_name => 'DisplayName',
@@ -54,7 +54,9 @@ class PlayerTeam < ActiveRecord::Base
         self.player.name.full_name
     end
 
+    def on_waiver_wire
 
+    end
 
     def guaranteed_remaining
         contract = self.player.contract

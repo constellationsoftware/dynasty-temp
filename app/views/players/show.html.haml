@@ -58,23 +58,30 @@
                     Offer A Trade
         - else
           .btn-group
+            - if @player.waivers.current.in_league(current_user.team).first
 
-            - if @open_slots.first
-              %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.andand.id)}
-                = "Add #{@player.name.full_name}"
-
+              .btn-group
+                %a.btn.btn-primary
+                  On Waiver Wire
+                %a.btn.btn-primary{:href => "/front_office/waivers"}
+                  Make a Bid
             - else
-              %h5
-                = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.pluralize}:"
-              %ul.nav.nav-list
-                - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do |pt|
-                  %li
-                    .btn-group
-                      %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
-                        = pt.name
-                        %span.caret
-                      %ul.dropdown-menu
-                        = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
+              - if @open_slots.first
+                %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.andand.id)}
+                  = "Add #{@player.name.full_name}"
+
+              - else
+                %h5
+                  = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.pluralize}:"
+                %ul.nav.nav-list
+                  - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do |pt|
+                    %li
+                      .btn-group
+                        %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
+                          = pt.name
+                          %span.caret
+                        %ul.dropdown-menu
+                          = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
   %br
   %br
 

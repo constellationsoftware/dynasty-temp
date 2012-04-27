@@ -28,6 +28,7 @@ class Player < Person
     has_one  :position, :through => :player_position
     has_many :player_teams
     has_many :teams, :through => :player_teams
+    has_many :waivers, :through => :player_teams
     has_many :leagues, :through => :teams
     has_many :picks
     has_many :favorites
@@ -182,6 +183,8 @@ class Player < Person
         end
 
     end
+
+
 
     def points_this_season
         season = Season.current
