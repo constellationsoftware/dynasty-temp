@@ -17,27 +17,40 @@
       %th
         Waiver Ends In
       %th
-        *
+        Enter Bid
     - @waivers.each do |waiver|
       %tr
-        %th
+        %td
           %a{:href => "/players/#{waiver.player_team.player.id}"}
             = waiver.player_team.player.name.full_name
-        %th
+        %td
           = waiver.team.name
-        %th
+        %td
           = number_to_currency(waiver.player_team.player_contract.amount)
-        %th
+        %td
           = number_to_currency(waiver.player_team.player_contract.summary)
           \/
           = waiver.player_team.player_contract.length
           yrs
-        %th
+        %td
           = waiver.player_team.player_contract.end_year
-        %th
+        %td
           = distance_of_time_in_words(Clock.first.time, waiver.end_datetime)
-        %th
-          %a.btn.btn-primary{:href => "/player_teams/#{waiver.player_team_id}/bid"}
-            Bid
-
-
+        %td
+          - if waiver.current_user_bids(current_user).first.andand.bid_cents
+            You bid
+            = number_to_currency(waiver.current_user_bids(current_user).first.andand.bid_cents)
+          - else
+            %form{:action => "/player_teams/#{waiver.player_team_id}/bid?waiver_id=#{waiver.id}"}
+              .control-group
+                .controls
+                  .input-prepend.input-append
+                    %input{:type => :hidden, :name => "waiver_id", :value => "#{waiver.id}"}
+                    %input.span2{:name => "bid_amount"}
+                    %button.btn{:type => "Submit"}
+                      Bid
+.well
+  %h5
+    For Testing:
+    %a.btn.btn-primary{:href => "/front_office/resolve_bids"}
+      Resolve Bids Now

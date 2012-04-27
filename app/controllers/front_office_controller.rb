@@ -32,9 +32,25 @@ class FrontOfficeController < ApplicationController
 
     def waivers
         @waivers = Waiver.current.all
+
     end
 
+    def resolve_bids
+        @waivers = Waiver.current.all
+        @waivers.each do |waiver|
 
+          unless waiver.waiver_bids.first.nil?
+            @winning_team = waiver.waiver_bids.first.team
+            @ptr = PlayerTeam.find(waiver.player_team_id)
+            @ptr.team_id = @winning_team.id
+            @ptr.save
+          end
+
+
+          waiver.end_datetime = Clock.first.time
+          waiver.save
+        end
+    end
 
 
     def financials

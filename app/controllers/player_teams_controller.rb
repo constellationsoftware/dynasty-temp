@@ -80,24 +80,15 @@ class PlayerTeamsController < ApplicationController
 
     def bid
         @player_team = PlayerTeam.find(params[:id])
-        @bidder = Team.find(session[:team_id])
+        @bidder = current_user.team
+        @bid_amount = params[:bid_amount]
+        @waiver_bid = WaiverBid.new(
+            :team_id => current_user.team.id,
+            :bid_cents => @bid_amount,
+            :waiver_id => params[:waiver_id]
+        )
 
-        if @player_team.waiver_team_id.nil?
-            @player_team.waiver_team_id = @bidder.id
-            @player_team.save
-        end
-
-        if @player_team.waiver_team_id
-            @current_winner = Team.find(@player_team.waiver_team_id)
-            @current_bid = @current_winner.waiver_order
-            @player_team.save
-        end
-
-        if @bidder.waiver_order < @current_bid
-            @player_team.waiver_team_id = @bidder.id
-            @player_team.save
-        end
-
+        @waiver_bid.save!
         respond_to do |format|
             format.html { redirect_to :back, :flash => {:info => "You made a bid on #{@player_team.name}"} }
             format.xml { head :ok }

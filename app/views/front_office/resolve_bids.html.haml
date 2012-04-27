@@ -1,0 +1,24 @@
+- content_for :title, "Bid Resolution Testing"
+- content_for :section_title, "Front Office"
+
+- @waivers = Waiver.resolved_now.all
+- @waivers.each do |waiver|
+  %h4
+    = waiver.player_team.player.name.full_name
+  %ul
+  - if waiver.waiver_bids.first
+    - waiver.waiver_bids.each do |bid|
+      %li
+        = bid.team.name
+        bid
+        = number_to_currency(bid.bid_cents)
+
+    %p
+      %strong
+        Winner:
+        = waiver.waiver_bids.first.team.name
+  - else
+    %li
+      No Bids
+
+  %br
