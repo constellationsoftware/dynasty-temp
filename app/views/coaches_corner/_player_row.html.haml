@@ -1,7 +1,12 @@
 - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
 %tr.slot.lineup{ :data => { :id => lineup.id }, :class => player.nil? ? 'empty' : '' }
   %td.position= lineup.flex ? lineup.flex_positions.collect{ |p| p.abbreviation.upcase }.join('/') : lineup.position.abbreviation.upcase
-  %td.player.name= player.name.full_name unless player.nil?
+  %td.player.name
+    - unless player.nil?
+      = link_to player_path(player) do
+        %span.name= player.name.full_name
+      %span.position= player.position.abbreviation.upcase
+      %span.team= player.real_team.name
   %td.player.bye= player.contract.bye_week unless player.nil?
   %td.player.points= player.points_this_season unless player.nil?
   %td
