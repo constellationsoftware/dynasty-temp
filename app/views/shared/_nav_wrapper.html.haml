@@ -5,8 +5,8 @@
   .navbar-inner
     .container
       // Brand and Logo Stay Here
-      //%img.logo.visible-desktop.pull_left{:src => "/assets/logo_small.png"}
-      //%img.logo.hidden-desktop.pull_left{:src => "/assets/navbar_logo.png"}
+      %img.logo.visible-desktop.pull_left{:src => "/assets/logo_small.png"}
+      %img.logo.hidden-desktop.pull_left{:src => "/assets/navbar_logo.png"}
       // Collapsible nav for tablets/phones
       .row
 
@@ -18,6 +18,9 @@
         .nav-collapse
           // Primary Nav
           %ul.nav.pull-right
+            %li
+              %a#date= Clock.first.time.strftime(Settings.datetime_format.date_full)
+            %li.divider-vertical
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
                 Tutorial
@@ -32,7 +35,7 @@
                 %li
                   %a= t 'nav.video4' |
 
-
+            %li.divider-vertical
             %li
               %a{:href => '/research', :class => "#{controller_name === ("research" or "player")  ? 'active' : ''}"} Player Research
 
@@ -71,9 +74,7 @@
       .subnav.subnav-fixed
         .container
 
-          %ul.nav.nav-pills.pull-left
-            %li
-              %a#date= Clock.first.time.strftime(Settings.datetime_format.date_full)
+
           %ul.nav.nav-pills.pull-right
 
             %li.dropdown

@@ -302,14 +302,16 @@ nice.tabs-content.contained {
   display: none;
 }
 
+.logo {
+  float: left;
+  margin-bottom: -150px !important;
+  position: fixed;
+  z-index: 5000;
+}
 // NAV BARS
 #dynasty-navbar {
 
-  .logo {
-    float: left;
-    margin-bottom: -150px !important;
-    display: fixed;
-  }
+
 }
 
 #dynasty-navbar.private {
