@@ -20,7 +20,6 @@
           %th Player Name
           %th Position
           %th Team Name
-          %th
       %tbody
         - @trades[:their_players].each do |ptr|
           %tr
@@ -33,7 +32,6 @@
                   Trade!
             %td= ptr.player.position.abbreviation.upcase
             %td= ptr.team.name
-            %td
 
 
 

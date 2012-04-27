@@ -12,7 +12,7 @@
         for
         = @selected_player.team.name
 
-    .span6
+
       = f.input :requested_player_id, :as => :hidden, :value => @selected_player.id
       = f.input :offered_player, :as => :select, :collection => options_from_collection_for_select(@my_players, :id, :name, params[:pid])
       = f.input :message, :input_html => { :rows => 5, :cols => 70, :maxlength => 255  }, :label => "Send a message"
