@@ -62,8 +62,15 @@ class PlayerTeamsController < ApplicationController
 
     def drop
         @player_team = PlayerTeam.find(params[:id])
-        @player_team.team_id = nil
 
+
+        @waiver = Waiver.new(
+          :player_team_id => @player_team.id,
+          :team_id => @player_team.team_id,
+          :end_datetime => Clock.first.time + 2.days
+        )
+        @waiver.save
+        @player_team.team_id = nil
         if @player_team.save
             respond_with(@player_team) do |format|
                 format.html { redirect_to :back }
