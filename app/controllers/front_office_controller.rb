@@ -42,6 +42,7 @@ class FrontOfficeController < ApplicationController
           unless waiver.waiver_bids.first.nil?
             @winning_team = waiver.waiver_bids.first.team
             @ptr = PlayerTeam.find(waiver.player_team_id)
+            @ptr.lineup_id = nil
             @ptr.team_id = @winning_team.id
             @ptr.save
           end
