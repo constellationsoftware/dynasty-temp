@@ -37,6 +37,10 @@ class FrontOfficeController < ApplicationController
 
 
 
+    def financials
+        @team = current_user.team
+        @accounts = @team.all_accounts
+    end
 
     def get_player(player_id)
         Player.where{ id == my{ player_id } }

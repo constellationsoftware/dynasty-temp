@@ -28,6 +28,8 @@ class Team < ActiveRecord::Base
     has_many :picks
     has_many :player_teams
     has_many :players, :through => :player_teams
+    has_many :reserve_player_teams, :class_name => 'PlayerTeam', :foreign_key => :team_id, :conditions => { :lineup_id => nil }
+    has_many :reserve_players, :through => :reserve_player_teams, :source => :player
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
     has_many :accounts, :as => :receivable

@@ -9,6 +9,7 @@ class CoachesCornerController < ApplicationController
         @lineups = Lineup.with_positions.joins{ player_teams.outer }
             .includes{ player_teams }
             .order{ id }
+        @reserve = @team.reserve_players
     end
 
     def game_review

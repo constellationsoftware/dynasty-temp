@@ -1,6 +1,8 @@
 class TradesController < ApplicationController
     before_filter :authenticate_user!
 
+    respond_to :html
+
     # GET /trades
     # GET /trades.xml
     def index
@@ -104,7 +106,7 @@ class TradesController < ApplicationController
     def retract
         @trade = Trade.find(params[:trade_id])
         @trade.open = 0
-        @trade.denied_at = Clock.first.nice_time
+        @trade.denied_at = Time.now
         @trade.save
         respond_to do |format|
             format.html { redirect_to :back, :flash => {:info => "You retracted your offer to #{@trade.requested_player.team.name}"} }
@@ -115,7 +117,7 @@ class TradesController < ApplicationController
     def reject
         @trade = Trade.find(params[:trade_id])
         @trade.open = 0
-        @trade.denied_at = Clock.first.nice_time
+        @trade.denied_at = Time.now
         @trade.save
         respond_to do |format|
             format.html { redirect_to :back, :flash => {:info => "You rejected the offer from #{@trade.offered_player.team.name}"} }
@@ -124,54 +126,12 @@ class TradesController < ApplicationController
     end
 
     def accept
-        @trade = Trade.find(params[:trade_id])
-        @trade.open = 0
-        @trade.accepted = 1
-        @trade.accepted_at = Clock.first.nice_time
-        @trade.save
-
-        # process trade transaction
-
-        ### Todo extract all of this to model methods
-        # Find the teams in question
-        @initial_team = @trade.initial_team
-        @second_team = @trade.second_team
-
-        # Swap PTR's & Update timestamps and clear lineups!
-        @offered_ptr = @trade.offered_player
-        @requested_ptr = @trade.requested_player
-
-
-        @offered_ptr.team_id = @second_team.id
-        @requested_ptr.team_id = @initial_team.id
-        @offered_ptr.depth = 0
-        @requested_ptr.depth = 0
-        @offered_ptr.details = "Traded from #{@initial_team.name}"
-        @requested_ptr.details = "Traded from #{@second_team.name}"
-        @offered_ptr.save
-        @requested_ptr.save
-
-
-        # swap balances - does nothing right now
-        @offered_cash = @trade.offered_cash
-        @requested_cash = @trade.requested_cash
-
-        #@initial_team.balance.balance_cents = @initial_team.balance.balance_cents - @offered_cash
-        #@initial_team.balance.balance_cents = @initial_team.balance.balance_cents + @offered_cash
-
-        #@second_team.balance.balance_cents = @second_team.balance.balance_cents + @offered_cash
-        #@second_team.balance.balance_cents = @second_team.balance.balance_cents - @offered_cash
-
-
-        # Do nothing with picks for right now
-        # @offered_picks = @trade.offered_picks
-        # @requested_picks = @trade.requested_picks
-
-
-        respond_to do |format|
-            format.html { redirect_to :back, :flash => {:info => "You accepted the offer from #{@trade.requested_player.team.name} to trade #{@requested_ptr.name} for #{@offered_ptr.name}"} }
-            format.xml { head :ok }
-        end
+        trade = Trade.find(params[:trade_id])
+        trade.open = 0
+        trade.accepted = 1
+        trade.accepted_at = Time.now
+        trade.save!
+        redirect_to :back
     end
 
     # DELETE /trades/1

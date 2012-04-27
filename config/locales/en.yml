@@ -32,12 +32,22 @@ en:
         manage_starters:
             title:          'Manage Starters'
             modal_title:    'Which player to swap?'
+            columns:
+                position:           'Slot'
+                name:               'Name'
+                bye:                'Bye'
+                points:             'Points This Season'
+                projected_points:   'Projected Points'
         player_row:
             labels:
-                add:        'Add Player'
-                trade:      'Trade'
-                1st_string: 'Bench'
-                2nd_string: 'Start'
+                add:            'Add Player'
+                trade:          'Trade'
+                1st_string:     'Bench'
+                2nd_string:     'Start'
+        reserve_player_row:
+            no_eligible_slot:   'No Available Slot!'
+            labels:
+                reserve:        'Add to Roster'
 
     front_office:
         roster:

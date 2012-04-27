@@ -6,9 +6,9 @@ class TradeObserver < ActiveRecord::Observer
     end
 
     def before_update(trade)
-        # trade is closing
-        if trade.open === 0
-            if trade.accepted_was === 0 && trade.accepted === 1 # trade succeeded
+        if trade.open
+        else # trade is closing
+            if trade.accepted && !trade.accepted_was # trade succeeded
                 trade_event = Events::CloseTrade.create!
                 trade_event.process trade
             else # trade rejected or retracted

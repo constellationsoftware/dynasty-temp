@@ -7,17 +7,18 @@
 - content_for :title, t('.title')
 - content_for :section_title, "Coach\'s Corner"
 
-.row
+#manage_starters.row
   .span12
     %h5 Starters
     %table#starter.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
-          %th Position
-          %th Name
-          %th Points This Season
-          %th Projected Points
-          %th Bye
+
+          %th= t('.columns.position')
+          %th= t('.columns.name')
+          %th= t('.columns.bye')
+          %th= t('.columns.points')
+          /%th= t('.columns.projected_points')
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
@@ -27,12 +28,26 @@
     %table#bench.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
-          %th Position
-          %th Name
-          %th Points This Season
-          %th Projected Points
-          %th Bye
+          %th= t('.columns.position')
+          %th= t('.columns.name')
+          %th= t('.columns.bye')
+          %th= t('.columns.points')
+          /%th= t('.columns.projected_points')
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
           = render :partial => 'player_row', :locals => { :lineup => lineup } if lineup.string === 2
+
+    %h5 Injury/Reserve
+    %table#injury-reserve.table-bordered.table-striped.table-condensed.roster
+      %thead
+        %tr
+          %th= t('.columns.position')
+          %th= t('.columns.name')
+          %th= t('.columns.bye')
+          %th= t('.columns.points')
+          /%th= t('.columns.projected_points')
+          %th.controlwrap
+      %tbody
+        - @reserve.each do |player|
+          = render :partial => 'reserve_player_row', :locals => { :player => player }

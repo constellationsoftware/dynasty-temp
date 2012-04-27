@@ -1,0 +1,13 @@
+%tr.slot.reserve{ :data => { :id => player.id } }
+  %td.position= player.position.abbreviation.upcase
+  %td.player.name= player.name.full_name
+  %td.player.bye= player.contract.bye_week
+  %td.player.points= player.points_this_season
+  %td
+    - empty_slots = Lineup.empty(@team.id).by_position(player.position.id)
+    %button.btn.btn-mini{ :href => '#swap_player',
+      :data => { :toggle => 'modal',
+      :compatible => Lineup.by_position(player.position.id).collect{ |l| l.id } } ,
+      :class => "#{empty_slots.count > 0 ? '' : 'disabled' }" }
+      = t '.labels.reserve'
+      %i{ :class => "icon-plus" }

@@ -27,8 +27,7 @@ class Trade < ActiveRecord::Base
     belongs_to :second_team, :class_name => 'Team'
     belongs_to :offered_player, :foreign_key => 'offered_player_id', :class_name => 'PlayerTeam'
     belongs_to :requested_player, :foreign_key => 'requested_player_id', :class_name => 'PlayerTeam'
-    belongs_to :league
-    has_many :transactions, :as => :eventable, :class_name => 'Account'
+    has_many   :transactions, :as => :eventable, :class_name => 'Account'
 
     scope :open, where(:open => 1)
     scope :closed, where(:open => 0)
