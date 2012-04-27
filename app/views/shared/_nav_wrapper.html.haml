@@ -70,43 +70,43 @@
     - if user_signed_in?
       .subnav.subnav-fixed
         .container
-          .navbar-inner
-            %ul.nav.nav-pills.pull-left
-              %li
-                %a#date= Clock.first.time.strftime(Settings.datetime_format.date_full)
-            %ul.nav.nav-pills.pull-right
 
-              %li.dropdown
-                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "coaches_corner" ? 'active' : ''}"} Coach's Corner
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => '/coachs_corner/game_review'}
-                      &nbsp;
-                      %i.icon-cog.pad-right &nbsp; Game Review
-                  %li
-                    %a{:href => '/coachs_corner/manage_starters'}
-                      &nbsp;
-                      %i.icon-cog.pad-right &nbsp; Manage Starters
+          %ul.nav.nav-pills.pull-left
+            %li
+              %a#date= Clock.first.time.strftime(Settings.datetime_format.date_full)
+          %ul.nav.nav-pills.pull-right
+
+            %li.dropdown
+              %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "coaches_corner" ? 'active' : ''}"} Coach's Corner
+              %ul.dropdown-menu
+                %li
+                  %a{:href => '/coachs_corner/game_review'}
+                    &nbsp;
+                    %i.icon-cog.pad-right &nbsp; Game Review
+                %li
+                  %a{:href => '/coachs_corner/manage_starters'}
+                    &nbsp;
+                    %i.icon-cog.pad-right &nbsp; Manage Starters
 
 
 
-              %li.dropdown
-                %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "front_office" ? 'active' : ''}"} Front Office
-                %ul.dropdown-menu
-                  %li
-                    %a{:href => '/front_office/roster'}
-                      &nbsp;
-                      %i.icon-cog.pad-right &nbsp; Manage Roster
-                    %a{:href => '/front_office/trades'}
-                      &nbsp;
-                      %i.icon-cog.pad-right &nbsp; Trades
-                    %a{:href => '/front_office/waivers'}
-                      &nbsp;
-                      %i.icon-cog.pad-right &nbsp; Waiver Wire
-              %li
-                %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
+            %li.dropdown
+              %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "front_office" ? 'active' : ''}"} Front Office
+              %ul.dropdown-menu
+                %li
+                  %a{:href => '/front_office/roster'}
+                    &nbsp;
+                    %i.icon-cog.pad-right &nbsp; Manage Roster
+                  %a{:href => '/front_office/trades'}
+                    &nbsp;
+                    %i.icon-cog.pad-right &nbsp; Trades
+                  %a{:href => '/front_office/waivers'}
+                    &nbsp;
+                    %i.icon-cog.pad-right &nbsp; Waiver Wire
+            %li
+              %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
 
-              %li
-                %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
-              %li
-                %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === "purchase_dynasty_dollars" ? 'active' : ''}"} Purchase Dynasty Dollars
+            %li
+              %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
+            %li
+              %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === "purchase_dynasty_dollars" ? 'active' : ''}"} Purchase Dynasty Dollars

@@ -18,7 +18,11 @@
   color: white !important;
   background-color: #000000;
 }
-
+.subnav a {
+  margin-top: 3px !important;
+  margin-bottom: 0px !important;
+  padding: 5px !important;
+}
 .subnav .active {
   color: white;
   background-color: #000099 !important;
