@@ -1,4 +1,5 @@
 = form.input :email, :required => false
 = form.input :password, :required => false
-= form.check_box :remember_me, :required => false
-= form.label :remember_me, :required => false
+= form.label :remember_me, :value => 'hi', :required => false, :class => 'checkbox' do
+  Remember me
+  = form.check_box :remember_me, :required => false
