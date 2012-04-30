@@ -1,5 +1,4 @@
-= form.input :email, :as => :email, :required => false, :input_html => { :class => 'input-text' }
-= form.input :password, :required => false, :input_html => { :class => 'input-text' }
-//= form.input :remember_me, :as => :boolean, :required => false, :input_html => { :class => 'input-text remember' }
-%li.forgot-password
-  = link_to 'Forgot your password?', new_password_path('user')
+= form.input :email, :required => false
+= form.input :password, :required => false
+= form.check_box :remember_me, :required => false
+= form.label :remember_me, :required => false

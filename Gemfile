@@ -47,15 +47,11 @@ gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kendoui-rails'
-gem 'formtastic' # '~> 1.2.4'
 gem 'simple_form'
-
-
 
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
-
 
 # Authentication & Permissions
 # gem 'authlogic'

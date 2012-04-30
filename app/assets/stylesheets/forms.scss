@@ -1,13 +1,11 @@
 $error-color: #C00000;
 
 form {
-    &.formtastic {
-        li { list-style-type: none; }
-        abbr[title="required"] {
-            color: $error-color;
-            border: none;
-            font-size: 100%;
-        }
+    li { list-style-type: none; }
+    abbr[title="required"] {
+        color: $error-color;
+        border: none;
+        font-size: 100%;
     }
 
     &.nice {
