@@ -26,7 +26,7 @@
 
             - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
               /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
-              = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary'
+              = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
         .span4
           .well
             %h4
