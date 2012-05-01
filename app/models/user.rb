@@ -26,6 +26,7 @@
 #  phone                  :string(32)
 #  last_name              :string(50)      not null
 #
+require 'digest/md5'
 
 class User < ActiveRecord::Base
     self.table_name = 'dynasty_users'
@@ -75,6 +76,11 @@ class User < ActiveRecord::Base
     scope :with_address, joins{ address }.includes{ address }
 
     validates_presence_of :first_name, :last_name
+
+    def gravatar_profile
+      hash = Digest::MD5.hexdigest(self.email)
+      return "http://gravatar.com/#{hash}"
+    end
 
     def full_name; "#{self.first_name} #{self.last_name}" end
 end

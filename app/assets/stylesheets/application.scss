@@ -9,6 +9,10 @@
 
  */
 
+#zenbox_tab {
+  width: 30px !important;
+}
+
 // needs latest Compass, add '@import "compass"' to your scss
 .navbar .nav > li > a {
   padding: 12px;
@@ -43,7 +47,7 @@
   margin: 0 !important;
 }
 #dynasty-navbar .active {
-  color: black !important;
+  color: white !important;
   background: rgb(246,248,249); /* Old browsers */
   background: -moz-linear-gradient(top,  rgba(246,248,249,1) 0%, rgba(229,235,238,1) 50%, rgba(215,222,227,1) 51%, rgba(245,247,249,1) 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,248,249,1)), color-stop(50%,rgba(229,235,238,1)), color-stop(51%,rgba(215,222,227,1)), color-stop(100%,rgba(245,247,249,1))); /* Chrome,Safari4+ */
@@ -80,7 +84,7 @@
   padding: 5px !important;
 }
 .subnav .active {
-  color: white !important;
+  color: #ffffff !important;
   background: rgb(69,72,77) !important;
   background: -moz-linear-gradient(top,  rgba(69,72,77,1) 0%, rgba(0,0,0,1) 100%)!important;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(69,72,77,1)), color-stop(100%,rgba(0,0,0,1)))!important;
@@ -91,6 +95,14 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 )!important;
 
 
+}
+
+.game .span4 {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+.subnav a.active {
+  color: white !important;
 }
 .page_header {
   border-bottom: 1px #333333 solid;

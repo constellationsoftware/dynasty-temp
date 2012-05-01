@@ -36,14 +36,14 @@ $ ->
         success = (request) ->
             from = $(".slot[data-id='#{data.from}']")
             fromEls = from.children('.player')
-            fromContent = ($(el).text().toString() for el in fromEls)
+            fromContent = ($(el).html().toString() for el in fromEls)
 
             to = $(".slot[data-id='#{data.to}']")
             toEls =  to.children('.player')
-            toContent = ($(el).text().toString() for el in toEls)
+            toContent = ($(el).html().toString() for el in toEls)
 
-            fromEls.text((i, e) -> toContent[i])
-            toEls.text((i, e) -> fromContent[i])
+            fromEls.html((i, e) -> toContent[i])
+            toEls.html((i, e) -> fromContent[i])
 
             if data.action is 'swap'
                 # if we're swapping into an empty row, toggle the empty class

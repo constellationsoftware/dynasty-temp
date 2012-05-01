@@ -5,28 +5,35 @@
     - if team.league
       .row
         .span8
-          .well
-            %p
-              League Name:
-              %strong= team.league.name
-              - if current_user.is_manager_of? team.league
-                = link_to 'Edit', edit_league_path(team.league), :class => "btn btn-mini btn-inverse"
-                - if team.league.teams.count === Settings.league.capacity && team.league.draft.nil?
-                  = link_to (I18n.t 'schedule_draft', :scope => :user_cp), edit_league_path(team.league), :class => "btn btn-mini btn-danger"
+          .thumbnail
+            .row
+              .span2
+                = image_tag current_user.gravatar_url
+                %br
+                %small
+                  = link_to 'Edit', current_user.gravatar_profile
+              .span5
+                %p
+                  League Name:
+                  %strong= team.league.name
+                  - if current_user.is_manager_of? team.league
+                    = link_to 'Edit', edit_league_path(team.league), :class => "btn btn-mini btn-inverse"
+                    - if team.league.teams.count === Settings.league.capacity && team.league.draft.nil?
+                      = link_to (I18n.t 'schedule_draft', :scope => :user_cp), edit_league_path(team.league), :class => "btn btn-mini btn-danger"
 
-            %p
-              Team Name:
-              %strong= team.name
-            %p
-              Team Motto:
-              %strong= team.motto
-            %p
-              Team Balance:
-              %strong= team.balance.format
+                %p
+                  Team Name:
+                  %strong= team.name
+                %p
+                  Team Motto:
+                  %strong= team.motto
+                %p
+                  Team Balance:
+                  %strong= team.balance.format
 
-            - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
-              /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
-              = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary'
+                - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
+                  /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
+                  = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary'
         .span4
           .well
             %h4

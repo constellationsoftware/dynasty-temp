@@ -15,7 +15,6 @@
           %th id
           %th Payment From
           %th Paid To
-          %th Event
           %th Event Type
           %th Amount
           %th Balance
@@ -27,9 +26,8 @@
             %td= a.id
             %td= a.payable.andand.name ||= "The Fed"
             %td= a.receivable.andand.name ||= "The Fed"
-            %th= a.event_id
             %th= a.event_type
             %th= number_to_currency(0.01 * a.amount_cents)
-            %th Balance
+            %th= a.balance
             %th
               = time_tag a.transaction_datetime

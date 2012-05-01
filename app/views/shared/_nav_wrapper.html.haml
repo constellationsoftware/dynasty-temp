@@ -1,6 +1,4 @@
 =javascript_include_tag 'clock'
-
-
 #dynasty-navbar.navbar.navbar-fixed-top
   .navbar-inner
     .container
@@ -101,4 +99,4 @@
             %li
               %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
             %li
-              %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === "purchase_dynasty_dollars" ? 'active' : ''}"} Purchase Dynasty Dollars
+              %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === ("purchase_dynasty_dollars" or "dynasty_dollars_receipt") ? 'active' : ''}"} Purchase Dynasty Dollars
