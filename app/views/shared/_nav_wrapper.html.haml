@@ -6,7 +6,7 @@
     .container
       // Brand and Logo Stay Here
       %a.logo{:href=>'/'}
-        %img.logo.visible-desktop.pull_left{:src => "/assets/logo_small.png"}
+        %img.logo.visible-desktop.pull_left{:src => "/assets/single_logo_minimal.png"}
         %img.logo.hidden-desktop.pull_left{:src => "/assets/navbar_logo.png"}
       // Collapsible nav for tablets/phones
       .row
@@ -63,10 +63,10 @@
                         %i.icon-pencil.pad-right &nbsp; Edit Profile
                     %li
                       %a{:href => '#'}
-                        %i.icon-cog.pad-right &nbsp; Manage Account
+                        %i.icon-th-list.pad-right &nbsp; Manage Account
                     %li
                       %a{:href => '/teams/'}
-                        %i.icon-cog.pad-right &nbsp; Manage Team
+                        %i.icon-cog.pad-right &nbsp; Edit Team
                     %li.divider
                     %li
                       %a{:href => destroy_user_session_path}
@@ -82,29 +82,19 @@
               %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "coaches_corner" ? 'active' : ''}"} Coach's Corner
               %ul.dropdown-menu
                 %li
-                  %a{:href => '/coachs_corner/game_review'}
-                    &nbsp;
-                    %i.icon-cog.pad-right &nbsp; Game Review
+                  %a{:href => '/coachs_corner/game_review'} Game Review
                 %li
-                  %a{:href => '/coachs_corner/manage_starters'}
-                    &nbsp;
-                    %i.icon-cog.pad-right &nbsp; Manage Starters
+                  %a{:href => '/coachs_corner/manage_starters'} Manage Starters
 
 
-
+            //TODO: Pages under Trades Controller need to highlight player research
             %li.dropdown
               %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "front_office" ? 'active' : ''}"} Front Office
               %ul.dropdown-menu
                 %li
-                  %a{:href => '/front_office/roster'}
-                    &nbsp;
-                    %i.icon-cog.pad-right &nbsp; Manage Roster
-                  %a{:href => '/front_office/trades'}
-                    &nbsp;
-                    %i.icon-cog.pad-right &nbsp; Trades
-                  %a{:href => '/front_office/waivers'}
-                    &nbsp;
-                    %i.icon-cog.pad-right &nbsp; Waiver Wire
+                  %a{:href => '/front_office/roster'} Manage Roster
+                  %a{:href => '/front_office/trades'} Trades
+                  %a{:href => '/front_office/waivers'} Waiver Wire
             %li
               %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
 

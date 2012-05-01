@@ -14,11 +14,16 @@
       %thead
         %tr
 
-          %th= t('.columns.position')
-          %th= t('.columns.name')
-          %th= t('.columns.points')
-          %th= t('.columns.projected_points')
-          %th= t('.columns.bye')
+          %th
+            %h5= t('.columns.position')
+          %th
+            %h5= t('.columns.name')
+          %th
+            %h5= t('.columns.points')
+          %th
+            %h5= t('.columns.projected_points')
+          %th
+            %h5= t('.columns.bye')
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
@@ -28,11 +33,16 @@
     %table#bench.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
-          %th= t('.columns.position')
-          %th= t('.columns.name')
-          %th= t('.columns.points')
-          %th= t('.columns.projected_points')
-          %th= t('.columns.bye')
+          %th
+            %h5= t('.columns.position')
+          %th
+            %h5= t('.columns.name')
+          %th
+            %h5= t('.columns.points')
+          %th
+            %h5= t('.columns.projected_points')
+          %th
+            %h5= t('.columns.bye')
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
@@ -42,10 +52,14 @@
     %table#injury-reserve.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
-          %th= t('.columns.position')
-          %th= t('.columns.name')
-          %th= t('.columns.points')
-          %th= t('.columns.bye')
+          %th
+            %h5= t('.columns.position')
+          %th
+            %h5= t('.columns.name')
+          %th
+            %h5= t('.columns.points')
+          %th
+            %h5= t('.columns.bye')
           /%th= t('.columns.projected_points')
           %th.controlwrap
       %tbody

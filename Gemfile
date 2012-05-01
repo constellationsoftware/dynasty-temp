@@ -49,7 +49,7 @@ gem 'jquery-rails'
 gem 'kendoui-rails'
 gem 'formtastic' # '~> 1.2.4'
 gem 'simple_form'
-
+gem "quantify", "~> 3.1.2"
 
 
 gem 'gravtastic' # gravatar support

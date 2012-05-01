@@ -1,43 +1,63 @@
 - content_for :title, "Player Research: #{@player.name.full_name}"
 
 .row.person
-  .span2
-    = image_tag 'headshot.png'
-    = "#{@player.birth_date} "
-    Height: #{@player.phase.height}
-    Weight: #{@player.phase.weight}
-  .span5
-    %h4
-      %strong
-        = @player.name.full_name
-      \#
-      = @player.phase.uniform_number
-    %h5
-      = @player.real_team.display_name.first_name
-      = @player.real_team.display_name.last_name
-      = @player.position.abbreviation.upcase
-      (#{@player.phase.regular_position_depth})
+  .span8
+    %table.table-condensed
 
-      2011-2012 Bye Week:
-      = @player.contract.bye_week
+      %tbody
+        %tr
+          %th{:rowspan => "7"}
+            = image_tag 'headshot.png'
+            %h5
+              = @player.name.full_name
+              \#
+              = @player.phase.uniform_number
+          %th.left{:colspan => "7"}
+            %h5
+              = @player.real_team.display_name.first_name
+              = @player.real_team.display_name.last_name
+              = @player.position.abbreviation.upcase
+              (#{@player.phase.regular_position_depth})
 
-    %p
-      Contract Summary: $
-      = @player.contract.summary
-      over
-      = @player.contract.length
-      years, ending in
-      = @player.contract.end_year
-    %p
-      Yearly Salary: $
-      = @player.contract.amount
-    %p
-      Free Agent:
-      = @player.contract.free_agent_year
+              2011-2012 Bye Week:
+              = @player.contract.bye_week
 
 
 
-  .span5
+
+
+
+
+        %tr
+          %td.left
+            Contract:
+          %td.left{:colspan => "5"}
+            = number_to_currency(@player.contract.summary)
+            over
+            = @player.contract.length
+            years, ending in
+            = @player.contract.end_year
+        %tr
+          %td.left
+            %strong Yearly Salary:
+          %td.left{:colspan => "5"}= number_to_currency(@player.contract.amount)
+        %tr
+          %td.left
+            %strong Free Agent:
+          %td.left{:colspan => "5"}= @player.contract.free_agent_year
+        %tr
+          %td.left
+            %strong Birth Date:
+          %td.left= @player.birth_date
+          %td.left
+            %strong Height:
+          %td.left= @player.phase.height
+          %td.left
+            %strong Weight:
+          %td.left= @player.phase.weight
+
+
+  .span4
     - if user_signed_in?
       .well
         - if @league_players.include?(@player)

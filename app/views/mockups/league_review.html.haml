@@ -95,7 +95,8 @@
               Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.
   .span4
     %h4
-      Team Standings
+      Standings for
+      = current_user.team.league.name
     %table.table-striped.table-condensed.table-bordered
       %thead
         %tr

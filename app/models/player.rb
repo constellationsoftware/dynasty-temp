@@ -85,6 +85,12 @@ class Player < Person
     end
 
 
+
+    def weight
+      weight = phase.weight
+      Quantity.new(weight, :lb)
+    end
+
     def amount
         self.contract.amount
     end
