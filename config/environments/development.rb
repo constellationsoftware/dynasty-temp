@@ -32,7 +32,7 @@ Dynasty::Application.configure do
     config.assets.compile = true
 
     # Set to true for individual stylesheets
-    config.assets.debug = false
+    config.assets.debug = true
     config.assets.logger = nil
 
 

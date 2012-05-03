@@ -19,6 +19,7 @@ class SportsDb::Team < ActiveRecord::Base
     self.table_name = 'teams'
 
     has_many :american_football_action_plays
+    has_one  :name, :class_name => 'TeamName', :as => :entity, :identity => :teams
     has_one :display_name,
             :foreign_key => 'entity_id',
             :conditions => ['entity_type = ?', 'teams']
@@ -41,12 +42,9 @@ class SportsDb::Team < ActiveRecord::Base
     has_and_belongs_to_many :documents, :join_table => "teams_documents"
     has_and_belongs_to_many :medias, :join_table => "teams_media"
 
-
     def self.nfl
       where("league_id = ?", 9)
-
     end
-
 
     def games_played
         games = self.participants_events
@@ -55,14 +53,7 @@ class SportsDb::Team < ActiveRecord::Base
         end
     end
 
-    def name
-        self.display_name.full_name
-    end
-
     def current_players
         self.person_phases.current_phase
     end
-
-
-
 end

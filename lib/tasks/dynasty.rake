@@ -54,12 +54,12 @@ namespace :dynasty do
                 puts 'Emptying player points table!'
                 ActiveRecord::Base.connection.execute("TRUNCATE #{PlayerPoint.table_name}")
 
-                seasons = Season.order { season_key.desc }
+                seasons = Season.order{ season_key.desc }
                 seasons.each do |season|
 
                     year = season.season_key
 
-                    players = Person.joins { stats }.calculate_points_from_season(year.to_i)
+                    players = Person.joins{ stats }.calculate_points_from_season(year.to_i)
                     players.each do |player|
                         # zero out points per player
                         fumbles_points = 0
@@ -185,14 +185,16 @@ namespace :dynasty do
 
                             end
                         end
+
+                        metadata = PersonEventMetadata.find_by_person_id_and_event_id(player.id, event.id)
                         # this provides the total sum points
                         points = stats.collect { |stat| stat.points }.compact.sum
                         point_data = []
-                        point_data << "(#{points},#{player.id},#{event.id}, #{defensive_points}, #{fumbles_points}, #{passing_points}, #{rushing_points}, #{sacks_against_points},#{scoring_points},#{special_teams_points})"
+                        point_data << "(#{points}, #{player.id}, #{event.id}, #{metadata.nil? ? nil : metadata.id}, #{defensive_points}, #{fumbles_points}, #{passing_points}, #{rushing_points}, #{sacks_against_points},#{scoring_points},#{special_teams_points})"
 
                         puts "Writing point totals for player id: #{player.id} #{event.id}..."
                         ActiveRecord::Base.connection.execute(
-                            "INSERT INTO #{PlayerEventPoint.table_name}(points, player_id, event_id, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points) VALUES #{point_data.join(',')}"
+                            "INSERT INTO #{PlayerEventPoint.table_name}(points, player_id, event_id, metadata_id, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points) VALUES #{point_data.join(',')}"
                         )
                     end
                 end

@@ -15,13 +15,15 @@
 #  death_location_id         :integer(4)
 #
 
-class Player < Person
+class Player < ActiveRecord::Base
     self.table_name = 'persons'
 
+    #has_one  :name, :class_name => 'PlayerName', :as => :entity, :identity => :persons
     has_one  :name,
-             :class_name => 'DisplayName',
-             :foreign_key => 'entity_id',
-             :conditions => { :entity_type => 'persons' }
+        :class_name => 'DisplayName',
+        :foreign_key => 'entity_id',
+        :conditions => { :entity_type => 'persons' }
+    has_many :person_phases, :foreign_key => :person_id
     has_one  :score, :class_name => 'PersonScore'
     has_one  :position_link, :class_name => 'PlayerPosition'
     has_one  :player_position
@@ -68,7 +70,7 @@ class Player < Person
     end
 
     def real_team
-      @real_team = SportsDb::Team.find(self.person_phases.current.first.membership_id)
+        SportsDb::Team.find(self.person_phases.current.first.membership_id)
     end
 
    ## def team_short
