@@ -50,7 +50,7 @@ gem 'kendoui-rails'
 gem 'formtastic' # '~> 1.2.4'
 gem 'simple_form'
 gem "quantify", "~> 3.1.2"
-
+gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/watu/table_builder.git"
 
 gem 'gravtastic' # gravatar support
 gem 'country_select'
@@ -93,6 +93,7 @@ group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
     #gem 'query_trace'
+    gem 'rails-dev-tweaks', '~> 0.6.1'
 end
 
 group :production do

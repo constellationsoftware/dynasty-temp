@@ -16,6 +16,8 @@ class MockupsController < ApplicationController
     @title = "League Review"
     @teams = current_user.team.league.teams.all
     @teams.sort!{|a, b| b.rating <=> a.rating }
+    @games = Game.where(:league_id => current_user.team.league_id)
+    @game_weeks = @games.group_by {|g| g.date}
   end
 
 

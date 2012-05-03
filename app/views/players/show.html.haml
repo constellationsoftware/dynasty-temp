@@ -107,6 +107,7 @@
         %thead
           %tr
             %th Event Date
+            %th OPP
             %th PTS
             %th
               Pass
@@ -126,7 +127,11 @@
         %tbody
         - @player.event_points.current.each do |pep|
           %tr{:id => dom_id(pep)}
-            %th= pep.event.start_date_time.strftime("%B %e, %Y")
+            %th
+              = pep.event.start_date_time.strftime("%b-%e")
+            %th
+              = pep.event.away_team.abbreviation unless pep.event.away_team == @player.real_team
+              = pep.event.home_team.abbreviation unless pep.event.home_team == @player.real_team
             %th= pep.points
             %th= pep.passing_points
             %th= pep.rushing_points

@@ -6,19 +6,21 @@
 
       %h3
         Player Research
-      %table.all-players-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %table.display.all-players-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
-            %th{:colspan => 5}
-              Player
-            %th{:colspan => 3}
-              Contract
-            %th{:colspan => 8}
-              Performance
-          %tr
             %th Player
-            %th Pos
-            %th O/D
+            %th
+              %select.span1.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
+                %option Pos
+                %option{:value => "QB"} QB
+                %option{:value => "WR"} WR
+                %option{:value => "RB"} RB
+                %option{:value => "TE"} TE
+                %option{:value => "K"} K
+                %option{:value => "LB"} LB
+                %option{:value => "DL"} DL
+
             %th Team
             %th Bye
             %th $Yr
@@ -40,7 +42,6 @@
                 %a{:href => "/players/#{player.id}"}
                   = player.fname
               %td= player.position.abbreviation.upcase
-              %td= player.position.designation
               %td= player.real_team.display_name.last_name
               %td= player.contract.bye_week
               %td= player.contract.amount
@@ -54,3 +55,20 @@
               %td= player.points.scoring_points
               %td= player.points_per_dollar
               %td= player.points.games_played
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

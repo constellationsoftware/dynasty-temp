@@ -63,6 +63,8 @@ class SportsDb::Team < ActiveRecord::Base
         self.person_phases.current_phase
     end
 
-
+    def abbreviation
+      self.display_name.abbreviation
+    end
 
 end

@@ -34,4 +34,16 @@ class Account < ActiveRecord::Base
     }
 
 
+  def balance(team)
+    if receivable_id == team.id
+      balance = receivable_balance_cents
+    end
+
+    if payable_id == team.id
+      balance = payable_balance_cents
+    end
+
+    balance
+  end
+
 end

@@ -22,6 +22,7 @@ class ParticipantsEvent < ActiveRecord::Base
     has_many :periods
 
 
+
     def self.home
         self.where { alignment == 'home' }
 

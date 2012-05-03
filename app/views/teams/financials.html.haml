@@ -9,10 +9,10 @@
     %h5
       Balance:
       = current_user.team.balance.format
-    %table.team-financials-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %table.team-financials-data.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
       %thead
         %tr
-          %th id
+          %th #
           %th Payment From
           %th Paid To
           %th Event Type
@@ -28,6 +28,6 @@
             %td= a.receivable.andand.name ||= "The Fed"
             %th= a.event_type
             %th= number_to_currency(0.01 * a.amount_cents)
-            %th= a.balance
+            %th= number_to_currency(0.01 * a.balance(current_user.team))
             %th
               = time_tag a.transaction_datetime

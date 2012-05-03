@@ -51,7 +51,6 @@
                   %th
                     Losses
               %tbody
-
               - current_user.team.league.teams.sort!{|a, b| b.rating <=> a.rating }.each_with_index do |team, i|
                 %tr
                   %td= i += 1

@@ -53,6 +53,8 @@ class Team < ActiveRecord::Base
       Account.where(:receivable_id => self.id).all
     end
 
+
+
     def all_accounts
       accounts = self.payments + self.receipts
       accounts.sort! { |a, b|  a.transaction_datetime <=> b.transaction_datetime }

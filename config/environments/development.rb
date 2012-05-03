@@ -14,7 +14,7 @@ Dynasty::Application.configure do
 
     # Show full error reports and disable caching
     config.consider_all_requests_local = true
-    config.action_controller.perform_caching = true
+    config.action_controller.perform_caching = false
 
     # Don't care if the mailer can't send
     config.action_mailer.perform_deliveries = true
@@ -32,7 +32,7 @@ Dynasty::Application.configure do
     config.assets.compile = true
 
     # Set to true for individual stylesheets
-    config.assets.debug = false
+    config.assets.debug = true
     config.assets.logger = nil
 
 

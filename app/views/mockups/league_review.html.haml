@@ -9,6 +9,8 @@
           %a{:href => "#tab2", :data => {:toggle => "tab"}} Discussion Board
         %li
           %a{:href => "#tab3", :data => {:toggle => "tab"}} Private Messages
+        %li
+          %a{:href => "#tab4", :data => {:toggle => "tab"}} Matchup Calendar
       .tab-content
         .tab-pane.active#tab1
           %h4
@@ -93,6 +95,38 @@
               Entry6
             %dd
               Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.Entry text. Entry text. Entry Text.
+
+        .tab-pane#tab4
+          %h4
+            Matchup Calendar
+          //= calendar_for(@games, :year => 2011, :month => 9) do |t|
+          //  = t.head('sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat')
+          //  = t.day do |day, games|
+          //    = day.day
+          //    - games.each do |game|
+          //      = h(game.away_team.name)
+          //
+
+          %table.display.table-condensed.table-bordered
+            %thead
+              %tr
+                %th
+                  Week
+                %th
+                  Details
+            %tbody
+            - @games.each do |game|
+              %tr
+                %td.left
+                  Week
+                  = game.date.strftime("%U").to_i - 35
+                %td.left
+                  = game.away_team.name
+                  = "(#{game.away_team_score})" if game.away_team_score
+                  vs.
+                  = game.home_team.name
+                  = "(#{game.home_team_score})" if game.home_team_score
+
   .span4
     %h4
       Standings for

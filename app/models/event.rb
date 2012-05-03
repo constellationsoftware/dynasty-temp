@@ -36,11 +36,14 @@ class Event < ActiveRecord::Base
     has_many :player_points, :class_name => 'PlayerEventPoint'
     has_many :players, :through => :player_points
 
+
     def summary
         participants = self.participants_events.where { participant_type == 'Team' }
     end
 
     #Chrono Methods
+
+
 
     def gameday
         self.start_date_time.to_date
@@ -70,14 +73,20 @@ class Event < ActiveRecord::Base
         self.participants_events.where { participant_type == 'Team' }
     end
 
+
+
     def home_team
-        @team = self.teams.where { alignment == 'home' }.map(&:participant_id)
-        SportsDb::Team.find(@team).first
+
+        SportsDb::Team.find(self.participants_events.home.first.participant_id)
     end
 
     def away_team
-        @team = self.teams.where { alignment == 'away' }.map(&:participant_id)
-        SportsDb::Team.find(@team).first
+      SportsDb::Team.find(self.participants_events.away.first.participant_id)
+    end
+
+    def opponent(player)
+      self.home_team unless self.home_team == player.real_team
+      self.away_team unless self.away_team == player.real_team
     end
 
     def winner
