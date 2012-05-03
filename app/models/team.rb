@@ -103,6 +103,30 @@ class Team < ActiveRecord::Base
     def won?(game); game.won?(self) end
     def lost?(game); !won?(game) end
 
+    # TODO: When we get some injury data, modify this to exclude injured players
+    def fill_lineup_for_game(game)
+        empty_slots = Lineup.with_positions.empty(self.id).order{ id }
+        unless empty_slots.empty?
+            week = game.week
+            reserve_player_teams = self.reserve_player_teams.joins{[ player.contract, player.position, player.points ]}
+                .includes{[ player.contract, player.position ]}
+                .where{ player.contract.bye_week != my{ week } }
+                .order{ player.points.points.desc }
+                .to_a
+            empty_slots.each do |empty_slot|
+                player_team = reserve_player_teams.find do |player_team|
+                    empty_slot.eligible_for? player_team.player
+                end
+                unless player_team.nil?
+                    #puts "Found player (#{player_team.player.name.full_name} #{player_team.player.position.name}) for #{empty_slot.position.name}"
+                    reserve_player_teams.delete player_team
+                    player_team.lineup = empty_slot
+                    player_team.save
+                end
+            end
+        end
+    end
+
     # use uuid as a string
     def uuid
         uuid = self.read_attribute(:uuid)

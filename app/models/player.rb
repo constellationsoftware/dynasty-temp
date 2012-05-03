@@ -20,9 +20,9 @@ class Player < ActiveRecord::Base
 
     #has_one  :name, :class_name => 'PlayerName', :as => :entity, :identity => :persons
     has_one  :name,
-        :class_name => 'DisplayName',
-        :foreign_key => 'entity_id',
-        :conditions => { :entity_type => 'persons' }
+                 :class_name => 'DisplayName',
+                 :foreign_key => 'entity_id',
+                 :conditions => { :entity_type => 'persons' }
     has_many :person_phases, :foreign_key => :person_id
     has_one  :score, :class_name => 'PersonScore'
     has_one  :position_link, :class_name => 'PlayerPosition'
