@@ -4,7 +4,7 @@
     = link_to player_path(player) do
       %span.name= player.name.full_name
     %span.position= player.position.abbreviation.upcase
-    %span.team= player.real_team.name
+    %span.team= player.real_team.name.full_name
   %td.player.points= player.points_this_season
   %td.player.bye= player.contract.bye_week
   %td
