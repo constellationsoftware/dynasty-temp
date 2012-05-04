@@ -1,0 +1,4 @@
+- switch @type
+  - when 'YES_CANCEL'
+    %button.btn.btn-danger.confirm Yes
+    %button.btn.deny{ data: { dismiss: 'modal' } } Cancel

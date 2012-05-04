@@ -67,8 +67,12 @@ $ ->
                         self.removeClass('disabled')
                         return
 
+            # reference to elements we want to trigger the highlight on
+            highlightCells = $(from).add(to).children()
+            $('#swap_player').one 'hidden', -> triggerHighlight(highlightCells)
             # close the modal
             $('#swap_player').modal 'hide'
+
         failure = (response, status, error) ->
             new Alert $('#swap_player .modal-alert').first(),
                 type: 'error'
@@ -78,3 +82,7 @@ $ ->
                     source.siblings('.btn').attr 'disabled', false
         $.post("/lineups/#{data.action}/#{data.from}/with/#{data.to}").success(success).error(failure)
         e.preventDefault()
+
+    triggerHighlight = (els) ->
+        els.addClass('highlight')
+        setTimeout((-> els.removeClass('highlight')), 0)

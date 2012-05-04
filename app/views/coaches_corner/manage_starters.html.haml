@@ -1,6 +1,6 @@
 = javascript_include_tag controller.action_name
 = stylesheet_link_tag controller_base_name
-= render :partial => 'shared/modal', :locals => { :id => 'swap_player', :title => t('.modal_title') }
+= render :partial => 'shared/modal', :locals => { :id => 'swap_player', :title => t('.modal_title'), :footer => false }
 :coffeescript
   $('#swap_player').modal
     show: false

@@ -1,13 +1,26 @@
+- tooltip_delay = ({ 'show' => 500, 'hide' => 100 }).to_json
 - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
-%tr.lineup{ :data => { 'player-id' => player.nil? ? '' : lineup.player_teams.first.id, :positions => lineup.positions.collect{ |p| p.id } } }
+%tr.lineup
   %td= lineup.flex ? lineup.flex_positions.collect{ |p| p.abbreviation.upcase }.join('/') : lineup.position.abbreviation.upcase
   %td= t ".depth.#{lineup.string.ordinalize}_string", :default => (t '.string_label.default') unless player.nil?
-  %td= player.name.full_name unless player.nil?
+  %td.name= player.name.full_name unless player.nil?
   %td= player.contract.bye_week unless player.nil?
   %td= number_to_currency(player.contract.amount) unless player.nil?
   %td.controlwrap
     - if player.nil?
-      = link_to "Add Player", '/research/', :class => 'btn btn-primary btn-mini'
+      %a.btn.btn-success.add{ :href => '/research',
+        :rel => 'tooltip',
+        :data => { :delay => tooltip_delay },
+        :title => t('.help.add') }
+        %i.icon-plus
     - else
-      = link_to "Trade Player", "/front_office/trades?pid=#{lineup.player_teams.first.id}", :class => 'trade'
-      = link_to '×', drop_player_team_path(lineup.player_teams.first.id), :confirm => (t '.confirmation', :name => player.name.full_name), :class => 'delete' unless player.nil?
+      %a.btn.btn-inverse.trade{ :href => "/front_office/trades?pid=#{lineup.player_teams.first.id}",
+        :rel => 'tooltip',
+        :data => { :delay => tooltip_delay },
+        :title => t('.help.trade') }
+        %i.icon-retweet
+      %a.btn.btn-danger.remove{ :href => drop_player_team_path(lineup.player_teams.first.id),
+        :rel => 'tooltip',
+        :data => { :delay => tooltip_delay },
+        :title => t('.help.remove') }
+        %i.icon-remove

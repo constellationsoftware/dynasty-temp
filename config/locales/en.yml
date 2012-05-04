@@ -77,6 +77,14 @@ en:
 
         player_row:
             confirmation: "Are you sure you want to remove %{name} from your roster?"
+            labels:
+                trade:          'Trade'
+                remove:         'Remove'
+                add:            'Sign'
+            help:
+                trade:          'Trade this player'
+                remove:         'Remove(waive) this player from your roster'
+                add:            'Sign a player to your team'
             depth:
                 default:        'Injured / Reserve'
                 1st_string:     'Starter'
