@@ -22,13 +22,6 @@
       = hidden_field_tag 'x_test_request', "true"
       //= hidden_field_tag 'x_line_item', "#{@purchase_type}"
 
-
-
-      %h5
-        Billing Information
-      %strong
-        = label_tag 'x_amount', "2012-2013 Membership Fee: #{number_to_currency(@amount)}"
-
       = label_tag 'x_card_num', 'Credit Card Number'
       = text_field_tag 'x_card_num', '', :class => 'large_input', :size => 16 , :placeholder => '4111111111111111'
 

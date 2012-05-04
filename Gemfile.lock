@@ -511,7 +511,6 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   forgery (= 0.5.0)
-  formtastic
   friendly_id (~> 4.0.0.beta14)
   gon
   gravtastic

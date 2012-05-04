@@ -34,7 +34,6 @@ class Game < ActiveRecord::Base
     scope :unscored, where{ (home_team_score == nil) | (away_team_score == nil) }
     scope :with_points, joins{ scores }.includes{ scores }
 
-
     def home?(team); home_team === team end
     def away?(team); !home?(team) end
     def opponent_for(team); home?(team) ? away_team : home_team end
@@ -65,10 +64,6 @@ class Game < ActiveRecord::Base
     def scored?
         !(self.home_team_score.nil? || away_team_score.nil?)
     end
-
-    #TODO: Create a proper, first class scoring method.
-
-
 
     def played?(team)
         team === self.home_team || team === self.away_team

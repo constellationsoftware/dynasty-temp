@@ -3,7 +3,16 @@ module ApplicationHelper
         controller.class.name.tableize.gsub '_controllers', ''
     end
 
-
+    ###
+    # Outputs an inline tooltip with an icon
+    # Usually used to output a quick help tooltip
+    #
+    # Icons can be found at http://twitter.github.com/bootstrap/base-css.html#icons
+    # NOTE: The 'icon-' prefix is always added.
+    #
+    def tip_icon(text, icon = 'question-sign')
+        render :partial => '/shared/tooltip_icon', :locals => { :text => text, :icon => "icon-#{icon}" }
+    end
 
     def us_states
         [
@@ -61,9 +70,4 @@ module ApplicationHelper
             ['Wyoming', 'WY']
         ]
     end
-
-
-
-
-
 end

@@ -5,7 +5,7 @@
     %a{:href => "/players/#{player.id unless player.nil?}"}
       = player.name.full_name unless player.nil?
     = player.position.abbreviation.upcase unless player.nil?
-    = player.real_team.name unless player.nil?
+    = player.real_team.name.full_name unless player.nil?
   %td.player.points= player.points_this_season unless player.nil?
   %td.player.points.projected NA
   %td.player.bye= player.contract.bye_week unless player.nil?

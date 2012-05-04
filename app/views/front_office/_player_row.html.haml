@@ -1,8 +1,6 @@
 - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
 %tr.lineup{ :data => { 'player-id' => player.nil? ? '' : lineup.player_teams.first.id, :positions => lineup.positions.collect{ |p| p.id } } }
-  %td
-    = lineup.position.abbreviation.upcase
-    = "(#{player.position.abbreviation.upcase})" if lineup.flex && !(player.nil?)
+  %td= lineup.flex ? lineup.flex_positions.collect{ |p| p.abbreviation.upcase }.join('/') : lineup.position.abbreviation.upcase
   %td= t ".depth.#{lineup.string.ordinalize}_string", :default => (t '.string_label.default') unless player.nil?
   %td= player.name.full_name unless player.nil?
   %td= player.contract.bye_week unless player.nil?

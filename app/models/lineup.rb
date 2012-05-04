@@ -31,6 +31,10 @@ class Lineup < ActiveRecord::Base
             .order{ id }
     }
 
+    def eligible_for?(player)
+        self.positions.include? player.position
+    end
+
     def positions
         self.flex ? self.flex_positions : [ self.position ]
     end

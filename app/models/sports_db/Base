@@ -1,6 +1,0 @@
-class SportsDb::Base
-
-  self.abstract_class = true
-
-  #Todo:
-end

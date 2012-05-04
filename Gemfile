@@ -47,7 +47,6 @@ gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
 gem 'kendoui-rails'
-gem 'formtastic' # '~> 1.2.4'
 gem 'simple_form'
 gem "quantify", "~> 3.1.2"
 gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/watu/table_builder.git"
@@ -55,7 +54,6 @@ gem "watu_table_builder", :require => "table_builder", :git => "git://github.com
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
-
 
 # Authentication & Permissions
 # gem 'authlogic'

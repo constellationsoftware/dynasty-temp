@@ -1,4 +1,4 @@
-#= require templates/alert
+#= require_tree ../templates/shared
 #= require_self
 
 # capitalize method for String

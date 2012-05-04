@@ -1,21 +1,23 @@
 = javascript_include_tag controller.action_name
 = stylesheet_link_tag controller_base_name
 - content_for :title, t('.title')
-- content_for :section_title, "Coach\'s Corner"
+- content_for :section_title, "Coach's Corner"
 :coffeescript
   $ ->
     $('#game-review .game').not('.played').hide()
     $('#game-filter').on 'click', (e) ->
-      btn = $(e.target)
+      cb = $(e.target)
 
-      if btn.hasClass('active')
-        btn.text('Showing Only My Games')
-        $('#game-review .game').not('.played').hide()
-      else
-        btn.text('Showing All Games')
+      if cb.attr('checked') is 'checked'
         $('#game-review .game').not('.played').show()
+      else
+        $('#game-review .game').not('.played').hide()
 
-%button.btn{ :id => 'game-filter', :data => { :toggle => 'button' } } Showing Only My Games
+= label_tag :remember_me, :required => false, :class => 'checkbox' do
+  = t('.labels.filter')
+  = tip_icon t('.tooltips.filter')
+  %input#game-filter{ :type => 'checkbox' }
+
 #game-review.tabbable
   %ul.nav.nav-tabs
     - (1..@game_weeks.size).each_with_index do |week, i|

@@ -20,9 +20,10 @@
 
 class PlayerEventPoint < ActiveRecord::Base
     self.table_name = 'dynasty_player_event_points'
-    belongs_to :player
-    belongs_to :person, :foreign_key => 'player_id'
-    belongs_to :event
+    belongs_to  :player
+    belongs_to  :event
+    belongs_to  :metadata, :class_name => 'PersonEventMetadata', :foreign_key => :metadata_id
+    has_one     :team, :through => :metadata, :class_name => 'SportsDb::Team'
 
     scope :current, PlayerEventPoint.joins(:event).where('start_date_time < ?', Clock.first.time)
     scope :by_player, lambda{ |value| where{ player_id == my{ value } } }

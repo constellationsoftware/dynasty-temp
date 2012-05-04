@@ -29,6 +29,9 @@ class Events::ScoreGames < Events::Base
 
     protected
         def points_for_team(game, team, range, lineups)
+            # promote available players to fill empty slots
+            team.fill_lineup_for_game(game)
+
             all_lineup_ids = lineups.collect{ |l| l.id }
             player_lineup_ids = []
             players = PlayerTeam.joins{[ lineup, player_event_points, player_event_points.event ]}

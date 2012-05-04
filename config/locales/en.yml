@@ -29,6 +29,14 @@ en:
             tab_label:      "Week %{week}"
             victory:        "You beat %{opponent}. Great Job!"
             defeat:         "You lost to %{opponent}. Ya blew it!"
+            labels:
+                points:     'Points'
+                name:       'Name'
+                position:   'Slot'
+                versus:     'vs.'
+                filter:     'Show all games'
+            tooltips:
+                filter:     'Check to show all games'
         manage_starters:
             title:          'Manage Starters'
             modal_title:    'Which player to swap?'

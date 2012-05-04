@@ -1,0 +1,105 @@
+.won { color: #225c23 !important; }
+.lost { color: #870000 !important; }
+.roster {
+    float: left;
+    width: 100%;
+    text-align: center;
+    min-height: 200px;
+}
+
+.roster .lineup button { width: 70px; }
+.roster .reserve button { width: 100px; }
+
+#swap_player {
+    text-align: center;
+    width: 400px;
+    margin-left: -200px;
+
+    .modal-body {
+        margin: 0 20px 0 20px;
+    }
+
+    button {
+        display: block;
+        width: 100%;
+        &:not(:last-child) { margin-bottom: 10px; }
+    }
+}
+
+@highlight-color:       #0f88cc;
+@font-color:            #363636;
+@row-stripe-odd-color:  #FFFFFF;
+@row-stripe-even-color: #F9F9F9;
+@row-highlight-color:   fade(@highlight-color, 10%);
+@empty-row-color:       #ABABAB;
+@win-color:             #468847;
+@loss-color:            #B94A48;
+@points-size:           1.5em;
+#game-review {
+    text-align: center;
+    //white-space: nowrap;
+    //overflow: hidden;
+
+    .accordion-group {
+        color: @font-color;
+        line-height: 34px;
+
+        .points { font-size: @points-size; }
+        .win { color: @win-color; }
+        .loss { color: @loss-color; }
+
+        .accordion-heading {
+            white-space: nowrap;
+            overflow: hidden;
+            height: 34px;
+            line-height: 34px;
+            cursor: pointer;
+
+            .versus { font-size: 0.9em; }
+            .name { font-size: 1.2em; }
+            .points { font-weight: bold; }
+        }
+
+        .accordion-inner {
+            padding: 0;
+            font-size: 1.0em;
+
+            .header {
+                line-height: 27px;
+                font-weight: bold;
+                font-size: 0.9em;
+                background-color: darken(@row-stripe-even-color, 5%);
+            }
+
+            .table-striped > *:nth-child(odd) { background-color: @row-stripe-odd-color; }
+            .table-striped > *:nth-child(even) { background-color: @row-stripe-even-color; }
+            .content {
+                .empty { color: @empty-row-color; }
+                .points { font-size: @points-size - 0.3em; }
+                .player {
+                    .position, .team { font-size: 9px; }
+                    .position { font-weight: bold; }
+                }
+                & > *:hover {
+                    background-color: @row-highlight-color;
+                    .empty { color: darken(@empty-row-color, 15%); }
+                }
+            }
+        }
+
+        @footer-height: 16px;
+        .accordion-footer {
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            height: @footer-height;
+            min-height: @footer-height;
+            line-height: @footer-height;
+
+            &:hover { background-color: darken(@row-stripe-even-color, 5%); }
+            i { padding: 0; margin: 0; }
+        }
+    }
+
+    .tab-pane { margin-right: 2px; } // need the extra 2px for borders
+}
