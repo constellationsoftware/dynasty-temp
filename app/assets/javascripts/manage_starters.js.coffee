@@ -5,20 +5,15 @@ $ ->
         source = $(@)
         return false if source.hasClass('disabled')
         row = source.closest '.slot'
-        player = row.children('.name').first().text()
-        lineups = []
-        for lineup_id in source.data().compatible
-            # for reserve slots, restrict eligible to empty lineup slots
-            lineup = $(".slot#{if row.hasClass('reserve') then '.empty' else ''}[data-id='#{lineup_id}']").first()
-            if lineup.length > 0
-                lineups.push
-                    id:         lineup.data().id
-                    name:       lineup.children('.name').first().text() or 'Empty'
-                    position:   lineup.children('.position').first().text()
-        $('#swap_player .title').first().text("Swap #{player} for which slot?")
+        player = row.children('.player').first()
+        lineups = getCompatibleLineups row
+
+        # change modal title text
+        $('#swap_player .title').first().text("Swap #{player.children('.name').first().text()} for which slot?")
+        # compile data from compatible rows and render the modal body
         $('#swap_player .modal-body').first().html(JST.player_depth
             id: row.data().id,
-            lineups: lineups,
+            lineups: (getLineupData($(lineup)) for lineup in lineups),
             action: if row.hasClass('reserve') then 'unite' else 'swap'
         )
 
@@ -57,8 +52,8 @@ $ ->
                 to.removeClass('empty')
                 from.remove()
 
-            # additionally, we need to en/disable reserve buttons depending on the empty slot loadout
-            $('#injury-reserve .slot button').each ->
+            # en/disable reserve buttons depending on the empty slot loadout
+            $('#reserve .slot button').each ->
                 self = $(@)
                 self.addClass('disabled')
                 for lineup_id in self.data().compatible
@@ -83,6 +78,29 @@ $ ->
         $.post("/lineups/#{data.action}/#{data.from}/with/#{data.to}").success(success).error(failure)
         e.preventDefault()
 
+    getLineupData = (l) ->
+        id: l.data().id
+        name: l.find('.player .name').first().text() or 'Empty'
+        position: l.children('.position').first().text()
+
     triggerHighlight = (els) ->
         els.addClass('highlight')
         setTimeout((-> els.removeClass('highlight')), 0)
+
+    getCompatibleLineups = (row) ->
+        position_id = row.find('.player .position').first().data('id')
+        position_selector = ".player .position[data-id='#{position_id}']"
+
+        # figure out the root element of our lineup selectors
+        parentTable = row.closest('.table')
+        selectionRoot = parentTable.siblings('.table:not(#reserve)')
+
+        lineups = []
+        if parentTable.attr('id') is 'reserve'
+            lineups = $((".slot.empty[data-id='#{lineup_id}']" for lineup_id in row.find('.btn').first().data('compatible')).join(','))
+        else
+            lineups = selectionRoot.find('.slot').has(position_selector)
+
+        # add same-depth flex positions whose player position is identical
+        lineups = lineups.add parentTable.find('.slot.flex').not(row).has(position_selector)
+        lineups
