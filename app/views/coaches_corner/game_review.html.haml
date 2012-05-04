@@ -18,7 +18,7 @@
   = tip_icon t('.tooltips.filter')
   %input#game-filter{ :type => 'checkbox' }
 
-#game-review.tabbable
+#game-review.tabbable.row
   %ul.nav.nav-tabs
     - (1..@game_weeks.size).each_with_index do |week, i|
       %li.tab{ :class => "#{@week === week || (@week.zero? && i.zero?) ? 'active' : ''}" }

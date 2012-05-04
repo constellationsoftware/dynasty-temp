@@ -3,16 +3,16 @@
 - content_for :title, t('.title')
 - content_for :section_title, "Front Office"
 = render :partial => 'shared/modal', :locals => { :id => 'confirm_remove', :title => t('.modal_title') }
-
-%table#roster.table.table-bordered.table-striped.span12
-  %thead
-    %tr
-      %th= t '.columns.position'
-      %th= t '.columns.depth'
-      %th= t '.columns.full_name'
-      %th= t '.columns.bye'
-      %th= t '.columns.amount'
-      %th.controlwrap
-  %tbody
-    - @lineups.each do |lineup|
-      = render :partial => 'player_row', :locals => { :lineup => lineup }
+.row
+  %table#roster.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th= t '.columns.position'
+        %th= t '.columns.depth'
+        %th= t '.columns.full_name'
+        %th= t '.columns.bye'
+        %th= t '.columns.amount'
+        %th.controlwrap
+    %tbody
+      - @lineups.each do |lineup|
+        = render :partial => 'player_row', :locals => { :lineup => lineup }
