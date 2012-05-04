@@ -4,8 +4,6 @@ class ResearchController < ApplicationController
   def index
    @players ||= Player.current.research.all
 
-
-
   end
 
 

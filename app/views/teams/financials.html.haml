@@ -13,12 +13,18 @@
       %thead
         %tr
           %th #
-          %th Payment From
-          %th Paid To
-          %th Event Type
-          %th Amount
-          %th Balance
-          %th Date
+          %th
+            %a{:href => "#", :rel => "tooltip", "data-original-title" => "Who made the payment"} Payment From
+          %th
+            %a{:href => "#", :rel => "tooltip", "data-original-title" => "Who received the payment"} Paid To
+          %th
+            %a{:href => "#", :rel => "tooltip", "data-original-title" => "The type of event that triggered the transaction"}Event Type
+          %th
+            %a{:href => "#", :rel => "tooltip", "data-original-title" => "The transaction amount"} Amount
+          %th
+            %a{:href => "#", :rel => "tooltip", "data-original-title" => "Your team balance after the transaction"} Balance
+          %th
+            %a{:href => "#", :rel => "tooltip", "data-original-title" => "The date of the transaction"} Date
 
       %tbody
         - @accounts.each do |a|

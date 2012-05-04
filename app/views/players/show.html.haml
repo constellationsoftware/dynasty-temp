@@ -106,23 +106,26 @@
       %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
-            %th Event Date
-            %th OPP
-            %th PTS
             %th
-              Pass
+              Event Date
             %th
-              Rush
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The Opposing Team"}  OPP
             %th
-              Def
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned"} PTS
             %th
-              Score
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points Earned"} Pass
             %th
-              ST
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points Earned"} Rush
             %th
-              Sck
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points Earned"} Def
             %th
-              Fmbl
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned"} Scoring
+            %th
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Special Teams Fantasy Points Earned"} ST
+            %th
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Sack Fantasy Points Lost"} Sck
+            %th
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points Lost"} Fmbl
 
         %tbody
         - @player.event_points.current.each do |pep|
@@ -150,23 +153,23 @@
             %th
               Season
             %th
-              PTS
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned during season"} PTS
             %th
-              Pass
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points Earned during season"} Pass
             %th
-              Rush
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points Earned during season"} Rush
             %th
-              Def
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points Earned during season"} Def
             %th
-              Score
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned last during"} Scoring
             %th
-              ST
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Special Teams Fantasy Points Earned during season"} ST
             %th
-              Sck
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Sack Fantasy Points Lost during season"} Sck
             %th
-              Fmbl
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points Lost during season"} Fmbl
             %th
-              Games
+              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Games Played during season"} Games
         %tbody
         - @player.season_points.each do |psp|
           %tr{:id => dom_id(psp)}
