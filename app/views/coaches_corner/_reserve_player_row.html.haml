@@ -1,10 +1,14 @@
 %tr.slot.reserve{ :data => { :id => player.id } }
   %td.position= player.position.abbreviation.upcase
-  %td.player.name
-    = link_to player_path(player) do
-      %span.name= player.name.full_name
-    %span.position= player.position.abbreviation.upcase
-    %span.team= player.real_team.name.full_name
+  %td.player
+    %span.name
+      - unless player.nil?
+        %a{ :href => player_path(player.id) }
+          = player.name.full_name
+    %span.position{ :data => { :id => player.nil? ? '' : player.position.id } }
+      = player.position.abbreviation.upcase unless player.nil?
+    %span.team
+      = player.real_team.name.abbreviation.upcase unless player.nil?
   %td.player.points= player.points_this_season
   %td.player.bye= player.contract.bye_week
   %td

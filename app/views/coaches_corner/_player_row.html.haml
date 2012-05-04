@@ -1,17 +1,23 @@
 - player = get_player(lineup.player_teams.first.player_id) unless lineup.player_teams.empty?
-%tr.slot.lineup{ :data => { :id => lineup.id }, :class => player.nil? ? 'empty' : '' }
+%tr.slot.lineup{ :data => { :id => lineup.id }, :class => [player.nil? ? 'empty' : '', lineup.flex ? 'flex' : ''] }
   %td.position= lineup.flex ? lineup.flex_positions.collect{ |p| p.abbreviation.upcase }.join('/') : lineup.position.abbreviation.upcase
-  %td.player.name
-    %a{:href => "/players/#{player.id unless player.nil?}"}
-      = player.name.full_name unless player.nil?
-    = player.position.abbreviation.upcase unless player.nil?
-    = player.real_team.name.full_name unless player.nil?
+  %td.player
+    %span.name
+      - if player.nil?
+        Empty
+      - else
+        %a{ :href => player_path(player.id) }
+          = player.name.full_name
+    %span.position{ :data => { :id => player.nil? ? '' : player.position.id } }
+      = player.position.abbreviation.upcase unless player.nil?
+    %span.team
+      = player.real_team.name.abbreviation.upcase unless player.nil?
   %td.player.points= player.points_this_season unless player.nil?
   %td.player.points.projected NA
   %td.player.bye= player.contract.bye_week unless player.nil?
   %td
     %button.btn.btn-mini{ :href => '#swap_player',
       :data => { :toggle => 'modal',
-      :compatible => Lineup.by_position(player.nil? ? lineup.position_id : player.position.id).collect{ |l| l.id unless (l === lineup || l.string === lineup.string) }.compact } }
+      :compatible => Lineup.by_position(player.nil? ? lineup.position_id : player.position.id).collect{ |l| l.id unless (l.string === lineup.string ? l.position_id === lineup.position_id : l.string === lineup.string) }.compact } }
       = t ".labels.#{lineup.string.ordinalize}_string"
       %i{ :class => "#{lineup.string === 1 ? 'icon-chevron-down' : 'icon-chevron-up'} #{player.nil? ? '' : 'hide'}" }

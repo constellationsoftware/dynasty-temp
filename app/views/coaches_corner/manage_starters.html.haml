@@ -10,7 +10,7 @@
 #manage_starters.row
   .span12
     %h5 Starters
-    %table#starter.table-bordered.table-striped.table-condensed.roster
+    %table#starter.table.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
 
@@ -30,7 +30,7 @@
           = render :partial => 'player_row', :locals => { :lineup => lineup } if lineup.string === 1
 
     %h5 Bench
-    %table#bench.table-bordered.table-striped.table-condensed.roster
+    %table#bench.table.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
           %th
@@ -48,8 +48,8 @@
         - @lineups.each do |lineup|
           = render :partial => 'player_row', :locals => { :lineup => lineup } if lineup.string === 2
 
-    %h5 Injury/Reserve
-    %table#injury-reserve.table-bordered.table-striped.table-condensed.roster
+    %h5 Injured/Reserve
+    %table#reserve.table.table-bordered.table-striped.table-condensed.roster
       %thead
         %tr
           %th
