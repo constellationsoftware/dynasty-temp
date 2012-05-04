@@ -1,3 +1,5 @@
+@import 'elements/elements.less';
+
 .won { color: #225c23 !important; }
 .lost { color: #870000 !important; }
 .roster {
@@ -9,6 +11,23 @@
 
 .roster .lineup button { width: 70px; }
 .roster .reserve button { width: 100px; }
+
+@slot-highlight-color: #fff000;
+@slot-highlight-duration: 4.0s;
+@slot-highlight-alpha: 25%;
+@slot-easing-func: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+#manage_starters {
+    .slot {
+        td {
+            .transition(@slot-highlight-duration, @slot-easing-func);
+
+            &.highlight {
+                .transition-duration(0s);
+                background-color: fade(@slot-highlight-color, @slot-highlight-alpha);
+            }
+        }
+    }
+}
 
 #swap_player {
     text-align: center;
