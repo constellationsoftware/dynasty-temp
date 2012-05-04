@@ -10,8 +10,13 @@ module ApplicationHelper
     # Icons can be found at http://twitter.github.com/bootstrap/base-css.html#icons
     # NOTE: The 'icon-' prefix is always added.
     #
-    def tip_icon(text, icon = 'question-sign')
-        render :partial => '/shared/tooltip_icon', :locals => { :text => text, :icon => "icon-#{icon}" }
+    def tip_icon(text, icon = 'question-sign', options = {})
+        options[:delay] = options[:delay].stringify_keys!.to_json if options.has_key?('delay') && options[:delay].is_a?(Hash)
+        default_options = {
+            :delay => ({ 'show' => 300, 'hide' => 100 }).to_json
+        }
+        options = options.merge! default_options
+        render :partial => '/shared/tooltip_icon', :locals => { :text => text, :icon => "icon-#{icon}", :options => options }
     end
 
     def us_states

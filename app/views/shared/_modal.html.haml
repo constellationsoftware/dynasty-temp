@@ -5,6 +5,7 @@
       %h3.title= title
   .modal-alert
   .modal-body
-  - if defined?(form) && form
+  - unless defined?(footer) && footer === false
     .modal-footer
+    - if defined?(form) && form
       %a.btn{ :href => '#', :data => { :dismiss => 'modal' } } Close

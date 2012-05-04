@@ -1,0 +1,14 @@
+@table-header-bg-color: darken(#F9F9F9, 5%);
+@control-grp-width: 50px;
+#roster {
+    th { background-color: @table-header-bg-color }
+    .controlwrap {
+        .btn-group {
+            width: @control-grp-width;
+            left: 50%;
+            margin-left: -@control-grp-width / 2;
+        }
+
+        .btn { padding: 1px 5px 0 5px; }
+    }
+}

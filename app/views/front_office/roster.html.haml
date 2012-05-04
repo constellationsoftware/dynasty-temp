@@ -2,16 +2,17 @@
 = stylesheet_link_tag controller_base_name
 - content_for :title, t('.title')
 - content_for :section_title, "Front Office"
+= render :partial => 'shared/modal', :locals => { :id => 'confirm_remove', :title => t('.modal_title') }
 .row
-  .span12.well
-    %table#starter.roster.sortable
+  .span12
+    %table#roster.table.table-condensed.table-striped.table-bordered
       %thead
         %tr
-          %th{ :class => "{sorter: 'text'}" }= t '.columns.position'
-          %th{ :class => "{sorter: 'text'}" }= t '.columns.depth'
-          %th{ :class => "{sorter: 'text'}" }= t '.columns.full_name'
-          %th{ :class => "{sorter: 'integer'}" }= t '.columns.bye'
-          %th{ :class => "{sorter: 'currency'}" }= t '.columns.amount'
+          %th= t '.columns.position'
+          %th= t '.columns.depth'
+          %th= t '.columns.full_name'
+          %th= t '.columns.bye'
+          %th= t '.columns.amount'
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
