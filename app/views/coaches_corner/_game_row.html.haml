@@ -1,9 +1,3 @@
-
-.game{ :class => "#{game.played?(@team) ? 'played' : ''}" }
-  .span5= game.home_team.name
-  .span2 vs.
-  .span4= game.away_team.name
-
 - locale_scope = %w(coaches_corner game_review labels)
 .row-fluid.game.accordion-group{ :class => "#{game.played?(@team) ? 'played' : ''}", :data => { :game => game.id } }
   .span12
