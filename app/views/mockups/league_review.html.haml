@@ -114,6 +114,8 @@
                   Week
                 %th
                   Details
+                %th
+                  What else?
             %tbody
             - @games.each do |game|
               %tr
@@ -126,7 +128,8 @@
                   vs.
                   = game.home_team.name
                   = "(#{game.home_team_score})" if game.home_team_score
-
+                %td.left
+                  What else should be included here?
   .span4
     %h4
       Standings for
