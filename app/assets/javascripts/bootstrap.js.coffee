@@ -41,7 +41,7 @@ jQuery ->
 
 
   $(".team-financials-data").dataTable
-    sDom: "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
+    sDom: "<'row'<'span6'l><'span12'f>r>t<'row'<'span6'i><'span6'p>>",
     sPaginationType: "bootstrap"
     bScrollInfinite: true
     bScrollCollapse: true
