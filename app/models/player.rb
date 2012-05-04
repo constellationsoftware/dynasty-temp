@@ -102,7 +102,7 @@ class Player < ActiveRecord::Base
     end
 
     def fname
-      @fname = self.display_name.last_with_first_initial
+      @fname = self.name.last_with_first_initial
     end
 
 
