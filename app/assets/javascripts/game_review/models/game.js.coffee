@@ -11,6 +11,12 @@ class Game extends Spine.Model
             if @won? then @home_team else @away_team
 
     scored: ->
-        @home_team_score? and @away_team_score?
+        @home_team_score? or @away_team_score?
+
+    @getOutcomeClass: (lineup, opponentLineup) ->
+        if lineup?
+            return '' if lineup.points is 'N/A' or lineup.points is 'BYE'
+            return 'win' if not opponentLineup? or lineup.points > opponentLineup.points
+        'loss'
 
 window.Game = Game

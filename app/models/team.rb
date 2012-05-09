@@ -18,9 +18,12 @@
 # TODO: get rid of last_socket_id when Pusher is removed
 # TODO: get rid of waiver_order and draft_order attributes?
 class Team < ActiveRecord::Base
+    include Redis::Objects
+
     resourcify
     self.table_name = 'dynasty_teams'
     money :balance, :cents => :balance_cents
+    counter :sessions, :start => 0
 
     belongs_to :user
     belongs_to :league, :inverse_of => :teams, :counter_cache => true

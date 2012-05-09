@@ -6,9 +6,11 @@ class GamesController < ApplicationController
     has_scope :with_points, :type => :boolean
     has_scope :with_players, :type => :boolean
     has_scope :with_lineup, :type => :boolean do |controller, scope|
-        scope.joins{ player_team_points.lineup }
-            .includes{ player_team_points.lineup }
-            .order{ player_team_points.lineup_id }
+        scope
+    end
+    has_scope :with_scores, :type => :boolean, do |controller, scope|
+        scope.joins{[ player_team_points ]}
+            .includes{[ player_team_points ]}
     end
     has_scope :with_teams, :type => :boolean, :default => true
     has_scope :my_team, :type => :boolean, :default => false do |controller, scope|
@@ -16,7 +18,7 @@ class GamesController < ApplicationController
     end
 
     def show
-        @game = Game.where{ id == my{ params[:id] } }.first
+        @game = apply_scopes(Game).where{ id == my{ params[:id] } }.first
         current_user_team = current_user.team
         @team = current_user_team unless @game.won?(current_user_team).nil?
     end

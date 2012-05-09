@@ -1,22 +1,24 @@
-- for home_lineup, i in @game.home_team.lineup
+- lineups = if @game.home_team.lineup.length > @game.away_team.lineup.length then @game.home_team.lineup else @game.away_team.lineup
+- for lineup, i in lineups
+  - home_lineup = @game.home_team.lineup[i]
   - away_lineup = @game.away_team.lineup[i]
   .row-fluid
-    - if away_lineup.name
-      .span2.points{ class: (if not home_lineup.points? or away_lineup.points > home_lineup.points then 'win' else 'loss') }= away_lineup.points
+    - if away_lineup? and away_lineup.name?
+      .span2.points{ class: "#{(Game.getOutcomeClass(away_lineup, home_lineup))}" }
+        = away_lineup.points
       .span3.player
         %span.name= away_lineup.name
         %span.position= away_lineup.position
         %span.team= away_lineup.team
     - else
-      .span2
-      .span3.empty Empty
+      .span5.empty
     .span2= home_lineup.position
-    - if home_lineup.name
+    - if home_lineup? and home_lineup.name?
       .span3.player
         %span.name= home_lineup.name
         %span.position= home_lineup.position
         %span.team= home_lineup.team
-      .span2.points{ class: (if not away_lineup.points? or home_lineup.points >= away_lineup.points then 'win' else 'loss') }= home_lineup.points
+      .span2.points{ class: "#{(Game.getOutcomeClass(home_lineup, away_lineup))}" }
+        = home_lineup.points
     - else
-      .span3.empty Empty
-      .span2
+      .span5.empty
