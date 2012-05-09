@@ -9,6 +9,14 @@ class CoachesCornerController < ApplicationController
         @lineups = Lineup.with_positions.joins{ player_teams.outer }
             .includes{ player_teams }
             .order{ id }
+
+        # get lineups for opponent
+        next_game = @team.games.unscored.order{ date }.first
+        opponent = next_game.opponent_for(@team)
+        @opponent_lineup = PlayerTeam.joins{[ player.name, player.position ]}
+            .includes{[ player.name, player.position ]}
+            .where{ (team_id == my{ opponent.id }) & (lineup_id != nil) }
+
         @reserve = @team.reserve_players
     end
 

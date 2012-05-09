@@ -6,15 +6,33 @@
       - if player.nil?
         Empty
       - else
-        %a{ :href => player_path(player.id) }
-          = player.name.full_name
+        %a{ :href => player_path(player.id),
+          :rel => 'tooltip',
+          :title => player.name.full_name,
+          :data => { :delay => ({ 'show' => 500, 'hide' => 100 }).to_json } }
+          = player.name.last_with_first_initial
     %span.position{ :data => { :id => player.nil? ? '' : player.position.id } }
       = player.position.abbreviation.upcase unless player.nil?
     %span.team
       = player.real_team.name.abbreviation.upcase unless player.nil?
   %td.player.points= player.points_this_season unless player.nil?
-  %td.player.points.projected NA
+  %td.player.points.projected N/A
   %td.player.bye= player.contract.bye_week unless player.nil?
+  %td.opponent
+    - opponent_player = @opponent_lineup.find{ |pt| pt.lineup_id === lineup.id }.try( :player )
+    %span.name
+      - if opponent_player.nil?
+        Empty
+      - else
+        %a{ :href => player_path(opponent_player.id),
+          :rel => 'tooltip',
+          :title => opponent_player.name.full_name,
+          :data => { :delay => ({ 'show' => 500, 'hide' => 100 }).to_json } }
+          = opponent_player.name.last_with_first_initial
+    %span.position
+      = opponent_player.position.abbreviation.upcase unless opponent_player.nil?
+    %span.team
+      = opponent_player.real_team.name.abbreviation.upcase unless opponent_player.nil?
   %td
     %button.btn.btn-mini{ :href => '#swap_player',
       :data => { :toggle => 'modal',
