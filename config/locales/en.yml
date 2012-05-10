@@ -46,6 +46,7 @@ en:
                 bye:                'Bye'
                 points:             'Points This Season'
                 projected_points:   'Projected Points'
+                opponent:           'Opponent Lineup'
         player_row:
             labels:
                 add:            'Add Player'

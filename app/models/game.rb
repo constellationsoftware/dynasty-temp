@@ -23,6 +23,13 @@ class Game < ActiveRecord::Base
     has_many :transactions, :as => :eventable, :class_name => 'Account'
     has_many :player_team_points
     has_many :scores, :through => :player_team_points, :source => :score
+    #has_many :home_team_scores,
+    #    :class_name => '::PlayerTeamPoint',
+    #    :conditions => proc{ "`#{::Game.table_name}`.`home_team_id` = `#{self.aliased_table_name.to_s}`.`team_id`" }
+        #:conditions => lambda{ |x| puts x.aliased_table_name.to_s; "home_team_id = #{self.aliased_table_name.to_s}.team_id" }
+    #has_many :away_team_scores,
+    #    :class_name => 'PlayerTeamPoint',
+    #    :conditions => lambda{ |x| puts x.aliased_table_name.to_s; "away_team_id = #{x.aliased_table_name.to_s}.team_id" }
 
     scope :by_league, lambda{ |value| where{ league_id == my{ value } } }
     scope :by_team, lambda{ |value| where{ (home_team_id == my{ value }) | (away_team_id == my{ value }) } }
@@ -51,18 +58,24 @@ class Game < ActiveRecord::Base
         end
     end
 
+    def forfeit?(team)
+
+    end
+
     def won?(team)
         if scored?
-            if home?(team)
-                home_team_score >= away_team_score # home teams win ties
+            if home?(team) && !home_team_score.nil?
+                away_team_score.nil? || home_team_score >= away_team_score # home teams win ties
+            elsif !away_team_score.nil?
+                home_team_score.nil? || away_team_score > home_team_score
             else
-                away_team_score > home_team_score
+                false
             end
         end
     end
 
     def scored?
-        !(self.home_team_score.nil? || away_team_score.nil?)
+        !self.home_team_score.nil? || !away_team_score.nil?
     end
 
     def played?(team)

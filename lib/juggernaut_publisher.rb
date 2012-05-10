@@ -6,7 +6,9 @@ class JuggernautPublisher < AbstractController::Base
     helper ApplicationHelper
     self.view_paths = 'app/views'
 
+    # TODO: Figure out where we want push to occur and structure subscriptions accordingly
     def publish(type, record)
+=begin
         class_name = record.class.name
         instance_variable_set("@#{class_name.downcase}".to_sym, record) # instance variable for our template
 
@@ -28,5 +30,6 @@ class JuggernautPublisher < AbstractController::Base
                 :record => self.render(template: "/push/#{class_name.underscore}/#{type}")
             })
         end
+=end
     end
 end

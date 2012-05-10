@@ -1,2 +1,3 @@
-#$redis = Redis.new(:host => 'localhost', :port => 6379)
-$redis = Redis.new(:host => 'localhost', :port => 6379)
+require 'redis'
+require 'redis/objects'
+Redis.current = Redis.new(:host => 'localhost', :port => 6379)

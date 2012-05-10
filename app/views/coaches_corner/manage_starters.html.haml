@@ -24,6 +24,8 @@
             %h5= t('.columns.projected_points')
           %th
             %h5= t('.columns.bye')
+          %th
+            %h5= t('.columns.opponent')
           %th.controlwrap
       %tbody
         - @lineups.each do |lineup|
@@ -58,6 +60,8 @@
             %h5= t('.columns.name')
           %th
             %h5= t('.columns.points')
+          %th
+            %h5= t('.columns.projected_points')
           %th
             %h5= t('.columns.bye')
           /%th= t('.columns.projected_points')

@@ -149,7 +149,10 @@ namespace :dynasty do
                 puts 'Emptying player events points table!'
                 ActiveRecord::Base.connection.execute("TRUNCATE #{PlayerEventPoint.table_name}")
 
-                Person.all.each do |player|
+                players = Person.all
+                players.each_with_index do |player, i|
+                    point_data = []
+
                     player.events.each do |event|
                         fumbles_points = 0
                         defensive_points = 0
@@ -189,12 +192,15 @@ namespace :dynasty do
                         metadata = PersonEventMetadata.find_by_person_id_and_event_id(player.id, event.id)
                         # this provides the total sum points
                         points = stats.collect { |stat| stat.points }.compact.sum
-                        point_data = []
-                        point_data << "(#{points}, #{player.id}, #{event.id}, #{metadata.nil? ? nil : metadata.id}, #{defensive_points}, #{fumbles_points}, #{passing_points}, #{rushing_points}, #{sacks_against_points},#{scoring_points},#{special_teams_points})"
+                        point_data << "(#{points}, #{player.id}, #{event.id}, '#{event.start_date_time.to_datetime}', #{metadata.nil? ? nil : metadata.id}, #{defensive_points}, #{fumbles_points}, #{passing_points}, #{rushing_points}, #{sacks_against_points},#{scoring_points},#{special_teams_points}, '#{Time.now}', '#{Time.now}')"
+                    end
 
-                        puts "Writing point totals for player id: #{player.id} #{event.id}..."
+                    if point_data.empty?
+                        puts "No point records found for player id: #{player.id} (#{i + 1}/#{players.size})"
+                    else
+                        puts "Writing point totals for player id: #{player.id} (#{i + 1}/#{players.size})"
                         ActiveRecord::Base.connection.execute(
-                            "INSERT INTO #{PlayerEventPoint.table_name}(points, player_id, event_id, metadata_id, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points) VALUES #{point_data.join(',')}"
+                            "INSERT INTO #{PlayerEventPoint.table_name}(points, player_id, event_id, event_date, metadata_id, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points, created_at, updated_at) VALUES #{point_data.join(',')}"
                         )
                     end
                 end
@@ -207,71 +213,27 @@ namespace :dynasty do
                 file = File.join(Rails.root, 'lib', 'assets', 'bye_weeks.yml')
                 bye_weeks = YAML::load(File.open(file))
                 bye_weeks.each do |week, teams|
-                    teams.each do |team|
-                        puts "Finding players that play for the #{team}..."
-                        result = db.execute("
-                            SELECT DISTINCT p.id AS player_id
-                            FROM teams t
-                            JOIN display_names team_name
-                            ON t.id = team_name.entity_id AND team_name.entity_type = 'teams'
-                            JOIN person_phases lnk
-                            ON t.id = lnk.membership_id AND lnk.membership_type = 'teams'
-                            JOIN persons p
-                            ON lnk.person_id = p.id
-                            JOIN dynasty_player_points points
-                            ON points.player_id = p.id AND points.`year` = 2011
-                            WHERE t.team_key LIKE '%nfl%'
-                                AND team_name.last_name LIKE '#{team}'
-                            ORDER BY team_name.last_name
-                        ")
-                        result.each do |player_id|
-                            contract = Contract.find_by_person_id(player_id)
-                            begin
-                                contract.bye_week = week.to_i
-                                contract.save
-                            rescue Exception => msg
-                                puts msg
-                                puts "Player with ID '#{player_id}' does not have a contract record!" if contract.nil?
-                            end
+                    query = <<EOS
+                        SELECT pp.person_id AS player_id
+                        FROM person_phases pp
+                        JOIN teams t ON pp.membership_type = 'teams'
+                            AND pp.membership_id = t.id
+                            AND t.team_key LIKE '%nfl%'
+                        JOIN display_names n ON n.entity_type = 'teams'
+                            AND n.entity_id = t.id
+                        WHERE pp.phase_status != 'inactive'
+                            AND n.last_name IN ("#{teams.join('","')}")
+EOS
+                    result = db.execute query
+                    result.each do |player_id|
+                        contract = Contract.find_by_person_id(player_id)
+                        begin
+                            contract.bye_week = week.to_i
+                            contract.save
+                        rescue Exception => msg
+                            puts msg
+                            puts "Player with ID '#{player_id}' does not have a contract record!" if contract.nil?
                         end
-                    end
-                end
-            end
-
-
-            desc "Add lineup information to player team records"
-            task :lineup => [:environment] do
-
-                # Set the non-flex-assigned positions
-
-                Lineup.all.each do |lineup|
-                    Team.all.each do |team|
-                        ptr = PlayerTeam.bench.where("team_id = ?", team.id).find_all_by_position_id(lineup.andand.position_id).first
-                        if ptr != nil
-                            ptr.lineup_id = lineup.id
-                            ptr.depth = 1
-                            ptr.save
-                        end
-                    end
-                end
-
-                # set offensive flex
-                Team.all.each do |team|
-                    ptr = PlayerTeam.bench.where("team_id = ?", team.id).find_all_by_position_id([2,3,4]).first
-                    if ptr != nil
-                        ptr.lineup_id = 7
-                        ptr.position_id = 15
-                        ptr.save
-                    end
-                end
-
-                # set defensive flex
-                Team.all.each do |team|
-                    ptr = PlayerTeam.bench.where("team_id = ?", team.id).find_all_by_position_id([12,13,14]).first
-                    if ptr != nil
-                        ptr.lineup_id = 15
-                        ptr.position_id = 16
-                        ptr.save
                     end
                 end
             end

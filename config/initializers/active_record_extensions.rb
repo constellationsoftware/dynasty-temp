@@ -74,7 +74,6 @@ class ActiveRecord::Associations::AssociationScope
             end
 
             conditions = self.conditions[i]
-
             if reflection == chain.last
                 scope = scope.where(table[key].eq(owner[foreign_key]))
 
@@ -94,7 +93,7 @@ class ActiveRecord::Associations::AssociationScope
 
                 if reflection.type
                     type = chain[i + 1].klass.base_class.name
-                    constraint = constraint.and(table[reflection.type].eq(type))
+                    constraint = constraint.and(table[reflection.type].eq(reflection.identity)) # overridden
                 end
 
                 scope = scope.joins(join(foreign_table, constraint))

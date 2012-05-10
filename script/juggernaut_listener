@@ -1,9 +1,16 @@
 #!/usr/bin/env ruby
 require File.expand_path('../../config/environment',  __FILE__)
 
-# TODO: This "solution" to dump our session count isn't preferable. If this job crashes and is able to recover, we don't want to flush these.
-puts 'Flushing Juggernaut clients'
-JuggernautClient.all.each{ |client| client.destroy }
+Juggernaut.subscribe do |event, data|
+    puts "Subscription request: event(#{event.inspect}) data:(#{data.inspect})"
+    data.default = {}
+    uuid = data['meta']['id']
+    next unless uuid
 
-puts 'Starting Juggernaut client listener'
-JuggernautClient.subscribe
+    team = Team.find_by_uuid(uuid)
+    case event
+    when :subscribe then team.sessions.increment
+    when :unsubscribe then team.sessions.decrement if team.sessions.value > 0
+    end
+    puts team.sessions.value
+end
