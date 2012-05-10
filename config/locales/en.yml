@@ -9,7 +9,7 @@ en:
                 join_league:    'Join Existing League'
                 create_league:  'Create New League'
     nav:
-        signed_in:      "Signed in as %{attribute}"
+        signed_in:      "Hello, %{attribute}"
         signed_out:     "Register or Sign in"
         tutorials:      "Walk-Throughs"
         video1:         "Video 1"
@@ -68,6 +68,7 @@ en:
                 amount:         'Contract'
                 points:         'Points Last Season'
                 season_points:  'Points This Season'
+                points_per_dynasty_dollar: '$DD/P'
         trades:
             title:          'Trades'
         waivers:

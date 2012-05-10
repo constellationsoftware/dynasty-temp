@@ -9,6 +9,7 @@
 #= require jquery_ujs
 #= require inflections
 #= require hamlcoffee
+#= require modernizr
 #= require twitter/bootstrap
 #= require bootstrap
 #= require dataTables/jquery.dataTables
@@ -16,5 +17,5 @@
 #= require dataTables.fnGetColumnData
 #= require lib/util
 #= require subnav
-
+#= require bugherd
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)

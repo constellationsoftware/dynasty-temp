@@ -17,8 +17,9 @@
         .nav-collapse
           // Primary Nav
           %ul.nav.pull-right
-            %li
-              %a#date= Clock.first.time.strftime(Settings.datetime_format.date_full)
+            - if user_signed_in?
+              %li
+                %a#date= number_to_currency(current_user.team.balance)
             %li.divider-vertical
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
@@ -51,7 +52,7 @@
                   // Secondary Nav
                   %a.btn.btn-primary
                     %i.icon-user.icon-white
-                    = t :signed_in, :attribute => current_user.email, :scope => :nav
+                    = t :signed_in, :attribute => current_user.first_name, :scope => :nav
                   %a.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
                     %b.caret
 

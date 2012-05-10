@@ -24,9 +24,7 @@ class SportsDb::Team < ActiveRecord::Base
             :foreign_key => 'entity_id',
             :conditions => ['entity_type = ?', 'teams']
 
-    has_many :person_phases,
-             :foreign_key => 'membership_id',
-             :conditions => ['membership_type = ?', 'teams']
+    has_many :person_phases
 
     has_many :people, :through => :person_phases
     has_many :team_phases

@@ -30,6 +30,9 @@ Dynasty::Application.configure do
     config.assets.enabled = true
     config.serve_static_assets = true
     config.assets.compile = true
+    config.assets.compress = true
+    config.assets.css_compressor = :yui
+    config.assets.js_compressor = :uglifier
 
     # Set to true for individual stylesheets
     config.assets.debug = true
@@ -71,11 +74,16 @@ Dynasty::Application.configure do
     # load the banking configuration settings
     Settings.add_source! File.join(Rails.root, 'config', 'settings_banking.yml')
     Settings.reload!
+
+
 end
 
 Pusher.app_id = '10193'
 Pusher.key = '64db7a76d407adc40ff3'
 Pusher.secret = 'cf5b7ef9fae37eefa146'
+
+
+
 
 # Enables Ruby Debug while using POW
 # Instructions: http://m.onkey.org/using-ruby-debug-with-pow

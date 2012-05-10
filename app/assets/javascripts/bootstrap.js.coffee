@@ -22,8 +22,6 @@ jQuery ->
       oTable.fnFilter $(this).val(), i
 
 
-
-
   $(".career-data").dataTable
     sPaginationType: "bootstrap"
     bScrollInfinite: true

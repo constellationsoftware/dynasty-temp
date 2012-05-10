@@ -10,6 +10,9 @@ gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
 gem 'rails_config', :git => 'git://github.com/railsjedi/rails_config.git'
 
+# PostgreSQL Testing -
+#gem 'taps'
+#gem 'pg'
 
 # Active Admin
 gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
@@ -41,6 +44,8 @@ gem "active_model_serializers", :git => "git://github.com/josevalim/active_model
 gem 'jbuilder'
 gem 'rabl'
 gem 'gon'
+
+
 
 # Templating & View Helpers
 gem 'haml'
@@ -86,6 +91,7 @@ gem 'ruby_parser'
 gem 'timecop'
 gem 'traceroute'
 gem 'rest-client'
+gem 'newrelic_rpm'
 
 group :development do
     # Debugging & Development
@@ -119,7 +125,7 @@ group :assets do
     gem 'sass-rails', '~> 3.2.3'
     gem 'coffee-rails', '~> 3.2.1'
     gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
-
+    gem 'modernizr-rails'
     #for datatables
     gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
     gem 'jquery-ui-rails'

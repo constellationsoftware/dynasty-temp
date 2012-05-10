@@ -91,6 +91,15 @@ class ApplicationController < ActionController::Base
             before_filter :set_sub_pages
         end
 
+
+    # All real world players
+    def all_real_players
+      @players ||= Player.current.research.includes(:contract, :name, :position, :points)
+    end
+
+    def all_real_teams
+      @real_teams ||= SportsDb::Team.includes(:display_name)
+    end
     # Instantiates a clock for views
 
 

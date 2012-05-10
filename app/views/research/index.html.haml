@@ -6,12 +6,12 @@
 
       %h3
         Player Research
-      %table.display.all-players-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %table.display.all-players-data.table.table-condensed.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
             %th Player
             %th
-              %select.span1.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
+              %select.span2.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
                 %option Pos
                 %option{:value => "QB"} QB
                 %option{:value => "WR"} WR
@@ -22,7 +22,11 @@
                 %option{:value => "DL"} DL
 
             %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s real world team"} Team
+              %select.span2.btn.btn-mini{:rel => "popover", :title => "Filter Team"}
+                - SportsDb::Team.all.each do |team|
+                  %option{:value => team.name} team.name
+
+              //%a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s real world team"} Team
             %th
               %a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s bye week this season'"} Bye
             %th

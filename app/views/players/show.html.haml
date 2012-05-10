@@ -7,11 +7,7 @@
       %tbody
         %tr
           %th{:rowspan => "7"}
-            = image_tag 'headshot.png'
-            %h5
-              = @player.name.full_name
-              \#
-              = @player.phase.uniform_number
+            %img.thumbnail{:src => @player.headshot, :width => "85px"}
           %th.left{:colspan => "7"}
             %h5
               = @player.real_team.display_name.first_name

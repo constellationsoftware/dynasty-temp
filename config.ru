@@ -13,3 +13,8 @@ run Dynasty::Application
 # load the banking configuration settings
 Settings.add_source! File.join(Rails.root, 'config', 'settings_banking.yml')
 Settings.reload!
+
+# Keep the /newrelic route open per https://newrelic.com/docs/ruby/developer-mode
+require 'newrelic_rpm'
+require 'new_relic/rack/developer_mode'
+use NewRelic::Rack::DeveloperMode

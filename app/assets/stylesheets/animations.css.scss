@@ -1,0 +1,30 @@
+.expandable {
+  -webkit-transition:All .5s ease;
+  -moz-transition:All .5s ease;
+  -o-transition:All .5s ease;
+  -webkit-transform: rotate(0deg) translateZ(0);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+.expandable:hover{
+  -webkit-transform: rotate(0deg) scale(1.1) translateZ(0);
+  -moz-transform: rotate(0deg) scale(1.1);
+  -o-transform: rotate(0deg) scale(1.1);
+}
+
+.lineup {
+  -webkit-transition:All .5s ease;
+  -moz-transition:All .5s ease;
+  -o-transition:All .5s ease;
+  -webkit-transform: rotate(0deg) translateZ(0);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+
+.lineup:hover {
+  background-color: rgba(174, 217, 255, 1) ;
+  background: rgba(174, 217, 255, 1) ;
+  -webkit-transform: rotate(0deg) translateZ(0);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}

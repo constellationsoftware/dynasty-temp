@@ -14,15 +14,17 @@
 #  residence_location_id     :integer(4)
 #  death_location_id         :integer(4)
 #
-
+require 'nokogiri'
+require 'open-uri'
 class Player < ActiveRecord::Base
     self.table_name = 'persons'
 
+
     #has_one  :name, :class_name => 'PlayerName', :as => :entity, :identity => :persons
     has_one  :name,
-                 :class_name => 'DisplayName',
-                 :foreign_key => 'entity_id',
-                 :conditions => { :entity_type => 'persons' }
+             :class_name => 'DisplayName',
+             :foreign_key => 'entity_id',
+             :conditions => { :entity_type => 'persons' }
     has_many :person_phases, :foreign_key => :person_id
     has_one  :score, :class_name => 'PersonScore'
     has_one  :position_link, :class_name => 'PlayerPosition'
@@ -35,6 +37,11 @@ class Player < ActiveRecord::Base
     has_many :picks
     has_many :favorites
     has_many :all_points, :class_name => 'PlayerPoint'
+
+    has_one :sports_db_team, :class_name => 'SportsDb::Team' do
+      self.real_team
+    end
+
     has_one  :points,
         :class_name => 'PlayerPoint',
         :conditions => proc{ { :year => Season.current.year } },
@@ -43,21 +50,13 @@ class Player < ActiveRecord::Base
     has_many :real_events, :through => :event_points, :class_name => 'Event'
     has_one  :contract, :foreign_key => 'person_id'
 
-
-    def all_leagues
-
+    #TODO: Absolutely can't use this in real world production. Hotlinking to NFL's CDN with Getty.
+    def headshot
+      doc = Nokogiri::HTML(open("http://search.nfl.com/search?query=#{self.name.first_name}+#{self.name.last_name}"))
+      doc.at_css('.playerbio img').attribute('src').to_s
     end
 
 
-
-    def in_league
-
-
-    end
-
-    def on_team
-
-    end
 
 
 

@@ -1,4 +1,5 @@
 require 'rss'
+require 'nokogiri'
 require 'open-uri'
 
 class PlayersController < ApplicationController
@@ -57,6 +58,7 @@ class PlayersController < ApplicationController
   def show
 
       player = Player.find(params[:id])
+
       feed_url = "http://search.nfl.com/urss?q=#{player.name.last_name}"
       open(feed_url) do |http|
         response = http.read

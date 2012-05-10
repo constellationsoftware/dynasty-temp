@@ -5,10 +5,14 @@
  *= require jquery.ui.theme
  *= require dataTables/jquery.dataTables
  *= require dataTables/jquery.dataTables.bootstrap
-
+ *= require animations
  *= require_self
 
  */
+
+.red {
+  color: red;
+}
 .accordion-group {
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
