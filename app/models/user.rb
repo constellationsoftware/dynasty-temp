@@ -30,6 +30,7 @@ require 'digest/md5'
 
 class User < ActiveRecord::Base
     self.table_name = 'dynasty_users'
+    before_save { |user| user.email = email.downcase }
     rolify
 
     # Include default devise modules. Others available are:
@@ -67,7 +68,10 @@ class User < ActiveRecord::Base
     has_many :events, :through => :event_subscriptions
 
     attr_accessible :roles, :email, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :address_attributes, :event_subscriptions_attributes, :address
+
+
     accepts_nested_attributes_for :address
+
     accepts_nested_attributes_for :event_subscriptions, :reject_if => lambda{ |attributes|
         attributes.all?{ |k,v| v.blank? }
     }
@@ -76,6 +80,7 @@ class User < ActiveRecord::Base
     scope :with_address, joins{ address }.includes{ address }
 
     validates_presence_of :first_name, :last_name
+    validates_uniqueness_of :email
 
     def gravatar_profile
       hash = Digest::MD5.hexdigest(self.email)

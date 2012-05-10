@@ -10,7 +10,14 @@ class ApplicationController < ActionController::Base
     helper  :all
     before_filter :set_current_clock
 
-
+    # Custom error messages
+    unless ActionController::Base.config.consider_all_requests_local
+        rescue_from Exception, :with => :render_error
+        rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
+        rescue_from ActionController::RoutingError, :with => :render_not_found
+        rescue_from ActionController::UnknownController, :with => :render_not_found
+        rescue_from ActionController::UnknownAction, :with => :render_not_found
+    end
 
     respond_to :html
 
@@ -122,6 +129,17 @@ class ApplicationController < ActionController::Base
         def self.inherited(base) #:nodoc:
             super(base)
             base.send :initialize_resource_klass!
+        end
+
+        # Exception handling
+        def render_not_found(exception)
+            log_error(exception)
+            render :template => "/error/404.html.erb", :status => 404
+        end
+
+        def render_error(exception)
+            log_error(exception)
+            render :template => "/error/500.html.erb", :status => 500
         end
 
         # Initialize resources class accessors and set their default values.
