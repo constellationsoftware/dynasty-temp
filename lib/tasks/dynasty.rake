@@ -54,7 +54,7 @@ namespace :dynasty do
                 puts 'Emptying player points table!'
                 ActiveRecord::Base.connection.execute("TRUNCATE #{PlayerPoint.table_name}")
 
-                seasons = Season.order{ season_key.desc }
+                seasons = SportsDb::Season.order{ season_key.desc }
                 seasons.each do |season|
 
                     year = season.season_key
@@ -200,7 +200,7 @@ namespace :dynasty do
                     else
                         puts "Writing point totals for player id: #{player.id} (#{i + 1}/#{players.size})"
                         ActiveRecord::Base.connection.execute(
-                            "INSERT INTO #{PlayerEventPoint.table_name}(points, player_id, event_id, event_date, metadata_id, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points, created_at, updated_at) VALUES #{point_data.join(',')}"
+                            "INSERT INTO #{PlayerEventPoint.table_name}(points, player_id, event_id, event_datetime, metadata_id, defensive_points, fumbles_points, passing_points, rushing_points, sacks_against_points, scoring_points, special_teams_points, created_at, updated_at) VALUES #{point_data.join(',')}"
                         )
                     end
                 end

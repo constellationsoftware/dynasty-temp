@@ -44,6 +44,7 @@ gem "active_model_serializers", :git => "git://github.com/josevalim/active_model
 gem 'jbuilder'
 gem 'rabl'
 gem 'gon'
+gem 'yaml_db'
 
 
 
