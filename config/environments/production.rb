@@ -31,6 +31,10 @@ Dynasty::Application.configure do
     #config.assets.js_compressor = :uglifier
     config.assets.digest = true
     config.assets.initialize_on_precompile = true
+
+    # load assets from a different domain
+    config.action_controller.asset_host = "http://assets.local"
+    #config.assets.prefix = '/'
     # Precompile *all* assets, except those that start with underscore
     #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
