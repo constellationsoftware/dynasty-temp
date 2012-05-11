@@ -6,10 +6,6 @@
 $ ->
     dataTable = $('#research').dataTable
         aoColumns: [
-            sName:      'id'
-            bVisible:   false
-            mDataProp:  'id'
-        ,
             sName:      'name'
             sWidth:     '120px'
             mDataProp:  null
@@ -78,6 +74,10 @@ $ ->
         ,
             sName:      'games'
             mDataProp:  'points.games_played'
+        ,
+            sName:      'id'
+            bVisible:   false
+            mDataProp:  'id'
         ]
         fnServerData: (source, data, callback) -> $.get source, data, callback, 'json'
         bProcesing: true
@@ -91,6 +91,7 @@ $ ->
         oScroller:
             serverWait: 250
             #rowHeight: 26
+
 
     $('#research th select').on 'change', ->
         el = $(@)
