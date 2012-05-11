@@ -296,8 +296,6 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
-    kendoui-rails (0.0.7)
-      jquery-rails
     less (2.2.1)
       commonjs (~> 0.2.6)
     less-rails (2.2.2)
@@ -540,7 +538,6 @@ DEPENDENCIES
   jquery-ui-rails
   juggernaut
   kaminari
-  kendoui-rails
   mail_view
   meta_search (>= 1.1.0.pre)
   modernizr-rails

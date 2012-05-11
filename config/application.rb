@@ -57,16 +57,24 @@ module Dynasty
         # Enable the asset pipeline
         unless Rails.env == 'test'
             config.assets.enabled = true
-            config.serve_static_assets = false
+            config.serve_static_assets = true
             config.assets.compile = true
         else
             config.assets.enabled = false
-            config.serve_static_assets = false
+            config.serve_static_assets = true
             config.assets.compile = false
-            # config.assets.paths << File.join(Rails.root, 'vendor', 'assets', 'images')
-            
-            config.assets.paths << Rails.root.join('vendor', 'assets', 'images')
+
+
         end
+
+
+        config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'default', 'images')
+        config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'stylesheets')
+        config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'javascripts')
+
+        # Set up our ExtJS SASS build environment
+        config.sass.load_paths << "#{Rails.root}/vendor/assets/javascripts/extjs/resources/sass"
+
 
         # Compass integration
         # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
@@ -125,6 +133,7 @@ module Dynasty
 
         # prevent ActionController from calling helpers :all
         config.action_controller.include_all_helpers = false
+        #config.action_controller.asset_host = "http://assets.dynastyowner.local"
 
         config.generators do |g|
             g.test_framework      :rspec, :fixture => true

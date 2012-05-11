@@ -1,4 +1,16 @@
 Dynasty::Application.routes.draw do
+    # Namespacing for Nested Controllers
+
+
+    #namespace :league do
+    #    namespace :team do
+    #        resources :favorites, :games, :lineups, :roster
+    #    end
+    #
+    #    resources :drafts, :messages, :picks, :players, :teams, :trades, :teams
+    #end
+
+
 
     # Player News Research Pages
     match "research",                 :to => 'research#index', :as => 'research_index', :via => [:get]

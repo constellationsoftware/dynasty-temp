@@ -5,14 +5,13 @@ Dynasty::Application.configure do
     config.cache_classes = true
 
     # Full error reports are disabled and caching is turned on
-    config.consider_all_requests_local = false # set to true for fake dev mode
+    config.consider_all_requests_local = true # set to true for detailed errors
     config.action_controller.perform_caching = true # set to false for fake dev mode
 
     # Disable Rails's static asset server (Apache or nginx will already do this)
     config.serve_static_assets = true
 
-    # Compress JavaScripts and CSS
-    config.assets.compress = true
+
 
     # Generate digests for assets URLs
     config.assets.digest = true
@@ -28,10 +27,10 @@ Dynasty::Application.configure do
     config.assets.compile = false
     config.assets.compress = false # false for staging
     config.assets.debug = false
-    config.assets.css_compressor = :yui
-    config.assets.js_compressor = :uglifier
+    #config.assets.css_compressor = :yui
+    #config.assets.js_compressor = :uglifier
     config.assets.digest = true
-
+    config.assets.initialize_on_precompile = true
     # Precompile *all* assets, except those that start with underscore
     #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
@@ -41,13 +40,13 @@ Dynasty::Application.configure do
 
     # Specifies the header that your server uses for sending files
     # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-    config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+    #config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
     # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
     # config.force_ssl = true
 
     # See everything in the log (default is :info)
-    config.log_level = :info
+    config.log_level = :warn
     config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 3, 5*1024*1024)
 
     # Use a different logger for distributed setups
@@ -63,7 +62,7 @@ Dynasty::Application.configure do
     # Use a different cache store in production
     config.cache_store = :dalli_store
 
-    # Current memcached init:
+    # Note: Current memcached init (accessed by dalli):
     # memcached -d -p 11211 -m 256 -L
 
     # Enable serving of images, stylesheets, and JavaScripts from an asset server

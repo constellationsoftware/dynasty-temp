@@ -30,7 +30,7 @@ dynastyowner.tmproj
 encodings.xml
 log/*
 npm-debug.log
-public/assets/*
+
 public/draft/resources/.sass-cache/
 public/stylesheets/*
 tmp
