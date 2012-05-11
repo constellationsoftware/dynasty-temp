@@ -3,7 +3,7 @@
 
 # Nicks Version
 
-web: bundle exec rails server thin start -p 5000
+web: bundle exec thin start -p 5000 -e development
 jobs: rake jobs:work
 pusher: ./script/pusher
 juggernaut: ./script/juggernaut_listener

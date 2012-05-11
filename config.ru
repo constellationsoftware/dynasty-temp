@@ -1,11 +1,9 @@
-# This file is used by Rack-based servers to start the application.
-
-require ::File.expand_path('../config/environment', __FILE__)
-
-# Newrelic Dev mode
-# require 'new_relic/rack/developer_mode'
-# use NewRelic::Rack::DeveloperMode
-
+# Rails.root/config.ru
+require File.expand_path('../config/environment', __FILE__)
+require 'newrelic_rpm'
+require 'new_relic/rack/developer_mode'
+require 'sass/plugin/rack'
+use NewRelic::Rack::DeveloperMode
 use Sass::Plugin::Rack
 
 run Dynasty::Application
@@ -14,7 +12,3 @@ run Dynasty::Application
 Settings.add_source! File.join(Rails.root, 'config', 'settings_banking.yml')
 Settings.reload!
 
-# Keep the /newrelic route open per https://newrelic.com/docs/ruby/developer-mode
-require 'newrelic_rpm'
-require 'new_relic/rack/developer_mode'
-use NewRelic::Rack::DeveloperMode

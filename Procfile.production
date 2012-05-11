@@ -2,7 +2,7 @@
 ### bundle exec foreman start -f ./Procfile.production web=4 jobs=1 pusher=1 juggernaut=1
 
 
-web: bundle exec rails server thin start -p 5000 -e production
+web: bundle exec thin start -p 5000 -e production
 jobs: rake jobs:work
 pusher: ./script/pusher
 juggernaut: ./script/juggernaut_listener
