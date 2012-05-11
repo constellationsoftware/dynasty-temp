@@ -57,11 +57,11 @@ module Dynasty
         # Enable the asset pipeline
         unless Rails.env == 'test'
             config.assets.enabled = true
-            config.serve_static_assets = true
+            config.serve_static_assets = false
             config.assets.compile = true
         else
             config.assets.enabled = false
-            config.serve_static_assets = true
+            config.serve_static_assets = false
             config.assets.compile = false
             # config.assets.paths << File.join(Rails.root, 'vendor', 'assets', 'images')
             
@@ -74,14 +74,14 @@ module Dynasty
 
         # Enable IdentityMap for Active Record
         # to disable set to false or remove the line below.
-        #config.active_record.identity_map = true
+        config.active_record.identity_map = true
         #ActiveRecord::IdentityMap.enabled = true
 
         # Version of your assets, change this if you want to expire all your assets
         config.assets.version = '1.1'
 
         # Disable asset initialization on precompile for heroku deployment w/ devise authentication
-        config.assets.initialize_on_precompile = true
+        #config.assets.initialize_on_precompile = true
 
         # set up a custom provider for the direct RPC root URL
         #config.middleware.use Rails::ExtJS::Direct::RemotingProvider, "/direct"

@@ -45,7 +45,8 @@ gem 'jbuilder'
 gem 'rabl'
 gem 'gon'
 gem 'yaml_db'
-
+gem 'valium'
+gem 'dalli'
 
 
 # Templating & View Helpers
