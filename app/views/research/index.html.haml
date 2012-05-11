@@ -1,74 +1,43 @@
 - content_for :title, "Players"
 - content_for :section_title, "Research"
+= javascript_include_tag 'research'
+= stylesheet_link_tag 'research'
+-#.row.datatable-filters
+-#  .span1 Filters:
+-#  .span11
+-#    %select.span1.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
+-#      %option{:value => ''} All
+-#      %option{:value => "QB"} QB
+-#      %option{:value => "WR"} WR
+-#      %option{:value => "RB"} RB
+-#      %option{:value => "TE"} TE
+-#      %option{:value => "K"} K
+-#      %option{:value => "LB"} LB
+-#      %option{:value => "DL"} DL
+
 .row
   .span12
     .container-fixed
-
       %h3
         Player Research
-      %table.display.all-players-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %table#research.display.all-players-data.table.table-striped.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
-            %th Player
-            %th
-              %select.span1.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
-                %option Pos
-                %option{:value => "QB"} QB
-                %option{:value => "WR"} WR
-                %option{:value => "RB"} RB
-                %option{:value => "TE"} TE
-                %option{:value => "K"} K
-                %option{:value => "LB"} LB
-                %option{:value => "DL"} DL
-
-            %th Team
-            %th Bye
-            %th $Yr
-            %th $Tot
-            %th End
-            %th FPTs
-            %th Pass
-            %th Rush
-            %th Def
-            %th Fum
-            %th Td
-            %th $DD/P
-            %th Games
-
-        %tbody
-          - @players.each do |player|
-            %tr{:id => dom_id(player)}
-              %td
-                %a{:href => "/players/#{player.id}"}
-                  = player.fname
-              %td= player.position.abbreviation.upcase
-              %td= player.real_team.display_name.last_name
-              %td= player.contract.bye_week
-              %td= player.contract.amount
-              %td= player.contract.summary
-              %td= player.contract.end_year
-              %td= player.points.points
-              %td= player.points.passing_points
-              %td= player.points.rushing_points
-              %td= player.points.defensive_points
-              %td= player.points.fumbles_points
-              %td= player.points.scoring_points
-              %td= player.points_per_dollar
-              %td= player.points.games_played
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            %th.id
+            %th.name Name
+            %th.first-name
+            %th.last-name
+            %th.position Pos
+            %th.team Team
+            %th.bye Bye
+            %th.contract-amount $Yr
+            %th.contract-total-amount $Tot
+            %th.contract-end-year End
+            %th.points FPTs
+            %th.passing-points Pass
+            %th.rushing-points Rush
+            %th.defensive-points Def
+            %th.fumble-points Fum
+            %th.scoring-points Td
+            %th.points-per-dollar P/DD
+            %th.games Games

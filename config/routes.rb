@@ -8,6 +8,7 @@ Dynasty::Application.routes.draw do
     match "research/transactions",    :to => 'research#transactions', :as => 'research_transactions', :via => [:get]
     match "research/contracts",       :to => 'research#contracts', :as => 'research_contracts', :via => [:get]
     match "research/depth_charts",    :to => 'research#depth_charts', :as => 'research_team', :via => [:get]
+    match 'research/players' => 'research#players', :via => [ :get, :post ]
 
     # Team Financials
     match "financials",               :to => 'teams#financials', :as => 'team_financials', :via => [:get]
@@ -150,12 +151,10 @@ Dynasty::Application.routes.draw do
     end
 
     resources :players do
-        get 'show'
         get 'research'
         get 'add'
         post 'add'
         member do
-            get 'show'
             get 'add'
             post 'add'
         end

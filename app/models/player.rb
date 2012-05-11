@@ -42,7 +42,9 @@ class Player < ActiveRecord::Base
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :real_events, :through => :event_points, :class_name => 'Event'
     has_one  :contract, :foreign_key => 'person_id'
-
+    has_one  :active_team_phase, :class_name => 'PersonPhase', :foreign_key => :person_id,
+        :conditions => { :membership_type => 'teams', :phase_status => 'active' }
+    has_one  :real_team, :through => :active_team_phase
 
     def all_leagues
 
@@ -67,10 +69,6 @@ class Player < ActiveRecord::Base
 
     def contract_depth
         self.contract.depth
-    end
-
-    def real_team
-        SportsDb::Team.find(self.person_phases.current.first.membership_id)
     end
 
    ## def team_short

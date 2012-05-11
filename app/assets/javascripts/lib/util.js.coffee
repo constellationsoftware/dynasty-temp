@@ -1,3 +1,5 @@
+#= require jquery/hash_table
+#= require jquery/number_format
 #= require_tree ../templates/shared
 #= require_self
 
@@ -9,6 +11,18 @@ String::lpad = (length, padString) ->
     str = @
     str = (padString + str) while (str.length < length)
     str
+
+String::reverse = ->
+    str = @
+    ret = ''
+    ret += str[c] for c in [(str.length - 1)..0]
+    ret
+
+String::chunk = (size) ->
+    throw 'Chunk size must be greater that zero!' unless size > 0
+    str = @
+    len = Math.ceil str.length / size
+    (str.substr(i * size, size) for i in [0...len])
 
 # default options for Ajax requests through JQuery
 $.ajaxSetup
