@@ -1,9 +1,12 @@
 %h5
 = form.inputs :name => 'Basic Info' do
-
+  %br
+  %small.red
+    * = required fields
   = form.input :email, :as => :email, :input_html => { :class => 'input-text' }
   %span.blue.radius.label
     By default your email address will be your username.
+    %br
   - if action_name === 'new'
     = form.input :password, :input_html => { :class => 'input-text', :autocomplete => 'off' }
     = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :class => 'input-text', :autocomplete => 'off' }

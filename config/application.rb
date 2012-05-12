@@ -5,7 +5,8 @@ require 'rails/all'
 
 #require 'rails-extjs-direct'
 if defined?(Bundler)
-    Bundler.require *Rails.groups(:assets => %w(development integration))
+    #Bundler.require *Rails.groups(:assets => %w(development integration))
+    Bundler.require(:default, :assets, Rails.env)
 end
 
 module Dynasty
@@ -60,9 +61,9 @@ module Dynasty
             config.serve_static_assets = true
             config.assets.compile = true
         else
-            config.assets.enabled = false
+            config.assets.enabled = true
             config.serve_static_assets = true
-            config.assets.compile = false
+            config.assets.compile = true
 
 
         end

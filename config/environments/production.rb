@@ -5,7 +5,7 @@ Dynasty::Application.configure do
     config.cache_classes = true
 
     # Full error reports are disabled and caching is turned on
-    config.consider_all_requests_local = true # set to true for detailed errors
+    config.consider_all_requests_local = false # set to true for detailed errors
     config.action_controller.perform_caching = true # set to false for fake dev mode
 
     # Disable Rails's static asset server (Apache or nginx will already do this)
@@ -24,7 +24,7 @@ Dynasty::Application.configure do
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.assets.compile = false
+    config.assets.compile = true
     config.assets.compress = false # false for staging
     config.assets.debug = false
     #config.assets.css_compressor = :yui
@@ -33,7 +33,7 @@ Dynasty::Application.configure do
     config.assets.initialize_on_precompile = true
 
     # load assets from a different domain
-    config.action_controller.asset_host = "http://assets.local"
+    #config.action_controller.asset_host = "http://assets.local"
     #config.assets.prefix = '/'
     # Precompile *all* assets, except those that start with underscore
     #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/

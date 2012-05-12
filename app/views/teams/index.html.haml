@@ -1,8 +1,8 @@
 = javascript_include_tag controller.action_name
 = stylesheet_link_tag controller_base_name
-- content_for :title, "Manage Team"
+- content_for :title, "Edit Team"
 
 = simple_form_for @team do |f|
-  = f.input :name
-  = f.input :motto
+  = f.input :name, :label => 'Team Name'
+  = f.input :motto, :label => 'Team Motto'
   = f.button :submit

@@ -22,7 +22,7 @@
             %li.divider-vertical
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                Tutorial
+                How to Play
                 %b.caret
               %ul.dropdown-menu
                 %li
@@ -58,13 +58,13 @@
                   %ul.dropdown-menu
                     %li
                       %a{:href => edit_user_registration_path}
-                        %i.icon-pencil.pad-right &nbsp; Edit Profile
+                        Edit Profile
                     %li
                       %a{:href => '#'}
-                        %i.icon-th-list.pad-right &nbsp; Manage Account
+                        Manage Account
                     %li
                       %a{:href => '/teams/'}
-                        %i.icon-cog.pad-right &nbsp; Edit Team
+                        Edit Team
                     %li.divider
                     %li
                       %a{:href => destroy_user_session_path}
@@ -82,7 +82,7 @@
                 %li
                   %a{:href => '/coachs_corner/game_review'} Game Review
                 %li
-                  %a{:href => '/coachs_corner/manage_starters'} Manage Starters
+                  %a{:href => '/coachs_corner/manage_starters'} Set Lineup
 
 
             //TODO: Pages under Trades Controller need to highlight player research
@@ -92,11 +92,11 @@
                 %li
                   %a{:href => '/front_office/roster'} Manage Roster
                   %a{:href => '/front_office/trades'} Trades
-                  %a{:href => '/front_office/waivers'} Waiver Wire
+                  %a{:href => '/front_office/waivers'} Free Agents
+                  %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
             %li
               %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
 
-            %li
-              %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
+
             %li
               %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === ("purchase_dynasty_dollars" or "dynasty_dollars_receipt") ? 'active' : ''}"} Purchase Dynasty Dollars

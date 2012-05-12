@@ -4,5 +4,5 @@
 = semantic_form_for @user, :url => edit_user_registration_path, :html => { :id => 'register', :class => 'nice' } do |f|
   .row.span12.centered
     .panel
-      %h3 Update Profile
+      %h3 Edit Profile
       = render :partial => '/users/shared/registration_form', :locals => { :form => f }
