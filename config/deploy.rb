@@ -1,21 +1,18 @@
 require "bundler/capistrano"
 
 
-server "184.107.238.210", :web, :app, :db, primary: true
+set :application,       "dynastyowner"
+set :domain,            "dynastyowner.net"
+set :deploy_to,         "/var/www/dynasty"
 
-# Deploy to iweb.com server via fom.beanstalkapp.com
-set :application,       "dynastyowner.net"
-set :domain,             "dynastyowner.net"
-set :deploy_to,         "/home/dynasty_development"
-set :user,              "deployer"
-set :password,          "fom556"
-set :use_sudo,          true
+
+server "dynastyowner.net", :web, :app, :db, primary: true
 
 
 
 set :keep_releases,     3
 set :scm,               :git
-set :repository,        "git@fom.beanstalkapp.com:/dynasty.git"
+set :repository,        "git@github.com:bamurphymac/Dynasty.git"
 set :scm_verbose, true
 #set :scm_username       "bamurphymac"
 #set :scm_passphrase, ""  # The deploy user's password
