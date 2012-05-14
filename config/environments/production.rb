@@ -9,7 +9,7 @@ Dynasty::Application.configure do
     config.action_controller.perform_caching = true # set to false for fake dev mode
 
     # Disable Rails's static asset server (Apache or nginx will already do this)
-    config.serve_static_assets = true
+    config.serve_static_assets = false
 
 
 
@@ -33,7 +33,7 @@ Dynasty::Application.configure do
     config.assets.initialize_on_precompile = true
 
     # load assets from a different domain
-    #config.action_controller.asset_host = "http://assets.local"
+    config.action_controller.asset_host = "http://assets.dynastyowner.local"
     #config.assets.prefix = '/'
     # Precompile *all* assets, except those that start with underscore
     #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
@@ -50,7 +50,7 @@ Dynasty::Application.configure do
     # config.force_ssl = true
 
     # See everything in the log (default is :info)
-    config.log_level = :warn
+    config.log_level = :info
     config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 3, 5*1024*1024)
 
     # Use a different logger for distributed setups
