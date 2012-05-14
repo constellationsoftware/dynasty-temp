@@ -9,7 +9,7 @@ Ext.define('DynastyDraft.store.Teams', {
         startParam: undefined,
         limitParam: undefined,
         type: 'rest',
-        url: '/teams',
+        url: '/teams.json',
         reader: 'json',
 
         extraParams: {

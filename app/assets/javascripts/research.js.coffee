@@ -13,6 +13,16 @@ $ ->
             fnRender:   (col) ->
                 data = col.aData
                 "#{data.name.first_name[0]}. #{data.name.last_name}"
+            fnCreatedCell: (el, sData, data, rowIndex, colIndex) ->
+                #console.log sData
+                el = $(el)
+                content =
+                    """
+                    <a data-delay="{'show':500,'hide':100}" href="/players/#{data.id}" rel="tooltip" data-original-title="#{data.name.first_name} #{data.name.last_name}">
+                        #{el.text()}
+                    </a>
+                    """
+                el.html content
         ,
             sName:      'first_name'
             mDataProp:  'name.first_name'
