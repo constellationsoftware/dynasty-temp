@@ -112,6 +112,7 @@ group :development, :test do
     gem 'jasmine'
     gem 'jasminerice'
     gem 'guard-jasmine'
+    gem 'guard-rails-assets'
     gem 'forgery', '0.5.0'
     gem 'fabrication'
 end

@@ -19,4 +19,5 @@
 #= require subnav
 #= require bugherd
 #= require raphael-min
+#= require live
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)
