@@ -9,7 +9,8 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'supermodel', :git => 'git://github.com/FOMNick/supermodel'
 gem 'rails_config', :git => 'git://github.com/railsjedi/rails_config.git'
-
+gem 'guard'
+gem 'spork-rails'
 # PostgreSQL Testing -
 #gem 'taps'
 #gem 'pg'
@@ -60,6 +61,10 @@ gem "watu_table_builder", :require => "table_builder", :git => "git://github.com
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
+
+gem "pjax-rails", "~> 0.1.4"
+
+gem 'show_for'
 
 # Authentication & Permissions
 # gem 'authlogic'
@@ -113,6 +118,9 @@ group :development, :test do
     gem 'jasminerice'
     gem 'guard-jasmine'
     gem 'guard-rails-assets'
+    gem 'guard-livereload'
+    gem 'guard-bundler'
+
     gem 'forgery', '0.5.0'
     gem 'fabrication'
 end
@@ -148,7 +156,7 @@ group :test do
     # Note: turn will have to be uninstalled if there are
     # versions > 0.8.2 [lrg]
     gem 'turn', '< 0.8.3'
-    gem 'spork-rails'
+
     gem 'guard-spork'
     gem 'guard-rspec'
     gem 'cucumber-rails', :require => false #, '1.2.1'

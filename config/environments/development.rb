@@ -13,7 +13,7 @@ Dynasty::Application.configure do
     config.whiny_nils = true
 
     # Show full error reports and disable caching
-    config.consider_all_requests_local = false
+    config.consider_all_requests_local = true
     config.action_controller.perform_caching = false
 
     # Don't care if the mailer can't send
@@ -28,11 +28,11 @@ Dynasty::Application.configure do
 
     # Enable the asset pipeline
     config.assets.enabled = true
-    config.serve_static_assets = true
-    config.assets.compile = true
-    config.assets.compress = true
-    config.assets.css_compressor = :yui
-    config.assets.js_compressor = :uglifier
+    config.serve_static_assets = false
+    #config.assets.compile = true
+    config.assets.compress = false
+    #config.assets.css_compressor = :yui
+    #config.assets.js_compressor = :uglifier
 
     # Set to true for individual stylesheets
     config.assets.debug = true

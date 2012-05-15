@@ -76,7 +76,7 @@ module Dynasty
         # Set up our ExtJS SASS build environment
         config.sass.load_paths << "#{Rails.root}/vendor/assets/javascripts/extjs/resources/sass"
 
-
+        config.assets.precompile = ['application.js', 'application.css', 'all-ie.css']
         # Compass integration
         # config.sass.load_paths << Compass::Frameworks['compass'].stylesheets_directory
         # config.sass.load_paths << Compass::Frameworks['twitter_bootstrap'].stylesheets_directory

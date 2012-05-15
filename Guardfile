@@ -1,6 +1,56 @@
 # A sample Guardfile
 # More info at https://github.com/guard/guard#readme
 
+
+guard 'spork',
+    :cucumber_env => { 'RAILS_ENV' => 'test' },
+    :rspec_env => { 'RAILS_ENV' => 'test' },
+    :jasmine_env => { 'RAILS_ENV' => 'test' },
+    :wait => 60 do
+    watch('config/application.rb')
+    watch('config/environment.rb')
+    watch(%r{^config/environments/.+\.rb$})
+    watch(%r{^config/initializers/.+\.rb$})
+    watch('Gemfile')
+    watch('Gemfile.lock')
+    watch('spec/spec_helper.rb') { :rspec }
+    watch(%r{features/support/}) { :cucumber }
+    watch(%r{^spec/factories/.+\.rb})
+end
+
+# Make sure this guard is ABOVE any other guards using assets such as jasmine-headless-webkit
+# It is recommended to make explicit list of assets in `config/application.rb`
+# config.assets.precompile = ['application.js', 'application.css', 'all-ie.css']
+
+
+    guard 'rails-assets', :cli => "--drb" do
+        watch(%r{^app/assets/.+$})
+        watch('config/application.rb')
+    end
+    guard 'livereload', :cli => "--drb" do
+        watch(%r{app/views/.+\.(erb|haml|slim)})
+        watch(%r{app/helpers/.+\.rb})
+        watch(%r{public/.+\.(css|js|html)})
+        watch(%r{config/locales/.+\.yml})
+        # Rails Assets Pipeline
+        watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/#{m[2]}" }
+    end
+
+
+
+
+    guard 'bundler', :cli => "--drb"  do
+        watch('Gemfile')
+        # Uncomment next line if Gemfile contain `gemspec' command
+        # watch(/^.+\.gemspec/)
+    end
+
+
+
+
+
+
+
 guard 'rspec', :version => 2, :cli => "--drb" do
     watch(%r{^spec/.+_spec\.rb$})
     watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
@@ -34,21 +84,12 @@ guard 'jasmine', :cli => "--drb" do
     }
 end
 
-guard 'spork',
-    :cucumber_env => { 'RAILS_ENV' => 'test' },
-    :rspec_env => { 'RAILS_ENV' => 'test' },
-    :jasmine_env => { 'RAILS_ENV' => 'test' },
-    :wait => 60 do
-    watch('config/application.rb')
-    watch('config/environment.rb')
-    watch(%r{^config/environments/.+\.rb$})
-    watch(%r{^config/initializers/.+\.rb$})
-    watch('Gemfile')
-    watch('Gemfile.lock')
-    watch('spec/spec_helper.rb') { :rspec }
-    watch(%r{features/support/}) { :cucumber }
-    watch(%r{^spec/factories/.+\.rb})
-end
+
+
+
+
+
+
 
 
 
