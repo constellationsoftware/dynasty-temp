@@ -1,7 +1,7 @@
 - locale_scope = %w(coaches_corner game_review labels)
 .row-fluid.game.accordion-group{ :class => "#{game.played?(@team) ? 'played' : ''}", :data => { :game => game.id } }
   .span12
-    .row-fluid.accordion-heading{ :data => { :toggle => 'collapse', :target => "#game#{game.id}", :parent => "#week#{week}" } }
+    .row-fluid.accordion-heading{ :data => { :parent => "#week#{week}" } }
       .span2.away.points{ :class => (game.won?(game.away_team) ? 'win' : 'loss') }
         = game.away_team_score.nil? ? 'N/A' : game.away_team_score
       .span3.away.name{ :class => game.away_team_score.nil? ? 'forfeit' : '' }
@@ -13,6 +13,9 @@
         = game.home_team_score.nil? ? 'N/A' : game.home_team_score
     .row-fluid.accordion-body.collapse{ :id => "game#{game.id}" }
       .span12.accordion-inner
+        .row-fluid
+          .span12.expander-toggle
+            %i.icon-chevron-up
         .row-fluid.header
           .span2= t 'points', :scope => locale_scope
           .span3= t 'name', :scope => locale_scope
@@ -20,5 +23,5 @@
           .span3= t 'name', :scope => locale_scope
           .span2= t 'points', :scope => locale_scope
         .row-fluid.content.table.table-striped
-  .span12.accordion-footer
-    %i.expander.icon-chevron-down
+  .span12.accordion-footer.expander-toggle
+    %i.icon-chevron-down
