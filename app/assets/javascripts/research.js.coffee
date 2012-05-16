@@ -4,7 +4,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 $ ->
-    dataTable = $('#research').dataTable
+    window.dataTable = $('#research').dataTable
         aoColumns: [
             sName:      'name'
             sWidth:     '120px'
@@ -36,7 +36,7 @@ $ ->
             mDataProp:  'position.abbreviation'
         ,
             sName:      'team'
-            mDataProp:  'real_team.name.abbreviation'
+            mDataProp:  'real_team.display_name.abbreviation'
         ,
             sName:      'bye'
             mDataProp:  'contract.bye_week'
@@ -94,15 +94,32 @@ $ ->
         bServerSide: true
         sAjaxDataProp: 'players'
         sAjaxSource: 'research/players'
-        sDom: "<'row'<'span12'f>rtiS>"
-        bDeferRender: true
+        sDom: "<'row'r>tS<'row'<'span12'i>>"
+        #bDeferRender: true
         sScrollY: '350px'
         asStripeClasses:[]
         oScroller:
             serverWait: 250
             #rowHeight: 26
 
+    columnIndexByName = (name) ->
+        for col, i in dataTable.fnSettings().aoColumns
+            return i if col.sName is name
+        -1
 
-    $('#research th select').on 'change', ->
+    $('.filter-form select').on 'change', ->
         el = $(@)
-        dataTable.fnFilter el.value
+
+        # the ID of the form element corresponds to the class of the column we want to filter on
+        className = el.attr 'id'
+        columnIdx = columnIndexByName className
+        dataTable.fnFilter @value, columnIdx if columnIdx >= 0
+
+    $('.filter-form #name').on 'keyup', ->
+        el = $(@)
+        clearTimeout el.data('timeout')
+        callback = =>
+            columnIdx = columnIndexByName 'name'
+            dataTable.fnFilter @value, columnIdx if columnIdx >= 0 and (@value.length > 2 or @value.length is 0)
+
+        el.data('timeout', setTimeout(callback, 700))

@@ -171,6 +171,8 @@ class Player < ActiveRecord::Base
     scope :filter_by_name, lambda{ |player_name|
         where{ (name.last_name =~ "#{player_name}%") | (name.first_name =~ "#{player_name}%") | (name.full_name =~ "#{player_name}%") }
     }
+    scope :filter_by_position, lambda{ |p| where{ position.abbreviation =~ my{ p } } }
+    scope :filter_by_team, lambda{ |t| where{ real_team.display_name.abbreviation == my{ t } } }
 
     def full_name; name.full_name end
     def last_name_first; (name.first_name && name.last_name) ? "#{name.last_name}, #{name.first_name}" : full_name end

@@ -19,10 +19,9 @@ class SportsDb::Team < ActiveRecord::Base
     self.table_name = 'teams'
 
     has_many :american_football_action_plays
-    has_one  :name, :class_name => 'TeamName', :as => :entity, :identity => :teams
     has_one :display_name,
-            :foreign_key => 'entity_id',
-            :conditions => ['entity_type = ?', 'teams']
+            :foreign_key => :entity_id,
+            :conditions => { :entity_type => 'teams' }
 
     has_many :person_phases,
              :foreign_key => 'membership_id',
@@ -42,9 +41,12 @@ class SportsDb::Team < ActiveRecord::Base
     has_and_belongs_to_many :documents, :join_table => "teams_documents"
     has_and_belongs_to_many :medias, :join_table => "teams_media"
 
-    def self.nfl
-      where("league_id = ?", 9)
-    end
+    scope :nfl, where{ team_key =~ 'l.nfl.com%' }
+    scope :current, lambda{
+        sub_query = PersonPhase.select{ membership_id }
+            .where{ (membership_type == 'teams') & (phase_status == 'active') & (phase_type == 'team') }
+        where{ id >> sub_query }
+    }
 
     def games_played
         games = self.participants_events

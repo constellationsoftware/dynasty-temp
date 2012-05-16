@@ -19,6 +19,15 @@
   .span12
     .container-fixed
       %h3 Player Research
+      .row
+        %form.filter-form.form-inline
+          .span2.position
+            = label_tag 'position'
+            = select_tag 'position', options_for_select(@positions), :class => 'span1', :include_blank => true
+          .span2.team
+            = label_tag 'team'
+            = select_tag 'team', options_for_select(@teams), :class => 'span1', :include_blank => true
+          .span8.name= text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query'
       %table#research.display.all-players-data.table.table-striped.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
