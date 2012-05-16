@@ -92,7 +92,7 @@ class Player < ActiveRecord::Base
       Quantity.new(weight, :lb)
     end
 
-    def amount
+    def amountp
         self.contract.amount
     end
 
@@ -104,9 +104,6 @@ class Player < ActiveRecord::Base
       @fname = self.name.last_with_first_initial
     end
 
-
-
-    #
     # SCOPES
     #
     scope :roster, lambda { |team|

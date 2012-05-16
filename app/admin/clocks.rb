@@ -3,7 +3,7 @@ ActiveAdmin.register Clock do
        @clock = Clock.find(params[:id])
        @clock.next_week
    end
-
+   
     menu false
   #index do
   #    column :time

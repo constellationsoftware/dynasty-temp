@@ -7,7 +7,10 @@ class ResearchController < ApplicationController
    @teams ||= all_real_teams
   end
 
-
+  def pjax
+    @players ||= all_real_players
+   @teams ||= all_real_teams
+  end
 
   def team
   end

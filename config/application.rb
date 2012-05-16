@@ -55,19 +55,7 @@ module Dynasty
         # Configure sensitive parameters which will be filtered from the log file.
         config.filter_parameters += [:password]
 
-        # Enable the asset pipeline
-        unless Rails.env == 'test'
-            config.assets.enabled = true
-            config.serve_static_assets = true
-            config.assets.compile = true
-        else
-            config.assets.enabled = true
-            config.serve_static_assets = true
-            config.assets.compile = true
-
-
-        end
-
+        config.assets.enabled = true
 
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'default', 'images')
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'stylesheets')
@@ -87,7 +75,7 @@ module Dynasty
         #ActiveRecord::IdentityMap.enabled = true
 
         # Version of your assets, change this if you want to expire all your assets
-        config.assets.version = '1.1'
+        config.assets.version = '1.2'
 
         # Disable asset initialization on precompile for heroku deployment w/ devise authentication
         #config.assets.initialize_on_precompile = true

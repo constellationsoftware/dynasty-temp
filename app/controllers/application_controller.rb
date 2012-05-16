@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
     # å    rescue_from ActionController::RoutingError, :with => :render_not_found
     # å    rescue_from ActionController::UnknownController, :with => :render_not_found
     # å    rescue_from ActionController::UnknownAction, :with => :render_not_found
-    # åend
-
+    # å
+    # end
     respond_to :html
 
     has_scope :page

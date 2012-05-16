@@ -18,7 +18,7 @@ Dynasty::Application.configure do
 
     # Don't care if the mailer can't send
     config.action_mailer.perform_deliveries = true
-    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.raise_delivery_errors = false
 
     # Print deprecation notices to the Rails logger
     config.active_support.deprecation = :log
@@ -27,7 +27,9 @@ Dynasty::Application.configure do
     config.action_dispatch.best_standards_support = :builtin
 
     # Enable the asset pipeline
-    config.assets.enabled = true
+    #config.assets_prefix = "/dev-assets"
+    #config.assets.enabled = true
+    #config.assets.initialize_on_precompile = true
     config.serve_static_assets = false
     #config.assets.compile = true
     config.assets.compress = false
@@ -35,7 +37,7 @@ Dynasty::Application.configure do
     #config.assets.js_compressor = :uglifier
 
     # Set to true for individual stylesheets
-    config.assets.debug = true
+    config.assets.debug = false
     config.assets.logger = nil
 
 

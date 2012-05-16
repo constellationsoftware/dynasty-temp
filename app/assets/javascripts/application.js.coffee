@@ -7,6 +7,7 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
+#= require pjax
 #= require inflections
 #= require hamlcoffee
 #= require modernizr
@@ -19,6 +20,6 @@
 #= require subnav
 #= require bugherd
 #= require raphael-min
-#= require live
-#=require pjax
+# require live
+
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)
