@@ -4,7 +4,7 @@ class ResearchController < ApplicationController
     caches_page :index
     self.resource_class = Player
     #include DatatableMarshaller, :only => :players
-    before_filter :process_datatable_params, :only => :players
+    before_filter :inject_player_params, :only => :players
 
     has_scope :research, :type => :boolean, :default => true, :only => :players do |controller, scope|
         scope.joins{[ position, contract, name, points, real_team.display_name ]}
@@ -12,7 +12,7 @@ class ResearchController < ApplicationController
 
     def players
         #page = (start.zero? ? 0 : (start / length).floor) + 1
-        players = apply_scopes(Player)#.paginate :page => page, :per_page => length
+        players = apply_scopes(Player)#.order{[ name.last_name, name.first_name ]}#.paginate :page => page, :per_page => length
         @total = players.count
         players = players.offset(params[:start]) if params.has_key? 'start'
         players = players.limit(params[:length]) if params.has_key? 'length'
@@ -70,42 +70,24 @@ class ResearchController < ApplicationController
     end
 
     protected
-        def process_datatable_params
-            params[:request_id] = params.delete(:sEcho).to_i
-            params[:start] = params.delete(:iDisplayStart).to_i
-            params[:length] = params.delete(:iDisplayLength).to_i
-            params.delete :sSearch
-            params.delete :bRegex
-
-            columnNames = (params.delete :sColumns).split(',')
-            columns = []
-            sorters = []
-            filters = []
-            (0...params.delete(:iColumns).to_i).each do |i|
-                property = params.delete("mDataProp_#{i}") unless params["mDataProp_#{i}"] === 'null'
-                columns << { :name => columnNames[i], :property => property }
-                #columns << property unless property.nil?
-                filterValue = params.delete("sSearch_#{i}")
-                filters << {
-                    :property => columnNames[i],
-                    :value => filterValue
-                } unless filterValue === ''
-
-                params.delete("bSearchable_#{i}")
-                params.delete("bSortable_#{i}")
-                params.delete("bRegex_#{i}")
-            end
-
-            (0...params.delete(:iSortingCols).to_i).each do |i|
-                # assemble sorters
-                sorters << {
-                    :property => params.delete("iSortCol_#{i}"),
-                    :direction => params.delete("sSortDir_#{i}")
-                }
-            end
-
-            params[:columns] = columns.to_json
-            params[:filters] = filters.to_json
-            params[:sorters] = sorters.to_json
+        def inject_player_params
+            params[:columns] =  %W(
+                id
+                name.first_name
+                name.last_name
+                position.abbreviation
+                real_team.display_name.abbreviation
+                contract.bye_week
+                contract.amount
+                contract.summary
+                contract.end_year
+                points.points
+                points.passing_points
+                points.rushing_points
+                points.defensive_points
+                points.fumbles_points
+                points.scoring_points
+                points.games_played
+            ).to_json
         end
 end

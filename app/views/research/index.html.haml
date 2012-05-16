@@ -1,24 +1,10 @@
-- content_for :title, "Players"
-- content_for :section_title, "Research"
+- content_for :title, t('.title')
 = javascript_include_tag 'research'
 = stylesheet_link_tag 'research'
--#.row.datatable-filters
--#  .span1 Filters:
--#  .span11
--#    %select.span1.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
--#      %option{:value => ''} All
--#      %option{:value => "QB"} QB
--#      %option{:value => "WR"} WR
--#      %option{:value => "RB"} RB
--#      %option{:value => "TE"} TE
--#      %option{:value => "K"} K
--#      %option{:value => "LB"} LB
--#      %option{:value => "DL"} DL
 
 .row
   .span12
     .container-fixed
-      %h3 Player Research
       .row
         %form.filter-form.form-inline
           .span2.position
@@ -27,7 +13,10 @@
           .span2.team
             = label_tag 'team'
             = select_tag 'team', options_for_select(@teams), :class => 'span1', :include_blank => true
-          .span8.name= text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query'
+          .span2.bye
+            = label_tag 'bye'
+            = select_tag 'bye', options_for_select(4..11), :class => 'span1', :include_blank => true
+          .span6.name= text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query'
       %table#research.display.all-players-data.table.table-striped.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr

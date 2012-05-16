@@ -95,6 +95,10 @@ en:
         schedule_draft:     'Schedule Draft'
         draft_date_format:  '%A %B %d, %Y'
 
+    research:
+        index:
+            title: 'Player Research'
+
     formtastic:
         titles:
         labels:

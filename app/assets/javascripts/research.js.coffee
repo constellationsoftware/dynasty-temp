@@ -3,13 +3,18 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
+    value = $('.filter-form #name').val()
+    return true unless value?
+    return true if data[2].toLowerCase().indexOf(value) isnt -1 or data[1].toLowerCase().indexOf(value) isnt -1
+
 $ ->
     window.dataTable = $('#research').dataTable
         aoColumns: [
             sName:      'name'
             sWidth:     '120px'
             mDataProp:  null
-            aDataSort:  [ 'name.last_name', 'name.first_name' ]
+            aDataSort:  [ 2, 1 ]
             fnRender:   (col) ->
                 data = col.aData
                 "#{data.name.first_name[0]}. #{data.name.last_name}"
@@ -43,12 +48,14 @@ $ ->
         ,
             sName:      'contract_amount'
             mDataProp:  'contract.amount'
+            bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
                 "$#{$.formatNumber data.contract.amount, format: '#,###'}"
         ,
             sName:      'contract_total_amount'
             mDataProp:  'contract.summary'
+            bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
                 "$#{$.formatNumber data.contract.summary, format: '#,###'}"
@@ -91,7 +98,7 @@ $ ->
         ]
         fnServerData: (source, data, callback) -> $.get source, data, callback, 'json'
         bProcesing: true
-        bServerSide: true
+        #bServerSide: true
         sAjaxDataProp: 'players'
         sAjaxSource: 'research/players'
         sDom: "<'row'r>tS<'row'<'span12'i>>"
@@ -113,13 +120,14 @@ $ ->
         # the ID of the form element corresponds to the class of the column we want to filter on
         className = el.attr 'id'
         columnIdx = columnIndexByName className
-        dataTable.fnFilter @value, columnIdx if columnIdx >= 0
+        dataTable.fnFilter el.val(), columnIdx if columnIdx >= 0
 
     $('.filter-form #name').on 'keyup', ->
         el = $(@)
         clearTimeout el.data('timeout')
         callback = =>
-            columnIdx = columnIndexByName 'name'
-            dataTable.fnFilter @value, columnIdx if columnIdx >= 0 and (@value.length > 2 or @value.length is 0)
-
-        el.data('timeout', setTimeout(callback, 700))
+            dataTable.fnDraw()
+#            columnIdx = columnIndexByName 'name'
+#            console.log columnIdx
+#            dataTable.fnFilter @value, columnIdx if columnIdx >= 0 #and (@value.length > 2 or @value.length is 0)
+        el.data('timeout', setTimeout(callback, 500))

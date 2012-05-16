@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
     has_scope :columns do |controller, scope, value|
         columns = JSON.parse(value).collect do |column|
-            "#{column['property']}.as('`#{column['property']}`')" unless column['property'].nil?
+            "#{column}.as('`#{column}`')"
         end
         scope.select{ instance_eval("[#{columns.compact.join(',')}]") }
     end
