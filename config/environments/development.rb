@@ -27,10 +27,12 @@ Dynasty::Application.configure do
     config.action_dispatch.best_standards_support = :builtin
 
     # Enable the asset pipeline
-    #config.assets_prefix = "/dev-assets"
-    #config.assets.enabled = true
+    config.assets_prefix = "/dev-assets"
+    config.assets.enabled = true
+    
     #config.assets.initialize_on_precompile = true
-    config.serve_static_assets = false
+    config.serve_static_assets = true
+    
     #config.assets.compile = true
     config.assets.compress = false
     #config.assets.css_compressor = :yui

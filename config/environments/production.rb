@@ -10,8 +10,12 @@ Dynasty::Application.configure do
 
     # Disable Rails's static asset server (Apache or nginx will already do this)
     config.serve_static_assets = false
-
-
+    
+    # Compress JavaScripts and CSS
+    config.assets.compress = false     
+    
+    # Don't fallback to assets pipeline if a precompiled asset is missed
+    config.assets.compile = true
 
     # Generate digests for assets URLs
     config.assets.digest = true
@@ -20,12 +24,11 @@ Dynasty::Application.configure do
     #config.action_controller.asset_host = "http://dynastyowner.local/"
 
     # Only use best-standards-support built into browsers
-    config.action_dispatch.best_standards_support = :builtin
+    #config.action_dispatch.best_standards_support = :builtin
 
-    # Enable the asset pipeline
-    config.assets.enabled = true
-    config.assets.compile = true
-    config.assets.compress = false # false for staging
+
+    
+   
     config.assets.debug = false
     #config.assets.css_compressor = :yui
     #config.assets.js_compressor = :uglifier
