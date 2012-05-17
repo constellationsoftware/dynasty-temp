@@ -1,4 +1,4 @@
-=begin
+
 $ext_path = nil
 Compass.configuration do |config|
     config.project_type = :rails
@@ -9,4 +9,5 @@ Compass.configuration do |config|
     $ext_path = File.join(config.project_path, 'vendor', 'assets', 'javascripts', 'extjs')
     require File.join($ext_path, 'resources', 'themes', 'compass_init')
 end
-=end
+
+

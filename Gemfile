@@ -48,6 +48,9 @@ gem 'gon'
 gem 'yaml_db'
 gem 'valium'
 gem 'dalli'
+gem 'multi_json'
+gem 'yajl-ruby'
+gem 'oj'
 
 
 # Templating & View Helpers
@@ -62,6 +65,8 @@ gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
 
+# Pjax PushState
+gem 'rack-pjax'
 gem "pjax-rails", "~> 0.1.4"
 
 gem 'show_for'
@@ -120,9 +125,9 @@ group :development, :test do
     gem 'jasminerice'
     gem 'guard-jasmine'
     gem 'guard-rails-assets'
-    gem 'guard-livereload'
     gem 'guard-bundler'
-
+    gem "rack-livereload"
+    gem 'guard-livereload'
     gem 'forgery', '0.5.0'
     gem 'fabrication'
 end
@@ -144,7 +149,7 @@ group :assets do
     gem 'jquery-ui-rails'
     gem 'will_paginate'
 
-    #gem 'compass-rails'
+    gem 'compass-rails'
     #gem 'extjs-rails-assets'
 
     gem 'uglifier', '>=1.0.3'

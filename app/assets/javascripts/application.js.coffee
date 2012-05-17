@@ -20,6 +20,6 @@
 #= require subnav
 #= require bugherd
 #= require raphael-min
-# require live
+#= pjax
 
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)

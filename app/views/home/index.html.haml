@@ -1,0 +1,17 @@
+.row
+  .span4.players{"data-pjax-container" => ""}  
+    %h4 
+      All Players 
+      = @players.each do |player|
+        .player{"data-pjax-container" => ""}
+          %p= link_to player.name.full_name,
+            :player_id => player, 
+            :rel => "tooltip",
+            "data-original-title"  => "Click me for some details."      
+            
+  .span4.collection_of_players
+    %h4
+      A Collection of Players
+  
+
+  

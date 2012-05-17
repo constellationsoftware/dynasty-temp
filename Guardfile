@@ -2,34 +2,35 @@
 # More info at https://github.com/guard/guard#readme
 
 
-guard 'spork',
-    :cucumber_env => { 'RAILS_ENV' => 'test' },
-    :rspec_env => { 'RAILS_ENV' => 'test' },
-    :jasmine_env => { 'RAILS_ENV' => 'test' },
-    :foreman => true,    
-    :wait => 60 do
-    watch('config/application.rb')
-    watch('config/environment.rb')
-    watch(%r{^config/environments/.+\.rb$})
-    watch(%r{^config/initializers/.+\.rb$})
-    watch('Gemfile')
-    watch('Gemfile.lock')
-    watch('spec/spec_helper.rb') { :rspec }
-    watch(%r{features/support/}) { :cucumber }
-    watch(%r{^spec/factories/.+\.rb})
-
-
-end
+#guard 'spork',
+#    :cucumber_env => { 'RAILS_ENV' => 'test' },
+#    :rspec_env => { 'RAILS_ENV' => 'test' },
+#    :jasmine_env => { 'RAILS_ENV' => 'test' },
+#    :foreman => true,    
+#    :wait => 60 do
+#    watch('config/application.rb')
+#    watch('config/environment.rb')
+#    watch(%r{^config/environments/.+\.rb$})
+#    watch(%r{^config/initializers/.+\.rb$})
+#    watch('Gemfile')
+#    watch('Gemfile.lock')
+#    watch('spec/spec_helper.rb') { :rspec }
+#    watch(%r{features/support/}) { :cucumber }
+#    watch(%r{^spec/factories/.+\.rb})
+#
+#
+#end
 
 # Make sure this guard is ABOVE any other guards using assets such as jasmine-headless-webkit
 # It is recommended to make explicit list of assets in `config/application.rb`
 # config.assets.precompile = ['application.js', 'application.css', 'all-ie.css']
 
 
-    guard 'rails-assets', :cli => "--drb" do
-        watch(%r{^app/assets/.+$})
-        watch('config/application.rb')
-    end
+    #guard 'rails-assets', :cli => "--drb" do
+    #    watch(%r{^app/assets/.+$})
+    #    watch('config/application.rb')
+    #end
+    
     guard 'livereload', :cli => "--drb" do
         watch(%r{app/views/.+\.(erb|haml|slim)})
         watch(%r{app/helpers/.+\.rb})

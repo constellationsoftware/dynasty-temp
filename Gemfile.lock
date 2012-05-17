@@ -155,6 +155,7 @@ GEM
       xpath (~> 0.1.4)
     childprocess (0.3.2)
       ffi (~> 1.0.6)
+    chunky_png (1.2.5)
     coderay (1.0.6)
     coffee-filter (0.1.1)
       coffee-script (>= 2.2.0)
@@ -168,6 +169,12 @@ GEM
     coffee-script-source (1.3.1)
     columnize (0.3.6)
     commonjs (0.2.6)
+    compass (0.12.1)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
+    compass-rails (1.0.1)
+      compass (~> 0.12.0)
     country_select (0.0.2)
     cucumber (1.2.0)
       builder (>= 2.1.2)
@@ -226,6 +233,7 @@ GEM
     formtastic (2.1.1)
       actionpack (~> 3.0)
     friendly_id (4.0.5)
+    fssm (0.2.9)
     gherkin (2.10.0)
       json (>= 1.4.6)
     gon (3.0.2)
@@ -340,6 +348,7 @@ GEM
       net-ssh (>= 1.99.1)
     newrelic_rpm (3.3.4.1)
     nokogiri (1.5.2)
+    oj (1.2.8)
     orm_adapter (0.0.7)
     paper_trail (2.6.3)
       activerecord (~> 3.0)
@@ -368,6 +377,8 @@ GEM
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
+    rack-livereload (0.3.6)
+      rack
     rack-ssl (1.3.2)
       rack
     rack-test (0.6.1)
@@ -498,6 +509,7 @@ GEM
     will_paginate (3.0.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
+    yajl-ruby (1.1.0)
     yaml_db (0.2.3)
     zurb-foundation (2.2.1.1)
       jquery-rails (>= 1.0)
@@ -520,6 +532,7 @@ DEPENDENCIES
   capistrano-ext
   coffee-filter
   coffee-rails (~> 3.2.1)
+  compass-rails
   country_select
   cucumber-rails
   dalli
@@ -566,8 +579,10 @@ DEPENDENCIES
   meta_search (>= 1.1.0.pre)
   modernizr-rails
   money!
+  multi_json
   mysql2
   newrelic_rpm
+  oj
   paper_trail
   pjax-rails (~> 0.1.4)
   pry-rails
@@ -576,6 +591,7 @@ DEPENDENCIES
   quantify (~> 3.1.2)
   rabl
   rack
+  rack-livereload
   rails (= 3.2.2)
   rails_config!
   rb-fsevent
@@ -608,5 +624,6 @@ DEPENDENCIES
   valium
   watu_table_builder!
   will_paginate
+  yajl-ruby
   yaml_db
   zurb-foundation

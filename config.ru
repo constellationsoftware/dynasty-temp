@@ -5,7 +5,7 @@ require 'new_relic/rack/developer_mode'
 require 'sass/plugin/rack'
 use NewRelic::Rack::DeveloperMode
 use Sass::Plugin::Rack
-
+use Rack::Pjax
 run Dynasty::Application
 
 # load the banking configuration settings
