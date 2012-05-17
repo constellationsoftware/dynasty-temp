@@ -1,0 +1,436 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/JSHint/JSHint.sublime-build",
+	"command_palette":
+	{
+		"height": 107.0,
+		"selected_items":
+		[
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"packa ",
+				"Package Control: Discover Packages"
+			],
+			[
+				"package",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Disable Package"
+			],
+			[
+				"code",
+				"SublimeCodeIntel: Reset"
+			],
+			[
+				"json",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"navig",
+				"Open File Navigator"
+			],
+			[
+				"codei",
+				"SublimeCodeIntel: Reset"
+			],
+			[
+				"func",
+				"SublimePeek: Get Help for Function"
+			],
+			[
+				"themr:	Default",
+				"Themr: Default"
+			],
+			[
+				"t",
+				"Toggle Comment"
+			],
+			[
+				"them",
+				"Themr: Pseudo OSX"
+			],
+			[
+				"defa",
+				"Themr: Default"
+			],
+			[
+				"the",
+				"Themr: Reload themes"
+			],
+			[
+				"themr",
+				"Themr: Pseudo OSX"
+			],
+			[
+				"help",
+				"Help"
+			],
+			[
+				"disc",
+				"Package Control: Discover Packages"
+			],
+			[
+				"openfi",
+				"Open File Navigator"
+			],
+			[
+				"open nav",
+				"Sublime Files: Open Navigator"
+			],
+			[
+				"dis",
+				"Package Control: Discover Packages"
+			],
+			[
+				"gits",
+				"Git: Status"
+			],
+			[
+				"tmux",
+				"Themr: Pseudo OSX"
+			],
+			[
+				"sftp",
+				"SFTP: Browse Server…"
+			],
+			[
+				"scopoe",
+				"Scope Hunter: Show Scope Under Cursor(s)"
+			],
+			[
+				"scope",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"sub	",
+				"SublimePeek: Get Help for Function"
+			],
+			[
+				"subli",
+				"SublimePeek: Get Help for Function"
+			],
+			[
+				"vie",
+				"Simple Rails Navigator: List controllers"
+			],
+			[
+				"simpl",
+				"Simple Rails Navigator: List controllers"
+			],
+			[
+				"conver",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"convert",
+				"Indentation: Convert to Spaces"
+			]
+		],
+		"width": 547.0
+	},
+	"console":
+	{
+		"height": 54.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/bamurphymac/dynasty/dynasty_owner_project.sublime-workspace",
+		"/Users/bamurphymac/dynasty/Gemfile",
+		"/Users/bamurphymac/dynasty/dynasty.sublime-project",
+		"/Users/bamurphymac/dotfiles/oh-my-zsh/plugins/history-substring-search/history-substring-search.zsh",
+		"/Users/bamurphymac/dotfiles/zsh/aliases",
+		"/Users/bamurphymac/dotfiles/zshrc",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/bamurphymac/dynasty/app/models/player.rb",
+		"/Users/bamurphymac/dynasty/app/admin/clocks.rb",
+		"/Users/bamurphymac/dynasty/config/cucumber.yml",
+		"/Users/bamurphymac/.codeintel/config",
+		"/Users/bamurphymac/dynasty/config/application.rb",
+		"/Users/bamurphymac/dynasty/config/environments/development.rb",
+		"/Users/bamurphymac/dynasty/app/assets/javascripts/application.js.coffee",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/bamurphymac/dynasty/app/controllers/application_controller.rb",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/SublimeCodeIntel/Default (OSX).sublime-mousemap",
+		"/Users/bamurphymac/dynasty/dynasty.sublime-workspace",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/bamurphymac/dynasty/sftp-config.json",
+		"/Users/bamurphymac/dynasty/Procfile",
+		"/Users/bamurphymac/dynasty/app/controllers/home_controller.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/research_controller.rb",
+		"/Users/bamurphymac/dynasty/Guardfile",
+		"/Users/bamurphymac/dynasty/app/models/ability.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/draftable_players_controller.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/payments_controller.rb",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
+		"/Users/bamurphymac/dynasty/app/models/display_name.rb",
+		"/Users/bamurphymac/dynasty/config/database.yml",
+		"/Users/bamurphymac/dynasty/Capfile",
+		"/Users/bamurphymac/dynasty/app/views/research/index.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/layouts/application.html.haml",
+		"/Users/bamurphymac/Library/LaunchAgents/memcached.plist",
+		"/Users/bamurphymac/dynasty/vendor/assets/javascripts/live.js",
+		"/Users/bamurphymac/dynasty/.gitignore",
+		"/Users/bamurphymac/dynasty/config/environments/production.rb",
+		"/Users/bamurphymac/dynasty/app/models/person.rb",
+		"/Users/bamurphymac/.zshrc",
+		"/Users/bamurphymac/dynasty/.bundle/config",
+		"/System/Library/LaunchDaemons/nginx.plist",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.scss",
+		"/usr/local/etc/nginx/nginx.conf",
+		"/etc/hostconfig",
+		"/etc/hostname",
+		"/Users/bamurphymac/dynasty/.git/config",
+		"/etc/hosts",
+		"/Users/bamurphymac/.ssh/known_hosts",
+		"/etc/nanorc",
+		"/Users/bamurphymac/.ssh/config",
+		"/Users/bamurphymac/dynasty/config/deploy.rb",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/0E0174D6-AAB1-4E17-B657-85D9558A26B3/nginx.conf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/E674C1B9-7D93-4477-A3BE-3D07DC71D412/nginx.conf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/74C242F0-51C3-444C-BED0-A6C22930E5EA/robots.txt",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/874760BE-441A-4041-B8C4-C8348CF55F97/robots.txt",
+		"/etc/shells",
+		"/Users/bamurphymac/nanorc",
+		"/usr/share/NotificationS",
+		"/Users/bamurphymac/.oh-my-zsh/themes/ben.zsh-theme",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Rails/find(%3Afirst).sublime-snippet",
+		"/Users/bamurphymac/dynasty/Readme",
+		"/Users/bamurphymac/dynasty/dynasty.xml",
+		"/Users/bamurphymac/etc/hosts",
+		"/Users/bamurphymac/.gitconfig",
+		"/Users/bamurphymac/Downloads/newrelic.yml",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/50AD295B-38A5-48B5-998C-FFC5323BC74A/development.rb",
+		"/Users/bamurphymac/Desktop/404page.html",
+		"/Users/bamurphymac/Desktop/thankyou.html",
+		"/Users/bamurphymac/Desktop/truck-storage.html",
+		"/Users/bamurphymac/Desktop/aos pages/construction-materials-storage.html",
+		"/Users/bamurphymac/Desktop/aos pages/contact-aos.html",
+		"/Users/bamurphymac/Desktop/aos pages/directions-aos.html",
+		"/Users/bamurphymac/Desktop/aos pages/google3e01fe3133b52239.html",
+		"/Users/bamurphymac/Desktop/aos pages/index.html",
+		"/Users/bamurphymac/Desktop/aos pages/landscape-equipment-storage.html",
+		"/Users/bamurphymac/Desktop/aos pages/large-equipment-storage.html",
+		"/Users/bamurphymac/Desktop/aos pages/location.html",
+		"/Users/bamurphymac/Desktop/aos pages/long-short-term-storage.html",
+		"/Users/bamurphymac/Desktop/aos pages/quickstart.html",
+		"/Users/bamurphymac/Desktop/aos pages/rv-camper-storage.html",
+		"/Users/bamurphymac/Desktop/aos pages/storage-application.html",
+		"/Users/bamurphymac/Desktop/aos pages/storage-facility.html",
+		"/Users/bamurphymac/Desktop/aos pages/storage-rates.html",
+		"/Users/bamurphymac/Desktop/aos pages/atv-motorcycles-storage.html",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/168A9F90-A046-442C-92A0-F5FE0CA53D4D/404page.html",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/CCD5C74F-ADDA-47DA-9726-5624FA67D538/nginx.conf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/043F345C-7BC9-44EC-963E-2579A92BB624/payments_controller.rb",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/6671FC3E-3D27-4E4A-9BF5-4F2061A6F0EA/my.cnf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/2C9D53F0-D812-447C-A3FE-3746D82D62AF/my.cnf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/BD23FAAB-D44C-4E67-9BEA-DDD3A9E0DF62/nginx.conf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/FB8BAFE5-B182-4986-A3CA-8AA8D47252BA/nginx.conf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/2B9439FE-C601-48BB-9D72-F9FAB7574BD3/nginx.conf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/39FD9C27-8FB5-49F9-8CA1-022ABBF0D6CB/nginx.conf",
+		"/Users/bamurphymac/Downloads/phantomjs-1.5.0 2/README.md",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/91D7AC5A-49FF-48E5-9D28-BF3A152232ED/my.cnf",
+		"/private/etc/my.cnf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/B5DFA789-4F94-4812-B433-7EA2C890F2E3/debian-start",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/6227F6CB-126B-482A-B1DF-7EBA7B835BD5/debian.cnf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/E3C39B5C-832E-472D-9BB0-5B31ABC86F4E/my.cnf",
+		"/etc/my.cnf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/34636055-38C7-426D-B232-778F0F82D38E/my.cnf",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/4113771C-7A9B-48B3-B4F1-CDC26912EF61/nginx.conf",
+		"/Users/bamurphymac/dynasty/procfile",
+		"/Users/bamurphymac/.hgignore_global",
+		"/Users/bamurphymac/.gitignore",
+		"/Users/bamurphymac/Downloads/anthonyshort-cappuccino.foam-19b54a7/README.markdown",
+		"/Users/bamurphymac/Desktop/teams-leagues-sports",
+		"/Users/bamurphymac/Dropbox/Projects/Dynasty/.rvmrv",
+		"/Users/bamurphymac/Dropbox/Projects/Dynasty/.rvmrc",
+		"/Users/bamurphymac/Downloads/twitter-bootstrap-11064c4-1/README.md",
+		"/Users/bamurphymac/Dropbox/Projects/meteorite/meteorite.css",
+		"/Users/bamurphymac/Dropbox/Projects/Dynasty/app/assets/javascripts/application.js.coffee",
+		"/Users/bamurphymac/Dropbox/Projects/myapp/myapp.html",
+		"/Users/bamurphymac/Dropbox/Projects/myapp/myapp.js",
+		"/Users/bamurphymac/Dropbox/Projects/myapp/.meteor/local/build/app/myapp.js",
+		"/usr/local/etc/nginx/tour.html",
+		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/56BEB6E1-D0AD-4882-B840-6490CBF36787/.bash_profile",
+		"/Users/bamurphymac/Desktop/Capistrano File from Nick/deploy.rb"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\nsnipp",
+			"spork",
+			"guard",
+			"127",
+			"Configuration file",
+			"domain=",
+			"path",
+			"subl",
+			"@app",
+			"roles",
+			"innodb",
+			"innodb_buffer_pool_size",
+			"skio-",
+			"myISa",
+			"engine",
+			"storage-",
+			"query_cache_type",
+			"sock",
+			"skip-networking",
+			"innodb",
+			"@",
+			"Scaffolding",
+			"memory"
+		],
+		"highlight": true,
+		"in_selection": true,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"  @"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.sftp":
+	{
+		"height": 100.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"home",
+				"app/controllers/home_controller.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"o",
+				"/Users/bamurphymac/Library/Application Support/Sublime Text 2/sublime.sublime-project"
+			],
+			[
+				"",
+				"/Users/bamurphymac/Dropbox/Projects/myapp/meteor.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 264.0,
+	"status_bar_visible": true
+}

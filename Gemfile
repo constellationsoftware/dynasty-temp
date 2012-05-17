@@ -143,6 +143,7 @@ group :assets do
     gem 'sass-rails', '~> 3.2.3'
     gem 'coffee-rails', '~> 3.2.1'
     gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+    gem 'kickstrap_rails'
     gem 'modernizr-rails'
     #for datatables
     gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'

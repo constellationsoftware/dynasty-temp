@@ -7,145 +7,205 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 138,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/usr/local/etc/nginx/nginx.conf",
-			"settings":
-			{
-				"buffer_size": 2749,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 12100,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/environments/production.rb",
-			"settings":
-			{
-				"buffer_size": 3883,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config/environments/test.rb",
-			"settings":
-			{
-				"buffer_size": 2302,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Gemfile",
-			"settings":
-			{
-				"buffer_size": 3909,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Guardfile",
-			"settings":
-			{
-				"buffer_size": 3317,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/stylesheets/application.scss",
-			"settings":
-			{
-				"buffer_size": 18689,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/research/index.html.haml",
-			"settings":
-			{
-				"buffer_size": 3636,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/controllers/research_controller.rb",
-			"settings":
-			{
-				"buffer_size": 492,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "",
-			"file": "app/views/research/pjax.html.haml",
-			"file_size": 7,
-			"file_write_time": 1337142404000000,
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix",
-				"name": "index.h"
-			}
-		},
-		{
-			"file": "config/routes.rb",
-			"settings":
-			{
-				"buffer_size": 7644,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Rakefile",
-			"settings":
-			{
-				"buffer_size": 272,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/javascripts/clock.js.coffee",
-			"settings":
-			{
-				"buffer_size": 185,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/clock/_clock.json.jbuilder",
-			"settings":
-			{
-				"buffer_size": 66,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/shared/_nav_wrapper.html.haml",
-			"settings":
-			{
-				"buffer_size": 4173,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 400.0,
+		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"discover",
+				"Package Control: Discover Packages"
+			],
+			[
+				"simi",
+				"Simple Rails Navigator: List stylesheets"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"synax rub",
+				"Set Syntax: Ruby"
+			],
+			[
+				"scope",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"histor",
+				"Scope Hunter: Toggle Instant Scoper"
+			],
+			[
+				"syntax rub",
+				"Set Syntax: Ruby"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"rails con	",
+				"Simple Rails Navigator: List controllers"
+			],
+			[
+				"vire",
+				"Simple Rails Navigator: List controllers"
+			],
+			[
+				"view	st",
+				"View: Toggle Status Bar"
+			],
+			[
+				"view",
+				"View: Toggle Minimap"
+			],
+			[
+				"viewsta",
+				"View: Toggle Status Bar"
+			],
+			[
+				"fi",
+				"Sublime Files: Open Navigator"
+			],
+			[
+				"disc	",
+				"Package Control: Discover Packages"
+			],
+			[
+				"git status",
+				"Git: Status"
+			],
+			[
+				"git",
+				"Git: Log Current File"
+			],
+			[
+				"git	status",
+				"Git: Status"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"live",
+				"Package Control: Discover Packages"
+			],
+			[
+				"packae install",
+				"Package Control: Install Package"
+			],
+			[
+				"set	rub",
+				"Set Syntax: Ruby on Rails"
+			],
+			[
+				"ra",
+				"Set Syntax: Ruby on Rails"
+			],
+			[
+				"scss",
+				"Set Syntax: SCSS"
+			],
+			[
+				"pac",
+				"Preferences: Browse Packages"
+			],
+			[
+				"packa",
+				"Package Control: Enable Package"
+			],
+			[
+				"disco",
+				"Package Control: Discover Packages"
+			],
+			[
+				"discov",
+				"Package Control: Discover Packages"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"prefixr",
+				"Preferences: Prefixr Key Bindings – User"
+			],
+			[
+				"gitgra",
+				"Git: Graph All"
+			],
+			[
+				"gitsho",
+				"Git: Show Current File"
+			],
+			[
+				"gitsta",
+				"Git: Status"
+			],
+			[
+				"git add ",
+				"Git: Add..."
+			],
+			[
+				"git commit",
+				"Git: Commit"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"gitadd",
+				"Git: Add Current File"
+			],
+			[
+				"livecss",
+				"Live CSS: Colorize"
+			],
+			[
+				"liveco",
+				"Live CSS: Colorize"
+			],
+			[
+				"livec",
+				"Live CSS: Toggle globally"
+			],
+			[
+				"packa	disc	",
+				"Package Control: Discover Packages"
+			],
+			[
+				"package 	ea	",
+				"Package Control: Enable Package"
+			],
+			[
+				"package dis	",
+				"Package Control: Disable Package"
+			],
+			[
+				"livere",
+				"Live CSS: Colorize"
+			],
+			[
+				"gem",
+				"Snippet: require_gem \"..\""
+			],
+			[
+				"open",
+				"Open File Navigator"
+			],
+			[
+				"file new",
+				"File: New View into File"
+			],
 			[
 				"them re",
 				"Themr: Reload themes"
@@ -227,18 +287,6 @@
 				"Scope Hunter: Show Scope Under Cursor(s)"
 			],
 			[
-				"scope",
-				"Scope Hunter: Toggle Instant Scoper"
-			],
-			[
-				"install",
-				"Package Control: Install Package"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
-			],
-			[
 				"instal",
 				"Package Control: Install Package"
 			],
@@ -267,7 +315,7 @@
 				"Indentation: Convert to Spaces"
 			]
 		],
-		"width": 601.0
+		"width": 579.0
 	},
 	"console":
 	{
@@ -284,51 +332,100 @@
 	},
 	"file_history":
 	[
+		"/Users/bamurphymac/dynasty/app/controllers/home_controller.rb",
+		"/Users/bamurphymac/dynasty/dynasty_owner_project.sublime-project",
+		"/Users/bamurphymac/dynasty/app/views/shared/_nav_wrapper.html.haml",
+		"/Users/bamurphymac/dynasty/config/routes.rb",
+		"/Users/bamurphymac/dynasty/app/views/home/_group.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/home/show.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/home/_player.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/home/index.html.haml",
 		"/Users/bamurphymac/dynasty/config/environments/development.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/research_controller.rb",
+		"/Users/bamurphymac/dynasty/app/views/home.html.haml",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.css.scss",
+		"/Users/bamurphymac/dynasty/app/helpers/pjax_helper.rb",
+		"/Users/bamurphymac/dynasty/app/views/research/index.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/layouts/application.html.haml",
+		"/Users/bamurphymac/dynasty/bin/haml",
+		"/Users/bamurphymac/dynasty/Procfile",
+		"/Users/bamurphymac/dynasty/Gemfile",
+		"/Users/bamurphymac/dynasty/Guardfile",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Ruby Haml.sublime-settings",
+		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/guard-bundler-0.1.3/lib/guard/bundler.rb",
+		"/Users/bamurphymac/dynasty/app/models/player.rb",
+		"/Users/bamurphymac/dynasty/config/database.yml",
+		"/Users/bamurphymac/dynasty/dynasty.sublime-project",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/SCSS.sublime-settings",
+		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/pjax-rails-0.1.4/lib/pjax.rb",
+		"/Users/bamurphymac/dynasty/app/helpers/application_helper.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/application_controller.rb",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/bamurphymac/dynasty/app/views/home/_player.html.html",
+		"/Users/bamurphymac/dynasty/app/views/home/player.html.html",
+		"/Users/bamurphymac/dynasty/app/views/home/index.html.html",
+		"/Users/bamurphymac/dynasty/app/models/american_football_penalties_stat.rb",
+		"/Users/bamurphymac/dynasty/config.ru",
+		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/authorize-net-1.5.2/generators/authorize_net_direct_post/templates/config.yml.rails3.erb",
+		"/Users/bamurphymac/dynasty/app/assets/javascripts/application.js.coffee",
+		"/Users/bamurphymac/dynasty/app/models/american_football_sacks_against_stat.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/mockups_controller.rb",
+		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/rack-livereload-0.3.6/lib/rack-livereload.rb",
+		"/Users/bamurphymac/dynasty/vendor/assets/javascripts/live.js",
+		"/Users/bamurphymac/dynasty/Gemfile.lock",
+		"/Users/bamurphymac/dynasty/app/views/clock/_clock.json.jbuilder",
+		"/Users/bamurphymac/dynasty/app/assets/javascripts/clock.js.coffee",
+		"/Users/bamurphymac/dynasty/app/views/research/pjax.html.haml",
+		"/Users/bamurphymac/dynasty/public/draft/resources/sass/config.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/trades_controller.rb",
+		"/Users/bamurphymac/dynasty/config/initializers/development.rb",
+		"/Users/bamurphymac/dynasty/app/views/home/inde.html.haml",
+		"/Users/bamurphymac/dynasty/Rails Related Files: Nothing found...",
+		"/Users/bamurphymac/dynasty/app/controllers/users_controller.rb",
+		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/devise-2.0.2/app/controllers/devise_controller.rb",
+		"/Users/bamurphymac/dynasty/vendor/assets/javascripts/extjs/gradients.html",
+		"/Users/bamurphymac/dynasty/config/initializers/compass.rb",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/LiveReload/LiveReload.sublime-settings",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Prefixr/Default (OSX).sublime-keymap",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/COMMIT_EDITMSG.COMMIT_EDITMSG",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.scss",
+		"/Users/bamurphymac/dynasty/help/ruby/1.9.1/gems/sass-rails-3.1.4/test/fixtures/scss_project/app/assets/stylesheets/application.css.scss",
+		"/Users/bamurphymac/dynasty/public/assets/application.css",
 		"/Users/bamurphymac/dynasty/config/application.rb",
+		"/Users/bamurphymac/dynasty/public/assets/application.js",
+		"/Users/bamurphymac/dynasty/config/environments/test.rb",
+		"/Users/bamurphymac/dynasty/config/environments/production.rb",
+		"/Users/bamurphymac/dynasty/config/initializers/pry.rb",
+		"/usr/local/etc/nginx/nginx.conf",
+		"/Users/bamurphymac/dynasty/Rakefile",
+		"/Users/bamurphymac/dynasty/app/models/juggernaut_observer.rb",
+		"/Users/bamurphymac/.zshrc",
+		"/Users/bamurphymac/.dotfiles/oh-my-zsh/lib/aliases.zsh",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
 		"/Users/bamurphymac/.oh-my-zsh",
 		"/Users/bamurphymac/dynasty/tmp/cache/assets/D37/E20/sprockets%2Fe6ca16a28735f737a5fbc558050c5a1b",
-		"/Users/bamurphymac/dynasty/app/assets/javascripts/application.js.coffee",
-		"/Users/bamurphymac/dynasty/Procfile",
 		"/Users/bamurphymac/dynasty/app/views/shared/_dynasty_logo.html.haml",
 		"/Users/bamurphymac/dynasty/app/views/shared/_dynasty_nav.html.haml",
-		"/Users/bamurphymac/dynasty/app/views/layouts/application.html.haml",
-		"/Users/bamurphymac/dynasty/app/views/shared/_nav_wrapper.html.haml",
 		"/Users/bamurphymac/dynasty/app/assets/images/single_logo_minimal.png",
 		"/Users/bamurphymac/dynasty/app/assets/images/logo_icon_touch.png",
 		"/Users/bamurphymac/dynasty/log/development.log",
 		"/Users/bamurphymac/dynasty",
 		"/Users/bamurphymac/dynasty/dynasty.sublime-workspace",
-		"/Users/bamurphymac/dynasty/dynasty.sublime-project",
-		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/bamurphymac/dynasty/sftp-config.json",
-		"/Users/bamurphymac/dynasty/app/controllers/home_controller.rb",
-		"/Users/bamurphymac/dynasty/app/controllers/research_controller.rb",
-		"/Users/bamurphymac/dynasty/Guardfile",
-		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/bamurphymac/dynasty/app/models/ability.rb",
 		"/Users/bamurphymac/dynasty/app/controllers/draftable_players_controller.rb",
 		"/Users/bamurphymac/dynasty/app/controllers/payments_controller.rb",
-		"/Users/bamurphymac/dynasty/app/controllers/application_controller.rb",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/JSON.sublime-settings",
 		"/Users/bamurphymac/dynasty/app/models/display_name.rb",
-		"/Users/bamurphymac/dynasty/config/database.yml",
 		"/Users/bamurphymac/dynasty/Capfile",
-		"/Users/bamurphymac/dynasty/app/views/research/index.html.haml",
 		"/Users/bamurphymac/Library/LaunchAgents/memcached.plist",
-		"/Users/bamurphymac/dynasty/vendor/assets/javascripts/live.js",
-		"/Users/bamurphymac/dynasty/Gemfile",
 		"/Users/bamurphymac/dynasty/.gitignore",
-		"/Users/bamurphymac/dynasty/config/environments/production.rb",
 		"/Users/bamurphymac/dynasty/app/models/person.rb",
-		"/Users/bamurphymac/.zshrc",
 		"/Users/bamurphymac/dynasty/.bundle/config",
 		"/System/Library/LaunchDaemons/nginx.plist",
-		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.scss",
-		"/usr/local/etc/nginx/nginx.conf",
 		"/etc/hostconfig",
 		"/etc/hostname",
 		"/Users/bamurphymac/dynasty/.git/config",
@@ -362,48 +459,7 @@
 		"/Users/bamurphymac/Desktop/aos pages/index.html",
 		"/Users/bamurphymac/Desktop/aos pages/landscape-equipment-storage.html",
 		"/Users/bamurphymac/Desktop/aos pages/large-equipment-storage.html",
-		"/Users/bamurphymac/Desktop/aos pages/location.html",
-		"/Users/bamurphymac/Desktop/aos pages/long-short-term-storage.html",
-		"/Users/bamurphymac/Desktop/aos pages/quickstart.html",
-		"/Users/bamurphymac/Desktop/aos pages/rv-camper-storage.html",
-		"/Users/bamurphymac/Desktop/aos pages/storage-application.html",
-		"/Users/bamurphymac/Desktop/aos pages/storage-facility.html",
-		"/Users/bamurphymac/Desktop/aos pages/storage-rates.html",
-		"/Users/bamurphymac/Desktop/aos pages/atv-motorcycles-storage.html",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/168A9F90-A046-442C-92A0-F5FE0CA53D4D/404page.html",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/CCD5C74F-ADDA-47DA-9726-5624FA67D538/nginx.conf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/043F345C-7BC9-44EC-963E-2579A92BB624/payments_controller.rb",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/6671FC3E-3D27-4E4A-9BF5-4F2061A6F0EA/my.cnf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/2C9D53F0-D812-447C-A3FE-3746D82D62AF/my.cnf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/BD23FAAB-D44C-4E67-9BEA-DDD3A9E0DF62/nginx.conf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/FB8BAFE5-B182-4986-A3CA-8AA8D47252BA/nginx.conf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/2B9439FE-C601-48BB-9D72-F9FAB7574BD3/nginx.conf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/39FD9C27-8FB5-49F9-8CA1-022ABBF0D6CB/nginx.conf",
-		"/Users/bamurphymac/Downloads/phantomjs-1.5.0 2/README.md",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/91D7AC5A-49FF-48E5-9D28-BF3A152232ED/my.cnf",
-		"/private/etc/my.cnf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/B5DFA789-4F94-4812-B433-7EA2C890F2E3/debian-start",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/6227F6CB-126B-482A-B1DF-7EBA7B835BD5/debian.cnf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/E3C39B5C-832E-472D-9BB0-5B31ABC86F4E/my.cnf",
-		"/etc/my.cnf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/34636055-38C7-426D-B232-778F0F82D38E/my.cnf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/4113771C-7A9B-48B3-B4F1-CDC26912EF61/nginx.conf",
-		"/Users/bamurphymac/dynasty/procfile",
-		"/Users/bamurphymac/.hgignore_global",
-		"/Users/bamurphymac/.gitignore",
-		"/Users/bamurphymac/Downloads/anthonyshort-cappuccino.foam-19b54a7/README.markdown",
-		"/Users/bamurphymac/Desktop/teams-leagues-sports",
-		"/Users/bamurphymac/Dropbox/Projects/Dynasty/.rvmrv",
-		"/Users/bamurphymac/Dropbox/Projects/Dynasty/.rvmrc",
-		"/Users/bamurphymac/Downloads/twitter-bootstrap-11064c4-1/README.md",
-		"/Users/bamurphymac/Dropbox/Projects/meteorite/meteorite.css",
-		"/Users/bamurphymac/Dropbox/Projects/Dynasty/app/assets/javascripts/application.js.coffee",
-		"/Users/bamurphymac/Dropbox/Projects/myapp/myapp.html",
-		"/Users/bamurphymac/Dropbox/Projects/myapp/myapp.js",
-		"/Users/bamurphymac/Dropbox/Projects/myapp/.meteor/local/build/app/myapp.js",
-		"/usr/local/etc/nginx/tour.html",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/56BEB6E1-D0AD-4882-B840-6490CBF36787/.bash_profile",
-		"/Users/bamurphymac/Desktop/Capistrano File from Nick/deploy.rb"
+		"/Users/bamurphymac/Desktop/aos pages/location.html"
 	],
 	"find":
 	{
@@ -421,6 +477,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"haml",
+			"              :",
+			"json",
+			"json\njson",
+			"\njson",
+			"rack",
+			"\nrack",
+			"json",
+			"home",
 			"spork",
 			"guard",
 			"127",
@@ -461,516 +526,13 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-					"settings":
-					{
-						"buffer_size": 138,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								138,
-								138
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 5,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/usr/local/etc/nginx/nginx.conf",
-					"settings":
-					{
-						"buffer_size": 2749,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1496,
-								1492
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 69,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
-					"settings":
-					{
-						"buffer_size": 12100,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								5674,
-								5679
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 153,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "config/environments/production.rb",
-					"settings":
-					{
-						"buffer_size": 3883,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								3883
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 685.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "config/environments/test.rb",
-					"settings":
-					{
-						"buffer_size": 2302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2127,
-								2127
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 47,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "Gemfile",
-					"settings":
-					{
-						"buffer_size": 3909,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1342,
-								1348
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 55,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Guardfile",
-					"settings":
-					{
-						"buffer_size": 3317,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1352,
-								1352
-							],
-							[
-								1358,
-								1358
-							],
-							[
-								1400,
-								1400
-							],
-							[
-								1426,
-								1426
-							],
-							[
-								1494,
-								1494
-							],
-							[
-								1527,
-								1527
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 43,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/assets/stylesheets/application.scss",
-					"settings":
-					{
-						"buffer_size": 18689,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2703,
-								2707
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 56,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Sass/Syntaxes/SASS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 197.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "app/views/research/index.html.haml",
-					"settings":
-					{
-						"buffer_size": 3636,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								165,
-								165
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 8,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app/controllers/research_controller.rb",
-					"settings":
-					{
-						"buffer_size": 492,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								337,
-								337
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 15,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "app/views/research/pjax.html.haml",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_name": "index.h",
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Rails/Ruby on Rails.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "config/routes.rb",
-					"settings":
-					{
-						"buffer_size": 7644,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								422,
-								422
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 16,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 17.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "Rakefile",
-					"settings":
-					{
-						"buffer_size": 272,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "app/assets/javascripts/clock.js.coffee",
-					"settings":
-					{
-						"buffer_size": 185,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CoffeeScript/Syntaxes/CoffeeScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "app/views/clock/_clock.json.jbuilder",
-					"settings":
-					{
-						"buffer_size": 66,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								66,
-								66
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 1,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 15,
-					"file": "app/views/shared/_nav_wrapper.html.haml",
-					"settings":
-					{
-						"buffer_size": 4173,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								580,
-								580
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 15,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 7.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -991,11 +553,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -1019,6 +588,218 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"models/pla",
+				"app/models/player.rb"
+			],
+			[
+				"html.haml",
+				"app/views/home.html.haml"
+			],
+			[
+				"haml",
+				"bin/haml"
+			],
+			[
+				"appassetsapp",
+				"app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"_nav",
+				"app/views/shared/_nav_wrapper.html.haml"
+			],
+			[
+				"index.",
+				"app/views/home/index.html.haml"
+			],
+			[
+				"routes",
+				"config/routes.rb"
+			],
+			[
+				"resea/inde",
+				"app/views/research/index.html.haml"
+			],
+			[
+				"pjax.rb",
+				"vendor/ruby/1.9.1/gems/pjax-rails-0.1.4/lib/pjax.rb"
+			],
+			[
+				"ac",
+				"app/controllers/application_controller.rb"
+			],
+			[
+				"homecontroller",
+				"app/controllers/home_controller.rb"
+			],
+			[
+				"applicationhelpr",
+				"app/helpers/application_helper.rb"
+			],
+			[
+				"researcinde",
+				"app/views/research/index.html.haml"
+			],
+			[
+				"research",
+				"app/controllers/research_controller.rb"
+			],
+			[
+				"researc",
+				"app/controllers/research_controller.rb"
+			],
+			[
+				"app.ha",
+				"app/views/layouts/application.html.haml"
+			],
+			[
+				"appcoff",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"gem",
+				"Gemfile"
+			],
+			[
+				"application.cof",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"gemf",
+				"Gemfile"
+			],
+			[
+				"conru",
+				"config.ru"
+			],
+			[
+				"config.ri",
+				"vendor/ruby/1.9.1/gems/authorize-net-1.5.2/generators/authorize_net_direct_post/templates/config.yml.rails3.erb"
+			],
+			[
+				"home",
+				"app/controllers/home_controller.rb"
+			],
+			[
+				"application",
+				"app/controllers/application_controller.rb"
+			],
+			[
+				"racklive",
+				"vendor/ruby/1.9.1/gems/rack-livereload-0.3.6/lib/rack-livereload.rb"
+			],
+			[
+				"envirdeve",
+				"config/environments/development.rb"
+			],
+			[
+				"application.coff",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"live",
+				"vendor/assets/javascripts/live.js"
+			],
+			[
+				"home/ind",
+				"app/views/home/index.html.haml"
+			],
+			[
+				"mocku",
+				"app/controllers/mockups_controller.rb"
+			],
+			[
+				"proc",
+				"Procfile"
+			],
+			[
+				"guard",
+				"Guardfile"
+			],
+			[
+				"bunde",
+				"vendor/ruby/1.9.1/gems/guard-bundler-0.1.3/lib/guard/bundler.rb"
+			],
+			[
+				"guardf",
+				"Guardfile"
+			],
+			[
+				"env/de",
+				"config/environments/development.rb"
+			],
+			[
+				"dev",
+				"config/initializers/development.rb"
+			],
+			[
+				"gemfi",
+				"Gemfile"
+			],
+			[
+				"usersc",
+				"app/controllers/users_controller.rb"
+			],
+			[
+				"initicom",
+				"config/initializers/compass.rb"
+			],
+			[
+				"config.rb",
+				"public/draft/resources/sass/config.rb"
+			],
+			[
+				"config/compas.rb",
+				"config/initializers/compass.rb"
+			],
+			[
+				"app.css.scss",
+				"help/ruby/1.9.1/gems/sass-rails-3.1.4/test/fixtures/scss_project/app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"app",
+				"public/assets/application.js"
+			],
+			[
+				"appscss",
+				"app/assets/stylesheets/application.scss"
+			],
+			[
+				"appcss",
+				"public/assets/application.css"
+			],
+			[
+				"application.h",
+				"app/views/layouts/application.html.haml"
+			],
+			[
+				"application.co",
+				"app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"applica",
+				"public/assets/application.js"
+			],
+			[
+				"juggerna",
+				"app/models/juggernaut_observer.rb"
+			],
+			[
+				"develrb",
+				"config/environments/development.rb"
+			],
+			[
+				"devrb",
+				"config/environments/development.rb"
+			],
+			[
+				"develo",
+				"config/environments/development.rb"
+			],
+			[
+				"ge",
+				"Gemfile"
+			],
 			[
 				"shared_nav",
 				"app/views/shared/_nav_wrapper.html.haml"
@@ -1056,10 +837,6 @@
 				"app/views/layouts/application.html.haml"
 			],
 			[
-				"routes",
-				"config/routes.rb"
-			],
-			[
 				"researchc",
 				"app/controllers/research_controller.rb"
 			],
@@ -1078,10 +855,6 @@
 			[
 				"route",
 				"config/routes.rb"
-			],
-			[
-				"home",
-				"app/controllers/home_controller.rb"
 			]
 		],
 		"width": 0.0
@@ -1096,8 +869,8 @@
 	},
 	"show_minimap": false,
 	"show_open_files": true,
-	"show_tabs": true,
+	"show_tabs": false,
 	"side_bar_visible": true,
-	"side_bar_width": 237.0,
+	"side_bar_width": 287.0,
 	"status_bar_visible": true
 }

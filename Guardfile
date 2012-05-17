@@ -6,7 +6,7 @@
 #    :cucumber_env => { 'RAILS_ENV' => 'test' },
 #    :rspec_env => { 'RAILS_ENV' => 'test' },
 #    :jasmine_env => { 'RAILS_ENV' => 'test' },
-#    :foreman => true,    
+#    :foreman => true,
 #    :wait => 60 do
 #    watch('config/application.rb')
 #    watch('config/environment.rb')
@@ -30,7 +30,7 @@
     #    watch(%r{^app/assets/.+$})
     #    watch('config/application.rb')
     #end
-    
+
     guard 'livereload', :cli => "--drb" do
         watch(%r{app/views/.+\.(erb|haml|slim)})
         watch(%r{app/helpers/.+\.rb})

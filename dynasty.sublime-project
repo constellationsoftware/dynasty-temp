@@ -2,7 +2,22 @@
 	"folders":
 	[
 		{
+			"folder_exclude_patterns":
+			[
+				"vendor",
+				"vendor",
+				"tmp"
+			],
+			"name": "Dynasty Owner",
 			"path": "/Users/bamurphymac/dynasty"
+		},
+		{
+			"path": "vendor"
 		}
-	]
+	],
+	"settings":
+	{
+		"tab_size": 4,
+		"translate_tabs_to_spaces": true
+	}
 }

@@ -1,5 +1,5 @@
 Dynasty::Application.configure do
-    
+
     # Rackup the livereload server
     config.middleware.insert_before(
         Rack::Lock, Rack::LiveReload,
@@ -8,7 +8,7 @@ Dynasty::Application.configure do
         :port => 35729#,
         #:host => 'dynastyowner.local'
         #:ignore => [ %r{dont/modify\.html$} ]
-    
+
     )
     # ruby
     $stdout.sync = true
@@ -40,16 +40,16 @@ Dynasty::Application.configure do
     # Enable the asset pipeline
     config.assets_prefix = "/dev-assets"
     config.assets.enabled = true
-    
+
     #config.assets.initialize_on_precompile = true
     config.serve_static_assets = true
-    
+
     #config.assets.compile = true
     config.assets.compress = false
     #config.assets.css_compressor = :yui
     #config.assets.js_compressor = :uglifier
 
-    # Set to true for individual stylesheets
+    # Set to true] x for individual stylesheets
     config.assets.debug = false
     config.assets.logger = nil
 

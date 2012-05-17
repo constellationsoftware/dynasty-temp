@@ -13,6 +13,7 @@
 #= require modernizr
 #= require twitter/bootstrap
 #= require bootstrap
+#= require kickstrap
 #= require dataTables/jquery.dataTables
 #= require dataTables/jquery.dataTables.bootstrap
 #= require dataTables.fnGetColumnData
