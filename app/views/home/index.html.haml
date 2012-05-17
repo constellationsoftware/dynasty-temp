@@ -1,17 +1,27 @@
+
+- content_for :title, t('.title')
+
 .row
   .span4.players{"data-pjax-container" => ""}  
     %h4 
-      All Players 
-      = @players.each do |player|
-        .player{"data-pjax-container" => ""}
-          %p= link_to player.name.full_name,
-            :player_id => player, 
-            :rel => "tooltip",
-            "data-original-title"  => "Click me for some details."      
+      All Players
+      // turn this into a partial 
+      - @players.each do |player|
+        %p.player{"data-pjax-container" => ""}
+          = link_to player.name.full_name, :player_id => player
             
-  .span4.collection_of_players
-    %h4
-      A Collection of Players
-  
+            
+  .span4
+    
+
+    -if @player
+      %h4
+        One Player
+      %player_details{"data-pjax-container" => ""} 
+        %h3= @player.name.full_name
+        %p= render :partial => "player", :object => @player
+
+      %p= link_to "#{@player.name.full_name}'s Complete Details", "/show/#{@player.id}"
+
 
   

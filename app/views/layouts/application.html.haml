@@ -14,7 +14,7 @@
   %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
 
-  %title= "#{:title} - " ? :nil pjax
+  %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
 
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team

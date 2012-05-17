@@ -2,6 +2,7 @@ class HomeController < ApplicationController
     
     # get a list of the players but dont load much info
     def index
+        @title = 'pjax Player List'
         @players ||= Player.current.research
         
         # pull in basic info on one player

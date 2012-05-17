@@ -10,9 +10,11 @@ Dynasty::Application.routes.draw do
   #    resources :drafts, :messages, :picks, :players, :teams, :trades, :teams
   #end
 
-
+  #pjax
+  match "/show/:id", :to => 'home#show', :as => 'player_pjax', :via => [:get]
 
   # Player News Research Pages
+
   match "research",                 :to => 'research#index', :as => 'research_index', :via => [:get]
   match "research/team",            :to => 'research#team', :as => 'research_team', :via => [:get]
   match "research/player",          :to => 'research#player', :as => 'research_player', :via => [:get]
