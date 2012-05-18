@@ -5,8 +5,8 @@ require 'rails/all'
 
 #require 'rails-extjs-direct'
 if defined?(Bundler)
-    #Bundler.require *Rails.groups(:assets => %w(development integration))
-    Bundler.require(:default, :assets, Rails.env)
+    Bundler.require *Rails.groups(:assets => %w(development integration))
+    #Bundler.require(:default, :assets, Rails.env)
 end
 
 module Dynasty
@@ -75,7 +75,7 @@ module Dynasty
         #ActiveRecord::IdentityMap.enabled = true
 
         # Version of your assets, change this if you want to expire all your assets
-        config.assets.version = '1.2'
+        config.assets.version = '1.3'
 
         # Disable asset initialization on precompile for heroku deployment w/ devise authentication
         #config.assets.initialize_on_precompile = true

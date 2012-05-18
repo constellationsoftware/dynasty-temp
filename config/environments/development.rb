@@ -38,11 +38,11 @@ Dynasty::Application.configure do
     config.action_dispatch.best_standards_support = :builtin
 
     # Enable the asset pipeline
-    config.assets_prefix = "/dev-assets"
-    config.assets.enabled = true
+    #config.assets_prefix = "/dev-assets"
+    #config.assets.enabled = true
 
     #config.assets.initialize_on_precompile = true
-    config.serve_static_assets = true
+    #config.serve_static_assets = true
 
     #config.assets.compile = true
     config.assets.compress = false
@@ -50,7 +50,7 @@ Dynasty::Application.configure do
     #config.assets.js_compressor = :uglifier
 
     # Set to true] x for individual stylesheets
-    config.assets.debug = false
+    config.assets.debug = true
     config.assets.logger = nil
 
 
