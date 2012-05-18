@@ -29,18 +29,20 @@
 
       %tbody
         - @accounts.each do |a|
-          %tr
-            %td= time_tag a.transaction_datetime.to_date
-            %td= a.id
-            %td= a.payable.andand.name ||= "The Fed"
-            %td= a.receivable.andand.name ||= "The Fed"
-            %td= a.event_type
-            - if a.payable == current_user.team
-              %td.red.right= "(#{number_to_currency(0.01 * a.amount_cents)})"
-            - else
-              %td.right= "#{number_to_currency(0.01 * a.amount_cents)}"
 
-            - if a.balance(current_user.team) < 0
-              %td.red.right= "(#{number_to_currency(0.01 * a.balance(current_user.team).abs)})"
-            - else
-              %td.right= "#{number_to_currency(0.01 * a.balance(current_user.team))}"
+            %tr
+              %td= time_tag a.transaction_datetime.to_date
+              %td= a.id
+              %td= a.payable.andand.name ||= "The Fed"
+              %td= a.receivable.andand.name ||= "The Fed"
+              %td= a.event_type
+              - if a.payable == current_user.team
+                %td.red.right= "(#{number_to_currency(0.01 * a.amount_cents)})"
+              - else
+                %td.right= "#{number_to_currency(0.01 * a.amount_cents)}"
+
+              - if a.balance(current_user.team) < 0
+                %td.red.right= "(#{number_to_currency(0.01 * a.balance(current_user.team).abs)})"
+              - else
+                %td.right= "#{number_to_currency(0.01 * a.balance(current_user.team))}"
+

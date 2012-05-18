@@ -55,8 +55,7 @@ class FrontOfficeController < ApplicationController
 
 
     def financials
-        @team = current_user.team
-        @accounts = @team.all_accounts
+        @accounts = @team.all_accounts.where(:receivable_type != "PlayerTeam")
     end
 
     def get_player(player_id)

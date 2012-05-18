@@ -66,8 +66,8 @@ gem 'country_select'
 gem 'mail_view'
 
 # Pjax PushState
-gem 'rack-pjax'
-gem "pjax-rails", "~> 0.1.4"
+#gem 'rack-pjax'
+#gem "pjax-rails", "~> 0.1.4"
 
 gem 'show_for'
 

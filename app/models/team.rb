@@ -37,6 +37,7 @@ class Team < ActiveRecord::Base
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
     has_many :accounts, :as => :receivable
     has_many :accounts, :as => :payable
+    has_many :events, :through => :accounts
 
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
@@ -49,11 +50,15 @@ class Team < ActiveRecord::Base
     validates_uniqueness_of :name
 
     def payments
-      Account.where(:payable_id => self.id).all
+      Account.where(:payable_id => self.id)
     end
 
     def receipts
-      Account.where(:receivable_id => self.id).all
+      Account.where(:receivable_id => self.id)
+    end
+
+    def player_payments
+     Account.where(:receivable_type => PlayerTeam)
     end
 
     def all_accounts
