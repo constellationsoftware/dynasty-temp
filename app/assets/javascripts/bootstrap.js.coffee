@@ -1,5 +1,5 @@
 jQuery ->
-
+  $('#body').addClass('animated fadeIn');
   $("a[rel='tooltip']").tooltip()
   $("a[rel='popover']").popover()
   $('.logo').popover()
@@ -53,3 +53,4 @@ jQuery ->
     bScrollCollapse: true
     sScrollY: 500
     iDisplayLength: 25
+

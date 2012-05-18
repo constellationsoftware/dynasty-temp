@@ -1,0 +1,31 @@
+- if user_signed_in?
+  .subnav.subnav-fixed
+    .container
+
+
+      %ul.nav.nav-pills.pull-right
+
+        %li.dropdown
+          %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "coaches_corner" ? 'active' : ''}"} Coach's Corner
+          %ul.dropdown-menu
+            %li
+              %a{:href => '/coachs_corner/game_review'} Game Review
+            %li
+              %a{:href => '/coachs_corner/manage_starters'} Set Lineup
+
+
+        //TODO: Pages under Trades Controller need to highlight player research
+        %li.dropdown
+          %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "front_office" ? 'active' : ''}"} Front Office
+          %ul.dropdown-menu
+            %li
+              %a{:href => '/front_office/roster'} Manage Roster
+              %a{:href => '/front_office/trades'} Trades
+              %a{:href => '/front_office/waivers'} Free Agents
+              %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
+        %li
+          %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
+
+
+        %li
+          %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === ("purchase_dynasty_dollars" or "dynasty_dollars_receipt") ? 'active' : ''}"} Purchase Dynasty Dollars

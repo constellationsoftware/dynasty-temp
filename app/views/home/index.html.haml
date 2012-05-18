@@ -1,7 +1,4 @@
 
-- content_for :title, t('.title')
-- #
-/
 .row
   .span4.players{"data-pjax-container" => ""}
     %h4
@@ -10,14 +7,11 @@
       - @players.each do |player|
         %p.player{"data-pjax-container" => ""}
           = link_to player.name.full_name, :player_id => player
-
-
   .span4
-
     -if @player
       %h4
         One Player
       %player_details{"data-pjax-container" => ""}
         %h3= @player.name.full_name
         %p= render :partial => "player", :object => @player
-      %p= link_to "#{@player.name.full_name}'s Complete Details", "/show/#{@player.id}"
+      %p= link_to "#{@player.name.full_name}'s Complete Details", "/show/#{@player  .id}"

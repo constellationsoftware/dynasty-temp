@@ -3,6 +3,9 @@ module ApplicationHelper
         controller.class.name.tableize.gsub '_controllers', ''
     end
 
+
+
+
     ###
     # Friendly Session Forwarding
     #

@@ -33,54 +33,13 @@
   background: linear-gradient(top,  rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
-#zenbox_tab {
-  width: 60px !important;
-}
 
 
-.navbar .nav > li > a {
-  margin: 5px;
-  padding: 12px;
-}
-
-.subnav {
-  line-height: 16px;
-}
 
 
-@mixin grad-blue1 {
-/* background-color: #4a556e; */
-background-color: #324a7b;
-background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(9, 21, 62)), to(rgb(91, 128, 185)));
-background-image: -webkit-linear-gradient(top, rgb(9, 21, 62), rgb(91, 128, 185));
-background-image: -moz-linear-gradient(top, rgb(9, 21, 62), rgb(91, 128, 185));
-background-image: -o-linear-gradient(top, rgb(9, 21, 62), rgb(91, 128, 185));
-background-image: -ms-linear-gradient(top, rgb(9, 21, 62), rgb(91, 128, 185));
-background-image: linear-gradient(top, rgb(9, 21, 62), rgb(91, 128, 185));
-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#09153e', EndColorStr='#5b80b9');
-}
-
-@mixin grad-blue2 {
-  background-color: #324a7b;
-background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(91, 128, 185)), to(rgb(9, 21, 62)));
-background-image: -webkit-linear-gradient(top, rgb(91, 128, 185), rgb(9, 21, 62));
-background-image: -moz-linear-gradient(top, rgb(91, 128, 185), rgb(9, 21, 62));
-background-image: -o-linear-gradient(top, rgb(91, 128, 185), rgb(9, 21, 62));
-background-image: -ms-linear-gradient(top, rgb(91, 128, 185), rgb(9, 21, 62));
-background-image: linear-gradient(top, rgb(91, 128, 185), rgb(9, 21, 62));
-filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#5b80b9', EndColorStr='#09153e');
-
-}
 
 
-.navbar-inner {
-  max-height: 80px;
 
-
-  min-height: 40px;
-
-  @include grad-blue1;
-}
 .person {
   margin-bottom: 5px !important;
   border-bottom: 1px #0000000 solid !important;
@@ -89,67 +48,15 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 .divider-vertical{
   margin: 0 !important;
 }
-#dynasty-navbar .active {
-  background: rgb(246,248,249); /* Old browsers */
-  background: -moz-linear-gradient(top,  rgba(246,248,249,1) 0%, rgba(229,235,238,1) 50%, rgba(215,222,227,1) 51%, rgba(245,247,249,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,248,249,1)), color-stop(50%,rgba(229,235,238,1)), color-stop(51%,rgba(215,222,227,1)), color-stop(100%,rgba(245,247,249,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* IE10+ */
-  background: linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%); /* W3C */
-  color: black !important;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 ); /* IE6-9 */
-
-
-}
-
-.navbar-fixed-bottom .navbar-inner {
-  max-height: 25px;
-  max-height: 25px;
-  min-height: 25px;
-  background: rgb(169,3,41) !important;
-  background: -moz-linear-gradient(top,  rgba(169,3,41,1) 0%, rgba(143,2,34,1) 44%, rgba(109,0,25,1) 100%)!important;
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(169,3,41,1)), color-stop(44%,rgba(143,2,34,1)), color-stop(100%,rgba(109,0,25,1)))!important;
-  background: -webkit-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%)!important;
-  background: -o-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%)!important;
-  background: -ms-linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%)!important;
-  background: linear-gradient(top,  rgba(169,3,41,1) 0%,rgba(143,2,34,1) 44%,rgba(109,0,25,1) 100%)!important;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a90329', endColorstr='#6d0019',GradientType=0 )!important;
-}
-
-.navbar-fixed-bottom .navbar-inner .container a {
-  margin: 0px;
-  padding: 3px;
-}
-.subnav a {
-  margin-top: 3px !important;
-  margin-bottom: 0px !important;
-  padding: 5px !important;
-}
-#dynasty-navbar .subnav .active {
-  background: rgb(125,126,125); /* Old browsers */
-  background: -moz-linear-gradient(top,  rgba(125,126,125,1) 0%, rgba(14,14,14,1) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(125,126,125,1)), color-stop(100%,rgba(14,14,14,1))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* IE10+ */
-  background: linear-gradient(top,  rgba(125,126,125,1) 0%,rgba(14,14,14,1) 100%); /* W3C */
-  color: #FFFFFF !important;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=0 ); /* IE6-9 */
 
 
 
-
-
-}
 
 .game .span4 {
   overflow: hidden !important;
   white-space: nowrap !important;
 }
-.subnav a.active {
-  color: white !important;
-}
+
 .page_header {
   margin-bottom: 10px;
   border-bottom: 1px #333333 solid;
@@ -187,121 +94,14 @@ table {
 }
 
 
-//fix button in navbar
-.navbar .btn-group {
-  margin: 0px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.subnav  a {
-  color: #000099 !important;
 
-}
-.dropdown-menu {
-  z-index:10000000;
-
-}
-.pad-right {
-  padding-right: 5px;
-}
-
-.navbar .divider-vertical {
-  height: 40px;
-}
-
-.subnav {
-  width: 100%;
-  height: 36px;
-  z-index: 6;
-  background-color: #EEE;
-  background-repeat: repeat-x;
-  background-image: -moz-linear-gradient(top, white 0%, #EEE 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #EEE));
-  background-image: -webkit-linear-gradient(top, white 0%, #EEE 100%);
-  background-image: -ms-linear-gradient(top, white 0%, #EEE 100%);
-  background-image: -o-linear-gradient(top, white 0%, #EEE 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
-  background-image: linear-gradient(top, white 0%, #EEE 100%);
-  border: 1px solid #E5E5E5;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-
-  .row .nav {
-    height: 36px;
-  }
-  .navbar {
-    background-color: white !important;
-  }
-}
-
-// Subnav fixed to top with this plus subnav.js
-.subnav2 {
-  width: 100%;
-  height: 36px;
-  background-color: #EEE;
-  background-repeat: repeat-x;
-  background-image: -moz-linear-gradient(top, white 0%, #EEE 100%);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #EEE));
-  background-image: -webkit-linear-gradient(top, white 0%, #EEE 100%);
-  background-image: -ms-linear-gradient(top, white 0%, #EEE 100%);
-  background-image: -o-linear-gradient(top, white 0%, #EEE 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr = '#f5f5f5', endColorstr = '#eeeeee', GradientType = 0);
-  background-image: linear-gradient(top, white 0%, #EEE 100%);
-  border: 1px solid #E5E5E5;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-
-  .row .nav {
-    height: 36px;
-  }
-  .navbar {
-    background-color: white !important;
-  }
 }
 
 .show-grid {
   background-color: #666666;
 }
-.fixed-footer {
-  position: fixed;
-  right: 0;
-  bottom: 40px;
-  left: 0;
-}
-.subnav-fixed {
-  position: fixed;
-  top: 40px;
-  right: 0;
-/*important part*/
-  left: 0;
-  z-index: 1020;
-/*design stuff*/
-  border-color: #D5D5D5;
-  border-width: 0 0 1px;
-  border-radius: 0 0 0 0;
-  box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
-}
 
-.subnav-fixed2 {
-  position: fixed;
-  top: 80px;
-  right: 0;
-/*important part*/
-  left: 0;
-  z-index: 1020;
-/*design stuff*/
-  border-color: #D5D5D5;
-  border-width: 0 0 1px;
-  border-radius: 0 0 0 0;
-  box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
-}
 
-.subnav-fixed ul li a {
-  margin: 0;
-  padding: 0;
-}
 
 /* REFACTOR: This needs cleaned up big time. I'll try to sort it out this weekend. -Ben */
 
@@ -310,15 +110,7 @@ table {
   margin-top: 160px;
 }
 
-.footer-nav {
-  margin-top: 5px;
-  margin-bottom: 10px;
-  padding-left: 5px;
-  border-top: 10px solid #333;
-  -webkit-border-radius: 10px;
-  background-color: #cccccc !important;
-  color: white !important;
-}
+
 
 .footer-nav ul li a {
   color: white;
@@ -381,113 +173,10 @@ nice.tabs-content.contained {
   background-color: white;
 }
 
-#main_content {
-  z-index: 500;
-  padding-top: 75px;
-}
-
-.fixed_nav {
-  position: fixed;
-  z-index: 1000;
-  width: 100%;
-  max-width: 100%;
-  min-width: 100%;
-
-}
-
-.handle {
-  color: #777;
-  font-size: 12px;
-  cursor: move;
-}
-
-.stack > *:not(.active) {
-  display: none;
-}
-
-
-// NAV BARS
-#dynasty-navbar {
-  @include grad-blue1;
-}
-
-#dynasty-navbar.private {
-  position: fixed;
-  margin-top: -55px;
-  background-color: white;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 1);
-
-}
-
-#nav_top_row {
-  margin: 0 !important;
-  padding: 0 !important;
-  color: #ffffff;
-  color: #ffffff;
-}
-
-#nav_bottom_row {
-  ul li {
-    height: 30px !important;
-  }
-}
-
-.black {
-  color: white;
-}
-
-.right-aligned {
-  float: right;
-  text-align: right;
-}
-
-.nav-bar {
-  margin-top: 4px !important;
-  margin-bottom: 0 !important;
-  margin-left: 0;
-  border: 0px;
-  background-color: transparent;
-}
-
-.nav-bar li {
-  padding-right: 10px;
-  border-right: 0px;
-
-}
-
-body {
-  padding-bottom: 60px;
-}
 
 
 
 
-.row {
-  max-width: 1200px;
-}
-
-div.foundation-header {
-  margin: 0 0 40px 0;
-  padding: 30px 0 0 0;
-  border-bottom: solid 1px #ccc !important;
-}
-
-div.foundation-header h1 {
-  margin-bottom: 0;
-  padding: 0;
-}
-
-div.foundation-header h1 a {
-  color: #181818;
-}
-
-div.foundation-header h1 a:hover {
-  color: #181818;
-}
-
-div.foundation-header .subheader {
-  margin-bottom: 9px;
-}
 
 div.highlight {
   margin-bottom: 12px;

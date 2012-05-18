@@ -14,7 +14,7 @@
   %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
 
-  %title= yield(:title).empty? ? 'Dynasty Owner' : yield(:title)
+  %title= 'Dynasty Owner'
 
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team
@@ -32,8 +32,10 @@
   /:javascript
   /  $(document).ready(function() {$("#myTable").tablesorter();});
 
-%body
+%body.animated.fadeIn
   -# Display the public sitewide nav bar
+
+
   = render :partial => "shared/nav_wrapper"
 
   /* Main Page Content
@@ -50,16 +52,21 @@
         .page_header
           %h4
             %em
+              -# sub page logic to
               -if @sub_pages
                 = yield :section_title
                 \:
               = yield :title
 
-
+      -# main page yield
       = yield
 
     -# Page Footer
     = render :partial => "shared/dynasty_footer"
+
+
+
+
 
   -# Modals
   - unless user_signed_in?

@@ -1,0 +1,71 @@
+#dynasty-navbar.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      // Brand and Logo Stay Here
+      %a.logo{:href=>'/'}
+        =image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
+        =image_tag "navbar_logo.png", :class => "logo hidden-desktop pull_left"
+      // Collapsible nav for tablets/phones
+      .row
+
+        %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        // Hidden at 940 PX or less
+        .nav-collapse
+          // Primary Nav
+          %ul.nav.pull-right
+            - if user_signed_in?
+              %li
+                %a#date= number_to_currency(current_user.team.balance)
+            %li.divider-vertical
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                How to Play
+                %b.caret
+              %ul.dropdown-menu
+                %li
+                  %a= t 'nav.video1' |
+                %li
+                  %a= t 'nav.video2' |
+                %li
+                  %a= t 'nav.video3' |
+                %li
+                  %a= t 'nav.video4' |
+
+            %li.divider-vertical
+            %li
+              %a{:href => '/research', :class => "#{controller_name === ("research" or "player")  ? 'active' : ''}"} Player Research
+
+            %li.divider-vertical
+            %li
+              .btn-group
+                - unless user_signed_in?
+                  %a.btn.btn-inverse{:href => "/payments/payment"}
+                    Create an Account.
+                  %a.btn.btn-inverse{:href => "/login"}
+                    Sign In
+
+                - if user_signed_in?
+                  // Secondary Nav
+                  %a.btn.btn-primary
+                    %i.icon-user.icon-white
+                    = t :signed_in, :attribute => current_user.first_name, :scope => :nav
+                  %a.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                    %b.caret
+
+                  %ul.dropdown-menu
+                    %li
+                      %a{:href => edit_user_registration_path}
+                        Edit Profile
+                    %li
+                      %a{:href => '#'}
+                        Manage Account
+                    %li
+                      %a{:href => '/teams/'}
+                        Edit Team
+                    %li.divider
+                    %li
+                      %a{:href => destroy_user_session_path}
+                        %i.icon-off.pad-right &nbsp; Sign Out?

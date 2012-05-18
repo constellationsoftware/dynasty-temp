@@ -4,3 +4,6 @@
 [submodule "vendor/assets/stylesheets/elements"]
 	path = vendor/assets/stylesheets/elements
 	url = git://github.com/dmitryf/elements.git
+[submodule "vendor/assets/javascripts/jquery-haml"]
+	path = vendor/assets/javascripts/jquery-haml
+	url = https://github.com/creationix/jquery-haml.git
