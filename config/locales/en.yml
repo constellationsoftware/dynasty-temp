@@ -110,6 +110,13 @@ en:
             submit: 'Submit'
 
     activerecord:
+        models:
+            draft:
+                states:
+                    starting:   'The draft will be starting in a few moments...'
+                    finished:   'The draft is complete!'
+                    reset:      'A draft reset has been signalled.'
+                    postponed:  'The draft has been postponed.'
         errors:
             messages:
                 blank: "The '%{attribute}' field is required and cannot be left blank"

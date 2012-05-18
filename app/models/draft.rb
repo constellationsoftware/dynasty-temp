@@ -9,54 +9,16 @@
 #  current_pick_id :integer(2)
 #  status          :string(255)
 #
-
+require 'draft_machine'
 class Draft < ActiveRecord::Base
     self.table_name = 'dynasty_drafts'
     include ActiveModel::Transitions
-
-    # TODO: break this (the FSM) out into a DraftState class
-    state_machine :auto_scopes => true do
-        state :initialized
-        state :scheduled
-        state :starting
-        state :picking
-        state :waiting
-        state :finished
-
-        event :schedule do
-            transitions :from => :initialized, :to => :scheduled, :on_transition => [ :generate_picks, :charge_trophy_fee ]
-        end
-        event :start, :success => lambda{ |d| d.delay(:run_at => Proc.new{ 3.seconds.from_now }).after_start } do
-            transitions :from => [ :scheduled, :starting ], :to => :starting, :on_transition => :on_start
-        end
-        event :pick, :success => lambda{ |d| d.delay(:run_at => Proc.new{ |d| d.end_of_round? ? 5.seconds.from_now : Time.now }).after_pick } do
-            transitions :from => [ :starting, :waiting ], :to => :picking
-        end
-        event :picked, :success => lambda{ |d| d.pick! } do
-            transitions :from => :picking, :to => :waiting, :on_transition => :notify_picked
-        end
-        event :finish, :timestamp => true, :success => :after_finish do
-            transitions :from => :picking, :to => :finished
-        end
-        event :reset, :success => :on_reset do
-            transitions :from => [ :scheduled, :starting, :picking, :waiting, :finished ], :to => :scheduled
-        end
-        event :postpone do
-            transitions :from => [ :starting, :picking, :waiting ], :to => :scheduled
-        end
-        event :force_finish do
-            transitions :from => [ :scheduled, :starting, :picking, :waiting ], :to => :finished, :on_transition => :on_force_finish
-        end
-    end
-
-    #constants
-    # TODO: put this in the controller, probably
-    CHANNEL_PREFIX = 'presence-draft-'
+    self.state_machines[:default] = DraftMachine.new(self, :default)
+    PRE_DRAFT_DELAY = 10 # seconds
     DELAY_BETWEEN_PICKS = 1
 
     belongs_to :league, :inverse_of => :draft
-    has_many :teams, :through => :league
-    has_many :teams_online, :through => :league, :source => :teams, :conditions => { :is_online => true }
+    has_many :teams, :primary_key => :league_id, :foreign_key => :league_id
     has_many :users, :through => :teams
     has_many :picks, :dependent => :destroy
     has_one :current_pick,
@@ -85,26 +47,28 @@ class Draft < ActiveRecord::Base
 
     protected
         def on_start
-            # push message that draft is starting
-            Pusher[CHANNEL_PREFIX + self.league.slug].trigger('draft:starting', {})
+            # send message that draft is starting
+            JuggernautPublisher.new.alert league_channels, 'draft:starting', I18n.t('activerecord.models.draft.states.starting')
         end
         def after_start; self.pick! end
 
         def after_pick
+            puts "STATE: #{self.state.inspect}"
             return self.finish! unless self.next_pick
-            self.do_next_pick
+            do_next_pick
         end
 
         def do_next_pick
-            pick = self.next_pick
-            if pick.team.online? && !pick.team.autopicking?
+            p = self.next_pick
+            team = p.team
+            if team.online? && !(team.autopicking?)
                 # patches up things with the player suggestions until we drop Pusher for good
                 players = Player.available(self.league_id)
-                    .recommended(pick.team_id)
+                    .recommended(team.id)
                     .includes{[ points, position ]}
                     .with_name
                     .with_contract
-                    .with_favorites(pick.team_id)
+                    .with_favorites(team.id)
                     .order{ points.points.desc }
                     .limit(5)
 
@@ -140,29 +104,31 @@ class Draft < ActiveRecord::Base
                     end
                 end
 
-                Pusher[Draft::CHANNEL_PREFIX + self.league.slug].trigger("draft:pick:start-#{pick.team.uuid}", payload)
-                Pusher[Draft::CHANNEL_PREFIX + self.league.slug].trigger('draft:pick:start', {:team => self.pick.team.name}, self.pick.team.last_socket_id )
+                JuggernautPublisher.new.event team.uuid, 'draft:on-deck', payload
+                JuggernautPublisher.new.event (league_channels - [team.uuid]), 'draft:picking', { :team => team.name }
             else
                 # TODO: figure out a good way to batch these. Maybe at the message pushing level?
-                player = Player.available(self.league_id).recommended(pick.team_id).first
-                pick.player_id = player.id
-                pick.save!
+                player = Player.available(self.league_id).recommended(team.id).first
+                puts player.inspect
+                p.player_id = player.id
+                puts p.inspect
+                puts p.save!.inspect
             end
         end
 
         def notify_picked
-            pick = self.current_pick
+            p = self.current_pick
             payload = {
-                :player => { :id => pick.player_id, :name => pick.player.full_name },
-                :team => { :id => pick.team_id, :name => pick.team.name },
-                :pick => pick
+                :player => { :id => p.player_id, :name => p.player.full_name },
+                :team => { :id => p.team_id, :name => p.team.name },
+                :pick => p
             }
-            Pusher[CHANNEL_PREFIX + self.league.slug].trigger('draft:pick:update', payload)# unless (self.online.count === 0 or force_finish)
+            JuggernautPublisher.new.event league_channels, 'draft:picked', payload# unless (self.online.count === 0 or force_finish)
         end
 
-    def after_finish
-        Pusher[CHANNEL_PREFIX + self.league.slug].trigger('draft:finish', {})
-    end
+        def after_finish
+            JuggernautPublisher.new.alert league_channels, 'draft:finished', I18n.t('activerecord.models.draft.states.finished')
+        end
 
         def on_reset
             if self.picks.update_all :player_id => nil, :picked_at => nil
@@ -170,11 +136,11 @@ class Draft < ActiveRecord::Base
                     team.player_teams.destroy_all
                 end
             end
-            Pusher[Draft::CHANNEL_PREFIX + self.league.slug].trigger('draft:reset', { :message => 'Draft will now reset' })
+            JuggernautPublisher.new.alert league_channels, 'draft:reset', I18n.t('activerecord.models.draft.states.reset')
         end
 
         def on_postpone
-            Pusher[Draft::CHANNEL_PREFIX + self.league.slug].trigger('draft:reset', { :message => 'Draft has been postponed' })
+            JuggernautPublisher.new.alert league_channels, 'draft:postpone', I18n.t('activerecord.models.draft.states.postponed')
         end
 
         def on_force_finish
@@ -204,4 +170,12 @@ class Draft < ActiveRecord::Base
             trophy_event = Events::PayTrophyFee.create!
             trophy_event.process(self.league)
         end
-end
+
+        # pass truthy value to exclusive to exclude the team currently picking
+        def league_channels(exclusive = false)
+            # gather team keys
+            keys = self.teams.collect(&:uuid)
+            keys -= [ current_pick.team.uuid ] if exclusive
+            keys
+        end
+    end

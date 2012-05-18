@@ -7,7 +7,25 @@ class JuggernautPublisher < AbstractController::Base
     self.view_paths = 'app/views'
 
     # TODO: Figure out where we want push to occur and structure subscriptions accordingly
-    def publish(type, record)
+    ##
+    # Pushes data profiled as an "event" (think in terms of javascript).
+    # If a template is supplied, it will pass the
+    #
+    def event(channels, event, data = nil)
+        Juggernaut.publish channels, { :type => 'event', :event => event, :data => data } unless channels.empty?
+    end
+
+    def alert(channels, event, message, level = 'alert')
+        Juggernaut.publish channels, { :type => 'alert', :event => event, :data => { :level => level, :message => message } } unless channels.empty?
+    end
+
+    # TODO: figure out why the JSON string coming back from a render doesn't have commas or array brackets. It's not parseable
+    def record(channels, event, record, &block)
+        payload = block ? yield(self, record) : render(record)
+        Juggernaut.publish channels, { :type => 'event', :event => event, :data => payload } unless channels.empty?
+    end
+
+    def publish
 =begin
         class_name = record.class.name
         instance_variable_set("@#{class_name.downcase}".to_sym, record) # instance variable for our template

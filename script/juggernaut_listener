@@ -8,9 +8,10 @@ Juggernaut.subscribe do |event, data|
     next unless uuid
 
     team = Team.find_by_uuid(uuid)
-    case event
-    when :subscribe then team.sessions.increment
-    when :unsubscribe then team.sessions.decrement if team.sessions.value > 0
+    unless team.nil?
+        case event
+        when :subscribe then team.sessions.increment
+        when :unsubscribe then team.sessions.decrement if team.sessions.value > 0
+        end
     end
-    puts team.sessions.value
 end

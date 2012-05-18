@@ -18,14 +18,14 @@ Ext.define('DynastyDraft.controller.AdminControls', {
 
         this.control({
             'viewport admincontrols button#start': {
-                click: this.onButtonClicked,
+                click: this.onButtonClicked
             },
             'viewport admincontrols button#pause': {
-                click: this.onPauseClicked,
+                click: this.onPauseClicked
             },
             'viewport admincontrols button#reset': {
-                click: this.onButtonClicked,
-            },
+                click: this.onButtonClicked
+            }
         });
 
         // enable/disable pick button on app status
@@ -42,16 +42,29 @@ Ext.define('DynastyDraft.controller.AdminControls', {
     },
 
     onButtonClicked: function(button) {
-    	this.fireEvent('click', button);
+        switch (button.getItemId()) {
+        case 'start':
+            $.post('/draft/start');
+            break;
+        case 'pause':
+            if (button.getText() === 'Stop Countdown') {
+                this.application.fireEvent(this.application.STATUS_PAUSED);
+            } else {
+                this.application.fireEvent(this.application.STATUS_RESUMED);
+            }
+            break;
+        case 'reset':
+            $.post('/draft/reset');
+            break;
+        }
     },
 
     onPauseClicked: function(button) {
-    	this.onButtonClicked(button);
-
 		// toggles
         switch (button.getText()) {
         case 'Stop Countdown': button.setText('Reset Countdown'); break;
         case 'Reset Countdown': button.setText('Stop Countdown'); break;
         }
-    },
+        this.onButtonClicked(button);
+    }
 });

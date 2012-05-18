@@ -1,17 +1,17 @@
 Dynasty::Application.routes.draw do
 
     # Player News Research Pages
-    match "research",                 :to => 'research#index', :as => 'research_index', :via => [:get]
-    match "research/team",            :to => 'research#team', :as => 'research_team', :via => [:get]
-    match "research/player",          :to => 'research#player', :as => 'research_player', :via => [:get]
-    match "research/news",            :to => 'research#news', :as => 'research_news', :via => [:get]
-    match "research/transactions",    :to => 'research#transactions', :as => 'research_transactions', :via => [:get]
-    match "research/contracts",       :to => 'research#contracts', :as => 'research_contracts', :via => [:get]
-    match "research/depth_charts",    :to => 'research#depth_charts', :as => 'research_team', :via => [:get]
+    match 'research',                 :to => 'research#index', :as => 'research_index', :via => [:get]
+    match 'research/team',            :to => 'research#team', :as => 'research_team', :via => [:get]
+    match 'research/player',          :to => 'research#player', :as => 'research_player', :via => [:get]
+    match 'research/news',            :to => 'research#news', :as => 'research_news', :via => [:get]
+    match 'research/transactions',    :to => 'research#transactions', :as => 'research_transactions', :via => [:get]
+    match 'research/contracts',       :to => 'research#contracts', :as => 'research_contracts', :via => [:get]
+    match 'research/depth_charts',    :to => 'research#depth_charts', :as => 'research_team', :via => [:get]
     match 'research/players' => 'research#players', :via => [ :get, :post ]
 
     # Team Financials
-    match "financials",               :to => 'teams#financials', :as => 'team_financials', :via => [:get]
+    match 'financials',               :to => 'teams#financials', :as => 'team_financials', :via => [:get]
 
     # Authorize.net stuff
 
@@ -24,6 +24,7 @@ Dynasty::Application.routes.draw do
     if Rails.env.development?
         mount Users::Mailer::Preview => 'mail_view'
     end
+    #mount Resque::Server.new, :at => "/resque"
 
     resources :messages, :schedules, :photos, :dynasty_player_contracts
 

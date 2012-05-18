@@ -25,4 +25,4 @@ class JuggernautExt extends JuggernautBase
             else
                 throw 'Unknown type:' + type
 
-$ -> new JuggernautExt
+$ -> window.jug = new JuggernautExt

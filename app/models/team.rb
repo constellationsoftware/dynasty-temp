@@ -140,6 +140,6 @@ class Team < ActiveRecord::Base
         super UUIDTools::UUID.parse(uuid_s).raw
     end
 
-    def online?; self.is_online end
+    def online?; self.sessions.value > 0 end
     def autopicking?; self.autopick end
 end
