@@ -20,7 +20,8 @@ class LeaguesController < InheritedResources::Base
     def edit
         edit! do
             if @league.teams.count === Settings.league.capacity
-                dates = (Season.current.start_date.prev_week(:friday)..Season.current.start_date.prev_week(:sunday))
+                last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
+                dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
                 @draft_date_collection = {}
                 dates.each{ |date|
                     @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
