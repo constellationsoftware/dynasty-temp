@@ -40,3 +40,5 @@ vendor/cache/*
 vendor/ruby
 .bundle
 
+.bundle
+
