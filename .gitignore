@@ -39,3 +39,5 @@ vendor/cache/*
 vendor/ruby
 .bundle
 
+
+dynasty_remote.sublime-workspace
