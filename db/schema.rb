@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120509160110) do
+ActiveRecord::Schema.define(:version => 20120518191415) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -1073,7 +1073,6 @@ ActiveRecord::Schema.define(:version => 20120509160110) do
   end
 
   add_index "dynasty_player_teams", ["player_id", "team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_player_and_team_and_lineup"
-  add_index "dynasty_player_teams", ["team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_team_id_and_lineup_id", :unique => true
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",             :limit => 32
@@ -1119,15 +1118,11 @@ ActiveRecord::Schema.define(:version => 20120509160110) do
 
   create_table "dynasty_teams", :force => true do |t|
     t.integer "league_id"
-    t.string  "name",           :limit => 50,                     :null => false
-    t.integer "user_id",                                          :null => false
-    t.boolean "is_online",                     :default => false, :null => false
-    t.binary  "uuid",           :limit => 255
-    t.string  "last_socket_id"
-    t.integer "balance_cents",  :limit => 8,   :default => 0,     :null => false
-    t.boolean "autopick",                      :default => false
-    t.integer "waiver_order"
-    t.integer "draft_order"
+    t.string  "name",          :limit => 50,                     :null => false
+    t.integer "user_id",                                         :null => false
+    t.binary  "uuid",          :limit => 255
+    t.integer "balance_cents", :limit => 8,   :default => 0,     :null => false
+    t.boolean "autopick",                     :default => false
     t.string  "motto"
   end
 

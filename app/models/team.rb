@@ -6,17 +6,10 @@
 #  league_id      :integer(4)
 #  name           :string(50)      not null
 #  user_id        :integer(4)      not null
-#  is_online      :boolean(1)      default(FALSE), not null
 #  uuid           :binary(255)
-#  last_socket_id :string(255)
 #  balance_cents  :integer(8)      default(0), not null
 #  autopick       :boolean(1)      default(FALSE)
-#  waiver_order   :integer(4)
-#  draft_order    :integer(4)
 #
-
-# TODO: get rid of last_socket_id when Pusher is removed
-# TODO: get rid of waiver_order and draft_order attributes?
 class Team < ActiveRecord::Base
     include Redis::Objects
 

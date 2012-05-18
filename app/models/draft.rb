@@ -53,7 +53,6 @@ class Draft < ActiveRecord::Base
         def after_start; self.pick! end
 
         def after_pick
-            puts "STATE: #{self.state.inspect}"
             return self.finish! unless self.next_pick
             do_next_pick
         end
@@ -109,10 +108,7 @@ class Draft < ActiveRecord::Base
             else
                 # TODO: figure out a good way to batch these. Maybe at the message pushing level?
                 player = Player.available(self.league_id).recommended(team.id).first
-                puts player.inspect
                 p.player_id = player.id
-                puts p.inspect
-                puts p.save!.inspect
             end
         end
 
