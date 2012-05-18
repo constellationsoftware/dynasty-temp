@@ -3,9 +3,10 @@ require "bundler/capistrano"
 set :application,       "dynastyowner"
 set :domain,            "dynastyowner.net"
 set :deploy_to,         "/var/www/dynasty"
+set :user,              "sshadmin@dynastyowner.net"
+set :scm_passphrase,     "QnKFTK42"
 
-
-server "dynastyowner.net", :web, :app, :db, primary: true
+server "dynastyowner.net", :web, :app, :db, :primary => true
 
 
 
@@ -19,8 +20,9 @@ set :scm_verbose, true
 set :git_enable_submodules, 1
 set :branch,            "master"
 
-default_run_options[:pty] = true
+#default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 set :deploy_via, :remote_cache
 set :git_enable_submodules, 1
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+after "deploy", "bundle install --deployment"
