@@ -57,12 +57,6 @@ class DraftsController < ApplicationController
         render :nothing => true
     end
 
-    def auth
-        payload = { :user_id => @team.uuid }
-        response = Pusher[params[:channel_name]].authenticate(params[:socket_id], payload)
-        render :json => response
-    end
-
     protected
         def set_team
             @team = current_user.team

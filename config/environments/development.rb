@@ -93,6 +93,7 @@ Dynasty::Application.configure do
 
 end
 
+<<<<<<< HEAD
 #Pusher.app_id = '10193'
 #Pusher.key = '64db7a76d407adc40ff3'
 #Pusher.secret = 'cf5b7ef9fae37eefa146'
@@ -100,6 +101,8 @@ end
 
 
 
+=======
+>>>>>>> origin/nick/dev
 # Enables Ruby Debug while using POW
 # Instructions: http://m.onkey.org/using-ruby-debug-with-pow
 unless $rails_rake_task

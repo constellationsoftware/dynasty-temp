@@ -10,21 +10,19 @@ class ApplicationController < ActionController::Base
     helper  :all
     before_filter :set_current_clock
 
-    # Custom error messages
-    # åunless ActionController::Base.config.consider_all_requests_local
-    # å    rescue_from Exception, :with => :render_error
-    # å    rescue_from ActiveRecord::RecordNotFound, :with => :render_not_found
-    # å    rescue_from ActionController::RoutingError, :with => :render_not_found
-    # å    rescue_from ActionController::UnknownController, :with => :render_not_found
-    # å    rescue_from ActionController::UnknownAction, :with => :render_not_found
-    # å
-    # end
     respond_to :html
 
     has_scope :page
     has_scope :per
 
-    #
+    has_scope :columns do |controller, scope, value|
+        columns = JSON.parse(value).collect do |column|
+            "#{column}.as('`#{column}`')"
+        end
+        scope.select{ instance_eval("[#{columns.compact.join(',')}]") }
+    end
+
+    ##
     # Accepts an array of "sorter" hashes.
     # A "sorter" hash, as defined in Ext JS, consists of "property" and "direction" keys
     #
@@ -34,33 +32,34 @@ class ApplicationController < ActionController::Base
         rescue
             raise "Sorter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'direction' keys, got #{value}."
         end
-        sort_str = sorters.collect { |sorter|
-            sort_param = controller.sort_param_from_chain(sorter['property'])
-            sort_direction = sorter['direction'].upcase === 'DESC' ? 'DESC' : 'ASC'
-            "#{sort_param[:klass].table_name}.#{sort_param[:attribute]} #{sort_direction}"
-        }.join(', ')
-        scope.order(sort_str)
+        sort_str = sorters.collect do |sorter|
+            property = sorter['property']
+            direction = sorter['direction'].downcase === 'desc' ? 'desc' : 'asc'
+            "#{property}.#{direction}"
+        end
+        scope.order{ instance_eval("[#{sort_str.join(',')}]") }
     end
 
+    # TODO: very quick, very dirty. Requires method or scope called "filter_by_[whatever]" on the main resource
+    # The problem with this is that we won't always be accessing these scopes through the same resource.
+    # So if we want to filter on player.position one time and lineup.position on another, we have to write
+    # the same thing twice.
+    # Squeel has a compelling feature called "sifters" that allow you to essentially scope a scope anywhere along
+    # the keypath, which DRYs things up a lot. Only problem is that we need to figure out a good flexible filtering API
     has_scope :filters do |controller, scope, value|
-        model_klass = controller.class.resource_klass
         begin
             filters = JSON.parse(value)
         rescue
             raise "Filter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'value' keys, got #{value}."
         end
         filters.each do |filter|
-            filter_param = controller.sort_param_from_chain(filter['property'])
-            filter_method = "filter_by_#{filter_param[:attribute]}"
-            if model_klass.respond_to? filter_method
-                scope = scope.send(filter_method, filter['value'])
-            else
-                raise "Filter method for #{filter['property']} on #{model_klass.to_s.titleize.downcase.pluralize} does not exist."
-            end
+            filter_method = "filter_by_#{filter['property']}"
+            scope = scope.send(filter_method, filter['value'])
         end
         scope
     end
 
+=begin
     def sort_param_from_chain(value)
         association_chain = value.split('.')
         attribute = association_chain.pop
@@ -71,6 +70,17 @@ class ApplicationController < ActionController::Base
         end
         { :klass => klass, :attribute => attribute }
     end
+
+    def filter_resource(scope, property, value)
+        filter_param = sort_param_from_chain(property)
+        filter_method = "filter_by_#{filter_param[:attribute]}"
+        if resource_class.respond_to? filter_method
+            scope = scope.send(filter_method, value)
+        else
+            raise "Filter method for #{property} on #{resource_class.name.to_s.titleize.downcase.pluralize} does not exist."
+        end
+    end
+=end
 
     protected
         def get_alert_style_by_type(type)
@@ -98,15 +108,6 @@ class ApplicationController < ActionController::Base
             before_filter :set_sub_pages
         end
 
-
-    # All real world players
-    def all_real_players
-      @players ||= Player.current.research.includes(:contract, :name, :position, :points)
-    end
-
-    def all_real_teams
-      @real_teams ||= SportsDb::Team.includes(:display_name)
-    end
     # Instantiates a clock for views
 
 
@@ -129,17 +130,6 @@ class ApplicationController < ActionController::Base
         def self.inherited(base) #:nodoc:
             super(base)
             base.send :initialize_resource_klass!
-        end
-
-        # Exception handling
-        def render_not_found(exception)
-            #log_error(exception)
-            #render :template => "/error/404.html.erb", :status => 404
-        end
-
-        def render_error(exception)
-            #log_error(exception)
-            #render :template => "/error/500.html.erb", :status => 500
         end
 
         # Initialize resources class accessors and set their default values.

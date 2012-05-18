@@ -1,3 +1,5 @@
 #= require ext
+#= require lib/juggernaut/juggernaut_dispatcher
 #= require inflections
-#= require lib/juggernaut/juggernaut_ext
+#= require_self
+

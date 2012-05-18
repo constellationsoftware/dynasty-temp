@@ -34,24 +34,6 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
         // save out store instance under a global variable
         window.ShoutboxMessages = this.getMessagesStore();
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
-
-/*
-        var channel = Ext.ux.data.Socket.subscribe(this.self.CHAT_CHANNEL_PREFIX + this.application.getSubDomain(), {
-            'send_message': this.onMessageReceived,
-        }, this);
-*/
-
-        /* 
-         * check if connected to socket
-         * if so, trigger a join, otherwise defer it until connected
-         */
-/*
-        if (Ext.ux.data.Socket.isConnected()) {
-            this.joinChat();
-        } else {
-            
-        }
-*/
     },
 
     onPick: function(data) {

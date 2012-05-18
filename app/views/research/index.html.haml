@@ -1,8 +1,11 @@
-- content_for :title, "Players"
-- content_for :section_title, "Research"
+- content_for :title, t('.title')
+= javascript_include_tag 'research'
+= stylesheet_link_tag 'research'
+
 .row
   .span12
     .container-fixed
+<<<<<<< HEAD
 
       %h3
         Player Research
@@ -89,3 +92,38 @@
 
 
 
+=======
+      .row
+        %form.filter-form.form-inline
+          .span2.position
+            = label_tag 'position'
+            = select_tag 'position', options_for_select(@positions), :class => 'span1', :include_blank => true
+          .span2.team
+            = label_tag 'team'
+            = select_tag 'team', options_for_select(@teams), :class => 'span1', :include_blank => true
+          .span2.bye
+            = label_tag 'bye'
+            = select_tag 'bye', options_for_select(4..11), :class => 'span1', :include_blank => true
+          .span6.name= text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query'
+      %table#research.display.all-players-data.table.table-striped.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+        %thead
+          %tr
+            %th.name Name
+            %th.first-name
+            %th.last-name
+            %th.position Pos
+            %th.team Team
+            %th.bye Bye
+            %th.contract-amount $Yr
+            %th.contract-total-amount $Tot
+            %th.contract-end-year End
+            %th.points FPTs
+            %th.passing-points Pass
+            %th.rushing-points Rush
+            %th.defensive-points Def
+            %th.fumble-points Fum
+            %th.scoring-points Td
+            %th.points-per-dollar P/DD
+            %th.games Games
+            %th.id
+>>>>>>> origin/nick/dev

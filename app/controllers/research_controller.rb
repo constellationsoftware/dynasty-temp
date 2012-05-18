@@ -1,34 +1,93 @@
+#require 'datatable_mashaller'
 class ResearchController < ApplicationController
-  caches_page :index
+    respond_to :html, :json
+    caches_page :index
+    self.resource_class = Player
+    #include DatatableMarshaller, :only => :players
+    before_filter :inject_player_params, :only => :players
 
-  def index
-   #@players ||= Player.current.research.includes(:contract, :name, :position, :points)
-   @players ||= all_real_players
-   @teams ||= all_real_teams
-  end
+    has_scope :research, :type => :boolean, :default => true, :only => :players do |controller, scope|
+        scope.joins{[ position, contract, name, points, real_team.display_name ]}
+    end
 
-  def pjax
-    @players ||= all_real_players
-   @teams ||= all_real_teams
-  end
+    def players
+        #page = (start.zero? ? 0 : (start / length).floor) + 1
+        players = apply_scopes(Player)#.order{[ name.last_name, name.first_name ]}#.paginate :page => page, :per_page => length
+        @total = players.count
+        players = players.offset(params[:start]) if params.has_key? 'start'
+        players = players.limit(params[:length]) if params.has_key? 'length'
+        @players = players
+    end
 
-  def team
-  end
+    def index
+        @positions = Position.select{[ id, abbreviation ]}
+            .where{ abbreviation !~ '%flex%' }
+            .collect{ |p| [ p['abbreviation'].upcase, p['abbreviation'] ] }
+        # apply search filters
+=begin
+        columns = params[:sColumns].split ','
+        (0...params[:iColumns].to_i).each do |i|
+            value = params["sSearch_#{i}"]
+            unless value === ''
+                players = filter_resource players.scoped, columns[i], value
+            end
+        end
+=end
+        @teams = SportsDb::Team.nfl.current.joins{ display_name }
+            .select{[ id, display_name.abbreviation ]}
+            .order{ display_name.abbreviation }
+            .collect{ |t| [ t['abbreviation'], t['abbreviation'] ] }
+    end
 
-  def player
-    @player ||= Player(params[:id])
-  end
+
+    def team
+    end
+
+    def player
+        @player ||= Player(params[:id])
+    end
 
 
-  def news
-  end
+    def news
+    end
 
-  def transactions
-  end
+    def transactions
+    end
 
-  def contracts
-  end
+    def contracts
+    end
 
-  def depth_charts
-  end
+    def depth_charts
+    end
+
+    # Hash.new{ |h,k| h[k] = Hash.new &h.default_proc }
+    def factor(keypath)
+        arr = keypath.split('.').map{ |v| v.to_sym }
+        val ||= arr.pop
+        arr.reverse.inject(val) do |rv, e|
+            rv = { e => rv }
+        end
+    end
+
+    protected
+        def inject_player_params
+            params[:columns] =  %W(
+                id
+                name.first_name
+                name.last_name
+                position.abbreviation
+                real_team.display_name.abbreviation
+                contract.bye_week
+                contract.amount
+                contract.summary
+                contract.end_year
+                points.points
+                points.passing_points
+                points.rushing_points
+                points.defensive_points
+                points.fumbles_points
+                points.scoring_points
+                points.games_played
+            ).to_json
+        end
 end

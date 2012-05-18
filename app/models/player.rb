@@ -14,17 +14,15 @@
 #  residence_location_id     :integer(4)
 #  death_location_id         :integer(4)
 #
-require 'nokogiri'
-require 'open-uri'
+
 class Player < ActiveRecord::Base
     self.table_name = 'persons'
 
-
     #has_one  :name, :class_name => 'PlayerName', :as => :entity, :identity => :persons
     has_one  :name,
-             :class_name => 'DisplayName',
-             :foreign_key => 'entity_id',
-             :conditions => { :entity_type => 'persons' }
+                 :class_name => 'DisplayName',
+                 :foreign_key => 'entity_id',
+                 :conditions => { :entity_type => 'persons' }
     has_many :person_phases, :foreign_key => :person_id
     has_one  :score, :class_name => 'PersonScore'
     has_one  :position_link, :class_name => 'PlayerPosition'
@@ -37,11 +35,6 @@ class Player < ActiveRecord::Base
     has_many :picks
     has_many :favorites
     has_many :all_points, :class_name => 'PlayerPoint'
-
-    has_one :sports_db_team, :class_name => 'SportsDb::Team' do
-      self.real_team
-    end
-
     has_one  :points,
         :class_name => 'PlayerPoint',
         :conditions => proc{ { :year => Season.current.year } },
@@ -49,14 +42,24 @@ class Player < ActiveRecord::Base
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
     has_many :real_events, :through => :event_points, :class_name => 'Event'
     has_one  :contract, :foreign_key => 'person_id'
+    has_one  :active_team_phase, :class_name => 'PersonPhase', :foreign_key => :person_id,
+        :conditions => { :membership_type => 'teams', :phase_status => 'active' }
+    has_one  :real_team, :through => :active_team_phase
 
-    #TODO: Absolutely can't use this in real world production. Hotlinking to NFL's CDN with Getty.
-    def headshot
-      doc = Nokogiri::HTML(open("http://search.nfl.com/search?query=#{self.name.first_name}+#{self.name.last_name}"))
-      doc.at_css('.playerbio img').attribute('src').to_s
+    def all_leagues
+
     end
 
 
+
+    def in_league
+
+
+    end
+
+    def on_team
+
+    end
 
 
 
@@ -66,10 +69,6 @@ class Player < ActiveRecord::Base
 
     def contract_depth
         self.contract.depth
-    end
-
-    def real_team
-        SportsDb::Team.find(self.person_phases.current.first.membership_id)
     end
 
    ## def team_short
@@ -92,7 +91,7 @@ class Player < ActiveRecord::Base
       Quantity.new(weight, :lb)
     end
 
-    def amountp
+    def amount
         self.contract.amount
     end
 
@@ -104,6 +103,9 @@ class Player < ActiveRecord::Base
       @fname = self.name.last_with_first_initial
     end
 
+
+
+    #
     # SCOPES
     #
     scope :roster, lambda { |team|
@@ -169,6 +171,8 @@ class Player < ActiveRecord::Base
     scope :filter_by_name, lambda{ |player_name|
         where{ (name.last_name =~ "#{player_name}%") | (name.first_name =~ "#{player_name}%") | (name.full_name =~ "#{player_name}%") }
     }
+    scope :filter_by_position, lambda{ |p| where{ position.abbreviation =~ my{ p } } }
+    scope :filter_by_team, lambda{ |t| where{ real_team.display_name.abbreviation == my{ t } } }
 
     def full_name; name.full_name end
     def last_name_first; (name.first_name && name.last_name) ? "#{name.last_name}, #{name.first_name}" : full_name end

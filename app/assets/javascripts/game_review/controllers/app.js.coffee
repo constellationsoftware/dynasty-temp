@@ -4,18 +4,16 @@ class GameReview extends Spine.Tab
         super
         me = @
         Game.bind 'refresh', @onRefresh
-        @el.find('.game').on 'click', (e) ->
-            # prevent bootstrap operation so we can load the game
-            e.stopImmediatePropagation()
-            row = $(@)
+        @el.find('.expander-toggle').on 'click', (e) ->
+            row = $(@).closest '.game'
             data = row.data()
-            me.onClick(row, data.game)
+            me.onClick row, data.game
         @el.find('.collapse').on 'shown', ->
-            expander = $(@).closest('.game').find('i.expander').first()
+            expander = $(@).closest('.game').children('.expander-toggle').children('i')
             expander.removeClass('icon-chevron-down')
             expander.addClass('icon-chevron-up')
         @el.find('.collapse').on 'hidden', ->
-            expander = $(@).closest('.game').find('i.expander').first()
+            expander = $(@).closest('.game').children('.expander-toggle').children('i')
             expander.removeClass('icon-chevron-up')
             expander.addClass('icon-chevron-down')
 
@@ -49,7 +47,5 @@ class GameReview extends Spine.Tab
         container.fadeIn(1)
 
     getContentEl: (week) -> "week#{week}Content"
-
-    onRollOut: (game) -> console.log 'hi'
 
 window.GameReview = GameReview

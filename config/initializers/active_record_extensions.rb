@@ -1,3 +1,4 @@
+=begin
 module SingleTableInheritanceIdentity
     def self.included(base); base.extend(ClassMethods) end
 
@@ -107,3 +108,4 @@ class ActiveRecord::Associations::AssociationScope
         scope
     end
 end
+=end
