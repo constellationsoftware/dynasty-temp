@@ -1,5 +1,6 @@
 jQuery ->
   $('#body').addClass('animated fadeIn');
+  $('#flying').addClass('animated fadeInRightBig');
   $("a[rel='tooltip']").tooltip()
   $("a[rel='popover']").popover()
   $('.logo').popover()

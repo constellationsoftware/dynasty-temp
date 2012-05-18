@@ -1,0 +1,10 @@
+#content
+  .row
+    .page_header
+      %h4
+        %em
+          -# sub page logic to
+          -if @sub_pages
+            = yield :section_title
+            \:
+          = yield :title

@@ -42,7 +42,7 @@ Dynasty::Application.routes.draw do
 
   # REFACTOR: This is inelegant. I couldn't figure out the magic combination of options for 'devise_for' with as poorly documented as it is, but we should figure it out eventually
   devise_for :users, :skip => [ :sessions, :registrations ], :controllers => { :sessions => 'users/sessions', :registrations => 'users/registrations' }
-  
+
 
   as :user do
     #root :to => 'users#home'
@@ -178,7 +178,7 @@ Dynasty::Application.routes.draw do
   end
 
   resources :users do
- 
+
     get :index
   end
 
@@ -200,8 +200,10 @@ Dynasty::Application.routes.draw do
     resources :display_name
   end
 
-  root :controller => :home, :action => :index
-  ActiveAdmin.routes(self)
+  root :controller => :home, :action => :public_home_page
+
+
+  #ActiveAdmin.routes(self)
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'

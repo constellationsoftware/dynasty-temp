@@ -19,8 +19,8 @@
 #= require dataTables.fnGetColumnData
 #= require lib/util
 #= require subnav
-#= require bugherd
-#= require raphael-min
+
+
 #= pjax
 
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)

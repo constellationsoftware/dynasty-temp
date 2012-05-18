@@ -21,22 +21,5 @@
 // Body
 %body.animated.fadeIn
   // Sitewide Nav Bar
-  = render => "shared/nav_wrapper"
+  = render :partial => "shared/nav_wrapper"
   // The Page Stack
-  .container.main_yield
-    .row
-      .span12
-        // Global Errors
-        #global-errors
-          = render :partial => "shared/global-errors"
-          = render :partial => "shared/sub_pages"
-          -#  -# main page yield
-          = yield
-          -# Page Footer
-          = render :partial => "shared/dynasty_footer"
-          -# Modals
-          - unless user_signed_in?
-            -#= render :partial => "shared/login_modal"
-          = render :partial => "shared/zendesk"
-
-

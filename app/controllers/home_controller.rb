@@ -1,6 +1,11 @@
 class HomeController < ApplicationController
 
   # get a list of the players but dont load much info
+  def public_home_page
+    @title = 'Welcome to Dynasty Owner'
+    render :layout => 'public_home_page'
+  end
+
   def index
     @title = 'Dynasty Owner'
     @players ||= Player.current.research

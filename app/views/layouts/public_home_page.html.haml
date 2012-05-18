@@ -19,24 +19,25 @@
   = csrf_meta_tag
   = favicon_link_tag
 // Body
-%body.animated.fadeIn
-  // Sitewide Nav Bar
-  = render => "shared/nav_wrapper"
-  // The Page Stack
-  .container.main_yield
+%body.animated.fadeIn.public
+  .background
+  #dynasty-navbar.navbar.navbar-fixed-top.home_page
+    .navbar-inner
+      .container
+        // Brand and Logo Stay Here
+        %a.logo{:href=>'/'}
+          =image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
+          =image_tag "navbar_logo.png", :class => "logo hidden-desktop pull_left"
+        // Collapsible nav for tablets/phones
+  .container.fixed
     .row
-      .span12
-        // Global Errors
-        #global-errors
-          = render :partial => "shared/global-errors"
-          = render :partial => "shared/sub_pages"
-          -#  -# main page yield
-          = yield
-          -# Page Footer
-          = render :partial => "shared/dynasty_footer"
-          -# Modals
-          - unless user_signed_in?
-            -#= render :partial => "shared/login_modal"
-          = render :partial => "shared/zendesk"
+      .span5
+      #flying.hero-unit.animated.span7.offset5
+        %h2 Fantasy Football is about to change.
+        %ul.nav.nav-pills
+          %h3
+            %a{:href => "#"} Schedule of Events
+            %a{:href => "#"} Official League Rules
+            %a{:href => "#"} Log In
 
 
