@@ -97,7 +97,7 @@ end
 #Pusher.key = '64db7a76d407adc40ff3'
 #Pusher.secret = 'cf5b7ef9fae37eefa146'
 
-set :branch, 'staging'
+
 
 
 # Enables Ruby Debug while using POW

@@ -42,3 +42,5 @@ vendor/ruby
 
 .bundle
 
+
+config/dynasty_remote.sublime-workspace
