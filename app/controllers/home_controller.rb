@@ -18,11 +18,12 @@ class HomeController < ApplicationController
   end
 
   def playersomething
-    ApplicationController::
+
   end
+
   # pull in detailed player info
+
   def show
     @player = Player.find(params[:id])
-
   end
 end

@@ -14,7 +14,6 @@ class GamesController < ApplicationController
     end
     has_scope :with_teams, :type => :boolean, :default => true
     has_scope :my_team, :type => :boolean, :default => false do |controller, scope|
-
     end
 
     def show
