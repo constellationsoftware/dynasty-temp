@@ -21,7 +21,7 @@
 // Body
 %body.animated.fadeIn
   // Sitewide Nav Bar
-  = render => "shared/nav_wrapper"
+  = render :partial => "shared/nav_wrapper"
   // The Page Stack
   .container.main_yield
     .row
@@ -36,7 +36,6 @@
           = render :partial => "shared/dynasty_footer"
           -# Modals
           - unless user_signed_in?
-            -#= render :partial => "shared/login_modal"
-          = render :partial => "shared/zendesk"
+            = render :partial => "shared/login_modal"
 
 

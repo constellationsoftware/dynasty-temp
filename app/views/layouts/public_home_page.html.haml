@@ -28,18 +28,41 @@
       .container
         // Brand and Logo Stay Here
         %a.logo{:href=>'/'}
-          = image_tag "bg.png"
+
           = image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
           = image_tag "navbar_logo.png", :class => "logo hidden-desktop pull_left"
         // Collapsible nav for tablets/phones
   .container.fixed
     .row
-      .span5
-      #flying.hero-unit.animated.span7.offset5
-        %h2 Fantasy Football is about to change.
-        %ul.nav.nav-pills
-          %h3
-            %a{:href => "#"} Schedule of Events
-            %a{:href => "#"} Official League Rules
-            %a{:href => "#"} Log In
+      #superwide.span12
+        .span8.offset4
+          %h1.animated#flyright Fantasy Football is about to change. . .
+          %h2.animated#flyleft . . . are you ready to build a Dynasty?
+          %br
+          %ul.nav.nav-pills.box_shadow
+            %h3.animated#pulse.black
+              %a{:href => "#"} Schedule of Events
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              %a{:href => "#"} Official League Rules
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              %a{:href => "/login"} Log In
 
+      #stack
+        .span6
+          %h1
+            Carousel
+          <img src="http://placehold.it/400x300" class="carousel bigbox" alt="">
+        .span6
+          %h1
+            3-2-1 Quickdraw
+          <img src="http://placehold.it/400x300" class="movie bigbox"alt="">
+        .row
+          .offset2.span8.offset2
+            %h1 Sign Up To Create or Join a League
+        .row
+          .span4
+            <img src="http://placehold.it/200x150" class="movie bigbox"alt="">
+          .span4
+            <img src="http://placehold.it/200x150" class="movie bigbox"alt="">
+          .span4
+            <img src="http://placehold.it/200x150" class="movie bigbox"alt="">

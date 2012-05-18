@@ -2,7 +2,6 @@
  *= require foundation/reveal
  *= require bootstrap_and_overrides
  *= require kickstrap
- *= require kickstrap/themes/simplex
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require dataTables/jquery.dataTables
@@ -15,40 +14,76 @@
 
 // Navbar
 
-html {
-    background: image-path("bg.png") no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+html { background: url('/assets/bg.jpg') no-repeat top center fixed;
+
+  height: 100px;
+  -webkit-background-size: width;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: width;
+
 }
 
+.black {
+  color: black;
+
+}
 .home_page {
+
   .logo {
     width: 300px;
     margin: 15px;
   }
   #dynasty-navbar.navbar-inner{
-    height: 100px;
+    height: 40px;
+    background-color: transparent;
   }
   /*background-color: #3c4d85;*/
 
 
 }
 
-body .background  {
+body   {
+  background-color: color rgba(0,0,0,0);
+  background: rgba(255,255,255,.75) !important;
 /*background-color: #2c2c2c;*/
 
 
 }
-
+#superwide {
+  width: 100%;
+  position: absolute;
+  top: 50px;
+}
 #flying  {
-  background-color: rgba;
   position: absolute;
   top: 25px;
-  background-color: none !important;
+  background: rgba(255,255,255, 1);
+
+  padding: 10px;
+
 
 }
+
+.hero-unit {
+  background-color: color rgba(0,0,0,0);
+}
+
+#stack {
+  background-color: color rgba(0,0,0,0);
+  margin-top: 150px;
+  background: rgba(255,255,255, 1);
+
+    -webkit-animation-duration: 3s;
+    -webkit-animation-delay: 2s;
+
+}
+
+
+
+
+
+
 
 .logo {
   position: fixed;
@@ -246,7 +281,7 @@ body .background  {
   border-right: 0px;
 
 }
-
+d
 body {
   padding-bottom: 60px;
 }

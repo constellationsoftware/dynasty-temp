@@ -26,19 +26,19 @@
 # config.assets.precompile = ['application.js', 'application.css', 'all-ie.css']
 
 
-    #guard 'rails-assets', :cli => "--drb" do
-    #    watch(%r{^app/assets/.+$})
-    #    watch('config/application.rb')
-    #end
+  # guard 'rails-assets', :cli => "--drb" do
+  #     watch(%r{^app/assets/.+$})
+  #     watch('config/application.rb')
+  # end
 
-    guard 'livereload', :cli => "--drb" do
-        watch(%r{app/views/.+\.(erb|haml|slim)})
-        watch(%r{app/helpers/.+\.rb})
-        watch(%r{public/.+\.(css|js|html)})
-        watch(%r{config/locales/.+\.yml})
-        # Rails Assets Pipeline
-        watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/#{m[2]}" }
-    end
+  # guard 'livereload', :cli => "--drb" do
+  #     watch(%r{app/views/.+\.(erb|haml|slim)})
+  #     watch(%r{app/helpers/.+\.rb})
+  #     watch(%r{public/.+\.(css|js|html)})
+  #     watch(%r{config/locales/.+\.yml})
+  #     # Rails Assets Pipeline
+  #     watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/#{m[2]}" }
+  # end
 
 
 

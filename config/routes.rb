@@ -11,6 +11,7 @@ Dynasty::Application.routes.draw do
   #end
 
   #pjax
+  match "home", :to => 'home#index', :as => 'home_index', :via => [:get]
   match "/show/:id", :to => 'home#show', :as => 'player_pjax', :via => [:get]
 
   # Player News Research Pages
@@ -199,7 +200,7 @@ Dynasty::Application.routes.draw do
   resources :persons do
     resources :display_name
   end
-
+  root :controller => :users, :action => :home
   root :controller => :home, :action => :public_home_page
 
 
