@@ -154,7 +154,7 @@ group :assets do
     #gem 'extjs-rails-assets'
 
     gem 'uglifier', '>=1.0.3'
-    gem 'zurb-foundation'
+    #gem 'zurb-foundation'
     gem 'haml_coffee_assets'
     gem 'i18n-js'
 end
