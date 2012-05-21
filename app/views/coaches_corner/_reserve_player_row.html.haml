@@ -8,7 +8,7 @@
     %span.position{ :data => { :id => player.nil? ? '' : player.position.id } }
       = player.position.abbreviation.upcase unless player.nil?
     %span.team
-      = player.real_team.name.abbreviation.upcase unless player.nil?
+      = player.real_team.display_name.abbreviation.upcase unless player.nil?
   %td.player.points= player.points_this_season
   %td.player.points.projected N/A
   %td.player.bye= player.contract.bye_week

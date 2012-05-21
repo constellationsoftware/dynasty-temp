@@ -40,7 +40,7 @@ class Player < ActiveRecord::Base
         :conditions => proc{ { :year => Season.current.year } },
         :order => 'points DESC'
     has_many :event_points, :class_name => 'PlayerEventPoint', :foreign_key => 'player_id'
-    has_many :real_events, :through => :event_points, :class_name => 'Event'
+    has_many :real_events, :through => :event_points, :class_name => 'Event', :source => :event
     has_one  :contract, :foreign_key => 'person_id'
     has_one  :active_team_phase, :class_name => 'PersonPhase', :foreign_key => :person_id,
         :conditions => { :membership_type => 'teams', :phase_status => 'active' }

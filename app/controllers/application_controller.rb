@@ -4,7 +4,6 @@ class ApplicationController < ActionController::Base
     class << self; attr_accessor :resource_klass end
     self.responder = AppResponder
     #protect_from_forgery :except => [ :auth, :post_message ]
-    include UrlHelper
     helper_method :get_alert_style_by_type
 
     helper  :all

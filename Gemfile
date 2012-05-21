@@ -23,7 +23,6 @@ gem "authorize-net", "~> 1.5.2"
 # AR Improvements
 gem 'squeel'
 gem 'meta_search', '>= 1.1.0.pre'
-gem 'inherited_resources'
 gem 'responders'
 gem 'has_scope'
 gem 'uuidtools'
@@ -86,7 +85,7 @@ group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
     #gem 'query_trace'
-    gem 'rails-dev-tweaks', '~> 0.6.1'
+    #gem 'rails-dev-tweaks', '~> 0.6.1'
 end
 
 group :production do

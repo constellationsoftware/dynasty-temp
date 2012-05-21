@@ -19,7 +19,6 @@ class Game extends Spine.Model
 
         points = parseFloat lineup?.points or -Infinity
         opponentPoints = parseFloat opponentLineup?.points or -Infinity
-        console.log points, opponentPoints, points is opponentPoints
         return '' if points is opponentPoints
         if points > opponentPoints then 'win' else 'loss'
 

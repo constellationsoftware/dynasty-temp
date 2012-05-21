@@ -1,4 +1,4 @@
-class LeaguesController < InheritedResources::Base
+class LeaguesController < ApplicationController
     before_filter :authenticate_user!
     respond_to :html, :json
 
@@ -18,21 +18,20 @@ class LeaguesController < InheritedResources::Base
     end
 
     def edit
-        edit! do
-            if @league.teams.count === Settings.league.capacity
-                last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
-                dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
-                @draft_date_collection = {}
-                dates.each{ |date|
-                    @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
-                }
-                @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
-            end
+        @league = resource
+        if @league.teams.count === Settings.league.capacity
+            last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
+            dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
+            @draft_date_collection = {}
+            dates.each{ |date|
+                @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
+            }
+            @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
         end
     end
 
     def update
-        @league = League.find(params[:id])
+        @league = resource
         unless @league.nil?
             if params[:league].has_key? :draft_attributes
                 # delete main attribute since values are handled through JS
@@ -53,4 +52,8 @@ class LeaguesController < InheritedResources::Base
                 @leagues = end_of_association_chain
             end
         end
+
+    def resource
+        current_user.team.league
+    end
 end

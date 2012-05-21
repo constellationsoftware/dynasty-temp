@@ -1,21 +1,17 @@
-class ClockController < InheritedResources::Base
-    custom_actions :resource => [ :next_week, :reset ]
+class ClockController < ApplicationController
     respond_to :html, :json
 
+    def show
+        @clock = Clock.first
+    end
+
     def next_week
-        next_week! do |format|
-            @clock.next_week
-        end
+        @clock = Clock.first
+        @clock.next_week
     end
 
     def reset
-        reset! do |format|
-            @clock.reset
-        end
+        @clock = Clock.first
+        @clock.reset
     end
-
-    protected
-        def resource
-            @clock = Clock.first
-        end
 end

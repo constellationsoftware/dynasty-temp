@@ -26,8 +26,6 @@ Dynasty::Application.routes.draw do
     end
     #mount Resque::Server.new, :at => "/resque"
 
-    resources :messages, :schedules, :photos, :dynasty_player_contracts
-
     # REFACTOR: This is inelegant. I couldn't figure out the magic combination of options for 'devise_for' with as poorly documented as it is, but we should figure it out eventually
     devise_for :users, :skip => [ :sessions, :registrations ], :controllers => { :sessions => 'users/sessions', :registrations => 'users/registrations' }
     as :user do
@@ -43,14 +41,10 @@ Dynasty::Application.routes.draw do
         put     '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end
 
-    match '/front_office' => 'front_office#roster'
+    match '/front_office' => redirect('/front_office/roster')
     match '/front_office/:action', :controller => :front_office, :as => :front_office
-    #match '/front_office_home' => 'front_office#roster', :as => "front_office_home"
-    #match '/coaches_corner_home' => 'coaches_corner#game_review', :as => "coaches_corner_home"
-    match '/coachs_corner', :controller => :coaches_corner, :action => :game_review
-    match '/coachs_corner/:action', :controller => :coaches_corner, :as => 'coaches_corner'
-    #match '/coaches_corner/swap/:from_id/with/:to_id', :controller => :coaches_corner, :action => :swap
-    #match '/roster' => 'front_office#roster'
+    match '/coachs_corner' => redirect('/coachs_corner/game_review')
+    match '/coachs_corner/:action', :controller => :coaches_corner, :as => :coaches_corner
 
     resource :mockups do
         get :index
@@ -91,13 +85,13 @@ Dynasty::Application.routes.draw do
         get :contact
     end
 
+    resource :picks, :only => :update
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
-    resources :leagues, :shallow => true do
-        resources :games
+    resources :leagues, :shallow => true, :except => [ :index, :show, :destroy ] do
+        resources :games, :only => :show
     end
-    resources :games
-    resource :draft do
-        post :auth
+    resources :games, :only => :show
+    resource :draft, :only => :show do
         post :start
         post :finish
         post :reset
@@ -107,11 +101,11 @@ Dynasty::Application.routes.draw do
     end
 
     match 'lineups/:action/:from/with/:to', :via => :post, :controller => :lineups
-    resources :lineups do
-        get :roster, :on => :collection
-    end
+    #resources :lineups do
+    #    get :roster, :on => :collection
+    #end
 
-    resource :clock, :controller => :clock, :except => [ :index, :delete ] do
+    resource :clock, :controller => :clock, :only => [] do
         member do
             get :next_week
             get :reset
@@ -119,26 +113,20 @@ Dynasty::Application.routes.draw do
     end
 
     resources :teams do
-
         member do
-
             get :account
             get :manage
             get :roster
         end
     end
 
-    resources :player_teams do
+    resources :player_teams, :only => [] do
         get :league_roster, :on => :collection
         get :drop, :on => :member
         get :bid, :on => :member
     end
 
-    # The priority is based upon order of creation:
-    # first created -> highest priority.
-
-    resources :person_scores, :events, :positions, :trades, :users, :person_phases, :display_names,
-              :stats, :picks, :players, :persons, :people, :drafts, :lineups
+    resources :person_scores
 
     resources :trades do
         get 'retract'
@@ -151,7 +139,7 @@ Dynasty::Application.routes.draw do
         end
     end
 
-    resources :players do
+    resources :players, :only => [ :show, :index ] do
         get 'research'
         get 'add'
         post 'add'
