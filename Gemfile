@@ -26,18 +26,16 @@ gem 'meta_search', '>= 1.1.0.pre'
 gem 'inherited_resources'
 gem 'responders'
 gem 'has_scope'
-gem 'kaminari'
 gem 'uuidtools'
 gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
-gem 'select_with_include'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 gem 'transitions', :require => [ 'transitions', 'active_model/transitions' ]
 
 # Data Tools
 gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
 gem 'paper_trail'
-gem "active_model_serializers", :git => "git://github.com/josevalim/active_model_serializers.git"
+gem 'active_model_serializers', :git => 'git://github.com/josevalim/active_model_serializers.git'
 gem 'jbuilder'
 gem 'rabl'
 gem 'gon'
@@ -46,10 +44,9 @@ gem 'gon'
 gem 'haml'
 gem 'haml-rails'
 gem 'jquery-rails'
-gem 'kendoui-rails'
 gem 'simple_form'
-gem "quantify", "~> 3.1.2"
-gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/watu/table_builder.git"
+gem 'quantify', '~> 3.1.2'
+gem 'watu_table_builder', :require => 'table_builder', :git => 'git://github.com/watu/table_builder.git'
 
 gem 'gravtastic' # gravatar support
 gem 'country_select'
