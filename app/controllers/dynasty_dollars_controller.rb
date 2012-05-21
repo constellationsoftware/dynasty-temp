@@ -1,4 +1,4 @@
-class DynastyDollarsController < ApplicationController
+wclass DynastyDollarsController < ApplicationController
     # GET /dynasty_dollars
     # GET /dynasty_dollars.xml
     def index

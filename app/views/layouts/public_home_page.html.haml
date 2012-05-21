@@ -10,10 +10,6 @@
   %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
   %title= 'Dynasty Owner'
-  -# drop the client's UUID in here for use with socket subscriptions and the like
-  - if @team
-    :javascript
-      window.CLIENT_ID = '#{@team.uuid}';
   = stylesheet_link_tag "application" # Included CSS Files
   = javascript_include_tag "application" # Included JS Files
   = csrf_meta_tag

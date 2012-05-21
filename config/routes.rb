@@ -184,6 +184,7 @@ Dynasty::Application.routes.draw do
     end
 
     root :controller => :users, :action => :home
+    #root :controller => :home, :action => :public_home_page
     ActiveAdmin.routes(self)
 
     # Sample of regular route:
