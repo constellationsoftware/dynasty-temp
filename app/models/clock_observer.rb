@@ -14,7 +14,7 @@ class ClockObserver < ActiveRecord::Observer
             # detect day boundary
             unless clock.time.wday === clock.time_was.wday # unless we're transitioning within the same day
                 if clock.is_team_payday?
-                    week_range = clock.time.advance(:weeks => -1)..clock.time
+                    week_range = clock.time.utc.advance(:weeks => -1)..clock.time.utc
                     db = ActiveRecord::Base.connection
                     ActiveRecord::Base.transaction do
                         # create point records for all teams
@@ -52,8 +52,8 @@ QUERY
                             CROSS JOIN dynasty_lineups l
                             LEFT OUTER JOIN dynasty_player_teams pt ON pt.team_id = t.id AND pt.lineup_id = l.id
                             LEFT OUTER JOIN dynasty_player_event_points pep ON pt.player_id = pep.player_id
-                            	AND pep.event_datetime BETWEEN '#{week_range.first.at_midnight}' AND '#{week_range.last.at_midnight}'
-                            WHERE date >= '#{week_range.first.at_midnight}' AND date < '#{week_range.last.at_midnight}'
+                            	AND pep.event_datetime BETWEEN '#{week_range.first.to_datetime}' AND '#{week_range.last.to_datetime}'
+                            WHERE date >= '#{week_range.first.to_datetime}' AND date < '#{week_range.last.to_datetime}'
 QUERY
                         )
 
@@ -73,7 +73,7 @@ QUERY
                                 INNER JOIN dynasty_player_event_points pep ON ptp.player_point_id = pep.id
                                 WHERE ptp.game_id = g.id AND ptp.team_id = g.away_team_id
                             )
-                            WHERE g.date >= '#{week_range.first.at_midnight}' AND g.date < '#{week_range.last.at_midnight}'
+                            WHERE g.date >= '#{week_range.first.to_datetime}' AND g.date < '#{week_range.last.to_datetime}'
 QUERY
                         )
                     end
@@ -129,13 +129,6 @@ QUERY
                 game.event = nil
                 game.save!
             end
-            #player_teams = PlayerTeamHistory.where{ created_at >> (season.start_date..season.end_date) }
-=begin
-            player_teams = PlayerTeamSnapshot.where{ created_at > (season.start_date) }
-            player_teams.each do |player_team|
-                player_team.destroy
-            end
-=end
 
             Events::Base.all.each do |event|
                 event.destroy
@@ -150,5 +143,6 @@ QUERY
             end
             Trade.all.each { |trade| trade.destroy }
             Account.all.each{ |account| account.destroy }
+            PlayerTeamPoint.all.each{ |p| p.destroy }
         end
 end

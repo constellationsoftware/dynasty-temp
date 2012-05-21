@@ -1,48 +1,31 @@
-//= javascript_include_tag controller_base_name
-//= stylesheet_link_tag controller_base_name
 - content_for :title, "Team Financials"
 - content_for :section_title, current_user.team.name
 
 .row
   .span12
-    %h3.row= current_user.team.name
-    %h5.row
+    %h3= current_user.team.name
+    %h5
       Balance:
       = current_user.team.balance.format
-    %table.row.table.table-condensed.table-bordered.team-financials-data.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+    %table.team-financials-data.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
       %thead
         %tr
-          %th
-            %a{:href => "#", :rel => "tooltip", "data-original-title" => "The date of the transaction"} Date
           %th #
-          %th
-            %a{:href => "#", :rel => "tooltip", "data-original-title" => "Who made the payment"} Payment From
-          %th
-            %a{:href => "#", :rel => "tooltip", "data-original-title" => "Who received the payment"} Paid To
-          %th
-            %a{:href => "#", :rel => "tooltip", "data-original-title" => "The type of event that triggered the transaction"}Event Type
-          %th
-            %a{:href => "#", :rel => "tooltip", "data-original-title" => "The transaction amount"} Amount
-          %th
-            %a{:href => "#", :rel => "tooltip", "data-original-title" => "Your team balance after the transaction"} Balance
-
+          %th Payment From
+          %th Paid To
+          %th Event Type
+          %th Amount
+          %th Balance
+          %th Date
 
       %tbody
         - @accounts.each do |a|
-
-            %tr
-              %td= time_tag a.transaction_datetime.to_date
-              %td= a.id
-              %td= a.payable.andand.name ||= "The Fed"
-              %td= a.receivable.andand.name ||= "The Fed"
-              %td= a.event_type
-              - if a.payable == current_user.team
-                %td.red.right= "(#{number_to_currency(0.01 * a.amount_cents)})"
-              - else
-                %td.right= "#{number_to_currency(0.01 * a.amount_cents)}"
-
-              - if a.balance(current_user.team) < 0
-                %td.red.right= "(#{number_to_currency(0.01 * a.balance(current_user.team).abs)})"
-              - else
-                %td.right= "#{number_to_currency(0.01 * a.balance(current_user.team))}"
-
+          %tr
+            %td= a.id
+            %td= a.payable.andand.name ||= "The Fed"
+            %td= a.receivable.andand.name ||= "The Fed"
+            %th= a.event_type
+            %th= number_to_currency(0.01 * a.amount_cents)
+            %th= number_to_currency(0.01 * a.balance(current_user.team))
+            %th
+              = time_tag a.transaction_datetime
