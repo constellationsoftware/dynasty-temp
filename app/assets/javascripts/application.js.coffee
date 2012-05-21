@@ -19,7 +19,7 @@
 #= require dataTables.fnGetColumnData
 #= require lib/util
 #= require subnav
-#= require jquery.pjax
+#= require pjax
 
 
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)
