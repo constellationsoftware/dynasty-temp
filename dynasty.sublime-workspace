@@ -7,126 +7,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/controllers/home_controller.rb",
-			"settings":
-			{
-				"buffer_size": 575,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 217,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Gemfile",
-			"settings":
-			{
-				"buffer_size": 4055,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/draft/app.js",
-			"settings":
-			{
-				"buffer_size": 8921,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/javascripts/bootstrap.js.coffee",
-			"settings":
-			{
-				"buffer_size": 1439,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/home/index.html.haml",
-			"settings":
-			{
-				"buffer_size": 548,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "vendor/ruby/1.9.1/gems/bourbon-2.1.0/_includes/footer.html",
-			"settings":
-			{
-				"buffer_size": 1816,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/layouts/application.html.haml",
-			"settings":
-			{
-				"buffer_size": 2302,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/shared/_dynasty_footer.html.haml",
-			"settings":
-			{
-				"buffer_size": 318,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/shared/_dynasty_nav_private.html.haml",
-			"settings":
-			{
-				"buffer_size": 1111,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/stylesheets/animate.css.scss",
-			"settings":
-			{
-				"buffer_size": 68124,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views/shared/_nav_wrapper.html.haml",
-			"settings":
-			{
-				"buffer_size": 109,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/stylesheets/dynasty.css.scss",
-			"settings":
-			{
-				"buffer_size": 7648,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/assets/stylesheets/bootstrap_and_overrides.css.less",
-			"settings":
-			{
-				"buffer_size": 2924,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/helpers/auto_picks_helper.rb",
-			"settings":
-			{
-				"buffer_size": 27,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/Ruby/Ruby.sublime-build",
 	"command_palette":
@@ -134,6 +14,10 @@
 		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"git",
+				"Git: Log Current File"
+			],
 			[
 				"inst",
 				"Package Control: Install Package"
@@ -285,10 +169,6 @@
 			[
 				"git status",
 				"Git: Status"
-			],
-			[
-				"git",
-				"Git: Log Current File"
 			],
 			[
 				"git	status",
@@ -508,47 +388,64 @@
 	},
 	"file_history":
 	[
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.css.scss.less",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/dynasty.css.scss",
+		"/Users/bamurphymac/dynasty/app/views/layouts/public_home_page.html.haml",
+		"/Users/bamurphymac/dynasty/config/environments/development.rb",
+		"/Users/bamurphymac/dynasty/config/routes.rb",
+		"/Users/bamurphymac/dynasty/app/assets/javascripts/lib/juggernaut/juggernaut_spine.js.coffee",
+		"/Users/bamurphymac/dynasty/app/controllers/dynasty_dollars_controller.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/dynasty_player_contracts_controller.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/persons_controller.rb",
+		"/Users/bamurphymac/dynasty/Guardfile",
+		"/Users/bamurphymac/dynasty/app/controllers/home_controller.rb",
+		"/Users/bamurphymac/dynasty/app/helpers/auto_picks_helper.rb",
+		"/Users/bamurphymac/dynasty/app/views/shared/_nav_wrapper.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/layouts/application.html.haml",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/animate.css.scss",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/bootstrap_and_overrides.css.less",
+		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.css.scss",
+		"/Users/bamurphymac/dynasty/app/views/shared/_dynasty_nav_private.html.haml",
+		"/Users/bamurphymac/dynasty/app/views/shared/_dynasty_footer.html.haml",
+		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/bourbon-2.1.0/_includes/footer.html",
+		"/Users/bamurphymac/dynasty/app/views/home/index.html.haml",
+		"/Users/bamurphymac/dynasty/app/assets/javascripts/bootstrap.js.coffee",
+		"/Users/bamurphymac/dynasty/public/draft/app.js",
+		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/bamurphymac/dynasty/Gemfile",
+		"/Users/bamurphymac/dynasty/app/models/person_phase.rb",
+		"/Users/bamurphymac/dynasty/vendor/assets/javascripts/spine/test/lib/jquery.js",
+		"/Users/bamurphymac/dynasty/app/assets/javascripts/application.js.coffee",
+		"/Users/bamurphymac/dynasty/vendor/assets/javascripts/spine/lib/route.js",
+		"/Users/bamurphymac/dynasty/config.ru",
+		"/Users/bamurphymac/dynasty/app/controllers/front_office_controller.rb",
+		"/Users/bamurphymac/dynasty/app/controllers/application_controller.rb",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Default (OSX).sublime-keymap",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Alignment/Base File.sublime-settings",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/SublimeREPL/SublimeREPL.sublime-settings",
 		"/Users/bamurphymac/.zshrc",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/BeautifyRuby/BeautifyRuby.sublime-settings",
-		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-		"/Users/bamurphymac/dynasty/app/assets/stylesheets/application.css.scss",
-		"/Users/bamurphymac/dynasty/app/views/layouts/application.html.haml",
 		"/Users/bamurphymac/dynasty/app/views/shared/_nav_signed_in.html.haml",
 		"/Users/bamurphymac/dynasty/app/views/shared/_nav_top_bar.html.haml",
 		"/Users/bamurphymac/dynasty/app/helpers/application_helper.rb",
 		"/Users/bamurphymac/dynasty/app/views/shared/_footer_include.html.haml",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/Function Name Display/Function Name Display.sublime-settings",
-		"/Users/bamurphymac/dynasty/app/controllers/application_controller.rb",
-		"/Users/bamurphymac/dynasty/app/assets/stylesheets/dynasty.css.scss",
-		"/Users/bamurphymac/dynasty/app/assets/stylesheets/bootstrap_and_overrides.css.less",
-		"/Users/bamurphymac/dynasty/app/assets/javascripts/bootstrap.js.coffee",
-		"/Users/bamurphymac/dynasty/Guardfile",
-		"/Users/bamurphymac/dynasty/config/environments/development.rb",
 		"/Users/bamurphymac/dynasty/config/environments/production.rb",
 		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/rack-livereload-0.3.6/js/livereload.js",
-		"/Users/bamurphymac/dynasty/app/views/home/index.html.haml",
 		"/Users/bamurphymac/dynasty/app/views/home.html.haml",
-		"/Users/bamurphymac/dynasty/app/assets/javascripts/application.js.coffee",
 		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/kickstrap_rails-0.9.0RC/vendor/assets/stylesheets/kickstrap/chosen/chosen.less",
 		"/Users/bamurphymac/dynasty/app/assets/stylesheets/animations.css.scss",
 		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/kickstrap_rails-0.9.0RC/vendor/assets/stylesheets/kickstrap.css.less",
 		"/Users/bamurphymac/dynasty/public/assets/application.js",
 		"/Users/bamurphymac/dynasty/app/assets/stylesheets/COMMIT_EDITMSG.COMMIT_EDITMSG",
 		"/Users/bamurphymac/dynasty/app/assets/stylesheets/_dynasty.css.scss",
-		"/Users/bamurphymac/dynasty/Gemfile",
 		"/Users/bamurphymac/dynasty/public/assets/application.css",
 		"/Users/bamurphymac/dynasty/app/assets/dynasty.css.scss",
 		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/bundler/gems/twitter-bootstrap-rails-0f942cdaec43/vendor/toolkit/twitter/bootstrap_base.less",
 		"/Users/bamurphymac/dynasty/MIT-LICENSE.txt",
 		"/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Help.sublime-settings",
-		"/Users/bamurphymac/dynasty/app/controllers/home_controller.rb",
 		"/Users/bamurphymac/dynasty/dynasty_owner_project.sublime-project",
-		"/Users/bamurphymac/dynasty/app/views/shared/_nav_wrapper.html.haml",
-		"/Users/bamurphymac/dynasty/config/routes.rb",
 		"/Users/bamurphymac/dynasty/app/views/home/_group.html.haml",
 		"/Users/bamurphymac/dynasty/app/views/home/show.html.haml",
 		"/Users/bamurphymac/dynasty/app/views/home/_player.html.haml",
@@ -568,7 +465,6 @@
 		"/Users/bamurphymac/dynasty/app/views/home/player.html.html",
 		"/Users/bamurphymac/dynasty/app/views/home/index.html.html",
 		"/Users/bamurphymac/dynasty/app/models/american_football_penalties_stat.rb",
-		"/Users/bamurphymac/dynasty/config.ru",
 		"/Users/bamurphymac/dynasty/vendor/ruby/1.9.1/gems/authorize-net-1.5.2/generators/authorize_net_direct_post/templates/config.yml.rails3.erb",
 		"/Users/bamurphymac/dynasty/app/models/american_football_sacks_against_stat.rb",
 		"/Users/bamurphymac/dynasty/app/controllers/mockups_controller.rb",
@@ -619,23 +515,7 @@
 		"/Users/bamurphymac/Library/LaunchAgents/memcached.plist",
 		"/Users/bamurphymac/dynasty/.gitignore",
 		"/Users/bamurphymac/dynasty/app/models/person.rb",
-		"/Users/bamurphymac/dynasty/.bundle/config",
-		"/System/Library/LaunchDaemons/nginx.plist",
-		"/etc/hostconfig",
-		"/etc/hostname",
-		"/Users/bamurphymac/dynasty/.git/config",
-		"/etc/hosts",
-		"/Users/bamurphymac/.ssh/known_hosts",
-		"/etc/nanorc",
-		"/Users/bamurphymac/.ssh/config",
-		"/Users/bamurphymac/dynasty/config/deploy.rb",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/0E0174D6-AAB1-4E17-B657-85D9558A26B3/nginx.conf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/E674C1B9-7D93-4477-A3BE-3D07DC71D412/nginx.conf",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/74C242F0-51C3-444C-BED0-A6C22930E5EA/robots.txt",
-		"/Users/bamurphymac/Library/Caches/Cleanup At Startup/Transmit/874760BE-441A-4041-B8C4-C8348CF55F97/robots.txt",
-		"/etc/shells",
-		"/Users/bamurphymac/nanorc",
-		"/usr/share/NotificationS"
+		"/Users/bamurphymac/dynasty/.bundle/config"
 	],
 	"find":
 	{
@@ -653,6 +533,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"public\npublic",
+			"background-color",
 			"new",
 			"tab",
 			"#dynasty",
@@ -722,517 +604,23 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/controllers/home_controller.rb",
-					"settings":
-					{
-						"buffer_size": 575,
-						"regions":
-						{
-							"mark":
-							{
-								"flags": 144,
-								"icon": "dot",
-								"regions":
-								[
-									[
-										575,
-										575
-									]
-								],
-								"scope": "mark"
-							}
-						},
-						"selection":
-						[
-							[
-								570,
-								570
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 26,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/bamurphymac/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
-					"settings":
-					{
-						"buffer_size": 217,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								101,
-								101
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 2,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Gemfile",
-					"settings":
-					{
-						"buffer_size": 4055,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3514,
-								3514
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 153,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "public/draft/app.js",
-					"settings":
-					{
-						"buffer_size": 8921,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/assets/javascripts/bootstrap.js.coffee",
-					"settings":
-					{
-						"buffer_size": 1439,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								647,
-								647
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 23,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/CoffeeScript/Syntaxes/CoffeeScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/views/home/index.html.haml",
-					"settings":
-					{
-						"buffer_size": 548,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "vendor/ruby/1.9.1/gems/bourbon-2.1.0/_includes/footer.html",
-					"settings":
-					{
-						"buffer_size": 1816,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1201,
-								1201
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 23,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/views/layouts/application.html.haml",
-					"settings":
-					{
-						"buffer_size": 2302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1772,
-								1772
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 54,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "app/views/shared/_dynasty_footer.html.haml",
-					"settings":
-					{
-						"buffer_size": 318,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								317,
-								317
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 10,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "app/views/shared/_dynasty_nav_private.html.haml",
-					"settings":
-					{
-						"buffer_size": 1111,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 10,
-					"file": "app/assets/stylesheets/animate.css.scss",
-					"settings":
-					{
-						"buffer_size": 68124,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								45103,
-								45103
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 2557,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/SCSS/SCSS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": "app/views/shared/_nav_wrapper.html.haml",
-					"settings":
-					{
-						"buffer_size": 109,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								62,
-								62
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 1,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "app/assets/stylesheets/dynasty.css.scss",
-					"settings":
-					{
-						"buffer_size": 7648,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4649,
-								4649
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 220,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/SCSS/SCSS.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 4363.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "app/assets/stylesheets/bootstrap_and_overrides.css.less",
-					"settings":
-					{
-						"buffer_size": 2924,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1152,
-								1152
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 32,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/LESS/LESS.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/views/layouts/application.html.haml",
-					"settings":
-					{
-						"buffer_size": 2302,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								658,
-								658
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 16,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Haml/Syntaxes/Ruby Haml.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 14,
-					"file": "app/helpers/auto_picks_helper.rb",
-					"settings":
-					{
-						"buffer_size": 27,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"function_name_status_row": 0,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/Ruby/Ruby.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -1259,17 +647,30 @@
 				0,
 				2,
 				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.458006157806,
+			0.5,
 			1.0
 		],
 		"rows":
 		[
 			0.0,
+			0.865215095525,
 			1.0
 		]
 	},
@@ -1288,6 +689,54 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"routes",
+				"Dynasty Owner/config/routes.rb"
+			],
+			[
+				"guard",
+				"Dynasty Owner/Guardfile"
+			],
+			[
+				"appjs",
+				"Dynasty Owner/app/assets/javascripts/application.js.coffee"
+			],
+			[
+				"jqu",
+				"vendor/assets/javascripts/spine/test/lib/jquery.js"
+			],
+			[
+				"appcss",
+				"Dynasty Owner/app/assets/stylesheets/application.css.scss"
+			],
+			[
+				"app",
+				"Dynasty Owner/app/models/person_phase.rb"
+			],
+			[
+				"anima",
+				"Dynasty Owner/app/assets/stylesheets/animate.css.scss"
+			],
+			[
+				"route",
+				"vendor/assets/javascripts/spine/lib/route.js"
+			],
+			[
+				"rout",
+				"Dynasty Owner/config/routes.rb"
+			],
+			[
+				"dynappco",
+				"Dynasty Owner/app/controllers/application_controller.rb"
+			],
+			[
+				"gemf",
+				"Dynasty Owner/Gemfile"
+			],
+			[
+				"gem",
+				"Dynasty Owner/Gemfile"
+			],
 			[
 				"appl",
 				"Dynasty Owner/app/views/layouts/application.html.haml"
@@ -1317,10 +766,6 @@
 				"Dynasty Owner/app/views/layouts/application.html.haml"
 			],
 			[
-				"guard",
-				"Dynasty Owner/Guardfile"
-			],
-			[
 				"liver",
 				"vendor/ruby/1.9.1/gems/rack-livereload-0.3.6/js/livereload.js"
 			],
@@ -1331,10 +776,6 @@
 			[
 				"kickstra",
 				"vendor/ruby/1.9.1/gems/kickstrap_rails-0.9.0RC/vendor/assets/stylesheets/kickstrap.css.less"
-			],
-			[
-				"appjs",
-				"Dynasty Owner/public/draft/app.js"
 			],
 			[
 				"g",
@@ -1401,10 +842,6 @@
 				"app/views/home/index.html.haml"
 			],
 			[
-				"routes",
-				"config/routes.rb"
-			],
-			[
 				"resea/inde",
 				"app/views/research/index.html.haml"
 			],
@@ -1445,16 +882,8 @@
 				"app/assets/javascripts/application.js.coffee"
 			],
 			[
-				"gem",
-				"Gemfile"
-			],
-			[
 				"application.cof",
 				"app/assets/javascripts/application.js.coffee"
-			],
-			[
-				"gemf",
-				"Gemfile"
 			],
 			[
 				"conru",
@@ -1537,16 +966,8 @@
 				"help/ruby/1.9.1/gems/sass-rails-3.1.4/test/fixtures/scss_project/app/assets/stylesheets/application.css.scss"
 			],
 			[
-				"app",
-				"public/assets/application.js"
-			],
-			[
 				"appscss",
 				"app/assets/stylesheets/application.scss"
-			],
-			[
-				"appcss",
-				"public/assets/application.css"
 			],
 			[
 				"application.h",
@@ -1623,10 +1044,6 @@
 			[
 				"research/pja",
 				"app/views/research/pjax.html.haml"
-			],
-			[
-				"route",
-				"config/routes.rb"
 			]
 		],
 		"width": 0.0
@@ -1643,6 +1060,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 293.0,
+	"side_bar_width": 268.0,
 	"status_bar_visible": true
 }

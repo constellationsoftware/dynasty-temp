@@ -14,7 +14,7 @@
     %span.position{ :data => { :id => player.nil? ? '' : player.position.id } }
       = player.position.abbreviation.upcase unless player.nil?
     %span.team
-      = player.real_team.name.abbreviation.upcase unless player.nil?
+      = player.real_team.display_name.last_name unless player.nil?
   %td.player.points= player.points_this_season unless player.nil?
   %td.player.points.projected N/A
   %td.player.bye= player.contract.bye_week unless player.nil?
@@ -32,7 +32,7 @@
     %span.position
       = opponent_player.position.abbreviation.upcase unless opponent_player.nil?
     %span.team
-      = opponent_player.real_team.name.abbreviation.upcase unless opponent_player.nil?
+      = opponent_player.real_team.display_name.last_name unless opponent_player.nil?
   %td
     %button.btn.btn-mini{ :href => '#swap_player',
       :data => { :toggle => 'modal',

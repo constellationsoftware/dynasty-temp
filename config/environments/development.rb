@@ -1,15 +1,15 @@
 Dynasty::Application.configure do
 
     # Rackup the livereload server
-    config.middleware.insert_before(
-        Rack::Lock, Rack::LiveReload,
-        :min_delay => 500,
-        :max_delay => 10000,
-        :port => 35729#,
-        #:host => 'dynastyowner.local'
-        #:ignore => [ %r{dont/modify\.html$} ]
-
-    )
+    ##config.middleware.insert_before(
+    ##    Rack::Lock, Rack::LiveReload,
+    ##    :min_delay => 500,
+    ##    :max_delay => 10000,
+    ##    :port => 35729#,
+    ##    #:host => 'dynastyowner.local'
+    ##    #:ignore => [ %r{dont/modify\.html$} ]
+##
+    ##)
     # ruby
     $stdout.sync = true
 

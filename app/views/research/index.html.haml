@@ -2,97 +2,10 @@
 = javascript_include_tag 'research'
 = stylesheet_link_tag 'research'
 
+
 .row
   .span12
     .container-fixed
-<<<<<<< HEAD
-
-      %h3
-        Player Research
-      %table.display.all-players-data.table.table-condensed.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
-        %thead
-          %tr
-            %th Player
-            %th
-              %select.span2.btn.btn-mini{:rel => "popover", :title => "Filter Position" }
-                %option{:value => "POS"}
-                %option{:value => "QB"} QB
-                %option{:value => "WR"} WR
-                %option{:value => "RB"} RB
-                %option{:value => "TE"} TE
-                %option{:value => "K"} K
-                %option{:value => "LB"} LB
-                %option{:value => "DL"} DL
-
-            %th
-              %select.span2.btn.btn-mini{:rel => "popover", :title => "Filter Team"}
-                - SportsDb::Team.all.each do |team|
-                  %option{:value => team.display_name.last_name} team.display_name.last_name
-
-              //%a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s real world team"} Team
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s bye week this season'"} Bye
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s yearly salary"} $Yr
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The player\'s total contract amount"} $Tot
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The year this player\'s contract ends"} End
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points earned last season"} FPTs
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points earned last season"} Pass
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points earned last season"} Rush
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points earned last season"} Def
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points lost last season"} Fum
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Touchdown Fantasy Points earned last season"} TD
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Dynasty Dollars per Fantasy Point earned last season"} $DD/P
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Games played last season"} Games
-
-        %tbody
-          - @players.each do |player|
-            %tr{:id => dom_id(player)}
-              %td
-                %a{:href => "/players/#{player.id}"}
-                  = player.fname
-              %td= player.position.abbreviation.upcase
-              %td= player.real_team.display_name.last_name
-              %td= player.contract.bye_week
-              %td= player.contract.amount
-              %td= player.contract.summary
-              %td= player.contract.end_year
-              %td= player.points.points
-              %td= player.points.passing_points
-              %td= player.points.rushing_points
-              %td= player.points.defensive_points
-              %td= player.points.fumbles_points
-              %td= player.points.scoring_points
-              %td= player.points_per_dollar
-              %td= player.points.games_played
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
       .row
         %form.filter-form.form-inline
           .span2.position
@@ -126,4 +39,4 @@
             %th.points-per-dollar P/DD
             %th.games Games
             %th.id
->>>>>>> origin/nick/dev
+

@@ -6,12 +6,10 @@ json.lineup     game.player_points_for(team) do |json, player_score|
         json.name       player_score.player.name.last_with_first_initial
         json.team       player_score.player.real_team.display_name.abbreviation.upcase
         json.position   player_score.player.position.abbreviation.upcase
-        if game.week === player_score.player.contract.bye_week
-            json.points 'BYE'
-        elsif player_score.score
+        if player_score.score
             json.points '%.1f' % (player_score.score.points / (player_score.lineup.string === 2 ? Settings.bench_score_divisor : 1).to_f)
         else
-            json.points 'N/A'
+            json.points '0.0'
         end
     end
 end

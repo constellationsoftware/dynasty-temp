@@ -5,7 +5,7 @@
 #= require spine/lib/list
 #= require spine/lib/ajax
 #= require spine/lib/tab
-#= require lib/juggernaut/juggernaut_spine
+#= require lib/juggernaut/juggernaut_dispatcher
 #= require spine/lib/view
 #= require i18n
 #= require i18n/translations
