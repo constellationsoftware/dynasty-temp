@@ -1,0 +1,6 @@
+= content_for :title, 'Invite a friend'
+.row.span4
+  = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :post, :class => [ 'well', 'form-inline' ] } do |f|
+    = devise_error_messages!
+    = f.input :email
+    = f.button :submit, 'Send Invitation', :class => 'btn'

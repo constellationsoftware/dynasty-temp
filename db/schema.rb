@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120518191415) do
+ActiveRecord::Schema.define(:version => 20120522184226) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -1073,6 +1073,7 @@ ActiveRecord::Schema.define(:version => 20120518191415) do
   end
 
   add_index "dynasty_player_teams", ["player_id", "team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_player_and_team_and_lineup"
+  add_index "dynasty_player_teams", ["team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_team_id_and_lineup_id", :unique => true
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",             :limit => 32
@@ -1161,7 +1162,7 @@ ActiveRecord::Schema.define(:version => 20120518191415) do
 
   create_table "dynasty_users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
-    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => ""
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -1177,13 +1178,21 @@ ActiveRecord::Schema.define(:version => 20120518191415) do
     t.datetime "updated_at"
     t.string   "authentication_token"
     t.datetime "last_seen"
-    t.string   "first_name",             :limit => 50,                  :null => false
+    t.string   "first_name",             :limit => 50
     t.string   "phone",                  :limit => 32
-    t.string   "last_name",              :limit => 50,                  :null => false
+    t.string   "last_name",              :limit => 50
+    t.string   "invitation_token",       :limit => 60
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer  "invitation_limit"
+    t.integer  "invited_by_id"
+    t.string   "invited_by_type"
   end
 
   add_index "dynasty_users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "dynasty_users", ["first_name"], :name => "index_dynasty_users_on_name"
+  add_index "dynasty_users", ["invitation_token"], :name => "index_dynasty_users_on_invitation_token"
+  add_index "dynasty_users", ["invited_by_id"], :name => "index_dynasty_users_on_invited_by_id"
 
   create_table "dynasty_waiver_bids", :force => true do |t|
     t.integer  "waiver_id"

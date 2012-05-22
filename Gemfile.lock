@@ -181,6 +181,9 @@ GEM
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
       warden (~> 1.1.1)
+    devise_invitable (1.0.1)
+      devise (>= 2.0.0)
+      rails (~> 3.0)
     devise_lastseenable (0.0.4)
       devise
       devise
@@ -489,6 +492,7 @@ DEPENDENCIES
   database_cleaner (= 0.7.1)
   delayed_job (< 3.0)
   devise
+  devise_invitable
   devise_lastseenable (>= 0.0.3)
   email_spec
   enum_simulator!

@@ -94,7 +94,7 @@ en:
     user_cp:
         schedule_draft:     'Schedule Draft'
         draft_date_format:  '%A %B %d, %Y'
-
+        invite:             'Invite a friend'
     research:
         index:
             title: 'Player Research'

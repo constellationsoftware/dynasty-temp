@@ -58,6 +58,7 @@ gem 'cancan'
 gem 'rolify'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
+gem 'devise_invitable'
 
 # Servers, Workers, Sockets & Push
 gem 'foreman'

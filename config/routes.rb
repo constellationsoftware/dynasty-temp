@@ -27,7 +27,11 @@ Dynasty::Application.routes.draw do
     #mount Resque::Server.new, :at => "/resque"
 
     # REFACTOR: This is inelegant. I couldn't figure out the magic combination of options for 'devise_for' with as poorly documented as it is, but we should figure it out eventually
-    devise_for :users, :skip => [ :sessions, :registrations ], :controllers => { :sessions => 'users/sessions', :registrations => 'users/registrations' }
+    devise_for :users, :skip => [ :sessions, :registrations ], :controllers => {
+        :sessions => 'users/sessions',
+        :registrations => 'users/registrations',
+        :invitations => 'users/invitations'
+    }
     as :user do
         #root :to => 'users#home'
         get     '/login' => 'users/sessions#new', :as => :new_user_session
