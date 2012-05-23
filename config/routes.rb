@@ -171,8 +171,9 @@ Dynasty::Application.routes.draw do
         resources :display_name
     end
 
-    root :controller => :users, :action => :home
-    #root :controller => :home, :action => :public_home_page
+    match 'user_root' => 'users#home', :as => :user_root
+    #root :to => "home#public_home_page" #:controller => :home, :action => :public_home_page
+    root :to => 'users#home'
     ActiveAdmin.routes(self)
 
     # Sample of regular route:

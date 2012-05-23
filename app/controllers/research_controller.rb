@@ -20,6 +20,26 @@ class ResearchController < ApplicationController
     end
 
     def index
+
+        if user_signed_in?
+            @league = League.find(current_user.team.league_id)
+            @league_players = @league.players.all
+
+            if @league_players.include?(@player)
+                @player_team = @league.player_teams.joins(:player).where(:player_id => @player.id).first
+                if @player_team.team == @current_user.team
+                    @message = @current_user
+                else
+                    @message = 1
+                    @trade_team = @player_team.team
+
+                end
+            end
+        else
+            @message = 0
+        end
+
+
         @positions = Position.select{[ id, abbreviation ]}
             .where{ abbreviation !~ '%flex%' }
             .collect{ |p| [ p['abbreviation'].upcase, p['abbreviation'] ] }

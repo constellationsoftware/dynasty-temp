@@ -53,24 +53,11 @@ class PlayersController < ApplicationController
 
 
     def show
-
-<<<<<<< HEAD
-  def show
-
-      player = Player.find(params[:id])
-
-      feed_url = "http://search.nfl.com/urss?q=#{player.name.last_name}"
-      open(feed_url) do |http|
-        response = http.read
-        @rss = RSS::Parser.parse(response, false)
-=======
         player = Player.find(params[:id])
         feed_url = "http://search.nfl.com/urss?q=#{player.name.last_name}"
         open(feed_url) do |http|
             response = http.read
             @rss = RSS::Parser.parse(response, false)
->>>>>>> origin/nick/dev
-
         end
 
         @player = Player.current.with_contract.with_name.with_all_points.with_points_from_season(2011).includes(:contract, :name, :position, :points, :event_points).find(params[:id])

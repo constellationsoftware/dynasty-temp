@@ -17,8 +17,9 @@
           // Primary Nav
           %ul.nav.pull-right
             - if user_signed_in?
-              %li
-                %a#date= number_to_currency(current_user.team.balance)
+              - if current_user.team
+                %li
+                  %a#date= number_to_currency(current_user.team.balance)
             %li.divider-vertical
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
@@ -42,7 +43,7 @@
             %li
               .btn-group
                 - unless user_signed_in?
-                  %a.btn.btn-inverse{:href => "/payments/payment"}
+                  %a.btn.btn-inverse{:href => new_user_registration_path}
                     Create an Account.
                   %a.btn.btn-inverse{:href => "/login"}
                     Sign In

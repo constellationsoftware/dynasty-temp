@@ -14,6 +14,10 @@ class ApplicationController < ActionController::Base
     has_scope :page
     has_scope :per
 
+    def after_sign_in_path_for(user)
+        user_root_path(user)
+    end
+
     has_scope :columns do |controller, scope, value|
         columns = JSON.parse(value).collect do |column|
             "#{column}.as('`#{column}`')"

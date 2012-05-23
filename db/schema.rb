@@ -1012,8 +1012,8 @@ ActiveRecord::Schema.define(:version => 20120518191415) do
   add_index "dynasty_lineups", ["string"], :name => "index_dynasty_lineups_on_string"
 
   create_table "dynasty_player_contracts", :force => true do |t|
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "person_id"
     t.integer  "amount"
     t.integer  "length"

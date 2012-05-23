@@ -556,6 +556,7 @@ DEPENDENCIES
   has_scope
   hpricot
   i18n-js
+  inherited_resources
   jasmine
   jasminerice
   jbuilder

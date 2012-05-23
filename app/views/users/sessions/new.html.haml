@@ -1,12 +1,12 @@
 = stylesheet_link_tag 'forms'
 .row.span12.centered
-  .span6.centered
+  .span6.offset3
     .panel
       %h3 Log in
       = simple_form_for :user, :url => new_user_session_path, :html => { :class => 'login' } do |f|
         = render :partial => '/users/shared/login_form', :locals => { :form => f }
         = f.button :submit, 'Submit'
-      = link_to 'Don\'t have an account? Create one!', '/payments/payment'
+      = link_to 'Don\'t have an account? Create one!', new_user_registration_path
       |
       = link_to 'Forgot your password?', new_password_path('user')
 
