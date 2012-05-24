@@ -1,4 +1,6 @@
 jQuery ->
+  $('.carousel').carousel()
+  $('#flyRight').addClass('animated fadeInRightBig');
 
   $("a[rel='tooltip']").tooltip()
   $("a[rel='popover']").popover()

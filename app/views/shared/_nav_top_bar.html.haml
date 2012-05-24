@@ -3,8 +3,8 @@
     .container
       // Brand and Logo Stay Here
       %a.logo{:href=>'/'}
-        =image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
-        =image_tag "navbar_logo.png", :class => "logo hidden-desktop pull_left"
+        = image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
+        = image_tag "navbar_logo.png", :class => "logo hidden-desktop pull_left"
       // Collapsible nav for tablets/phones
       .row
 
@@ -45,7 +45,7 @@
                 - unless user_signed_in?
                   %a.btn.btn-primary{:href => new_user_registration_path}
                     Create an Account.
-                  %a.btn.btn-primary{:href => "/login"}
+                  %a.btn.btn-primary{:href => "#loginModal", :data => {:toggle => "modal"}}
                     Sign In
 
                 - if user_signed_in?

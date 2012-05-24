@@ -1,0 +1,63 @@
+%h1
+  Content
+.row
+  %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
+    %span.icon-bar
+    %span.icon-bar
+    %span.icon-bar
+  // Hidden at 940 PX or less
+  .nav-collapse
+    // Primary Nav
+    %ul.nav.pull-right
+      %li
+        %a Schedule of Events
+      %li
+        %a Official League Rules
+      %li
+        %a.btn.primary{:href => "/login"} Log In
+.container.fixed
+    .row
+      #superwide.span12
+        .span8.offset4
+          %h1.animated.fadeInRightBig#flyright Fantasy Football is about to change. . .
+          %h2.animated#flyleft . . . are you ready to build a Dynasty?
+          %br
+          %ul.nav.nav-pills.box_shadow
+            %h3.animated#pulse.black
+              %a{:href => "#"} Schedule of Events
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              %a{:href => "#"} Official League Rules
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              %a{:href => "/login"} Log In
+
+      #stack
+        .span6
+          %h1
+            Carousel
+          #myCarousel.carousel
+            .carousel-inner
+              .item
+                %h1
+                  Item 1
+              .item
+                %h1
+                  Item 2
+              .item
+                %h1
+                  Item 3
+            %a.carousel-control.left{:href => "#myCarousel", :data => {:slide => "prev"}} &lsaquo;
+            %a.carousel-control.right{:href => "#myCarousel", :data => {:slide => "next"}} &rsaquo;
+        .span6
+          %h1
+            3-2-1 Quickdraw
+          <img src="http://placehold.it/400x300" class="movie bigbox"alt="">
+        .row
+          .offset2.span8.offset2
+            %h1 Sign Up To Create or Join a League
+        .row
+          .span4
+            <img src="http://placehold.it/200x150" class="movie bigbox"alt="">
+          .span4
+            <img src="http://placehold.it/200x150" class="movie bigbox"alt="">
+          .span4
+            <img src="http://placehold.it/200x150" class="movie bigbox"alt="">

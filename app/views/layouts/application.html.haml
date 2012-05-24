@@ -20,6 +20,7 @@
   = favicon_link_tag
 // Body
 %body
+  = render :partial => "shared/login_modal"
   // Sitewide Nav Bar
   = render :partial => "shared/nav_wrapper"
   // The Page Stack
@@ -33,7 +34,7 @@
     -#  -# main page yield
     = yield
     -#-# Page Footer
-    -#= render :partial => "shared/dynasty_footer"
+    = render :partial => "shared/dynasty_footer"
     -#-# Modals
     -#- unless user_signed_in?
-    -#  = render :partial => "shared/login_mod
+

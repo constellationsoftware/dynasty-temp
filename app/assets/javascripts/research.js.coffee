@@ -13,8 +13,9 @@ $ ->
         aoColumns: [
             sName:      'name'
             sWidth:     '120px'
+            sClass: 'left'
             mDataProp:  null
-            aDataSort:  [ 2, 1 ]
+            aDataSort:  [ 2,1 ]
             fnRender:   (col) ->
                 data = col.aData
                 "#{data.name.first_name[0]}. #{data.name.last_name}"
@@ -23,10 +24,15 @@ $ ->
                 el = $(el)
                 content =
                     """
-                    <a data-delay="{'show':500,'hide':100}" href="/players/#{data.id}" rel="tooltip" data-original-title="#{data.name.first_name} #{data.name.last_name}">
+                    <span class="left">
+                    <button class="btn btn-mini">Add</button>
+                    <button class="btn btn-mini">Trade</button>
+                    <a href="/players/#{data.id}" rel="popover" data-original-title="#{data.name.first_name} #{data.name.last_name}" data-content="Some Content">
                         #{el.text()}
                     </a>
-                    """
+
+                   </span>
+                                       """
                 el.html content
         ,
             sName:      'first_name'
@@ -48,6 +54,7 @@ $ ->
         ,
             sName:      'contract_amount'
             mDataProp:  'contract.amount'
+            sClass:     'right'
             bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
@@ -55,6 +62,7 @@ $ ->
         ,
             sName:      'contract_total_amount'
             mDataProp:  'contract.summary'
+            sClass:     'right'
             bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
@@ -62,26 +70,34 @@ $ ->
         ,
             sName:      'contract_end_year'
             mDataProp:  'contract.end_year'
+            sClass:     'right'
         ,
             sName:      'points'
             mDataProp:  'points.points'
+            sClass:     'right'
         ,
             sName:      'passing_points'
             mDataProp:  'points.passing_points'
+            sClass:     'right'
         ,
             sName:      'rushing_points'
             mDataProp:  'points.rushing_points'
+            sClass:     'right'
         ,
             sName:      'defensive_points'
             mDataProp:  'points.defensive_points'
+            sClass:     'right'
         ,
             sName:      'fumble_points'
             mDataProp:  'points.fumbles_points'
+            sClass:     'right'
         ,
             sName:      'scoring_points'
             mDataProp:  'points.scoring_points'
+            sClass:     'right'
         ,
             sName:      'points_per_dollar'
+            sClass:     'right'
             mDataProp:  null
             bSortable:  false
             fnRender:   (col) ->
@@ -91,10 +107,12 @@ $ ->
         ,
             sName:      'games'
             mDataProp:  'points.games_played'
+            sClass:     'right'
         ,
             sName:      'id'
             bVisible:   false
             mDataProp:  'id'
+            sClass:     'right'
         ]
         fnServerData: (source, data, callback) -> $.get source, data, callback, 'json'
         bProcesing: true

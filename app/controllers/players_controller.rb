@@ -3,7 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class PlayersController < ApplicationController
-    before_filter :authenticate_user!
+
     respond_to :html, :json
 
     has_scope :with_name
@@ -66,6 +66,8 @@ class PlayersController < ApplicationController
         if user_signed_in?
             @league = League.find(current_user.team.league_id)
             @league_players = @league.players.all
+            @open_slots = Lineup.empty(current_user.team.id).by_position(@player.position.id).all
+            @closed_slots = current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).all
 
             if @league_players.include?(@player)
                 @player_team = @league.player_teams.joins(:player).where(:player_id => @player.id).first
@@ -81,9 +83,6 @@ class PlayersController < ApplicationController
             @message = 0
         end
 
-
-        @open_slots = Lineup.empty(current_user.team.id).by_position(@player.position.id).all
-        @closed_slots = current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).all
 
         respond_to do |format|
             format.html # show.html.erb

@@ -54,8 +54,8 @@ class ResearchController < ApplicationController
         end
 =end
         @teams = SportsDb::Team.nfl.current.joins{ display_name }
-            .select{[ id, display_name.abbreviation ]}
-            .order{ display_name.abbreviation }
+            .select{[ id, display_name.full_name ]}
+            .order{ display_name.full_name }
             .collect{ |t| [ t['abbreviation'], t['abbreviation'] ] }
     end
 

@@ -6,18 +6,3 @@
         =image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
         =image_tag "navbar_logo.png", :class => "logo hidden-desktop pull_left"
       // Collapsible nav for tablets/phones
-      .row
-        %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
-          %span.icon-bar
-          %span.icon-bar
-          %span.icon-bar
-        // Hidden at 940 PX or less
-        .nav-collapse
-          // Primary Nav
-          %ul.nav.pull-right
-            %li
-              %a Schedule of Events
-            %li
-              %a Official League Rules
-            %li
-              %a.btn.primary{:href => "/login"} Log In

@@ -31,7 +31,7 @@
               %td= accounts.last.transaction_datetime.strftime('%D')
               %td= current_user.team.name
               %td
-                %a.btn{:rel => 'popover', :data => {"original-title" => "Player Details", :content => @details}} Players
+                %a.btn{:rel => 'popover', :data => {"original-title" => "Player Details", :placement => 'bottom', :content => @details}} Players
               %td Weekly Player Payroll
               %td.right.red
                 (

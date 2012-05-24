@@ -8,6 +8,7 @@ class HomeController < ApplicationController
 
   def index
     @title = 'Dynasty Owner'
+
     @players ||= Player.current.research
 
     # pull in basic info on one player

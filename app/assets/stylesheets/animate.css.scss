@@ -25,12 +25,20 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .animated.hinge {
-	-webkit-animation-duration: 2s;
-	   -moz-animation-duration: 2s;
-	    -ms-animation-duration: 2s;
-	     -o-animation-duration: 2s;
-	        animation-duration: 2s;
+	-webkit-animation-delay: 2s;
+	   -moz-animation-delay: 2s;
+	    -ms-animation-delay: 2s;
+	     -o-animation-delay: 2s;
+	        animation-delay: 2s;
 }
+
+.animated.pulse {
+	-webkit-animation-delay: 2s;
+   	   -moz-animation-delay: 2s;
+   	    -ms-animation-delay: 2s;
+   	     -o-animation-delay: 2s;
+   	        animation-delay: 2s;
+   }
 
 @-webkit-keyframes flash {
 	0%, 50%, 100% {opacity: 1;}

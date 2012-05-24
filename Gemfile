@@ -105,7 +105,7 @@ group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
     #gem 'query_trace'
-    #gem 'rails-dev-tweaks', '~> 0.6.1'
+    gem 'rails-dev-tweaks', '~> 0.6.1'
     #gem 'pry-rails'
     gem 'wirble'
 end
