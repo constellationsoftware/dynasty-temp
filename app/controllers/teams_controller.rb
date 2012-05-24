@@ -47,7 +47,9 @@ class TeamsController < ApplicationController
 
     def financials
       @team = current_user.team
-      @accounts = @team.all_accounts
+      @events = @team.get_all_events
+
+
     end
 
     def manage

@@ -28,9 +28,9 @@ class Team < ActiveRecord::Base
     has_many :reserve_players, :through => :reserve_player_teams, :source => :player
     has_many :home_games, :class_name => 'Game', :foreign_key => 'home_team_id', :order => :date
     has_many :away_games, :class_name => 'Game', :foreign_key => 'away_team_id', :order => :date
-    has_many :accounts, :as => :receivable
-    has_many :accounts, :as => :payable
-    has_many :events, :through => :accounts
+    has_many :accounts_receivable, :as => :receivable, :class_name => 'Account'
+    has_many :accounts_payable, :as => :payable, :class_name => 'Account'
+    #has_many :events, :through => :accounts
 
     scope :online, where(:is_online => true)
     scope :offline, where(:is_online => false)
@@ -51,13 +51,24 @@ class Team < ActiveRecord::Base
     end
 
     def player_payments
-     Account.where(:receivable_type => PlayerTeam)
+     Account.where(:type => "PlayerAccount")
     end
 
     def all_accounts
-      accounts = self.payments + self.receipts
+      accounts = self.accounts_receivable + self.accounts_payable
       accounts.sort! { |a, b|  a.transaction_datetime <=> b.transaction_datetime }
+    end
 
+    def events
+      self.accounts_receivable.pluck(:event_id).uniq + self.accounts_payable.pluck(:event_id).uniq
+    end
+
+    def get_all_events
+      Events::Base.find(self.events)
+    end
+
+    def get_event_accounts(event)
+      Account.where(:event_id => event)
     end
 
     # home and away games ordered by week by default

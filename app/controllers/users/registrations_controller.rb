@@ -7,6 +7,7 @@ module Users
         end
 
         def after_sign_up_path_for(resource)
+            user_root_path(user)
             Users::Mailer.welcome(resource).deliver
         end
 =begin

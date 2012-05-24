@@ -1,3 +1,4 @@
+module PaymentHelper
 # Before working with this sample code, please be sure to read the accompanying Readme.txt file.
 # It contains important information regarding the appropriate use of and conditions for this sample
 # code. Also, please pay particular attention to the comments included in each individual code file,
@@ -143,90 +144,91 @@ def CreateProfile(email) # returns profileId
   end
   return profileId
 end
-def CreatePaymentProfile(profileId) # returns paymentProfileId
-  paymentProfileId = ''
-  puts
-  puts '---------------------'
-  puts 'Creating Customer Payment Profile ...'
-  xml = SetApiAuthentication($xmlCreatePaymentProfile)
-  xml = xml.sub('@profileId@', profileId)
-  doc = SendXml(xml)
-  success = IsSuccess(doc)
-  if !success
-    PrintErrors(doc)
-  else
-    paymentProfileId = REXML::XPath.first(doc.root, '/*/customerPaymentProfileId').text
-    puts
-    puts 'New customerPaymentProfileId = ' + paymentProfileId
-  end
-  return paymentProfileId
+#def CreatePaymentProfile(profileId) # returns paymentProfileId
+#  paymentProfileId = ''
+#  puts
+#  puts '---------------------'
+#  puts 'Creating Customer Payment Profile ...'
+#  xml = SetApiAuthentication($xmlCreatePaymentProfile)
+#  xml = xml.sub('@profileId@', profileId)
+#  doc = SendXml(xml)
+#  success = IsSuccess(doc)
+#  if !success
+#    PrintErrors(doc)
+#  else
+#    paymentProfileId = REXML::XPath.first(doc.root, '/*/customerPaymentProfileId').text
+#    puts
+#    puts 'New customerPaymentProfileId = ' + paymentProfileId
+#  end
+#  return paymentProfileId
+#end
+#def CreateTransaction(profileId, paymentProfileId, amount) # returns transId
+#  transId = ''
+#  puts
+#  puts '---------------------'
+#  puts 'Creating Transaction for $' + amount +  ' ...'
+#  xml = SetApiAuthentication($xmlCreateTransaction)
+#  xml = xml.sub('@profileId@', profileId)
+#  xml = xml.sub('@paymentProfileId@', paymentProfileId)
+#  xml = xml.sub('@amount@', amount)
+#  xml = xml.sub('@invoice@', 'inv'+rand(100000).to_s)
+#  doc = SendXml(xml)
+#  success = IsSuccess(doc)
+#  if !success
+#    PrintErrors(doc)
+#  end
+#  directResponse = REXML::XPath.first(doc.root, '/*/directResponse')
+#  transId = directResponse.split(',')[6]
+#  puts
+#  puts 'New transId = ' + transId
+#  return transId
+#end
+#def DeleteProfile(profileId)
+#  puts
+#  puts '---------------------'
+#  puts 'Deleting Profile ' + profileId + ' ...'
+#  xml = SetApiAuthentication($xmlDeleteProfile)
+#  xml = xml.sub('@profileId@', profileId)
+#  doc = SendXml(xml)
+#  success = IsSuccess(doc)
+#  if !success
+#    PrintErrors(doc)
+#  else
+#    puts
+#    puts 'Successfully deleted profile.'
+#  end
+#end
+#def SetApiAuthentication(xml)
+#  xml = xml.sub('@login@', $apilogin)
+#  xml = xml.sub('@key@', $apikey)
+#  return xml
+#end
+#def SendXml(xml) # returns xmlDoc of response
+#  puts
+#  puts $uri
+#  puts
+#  puts xml
+#  http = Net::HTTP.new($uri.host, $uri.port)
+#  http.use_ssl = 443 == $uri.port
+#  resp, body = http.post($uri.path, xml, {'Content-Type' => 'text/xml'})
+#  puts
+#  puts resp
+#  puts
+#  puts body
+#  return REXML::Document.new(body)
+#end
+#def PrintErrors(docResponse)
+#  REXML::XPath.each(docResponse.root, '/*/messages/message') { | m |
+#    puts
+#    puts 'Error: [' + REXML::XPath.first(m, 'code').text + '] ' + REXML::XPath.first(m, 'text').text
+#  }
+#end
+#def IsSuccess(docResponse)
+#  return "Ok" == REXML::XPath.first(docResponse.root, '/*/messages/resultCode').text
+#end
+#
+#profileId = CreateProfile('email' + rand(100000).to_s + '@example.com')
+#paymentProfileId = CreatePaymentProfile(profileId)
+#transId = CreateTransaction(profileId, paymentProfileId, '10.95')
+#DeleteProfile(profileId)
 end
-def CreateTransaction(profileId, paymentProfileId, amount) # returns transId
-  transId = ''
-  puts
-  puts '---------------------'
-  puts 'Creating Transaction for $' + amount +  ' ...'
-  xml = SetApiAuthentication($xmlCreateTransaction)
-  xml = xml.sub('@profileId@', profileId)
-  xml = xml.sub('@paymentProfileId@', paymentProfileId)
-  xml = xml.sub('@amount@', amount)
-  xml = xml.sub('@invoice@', 'inv'+rand(100000).to_s)
-  doc = SendXml(xml)
-  success = IsSuccess(doc)
-  if !success
-    PrintErrors(doc)
-  end
-  directResponse = REXML::XPath.first(doc.root, '/*/directResponse').text
-  transId = directResponse.split(',')[6]
-  puts
-  puts 'New transId = ' + transId
-  return transId
-end
-def DeleteProfile(profileId)
-  puts
-  puts '---------------------'
-  puts 'Deleting Profile ' + profileId + ' ...'
-  xml = SetApiAuthentication($xmlDeleteProfile)
-  xml = xml.sub('@profileId@', profileId)
-  doc = SendXml(xml)
-  success = IsSuccess(doc)
-  if !success
-    PrintErrors(doc)
-  else
-    puts
-    puts 'Successfully deleted profile.'
-  end
-end
-def SetApiAuthentication(xml)
-  xml = xml.sub('@login@', $apilogin)
-  xml = xml.sub('@key@', $apikey)
-  return xml
-end
-def SendXml(xml) # returns xmlDoc of response
-  puts
-  puts $uri
-  puts
-  puts xml
-  http = Net::HTTP.new($uri.host, $uri.port)
-  http.use_ssl = 443 == $uri.port
-  resp, body = http.post($uri.path, xml, {'Content-Type' => 'text/xml'})
-  puts
-  puts resp
-  puts
-  puts body
-  return REXML::Document.new(body)
-end
-def PrintErrors(docResponse)
-  REXML::XPath.each(docResponse.root, '/*/messages/message') { | m |
-    puts
-    puts 'Error: [' + REXML::XPath.first(m, 'code').text + '] ' + REXML::XPath.first(m, 'text').text
-  }
-end
-def IsSuccess(docResponse)
-  return "Ok" == REXML::XPath.first(docResponse.root, '/*/messages/resultCode').text
-end
-
-profileId = CreateProfile('email' + rand(100000).to_s + '@example.com')
-paymentProfileId = CreatePaymentProfile(profileId)
-transId = CreateTransaction(profileId, paymentProfileId, '10.95')
-DeleteProfile(profileId)

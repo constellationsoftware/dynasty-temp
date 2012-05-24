@@ -43,9 +43,9 @@
             %li
               .btn-group
                 - unless user_signed_in?
-                  %a.btn.btn-inverse{:href => new_user_registration_path}
+                  %a.btn.btn-primary{:href => new_user_registration_path}
                     Create an Account.
-                  %a.btn.btn-inverse{:href => "/login"}
+                  %a.btn.btn-primary{:href => "/login"}
                     Sign In
 
                 - if user_signed_in?

@@ -7,25 +7,73 @@
     %h5
       Balance:
       = current_user.team.balance.format
+
     %table.team-financials-data.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
       %thead
         %tr
-          %th #
+          %th Date
           %th Payment From
           %th Paid To
           %th Event Type
           %th Amount
           %th Balance
-          %th Date
 
       %tbody
-        - @accounts.each do |a|
-          %tr
-            %td= a.id
-            %td= a.payable.andand.name ||= "The Fed"
-            %td= a.receivable.andand.name ||= "The Fed"
-            %th= a.event_type
-            %th= number_to_currency(0.01 * a.amount_cents)
-            %th= number_to_currency(0.01 * a.balance(current_user.team))
-            %th
-              = time_tag a.transaction_datetime
+        - @events.each do |a|
+          - if a.type == "Events::PlayerPayroll"
+            - accounts = Account.where(:event_id => a.id)
+            - account_total = accounts.sum(&:amount_cents)
+            - @balance = accounts.last.balance(current_user.team)
+            - @details = ""
+            - accounts.each do |a|
+              - @details += "#{PlayerTeam.find(a.receivable_id.to_s).player.name.full_name} is paid #{number_to_currency(0.01 * a.amount_cents)}<br>"
+            %tr
+              %td= accounts.last.transaction_datetime.strftime('%D')
+              %td= current_user.team.name
+              %td
+                %a.btn{:rel => 'popover', :data => {"original-title" => "Player Details", :content => @details}} Players
+              %td Weekly Player Payroll
+              %td.right.red
+                (
+                = number_to_currency(0.01 * account_total)
+                )
+
+              - if @balance >= 0
+                %td.right= number_to_currency(0.01 * @balance)
+              - else
+                %td.right.red
+                  (-
+                  = number_to_currency(0.01 * @balance)
+                  )
+
+
+
+          - else
+            - a = Account.where(:event_id => a.id)
+            - if a.last.event_type == 'Events::PayGameWinnings'
+              - @event_type = 'Game Winnings'
+              - @balance_cents = a.last.receivable_balance_cents
+            - if a.last.event_type == 'Events::PayLuxuryTax'
+              - @event_type = 'Luxury Tax'
+              - @balance_cents = a.last.payable_balance_cents
+            %tr
+              %td= a.last.transaction_datetime.strftime('%D')
+              %td= a.last.payable.andand.name ||= "The Fed"
+              %td= a.last.receivable.andand.name ||= "The Fed"
+              %td= @event_type
+              - if a.last.event_type == 'Events::PayLuxuryTax'
+                %td.right.red
+                  (-
+                  = number_to_currency(0.01 * a.last.amount_cents)
+                  )
+              - else
+                %td.right
+                  = number_to_currency(0.01 * a.last.amount_cents)
+
+              - if @balance_cents >= 0
+                %td.right= number_to_currency(0.01 * @balance_cents)
+              - else
+                %td.right.red
+                  (
+                  = number_to_currency(0.01 * @balance_cents)
+                  )

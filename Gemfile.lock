@@ -150,7 +150,6 @@ GEM
     childprocess (0.3.2)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
-    coderay (1.0.6)
     coffee-filter (0.1.1)
       coffee-script (>= 2.2.0)
       haml (>= 3.0.18)
@@ -319,7 +318,6 @@ GEM
       activerecord (~> 3.1)
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
-    method_source (0.7.1)
     mime-types (1.18)
     modernizr-rails (2.0.6)
     multi_json (1.3.5)
@@ -344,12 +342,6 @@ GEM
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
-    pry (0.9.9.6)
-      coderay (~> 1.0.5)
-      method_source (~> 0.7.1)
-      slop (>= 2.4.4, < 3)
-    pry-rails (0.1.6)
-      pry
     quantify (3.1.3)
       activesupport (~> 3.0)
       i18n
@@ -457,7 +449,6 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
-    slop (2.4.4)
     spork (1.0.0rc2)
     spork-rails (3.2.0)
       rails (>= 3.0.0, < 3.3.0)
@@ -499,6 +490,7 @@ GEM
     warden (1.1.1)
       rack (>= 1.0)
     will_paginate (3.0.3)
+    wirble (0.1.3)
     xpath (0.1.4)
       nokogiri (~> 1.3)
     yajl-ruby (1.1.0)
@@ -575,7 +567,6 @@ DEPENDENCIES
   oj
   paper_trail
   pjax_rails
-  pry-rails
   quantify (~> 3.1.2)
   rabl
   rack
@@ -611,6 +602,7 @@ DEPENDENCIES
   valium
   watu_table_builder!
   will_paginate
+  wirble
   yajl-ruby
   yaml_db
   zurb-foundation

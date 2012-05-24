@@ -20,6 +20,7 @@
 #= require lib/util
 #= require subnav
 #= require pjax
+#= require popup
 
 
 ##json.date clock.time.strftime(Settings.datetime_format.date_full)

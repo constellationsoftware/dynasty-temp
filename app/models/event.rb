@@ -36,7 +36,6 @@ class Event < ActiveRecord::Base
     has_many :player_points, :class_name => 'PlayerEventPoint'
     has_many :players, :through => :player_points
 
-
     def summary
         participants = self.participants_events.where { participant_type == 'Team' }
     end
