@@ -1,4 +1,4 @@
-#= require ./juggernaut_base
+#= require juggernaut
 
 class JuggernautExt extends JuggernautBase
     handleEvent: (msg) => @process(msg)

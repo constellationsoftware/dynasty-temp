@@ -39,7 +39,7 @@ Dynasty::Application.configure do
     #config.action_controller.asset_host = "http://assets.dynastyowner.local"
     #config.assets.prefix = '/'
     # Precompile *all* assets, except those that start with underscore
-    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+    #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
 
     # Defaults to Rails.root.join("public/assets")
