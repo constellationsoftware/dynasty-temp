@@ -9,7 +9,8 @@
         .well
           .row
             .span1
-              = image_tag current_user.gravatar_url, :class => 'thumbnail'
+              -# todo Fix this weird issue with path
+              %img{:src => current_user.gravatar_url }
               %br
               %small
                 = link_to 'Edit', current_user.gravatar_profile

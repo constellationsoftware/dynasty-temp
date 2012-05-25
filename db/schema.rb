@@ -1118,7 +1118,6 @@ ActiveRecord::Schema.define(:version => 20120524152019) do
   end
 
   add_index "dynasty_player_teams", ["player_id", "team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_player_and_team_and_lineup"
-  add_index "dynasty_player_teams", ["team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_team_id_and_lineup_id", :unique => true
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",             :limit => 32

@@ -61,7 +61,7 @@ module Dynasty
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'stylesheets')
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'javascripts')
         config.assets.paths << Rails.root.join('app', 'assets', 'videos')
-
+        config.assets.paths << Rails.root.join('app', 'assets', 'images')
         # Set up our ExtJS SASS build environment
         config.sass.load_paths << "#{Rails.root}/vendor/assets/javascripts/extjs/resources/sass"
 
@@ -76,7 +76,7 @@ module Dynasty
         #ActiveRecord::IdentityMap.enabled = true
 
         # Version of your assets, change this if you want to expire all your assets
-        config.assets.version = '1.5'
+        config.assets.version = '1.6'
 
         # Disable asset initialization on precompile for heroku deployment w/ devise authentication
         #config.assets.initialize_on_precompile = true
