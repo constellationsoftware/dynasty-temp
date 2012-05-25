@@ -57,8 +57,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'quantify', '~> 3.1.2'
-gem 'watu_table_builder', :require => 'table_builder', :git => 'git://github.com/watu/table_builder.git'
-
+gem 'dimensions-rails'
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
@@ -105,7 +104,7 @@ group :development do
     # Debugging & Development
     gem 'ruby-debug19', :require => 'ruby-debug'
     #gem 'query_trace'
-    gem 'rails-dev-tweaks', '~> 0.6.1'
+    #gem 'rails-dev-tweaks', '~> 0.6.1'
     #gem 'pry-rails'
     gem 'wirble'
 end
@@ -147,6 +146,7 @@ group :assets do
     gem 'will_paginate'
 
     gem 'compass-rails'
+    gem 'oily_png'
     #gem 'extjs-rails-assets'
 
     gem 'uglifier', '>=1.0.3'

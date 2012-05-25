@@ -29,17 +29,17 @@ Dynasty::Application.configure do
 
 
 
-    config.assets.debug = true
+    #config.assets.debug = false
     #config.assets.css_compressor = :yui
     #config.assets.js_compressor = :uglifier
     config.assets.digest = true
-    config.assets.initialize_on_precompile = true
+    #config.assets.initialize_on_precompile = true
 
     # load assets from a different domain
-    config.action_controller.asset_host = "http://assets.dynastyowner.local"
+    #config.action_controller.asset_host = "http://assets.dynastyowner.local"
     #config.assets.prefix = '/'
     # Precompile *all* assets, except those that start with underscore
-    #config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
+    config.assets.precompile << /(^[^_\/]|\/[^_])[^\/]*$/
 
 
     # Defaults to Rails.root.join("public/assets")
@@ -82,7 +82,7 @@ Dynasty::Application.configure do
     # config.action_mailer.raise_delivery_errors = false
 
     # Enable threaded mode
-    #config.threadsafe!
+    config.threadsafe!
 
     # Devise action mailer config
     config.action_mailer.default_url_options = { :host => 'localhost:3000' }

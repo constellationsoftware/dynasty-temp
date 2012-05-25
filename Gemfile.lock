@@ -71,12 +71,6 @@ GIT
       railties (>= 3.1)
       therubyracer (~> 0.10.1)
 
-GIT
-  remote: git://github.com/watu/table_builder.git
-  revision: 56d962a533bc41f376201d49185bf4f63e2a6431
-  specs:
-    watu_table_builder (0.3.0)
-
 GEM
   remote: http://rubygems.org/
   remote: http://gems.github.com/
@@ -197,6 +191,12 @@ GEM
       warden
       warden
     diff-lcs (1.1.3)
+    dimensions (1.2.0)
+    dimensions-rails (1.0.1)
+      actionpack (~> 3.0)
+      activesupport (~> 3.0)
+      dimensions
+      railties (~> 3.0)
     email_spec (1.2.1)
       mail (~> 2.2)
       rspec (~> 2.0)
@@ -332,6 +332,8 @@ GEM
       net-ssh (>= 1.99.1)
     newrelic_rpm (3.3.4.1)
     nokogiri (1.5.2)
+    oily_png (1.0.2)
+      chunky_png (~> 1.2.1)
     oj (1.2.8)
     orm_adapter (0.0.7)
     paper_trail (2.6.3)
@@ -365,9 +367,6 @@ GEM
       activesupport (= 3.2.2)
       bundler (~> 1.0)
       railties (= 3.2.2)
-    rails-dev-tweaks (0.6.1)
-      actionpack (~> 3.1)
-      railties (~> 3.1)
     railties (3.2.2)
       actionpack (= 3.2.2)
       activesupport (= 3.2.2)
@@ -527,6 +526,7 @@ DEPENDENCIES
   delayed_job (< 3.0)
   devise
   devise_lastseenable (>= 0.0.3)
+  dimensions-rails
   email_spec
   enum_simulator!
   execjs
@@ -567,6 +567,7 @@ DEPENDENCIES
   multi_json
   mysql2
   newrelic_rpm
+  oily_png
   oj
   paper_trail
   pjax_rails
@@ -574,7 +575,6 @@ DEPENDENCIES
   rabl
   rack
   rails (= 3.2.2)
-  rails-dev-tweaks (~> 0.6.1)
   rails_config!
   rb-fsevent
   redis
@@ -604,7 +604,6 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   uuidtools
   valium
-  watu_table_builder!
   will_paginate
   wirble
   yajl-ruby

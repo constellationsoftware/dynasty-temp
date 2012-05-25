@@ -72,11 +72,11 @@ module Dynasty
 
         # Enable IdentityMap for Active Record
         # to disable set to false or remove the line below.
-        config.active_record.identity_map = true
+        config.active_record.identity_map = false
         #ActiveRecord::IdentityMap.enabled = true
 
         # Version of your assets, change this if you want to expire all your assets
-        config.assets.version = '1.3'
+        config.assets.version = '1.4'
 
         # Disable asset initialization on precompile for heroku deployment w/ devise authentication
         #config.assets.initialize_on_precompile = true
