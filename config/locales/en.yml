@@ -6,8 +6,8 @@ en:
         home:
             labels:
                 create_team:    'Create Team'
-                join_league:    'Join Existing League'
-                create_league:  'Create New League'
+                join_league:    'Join Public League'
+                create_league:  'Create Private League'
     nav:
         signed_in:      "Hello, %{attribute}"
         signed_out:     "Register or Sign in"
@@ -94,8 +94,9 @@ en:
 
     user_cp:
         schedule_draft:     'Schedule Draft'
+        reschedule_draft:   'Reschedule Draft'
         draft_date_format:  '%A %B %d, %Y'
-
+        invite:             'Invite a friend'
     research:
         index:
             title: 'Player Research'

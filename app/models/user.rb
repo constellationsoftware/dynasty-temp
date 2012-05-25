@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
     # Include default devise modules. Others available are:
     #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
+    devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
 
     include Gravtastic
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
@@ -66,6 +66,7 @@ class User < ActiveRecord::Base
     has_one  :address, :class_name => 'UserAddress', :dependent => :destroy
     has_many :event_subscriptions, :class_name => 'DynastyEventSubscription'
     has_many :events, :through => :event_subscriptions
+    has_many :invitations, :class_name => 'User', :as => :invited_by
 
     attr_accessible :roles, :email, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :address_attributes, :event_subscriptions_attributes, :address
 

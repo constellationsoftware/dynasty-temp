@@ -31,7 +31,6 @@ gem 'inherited_resources'
 gem 'responders'
 gem 'has_scope'
 gem 'uuidtools'
-gem 'friendly_id', '~> 4.0.0.beta14' # for sluggable behavior
 gem 'enum_simulator', :git => 'git://github.com/FOMNick/enum_simulator.git'
 gem 'money', :git => 'git://github.com/FOMNick/money.git'
 gem 'transitions', :require => [ 'transitions', 'active_model/transitions' ]
@@ -75,6 +74,7 @@ gem 'cancan'
 gem 'rolify'
 gem 'bcrypt-ruby', '>= 2.1.4'
 gem 'devise_lastseenable', '>= 0.0.3'
+gem 'devise_invitable'
 
 # Servers, Workers, Sockets & Push
 gem 'foreman'

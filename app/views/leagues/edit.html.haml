@@ -2,6 +2,6 @@
 .row.span12.centered
   .panel
     = simple_form_for @league, :url => league_path(@league) do |f|
-      %h3 Edit #{@league.name}
+      %h3 Edit League
       = render :partial => 'form', :locals => { :form => f }
       = f.button :submit, 'Submit'
