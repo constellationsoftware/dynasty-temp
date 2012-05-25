@@ -1,0 +1,4 @@
+- unless @league.draft.nil?
+  = form.simple_fields_for :draft do |draft|
+    = draft.input :start_datetime, :required => false, :as => :collection_select, :label => 'Draft Date', :include_blank => false, :collection => @draft_date_collection, :input_html => { :class => 'span3' }
+    = draft.input :start_datetime, :required => false, :as => :time, :include_blank => false, :ampm => true, :minute_step => 15, :input_html => { :class => 'span2' }

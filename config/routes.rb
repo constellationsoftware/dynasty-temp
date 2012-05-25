@@ -91,6 +91,7 @@ Dynasty::Application.routes.draw do
 
     resource :picks, :only => :update
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
+    match 'leagues/join' => 'leagues#join'
     resources :leagues, :shallow => true, :except => [ :index, :show, :destroy ] do
         resources :games, :only => :show
     end

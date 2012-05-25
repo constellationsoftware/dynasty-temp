@@ -212,7 +212,6 @@ GEM
     forgery (0.5.0)
     formtastic (2.1.1)
       actionpack (~> 3.0)
-    friendly_id (4.0.5)
     gherkin (2.9.3)
       json (>= 1.4.6)
     gon (3.0.2)
@@ -501,7 +500,6 @@ DEPENDENCIES
   factory_girl_rails
   foreman
   forgery (= 0.5.0)
-  friendly_id (~> 4.0.0.beta14)
   gon
   gravtastic
   growl

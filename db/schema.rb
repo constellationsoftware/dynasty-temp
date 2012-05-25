@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120522184226) do
+ActiveRecord::Schema.define(:version => 20120524152019) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -953,19 +953,14 @@ ActiveRecord::Schema.define(:version => 20120522184226) do
   add_index "dynasty_games", ["league_id", "home_team_id", "away_team_id"], :name => "index_dynasty_games_on_league_and_teams", :unique => true
 
   create_table "dynasty_leagues", :force => true do |t|
-    t.string   "name",          :limit => 50,                   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "slug"
-    t.boolean  "public",                      :default => true
-    t.string   "password",      :limit => 32
+    t.boolean  "public",                     :default => true
     t.integer  "teams_count"
-    t.integer  "balance_cents", :limit => 8,  :default => 0
+    t.integer  "balance_cents", :limit => 8, :default => 0
   end
 
-  add_index "dynasty_leagues", ["id", "name", "teams_count", "public"], :name => "index_leagues_on_name_size_team_count_public"
-  add_index "dynasty_leagues", ["id"], :name => "index_dynasty_leagues_on_id_and_clock_id"
-  add_index "dynasty_leagues", ["slug"], :name => "index_leagues_on_slug", :unique => true
+  add_index "dynasty_leagues", ["public", "teams_count"], :name => "index_dynasty_leagues_on_public_and_teams_count"
 
   create_table "dynasty_lineups", :force => true do |t|
     t.integer "position_id"

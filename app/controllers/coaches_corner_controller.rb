@@ -22,11 +22,14 @@ class CoachesCornerController < ApplicationController
 
     def game_review
         @game_weeks = []
-        games = @team.league.games.order{ date }
-        games_per_week = (Settings.league.capacity / 2)
-        weeks = Settings.season_weeks
-        (weeks).times do |i|
-            @game_weeks << games.shift(games_per_week)
+        games = @team.league.try(:games)
+        unless games.nil?
+            games = games.order{ date }
+            games_per_week = (Settings.league.capacity / 2)
+            weeks = Settings.season_weeks
+            (weeks).times do |i|
+                @game_weeks << games.shift(games_per_week)
+            end
         end
         @week = Clock.first.week
     end

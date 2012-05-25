@@ -1,76 +1,68 @@
-.panel
-  %h4 User Control Panel
-  - if current_user.team
-    - team = current_user.team
-    - if team.league
-      .row
-        .span8
-          .thumbnail
-            .row
-              .span1
-                = image_tag current_user.gravatar_url
-                %br
-                %small
-                  = link_to 'Edit', current_user.gravatar_profile
-              .span5
-                %p
-                  League Name:
-                  %strong= team.league.name
-                  - if current_user.is_manager_of? team.league
-                    = link_to 'Edit', edit_league_path(team.league), :class => "btn btn-mini btn-inverse"
-                    - if team.league.teams.count === Settings.league.capacity && team.league.draft.nil?
-                      = link_to (I18n.t 'schedule_draft', :scope => :user_cp), edit_league_path(team.league), :class => "btn btn-mini btn-danger"
-                    - if team.league.teams.count < Settings.league.capacity
-                      = link_to (I18n.t 'invite', :scope => :user_cp), new_user_invitation_path, :class => "btn btn-mini"
-                %p
-                  Team Name:
-                  %strong= team.name
-                %p
-                  Team Motto:
-                  %strong= team.motto
-                %p
-                  Team Balance:
-                  %strong
-                    = team.balance.format
-
-                %p
-                  - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
-                    /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
-                    = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
-        .span4
+= javascript_include_tag 'user_cp'
+- if current_user.team
+  - team = current_user.team
+  %h1= team.name
+  %h6= team.motto
+  - if team.league
+    .row
+      .span8
+        .well
+          .row
+            .span1
+              = image_tag current_user.gravatar_url, :class => 'thumbnail'
+              %br
+              %small
+                = link_to 'Edit', current_user.gravatar_profile
+            .span5
+              %p
+                Balance:
+                %strong
+                  = team.balance.format
+              %p
+                - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
+                  /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
+                  = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
+        - if current_user.is_manager_of? team.league
+          %h4 League Tools
           .well
-            %h4
-              Teams in
-              = team.league.name
-            %table.table-striped.table-condensed.table-bordered
-              %thead
-                %tr
-                  %th
-                    Rank
-                  %th
-                    Team
-                  %th
-                    Wins
-                  %th
-                    Losses
-              %tbody
+            - unless @draft.nil?
+              #schedule-draft.modal.fade
+                .modal-header
+                  %button.close{ :data => { :dismiss => 'modal' } } ×
+                  %h3= I18n.t "#{@draft.state === 'scheduled' ? 're' : ''}schedule_draft", :scope => :user_cp
+                .modal-body
+                  = simple_form_for @league, :url => league_path(@league) do |f|
+                    = render :partial => 'schedule_draft_form', :locals => { :form => f }
+                .modal-footer
+                  %a.btn.submit{ :href => '#' } Submit
+                  %a.btn.cancel{ :href => '#', :data => { :dismiss => 'modal' } } Cancel
+              %button.btn.btn-small.btn-danger{ :data => { :toggle => 'modal', :target => '#schedule-draft' } }= I18n.t "#{@draft.state === 'scheduled' ? 're' : ''}schedule_draft", :scope => :user_cp
+            - if team.league.teams.count < Settings.league.capacity
+              = link_to (I18n.t 'invite', :scope => :user_cp), new_user_invitation_path, :class => "btn btn-small"
+      .span4
+        .well
+          %h4 League Standings
+          %table.table-striped.table-condensed.table-bordered
+            %thead
+              %tr
+                %th Rank
+                %th Team
+                %th Wins
+                %th Losses
+            %tbody
 
-              - current_user.team.league.teams.sort!{|a, b| b.rating <=> a.rating }.each_with_index do |team, i|
-                %tr
-                  %td= i += 1
-                  %td
-                    %p
-                      %strong
-                        = team.name
-                      %br
-                        %em
-                          = team.motto
+            - current_user.team.league.teams.sort!{|a, b| b.rating <=> a.rating }.each_with_index do |team, i|
+              %tr
+                %td= i += 1
+                %td
+                  %p
+                    %strong= team.name
 
-                  %td= team.games_won
-                  %td= team.games_lost
-    - else
-      = link_to t('.labels.join_league'), leagues_path, :class => 'btn btn-inverse'
-      = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
+                %td= team.games_won
+                %td= team.games_lost
   - else
-    = link_to t('.labels.create_team'), new_team_path
+    = link_to t('.labels.join_league'), leagues_join_path, :class => 'btn btn-inverse'
+    = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
+- else
+  = link_to t('.labels.create_team'), new_team_path
 

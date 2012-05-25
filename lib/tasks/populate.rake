@@ -42,6 +42,14 @@ class Fakeout
             GameScheduler.instance.schedule(league.teams) if league.teams.size === Settings.league.capacity
         end
 
+        names = %W( nick ben andrew paul kyle )
+        League.first.users.each_with_index do |user, i|
+            unless names[i].nil?
+                user.email = "#{names[i]}@dynastyowner.com"
+                user.save!
+            end
+        end
+
         post_fake
         puts "Done!"
     end
@@ -63,6 +71,9 @@ class Fakeout
         MODELS.each do |model|
             model.constantize.delete_all
         end
+        puts 'Flushing user privileges'
+        ActiveRecord::Base.connection.execute("TRUNCATE users_roles")
+        ActiveRecord::Base.connection.execute("TRUNCATE roles")
     end
 
     # by default, all mailings are disabled on faking out

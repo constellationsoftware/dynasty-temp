@@ -2,19 +2,17 @@ class LeaguesController < ApplicationController
     before_filter :authenticate_user!
     respond_to :html, :json
 
-    def new
-        @league = League.new :password => Forgery::Basic.password
-        respond_with @league
+    def join
+        @league = League.where{ teams_count < Settings.league.capacity }.first
+        @league ||= create_league
+        @league.join_league
+        redirect_to root_path unless @league.nil?
     end
 
     def create
-        @league = League.new(params[:league])
-        if @league.save!
-            current_user.add_role 'manager', @league
-            current_user.team.league_id = @league.id
-            current_user.team.save
-            redirect_to root_path
-        end
+        @league ||= create_league
+        @league.join_league
+        redirect_to root_path unless @league.nil?
     end
 
     def edit
@@ -43,6 +41,21 @@ class LeaguesController < ApplicationController
     end
 
     protected
+        def create_league(public = true)
+            league = League.new
+            league.public = public
+            if league.save!
+                # league creator is assigned the manager role
+                current_user.add_role 'manager', league
+            end
+            league
+        end
+
+        def join_league
+            @league.teams << current_user.team
+            League.increment_counter :teams_count, @league.id
+        end
+
         def collection
             if !!params[:page] && !!params[:limit]
                 @leagues = end_of_association_chain
