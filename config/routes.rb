@@ -178,8 +178,9 @@ Dynasty::Application.routes.draw do
         resources :display_name
     end
 
-    root :to => 'users#home', :constraints => LoggedInConstraint.new(true)
-    root :to => 'home#index'
+    match 'public_home',                 :to => 'home#index', :as => 'public_home', :via => [:get]
+    root :to => 'users#home'#, :constraints => LoggedInConstraint.new(true)
+    #root :to => 'home#index'
     ActiveAdmin.routes(self)
 
     # Sample of regular route:
