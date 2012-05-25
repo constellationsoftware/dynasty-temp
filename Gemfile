@@ -56,7 +56,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'simple_form'
 gem 'quantify', '~> 3.1.2'
-gem 'dimensions-rails'
+#gem 'dimensions-rails'
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'

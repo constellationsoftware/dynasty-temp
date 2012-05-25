@@ -194,12 +194,6 @@ GEM
       warden
       warden
     diff-lcs (1.1.3)
-    dimensions (1.2.0)
-    dimensions-rails (1.0.1)
-      actionpack (~> 3.0)
-      activesupport (~> 3.0)
-      dimensions
-      railties (~> 3.0)
     email_spec (1.2.1)
       mail (~> 2.2)
       rspec (~> 2.0)
@@ -529,7 +523,6 @@ DEPENDENCIES
   devise
   devise_invitable
   devise_lastseenable (>= 0.0.3)
-  dimensions-rails
   email_spec
   enum_simulator!
   execjs

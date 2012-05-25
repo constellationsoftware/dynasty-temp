@@ -1,3 +1,5 @@
+require File.expand_path("../../lib/logged_in_constraint", __FILE__)
+
 Dynasty::Application.routes.draw do
 
     # Player News Research Pages
@@ -176,9 +178,8 @@ Dynasty::Application.routes.draw do
         resources :display_name
     end
 
-    match 'user_root' => 'users#home', :as => :user_root
-    root :to => "home#index" #:controller => :home, :action => :index
-    #root :to => 'home#index'
+    root :to => 'users#home', :constraints => LoggedInConstraint.new(true)
+    root :to => 'home#index'
     ActiveAdmin.routes(self)
 
     # Sample of regular route:
