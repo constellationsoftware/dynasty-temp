@@ -5,7 +5,7 @@
   %td= t ".depth.#{lineup.string.ordinalize}_string", :default => (t '.string_label.default') unless player.nil?
   %td.name
     - if player
-      %a{:href => "#", :rel => "popover", "data-content" => "Player Name", "data-original-title" => "Player Detail"}
+      %a{:href => "#", :rel => "popover", "data-content" => "Player Name", "data-original-title" => "Player Detail <br/>"}
         = player.name.full_name unless player.nil?
   %td= player.contract.bye_week unless player.nil?
   %td= "#{number_to_currency(player.contract.amount)} over #{player.contract.length} years ending in #{player.contract.end_year}" unless player.nil?

@@ -13,6 +13,45 @@
 		},
 		{
 			"path": "vendor"
+		},
+		{
+			"path": "bin"
+		},
+		{
+			"path": "config"
+		},
+		{
+			"path": "db"
+		},
+		{
+			"path": "doc"
+		},
+		{
+			"path": "features"
+		},
+		{
+			"path": "help"
+		},
+		{
+			"path": "lib"
+		},
+		{
+			"path": "log"
+		},
+		{
+			"path": "public"
+		},
+		{
+			"path": "script"
+		},
+		{
+			"path": "spec"
+		},
+		{
+			"path": "tmp"
+		},
+		{
+			"path": "app"
 		}
 	],
 	"settings":
