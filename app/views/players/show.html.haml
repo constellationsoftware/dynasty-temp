@@ -1,6 +1,6 @@
 - content_for :title, "Player Research: #{@player.name.full_name}"
 
-.row.person
+.row-fluid.person
   .span8
     %table.table-condensed
 
@@ -94,9 +94,9 @@
   %br
   %br
 
-.row
+.row-fluid
   .span8
-    .row
+    .row-fluid
       %h3
         This Season's Performance
       %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
@@ -140,7 +140,7 @@
             %th= pep.sacks_against_points
             %th= pep.fumbles_points
 
-    .row
+    .row-fluid
       %h3
         Career Performance
       %table.career-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}

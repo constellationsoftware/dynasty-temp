@@ -1,22 +1,22 @@
 .navbar.navbar-fixed-top
   .navbar-inner
-    .container
-      // Brand and Logo Stay Here
-      = render :partial => 'shared/dynasty_logo'
-      // Collapsible nav for tablets/phones
-      .row
-        .span8.offset4
-          %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          // Hidden at 940 PX or less
-          .nav-collapse
-            // Primary Nav
-            %ul.nav.pull-right
-              = render :partial => 'shared/dynasty_nav_dropdowns'
-                %li
-                  .btn-group
-                    %a.btn.btn-inverse{:href => new_user_registration_path}
-                      Create an Account.
+
+    // Brand and Logo Stay Here
+    = render :partial => 'shared/dynasty_logo'
+    // Collapsible nav for tablets/phones
+    .row
+      .span8.offset4
+        %a.btn.btn-navbar{'data-target' => '.nav-collapse', 'data-toggle' => 'collapse'}
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        // Hidden at 940 PX or less
+        .nav-collapse
+          // Primary Nav
+          %ul.nav.pull-right
+            = render :partial => 'shared/dynasty_nav_dropdowns'
+              %li
+                .btn-group
+                  %a.btn.btn-inverse{:href => new_user_registration_path}
+                    Create an Account.
 

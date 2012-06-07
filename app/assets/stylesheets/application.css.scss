@@ -1,7 +1,6 @@
 /*
  *= require foundation/reveal
  *= require bootstrap_and_overrides
- *= require kickstrap
  *= require jquery.ui.core
  *= require jquery.ui.theme
  *= require dataTables/jquery.dataTables
@@ -9,15 +8,20 @@
  *= require animations
  *= require animate
  *= require dynasty
+ *= require dynasty_typography
  *= require_self
  */
 
 @import "compass";
 // @import "*.png"
 
+
+
+
+
 // Navbar
 
-html { background: url('/assets/bg.jpg') no-repeat top center fixed;
+html { //background: url('/assets/bg.jpg') no-repeat top center fixed;
 
   height: 100px;
   -webkit-background-size: width;
@@ -29,9 +33,9 @@ html { background: url('/assets/bg.jpg') no-repeat top center fixed;
 
 .main_yield {
     background: white;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
-    padding-left: 15px;
-    padding-right: 15px;
+    //box-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+    //padding-left: 15px;
+    //padding-right: 15px;
 }
 
 .black {
@@ -347,7 +351,7 @@ body {
 
 
 .row {
-  max-width: 1200px;
+
 }
 
 
