@@ -18,6 +18,9 @@ body { padding-top: 120px; }
 // Font Awesome
 @import "fontawesome";
 
+// LESS elements
+@import "elements.css.less";
+
 // Your custom LESS stylesheets goes here
 //
 // Since bootstrap was imported above you have access to its mixins which
@@ -30,8 +33,25 @@ body { padding-top: 120px; }
 
 
 //* Core Typography
-@baseFontSize: 13px;
-@baseLineHeight: 22px;
+@baseFontSize: 16px;
+@baseLineHeight: 26px;
+
+@headingsFontFamily: Freshman;
+@baseFontFamily: 'Droid Sans', sans-serif;
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    color: @blue;
+}
+
+//* Core Colors
+
+@red: #BD1D2C;
+@blue: #101940;
+@lightblue: #9DA6B4;
+@darkblue: @blue - #111;
+@darkred: @red - #555;
 
 
 //* Large screens laptops & desktops ----------- */
@@ -48,7 +68,85 @@ body { padding-top: 120px; }
 //}
 
 
-@navbarHeight: 40px;
+
+//* Navbar Styles
+@navbarHeight:                    40px;
+@navbarBackground:                @blue;
+@navbarBackgroundHighlight:       @lightblue;
+@navbarLinkBackgroundHover:       @blue;
+@navbarLinkColorHover:            @white;
+@navbarLinkColorActive:           @blue;
+
+@navbarLinkBackgroundActive:      @blue;
+
+#dynasty-navbar a {
+    font-weight: 400;
+    color: @white;
+    .opacity(0.8);
+    transition: all .25s ease-in-out;
+    .transition(.25s, ease-in-out);
+
+    &:hover {
+        text-shadow: 0 0 55px #FFF, 0 0 35px #FFF, 0 0 5px #FFF;
+        .opacity(0.9);
+    }
+
+    &:active {
+        background-color: @darkblue;
+        text-shadow: 0 0 75px #FFF, 0 0 50px #FFF, 0 0 5px #FFF;
+        .opacity(1.0);
+    }
+
+
+}
+
+.navbar .btn-group {
+    margin: 0px;
+    padding: 2px;
+
+}
+
+.navbar .btn {
+    padding: 3px 8px 3px;
+    //#gradient > .vertical(@blue, @lightblue);
+}
+
+// The Top Nav Divider
+.divider-vertical {
+    margin: 0 !important;
+    .opacity(.45);
+}
+
+// The subnav Divider
+.subnav .divider-vertical {
+    height: 36px;
+    width: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #101940;
+    border-right: 1px solid #9da6b4;
+    background-color: #101940;
+    .opacity(.25);
+
+}
+
+.subnav a {
+    .border-radius(0)
+
+    &:hover {
+        text-shadow: 0 0 55px #FFF, 0 0 35px #FFF, 0 0 5px #FFF;
+    }
+
+    &:active {
+        text-shadow: 0 0 55px #FFF, 0 0 35px #FFF, 0 0 5px #FFF;
+    }
+}
+
+.nav-pills > li > a {
+    .border-radius(0);
+}
+
 //@navbarBackground
 //@navbarBackgroundHighlight
 //@navbarText
@@ -62,7 +160,7 @@ body { padding-top: 120px; }
 //@navbarSearchBorder
 //@navbarSearchPlaceholderColor
 .a {
-    color: #08c;
+    color: @lightblue;
 }
 
 .hero_unit {
@@ -74,144 +172,32 @@ body { padding-top: 120px; }
     .box-shadow(8px);
 }
 
+// LOGO ANIMATION
 
-////Scaffolding
-//  @bodyBackground
-//
-//  @textColor
-//
-////Links
-//  @linkColor
-//
-//  @linkColorHover
-//
-////Colors
-//  @blue
-//
-//  @green
-//
-//  @red
-//
-//  @yellow
-//
-//  @orange
-//
-//  @pink
-//
-//  @purple
-//
-////Sprites
-//  @iconSpritePath
-//
-//  @iconWhiteSpritePath
-//
-////Grid system
-//  @gridColumns
-//
-//  @gridColumnWidth
-//
-//  @gridGutterWidth
-//
-////Fluid grid system
-//  @fluidGridColumnWidth
-//
-//  @fluidGridGutterWidth
-//
-////Typography
-//  @baseFontSize
-//
-//  @baseFontFamily
-//
-//  @baseLineHeight
-//
-//  @altFontFamily
-//
-//  @headingsFontFamily
-//
-//  @headingsFontWeight
-//
-//  @headingsColor
-//
-//  @heroUnitBackground
-//
-//  @heroUnitHeadingColor
-//
-//  @heroUnitLeadColor
-//
-////Tables
-//  @tableBackground
-//
-//  @tableBackgroundAccent
-//
-//  @tableBackgroundHover
-//
-//  @tableBorder
-//
-////Navbar
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-////Dropdowns
-//  @dropdownBackground
-//
-//  @dropdownBorder
-//
-//  @dropdownLinkColor
-//
-//  @dropdownLinkColorHover
-//
-//  @dropdownLinkBackgroundHover
-//
-////Forms
-//  @placeholderText
-//
-//  @inputBackground
-//
-//  @inputBorder
-//
-//  @inputDisabledBackground
-//
-//  @btnPrimaryBackground
-//
-//  @btnPrimaryBackgroundHighlight
-//
-////Form states & alerts
-//  @warningText
-//
-//  @warningBackground
-//
-//  @errorText
-//
-//  @errorBackground
-//
-//  @successText
-//
-//  @successBackground
-//
-//  @infoText
-//
-//  @infoBackground
-//
+.logo {
+    .opacity(1);
+
+}
+
+// MISC EFFECTS
+.threedee(@color) {
+    color: @color;
+    text-shadow: 0 1px 0 #ccc,
+    0 2px 0 #c9c9c9,
+    0 3px 0 #bbb,
+    0 4px 0 #b9b9b9,
+    0 5px 0 #aaa,
+    0 6px 1px rgba(0,0,0,.1),
+    0 0 5px rgba(0,0,0,.1),
+    0 1px 3px rgba(0,0,0,.3),
+    0 3px 5px rgba(0,0,0,.2),
+    0 5px 10px rgba(0,0,0,.25),
+    0 10px 10px rgba(0,0,0,.2),
+    0 20px 20px rgba(0,0,0,.15);
+}
+
+.threedeetext {
+    .threedee(@blue)
+
+}
+

@@ -30,9 +30,12 @@
         // Global Errors
         #global-errors
           = render :partial => "shared/global-errors"
-      = render :partial => "shared/sub_pages"
-      .span12
+        #sub-pages
+        = render :partial => "shared/sub_pages"
+        // Main Content
         = yield
+        %h1.threedeetext
+          3D Text!
     -#-# Page Footer
     = render :partial => "shared/dynasty_footer"
     -#-# Modals

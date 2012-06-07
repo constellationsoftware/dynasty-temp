@@ -1,10 +1,8 @@
-#content
-  .row
-    .page_header.span12
-      %h4
-        %em
-          -# sub page logic to
-          -if @sub_pages
-            = yield :section_title
-            \:
-          = yield :title
+
+%h4
+  %em
+    -# sub page logic to
+    -if @sub_pages
+      = yield :section_title
+      \:
+    = yield :title

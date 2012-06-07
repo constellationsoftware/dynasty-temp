@@ -45,9 +45,7 @@
   border-bottom: 1px #0000000 solid !important;
 }
 
-.divider-vertical{
-  margin: 0 !important;
-}
+
 
 
 
@@ -351,20 +349,6 @@ section {
   height: 250px;
 }
 
-div.sub-nav {
-  position: relative;
-  margin: 42px 20px 0 0;
-  padding: 0;
-  line-height: 32px;
-
-  .nav-bar {
-    margin: 0;
-  }
-  li {
-    float: right;
-    padding-left: 20px;
-  }
-}
 
 a.current {
   color: #E91C21;

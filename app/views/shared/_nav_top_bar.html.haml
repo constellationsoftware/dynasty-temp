@@ -1,6 +1,6 @@
 #dynasty-navbar.navbar.navbar-fixed-top
   .navbar-inner
-    .container
+    .container-fluid
       // Brand and Logo Stay Here
       %a.logo{:href=>'/'}
         = image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
@@ -19,10 +19,10 @@
             - if user_signed_in?
               - if current_user.team
                 %li
-                  %a#date= number_to_currency(current_user.team.balance)
+                  %a#date.navbar-text= number_to_currency(current_user.team.balance)
             %li.divider-vertical
             %li.dropdown
-              %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+              %a.three-d.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
                 How to Play
                 %b.caret
               %ul.dropdown-menu
@@ -40,33 +40,35 @@
               %a{:href => '/research', :class => "#{controller_name === ("research" or "player")  ? 'active' : ''}"} Player Research
 
             %li.divider-vertical
-            %li
-              .btn-group
-                - unless user_signed_in?
-                  %a.btn.btn-primary{:href => new_user_registration_path}
-                    Create an Account.
-                  %a.btn.btn-primary{:href => "#loginModal", :data => {:toggle => "modal"}}
-                    Sign In
+            - unless user_signed_in?
+              %li
+                %a{:href => new_user_registration_path}
+                  Create an Account
+              %li.divider-vertical
+              %li
+                %a{:href => "#loginModal", :data => {:toggle => "modal"}}
+                  Sign In
 
-                - if user_signed_in?
-                  // Secondary Nav
-                  %a.btn.btn-primary
-                    %i.icon-user.icon-white
-                    = t :signed_in, :attribute => current_user.first_name, :scope => :nav
-                  %a.btn.btn-primary.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                    %b.caret
+            - if user_signed_in?
+              // Secondary Nav
+              %li
+                %a.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
+                  %i.icon-user.icon-white
+                  = t :signed_in, :attribute => current_user.first_name, :scope => :nav
 
-                  %ul.dropdown-menu
-                    %li
-                      %a{:href => edit_user_registration_path}
-                        Edit Profile
-                    %li
-                      %a{:href => '#'}
-                        Manage Account
-                    %li
-                      %a{:href => '/teams/'}
-                        Edit Team
-                    %li.divider
-                    %li
-                      %a{:href => destroy_user_session_path}
-                        %i.icon-off.pad-right &nbsp; Sign Out?
+
+                %ul.dropdown-menu
+                  %li
+                    %a{:href => edit_user_registration_path}
+                      Edit Profile
+                  %li
+                    %a{:href => '#'}
+                      Manage Account
+                  %li
+                    %a{:href => '/teams/'}
+                      Edit Team
+                  %li.divider
+                  %li
+                    %a{:href => destroy_user_session_path}
+                      %i.icon-off.pad-right &nbsp; Sign Out?
+              %li.divider-vertical

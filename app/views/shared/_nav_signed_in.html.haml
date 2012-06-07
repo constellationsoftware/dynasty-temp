@@ -1,10 +1,10 @@
 - if user_signed_in?
   .subnav.subnav-fixed
-    .container
+    .container-fluid
 
 
       %ul.nav.nav-pills.pull-right
-
+        %li.divider-vertical
         %li.dropdown
           %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "coaches_corner" ? 'active' : ''}"} Coach's Corner
           %ul.dropdown-menu
@@ -15,6 +15,7 @@
 
 
         //TODO: Pages under Trades Controller need to highlight player research
+        %li.divider-vertical
         %li.dropdown
           %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}, :class => "#{controller_name === "front_office" ? 'active' : ''}"} Front Office
           %ul.dropdown-menu
@@ -23,9 +24,11 @@
               %a{:href => '/front_office/trades'} Trades
               %a{:href => '/front_office/waivers'} Free Agents
               %a{:href => '/financials', :class => "#{controller.action_name === "financials" ? 'active' : ''}"} Team Financials
+        %li.divider-vertical
         %li
           %a{:href => '/mockups/league_review', :class => "#{controller.action_name === "league_review" ? 'active' : ''}"} League Review
 
-
+        %li.divider-vertical
         %li
           %a{:href => '/payments/purchase_dynasty_dollars', :class => "#{controller.action_name === ("purchase_dynasty_dollars" or "dynasty_dollars_receipt") ? 'active' : ''}"} Purchase Dynasty Dollars
+        %li.divider-vertical

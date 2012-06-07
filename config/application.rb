@@ -60,8 +60,12 @@ module Dynasty
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'default', 'images')
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'stylesheets')
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'javascripts')
+
+
+
         config.assets.paths << Rails.root.join('app', 'assets', 'videos')
         config.assets.paths << Rails.root.join('app', 'assets', 'images')
+        config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
         # Set up our ExtJS SASS build environment
         config.sass.load_paths << "#{Rails.root}/vendor/assets/javascripts/extjs/resources/sass"
 
