@@ -3,6 +3,7 @@
 // Account for fixed nav(s) - this has to stay here.
 body {
     padding-top: 120px;
+    .border-radius(0) !important;
 }
 
 @import "twitter/bootstrap/responsive";
@@ -34,31 +35,27 @@ body {
 //
 // Example:
 
-// Body Reset
-body {
-    .border-radius(0) !important;
 
-}
+
 
 //* Core Typography
 @baseFontSize: 16px;
 @baseLineHeight: 26px;
 
 @headingsFontFamily: Freshman;
-@baseFontFamily: 'Droid Sans',
-sans-serif
-
-;
+@baseFontFamily: 'Droid Sans', sans-serif;
 
 a {
     .transition(.25s, ease-in-out);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: @blue;
+    color: @lightblue;
 }
 
 //* Core Colors
+
+@bodyBackground: tranparent;
 
 @red: #BD1D2C;
 @blue: #101940;
@@ -66,6 +63,11 @@ h1, h2, h3, h4, h5, h6 {
 @darkblue: @blue - #111;
 @darkred: @red - #555;
 
+@navlightBlue: #637CBC;
+@navdarkBlue: #131747;
+
+@bgDark: rgba(0,0,0,.2);
+@bgLight: rgba(255,255,255,.25);
 //* Large screens laptops & desktops ----------- */
 //@media only screen
 //and (min-width : 1600px) {
@@ -116,10 +118,9 @@ h1, h2, h3, h4, h5, h6 {
         }
     }
 
-    .navbar-inner row {
-        #gradient > .vertical(@white, @black);
-        .opacity(@halfOpacity);
-        -webkit-animation: navPulse 10s infinite alternate;
+    .navbar-inner {
+        #gradient > .vertical(@navlightBlue, @navdarkBlue);
+
     }
 
 }
@@ -228,10 +229,75 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-// use with -webkit-animation: navPulse 10s infinite alternate;
-@-webkit-keyframes navPulse {
-    0% { background-color: @blue;}
-    50%{ background-color: @darkblue;}
-    100%{background-color: @lightblue;}
+// RIBBONS
+//
+// //* CSS3 Ribbon
+
+h2
+{
+    position: relative;
+    font-size: 14px;
+    line-height: 22px;
+    color: @white ;
+    width: 50%;
+    font-family: @baseFontFamily !important;
+    font-weight: bold;
+    padding: 3px 10px 6px 15px;
+    margin: 5px 10px 10px -15px;
+    background-color: #9DA6B4;
+    text-shadow: 0px 1px 2px #bbb;
+    -webkit-box-shadow: 0px 2px 4px #888;
+    -moz-box-shadow: 0px 2px 4px #888;
+    box-shadow: 0px 2px 4px #888;
 }
+
+h2:after
+{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: 0px;
+    top: 100%;
+    border-width: 5px 10px;
+    border-style: solid;
+    border-color: #666 #666 transparent transparent;
+}
+
+h2:before
+{
+    width: 30px;
+    left: -30px;
+    top: 12px;
+    border-width: 20px 10px;
+    border-style: solid;
+    border-color: #999 #999 #999 transparent;
+
+}
+h2.simple:before
+{
+    display: none;
+}
+
+//* Background Gradient
+//
+html {
+    background: url('noise.png') repeat top left, -webkit-radial-gradient(50% 0%, rgba(113, 113, 113, 0.34), rgba(0, 0, 0, 0.78));
+    height: 100%;
+}
+
+//* Footer Background
+//
+#footer-nav {
+    /*background-color: #000000;*/
+background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.78)), to(rgba(0, 0, 0, 1.00)));
+background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
+background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
+background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
+background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
+background-image: linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
+filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#000000', EndColorStr='#000000');
+.opacity(85);
+}
+
 

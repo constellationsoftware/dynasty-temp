@@ -18,7 +18,7 @@
 #= require dataTables.fnGetColumnData
 #= require lib/util
 #= require subnav
-#= require jquery.pjax
+#= require pjax
 #= require popup
 
 
