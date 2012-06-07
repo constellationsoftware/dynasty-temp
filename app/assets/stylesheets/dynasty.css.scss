@@ -211,8 +211,7 @@ td .right {
 
 .rounded {
   border: solid 1px #333;
-  -webkit-border-radius: 10px !important;
-  -moz-border-radius: 10px !important;
+
 }
 
 .photo {
@@ -290,7 +289,6 @@ section {
   border-bottom: 1px solid #ccc;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
-  border-radius: 5px;
   background-color: #fff;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
   background-image: -webkit-linear-gradient(top, #fff, #eee);
@@ -313,9 +311,6 @@ section {
   position: relative;
   display: block;
   padding: 10px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
   color: #333;
   text-decoration: none;
   font: 14px/1 'Trebuchet MS', 'Lucida Sans';

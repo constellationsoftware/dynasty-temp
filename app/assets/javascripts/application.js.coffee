@@ -7,7 +7,7 @@
 #= require jquery
 #= require jquery-ui
 #= require jquery_ujs
-
+#= require less
 #= require inflections
 #= require hamlcoffee
 #= require modernizr
@@ -18,7 +18,7 @@
 #= require dataTables.fnGetColumnData
 #= require lib/util
 #= require subnav
-#= require pjax
+#= require jquery.pjax
 #= require popup
 
 

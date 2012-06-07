@@ -13,7 +13,8 @@ require 'draft_machine'
 class Draft < ActiveRecord::Base
     self.table_name = 'dynasty_drafts'
     include ActiveModel::Transitions
-    self.state_machines[:default] = DraftMachine.new(self, :default)
+
+    #self.state_machines[:default] = DraftMachine.new(self, :default)
     PRE_DRAFT_DELAY = 10 # seconds
     DELAY_BETWEEN_PICKS = 1
 
