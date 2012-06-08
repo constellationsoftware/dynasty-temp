@@ -23,10 +23,6 @@
 
 html { //background: url('/assets/bg.jpg') no-repeat top center fixed;
 
-  -webkit-background-size: width;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: width;
 
 }
 
@@ -34,11 +30,6 @@ html { //background: url('/assets/bg.jpg') no-repeat top center fixed;
 
 
 
-body   {
-
-
-
-}
 #superwide {
   width: 100%;
   position: absolute;
@@ -70,14 +61,6 @@ body   {
   background-color: color rgba(0,0,0,0);
 }
 
-#stack {
-  background-color: color rgba(0,0,0,0);
-  background: rgba(255,255,255, 1);
-
-    -webkit-animation-duration: 3s;
-    -webkit-animation-delay: 2s;
-
-}
 
 
 
@@ -222,9 +205,7 @@ body   {
 
 }
 
-body {
-  padding-bottom: 60px;
-}
+
 
 .fixed_nav {
   position: fixed;

@@ -3,7 +3,16 @@
 // Account for fixed nav(s) - this has to stay here.
 body {
     padding-top: 120px;
-    .border-radius(0) !important;
+
+}
+
+#stack {
+    .border-radius(5);
+    //background: @white;
+}
+
+.main-yield {
+
 }
 
 @import "twitter/bootstrap/responsive";
@@ -32,9 +41,11 @@ body {
 //
 // If you'd like to override bootstrap's own variables, you can do so here as well
 // See http://twitter.github.com/bootstrap/less.html for their names and documentation
-//
-// Example:
 
+
+//* Adjust column gutters
+@gridColumnWidth: 63px;
+@gridGutterWidth: 21px;
 
 
 
@@ -49,10 +60,17 @@ a {
     .transition(.25s, ease-in-out);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
     color: @lightblue;
 }
 
+h1 {
+    margin-left: 6px;
+    text-align: center;
+    color: @white;
+    font-size: 26px;
+    background-image: url("h1_blue_bg.jpg");
+}
 //* Core Colors
 
 @bodyBackground: tranparent;
@@ -282,7 +300,7 @@ h2.simple:before
 //* Background Gradient
 //
 html {
-    background: url('noise.png') repeat top left, -webkit-radial-gradient(50% 0%, rgba(113, 113, 113, 0.34), rgba(0, 0, 0, 0.78));
+    background: url('noise.png') repeat top left, -webkit-linear-gradient(top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88));
     height: 100%;
 }
 
@@ -290,6 +308,7 @@ html {
 //
 #footer-nav {
     /*background-color: #000000;*/
+
 background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.78)), to(rgba(0, 0, 0, 1.00)));
 background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
 background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0.78), rgba(0, 0, 0, 1.00));
@@ -300,4 +319,21 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 .opacity(85);
 }
 
+
+// Intrinsic Ratio Wrapper for Youtube
+.wrapper-youtube {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+
+.youtube {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: teal;
+}
 

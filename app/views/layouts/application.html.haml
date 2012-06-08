@@ -24,7 +24,7 @@
   // Sitewide Nav Bar
   = render :partial => "shared/nav_wrapper"
   // The Page Stack
-  .container-fluid.main_yield{"data-pjax-container" => ""}
+  .container.main_yield{"data-pjax-container" => ""}
     .row-fluid
       .span12
         // Global Errors
@@ -34,8 +34,7 @@
         = render :partial => "shared/sub_pages"
         // Main Content
         = yield
-        %h1.threedeetext
-          3D Text!
+
 -#-# Page Footer
 = render :partial => "shared/dynasty_footer"
 -#-# Modals

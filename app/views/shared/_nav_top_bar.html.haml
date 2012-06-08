@@ -1,6 +1,6 @@
 #dynasty-navbar.navbar.navbar-fixed-top
   .navbar-inner
-    .container-fluid
+    .container
       // Brand and Logo Stay Here
       %a.logo{:href=>'/'}
         = image_tag "single_logo_minimal.png", :class => "logo visible-desktop pull_left"
@@ -48,7 +48,7 @@
               %li
                 %a{:href => "#loginModal", :data => {:toggle => "modal"}}
                   Sign In
-
+              %li.divider-vertical
             - if user_signed_in?
               // Secondary Nav
               %li

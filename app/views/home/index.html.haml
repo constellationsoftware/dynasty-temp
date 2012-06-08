@@ -1,111 +1,72 @@
-.container.fixed
-  .row
-    .span8.offset4
-      %h1.animated.fadeInRightBig#flyright
-        %em Fantasy Football is about to change. . .
-      %h2.animated.fadeInLeftBig#flyleft
-        %em . . . are you ready to build a Dynasty?
-      %br
-  .row
-    .span7.offset5
-      %ul.nav.nav-pills.box_shadow
-        %h3.animated.pulse.black
-          %a{:href => "#scheduleModal", :data => {:toggle =>"modal"}} Schedule of Events
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          %a{:href => "#rulesModal", :data => {:toggle =>"modal"}} Official League Rules
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          %a{:href => "#loginModal", :data => {:toggle => "modal"}} Log In
+.row-fluid
+  .span12
+    %h1
+      LIMITED AVAILABILITY - ONLY 3000 SPOTS AVAILABLE IN 2012
 
-#stack
-  .row
+
+
+.row-fluid
+  %ul.thumbnails
     .span6
-      #myCarousel.carousel
+      #myCarousel.carousel.thumbnail
         .carousel-inner
           .active.item
-            = image_tag "carousel_1.png"
-            .carousel-caption
-              %h4 Contract Information
-              %p More Caption Text
+            = image_tag "home_1.png"
           .item
-            = image_tag "carousel_2_s1.png"
-            .carousel-caption
-              %h4 Revenue Information
-              %p More Caption Text
+            = image_tag "home_2.png"
           .item
-            = image_tag "carousel_3_s1.png"
-            .carousel-caption
-              %h4 Payout Information
-              %p More Caption Text
+            = image_tag "home_3.png"
         %a.left.carousel-control{"data-slide" => "prev", :href => "#myCarousel"} ‹
         %a.right.carousel-control{"data-slide" => "next", :href => "#myCarousel"} ›
-    %video.span6{:src => "/videos/321.mp4", :autobuffer => "", :poster => image_tag("video_poster.png"), :controls => "", :height => "291" }/
-  .row
-    .span12
-      = image_tag "signup_header_s1.png"
-      %br
-  .row
-    .span4
-      %a{:href => "#rookieModal", :data => {:toggle => "modal"}}
-        = image_tag "box_rookie_s1.png"
-    .span4
-      %a{:href => "#allproModal", :data => {:toggle => "modal"}}
-        = image_tag "box_allpro_s1.png"
-    .span4
-      %a{:href => "#hofModal", :data => {:toggle => "modal"}}
-        = image_tag "box_hof_s1.png"
+    .span6
+      .thumbnail
+      %a{:href => "#videoModal", :data => {:toggle => "modal"}}
+        = image_tag "321-poster.png"
+.row-fluid
+  .span12
+    %h1
+      SIGN UP TODAY TO CREATE OR JOIN A LEAGUE!
+.row-fluid
+  %ul.thumbnails
+    .span6
+      .thumbnail
+        %a{:href => "#allProModal", :data => {:toggle => "modal"}}
+          = image_tag "box_all_pro.jpg"
+    .span6
+      .thumbnail
+        %a{:href => "#legendModal", :data => {:toggle => "modal"}}
+          = image_tag "box_legend.jpg"
 
 
-.modal#scheduleModal.fade
+
+
+
+.modal#allProModal.fade
   .modal-header
     %button.close{:data => {:dismiss => "modal"}}x
     %h3
-      Schedule
-  .modal-body
-    %p
-      Schedule Body Copy
-  .modal-footer
-    %a.btn{:href => "#"} Close
-
-.modal#rulesModal.fade
-  .modal-header
-    %button.close{:data => {:dismiss => "modal"}}x
-    %h3
-      Official League Rules
-  .modal-body
-    %p
-      Official League Rules Content
-  .modal-footer
-    %a.btn{:href => "#"} Close
-
-.modal#rookieModal.fade
-  .modal-header
-    %button.close{:data => {:dismiss => "modal"}}x
-    %h3
-      Rookie League Signup
+      All-Pro League Signup
   .modal-body
     %p
       Signup Flow Here
   .modal-footer
     %a.btn{:href => "#"} Close
 
-.modal#allproModal.fade
+.modal#legendModal.fade
   .modal-header
     %button.close{:data => {:dismiss => "modal"}}x
     %h3
-      All Pro League Signup
+      Legend League Signup
   .modal-body
     %p
       Signup Flow Here
   .modal-footer
     %a.btn{:href => "#"} Close
 
-.modal#hofModal.fade
+.modal#videoModal.fade
   .modal-header
     %button.close{:data => {:dismiss => "modal"}}x
-    %h3
-      Hall of Fame League Signup
   .modal-body
-    %p
-      Signup Flow Here
+    <iframe width="560" height="315" src="http://www.youtube.com/embed/1piBxlro3mI?rel=0" frameborder="0" allowfullscreen></iframe>
   .modal-footer
     %a.btn{:href => "#"} Close
