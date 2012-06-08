@@ -5,14 +5,12 @@ class LeaguesController < ApplicationController
     def join
         @league = League.where{ teams_count < Settings.league.capacity }.first
         @league ||= create_league
-        @league.join_league
-        redirect_to root_path unless @league.nil?
+        join_league
     end
 
     def create
-        @league ||= create_league
-        @league.join_league
-        redirect_to root_path unless @league.nil?
+        @league ||= create_league(false)
+        join_league
     end
 
     def edit
@@ -42,7 +40,7 @@ class LeaguesController < ApplicationController
 
     protected
         def create_league(public = true)
-            league = League.new
+            league = League.new params[:league]
             league.public = public
             if league.save!
                 # league creator is assigned the manager role

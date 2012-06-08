@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120607031934) do
+ActiveRecord::Schema.define(:version => 20120608174224) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -958,7 +958,7 @@ ActiveRecord::Schema.define(:version => 20120607031934) do
     t.boolean  "public",                      :default => true
     t.integer  "teams_count"
     t.integer  "balance_cents", :limit => 8,  :default => 0
-    t.string   "name",          :limit => 50,                   :null => false
+    t.string   "name",          :limit => 50
   end
 
   add_index "dynasty_leagues", ["name", "teams_count", "public"], :name => "index_leagues_on_name_team_count_public"

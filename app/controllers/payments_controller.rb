@@ -1,98 +1,93 @@
 class PaymentsController < ApplicationController
+    helper :authorize_net
+    protect_from_forgery :except => :relay_response
 
-  helper :authorize_net
-  protect_from_forgery :except => :relay_response
-
-  # GET
-  # Displays a payment form.
-  def payment
-    @title = 'Sign up for the 2012-2013 Season'
-    @amount = 275.00
-    @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
+    # GET
+    # Displays a payment form.
+    def payment
+        @title = 'Sign up for the 2012-2013 Season'
+        @amount = 275.00
+        @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
 
 
-    @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
-  end
-
-  # POST
-  # Returns relay response when Authorize.Net POSTs to us.
-  def relay_response
-    sim_response = AuthorizeNet::SIM::Response.new(params)
-    if sim_response.success?(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['merchant_hash_value'])
-      render :text => sim_response.direct_post_reply(payments_receipt_url(:only_path => false), :include => true)
-    else
-      render
+        @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
     end
-  end
+
+    # POST
+    # Returns relay response when Authorize.Net POSTs to us.
+    def relay_response
+        sim_response = AuthorizeNet::SIM::Response.new(params)
+        if sim_response.success?(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['merchant_hash_value'])
+            render :text => sim_response.direct_post_reply(payments_receipt_url(:only_path => false), :include => true)
+        else
+            render
+        end
+    end
 
 
+    # GET
+    # Displays a receipt.
+    def receipt
+        @title = 'Your transaction has been completed.'
+        @auth_code = params[:x_auth_code]
+        @avs_code = params[:x_avs_code]
 
-  # GET
-  # Displays a receipt.
-  def receipt
-    @title = 'Your transaction has been completed.'
-    @auth_code = params[:x_auth_code]
-    @avs_code = params[:x_avs_code]
+        @response_code = params[:x_response_code]
 
-    @response_code = params[:x_response_code]
+        @user = User.new(
+              :first_name => params[:x_first_name],
+              :last_name => params[:x_last_name],
+              :phone => params[:x_phone],
+              :email => params[:x_email],
+              :password => 'fom556',
+              :encrypted_password => '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C',
+        )
 
-    @user = User.new(
-      :first_name => params[:x_first_name],
-      :last_name => params[:x_last_name],
-      :phone => params[:x_phone],
-      :email => params[:x_email],
-      :password => 'fom556',
-      :encrypted_password => '$2a$10$N6GZ3gSlrgo/E6DahCrLB.aE6svn/./fU6kGFE7CP3EzmxI1IMh4C',
-    )
-
-    @user.save!
-
+        @user.save!
 
 
+        @address = @user.create_address(
+              :street => params[:x_address],
+              :city => params[:x_city],
+              :state => params[:x_state],
+              :zip => params[:x_zip]
 
-    @address = @user.create_address(
-      :street => params[:x_address],
-      :city => params[:x_city],
-      :state => params[:x_state],
-      :zip => params[:x_zip]
+        )
+        @address.save!
 
-    )
-    @address.save!
+        @ship_address = @user.create_address(
 
-    @ship_address = @user.create_address(
+              :street => params[:x_ship_to_address],
+              :city => params[:x_ship_to_city],
+              :state => params[:x_ship_to_state],
+              :zip => params[:x_ship_to_zip],
+        )
 
-      :street => params[:x_ship_to_address],
-      :city => params[:x_ship_to_city],
-      :state => params[:x_ship_to_state],
-      :zip => params[:x_ship_to_zip],
-    )
+        @ship_address.save!
 
-    @ship_address.save!
-
-  end
+    end
 
 
-  def purchase_dynasty_dollars
-    @title = 'Purchase Dynasty Dollars'
-    @user = current_user
-    @team = current_user.team
+    def purchase_dynasty_dollars
+        @title = 'Purchase Dynasty Dollars'
+        @user = current_user
+        @team = current_user.team
 
-    @address = @user.address
-    @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
+        @address = @user.address
+        @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
 
-    @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
+        @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
 
-  end
+    end
 
-  def dynasty_dollars_receipt
-    @team = current_user.team
-    @dollars_added = (params[:x_amount]).to_money
-    @starting_balance = @team.balance
-    @new_balance = @starting_balance + @dollars_added
-    @team.balance = @new_balance
-    @team.save
-  end
-
+    def dynasty_dollars_receipt
+        @team = current_user.team
+        @dollars_added = (params[:x_amount]).to_money
+        @starting_balance = @team.balance
+        @new_balance = @starting_balance + @dollars_added
+        @team.balance = @new_balance
+        @team.save
+    end
 
 
 end

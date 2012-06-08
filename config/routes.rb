@@ -160,6 +160,10 @@ Dynasty::Application.routes.draw do
 
     resources :users do
         get :home
+        member do
+            get :accept_invitation
+            post :process_payment
+        end
     end
 
     resources :player_teams do

@@ -24,6 +24,16 @@ class UsersController < ApplicationController
     def order
         @user = current_user
 
+        # stub out a league and draft in case the user wishes to create a private league
+        @league = @user.team.build_league :name => "#{@user.username.capitalize}'s League", :public => false
+        last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
+        dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
+        @draft_date_collection = {}
+        dates.each{ |date|
+            @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
+        }
+        @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
+
         # payment stuff
         @title = 'Sign up for the 2012-2013 Season'
         @amount = 275.00
@@ -31,9 +41,16 @@ class UsersController < ApplicationController
         @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
     end
 
+    def process_payment
+
+    end
+
+    def accept_invitation
+
+    end
+
     def test_mail
         @user = current_user
-
         Users::Mailer.welcome(@user).deliver
 =begin
         puts "https://api:#{$MAILGUN_API_KEY}@api.mailgun.net/v2/samples.mailgun.org/messages"
@@ -51,21 +68,21 @@ class UsersController < ApplicationController
     def payment_step_class(user)
         cls = []
         cls << 'btn-default' if user.expired?
-        cls << 'disabled' unless user.team.nil?
+        cls << 'disabled' unless user.team.league_id.nil?
         cls
     end
 
     def league_step_class(user)
         cls = []
         cls << 'btn-default' if user.expired?
-        cls << 'disabled' if user.team.nil?
+        cls << 'disabled' if user.team.league_id.nil?
         cls
     end
 
     def team_step_class(user)
         cls = []
         cls << 'btn-default' if user.expired?
-        cls << 'disabled' if user.team.nil?
+        cls << 'disabled' if user.team.league_id.nil?
         cls
     end
 

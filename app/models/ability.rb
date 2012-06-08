@@ -16,7 +16,7 @@ class Ability
     end
 
     # league managers
-    can [ :create, :update ], League, :id => League.find_roles('manager', user).map { |role| role.resource_id }
+    can [ :update ], League, :id => League.find_roles('manager', user).map { |role| role.resource_id }
 
     if user.has_role? :admin
       can :manage, :all

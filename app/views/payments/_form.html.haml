@@ -29,8 +29,8 @@
 
 = field_set_tag do |f|
   %h5 Shipping Information
-  %input{:name => "chkCopy", :onClick => "copyAddress();", :type => "checkbox", :value => ""} Same as billing address.
-  = text_field_tag 'x_ship_to_address', '', :class => 'large_input ', :size => 16, :placeholder => 'Address', :type => 'hidden'
-  = text_field_tag 'x_ship_to_city', '', :class => 'large_input', :size => 16, :placeholder => 'City', :type => 'hidden'
-  = select_tag 'x_ship_to_state', options_for_select(us_states) , :class => 'large_input nice', :placeholder => 'State', :type => 'hidden'
-  = text_field_tag 'x_ship_to_zip', '', :class => 'large_input', :size => 16, :placeholder => 'Zip', :type => 'hidden'
+  %input{ :name => "chkCopy", :onClick => "copyAddress();", :type => "checkbox", :value => "", :checked => 'checked' } Same as billing address.
+  = text_field_tag 'x_ship_to_address', '', :class => 'large_input ', :size => 16, :placeholder => 'Address', :style => 'display: none;'
+  = text_field_tag 'x_ship_to_city', '', :class => 'large_input', :size => 16, :placeholder => 'City', :style => 'display: none;'
+  = select_tag 'x_ship_to_state', options_for_select(us_states) , :class => 'large_input nice', :placeholder => 'State', :style => 'display: none;'
+  = text_field_tag 'x_ship_to_zip', '', :class => 'large_input', :size => 16, :placeholder => 'Zip', :style => 'display: none;'

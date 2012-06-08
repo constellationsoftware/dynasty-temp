@@ -7,6 +7,7 @@ module Users
         end
 
         def after_sign_up_path_for(resource)
+            # send out welcome email
             Users::Mailer.welcome(resource).deliver
             super
         end

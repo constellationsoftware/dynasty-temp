@@ -8,23 +8,68 @@
   .modal-header
     %button.close{ :data => { :dismiss => 'modal' } } ×
     %h3
+      Order Form
+      /= I18n.t '', :scope => :user_cp
+  .modal-body
+    = form_for :sim_transaction, :url => AUTHORIZE_TRANSACTION_URL  do |f|
+      = render :partial => 'payments/form', :locals => { :form => f }
+    = #simple_form_for @league, :url => league_path(@league) do |f|
+    = #render :partial => 'schedule_draft_form', :locals => { :form => f }
+  .modal-footer
+    %a.btn.cancel{ :href => '#', :data => { :dismiss => 'modal' } } Cancel
+    %a.btn.submit{ :href => '#', :data => { 'loading-text' => 'Processing...' } } Submit
+
+#league-type-modal.modal.fade
+  .modal-header
+    %button.close{ :data => { :dismiss => 'modal' } } ×
+    %h3 Join a League
+  .modal-body
+    %a.public.btn.btn-large.btn-primary{ :href => leagues_join_path }= t '.labels.buttons.join_public'
+    - unless @user.invitation.nil?
+      %a.join-private.btn.btn-large.btn-primary{ :href => accept_invitation_path }= t '.labels.buttons.join_private', :name => @user.invitation.name
+    .create-private.btn.btn-large.btn-primary{ :data => { :toggle => 'collapse', :target => '#league-form' } }= t '.labels.buttons.create_private'
+
+    #league-form.collapse
+      = simple_form_for @league, :url => leagues_path do |f|
+        = render :partial => 'leagues/form', :locals => { :form => f }
+        .btn.submit{ :data => { 'loading-text' => 'Processing...' } } Submit
+        .btn.cancel Cancel
+
+-##league-modal.modal.fade
+-#  .modal-header
+-#    %button.close{ :data => { :dismiss => 'modal' } } ×
+-#    %h3
+-#      Signup Heading
+-#      /= I18n.t '', :scope => :user_cp
+-#  .modal-body
+-#    = simple_form_for @league, :url => league_path(@league) do |f|
+-#      = render :partial => 'schedule_draft_form', :locals => { :form => f }
+-#  .modal-footer
+-#    %a.btn.cancel{ :href => '#', :data => { :dismiss => 'modal' } } Cancel
+-#    %a.btn.submit{ :href => '#' } Submit
+
+#team-modal.modal.fade
+  .modal-header
+    %button.close{ :data => { :dismiss => 'modal' } } ×
+    %h3
       Signup Heading
       /= I18n.t '', :scope => :user_cp
   .modal-body
-    = form_for :sim_transaction, :class => 'nice', :url => AUTHORIZE_TRANSACTION_URL  do |f|
-      = render :partial => 'payments/form', :locals => { :form => f }
     = #simple_form_for @league, :url => league_path(@league) do |f|
     = #render :partial => 'schedule_draft_form', :locals => { :form => f }
   .modal-footer
     %a.btn.cancel{ :href => '#', :data => { :dismiss => 'modal' } } Cancel
     %a.btn.submit{ :href => '#' } Submit
 
+
 .row
   .span6
-    %ul.order-steps
-      %li.payment.btn{ :data => { :toggle => 'modal', :target => '#payment-modal' }, :class => payment_step_class(@user) }
-        = t('.labels.buttons.payment')
-      %li.league.btn{ :class => league_step_class(@user) }
-        = t('.labels.buttons.league')
-      %li.team.btn{ :class => team_step_class(@user) }
-        = t('.labels.buttons.team')
+    %ol.order-steps
+      %li
+        .payment.btn{ :data => { :toggle => 'modal', :target => '#payment-modal' }, :class => payment_step_class(@user) }
+          = t('.labels.buttons.payment')
+      %li
+        .league.btn{ :data => { :toggle => 'modal', :target => '#league-type-modal' }, :class => league_step_class(@user) }
+          = t('.labels.buttons.league')
+      %li
+        %a.team.btn{ :href => new_team_path, :class => team_step_class(@user) }= t('.labels.buttons.team')
