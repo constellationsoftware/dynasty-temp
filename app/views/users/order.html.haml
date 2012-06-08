@@ -1,0 +1,30 @@
+= javascript_include_tag 'order'
+= stylesheet_link_tag 'order'
+
+- content_for :section_title, t('.section')
+- content_for :title, t('.title')
+
+#payment-modal.modal.fade
+  .modal-header
+    %button.close{ :data => { :dismiss => 'modal' } } ×
+    %h3
+      Signup Heading
+      /= I18n.t '', :scope => :user_cp
+  .modal-body
+    = form_for :sim_transaction, :class => 'nice', :url => AUTHORIZE_TRANSACTION_URL  do |f|
+      = render :partial => 'payments/form', :locals => { :form => f }
+    = #simple_form_for @league, :url => league_path(@league) do |f|
+    = #render :partial => 'schedule_draft_form', :locals => { :form => f }
+  .modal-footer
+    %a.btn.cancel{ :href => '#', :data => { :dismiss => 'modal' } } Cancel
+    %a.btn.submit{ :href => '#' } Submit
+
+.row
+  .span6
+    %ul.order-steps
+      %li.payment.btn{ :data => { :toggle => 'modal', :target => '#payment-modal' }, :class => payment_step_class(@user) }
+        = t('.labels.buttons.payment')
+      %li.league.btn{ :class => league_step_class(@user) }
+        = t('.labels.buttons.league')
+      %li.team.btn{ :class => team_step_class(@user) }
+        = t('.labels.buttons.team')

@@ -23,6 +23,8 @@ Dynasty::Application.routes.draw do
     match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
+    match '/order', :to => 'users#order', :as => 'order'
+
     if Rails.env.development?
         mount Users::Mailer::Preview => 'mail_view'
     end

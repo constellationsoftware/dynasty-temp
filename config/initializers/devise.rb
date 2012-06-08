@@ -1,3 +1,8 @@
+# Uncomment this line and change the path if necessary if this is ever made into a gem
+#Devise.add_module :expirable, :model => 'devise_expirable'
+# Remove this line if this is ever made into a gem
+require 'devise_expirable/models/expirable'
+
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -109,10 +114,6 @@ Devise.setup do |config|
     # If true, extends the user's remember period when remembered via cookie.
     config.extend_remember_period = true
 
-    # If true, uses the password salt as remember token. This should be turned
-    # to false if you are not using database authenticatable.
-    config.use_salt_as_remember_token = true
-
     # Options to be passed to the created cookie. For instance, you can set
     # :secure => true in order to force SSL only cookies.
     # config.cookie_options = {}
@@ -220,7 +221,7 @@ Devise.setup do |config|
     # change the failure app, you can configure them inside the config.warden block.
     #
     config.warden do |manager|
-      manager.failure_app = CustomFailureApp
+        manager.failure_app = CustomFailureApp
     end
 
     # end

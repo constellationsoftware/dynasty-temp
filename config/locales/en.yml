@@ -8,6 +8,17 @@ en:
                 create_team:    'Create Team'
                 join_league:    'Join Public League'
                 create_league:  'Create Private League'
+        registrations:
+            new:
+                title:          'New User Registration'
+        order:
+            title:              'Create your dynasty'
+            labels:
+                buttons:
+                    payment:    'Give us your money'
+                    league:     'Join a league'
+                    team:       'Create your team'
+
     nav:
         signed_in:      "Hello, %{attribute}"
         signed_out:     "Register or Sign in"
@@ -112,6 +123,9 @@ en:
             submit: 'Submit'
 
     activerecord:
+        attributes:
+            user:
+                login: 'Username or email'
         models:
             draft:
                 states:

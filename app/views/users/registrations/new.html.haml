@@ -1,10 +1,10 @@
 = stylesheet_link_tag 'forms'
 = javascript_include_tag 'register'
+- content_for :title, t('.title')
 = devise_error_messages!
-= semantic_form_for @user, :url => create_user_registration_path, :remote => true, :html => { :id => 'register', :class => 'nice' } do |f|
-  .row.span6.centered
-    .panel
-      %h4
-        Sign up for Dynasty Owner
-      %p
-      = render :partial => '/users/shared/registration_form', :locals => { :form => f }
+.row
+  .span6
+    = simple_form_for @user, :url => create_user_registration_path, :html => { :id => 'register', :class => [ 'well', 'form-inline' ] } do |f|
+      = render :partial => 'form', :locals => { :form => f }
+      = f.button :submit, 'Submit'
+    %small.red * denotes a required field
