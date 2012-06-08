@@ -1,19 +1,27 @@
+
 = javascript_include_tag 'user_cp'
 - if current_user.team
   - team = current_user.team
-  %h1= team.name
-  %h6= team.motto
+
   - if team.league
-    .row
+    .row-fluid
+      .well.well-dark.span12
+        %h1
+          = team.name
+          Dashboard
+    .row-fluid
       .span8
-        .well
-          .row
+        .well.light-well
+          %h2= team.name
+          %h6= team.motto
+          %a.btn.btn-primary{:href => '/teams/'} Edit Team
+
+          .row-fluid
             .span1
               -# todo Fix this weird issue with path
-              %img{:src => current_user.gravatar_url }
-              %br
-              %small
-                = link_to 'Edit', current_user.gravatar_profile
+              //%img{:src => current_user.gravatar_url }
+
+              //= link_to 'Edit Avatar', current_user.gravatar_profile
             .span5
               %p
                 Balance:
@@ -24,8 +32,9 @@
                   /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
                   = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
         - if current_user.is_manager_of? team.league
-          %h4 League Tools
-          .well
+
+          .well.light-well.disabled
+            %h2 League Tools
             - unless @draft.nil?
               #schedule-draft.modal.fade
                 .modal-header
@@ -40,9 +49,24 @@
               %button.btn.btn-small.btn-danger{ :data => { :toggle => 'modal', :target => '#schedule-draft' } }= I18n.t "#{@draft.state === 'scheduled' ? 're' : ''}schedule_draft", :scope => :user_cp
             - if team.league.teams.count < Settings.league.capacity
               = link_to (I18n.t 'invite', :scope => :user_cp), new_user_invitation_path, :class => "btn btn-small"
+        .well.light-well.disabled
+          %h2
+            Coaches Corner
+          %p
+            WIP
+        .well.light-well.disabled
+          %h2
+            Front Office
+          %p
+            WIP
+
+
+
+
+
       .span4
-        .well
-          %h4 League Standings
+        .well.light-well.disabled
+          %h2 League Standings
           %table.table-striped.table-condensed.table-bordered
             %thead
               %tr
@@ -61,6 +85,9 @@
 
                 %td= team.games_won
                 %td= team.games_lost
+        .well.light-well.disabled
+          %h2 Recent League Activity
+          %p There has been no activity.
   - else
     = link_to t('.labels.join_league'), leagues_join_path, :class => 'btn btn-inverse'
     = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'

@@ -1,7 +1,8 @@
-- content_for :title, "Player Research: #{@player.name.full_name}"
+//- content_for :title, "Player Research: #{@player.name.full_name}"
 
 .row-fluid.person
-  .span8
+  .well.light-well.span8
+    %h2= "Player Research: #{@player.name.full_name}"
     %table.table-condensed
 
       %tbody
@@ -9,9 +10,10 @@
           %th{:rowspan => "7"}
             %img.thumbnail{:src => "http://placehold.it/100x150"}
           %th.left{:colspan => "7"}
-            %h5
+            %h3
               = @player.real_team.display_name.first_name
               = @player.real_team.display_name.last_name
+            %p
               = @player.position.abbreviation.upcase
               (#{@player.phase.regular_position_depth})
 
@@ -47,8 +49,14 @@
 
 
   .span4
+    - unless user_signed_in?
+      .well.light-well.demo
+        %h2
+          Inline Actions
+        %p
+          Visible when logged in / active.
     - if user_signed_in?
-      .well
+      .well.light-well
         - if @league_players.include?(@player)
           %h5
           -if @player_team.team == @current_user.team
@@ -94,10 +102,11 @@
   %br
   %br
 
+
 .row-fluid
-  .span8
+  .span8.well.light-well
     .row-fluid
-      %h3
+      %h2
         This Season's Performance
       %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
@@ -141,9 +150,9 @@
             %th= pep.fumbles_points
 
     .row-fluid
-      %h3
+      %h2
         Career Performance
-      %table.career-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %table.research.display.career-data.table.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
             %th
@@ -182,7 +191,7 @@
   - cache do
     .span4
       .well
-        %h3
+        %h2
           Player News
         %dl
         - @rss.items.each_with_index do |item, i|

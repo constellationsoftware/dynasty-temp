@@ -48,6 +48,7 @@ gem 'dalli'
 gem 'multi_json'
 gem 'yajl-ruby'
 gem 'oj'
+gem "paperclip", "~> 3.0"
 
 
 # Templating & View Helpers

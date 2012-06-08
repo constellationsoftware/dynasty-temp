@@ -42,6 +42,27 @@ body {
 // If you'd like to override bootstrap's own variables, you can do so here as well
 // See http://twitter.github.com/bootstrap/less.html for their names and documentation
 
+// Utility Classes
+.demo {
+    .opacity(50);
+  .transition(.25s, ease-in-out);
+    &:hover {
+        .opacity(100);
+        .scale(1.01);
+    }
+
+}
+
+.disabled {
+    .opacity(25);
+     .transition(.25s, ease-in-out);
+    &:hover {
+        .opacity(50);
+        .scale(1.01);
+    }
+}
+
+
 
 //* Adjust column gutters
 @gridColumnWidth: 63px;
@@ -362,7 +383,14 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
 .well {
     .box-shadow(2px 2px 10px @grayDark);
     .box-shadow(10px 10px 50px @grayLight);
+      .transition(.25s, ease-in-out);
+    &:hover {
+        .opacity(100);
+        //.scale(1.01);
+    }
 }
+
+
 .dark-well {
     background: url('noise.png') repeat top left;
 
