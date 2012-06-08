@@ -13,54 +13,10 @@
 }
 
 
+
 //* Droid Sans - for body & nav?
 
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans:400,700);
 
 
-//* CSS3 Ribbon
 
-h2
-{
-    position: relative;
-    font-size: 14px;
-    line-height: 22px;
-    font-color: #FFFFFF;
-    width: 50%;
-    font-weight: bold;
-    padding: 3px 10px 6px 15px;
-    margin: 5px 10px 10px -15px;
-    background-color: #9DA6B4;
-    text-shadow: 0px 1px 2px #bbb;
-    -webkit-box-shadow: 0px 2px 4px #888;
-    -moz-box-shadow: 0px 2px 4px #888;
-    box-shadow: 0px 2px 4px #888;
-}
-
-h2:after
-{
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 0px;
-    top: 100%;
-    border-width: 5px 10px;
-    border-style: solid;
-    border-color: #666 #666 transparent transparent;
-}
-
-h2:before
-{
-    width: 30px;
-    left: -30px;
-    top: 12px;
-    border-width: 20px 10px;
-    border-style: solid;
-    border-color: #999 #999 #999 transparent;
-
-}
-h2.simple:before
-{
-    display: none;
-}

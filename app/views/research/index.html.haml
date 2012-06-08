@@ -3,40 +3,38 @@
 = stylesheet_link_tag 'research'
 
 
-.row
+.row-fluid
   .span12
     .container-fixed
-      .row
-        %form.filter-form.form-inline
-          .span2.position
-            = label_tag 'position'
-            = select_tag 'position', options_for_select(@positions), :class => 'span1', :include_blank => true
-          .span2.team
-            = label_tag 'team'
-            = select_tag 'team', options_for_select(@teams), :class => 'span1', :include_blank => true
-          .span2.bye
-            = label_tag 'bye'
-            = select_tag 'bye', options_for_select(4..11), :class => 'span1', :include_blank => true
-          .span6.name= text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query'
-      %table#research.display.all-players-data.table.table-striped.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
-        %thead
-          %tr
-            %th.name Name
-            %th.first-name
-            %th.last-name
-            %th.position Pos
-            %th.team Team
-            %th.bye Bye
-            %th.contract-amount $Yr
-            %th.contract-total-amount $Tot
-            %th.contract-end-year End
-            %th.points FPTs
-            %th.passing-points Pass
-            %th.rushing-points Rush
-            %th.defensive-points Def
-            %th.fumble-points Fum
-            %th.scoring-points Td
-            %th.points-per-dollar P/DD
-            %th.games Games
-            %th.id
+      .row-fluid
+        .span12
+          %form.filter-form.form-inline.well
+            Filter:
+            = select_tag 'position', options_for_select(@positions), :class => 'input_small', :prompt => 'Position'
+            = select_tag 'team', options_for_select(@teams), :class => 'input_small', :prompt => 'Team'
+            = select_tag 'bye', options_for_select(4..11), :class => 'input_small', :prompt => 'Bye Week'
+            = text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query form-search'
+      .row-fluid
+        .span12.well.light-well
+          %table#research.display.all-players-data.table.table-condensed{:border => "0", :cellpadding =>    "0", :cellspacing => "0"}
+            %thead
+              %tr.research_row
+                %th.name Name
+                %th.first-name
+                %th.last-name
+                %th.position Pos
+                %th.team Team
+                %th.bye Bye
+                %th.contract-amount $Yr
+                %th.contract-total-amount $Tot
+                %th.contract-end-year End
+                %th.points FPTs
+                %th.passing-points Pass
+                %th.rushing-points Rush
+                %th.defensive-points Def
+                %th.fumble-points Fum
+                %th.scoring-points Td
+                %th.points-per-dollar P/DD
+                %th.games Games
+                %th.id
 

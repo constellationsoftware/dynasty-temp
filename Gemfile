@@ -60,6 +60,7 @@ gem 'quantify', '~> 3.1.2'
 gem 'gravtastic' # gravatar support
 gem 'country_select'
 gem 'mail_view'
+gem 'maruku'
 
 # Pjax PushState
 gem 'pjax_rails'

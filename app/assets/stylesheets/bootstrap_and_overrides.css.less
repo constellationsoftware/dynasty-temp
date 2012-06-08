@@ -61,7 +61,13 @@ a {
 }
 
 h2, h3, h4, h5, h6 {
-    color: @lightblue;
+
+    font-weight: regular;
+}
+
+.large-text {
+    font-size: 200% !important;
+
 }
 
 h1 {
@@ -69,7 +75,9 @@ h1 {
     text-align: center;
     color: @white;
     font-size: 26px;
-    background-image: url("h1_blue_bg.jpg");
+    font-weight: regular;
+    #gradient > .vertical(@navdarkBlue, @navlightBlue);
+    text-shadow: 0 2px 5px @black;
 }
 //* Core Colors
 
@@ -78,11 +86,17 @@ h1 {
 @red: #BD1D2C;
 @blue: #101940;
 @lightblue: #9DA6B4;
+
 @darkblue: @blue - #111;
 @darkred: @red - #555;
 
 @navlightBlue: #637CBC;
 @navdarkBlue: #131747;
+
+@brightBlue: rgba(60, 75, 122, 1);
+
+@ghostWhite: @white - #111;
+@ghostBlue: @white + #00F;
 
 @bgDark: rgba(0,0,0,.2);
 @bgLight: rgba(255,255,255,.25);
@@ -254,16 +268,16 @@ h1 {
 h2
 {
     position: relative;
-    font-size: 14px;
+    font-size: 18px !important;
     line-height: 22px;
     color: @white ;
-    width: 50%;
-    font-family: @baseFontFamily !important;
+    width: 95%;
+    background-color: @brightBlue;
+    font-family: @headingsFontFamily !important;
     font-weight: bold;
     padding: 3px 10px 6px 15px;
-    margin: 5px 10px 10px -15px;
-    background-color: #9DA6B4;
-    text-shadow: 0px 1px 2px #bbb;
+    margin: 5px 10px 10px -39px !important;
+    text-shadow: 0px 1px 2px #111;
     -webkit-box-shadow: 0px 2px 4px #888;
     -moz-box-shadow: 0px 2px 4px #888;
     box-shadow: 0px 2px 4px #888;
@@ -335,5 +349,64 @@ filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr=
     width: 100%;
     height: 100%;
     background: teal;
+}
+
+// Smaller Forms
+.input_small {
+    font-size: 12px;
+}
+
+// Styled Wells
+//
+
+.well {
+    .box-shadow(2px 2px 10px @grayDark);
+    .box-shadow(10px 10px 50px @grayLight);
+}
+.dark-well {
+    background: url('noise.png') repeat top left;
+
+    #gradient > .vertical(@gray, @grayDark);
+}
+
+.light-well {
+    background: url('noise.png') repeat top left;
+
+    #gradient > .vertical(@white, @ghostWhite);
+
+}
+
+// Table Styles
+ @tableBackground: @ghostWhite;
+@translucentBlue:  rgba(16, 25, 64, 0.38);
+@tableBackgroundAccent:  @translucentBlue;
+
+@tableBackgroundHover:   @translucentBlue;
+
+#research {
+    .border-radius(5);
+}
+#research tr {
+  .transition(.15s, ease-in-out);
+  #gradient > .vertical(@white, @ghostWhite);
+  &:hover {
+    #gradient > .vertical(@white, @ghostBlue);
+    .scale(1.01);
+    padding-top: 10px;
+    color: @white;
+        a {
+            color: @white !important;
+        }
+  }
+}
+
+#research thead {
+    font-size: 16px;
+    background-color: @ghostWhite;
+}
+
+table.dataTable td {
+  padding: 5px 15px;
+  font-size: 16px;
 }
 

@@ -1,12 +1,51 @@
 .row-fluid
-  .span8
-    %h5
+  .well.light-well.span8
+    %h2 Please Get In Touch
+    %form
+      .span8
+        %label Your Name
+        %input.span10{:type => 'text', :placeholder => 'Your Name...'}
+
+        %label Your Email
+        %input.span10{:type => 'text', :placeholder => 'Your Email...'}
+        .row
+
+        %label How can we help you?
+        %textarea.span10.input-xlarge{:type => 'textarea', :rows => "5"}
+        %a.btn.btn-primary.btn-large.span10{:href => "#emailSent", :data => {:toggle => "modal"}} Send Email
+
+  .well.light-well.span4
+    %h2 Visit Our Blog
+    %p
+      %a{:href => "http://blog.dynastyowner.com"} blog.dynastyowner.com
+
+
+    %h2
       Customer Support
     %p
       %a{:href => "mailto:support@dynastyowner.com"}support@dynastyowner.com
-    %h5
+    %h2
       Media Inquiries
     %p
       %a{:href => "mailto:media@dynastyowner.com"}media@dynastyowner.com
-  .span4
-    four
+    %h2
+      Phone
+    %p
+      999-999-9999
+    %h2
+      Mail
+    %p
+      PO Box 999 <br/>
+      Cleveland, Ohio 99999
+
+
+.modal#emailSent.fade
+  .modal-header
+    %button.close{:data => {:dismiss => "modal"}}x
+    %h3
+      Thank You!
+  .modal-body
+    %p
+      We appreciate your interest and will get back to you soon.
+  .modal-footer
+    %a.btn{:href => "#"} Close

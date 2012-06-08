@@ -85,6 +85,8 @@ Dynasty::Application.routes.draw do
         get :depth_charts
         get :featured_articles
 
+        get :faq
+        get :how_to_play
         get :rules
         get :terms_conditions
         get :privacy
@@ -178,9 +180,15 @@ Dynasty::Application.routes.draw do
         resources :display_name
     end
 
-    match 'public_home',                 :to => 'home#index', :as => 'public_home', :via => [:get]
-    root :to => 'users#home'#, :constraints => LoggedInConstraint.new(true)
-    #root :to => 'home#index'
+    #match 'public_home',                 :to => 'home#index', :as => 'public_home', :via => [:get]
+
+
+    authenticated :user do
+        root :to => 'users#home'
+    end
+    unauthenticated :user do
+        root :to => 'home#index'
+    end
     ActiveAdmin.routes(self)
 
     # Sample of regular route:

@@ -25,8 +25,8 @@ $ ->
                 content =
                     """
                     <span class="left">
-                    <button class="btn btn-mini">Add</button>
-                    <button class="btn btn-mini">Trade</button>
+                    <!-- <button class="btn btn-mini">Add</button> -->
+                    <!-- <button class="btn btn-mini">Trade</button> -->
                     <a href="/players/#{data.id}" rel="popover" data-original-title="#{data.name.first_name} #{data.name.last_name}" data-content="Some Content">
                         #{el.text()}
                     </a>
@@ -121,7 +121,7 @@ $ ->
         sAjaxSource: 'research/players'
         sDom: "<'row'r>tS<'row'<'span12'i>>"
         #bDeferRender: true
-        sScrollY: '350px'
+        sScrollY: '600px'
         asStripeClasses:[]
         oScroller:
             serverWait: 250

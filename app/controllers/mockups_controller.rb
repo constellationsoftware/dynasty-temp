@@ -113,8 +113,16 @@ class MockupsController < ApplicationController
     @title = "Terms & Conditions"
   end
 
-  def rules
+  def faq
     @title = "FAQ"
+  end
+
+  def rules
+    @title = "Rules"
+  end
+
+  def how_to_play
+    @title = "How to Play"
   end
 
   def contact
