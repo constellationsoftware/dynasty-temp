@@ -1,4 +1,3 @@
-- content_for :title, t('.title')
 = javascript_include_tag 'research'
 = stylesheet_link_tag 'research'
 
@@ -9,6 +8,7 @@
       .row-fluid
         .span12
           %form.filter-form.form-inline.well
+            %h2= t('.title')
             Filter:
             = select_tag 'position', options_for_select(@positions), :class => 'input_small', :prompt => 'Position'
             = select_tag 'team', options_for_select(@teams), :class => 'input_small', :prompt => 'Team'
