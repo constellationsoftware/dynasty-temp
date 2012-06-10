@@ -7,8 +7,9 @@ module Users
         end
 
         def after_sign_up_path_for(resource)
-            user_root_path(user)
+            # send out welcome email
             Users::Mailer.welcome(resource).deliver
+            super
         end
 =begin
         def clean_select_multiple_params(hash = params)

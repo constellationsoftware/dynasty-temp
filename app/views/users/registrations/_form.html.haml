@@ -1,0 +1,51 @@
+= form.input :email, :as => :email, :required => true
+= form.input :username, :required => true
+- if action_name === 'new'
+  = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
+  = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
+- else
+  = form.input :current_password, :required => true, :input_html => { :autocomplete => 'off' }
+  = form.input :password, :label => 'Enter new password', :required => true, :input_html => { :autocomplete => 'off' }
+  = form.input :password_confirmation, :label => 'Confirm new password', :required => true, :input_html => { :autocomplete => 'off' }
+= form.input :first_name, :required => true
+= form.input :last_name, :required => true
+- unless action_name === 'new'
+  = form.input :phone, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32 }
+= form.simple_fields_for :address, :name => 'Address' do |address|
+  = address.input :street, :label => 'Address'
+  = address.input :street2, :label => 'Address 2', :hint => 'Apt. 123, Suite A, etc.'
+  = address.input :city
+  = address.input :state, :label => 'State/Province'
+  = address.input :zip, :label => 'Zip/Postal Code'
+  = address.input :country, :as => :country, :include_blank => true
+/- unless action_name === 'new'
+/<input type="button" onclick="document.getElementById('formAuthorizeNetPage').submit();">Manage my payment and shipping information</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

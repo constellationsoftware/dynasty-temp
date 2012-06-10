@@ -31,7 +31,11 @@ $.ajaxSetup
 
 # global Rails API error handling
 $(document).ajaxError (e, transport, status, exception) ->
-    response = $.parseJSON(transport.responseText)
+    response = null
+    try
+        response = $.parseJSON(transport.responseText)
+    catch error
+        return
     if response? and errorBucket = $('#global-errors')
         for own attr, messages of response.errors
             for msg in messages
@@ -41,8 +45,11 @@ $(document).ajaxSuccess (e, transport) ->
     # If a redirect header is found, redirect!
     location = transport.getResponseHeader('location')
     #window.location.reload() if location?
-
-    response = $.parseJSON(transport.responseText)
+    response = null
+    try
+        response = $.parseJSON(transport.responseText)
+    catch error
+        return
     if response? and errorBucket = $('#global-errors')
         for own attr, messages of response.errors
             for msg in messages

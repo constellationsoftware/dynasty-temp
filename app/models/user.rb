@@ -35,10 +35,13 @@ class User < ActiveRecord::Base
 
     # Include default devise modules. Others available are:
     #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable
+    devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable, :expirable, :authentication_keys => [:login]
 
     include Gravtastic
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
+
+    # login via username of email
+    attr_accessor :login
 
     # not sure if a new column is needed for this
     alias_attribute :persistence_token, :authentication_token
@@ -63,30 +66,40 @@ class User < ActiveRecord::Base
     #has_many :teams
     has_one :team
     has_many :leagues, :foreign_key => 'manager_id'
-    has_one  :address, :class_name => 'UserAddress', :dependent => :destroy
+    has_one :address, :class_name => 'UserAddress', :dependent => :destroy
     has_many :event_subscriptions, :class_name => 'DynastyEventSubscription'
     has_many :events, :through => :event_subscriptions
-    has_many :invitations, :class_name => 'User', :as => :invited_by
+    has_one :invitation, :class_name => 'User', :as => :invited_by
 
-    attr_accessible :roles, :email, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :address_attributes, :event_subscriptions_attributes, :address
-
+    attr_accessible :roles, :email, :username, :login, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :address_attributes, :event_subscriptions_attributes, :address
 
     accepts_nested_attributes_for :address
 
-    accepts_nested_attributes_for :event_subscriptions, :reject_if => lambda{ |attributes|
-        attributes.all?{ |k,v| v.blank? }
+    accepts_nested_attributes_for :event_subscriptions, :reject_if => lambda { |attributes|
+        attributes.all? { |k, v| v.blank? }
     }
 
     scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
-    scope :with_address, joins{ address }.includes{ address }
+    scope :with_address, joins { address }.includes { address }
 
     validates_presence_of :first_name, :last_name
-    validates_uniqueness_of :email
+    validates_uniqueness_of :email, :username
 
     def gravatar_profile
-      hash = Digest::MD5.hexdigest(self.email)
-      return "http://gravatar.com/#{hash}"
+        hash = Digest::MD5.hexdigest(self.email)
+        return "http://gravatar.com/#{hash}"
     end
 
-    def full_name; "#{self.first_name} #{self.last_name}" end
+    def full_name;
+        "#{self.first_name} #{self.last_name}"
+    end
+
+    def self.find_first_by_auth_conditions(warden_conditions)
+        conditions = warden_conditions.dup
+        if login = conditions.delete(:login)
+            where(conditions).where(["lower(username) = :value OR lower(email) = :value", {:value => login.downcase}]).first
+        else
+            where(conditions).first
+        end
+    end
 end

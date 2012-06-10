@@ -1,0 +1,36 @@
+= sim_fields(@sim_transaction)
+
+= hidden_field_tag 'x_test_request', "true"
+//= hidden_field_tag 'x_line_item', "#{@purchase_type}"
+
+= field_set_tag do |f|
+  %h5 Billing Information
+  %strong= label_tag 'x_amount', "2012-2013 Membership Fee: #{number_to_currency(@amount)}"
+
+  = label_tag 'x_card_num', 'Credit Card Number'
+  = text_field_tag 'x_card_num', '', :class => 'large_input', :size => 16 , :placeholder => '4111111111111111'
+
+  .row
+    .span5
+      = label_tag 'x_exp_date', 'Expiration Date (MMYY)'
+      = text_field_tag 'x_exp_date', '', :class => 'large_input', :size => 4, :placeholder => '1213'
+    .span5
+      = label_tag 'x_card_code', 'CCV'
+      = text_field_tag 'x_card_code', '', :class => 'large_input', :size => 4, :placeholder => '123'
+
+  = text_field_tag 'x_first_name', '', :class => 'large_input', :size => 16, :placeholder => 'First Name'
+  = text_field_tag 'x_last_name', '', :class => 'large_input', :size => 16, :placeholder => 'Last Name'
+  = email_field_tag 'x_email', '', :class => 'large_input', :size => 16, :placeholder => 'Email'
+  = phone_field_tag 'x_phone', '', :class => 'large_input', :size => 16, :placeholder => 'Phone'
+  = text_field_tag 'x_address', '', :class => 'large_input', :size => 16, :placeholder => 'Address'
+  = text_field_tag 'x_city', '', :class => 'large_input', :size => 16, :placeholder => 'City'
+  = select_tag 'x_state', options_for_select(us_states) , :class => 'large_input nice', :placeholder => 'State'
+  = text_field_tag 'x_zip', '', :class => 'large_input', :size => 16, :placeholder => 'Zip'
+
+= field_set_tag do |f|
+  %h5 Shipping Information
+  %input{ :name => "chkCopy", :onClick => "copyAddress();", :type => "checkbox", :value => "", :checked => 'checked' } Same as billing address.
+  = text_field_tag 'x_ship_to_address', '', :class => 'large_input ', :size => 16, :placeholder => 'Address', :style => 'display: none;'
+  = text_field_tag 'x_ship_to_city', '', :class => 'large_input', :size => 16, :placeholder => 'City', :style => 'display: none;'
+  = select_tag 'x_ship_to_state', options_for_select(us_states) , :class => 'large_input nice', :placeholder => 'State', :style => 'display: none;'
+  = text_field_tag 'x_ship_to_zip', '', :class => 'large_input', :size => 16, :placeholder => 'Zip', :style => 'display: none;'

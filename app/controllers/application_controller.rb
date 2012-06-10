@@ -14,10 +14,6 @@ class ApplicationController < ActionController::Base
     has_scope :page
     has_scope :per
 
-    def after_sign_in_path_for(user)
-        user_root_path(user)
-    end
-
     has_scope :columns do |controller, scope, value|
         columns = JSON.parse(value).collect do |column|
             "#{column}.as('`#{column}`')"
@@ -111,15 +107,14 @@ class ApplicationController < ActionController::Base
             before_filter :set_sub_pages
         end
 
-    # Instantiates a clock for views
+        # Instantiates a clock for views
+        def set_current_clock
+            if session[:clock].nil?
+                @clock = Clock.first
+                session[:clock] = @clock
+            end
+        end
 
-
-    def set_current_clock
-      if session[:clock].nil?
-        @clock = Clock.first
-        session[:clock] = @clock
-      end
-    end
         def resource_class; self.class.resource_klass end
 
         def self.resource_class=(klass)
