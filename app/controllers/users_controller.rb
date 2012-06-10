@@ -25,14 +25,19 @@ class UsersController < ApplicationController
         @user = current_user
 
         # stub out a league and draft in case the user wishes to create a private league
-        @league = @user.team.build_league :name => "#{@user.username.capitalize}'s League", :public => false
-        last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
-        dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
-        @draft_date_collection = {}
-        dates.each{ |date|
-            @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
-        }
-        @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
+        @league = nil
+        if @user.team.league_id?
+            @league = @user.team.league
+        else
+            @league = @user.team.build_league :name => "#{@user.username.capitalize}'s League", :public => false
+            last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
+            dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
+            @draft_date_collection = {}
+            dates.each{ |date|
+                @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
+            }
+            @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
+        end
 
         # payment stuff
         @title = 'Sign up for the 2012-2013 Season'
@@ -67,14 +72,22 @@ class UsersController < ApplicationController
 
     def payment_step_class(user)
         cls = []
-        cls << 'btn-default' if user.expired?
+        if user.team.league_id?
+            cls << 'btn-success'
+        else
+            cls << 'btn-default' if user.expired?
+        end
         cls << 'disabled' unless user.team.league_id.nil?
         cls
     end
 
     def league_step_class(user)
         cls = []
-        cls << 'btn-default' if user.expired?
+        if user.team.league_id?
+            cls << 'btn-success'
+        else
+            cls << 'btn-default' if user.expired?
+        end
         cls << 'disabled' if user.team.league_id.nil?
         cls
     end
@@ -88,7 +101,6 @@ class UsersController < ApplicationController
 
     private
         module SessionsHelper
-
             def redirect_back_or(default)
                 redirect_to(session[:return_to] || default)
                 clear_return_to
