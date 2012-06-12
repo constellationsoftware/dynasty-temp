@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
     scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
     scope :with_address, joins { address }.includes { address }
 
-    validates_presence_of :first_name, :last_name
+    validates_presence_of :first_name, :last_name, :username, :phone
     validates_uniqueness_of :email, :username
 
     def gravatar_profile
