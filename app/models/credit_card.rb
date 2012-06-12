@@ -14,13 +14,13 @@ class CreditCard
                   :card_num,
                   :card_code,
                   :expiration_month,
-                  :expiration_day,
+                  :expiration_year,
                   :address,
                   :city,
                   :state,
                   :zip
 
-    validates_presence_of :first_name, :last_name, :amount, :card_num, :card_code, :expiration_month, :expiration_day, :address, :city, :state, :zip
+    validates_presence_of :first_name, :last_name, :amount, :card_num, :card_code, :expiration_month, :expiration_year, :address, :city, :state, :zip
 
     def initialize(attributes = {})
         attributes.each do |name, value|
@@ -29,7 +29,7 @@ class CreditCard
     end
 
     def expiration_date
-        expiration_month.rjust(2, '0') + expiration_day.rjust(2, '0')
+        expiration_month.rjust(2, '0') + expiration_year.rjust(2, '0')
     end
 
     def serialize
