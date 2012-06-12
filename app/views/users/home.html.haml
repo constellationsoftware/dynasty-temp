@@ -28,7 +28,7 @@
                 %strong
                   = team.balance.format
               %p
-                - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.finished?)
+                - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.state == 'finished')
                   /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
                   = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
         - if current_user.is_manager_of? team.league

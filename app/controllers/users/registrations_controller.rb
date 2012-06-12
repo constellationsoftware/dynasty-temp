@@ -1,5 +1,27 @@
 module Users
     class RegistrationsController < Devise::RegistrationsController
+        def create
+            # strip params specific to the user's billing infp
+            same_billing_address = !!(params.delete('same_billing_address') { false })
+            cc_params = params.delete 'credit_card'
+            super
+
+            # create CreditCard from form data
+            cc_params['email'] = @user.email
+            cc_params['phone'] = @user.phone
+            if same_billing_address
+                cc_params['address'] = "#{@user.address.street} #{@user.address.street2}"
+                cc_params['city'] = @user.address.city
+                cc_params['state'] = @user.address.state
+                cc_params['zip'] = @user.address.zip
+            end
+            cc = CreditCard.new(cc_params)
+            pp cc.serialize
+            if @user.valid? && cc.valid?
+                # process the transaction here
+            end
+        end
+
         def edit
             #5.times{ @user.event_subscriptions.build }
             #DynastyEvent.reflect_on_association(:event_subscriptions).options[:conditions] = "#{DynastyEventSubscription.table_name}.user_id = #{@user.id}"

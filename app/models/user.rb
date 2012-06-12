@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
 
     # login via username of email
-    attr_accessor :login
+    attr_accessor :login, :credit_card
 
     # not sure if a new column is needed for this
     alias_attribute :persistence_token, :authentication_token
@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
     scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
     scope :with_address, joins { address }.includes { address }
 
-    validates_presence_of :first_name, :last_name
+    validates_presence_of :first_name, :last_name, :username, :phone
     validates_uniqueness_of :email, :username
 
     def gravatar_profile
