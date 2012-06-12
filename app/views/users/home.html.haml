@@ -49,6 +49,12 @@
               %button.btn.btn-small.btn-danger{ :data => { :toggle => 'modal', :target => '#schedule-draft' } }= I18n.t "#{@draft.state === 'scheduled' ? 're' : ''}schedule_draft", :scope => :user_cp
             - if team.league.teams.count < Settings.league.capacity
               = link_to (I18n.t 'invite', :scope => :user_cp), new_user_invitation_path, :class => "btn btn-small"
+
+
+
+
+
+
         .well.light-well.disabled
           %h2
             Coaches Corner
@@ -89,6 +95,12 @@
           %h2 Recent League Activity
           %p There has been no activity.
   - else
+
+    #well.dark-well
+      %h2
+        TEST DETAILS
+      %p
+        = current_user
     = link_to t('.labels.join_league'), leagues_join_path, :class => 'btn btn-inverse'
     = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
 - else
