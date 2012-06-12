@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
 
     # login via username of email
-    attr_accessor :login
+    attr_accessor :login, :credit_card
 
     # not sure if a new column is needed for this
     alias_attribute :persistence_token, :authentication_token

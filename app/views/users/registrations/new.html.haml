@@ -1,10 +1,10 @@
 = stylesheet_link_tag 'forms'
 = javascript_include_tag 'register'
-- content_for :title, t('.title')
 = devise_error_messages!
-.row
-  .span6
-    = simple_form_for @user, :url => create_user_registration_path, :html => { :id => 'register', :class => [ 'well', 'form-inline' ] } do |f|
+.row-fluid
+  .span12.well.light-well
+    %h2= t('.title')
+    = simple_form_for @user, :url => create_user_registration_path, :html => { :id => 'register', :class => [ 'form-horizontal', 'labels-left'] } do |f|
       = render :partial => 'form', :locals => { :form => f }
       = f.button :submit, 'Submit'
     %small.red * denotes a required field

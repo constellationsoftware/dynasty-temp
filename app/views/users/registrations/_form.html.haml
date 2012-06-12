@@ -1,27 +1,48 @@
-= form.input :email, :as => :email, :required => true
-= form.input :username, :required => true
-- if action_name === 'new'
-  = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
-  = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
-- else
-  = form.input :current_password, :required => true, :input_html => { :autocomplete => 'off' }
-  = form.input :password, :label => 'Enter new password', :required => true, :input_html => { :autocomplete => 'off' }
-  = form.input :password_confirmation, :label => 'Confirm new password', :required => true, :input_html => { :autocomplete => 'off' }
-= form.input :first_name, :required => true
-= form.input :last_name, :required => true
-- unless action_name === 'new'
-  = form.input :phone, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32 }
-= form.simple_fields_for :address, :name => 'Address' do |address|
-  = address.input :street, :label => 'Address'
-  = address.input :street2, :label => 'Address 2', :hint => 'Apt. 123, Suite A, etc.'
-  = address.input :city
-  = address.input :state, :label => 'State/Province'
-  = address.input :zip, :label => 'Zip/Postal Code'
-  = address.input :country, :as => :country, :include_blank => true
-/- unless action_name === 'new'
-/<input type="button" onclick="document.getElementById('formAuthorizeNetPage').submit();">Manage my payment and shipping information</button>
-
-
+.row-fluid
+  .span6
+    = form.input :email, :as => :email, :required => true
+    = form.input :username, :required => true
+    - if action_name === 'new'
+      = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
+      = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
+    - else
+      = form.input :current_password, :required => true, :input_html => { :autocomplete => 'off' }
+      = form.input :password, :label => 'Enter new password', :required => true, :input_html => { :autocomplete => 'off' }
+      = form.input :password_confirmation, :label => 'Confirm new password', :required => true, :input_html => { :autocomplete => 'off' }
+    = form.input :first_name, :required => true
+    = form.input :last_name, :required => true
+    = form.input :phone, :required => true, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32 }
+  .span6
+    - @user.build_address if @user.address.nil?
+    = form.simple_fields_for :address, :name => 'Address' do |address|
+      = address.input :street, :label => 'Address', :required => true
+      = address.input :street2, :label => 'Address 2', :placeholder => 'Apt. 123, Suite A, etc.'
+      = address.input :city, :required => true
+      = address.input :state, :label => 'State/Province', :required => true
+      = address.input :zip, :label => 'Zip/Postal Code', :required => true
+      = address.input :country, :as => :country, :required => true, :priority => [ 'United States' ]
+    /- unless action_name === 'new'
+    /<input type="button" onclick="document.getElementById('formAuthorizeNetPage').submit();">Manage my payment and shipping information</button>
+- @user.credit_card = CreditCard.new
+%h2 Cardholder details
+.row-fluid
+  = simple_fields_for @user.credit_card do |cc|
+    .span6
+      = cc.input :amount, :collection => [ '$250', '$500' ], :input_html => { :class => 'span3' }
+      = cc.input :first_name
+      = cc.input :last_name
+      = cc.input :card_num, :placeholder => '4111111111111111'
+      = cc.input :card_code
+      = cc.input :expiration_month, :collection => Date::MONTHNAMES.compact.inject({}){ |h, v| h[v] = h.length + 1; h }, :include_blank => false, :input_html => { :class => 'span5' }
+      = cc.input :expiration_day, :collection => 1..31, :include_blank => false, :input_html => { :class => 'span3' }
+    .span6
+      #billing-address-toggle.control-group
+        %input{ :name => 'same_billing_address', :type => 'checkbox', :checked => 'checked', :value => 1 } Billing address identical to shipping address
+      #billing-address
+        = cc.input :address
+        = cc.input :city
+        = cc.input :state, :label => 'State/Province', :required => true
+        = cc.input :zip
 
 
 

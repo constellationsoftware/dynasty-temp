@@ -1,0 +1,24 @@
+$required-color:    #ac0e1f;
+$required-size:     0.8em;
+
+.form-horizontal.labels-left {
+    label { text-align: left; }
+
+    abbr[title="required"] {
+        color: $required-color;
+        font-size: $required-size;
+        text-decoration: none;
+    }
+
+    .control-group { margin-bottom: 13px; }
+}
+
+#billing-address-toggle {
+    height: 37px;
+    line-height: 37px;
+
+    input {
+        margin-right: 10px;
+        margin-bottom: 3px;
+    }
+}
