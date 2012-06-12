@@ -168,7 +168,8 @@ group :test do
     gem 'cucumber-rails', :require => false #, '1.2.1'
     gem 'database_cleaner', '0.7.1'
     gem 'guard-cucumber'
-    gem 'email_spec'
+
+
     gem 'factory_girl_rails'
     gem 'rb-fsevent'
     gem 'growl'

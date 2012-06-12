@@ -91,6 +91,17 @@ Dynasty::Application.configure do
     Settings.reload!
 
 
+    # ActiveMerchant
+    # Authorize.net CIM Gateway
+config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    ::GATEWAY = ActiveMerchant::Billing::AuthorizeNetCimGateway.new(
+        :login => "325XVk2Wr7",
+        :password => "37QL56N92fXMhPf2"
+    )
+end
+
+
 end
 
 
