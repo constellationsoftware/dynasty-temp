@@ -6,6 +6,9 @@ module Users
             cc_params = params.delete 'credit_card'
             super
 
+            # create Payment Profile from form data
+
+
             # create CreditCard from form data
             cc_params['email'] = @user.email
             cc_params['phone'] = @user.phone
