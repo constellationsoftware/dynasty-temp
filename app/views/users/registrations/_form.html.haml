@@ -34,7 +34,8 @@
       = cc.input :card_num, :placeholder => '4111111111111111'
       = cc.input :card_code
       = cc.input :expiration_month, :collection => Date::MONTHNAMES.compact.inject({}){ |h, v| h[v] = h.length + 1; h }, :include_blank => false, :input_html => { :class => 'span5' }
-      = cc.input :expiration_day, :collection => 1..31, :include_blank => false, :input_html => { :class => 'span3' }
+      - year_collection = (0...10).inject({}){ |h, v| h[Date.today.year + v] = Date.today.year + v - 2000; h }
+      = cc.input :expiration_year, :collection => year_collection, :include_blank => false, :required => true, :input_html => { :class => 'span3' }
     .span6
       #billing-address-toggle.control-group
         %input{ :name => 'same_billing_address', :type => 'checkbox', :checked => 'checked', :value => 1 } Billing address identical to shipping address
