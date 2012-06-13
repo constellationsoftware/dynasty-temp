@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120612212120) do
+ActiveRecord::Schema.define(:version => 20120613165922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -1186,6 +1186,7 @@ ActiveRecord::Schema.define(:version => 20120612212120) do
     t.string   "username",               :limit => 32
     t.datetime "expired_at"
     t.integer  "customer_profile_id"
+    t.string   "tier"
   end
 
   add_index "dynasty_users", ["email", "encrypted_password"], :name => "index_dynasty_users_on_email_and_encrypted_password"

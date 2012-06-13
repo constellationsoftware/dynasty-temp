@@ -1,6 +1,6 @@
 .row-fluid
   .span6
-    = form.input :email, :as => :email, :required => true
+    = form.input :email, :as => :email, :required => true if @user.email.nil?
     = form.input :username, :required => true
     - if action_name === 'new'
       = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
@@ -28,7 +28,6 @@
 .row-fluid
   = simple_fields_for @user.credit_card do |cc|
     .span6
-      = cc.input :amount, :collection => [ '$250', '$500' ], :input_html => { :class => 'span3' }
       = cc.input :first_name
       = cc.input :last_name
       = cc.input :card_num, :placeholder => '4111111111111111'

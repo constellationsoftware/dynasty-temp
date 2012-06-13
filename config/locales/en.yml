@@ -10,7 +10,7 @@ en:
                 create_league:  'Create Private League'
         registrations:
             new:
-                title:          'New User Registration'
+                title:          'New User Registration for %{tier} league'
         order:
             title:              'Create your dynasty'
             labels:

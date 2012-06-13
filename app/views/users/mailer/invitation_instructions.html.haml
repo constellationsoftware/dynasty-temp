@@ -1,0 +1,8 @@
+%p Congratulations! You have been invited to sign up for Dynasty Owner, the most innovative fantasy football experience you will ever play.
+%p Dynasty Owner is a complete simulation of the ownership experience. You manage your team under actual NFL salary cap rules, using real NFL player salaries. To learn more about the game, click here.
+%p #{@resource.invitor.full_name} has invited you to join his Dynasty Owner League, "#{@resource.invitor.team.league.name}".
+%p To sign up and register using this email address, click on the following URL: #{link_to 'Accept invitation', accept_invitation_url(@resource, :invitation_token => @resource.invitation_token)}
+- unless @resource.message.nil?
+  Here is the message that was included with this invite:
+  = @resource.message
+%p The Dynasty Owner Team

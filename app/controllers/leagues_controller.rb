@@ -1,16 +1,27 @@
 class LeaguesController < ApplicationController
-    before_filter :authenticate_user!
     respond_to :html, :json
+
+    skip_before_filter :check_registered_league, :only => [ :join, :create ]
 
     def join
         @league = League.where{ teams_count < Settings.league.capacity }.first
         @league ||= create_league
         join_league
+        redirect_to edit_team_path current_user.team
     end
 
     def create
         @league ||= create_league(false)
         join_league
+        invite_emails = params.delete('league-invite').reject{ |email| email.nil? || email === '' }
+        message = params.delete('message')
+        invite_emails.each do |email|
+            User.invite! :email => email do |u|
+                u.invitor = current_user
+                u.message = message
+            end
+        end
+        redirect_to edit_team_path current_user.team
     end
 
     def edit
@@ -19,9 +30,9 @@ class LeaguesController < ApplicationController
             last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
             dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
             @draft_date_collection = {}
-            dates.each{ |date|
+            dates.each do |date|
                 @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
-            }
+            end
             @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
         end
     end
@@ -50,8 +61,10 @@ class LeaguesController < ApplicationController
         end
 
         def join_league
-            @league.teams << current_user.team
-            League.increment_counter :teams_count, @league.id
+            unless @league.teams.include? current_user.team
+                @league.teams << current_user.team
+                League.increment_counter :teams_count, @league.id
+            end
         end
 
         def collection

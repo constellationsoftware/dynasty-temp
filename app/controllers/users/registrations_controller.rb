@@ -1,5 +1,6 @@
 module Users
     class RegistrationsController < Devise::RegistrationsController
+        skip_before_filter :check_registered_league
 
         def create
             # strip params specific to the user's billing info
@@ -92,15 +93,14 @@ module Users
                      @transaction_response = GATEWAY.create_customer_profile_transaction(:transaction => @transaction)
 
             end
-
-
+            cc = CreditCard.new(cc_params)
+            pp cc.serialize
+            if @user.valid? && cc.valid?
+                # process the transaction here
+            end
         end
 
-
-
         def edit
-
-
             #5.times{ @user.event_subscriptions.build }
             #DynastyEvent.reflect_on_association(:event_subscriptions).options[:conditions] = "#{DynastyEventSubscription.table_name}.user_id = #{@user.id}"
             #@notification_settings = DynastyEvent.joins{[ event_subscriptions.outer, event_subscriptions.user.outer ]}.eager_load{[ event_subscriptions, event_subscriptions.user ]}
