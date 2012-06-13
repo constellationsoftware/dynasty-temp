@@ -5,15 +5,12 @@
       %span.red
         3000
       SPOTS AVAILABLE IN 2012
-
-
-
 .row-fluid
   %ul.thumbnails
     .span5
       .well.light-well#video
         .flex-video
-          = video_tag "/assets/321.mp4", :controls => "", :preload => "", :width => "100%", :height => "250px", :poster => "321-poster.png"
+          = video_tag "/assets/321.mov", :controls => "", :preload => "", :width => "100%", :height => "250px", :poster => "321-poster.png"
     .span7
       .well.light-well#comparison
         %table.table.table-condensed
@@ -30,6 +27,17 @@
               %th
                 = image_tag "dynasty_logo.png"
           %tbody
+            %tr
+              %td.left_aligned
+                Boring Old Fantasy Football
+              %td
+                = image_tag "checkmark.png"
+              %td
+                = image_tag "checkmark.png"
+              %td
+                = image_tag "checkmark.png"
+              %td
+                –
             %tr
               %td.left_aligned
                 Real NFL Salaries and Cap

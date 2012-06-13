@@ -7,7 +7,7 @@
     .container-fixed
       .row-fluid
         .span12
-          %form.filter-form.form-inline.well
+          %form.filter-form.form-inline.well.light-well
             %h2= t('.title')
             Filter:
             = select_tag 'position', options_for_select(@positions), :class => 'input_small', :prompt => 'Position'
@@ -15,7 +15,7 @@
             = select_tag 'bye', options_for_select(4..11), :class => 'input_small', :prompt => 'Bye Week'
             = text_field_tag 'name', nil, :placeholder => 'Filter by name', :class => 'search-query form-search'
       .row-fluid
-        .span12.well.light-well
+        .span12.well.light-well#research_table
           %table#research.display.all-players-data.table.table-condensed{:border => "0", :cellpadding =>    "0", :cellspacing => "0"}
             %thead
               %tr.research_row

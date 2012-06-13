@@ -1,51 +1,53 @@
 //- content_for :title, "Player Research: #{@player.name.full_name}"
-
+.row-fluid
+  .well.dark-well
+    %a.btn.btn-primary{:href => "/research/"} Back To Research
 .row-fluid.person
   .well.light-well.span8
-    %h2= "Player Research: #{@player.name.full_name}"
+    %h2= "#{@player.name.full_name}"
     %table.table-condensed
 
       %tbody
         %tr
           %th{:rowspan => "7"}
             %img.thumbnail{:src => "http://placehold.it/100x150"}
-          %th.left{:colspan => "7"}
-            %h3
+          %th.left_aligned{:colspan => "7"}
+            %h3.left_aligned
               = @player.real_team.display_name.first_name
               = @player.real_team.display_name.last_name
-            %p
+            %p.left_aligned
               = @player.position.abbreviation.upcase
               (#{@player.phase.regular_position_depth})
 
               2011-2012 Bye Week:
               = @player.contract.bye_week
         %tr
-          %td.left
+          %td.left_aligned
             Contract:
-          %td.left{:colspan => "5"}
+          %td.left_aligned{:colspan => "5"}
             = number_to_currency(@player.contract.summary)
             over
             = @player.contract.length
             years, ending in
             = @player.contract.end_year
         %tr
-          %td.left
+          %td.left_aligned
             %strong Yearly Salary:
-          %td.left{:colspan => "5"}= number_to_currency(@player.contract.amount)
+          %td.left_aligned{:colspan => "5"}= number_to_currency(@player.contract.amount)
         %tr
-          %td.left
+          %td.left_aligned
             %strong Free Agent:
-          %td.left{:colspan => "5"}= @player.contract.free_agent_year
+          %td.left_aligned{:colspan => "5"}= @player.contract.free_agent_year
         %tr
-          %td.left
+          %td.left_aligned
             %strong Birth Date:
-          %td.left= @player.birth_date
-          %td.left
+          %td.left_aligned= @player.birth_date
+          %td.left_aligned
             %strong Height:
-          %td.left= @player.phase.height
-          %td.left
+          %td.left_aligned= @player.phase.height
+          %td.left_aligned
             %strong Weight:
-          %td.left= @player.phase.weight
+          %td.left_aligned= @player.phase.weight
 
 
   .span4
@@ -108,7 +110,7 @@
     .row-fluid
       %h2
         This Season's Performance
-      %table.season-data.table.table-striped.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %table.table.table-striped.table-bordered.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
             %th
@@ -152,7 +154,7 @@
     .row-fluid
       %h2
         Career Performance
-      %table.research.display.career-data.table.table-bordered.datatable{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+      %table.research.display.table.table-bordered.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
         %thead
           %tr
             %th
@@ -188,6 +190,15 @@
             %td= psp.sacks_against_points
             %td= psp.fumbles_points
             %td= psp.games_played
+
+    .row-fluid
+      %h2
+        Offensive Stats
+      %table.research.display.table.table-bordered.tabled-condensed
+    .row-fluid
+      %h2
+        Defensive Stats
+      %table.research.display.table.table-bordered.tabled-condensed
   - cache do
     .span4
       .well
