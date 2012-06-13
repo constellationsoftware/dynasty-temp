@@ -1,14 +1,10 @@
 .row-fluid
   .span6
-    = form.input :email, :as => :email, :required => true if @user.email.nil?
+    %input{ :type => 'hidden', :name => 'user[tier]', :value => params[:tier] }
+    = form.input :email, :as => :email, :required => true
     = form.input :username, :required => true
-    - if action_name === 'new'
-      = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
-      = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
-    - else
-      = form.input :current_password, :required => true, :input_html => { :autocomplete => 'off' }
-      = form.input :password, :label => 'Enter new password', :required => true, :input_html => { :autocomplete => 'off' }
-      = form.input :password_confirmation, :label => 'Confirm new password', :required => true, :input_html => { :autocomplete => 'off' }
+    = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
+    = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
     = form.input :first_name, :required => true
     = form.input :last_name, :required => true
     = form.input :phone, :required => true, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32 }
@@ -43,30 +39,3 @@
         = cc.input :city
         = cc.input :state, :label => 'State/Province', :required => true
         = cc.input :zip
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

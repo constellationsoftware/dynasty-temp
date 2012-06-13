@@ -84,7 +84,7 @@ class User < ActiveRecord::Base
 
     validates_presence_of :first_name, :last_name, :username, :phone
     validates_uniqueness_of :email, :username
-    validates_inclusion_of :tier, :in => Proc.new{ Settings.league.tiers.keys }
+    validates_inclusion_of :tier, :in => [ 'all-pro', 'legend' ]
 
     def gravatar_profile
         hash = Digest::MD5.hexdigest(self.email)
