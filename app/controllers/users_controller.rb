@@ -2,9 +2,10 @@ class UsersController < ApplicationController
     before_filter :authenticate_user!
     before_filter :signed_in_user, only: [ :edit, :update ]
     before_filter :correct_user,   only: [ :edit, :update ]
+    skip_before_filter :authenticate_user!, :only => [ :index, :test_mail ]
 
     helper :authorize_net
-    helper_method :payment_step_class, :league_step_class, :team_step_class
+    helper_method :payment_step_class, :league_step_class, :team_step_class, :draft_schedule_dates
 
     def home
         @user = current_user
@@ -19,45 +20,32 @@ class UsersController < ApplicationController
             end
             @draft = @league.draft.nil? ? @league.build_draft(:start_datetime => dates.first) : @league.draft
         end
-
-
     end
 
-
-
-
-
-    def order
+    def register_league
         @user = current_user
 
-        # stub out a league and draft in case the user wishes to create a private league
-        @league = nil
-        if @user.team.league_id?
-            @league = @user.team.league
-        else
-            @league = @user.team.build_league :name => "#{@user.username.capitalize}'s League", :public => false
-            last_draft_day = Season.current.start_date.at_beginning_of_week(:tuesday)
-            dates = (last_draft_day.advance(:weeks => -1)..last_draft_day)
-            @draft_date_collection = {}
-            dates.each{ |date|
-                @draft_date_collection[date.strftime(I18n.t 'draft_date_format', :scope => 'user_cp')] = date
-            }
-            @league.build_draft(:start_datetime => dates.first) if @league.draft.nil?
+        # TODO: remove this once testing is done
+        if @user.team.nil?
+            @user.team = Team.new :name => "#{@user.username.capitalize}'s Team"
+            @user.save
         end
 
-        # payment stuff
-        @title = 'Sign up for the 2012-2013 Season'
-        @amount = 275.00
-        @purchase_type = "item1<|>2012-2013 Season Membership<|>275.00<|>N"
-        @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @amount, :relay_url => payments_relay_response_url(:only_path => false))
+        # stub out a league and draft in case the user wishes to create a private league
+        @league = @user.team.league.nil? ? @user.team.build_league(:name => "#{@user.username.capitalize}'s League") : @user.team.league
     end
 
-    def process_payment
-
-    end
-
-    def accept_invitation
-
+    def draft_schedule_dates
+        season_start = Season.current.start_date
+        Time.zone = "Eastern Time (US & Canada)"
+        dates = [
+            season_start.beginning_of_week(:saturday),
+            season_start.beginning_of_week(:sunday)
+        ]
+        dates.collect do |d|
+            date = DateTime.civil_from_format('local', d.year, d.month, d.day, 12, 0, 0)
+            [ l(date, :format => :draft_date), date ]
+        end
     end
 
     def test_mail

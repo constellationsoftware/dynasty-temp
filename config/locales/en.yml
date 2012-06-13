@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+    time:
+        formats:
+            draft_date: '%A %B%e, %Y @ %I:%M%p'
     users:
         home:
             labels:
@@ -10,7 +13,7 @@ en:
                 create_league:  'Create Private League'
         registrations:
             new:
-                title:          'New User Registration'
+                title:          'New User Registration for %{tier} league'
         order:
             title:              'Create your dynasty'
             labels:

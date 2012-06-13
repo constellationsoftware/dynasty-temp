@@ -1,5 +1,7 @@
 #= require_self
 $ ->
+    $('#registration-steps .btn').on 'click', -> return false
+
     $('#billing-address').hide()
     $('#billing-address-toggle input[type="checkbox"]').on 'change', (e) ->
         checked = $(@).prop('checked')

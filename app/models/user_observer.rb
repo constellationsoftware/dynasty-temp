@@ -6,8 +6,8 @@ class UserObserver < ActiveRecord::Observer
     def after_create(user)
         #address = user.build_address
         #address.save
-        team = user.build_team
-        team.name = "#{user.username.capitalize}'s Team"
-        team.save!
+        #team = user.build_team
+        #team.name = "#{user.username.capitalize}'s Team"
+        #team.save!
     end
 end

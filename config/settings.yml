@@ -7,6 +7,9 @@ team_pay_day:               tuesday
 player_pay_day:             wednesday
 week_start_day:             thursday
 league:
+    tiers:
+        all-pro:            250
+        legend:             500
     capacity:               12 # NOTE: changing this may require a new scheduling plan
     password_min_length:    6
     password_max_length:    32

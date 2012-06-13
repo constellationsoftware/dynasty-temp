@@ -1,8 +1,13 @@
 = stylesheet_link_tag 'forms'
 = javascript_include_tag 'register'
+#registration-steps.btn-group{ :data => { :toggle => 'buttons-radio' } }
+  .btn.btn-primary 1. Register
+  .btn.btn-primary.disabled 2. Create/Join a league
+  .btn.btn-primary.disabled 3. Create a team
+
 .row-fluid
   .span12.well.light-well
-    %h2= t('.title')
+    %h2= t('.title', :tier => params[:tier])
     = simple_form_for @user, :url => create_user_registration_path, :html => { :id => 'register', :class => [ 'form-horizontal', 'labels-left'] } do |f|
       = render :partial => 'form', :locals => { :form => f }
       = f.button :submit, 'Submit'

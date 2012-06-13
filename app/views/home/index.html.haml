@@ -200,9 +200,9 @@
           %tr
             %td.left_aligned
             %td
-              %a.btn.btn-danger{:href => new_user_registration_path} SIGN UP!
+              %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'all-pro') } SIGN UP!
             %td
-              %a.btn.btn-danger{:href => new_user_registration_path} SIGN UP!
+              %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'legend') } SIGN UP!
 
 
 - unless user_signed_in?

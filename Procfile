@@ -7,7 +7,7 @@ jobs: 					rake jobs:work
 #guard:					bundle exec guard
 juggernaut-server:		node_modules/.bin/juggernaut
 juggernaut-listener: 	./script/juggernaut_listener
-
+log:                tail -f -n 0 log/development.log
 
 
 

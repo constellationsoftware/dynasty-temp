@@ -1,8 +1,19 @@
-= javascript_include_tag 'leagues/form'
-= stylesheet_link_tag 'leagues/form'
 - if form.object.id.nil?
   = form.input :name, :required => true, :input_html => { :class => 'input-text' }
-- unless @league.draft.nil?
-  = form.simple_fields_for :draft do |draft|
-    = draft.input :start_datetime, :as => :collection_select, :label => 'Draft Date', :include_blank => false, :collection => @draft_date_collection#, :input_html => { :class => 'input-text' }
-    = draft.input :start_datetime, :as => :time, :include_blank => false, :ampm => true, :minute_step => 15
+
+.control-group
+  %label.control-label.required{ :for => 'draft_date' }
+    %abbr{ :title => 'required' } *
+    Draft date
+  .controls
+    = select_tag :draft_date, options_for_select(draft_schedule_dates), :id => 'draft_date', :class => 'span8', :include_blank => false
+
+.control-group
+  .controls Invite friends to your league
+  - (Settings.league.capacity - 1).times do |i|
+    %div
+      %input{ :type => 'text', :name => "league-invite[]", :placeholder => "Email address #{i + 1}" }
+.control-group
+  %label.control-label{ :for => 'message' } Personal message (optional)
+  .controls
+    %textarea#message.input-xlarge.span12{ :name => 'message', :rows => 4 }
