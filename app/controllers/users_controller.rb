@@ -33,8 +33,6 @@ class UsersController < ApplicationController
 
         # stub out a league and draft in case the user wishes to create a private league
         @league = @user.team.league.nil? ? @user.team.build_league(:name => "#{@user.username.capitalize}'s League") : @user.team.league
-        #@draft_dates = draft_schedule_dates
-        #@league.build_draft(:start_datetime => @draft_dates.first) if @league.draft.nil?
     end
 
     def draft_schedule_dates
@@ -45,7 +43,8 @@ class UsersController < ApplicationController
             season_start.beginning_of_week(:sunday)
         ]
         dates.collect do |d|
-            DateTime.civil_from_format('local', season_start.year, season_start.month, season_start.day, 12, 0, 0)
+            date = DateTime.civil_from_format('local', d.year, d.month, d.day, 12, 0, 0)
+            [ l(date, :format => :draft_date), date ]
         end
     end
 

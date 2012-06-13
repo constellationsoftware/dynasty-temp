@@ -20,8 +20,6 @@
           %button.close{ :data => { :dismiss => 'modal' } } ×
           %h3 Create a Private League
         .modal-body
-          -#= simple_fields_for @draft do |draft|
-          -#  = draft.input :start_datetime, :label => 'Draft Start Time', :collection => draft_schedule_dates
           = render :partial => 'leagues/form', :locals => { :form => f }
         .modal-footer
           = f.button :submit, 'Create League'
