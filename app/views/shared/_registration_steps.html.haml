@@ -1,0 +1,10 @@
+= javascript_include_tag 'registration_steps'
+= stylesheet_link_tag 'registration_steps'
+
+#registration-steps.row-fluid
+  .span12
+    .btn-group-wrap
+      .btn-group{ :data => { :toggle => 'buttons-radio' } }
+        .btn.btn-primary{ :class => step_classes[0] } 1. Register
+        .btn.btn-primary{ :class => step_classes[1] } 2. Create/Join a league
+        .btn.btn-primary{ :class => step_classes[2] } 3. Create a team

@@ -14,16 +14,11 @@ en:
         registrations:
             new:
                 title:          'New User Registration for %{tier} league'
-        order:
-            title:              'Create your dynasty'
-            labels:
-                buttons:
-                    payment:        'Give us your money'
-                    league:         'Join a league'
-                    team:           'Create your team'
-                    join_public:    'Join a public league'
-                    join_private:   "Join %{name}'s league"
-                    create_private: 'Create a new private league'
+        team:
+            edit:
+                title:              'Edit Team Details'
+            show:
+                title:              'Team Details'
 
     nav:
         signed_in:      "Hello, %{attribute}"

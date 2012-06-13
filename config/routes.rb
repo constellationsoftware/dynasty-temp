@@ -24,7 +24,6 @@ Dynasty::Application.routes.draw do
     match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
     match '/register/league', :to => 'users#register_league', :as => 'register_league'
-    match '/register/team', :to => 'users#register_team', :as => 'register_team'
 
     if Rails.env.development?
         mount Users::Mailer::Preview => 'mail_view'
