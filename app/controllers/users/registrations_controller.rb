@@ -90,7 +90,7 @@ module Users
 
                     ## Perform the transaction
                      @transaction_response = GATEWAY.create_customer_profile_transaction(:transaction => @transaction)
-                @user.save
+
             end
 
 

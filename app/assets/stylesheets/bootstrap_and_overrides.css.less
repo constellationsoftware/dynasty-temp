@@ -1,5 +1,31 @@
 @import "twitter/bootstrap/bootstrap";
 
+// Large Destkop Tweaks
+@media (min-width: 1200px) {
+
+        #payouts h1 {
+            padding-left: 25px;
+            padding-right: 25px;
+            font-size: 32px !important;
+            td {
+                padding: 5px;
+            }
+        }
+
+        #comparison {
+            font-size: 22px !important;
+            line-height: 32px !important;
+            table td {
+                padding: 3px !important;
+            }
+        }
+}
+
+// Border-box style box-sizing
+/* apply a natural box layout model to all elements */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+
 // Account for fixed nav(s) - this has to stay here.
 body {
     padding-top: 120px;
@@ -70,8 +96,7 @@ body {
 @baseLineHeight: 26px;
 
 @headingsFontFamily: Freshman;
-@baseFontFamily: 'Droid Sans',
-sans-serif
+@baseFontFamily: 'Droid Sans', sans-serif
 
 ;
 
@@ -83,26 +108,102 @@ h2, h3, h4, h5, h6 {
     font-weight: regular;
 }
 
+.red-heading {
+    color: @red;
+    text-shadow: 0 1px 1px @black;
+    font-size: 26px;
+    margin-top: 0;
+}
 .large-text {
     font-size: 200% !important;
 
 }
 
+.white_bg {
+}
+
+#comparison {
+    font-size: 13px;
+    line-height: 18px;
+    padding: 0px;
+    border-top: 5px @brightBlue solid;
+    border-bottom: 5px @brightBlue solid;
+        table {
+            margin-bottom: 0;
+            td {
+                padding: 0px;
+                font-weight: bold;
+            }
+        }
+}
+
+#video {
+
+    padding: 0px;
+    .flex-video {
+        margin-bottom: 0px !important;
+    }
+}
+#payouts {
+    width: 100%;
+    td {
+        font-weight: bold;
+    }
+    th {
+        margin: 0px !important;
+        padding: 1px !important;
+        h1 {
+            margin: 0 !important;
+            padding-left: 17px;
+            padding-right: 17px;
+            width: 100% !important;
+        }
+
+        .btn-danger {
+            .transition(.15s, ease-in-out);
+            &:hover {
+            .scale(1.50) !important;
+            }
+        }
+    }
+}
+
 h1 {
+
     margin-left: 6px;
     text-align: center;
     color: @white;
     font-size: 26px;
-    font-weight: regular;
+    font-weight: normal !important;
+    letter-spacing: 1px;
     #gradient > .vertical(@navdarkBlue, @navlightBlue);
-    text-shadow: 0 2px 5px @black;
+    text-shadow: 0 1px 1px @black;
+    border-bottom: solid 10px @lightblue;
+    padding-bottom: -10px;
+    margin-bottom: 10px;
+
+
 }
+
+    .simple {
+        background-color: none !important;
+        text-align: left;
+        background: none;
+        color: @blue;
+        border: none;
+        margin: 0;
+        line-height: 36px;
+    }
 
 //* Core Colors
 
 @bodyBackground: tranparent;
 
 @red: #BD1D2C;
+@darkRed: @red - #111;
+.dark_red {
+    color: @darkRed;
+}
 @blue: #101940;
 @lightblue: #9DA6B4;
 
@@ -279,19 +380,20 @@ h1 {
 
 h2 {
     position: relative;
-    font-size: 18px !important;
-    line-height: 22px;
+    font-size: 22px !important;
+    line-height: 26px;
     color: @white;
-    width: 95%;
+    width: 100%;
     background-color: @brightBlue;
     font-family: @headingsFontFamily !important;
     font-weight: bold;
-    padding: 3px 10px 6px 15px;
-    margin: 5px 10px 10px -39px !important;
+    padding: 5px 10px 6px 15px;
+    margin: 0 0 10px -39px !important;
+    margin-bottom: 5px;
     text-shadow: 0px 1px 2px #111;
-    -webkit-box-shadow: 0px 2px 4px #888;
-    -moz-box-shadow: 0px 2px 4px #888;
-    box-shadow: 0px 2px 4px #888;
+    -webkit-box-shadow: 0px 1px 2px #888;
+    -moz-box-shadow: 0px 1px 2px #888;
+    box-shadow: 0px 1px 2px #888;
 }
 
 h2:after {
@@ -322,8 +424,8 @@ h2.simple:before {
 //* Background Gradient
 //
 html {
-    background: url('noise.png') repeat top left, -webkit-linear-gradient(top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.88));
-    height: 100%;
+    background: url('noise.png') repeat top left, -webkit-linear-gradient(top, rgba(255, 255, 255, 0.55), rgba(55, 55, 55, 0.95));
+    min-height: 100%;
 }
 
 //* Footer Background
@@ -375,6 +477,10 @@ html {
     }
 }
 
+.left_aligned {
+    text-align: left !important;
+    padding-left: 5px !important;
+}
 .dark-well {
     background: url('noise.png') repeat top left;
 
@@ -422,3 +528,84 @@ table.dataTable td {
     font-size: 16px;
 }
 
+// RESPONSIVE VIDEO (FROM ZURB)
+.flex-video {
+  position: relative;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  height: 0;
+  margin-bottom: 0px;
+  overflow: hidden;
+  background: @black;
+}
+
+.flex-video.widescreen { padding-bottom: 57.25%; }
+.flex-video.vimeo { padding-top: 0; }
+
+.flex-video iframe,
+.flex-video object,
+.flex-video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+@media only screen and (max-device-width: 800px), only screen and (device-width: 1024px) and (device-height: 600px), only screen and (width: 1280px) and (orientation: landscape), only screen and (device-width: 800px), only screen and (max-width: 767px) {
+  .flex-video { padding-top: 0; }
+}
+
+.accordion-group {
+    border: none !important;
+}
+
+h2 a.accordion-toggle {
+
+    font-size: 22px !important;
+    line-height: 26px;
+    color: @white !important;
+    width: 100%;
+    background-color: @brightBlue;
+    font-family: @headingsFontFamily !important;
+    font-weight: bold;
+        &:hover {
+            color: @white;
+            background-color: @brightBlue !important;
+            text-shadow: 0 0 55px #FFF, 0 0 35px #FFF, 0 0 5px #FFF;
+        }
+}
+
+// Wide Modal for Signup
+.modal-signup {
+    //new custom width
+    width: 640px;
+    height: 650px;
+    //must be half of the width, minus scrollbar on the left (30px)
+    margin: -400px 0 0 -350px;
+    .modal-body {
+        height: 760px;
+        max-height: 600px;
+    }
+}
+
+.smaller {
+    font-size: 22px !important;
+}
+
+#floating-signup {
+    display: block;
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    z-index: 25000;
+    padding: 5px;
+    margin: 0px !important;
+    margin-bottom: 0px !important;
+
+    a {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 36px;
+        .box-shadow(0 0 55px @darkred);
+    }
+}

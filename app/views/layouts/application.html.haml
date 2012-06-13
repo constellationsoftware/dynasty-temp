@@ -5,11 +5,12 @@
 /[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
 /[if IE 9 ]    <html class=\"ie9\" lang=\"en\">
 /[if (gt IE 9)|!(IE)]
-%head
+%headb
   %meta{ :charset => "utf-8" }
   %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
   %title= 'Dynasty Owner'
+  %script{:src => "http://api.html5media.info/1.1.5/html5media.min.js"}
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team
     :javascript
@@ -38,5 +39,97 @@
 -#-# Page Footer
 = render :partial => "shared/dynasty_footer"
 -#-# Modals
--#- unless user_signed_in?
+- unless user_signed_in?
+
+
+
+  .modal.modal-signup#signupModal.fade
+
+    .modal-body
+      .row-fluid
+        .span12
+          %h1.simple
+            %span.dark_red
+              SIGN UP
+            TO CREATE OR JOIN A LEAGUE!
+      .row-fluid
+        %table.table.span12#payouts
+          %thead
+            %tr
+              %th
+                .row-fluid
+                  %h1.span12.smaller
+                    League Type:
+              %th
+                .row-fluid
+                  %h1.span12.smaller
+                    All-Pro
+              %th
+                .row-fluid
+                  %h1.span12.smaller
+                    Legend
+          %tbody
+            %tr
+              %td.left_aligned
+                Number of Teams in Each League
+              %td
+                12
+              %td
+                12
+            %tr
+              %td.left_aligned
+                Annual League Fee
+              %td
+                $250
+              %td
+                $500
+            %tr
+              %td.left_aligned
+                League Champion Pay
+              %td
+                $750
+              %td
+                $2,500
+            %tr
+              %td.left_aligned
+                7-Year Payout: League Champion
+              %td
+                $50/yr.
+              %td
+                $150/yr.
+            %tr
+              %td.left_aligned
+                Runner Up Pay
+              %td
+                $250
+              %td
+                $750
+            %tr
+              %td.left_aligned
+                7-Year Payout: Runner Up
+              %td
+                $25/yr.
+              %td
+                $75/yr.
+            %tr
+              %td.left_aligned
+                7-Year Payout: League Efficiency
+              %td
+                $25/yr.
+              %td
+                $75/yr.
+            %tr
+              %td.left_aligned
+                Grand Prize Top Tier Efficiency
+              %td
+                $10,000
+              %td
+                $20,000
+            %tr
+              %td.left_aligned
+              %td
+                %a.btn.btn-danger{:href => new_user_registration_path} SIGN UP!
+              %td
+                %a.btn.btn-danger{:href => new_user_registration_path} SIGN UP!
+
 

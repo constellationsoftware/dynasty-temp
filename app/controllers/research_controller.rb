@@ -21,7 +21,7 @@ class ResearchController < ApplicationController
 
     def index
 
-        if user_signed_in?
+        if user_signed_in? && current_user.team.league
             @league = League.find(current_user.team.league_id)
             @league_players = @league.players.all
 

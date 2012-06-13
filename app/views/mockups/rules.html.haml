@@ -1,114 +1,128 @@
 .row-fluid
   .well.light-well.span12
-    / start slipsum code
-    :markdown
-      # How To Play Dynasty Owner
-
-      ## I. Introduction
-
-        Dynasty Owner is a unique way for diehard football fans to enjoy fantasy football. It combines the best aspects of       traditional fantasy football with the most addictive and fulfilling aspects of an economic commodity market and       sports ownership experience.
-
-        Dynasty Owner puts you in the shoes of a General Manager and owner in the NFL. You will be responsible for salary       cap maneuvering, scouting of offensive linemen and individual defensive players, and choosing players based on their       value relative to their real-life NFL salaries. Even the depth of your bench is critical in Dynasty Owner.
-
-        Transactions are completed in Dynasty Dollars. The Dynasty Dollars you win at the end of the season can be used to       pay your annual fee, can be used to bolster next season’s roster, or can be sold on the Marketplace for cold, hard       cash. Once you think you have built a mega-valuable franchise, the Marketplace allows you to cash out and sell your       franchise for U.S. Dollars and begin building your next dynasty.
+    %h1
+      How To Play Dynasty Owner
+    .accordion#faq-accordion
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseOne", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            I. Introduction
 
 
+        #collapseOne.accordion-body.collapse.in
+          :markdown
+            Dynasty Owner is a unique way for diehard football fans to enjoy fantasy football. It combines the best     aspects of       traditional fantasy football with the most addictive and fulfilling aspects of an  economic   commodity market and       sports ownership experience.
 
-      ## II.  Getting Started
+            Dynasty Owner puts you in the shoes of a General Manager and owner in the NFL. You will be responsible for    salary       cap maneuvering, scouting of offensive linemen and individual defensive players, and choosing    players based on their       value relative to their real-life NFL salaries. Even the depth of your bench  is  critical in Dynasty Owner.
 
-      1.  Choose Your Competition Level – There are two different levels of competition within Dynasty Owner. The game is       the same. Levels will vary in Dynasty Dollar (DD) conversion, league revenue percentages, and payouts. They are as       follows:
+            Transactions are completed in Dynasty Dollars. The Dynasty Dollars you win at the end of the season can be    used to       pay your annual fee, can be used to bolster next season’s roster, or can be sold on the   Marketplace for cold, hard       cash. Once you think you have built a mega-valuable franchise, the    Marketplace allows you to cash out and sell your       franchise for U.S. Dollars and begin building your   next   dynasty.
 
-        ### PLACEHOLDER FOR COMPARISON CHART
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseTwo", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            II.  Getting Started
+        #collapseTwo.accordion-body
+          :markdown
+            1.  Choose Your Competition Level – There are two different levels of competition within Dynasty Owner. The   game     is       the same. Levels will vary in Dynasty Dollar (DD) conversion, league revenue percentages,   and payouts.     They are as       follows:
 
-
-
-
-
-      2.  Starting a Franchise – Upon joining a league, the franchise owner must pay the selected Buy In amount which is an       annual franchise fee.
-
-      3. Initial draft – Upon the creation of a new league, an Initial Draft will be held that includes all players eligible       for the upcoming NFL season. Draft order will be random, and will reverse in alternating rounds (i.e. “snake” format).       By drafting a player in the Initial Draft and keeping the player on your roster by the beginning of Week 1, you       assumed the athlete’s existing NFL contract.  All undrafted players will be considered Free Agents. Future years will       hold an annual rookie draft – reference “Rookie Draft”.
-
-      4.  Roster – Each roster will consist of 30 players. A franchise owner will assume all contracts of players that are       on the franchise’s roster during any given NFL week. Rosters will also include two (2) Injured Reserve (IR) positions.        These are undraftable positions, but may be filled during the season as the NFL determines the player is injured,       but Franchise Owners are still responsible for their respective salary(s).  Healthy players may not be placed on IR.        A roster must consist of the positions listed below:
-
-        1.  Starters – QB, 2 RB, 2 WR, TE, K, OFlex (WR or RB), 2 DL, 2 LB, 2DB, and DFlex (DL, LB or DB).
-
-        2.  Bench – QB, 2 RB, 2 WR, TE, K, OFlex (WR or RB), 2 DL, 2 LB, 2DB, and DFlex (DL, LB or DB).
-
-      5. Scoring –
-      Need to add all points as delivered to Ben.
-
-      6. Bench Scoring – Championship teams and Dynasty’s are built with depth.  Bench players are vital to a team’s success       and will earn points at a scale that is 33% of those earned by the Starters.
-
-      7. Roster Freeze Date – On the Monday following Week 8 of every NFL season (Roster Freeze Date), the rosters shall be       frozen until free agency begins the following spring.
-
-      8. Revenue Share Pot – The following distributions will be made out of Dynasty Dollars that are submitted to a       league’s Revenue Share Pot:
-
-      9.  Game winners
-
-            Winner of weekly matchup: 12.0% of salary cap
-            Loser of weekly matchup: 6.0% of the salary cap
-            Winner of Round 1 playoff game: 23% of the salary cap
-            Loser of Round 1 playoff game: 11% of the salary cap
-            Winner of Round 2 playoff game: 21.5% of the salary cap
-            Loser of Round 2 playoff game: 43% of the salary cap
-            Winner of Dynasty Bowl: $USD champ payout + annuity
-            Loser of Dynasty Bowl: $USD runner up payout + annuity
-
-      10. Luxury Taxes – Luxury Taxes (as later explained in greater detail) will be distributed to owners (who are under       the salary cap) evenly, on a weekly basis.
-
-      11. Year-End Payouts – Throughout the year specific events create revenue for the league, as follows:  adding a       player, dropping a player, trading a player, disputing a trade, and blind waiver auctions.  All franchises can view       the league bank account.  Upon completion of the Dynasty Bowl, Franchises will receive their equal portion of the       balance.  This revenue share will be paid in Dynasty Dollars and will increase, depending on the amount of years that       a league has been in existence (until the maximum is reached), in accordance with the following chart:
-
-        ### PLACEHOLDER FOR CHART ###
+              ### PLACEHOLDER FOR COMPARISON CHART
 
 
 
-      12. Team Activity – If a franchise’s bank account has a negative balance for  two consecutive weeks, then Dynasty       Owner will take control of the franchise and may run the franchise in any manner that Dynasty Owner sees fit. Upon       abandonment, Dynasty Owner reserves the right to sell the team in the Marketplace in their sole discretion.
-
-      ##III.  Coach’s Corner
-
-      1.  Salary Cap – Prior to the Annual Draft, Dynasty Owner will set a Salary Cap. For the 2012 Dynasty Owner season the       Salary Cap is set at $85,000,000.  There will be a Hard Cap equal to one hundred twenty percent (120%) of the Salary       Cap -- $102,000,000. A franchise owner may not complete a transaction that would result in the franchise exceeding the       Hard Cap. There will be a Salary Floor equal to eighty percent (80%) of the Salary Cap -- $68,000,000. A franchise       owner must maintain a salary level of at least the Salary Floor each week of the season. Franchise owners may elect to       spend under the Salary Floor, but will still be responsible for the full Salary Floor amount.  Any deficit below the       Salary Floor will be debited from that franchise on a dollar-for-dollar basis.
-
-      2.  Luxury Tax – A franchise owner may not exceed the Salary Cap without paying a Luxury Tax equal to the amount by       which a franchise owner exceeds the Salary Cap. Example:  Spending $102MM will result in Luxury taxes of an additional       $17MM ($102 less cap of $85) for a total payroll of $119MM.  Luxury Taxes will be split evenly between the Fed and a       Luxury Tax Pot. Those Luxury Taxes being paid to the Luxury Tax Pot will be divided weekly among the teams that did       not pay Luxury Tax for that week.
-
-      3.  Player salaries – On a weekly basis, each franchise owner’s Dynasty Account will be debited the Dynasty Dollars       associated with each of his players’ weekly share of annual contracts, as conclusively determined by Dynasty Owner.        Salaries will include all signing bonuses and performance bonuses.
-
-      4.  Waiving a Player – In the instance where an NFL player’s salary is fully or partially guaranteed, the franchise       owner who cuts this player will similarly be responsible to pay the guaranteed portion of the contract. As an example,       if Player X’s contract is $100 million over 10 years and $50 million is guaranteed, then the guaranteed portion of the       contract (for Dynasty Owner purposes) is $10 million per year for the first five years. If the franchise owner cuts       Player X after the second year of the contract, then the franchise owner will be responsible to pay a $30MMDD lump sum       upon waiving the player, which represents the future guaranteed portion of the contract. Alternately, if the franchise       holds Player X for 5 years, paying $50MM in total, and then drops Player X – the franchise met the guaranteed portion       and would only owe associated transaction costs.  There are two exceptions: 1) After this player is waived, the       player’s contract is no longer deemed to be guaranteed to the player’s subsequent owners within the league. Therefore,       subsequent franchise owners may later waive the player without incurring an obligation to pay the future guaranteed       portion in a lump sum (as the first franchise owner would be).  2) A franchise owner will not be responsible to pay       the future guaranteed portion of the contract if the player is waived by his NFL team.  If a franchise owner waives a       player from a roster, then the other teams will be able to acquire the waived player during a Blind Auction (as later       explained), which Dynasty Owner will schedule within 72 hours of the waiver. If no franchise bids on the player, then       the player becomes a free agent.
-
-      5. Free Agency – If a player renegotiates a contract with his NFL team without becoming a free agent, then the       franchise owner who currently owns that player will have the right of first refusal to keep the player under his       renegotiated contract, provided the franchise owner assumes the new contract. If that franchise owner does not opt to       keep the player, then the player will be placed in a Blind Auction. A franchise owner that adds a player after Week 1       and before the Roster Freeze Date will be pay a transaction fee equal to 2.5% of the player’s annual salary, half       payable to the Revenue Pot and half payable as a transaction fee. A franchise owner that waives a player after Week 1       and before the Roster Freeze Date will pay a fee equal to 2.5% of the amount of salary remaining on the player’s       contract, half payable to the Revenue Pot and half payable as a transaction fee (in addition to the guaranteed portion       of the contract, if any). There will be no additional fee for signings or waivers that occur between the Super Bowl       and Week One of the next season.
-
-      6.  Rookie draft – Beginning in the second year of a league, a Rookie Draft will be held within two weeks of the NFL       draft, to include all rookies entering the league from the most recent draft. The Annual Draft will be five rounds.       Draft order for all rounds will be in reverse order of record in the prior season, with ties to be broken with total       season points, and then head-to-head outcomes (with the worse team to receive the earlier draft position).  Franchises       may draft players and store them on the Practice Squad, provided the players are either cut or added to the Roster       before Week 1.
-
-      7.  Auctions
-
-      8.  Blind Auction – A Blind Auction is an auction in which no franchise may view the bids from other franchises.       Franchise owners will be bidding with Dynasty Dollars in their account.  The winning bidder will receive the right to       sign the player at his current contract. The winning bid will be considered a transaction fee.  A Blind Auction will       be held in the following scenarios:
-
-        1.  Except in a league’s first year, each franchise owner will have the opportunity to bid to the rights to sign all       NFL players who signed a new contract within that offseason.
-
-        2.  When a player renegotiates his NFL contract, and the franchise owner that owns the player opts not to exercise       the franchise’s right of first refusal.
 
 
-      8. Trades – Collusion through trades or any other transaction or omission in Dynasty Owner is grounds for forfeiting a       franchise without refund or other recourse, as further described in the Terms and Conditions. There will be a ten       percent (10%) transaction fee for all trades of draft picks, players, and/or Dynasty Dollars. All parties to a trade       will be responsible for paying the transaction fee, which will be based upon the value of the commodities that each       franchise owner receives.  Example:  Franchise X cannot trade $10MM DD with Franchise Y for $1MM DD.  All trades will       be subject to league review by other frachise owners for 72 hours.  If seven (7) or more franchise owners vote against       a trade – it will be cancelled.  No players, draft picks, or $DD will be exchanged.  For purposes of calculating the       transaction fee, a player’s value is the amount of salary remaining on his contract.  Values for draft picks in the       Rookie Draft will be assigned prior to each years season start.  The values  for the 2012 season are listed on the       chart below.  Future years, up to 5 years, will be inflated by 5.0% per year.
+            2.  Starting a Franchise – Upon joining a league, the franchise owner must pay the selected Buy In amount   which     is an       annual franchise fee.
 
-        2012 Rookie Draft Values:
-        First round         $10MDD
-        Second round      $8MDD
-        Third round       $6MDD
-        Fourth round          $4MDD
-        Fifth round       $2MDD
+            3. Initial draft – Upon the creation of a new league, an Initial Draft will be held that includes all   players     eligible       for the upcoming NFL season. Draft order will be random, and will reverse in   alternating rounds (i    .e. “snake” format).       By drafting a player in the Initial Draft and keeping   the player on your roster by     the beginning of Week 1, you       assumed the athlete’s existing NFL  contract.  All undrafted players will be     considered Free Agents. Future years will       hold an annual  rookie draft – reference “Rookie Draft”.
 
-      9.  The League – There will be leagues of 12 franchises.  Each franchise will play every other team once during the       regular season. The winner of each game will be determined by total points scored in that week. Points will be       calculated to the tenth of a decimal.  Ties in weekly games will not be broken. Six teams will earn a berth in the       three-week playoff format. Standings will be determined first by record, then by head-to-head results (or cumulative       results among multiple teams, if there is a tie among three or more teams), then by total points earned in the current       season, then by total points earned in the prior season (if any), and then by total passing yards in the current season      . The top two seeded teams will earn byes in the first round of the playoffs, held in Week 12. In Week 13, the winner       of the 3/6 matchup will play the No. 2 seed and the winner of the 4/5 matchup will play the No. 1 seed. The winner of       these games will play each other in the Dynasty Bowl to be held in Week 14.
+            4.  Roster – Each roster will consist of 30 players. A franchise owner will assume all contracts of players   that     are       on the franchise’s roster during any given NFL week. Rosters will also include two (2)   Injured Reserve     (IR) positions.        These are undraftable positions, but may be filled during the  season as the NFL     determines the player is injured,       but Franchise Owners are still responsible for   their respective salary(s)    .  Healthy players may not be placed on IR.        A roster must consist of   the positions listed below:
 
-      11. Lineup Changes – A franchise owner may change a player’s status (i.e., Starter or Bench) up until one minute       before kickoff of that player’s game. The Practice Squad must be emptied no later than Thursday at noon before Week 1.        Any players left on the Practice Squad upon the deadline will be released into the waiver wire.
+              1.  Starters – QB, 2 RB, 2 WR, TE, K, OFlex (WR or RB), 2 DL, 2 LB, 2DB, and DFlex (DL, LB or DB).
 
-      12. Commissioner – Dynasty Owner will not have Commissioners within each league.   Material disputes and dormant       franchises will be handled directly by Dynasty Owner.
+              2.  Bench – QB, 2 RB, 2 WR, TE, K, OFlex (WR or RB), 2 DL, 2 LB, 2DB, and DFlex (DL, LB or DB).
 
-      ## III. The Marketplace  (TBD)
+            5. Scoring –
+            Need to add all points as delivered to Ben.
 
-      1.  Transaction Fee – All transactions in the Marketplace will include a ten percent (10%) transaction fee, payable by       the buyer to the Fed.
+            6. Bench Scoring – Championship teams and Dynasty’s are built with depth.  Bench players are vital to a   team’s     success       and will earn points at a scale that is 33% of those earned by the Starters.
 
-      2.  Franchise Sales - The Marketplace is the only vehicle by which a franchise owner may buy or sell a franchise. Any       transfer, or attempted transfer, outside of the Marketplace will result in a total forfeiture of the franchise. A       franchise owner may not sell a franchise to an individual in the same league, or anyone affiliated or allied with       someone in the same league. Such a purchase and sale will be void and all parties involved will be subject to       forfeiture of their interests. A seller of a franchise must pay a $50MDD transaction fee, which is not included in the       purchase price for the franchise. The seller must disclose all material facts with respect to the franchise being       sold, including without limitation, any future draft picks that have been sold or traded and the historical       profitability and success of the franchise.
+            7. Roster Freeze Date – On the Monday following Week 8 of every NFL season (Roster Freeze Date), the  rosters     shall be       frozen until free agency begins the following spring.
 
-      3. Sale of Dynasty Dollars – Only a current franchise owner may purchase Dynasty Dollars in the Marketplace. A new       user must purchase Dynasty Dollars directly from the Fed.
+            8. Revenue Share Pot – The following distributions will be made out of Dynasty Dollars that are submitted   to     a       league’s Revenue Share Pot:
+
+            9.  Game winners
+
+                  Winner of weekly matchup: 12.0% of salary cap
+                  Loser of weekly matchup: 6.0% of the salary cap
+                  Winner of Round 1 playoff game: 23% of the salary cap
+                  Loser of Round 1 playoff game: 11% of the salary cap
+                  Winner of Round 2 playoff game: 21.5% of the salary cap
+                  Loser of Round 2 playoff game: 43% of the salary cap
+                  Winner of Dynasty Bowl: $USD champ payout + annuity
+                  Loser of Dynasty Bowl: $USD runner up payout + annuity
+
+            10. Luxury Taxes – Luxury Taxes (as later explained in greater detail) will be distributed to owners (who   are     under       the salary cap) evenly, on a weekly basis.
+
+            11. Year-End Payouts – Throughout the year specific events create revenue for the league, as follows:   adding     a       player, dropping a player, trading a player, disputing a trade, and blind waiver auctions.    All     franchises can view       the league bank account.  Upon completion of the Dynasty Bowl,  Franchises will receive     their equal portion of the       balance.  This revenue share will be paid in  Dynasty Dollars and will increase,     depending on the amount of years that       a league has been in  existence (until the maximum is reached), in     accordance with the following chart:
+
+              ### PLACEHOLDER FOR CHART ###
+
+
+
+            12. Team Activity – If a franchise’s bank account has a negative balance for  two consecutive weeks, then   Dynasty       Owner will take control of the franchise and may run the franchise in any manner that Dynasty   Owner sees fit. Upon       abandonment, Dynasty Owner reserves the right to sell the team in the Marketplace  in their sole discretion.
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseThree", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            III.  Coach’s Corner
+        #collapseThree.accordion-body
+          :markdown
+             1.  Salary Cap – Prior to the Annual Draft, Dynasty Owner will set a Salary Cap. For the 2012 Dynasty    Owner    season the       Salary Cap is set at $85,000,000.  There will be a Hard Cap equal to one   hundred   twenty percent    (120%) of the Salary       Cap -- $102,000,000. A franchise owner may not   complete a   transaction that would    result in the franchise exceeding the       Hard Cap. There will be  a Salary Floor   equal to eighty percent (80%)    of the Salary Cap -- $68,000,000. A franchise       owner  must maintain a   salary level of at least the Salary     Floor each week of the season. Franchise owners  may elect to         spend under the Salary Floor, but will still    be responsible for the full Salary  Floor amount.  Any deficit   below the       Salary Floor will be debited from     that franchise on a   dollar-for-dollar basis.
+
+             2.  Luxury Tax – A franchise owner may not exceed the Salary Cap without paying a Luxury Tax equal to the    amount   by       which a franchise owner exceeds the Salary Cap. Example:  Spending $102MM will result  in   Luxury taxes      of an additional       $17MM ($102 less cap of $85) for a total payroll of $119MM.    Luxury   Taxes will be split     evenly between the Fed and a       Luxury Tax Pot. Those Luxury Taxes  being paid to   the Luxury Tax Pot will be     divided weekly among the teams that did       not pay Luxury  Tax for that week.
+
+             3.  Player salaries – On a weekly basis, each franchise owner’s Dynasty Account will be debited the    Dynasty    Dollars       associated with each of his players’ weekly share of annual contracts, as     conclusively determined     by Dynasty Owner.        Salaries will include all signing bonuses and    performance bonuses.
+
+             4.  Waiving a Player – In the instance where an NFL player’s salary is fully or partially guaranteed,  the      franchise       owner who cuts this player will similarly be responsible to pay the guaranteed  portion of   the     contract. As an example,       if Player X’s contract is $100 million over 10 years   and $50 million   is   guaranteed, then the guaranteed portion of the       contract (for Dynasty Owner   purposes) is $10   million per     year for the first five years. If the franchise owner cuts       Player  X after the second   year of the contract,     then the franchise owner will be responsible to pay a   $30MMDD lump sum       upon   waiving the player, which    represents the future guaranteed portion of the  contract. Alternately, if the   franchise       holds Player X for    5 years, paying $50MM in total, and  then drops Player X – the franchise   met the guaranteed portion       and     would only owe associated   transaction costs.  There are two   exceptions: 1) After this player is waived,     the       player’s  contract is no longer deemed to be   guaranteed to the player’s subsequent owners within the     league.   Therefore,       subsequent franchise   owners may later waive the player without incurring an  obligation     to pay the future guaranteed         portion in a lump sum (as the first franchise owner  would be).  2) A     franchise owner will not be   responsible to pay       the future guaranteed portion  of the contract if the player    is waived by his NFL   team.  If a franchise owner waives a       player  from a roster, then the other teams will   be able to   acquire the waived player during a Blind Auction ( as later       explained), which Dynasty Owner will        schedule within 72 hours of the waiver. If no   franchise bids on the player, then       the player becomes a   free     agent.
+
+             5. Free Agency – If a player renegotiates a contract with his NFL team without becoming a free agent,  then     the       franchise owner who currently owns that player will have the right of first refusal to  keep the   player      under his       renegotiated contract, provided the franchise owner assumes the new   contract. If   that franchise      owner does not opt to       keep the player, then the player will be   placed in a Blind   Auction. A franchise      owner that adds a player after Week 1       and before the  Roster Freeze Date will   be pay a transaction fee      equal to 2.5% of the player’s annual salary,   half       payable to the Revenue   Pot and half payable as a     transaction fee. A franchise owner that   waives a player after Week 1       and   before the Roster Freeze Date     will pay a fee equal to 2.5% of  the amount of salary remaining on the   player’s       contract, half payable to   the Revenue Pot and half  payable as a transaction fee (in addition   to the guaranteed portion       of the     contract, if any).  There will be no additional fee for signings or   waivers that occur between the Super    Bowl       and   Week One of the next season.
+
+             6.  Rookie draft – Beginning in the second year of a league, a Rookie Draft will be held within two weeks  of   the   NFL       draft, to include all rookies entering the league from the most recent draft. The   Annual   Draft will be      five rounds.       Draft order for all rounds will be in reverse order of   record in the   prior season, with ties      to be broken with total       season points, and then head-to- head outcomes (  with the worse team to receive the      earlier draft position).  Franchises       may  draft players and   store them on the Practice Squad, provided the      players are either cut or added to   the Roster         before Week 1.
+
+             7.  Auctions
+
+             8.  Blind Auction – A Blind Auction is an auction in which no franchise may view the bids from other     franchises.          Franchise owners will be bidding with Dynasty Dollars in their account.  The winning     bidder will receive     the right to       sign the player at his current contract. The winning bid will  be   considered a transaction fee.    A Blind Auction will       be held in the following scenarios:
+
+               1.  Except in a league’s first year, each franchise owner will have the opportunity to bid to the  rights   to    sign all       NFL players who signed a new contract within that offseason.
+
+               2.  When a player renegotiates his NFL contract, and the franchise owner that owns the player opts not     to    exercise       the franchise’s right of first refusal.
+
+
+             8. Trades – Collusion through trades or any other transaction or omission in Dynasty Owner is grounds for    forfeiting a       franchise without refund or other recourse, as further described in the Terms and     Conditions. There will be a ten       percent (10%) transaction fee for all trades of draft picks,  players,   and/or Dynasty Dollars. All parties to a trade       will be responsible for paying the   transaction fee,   which will be based upon the value of the commodities that each       franchise owner  receives.  Example:    Franchise X cannot trade $10MM DD with Franchise Y for $1MM DD.  All trades   will       be subject to league   review by other frachise owners for 72 hours.  If seven (7) or more   franchise owners vote against       a   trade – it will be cancelled.  No players, draft picks, or $DD will   be exchanged.  For purposes of   calculating the       transaction fee, a player’s value is the amount of   salary remaining on his contract.    Values for draft picks in the       Rookie Draft will be assigned  prior to each years season start.  The   values  for the 2012 season are listed on the       chart below.    Future years, up to 5 years, will be   inflated by 5.0% per year.
+
+               2012 Rookie Draft Values:
+               First round         $10MDD
+               Second round      $8MDD
+               Third round       $6MDD
+               Fourth round          $4MDD
+               Fifth round       $2MDD
+
+            9.  The League – There will be leagues of 12 franchises.  Each franchise will play every other team once  during     the       regular season. The winner of each game will be determined by total points scored in  that week. Points     will be       calculated to the tenth of a decimal.  Ties in weekly games will not be  broken. Six teams will     earn a berth in the       three-week playoff format. Standings will be determined   first by record, then by head-    to-head results (or cumulative       results among multiple teams, if   there is a tie among three or more teams),     then by total points earned in the current       season, then  by total points earned in the prior season (if any)    , and then by total passing yards in the current  season      . The top two seeded teams will earn byes in the     first round of the playoffs, held in Week 12  . In Week 13, the winner       of the 3/6 matchup will play the No.     2 seed and the winner of the 4/5  matchup will play the No. 1 seed. The winner of       these games will play     each other in the Dynasty  Bowl to be held in Week 14.
+
+            11. Lineup Changes – A franchise owner may change a player’s status (i.e., Starter or Bench) up until   one     minute       before kickoff of that player’s game. The Practice Squad must be emptied no later than   Thursday at     noon before Week 1.        Any players left on the Practice Squad upon the deadline will be   released into the     waiver wire.
+
+            12. Commissioner – Dynasty Owner will not have Commissioners within each league.   Material disputes and dormant       franchises will be handled directly by Dynasty Owner.
+
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseFour", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            IV. The Marketplace  (TBD)
+        #collapseFour.accordion-body
+          :markdown
+            1.  Transaction Fee – All transactions in the Marketplace will include a ten percent (10%) transaction  fee,     payable by       the buyer to the Fed.
+
+            2.  Franchise Sales - The Marketplace is the only vehicle by which a franchise owner may buy or sell a  franchise.    Any       transfer, or attempted transfer, outside of the Marketplace will result in a total   forfeiture of the   franchise. A       franchise owner may not sell a franchise to an individual in the same  league, or anyone     affiliated or allied with       someone in the same league. Such a purchase and sale   will be void and all     parties involved will be subject to       forfeiture of their interests. A seller  of a franchise must pay a     $50MDD transaction fee, which is not included in the       purchase price for  the franchise. The seller must    disclose all material facts with respect to the franchise being        sold, including without limitation, any   future draft picks that have been sold or traded and the   historical       profitability and success of the     franchise.
+
+            3. Sale of Dynasty Dollars – Only a current franchise owner may purchase Dynasty Dollars in the Marketplace.  A new       user must purchase Dynasty Dollars directly from the Fed.
 
 
 

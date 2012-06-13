@@ -1,87 +1,147 @@
 .row-fluid
-  .span8.well.light-well
-    / start slipsum code
-    :markdown
-      # DYNASTY OWNER FAQS
+  .span12.well.light-well
+    .accordion#faq-accordion
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseOne", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}SIGN UP AND CREATE/JOIN LEAGUE
+        #collapseOne.accordion-body.collapse.in
+          %h3
+            Can I have multiple dynasty owner teams?
+          %p
+            Just like in the NFL, owners can’t own multiple teams for a variety of reasons. We limit each person/accoun   to   one dynasty owner franchise because Dynasty Owner is a year round in- depth ownership experience tha   requires   a lot more attention than managing a traditional fantasy football team.  We also want to ensur  that nobody is   managing multiple teams for the sake of just optimizing one.
+          %h3
+            How many teams are allowed per league?  What if we our league wants 10 teams or 14 teams?
+          %p
+            This year (2012-2013 season) we are restricting leagues to 12 teams per league.  This allows us to be fai   in   the efficiency payout grand prizes for both tiers.   If leagues had different numbers of teams   efficiency   wouldn’t be an apples to apples comparison across entire tiers.
+          %h3
+            Can I edit our leagues scoring system?
+          %p
+            No, we use a universal scoring system because this allows us to pay out an efficiency grand prize across  al   leagues.  If different leagues had different scoring systems, this would not be possible
+          %h3
+            Is there a commissioner in each league?
+          %p
+            No, we do not have a league commissioner assigned in each league because one is not needed.  League setting   are all the same across leagues and the trade review process is a league democracy decided by votes
+
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseTwo", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            THE DRAFT
+        #collapseTwo.accordion-body
+          %h3 What is the format of the draft?
+          %p
+            All drafts this year will be online and run through our online draft interface.  The format is a  traditional   snake draft where the team with the first pick in the 1st round will get the last pick in the  2nd round and   the rest of the teams will slot accordingly.
+
+          %h3 What if I can’t attend my draft?
+          %p
+            You need to make every effort to attend the draft.  However if you can not attend you can pre-rank your     players like in most other systems and we will auto-draft for you based on pre-rankings.
+
+          %h3 When is my league’s draft and how is it set?
+          %p
+            Your league’s draft date and time will be set by the person who originally set up your league.
+
+          %h3 Can I go over the hard salary cap when drafting my team?
+          %p
+            No you can’t.  If you try and draft a player who’s contract eclipses the amount of salary cap available you   will not be able to draft that player.     You can go over the salary cap but will have to pay the luxury tax   immediately after the draft and until you make roster moves to get under the cap.
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseThree", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            GAMEPLAY AND LEAGUE RULES
+        #collapseThree.accordion-body
+          %h3
+            What are the penalties for exceeding the salary cap?
+          %p
+            We deviate from the NFL on this in that the NFL has a hard cap where no one can go over that.  We have the    same thing, but we have a salary cap that is set below the hard cap and every dollar above the salary cap  and   up to the hard cap will have a dollar-for-dollar tax applied.  This is the “luxury tax” and it will go   towards   the Luxury Tax Pot which will be distributed amongst the owners in your league that do not pay any  luxury tax   and with the Fed.
+          %h3
+            What are the transaction fees?  How much does it cost to trade and pick up a player off of waivers?
+          %p
+            Transaction fees are fees that are paid by our team owners as they complete transactions such as trades,    adding and dropping players to the waiver wire, etc.  These transaction costs are split between the Fed (  we   need a new name) and the league revenue share pot.
+          %p
+            To trade players or draft picks, the fee is 5% of the TOTAL remaining value of the contract or potential    contract (if a draft pick) for whatever you are sending away. So, if you are sending away $5MM in cash plus  a   player with 3 years and $30MM left on their contract, your fee will be $1.75MM.
+
+          %h3
+            How are trades reviewed?
+          %p
+            Each trade will be reviewed by the teams not involved in the trade to prevent collusion.  If there are 7  votes   to reject the trade by the league, it will be nullified.
+
+          %h3
+            Can there be multiple team trades?
+          %p
+            Not at this time.  We encourage people to work as creatively as possible within the messaging and league    message board to get the best possible trade scenario completed.
+          %h3
+            What happens if someone gets kicked out of our league for any reason (suspected collusion, continuous non-    payment of a team over the salary cap etc).
+          %p
+            After given adequate warnings/communication, if a team needs to be removed from a league for any reason we    will notify all owners of that league, suspend that players account and take over that team for the  remainder   of the season to ensure proper balance and minimal disruption of the league.  We will run the  team as we would   competitively run our own teams.  Integrity of our game and league play is essential to   us and we will ensure   that it is never compromised.
+          %h3
+            Why can’t I see weekly updates of efficiency leaders?
+          %p
+            We don’t want to encourage any collusion and above all want owners to run their teams individually and with   competitive integrity.  The grand prize is large enough to where if one league saw that one of the teams was   in contention for the grand efficiency prize, they might all agree to help that team maximize efficiency and   split the grand prize.
+
+      .accordion-group
+        %h2
+          %a.accordion-toggle{:href => "#collapseFour", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
+            PAYOUTS AND LEAGUE PRIZES
+        #collapseFour.accordion-body
+          %h3
+            What are the Payouts and Revenue Sharing?
+
+          %h3 Payouts All-Pro Leagues
+
+          %ul
+            %li  Champion Payout:  $750
+            %li  Runner Up: $250
+            %li  Annuity:  $50 for 7 Years
+            %li  Runner Up Annuity:  $25 for 7 Years
+            %li  Most Efficient Annuity:  $25 for 7 Years
+            %li  Grand Prize for Most Efficient in Entire $250 Teir:  $10,000
+
+          %h3 Revenue Sharing
+          %p
+            Just like in the NFL, revenue share is a lump sum paid out after all revenues have been calculated.  Users    will be paid out a revenue share out of the league transaction fees, so this exact amount can’t be   calculated   until the end of each year.  We will show the running revenue share pot in your league   throughout the season
+          %p
+            All users who registered and completed the season this year and return next year will be paid at the start  of   next season for this season’s participation.  In subsequent years teams will be paid their revenue  share at   the start of the current season.
+
+          %h3 Revenue Share All-Pro Leagues
+          %ul
+            %li End of Year 1:  10%
+            %li End of Year 2:  15%
+            %li End of Year 3:  20%
+            %li End of Year 4:  25%
+            %li End of Year 5:  30%
+            %li End of Year 6:  35%
+            %li End of Year 7:  40%
+            %li End of Year 8:  45%
+            %li End of Year 9:  50%
+            %li End of Year 10:  55%
+            %li End of Year 11:  60%
 
 
-      ##Can I have multiple dynasty owner teams?
-      Just like in the NFL, owners can’t own multiple teams for a variety of reasons.
-      We limit each person/account to one dynasty owner franchise because Dynasty Owner is a year round in- depth ownership experience that requires a lot more attention than managing a traditional fantasy football team.  We also want to ensure that nobody is managing multiple teams for the sake of just optimizing one.  Like it!
+          %h3 Payouts for Legend Leagues
+          %ul
+            %li Champion Payout:  $2,500
+            %li Runner Up: $750
+            %li Champion Annuity:  $150 for 7 Years
+            %li Runner Up Annuity:  $75 for 7 Years
+            %li Most Efficient Annuity:  $75 for 7 Years
+            %li Most Efficient Annuity:  $25 for 7 Years
+            %li Grand Prize for Most Efficient in Entire $500 Tier:  $20,000
+          %ul
+            %li End of Year 1:  20%
+            %li End of Year 2:  26%
+            %li End of Year 3:  32%
+            %li End of Year 4:  38%
+            %li End of Year 5:  44%
+            %li End of Year 6:  50%
+            %li End of Year 7:  56%
+            %li End of Year 8:  62%
+            %li End of Year 9:  68%
+            %li End of Year 10:  74%
+            %li End of Year 11:  80%
 
-      ##How many teams are allowed per league?  What if we our league wants 10 teams or 14 teams?
-      This year (2012-2013 season) we are restricting leagues to 12 teams per league.  This allows us to be fair in the efficiency payout grand prizes for both tiers.   If leagues had different numbers of teams, efficiency wouldn’t be an apples to apples comparison across entire tiers.  Like it!
+          %h3 When can I expect to be paid my weekly winnings?
+          %p
+            Weekly winnings will be paid out on Tuesday morning at 6 AM, after all games have been played for the   previous   week.
 
-      ##Why can’t I see weekly updates of efficiency leaders?
-      We don’t want to encourage any collusion and above all want owners to run their teams individually and with competitive integrity.  The grand prize is large enough to where if one league saw that one of the teams was in contention for the grand efficiency prize, they might all agree to help that team maximize efficiency and split the grand prize.
+          %h3 When can I expect to be paid my end of season winnings?
+          %p
+            For those playing in the Championship game, you can expect your winning check within 4 weeks of the Championship game.  If you win the GRAND PRIZE, you can expect that within 8 weeks of the Championship game. As you can imagine, with such a large prize, we have to be thorough and make sure we are able to determine the winner.
 
-      Along those lines, winners of the efficiency grand prize will be thoroughly reviewed to ensure that no collusion was suspected or evident.  I don’t mind mentioning this, but I don’t want to dare people to collude. We mention it already before. Maybe we should just the first part but not the second.
-
-      ##When can I expect to be paid my weekly winnings?
-      Weekly winnings will be paid out on Tuesday morning at 6 AM, after all games have been played for the previous week.
-
-      ##When can I expect to be paid my end of season winnings?
-      For those playing in the Championship game, you can expect your winning check within 4 weeks of the Championship game.  If you win the GRAND PRIZE, you can expect that within 8 weeks of the Championship game. As you can imagine, with such a large prize, we have to be thorough and make sure we are able to determine the winner.
-
-      ##How does Revenue Sharing Work?
-      Revenue sharing is designed to reward longevity in Dynasty Owner.   Accordingly, we will not be paying this is incorrect…we will be paying it out for first year but it won’t be paid out UNTIL the start of the following year.  I wouldn’t even mention why we are doing it.  I don’t want people think we are trying to manipulate/trick them into staying around.  Let’s just say that just like the NFL, revenue share is a lumpsum paid out after all revenues have been calculated.  We intend on including more than just transaction costs into revenue share, so we have to wait until our calendar year is done and the revenue share will be sent to the accounts out revenue share for the first year, however all users who registered and completed the season this year and return next year will be paid at the start of next season for this season’s participation.  In subsequent years teams will be paid their revenue share at the start of the current season.
-
-      Your team must remain active without interruption from season to season to be eligible for revenue sharing.     Here is how revenue sharing pays out.  We have since changed these.  Let’s circle back on the final numbers
-
-        Year 1:  0
-        Year 2:  10%
-        Year 3:  15%
-        Year 4:  20%
-        Year 5:  25%
-        Year 6:  30%
-        Year 7:  35%
-
-
-
-
-
-      ##What happens if someone gets kicked out of our league for any reason (suspected collusion, continuous non-payment of a team over the salary cap etc).
-      After given adequate warnings/communication, if a team needs to be removed from a league for any reason we will notify all owners of that league, suspend that players account and take over that team for the remainder of the season to ensure proper balance and minimal disruption of the league.  We will run the team as we would competitively run our own teams.
-
-      Integrity of our game and league play is essential to us and we will ensure that it is never compromised.
-
-      ##Can I edit our leagues scoring system?
-      No, we use a universal scoring system because this allows us to pay out an efficiency grand prize across all leagues.  If different leagues had different scoring systems, this would not be possible  love it
-
-      ##Is there a commissioner in each league?
-      No, we do not have a league commissioner assigned in each league because one is not needed.  League settings are all the same across leagues and the trade review process is a league democracy decided by votes.  good
-
-      ##How are trades reviewed?
-      Each trade will be reviewed by the teams not involved in the trade to prevent collusion.  If there is a tie in the voting (5-5) the Dynasty Owner review board will rule on if the trade.  We will not prevent trades unless there is obvious collusion.  Andrew and I made it 7 votes needed and they will be charged and then we can review or just make it an automatic rejected trade.  I am open to discussing if it’s automatically rejected or we review it.  With how many times Andrew said trades are contested, it may become cumbersome.
-
-      ##Can there be multiple team trades?
-      This year we are only supporting two team trades.  You can trade players for players, players for cap space, players for draft picks or any combination of that, but you can’t do 3+ team trades at this time.  Take out this entire part. It isn’t essential and it doesn’t answer the question.  It just explains what you can trade.  The answer is a direct: Not at this time.  We encourage people to work as creatively as possible within the messaging and league message board to get the best possible trade scenario completed.
-
-      This is a feature we hope to support in coming seasons of Dyansty Owner.
-
-      ##Is this game as awesome as it sounds?
-      Yes.
-
-      ##What is the payout annuity and how does it work?
-      If you are one of the two teams to play in the dynasty bowl championship game at the end of the year, you will receive a payout that year and for an additional six years for a total of a 7 year payout.   Don’t forget most efficient team gets a payout.  Also, so not to confuse anyone, just say there will be 7 payments made.  We will maket he first annuity payment the year after they win the championship.
-
-      Like when NFL teams reach the Superbowl, there is a long lasting effect on the value of the franchise and we wanted to provide the same element in Dynasty Owner.
-
-      ##What are the penalties for exceeding the salary cap?
-      We deviate from the NFL on this in that the NFL has a hard cap where no one can go over that.  We have the same thing, but we have a salary cap that is set below the hard cap and every dollar above the salary cap and up to the hard cap will have a dollar-for-dollar tax applied.  This is the “luxury tax” and it will go towards the Luxury Tax Pot which will be distributed amongst the owners in your league that do not pay any luxury tax and with the Fed
-
-      ##Is there a hard salary cap?
-      Yes.  Maybe instead of this question we should ask about the salary cap situation and explain the minimum and hard cap.
-
-      ##What are the transaction fees?  How much does it cost to trade and pick up a player off of waivers?
-
-      Transaction fees are fees that are paid by our team owners as they complete transactions such as trades, adding and dropping players to the waiver wire, etc…These transactions costs are split between the Fed (we need a new name) and the league revenue share pot.
-
-      To trade players or draft picks, the fee is 5% of the TOTAL remaining value of the contract or potential contract (if a draft pick) for whatever you are sending away. So, if you are sending away $5MM in cash plus a player with 3 years and $30MM left on their contract, your fee will be $1.75MM.
-
-
-
-  .span4
-    .well.light-well
-      %h2.simple FAQ Categories
-      %p TBD After FAQs edited and organized.

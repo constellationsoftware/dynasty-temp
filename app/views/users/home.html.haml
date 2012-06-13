@@ -95,12 +95,6 @@
           %h2 Recent League Activity
           %p There has been no activity.
   - else
-
-    #well.dark-well
-      %h2
-        TEST DETAILS
-      %p
-        = current_user
     = link_to t('.labels.join_league'), leagues_join_path, :class => 'btn btn-inverse'
     = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
 - else

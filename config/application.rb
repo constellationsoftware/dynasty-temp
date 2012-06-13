@@ -60,7 +60,7 @@ module Dynasty
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'default', 'images')
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'stylesheets')
         config.assets.paths << Rails.root.join('vendor', 'assets', 'javascripts', 'extjs', 'javascripts')
-
+        config.assets.paths << "#{Rails.root}/app/assets/videos"
 
 
         config.assets.paths << Rails.root.join('app', 'assets', 'videos')

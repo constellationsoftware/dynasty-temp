@@ -21,25 +21,9 @@
                 %li
                   %a#date.navbar-text= number_to_currency(current_user.team.balance)
             %li.divider-vertical
-            %li.dropdown
-              %a.three-d.dropdown-toggle{'data-toggle' => 'dropdown', :href => '#'}
-                How to Play
-                %b.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => '/mockups/rules'} The Basics
-                %li
-                  %a{:href => '/mockups/rules'}   Create a Team
-                %li
-                  %a{:href => '/mockups/rules'}   The Draft
-                %li
-                  %a{:href => '/mockups/rules'}   League Rules
-                %li
-                  %a{:href => '/mockups/rules'}   Payouts
-                %li
-                  %a{:href => '/mockups/rules'}   Revenue Sharing
-                %li
-                  %a{:href => '/mockups/rules'}   Schedule
+            %li
+              %a{:href => '/mockups/rules'} How To Play
+
 
             %li.divider-vertical
             %li
@@ -48,8 +32,10 @@
             %li.divider-vertical
             - unless user_signed_in?
               %li
-                %a{:href => new_user_registration_path}
-                  Create an Account
+                %a{:href => "#signupModal", "data-toggle" => "modal"}
+                  Sign Up!
+                //%a{:href => new_user_registration_path}
+                //  Create an Account
               %li.divider-vertical
               %li
                 %a{:href => "#loginModal", :data => {:toggle => "modal"}}
