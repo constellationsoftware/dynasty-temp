@@ -583,7 +583,7 @@ h2 a.accordion-toggle {
     //must be half of the width, minus scrollbar on the left (30px)
     margin: -400px 0 0 -350px;
     .modal-body {
-        height: 760px;
+        height: 650px;
         max-height: 600px;
     }
 }
@@ -594,16 +594,21 @@ h2 a.accordion-toggle {
 
 #floating-signup {
     display: block;
+    background-color: @white;
     position: fixed;
-    top: 50px;
-    right: 50px;
-    z-index: 25000;
-    padding: 5px;
+    text-align: center;
+    top: 40px;
+    right: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 10px;
     margin: 0px !important;
     margin-bottom: 0px !important;
+    .box-shadow(0 0 55px @black);
 
     a {
         font-size: 25px;
+        width: 650px;
         font-weight: bold;
         line-height: 36px;
         .box-shadow(0 0 55px @darkred);
