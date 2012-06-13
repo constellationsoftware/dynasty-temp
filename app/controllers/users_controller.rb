@@ -89,8 +89,8 @@ class UsersController < ApplicationController
         pp response
         "response.authorization:"
         pp response.authorization
-        @user.customer_profile_id = response.authorization
-        @user.save
+        #@user.customer_profile_id = response.authorization
+        #@user.save
     end
 
 
