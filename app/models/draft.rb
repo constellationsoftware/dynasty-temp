@@ -46,6 +46,8 @@ class Draft < ActiveRecord::Base
         (!p.nil? && (p.pick_order % Settings.league.capacity) === 0)
     end
 
+    def initial_state; 'initialized' end
+
     protected
         def on_start
             # send message that draft is starting
@@ -175,4 +177,4 @@ class Draft < ActiveRecord::Base
             keys -= [ current_pick.team.uuid ] if exclusive
             keys
         end
-    end
+end

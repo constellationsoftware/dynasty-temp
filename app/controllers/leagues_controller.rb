@@ -13,15 +13,23 @@ class LeaguesController < ApplicationController
     def create
         @league ||= create_league(false)
         join_league
-        invite_emails = params.delete('league-invite').reject{ |email| email.nil? || email === '' }
-        message = params.delete('message')
-        invite_emails.each do |email|
-            User.invite! :email => email do |u|
-                u.invitor = current_user
-                u.message = message
+        @league.tier = current_user.tier
+        if @league.save!
+            # create draft and set date
+            #draft = @league.build_draft
+            #puts draft.inspect
+
+            # send out invite emails
+            invite_emails = params.delete('league-invite').reject{ |email| email.nil? || email === '' }
+            message = params.delete('message')
+            invite_emails.each do |email|
+                User.invite! :email => email do |u|
+                    u.invitor = current_user
+                    u.message = message
+                end
             end
+            redirect_to edit_my_team_path
         end
-        redirect_to edit_team_path current_user.team
     end
 
     def edit

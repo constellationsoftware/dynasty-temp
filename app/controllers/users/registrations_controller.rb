@@ -7,6 +7,11 @@ module Users
             same_billing_address = !!(params.delete('same_billing_address') { false })
             cc_params = params.delete 'credit_card'
             super
+            # uncomment for testing
+            #team = @user.build_team
+            #team.name = "#{@user.username.capitalize}'s Team"
+            #team.save!
+            #return @user
 
             if @user.valid?
                 # Create Credit Card Object
@@ -77,8 +82,7 @@ module Users
 
                         # Get the customer payment profile id for transaction
                         @customer_payment_profile_id = profile_response.params['profile']['payment_profiles']['customer_payment_profile_id']
-                        puts 'customer_payment_profile_id'
-                        pp @customer_payment_profile_id
+                        puts "customer_payment_profile_id: #{@customer_payment_profile_id}"
                         puts ''
 
                         # build the transaction object
@@ -86,13 +90,16 @@ module Users
                         #:amount => (@user.tier == 'legend' ? 500 : 250)
                         @transaction = {
                               :type => :auth_capture,
-                              :amount => "0.01",
+                              :amount => (@user.tier == 'legend' ? '0.02' : '0.01'),
                               :customer_profile_id => @user.customer_profile_id,
                               :customer_payment_profile_id => @customer_payment_profile_id
                         }
 
                         ## Perform the transaction
                         @transaction_response = GATEWAY.create_customer_profile_transaction(:transaction => @transaction)
+                        puts 'transaction response:'
+                        pp @transaction_response
+                        puts ''
                         if @transaction_response.success?
                             team = @user.build_team
                             team.name = "#{@user.username.capitalize}'s Team"
@@ -101,11 +108,6 @@ module Users
                     end
                 end
             end
-            #cc = CreditCard.new(cc_params)
-            #pp cc.serialize
-            #if @user.valid? && cc.valid?
-            #    # process the transaction here
-            #end
         end
 
         def edit

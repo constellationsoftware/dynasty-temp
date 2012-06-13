@@ -6,7 +6,7 @@
     %abbr{ :title => 'required' } *
     Draft date
   .controls
-    = select_tag :draft_date, options_for_select(draft_schedule_dates), :id => 'draft_date', :class => 'span8', :include_blank => false
+    = select_tag :draft_date, options_for_select(draft_schedule_dates), :id => 'draft_date', :name => 'draft_date', :class => 'span8', :include_blank => false
 
 .control-group
   .controls Invite friends to your league
