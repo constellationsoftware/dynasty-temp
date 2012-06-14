@@ -1,7 +1,7 @@
 module Users
     class RegistrationsController < Devise::RegistrationsController
         skip_before_filter :check_registered_league
-
+3
         def create
             # strip params specific to the user's billing info
             same_billing_address = !!(params.delete('same_billing_address') { false })
