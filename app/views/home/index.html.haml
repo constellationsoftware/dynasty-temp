@@ -14,7 +14,7 @@
     .span5
       .well.light-well#video
         .flex-video
-          = video_tag "/assets/321.mov", :controls => "", :preload => "", :width => "100%", :height => "250px", :poster => "321-poster.png"
+          = render :partial => "shared/brightcove"
     .span7
       .well.light-well#comparison
         %table.table.table-condensed
