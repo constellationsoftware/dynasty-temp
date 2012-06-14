@@ -18,14 +18,10 @@
             %tr
               %th{:nowrap => ""}
                 %h3.red-heading GAME FEATURES
-              %th
-                = image_tag "yahoo_logo.png"
-              %th
-                = image_tag "espn_logo.png"
-              %th
-                = image_tag "cbs_logo.png"
-              %th
-                = image_tag "dynasty_logo.png"
+              %th= image_tag "yahoo_logo.png"
+              %th= image_tag "espn_logo.png"
+              %th= image_tag "cbs_logo.png"
+              %th= image_tag "dynasty_logo.png"
           %tbody
             %tr
               %td.left_aligned
@@ -204,9 +200,7 @@
             %td
               %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'legend') } SIGN UP!
 
-
 - unless user_signed_in?
-
   #floating-signup
     .row-fluid
       %a.btn.btn-danger.big-signup{:href => "#signupModal", "data-toggle" => "modal"}

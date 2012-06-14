@@ -16,8 +16,9 @@ class LeaguesController < ApplicationController
         @league.tier = current_user.tier
         if @league.save!
             # create draft and set date
-            #draft = @league.build_draft
-            #puts draft.inspect
+            draft = @league.build_draft
+            puts draft.inspect
+            raise
 
             # send out invite emails
             invite_emails = params.delete('league-invite').reject{ |email| email.nil? || email === '' }
