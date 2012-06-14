@@ -5,11 +5,20 @@
 /[if IE 8 ]    <html class=\"ie8\" lang=\"en\">
 /[if IE 9 ]    <html class=\"ie9\" lang=\"en\">
 /[if (gt IE 9)|!(IE)]
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
 %head
   %meta{ :charset => "utf-8" }
-  %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
+  %meta{:content => "width=device-width, initial-scale=1.0, maximum-scale=1.0htm", :name => "viewport"}
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   %meta{:content => "yes", :name => "apple-mobile-web-app-capable"}
+
   %title= 'Dynasty Owner'
+  / History.js
+  %script{:defer => "", :src => "http://balupton.github.com/history.js/scripts/bundled/html4+html5/jquery.history.js"}
   %script{:src => "http://api.html5media.info/1.1.5/html5media.min.js"}
   -# drop the client's UUID in here for use with socket subscriptions and the like
   - if @team
@@ -21,6 +30,7 @@
   = favicon_link_tag
 // Body
 %body
+  = render :partial => "shared/chrome_frame"
   = render :partial => "shared/login_modal"
   // Sitewide Nav Bar
   = render :partial => "shared/nav_wrapper"
@@ -36,151 +46,17 @@
         // Main Content
         = yield
 
--#-# Page Footer
-= render :partial => "shared/dynasty_footer"
--#-# Modals
-- unless user_signed_in?
-  #signupModal.modal.modal-signup.fade
-    .modal-header
-      %h1.simple
-        %button.close{ :data => { :dismiss => 'modal' } } ×
-        %span.dark_red SIGN UP
-        TO CREATE OR JOIN A LEAGUE!
-    .modal-body
-<<<<<<< HEAD
-      .row-fluid
-        .span12
-          %h1.simple
-            %span.dark_red
-              SIGN UP
-            TO CREATE OR JOIN A LEAGUE!
-      .row-fluid
-        %table.table.span12#payouts
-          %thead
-            %tr
-              %th
-                .row-fluid
-                  %h1.span12.smaller
-                    League Type:
-              %th
-                .row-fluid
-                  %h1.span12.smaller
-                    All-Pro
-              %th
-                .row-fluid
-                  %h1.span12.smaller
-                    Legend
-          %tbody
-            %tr
-              %td.left_aligned
-                Number of Teams in Each League
-              %td
-                12
-              %td
-                12
-            %tr
-              %td.left_aligned
-                Annual League Fee
-              %td
-                $250
-              %td
-                $500
-            %tr
-              %td.left_aligned
-                League Champion Pay
-              %td
-                $750
-              %td
-                $2,500
-            %tr
-              %td.left_aligned
-                7-Year Payout: League Champion
-              %td
-                $50/yr.
-              %td
-                $150/yr.
-            %tr
-              %td.left_aligned
-                Runner Up Pay
-              %td
-                $250
-              %td
-                $750
-            %tr
-              %td.left_aligned
-                7-Year Payout: Runner Up
-              %td
-                $25/yr.
-              %td
-                $75/yr.
-            %tr
-              %td.left_aligned
-                7-Year Payout: League Efficiency
-              %td
-                $25/yr.
-              %td
-                $75/yr.
-            %tr
-              %td.left_aligned
-                Grand Prize Top Tier Efficiency
-              %td
-                $10,000
-              %td
-                $20,000
-            %tr
-              %td.left_aligned
-              %td
-                %a.btn.btn-danger{:href => new_user_registration_path} SIGN UP!
-              %td
-                %a.btn.btn-danger{:href => new_user_registration_path} SIGN UP!
-      .modal-footer
-        %a.btn{ :href => '#', :data => { :dismiss => 'modal' } } Close
+  -#-# Page Footer
+  = render :partial => "shared/dynasty_footer"
+  -#-# Modals
+  - unless user_signed_in?
+    #signupModal.modal.modal-signup.fade
+      .modal-header
+        %h1.simple
+          %button.close{ :data => { :dismiss => 'modal' } } ×
+          %span.dark_red SIGN UP
+          TO CREATE OR JOIN A LEAGUE!
+      .modal-body
+        = render :partial => "shared/league_comparison"
 
-=======
-      -#.row-fluid
-      -#  .span12
-      -#    %h1.simple{ :style => 'white-space: nowrap;' }
-      %h1.table-head.row-fluid
-        .span6.smaller League Type:
-        .span3.smaller All-Pro
-        .span3.smaller Legend
-      .table-body
-        .row-fluid
-          .span6.left_aligned Number of Teams in Each League
-          .span3 12
-          .span3 12
-        .row-fluid
-          .span6.left_aligned Annual League Fee
-          .span3 $250
-          .span3 $500
-        .row-fluid
-          .span6.left_aligned League Champion Pay
-          .span3 $750
-          .span3 $2,500
-        .row-fluid
-          .span6.left_aligned 7-Year Payout: League Champion
-          .span3 $50/yr.
-          .span3 $150/yr.
-        .row-fluid
-          .span6.left_aligned Runner Up Pay
-          .span3 $250
-          .span3 $750
-        .row-fluid
-          .span6.left_aligned 7-Year Payout: Runner Up
-          .span3 $25/yr.
-          .span3 $75/yr.
-        .row-fluid
-          .span6.left_aligned 7-Year Payout: League Efficiency
-          .span3 $25/yr.
-          .span3 $75/yr.
-        .row-fluid
-          .span6.left_aligned Grand Prize Top Tier Efficiency
-          .span3 $10,000
-          .span3 $20,000
-        .row-fluid
-          .span6
-          .span3
-            %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'all-pro') } SIGN UP!
-          .span3
-            %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'legend') } SIGN UP!
->>>>>>> origin/nick/dev
+

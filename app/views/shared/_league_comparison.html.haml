@@ -1,0 +1,44 @@
+%h1.table-head.row-fluid
+  .span6.smaller League Type:
+  .span3.smaller All-Pro
+  .span3.smaller Legend
+.table-body
+  .row-fluid
+    .span6.left_aligned Number of Teams in Each League
+    .span3 12
+    .span3 12
+  .row-fluid
+    .span6.left_aligned Annual League Fee
+    .span3 $250
+    .span3 $500
+  .row-fluid
+    .span6.left_aligned League Champion Pay
+    .span3 $750
+    .span3 $2,500
+  .row-fluid
+    .span6.left_aligned 7-Year Payout: League Champion
+    .span3 $50/yr.
+    .span3 $150/yr.
+  .row-fluid
+    .span6.left_aligned Runner Up Pay
+    .span3 $250
+    .span3 $750
+  .row-fluid
+    .span6.left_aligned 7-Year Payout: Runner Up
+    .span3 $25/yr.
+    .span3 $75/yr.
+  .row-fluid
+    .span6.left_aligned 7-Year Payout: League Efficiency
+    .span3 $25/yr.
+    .span3 $75/yr.
+  .row-fluid
+    .span6.left_aligned Grand Prize Top Tier Efficiency
+    .span3 $10,000
+    .span3 $20,000
+  .row-fluid
+    .span6
+    .span3
+      %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'all-pro') } SIGN UP!
+    .span3
+      %a.btn.btn-danger{ :href => new_user_registration_path(:tier => 'legend') } SIGN UP!
+
