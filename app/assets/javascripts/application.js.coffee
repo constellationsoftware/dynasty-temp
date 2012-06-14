@@ -23,3 +23,4 @@
 #= require_self
 $ ->
     $('#signupModal .modal-body a').on 'click', -> $(@).closest('.modal').modal 'hide'
+    $('.modal.dismissable a').on 'click', -> $(@).closest('.modal').modal 'hide'
