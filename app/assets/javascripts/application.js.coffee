@@ -20,6 +20,6 @@
 #= require subnav
 #= require pjax
 #= require popup
-
-
-##json.date clock.time.strftime(Settings.datetime_format.date_full)
+#= require_self
+$ ->
+    $('#signupModal .modal-body a').on 'click', -> $(@).closest('.modal').modal 'hide'
