@@ -1,7 +1,8 @@
 # Be sure to restart your server when you modify this file.
 domain_config_options = {
     :key => '_dynasty_session',
-    :domain => ".dynastyowner.net"#, :tld_length => 2
+    :domain => :all
+    #:domain => ".`dynastyowner.net"#, :tld_length => 2
 }
 
 # if external override is available, merge in the options

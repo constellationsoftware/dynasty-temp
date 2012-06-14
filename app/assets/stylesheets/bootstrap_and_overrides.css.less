@@ -21,6 +21,14 @@
         }
 }
 
+// Adjust Tablet & Phone View
+
+@media (max-width: 979px) {
+    body {
+        padding-top: 150px;
+    }
+}
+
 // Border-box style box-sizing
 /* apply a natural box layout model to all elements */
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
@@ -92,10 +100,10 @@ body {
 @gridGutterWidth: 21px;
 
 //* Core Typography
-@baseFontSize: 16px;
+@baseFontSize: 14px;
 @baseLineHeight: 26px;
 
-@headingsFontFamily: 'Droid Sans';
+@headingsFontFamily: 'Droid Sans', sans-serif;
 @baseFontFamily: 'Droid Sans', sans-serif
 
 ;
@@ -105,7 +113,7 @@ a {
 }
 
 h2, h3, h4, h5, h6 {
-    font-weight: bold;
+    font-weight: bol;
 }
 
 .red-heading {
@@ -620,17 +628,41 @@ h2 a.accordion-toggle {
 #floating-signup {
     display: block;
     position: fixed;
-    top: 50px;
-    right: 50px;
-    z-index: 1040; // modal is 1050
+    width: 100%;
+    top: 40px;
+    right: 0px;
+    z-index: 500; // modal is 1050
     padding: 5px;
     margin: 0px !important;
     margin-bottom: 0px !important;
+    background-color: @white;
+    text-align: center;
 
     a {
         font-size: 25px;
         font-weight: bold;
         line-height: 36px;
         .box-shadow(0 0 55px @darkred);
+        width: 50%;
+    }
+}
+
+#inline-signup {
+    width: 100%;
+    top: 40px;
+    right: 0px;
+    z-index: 500; // modal is 1050
+    padding: 5px;
+    margin: 0px !important;
+    margin-bottom: 15px !important;
+    background-color: @white;
+    text-align: center;
+
+    a {
+        font-size: 25px;
+        font-weight: bold;
+        line-height: 36px;
+        .box-shadow(0 0 55px @darkred);
+        width: 100%;
     }
 }
