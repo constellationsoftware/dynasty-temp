@@ -3,6 +3,7 @@ require 'nokogiri'
 require 'open-uri'
 
 class PlayersController < ApplicationController
+    skip_before_filter :authenticate_user!
 
     respond_to :html, :json
 
