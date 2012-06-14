@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     helper  :all
     before_filter :set_current_clock
-    before_filter :authenticate_user!, :except => [ :register ]
+    before_filter :authenticate_user!, :except => [:register, :research ]
     before_filter :check_registered_league, :except => [ :register_league ]
 
     respond_to :html

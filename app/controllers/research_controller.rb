@@ -5,7 +5,7 @@ class ResearchController < ApplicationController
     self.resource_class = Player
     #include DatatableMarshaller, :only => :players
     before_filter :inject_player_params, :only => :players
-    skip_before_filter :authenticate_user!, :only => [ :index ]
+    skip_before_filter :authenticate_user!
 
     has_scope :research, :type => :boolean, :default => true, :only => :players do |controller, scope|
         scope.joins{[ position, contract, name, points, real_team.display_name ]}

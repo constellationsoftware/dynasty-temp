@@ -1,7 +1,6 @@
 module Users
     class RegistrationsController < Devise::RegistrationsController
         skip_before_filter :check_registered_league
-3
         def create
             # strip params specific to the user's billing info
             same_billing_address = !!(params.delete('same_billing_address') { false })
@@ -104,7 +103,10 @@ module Users
                             team = @user.build_team
                             team.name = "#{@user.username.capitalize}'s Team"
                             team.save!
+                        else
+                            raise StandardError, @transaction_response.message
                         end
+
                     end
                 end
             end
