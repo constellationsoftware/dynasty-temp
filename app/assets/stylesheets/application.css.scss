@@ -69,12 +69,12 @@ html { //background: url('/assets/bg.jpg') no-repeat top center fixed;
 
 
 .logo {
-
+  position: fixed;
+  z-index: 10000;
   display: block;
   top: 0px;
-  z-index: 5000;
+
   float: left;
-  margin-bottom: -155px !important;
   width: 150px;
 
 }

@@ -266,18 +266,15 @@ h1 {
     a {
         font-weight: 400;
         color: @white;
-        .opacity(80);
         .transition(.25s, ease-in-out);
 
         &:hover {
             text-shadow: 0 0 55px #FFF, 0 0 35px #FFF, 0 0 5px #FFF;
-            .opacity(90);
         }
 
         &:active {
             background-color: @darkblue;
             text-shadow: 0 0 75px #FFF, 0 0 50px #FFF, 0 0 5px #FFF;
-            .opacity(100);
         }
     }
 
@@ -372,7 +369,7 @@ h1 {
 // LOGO ANIMATION
 
 .logo {
-    .opacity(200) !important;
+    z-index: 50000;
 
 }
 
