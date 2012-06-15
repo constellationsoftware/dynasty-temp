@@ -21,7 +21,7 @@ en:
       invalid_token: 'Invalid authentication token.'
       timeout: 'Your session expired, please sign in again to continue.'
       inactive: 'Your account was not activated yet.'
-      expired:                  'Your account has expired for this billing cycle'
+      expired: 'Your account has expired for this billing cycle'
     sessions:
       signed_in: 'Signed in successfully.'
       signed_out: 'Signed out successfully.'
@@ -48,9 +48,12 @@ en:
     omniauth_callbacks:
       success: 'Successfully authorized from %{kind} account.'
       failure: 'Could not authorize you from %{kind} because "%{reason}".'
+
     mailer:
       welcome:
         subject: 'Welcome to Dynasty Owner, %{name}!'
+      invitation_accepted:
+        subject: '%{name} has accepted the invitation to join your league!'
       confirmation_instructions:
         subject: 'Confirmation instructions'
       reset_password_instructions:
