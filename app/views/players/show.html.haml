@@ -9,8 +9,13 @@
 
       %tbody
         %tr
-          %th{:rowspan => "7"}
-            %img.thumbnail{:src => "http://placehold.it/100x150"}
+          %th{:rowspan => "7", :valign => "top"}
+            - if FileTest.exists? ("/player_headshots/xt.fss.#{@player.person_key}.jpg")
+              .thumbnail
+                = image_tag "/player_headshots/xt.fss.#{@player.person_key}.jpg"
+            - else
+              .thumbnail
+                = image_tag "headshot.png"
           %th.left_aligned{:colspan => "7"}
             %h3.left_aligned
               = @player.real_team.display_name.first_name
