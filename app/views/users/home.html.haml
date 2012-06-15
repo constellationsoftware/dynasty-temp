@@ -113,8 +113,9 @@
           %h2 Recent League Activity
           %p There has been no activity.
   - else
-    = link_to t('.labels.join_league'), leagues_join_path, :class => 'btn btn-inverse'
-    = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
+    .well.light-well
+      = link_to t('.labels.join_league'), leagues_join_path, :class => 'btn btn-inverse'
+      = link_to t('.labels.create_league'), new_league_path, :class => 'btn btn-primary'
 - else
   = link_to t('.labels.create_team'), new_team_path
 

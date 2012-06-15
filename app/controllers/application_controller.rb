@@ -94,13 +94,8 @@ class ApplicationController < ActionController::Base
         # 2. Create/join a league
         # 3. Name your team
         def check_registered_league
-            if current_user
-                if current_user.team.nil?
-                    redirect_to user_registration_path
-                else
-                    redirect_to '/register/league' if current_user.team.league_id.nil?
-                end
-            end
+            #return unless current_user
+            #redirect_to '/register/league' if current_user.team.league_id.nil?
         end
 
         def get_alert_style_by_type(type)
