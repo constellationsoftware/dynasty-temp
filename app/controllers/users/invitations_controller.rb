@@ -25,8 +25,8 @@ class Users::InvitationsController < Devise::InvitationsController
     protected
         def process_payment
             # uncomment for testing
-            @user.build_team :name => "#{@user.username.capitalize}'s Team"
-            return @user.save!
+            #@user.build_team :name => "#{@user.username.capitalize}'s Team"
+            #return @user.save!
 
             # strip params specific to the user's billing info
             same_billing_address = !!(params.delete('same_billing_address') { false })
