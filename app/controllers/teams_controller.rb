@@ -33,9 +33,9 @@ class TeamsController < ApplicationController
 
     def update
       @team = Team.find(params[:id])
+      @team.save
 
-
-    redirect_to root_path
+       redirect_to root_path
     end
 
     def financials
