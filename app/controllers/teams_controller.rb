@@ -34,15 +34,8 @@ class TeamsController < ApplicationController
     def update
       @team = Team.find(params[:id])
 
-      respond_to do |format|
-        if @team.update_attributes(params[:team])
-          format.html { redirect_to(:back, :notice => 'Team was successfully updated.') }
-          format.xml { head :ok }
-        else
-          format.html { render :action => "index" }
-          format.xml { render :xml => @team.errors, :status => :unprocessable_entity }
-        end
-      end
+
+    redirect_to root
     end
 
     def financials
