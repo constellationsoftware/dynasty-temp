@@ -4,7 +4,7 @@ Dynasty Owner is a complete simulation of the ownership experience. You manage y
 
 <%= @resource.invitor.full_name %> has invited you to join his Dynasty Owner League, "<%= @resource.invitor.team.league.name %>".
 
-To sign up and register using this email address, visit the following URL: <%= accept_invitation_url(@resource, :invitation_token => @resource.invitation_token) %>
+To sign up and register using this email address, visit the following URL: <%= link_to 'Accept invitation', 'http://dynastyowner.net/users/invitation/accept?invitation_token=#{@resource.invitation_token}'  %>
 <%- unless @resource.message.nil? %>
 Here is the message that was included with this invite:
 <%= @resource.message %>
