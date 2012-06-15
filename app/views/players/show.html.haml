@@ -1,5 +1,5 @@
 //- content_for :title, "Player Research: #{@player.name.full_name}"
-.row-fluid
+.row-fluid{"data-skip-pjax" => "true"}
   .well.dark-well
     %a.btn.btn-primary{:href => "/research/"} Back To Research
 .row-fluid
@@ -198,13 +198,85 @@
                 %td= psp.games_played
 
         .row-fluid
-          %h2
-            Offensive Stats
-          %table.research.display.table.table-bordered.tabled-condensed
+          - if @player.season_passing_stats
+            %h2
+              Passing Stats
+          %table.research.display.table.table-bordered.tabled-condensed.datatable
+            %head
+              %tr
+                %th Year
+                %th Rating
+                %th Comp
+                %th Att
+                %th Pct
+                %th Yds
+                %th TD
+                %th Int
+
+            %tbody
+              - @player.season_passing_stats.each do |stat|
+                %tr
+                  %th= stat.stat_coverage.season.season_key ||= "0"
+                  %td= stat.stat_repository.passer_rating ||= "0"
+                  %td= stat.stat_repository.passes_completions ||= "0"
+                  %td= stat.stat_repository.passes_attempts ||= "0"
+                  %td= stat.stat_repository.passes_percentage ||= "0"
+                  %td= stat.stat_repository.passes_yards_net  ||= "0"
+                  %td= stat.stat_repository.passes_touchdowns ||= "0"
+                  %td= stat.stat_repository.passes_interceptions ||= "0"
+
         .row-fluid
-          %h2
-            Defensive Stats
-          %table.research.display.table.table-bordered.tabled-condensed
+          - if @player.season_rushing_stats
+            %h2
+              Rushing Stats
+          %table.research.display.table.table-bordered.tabled-condensed.datatable
+            %head
+              %tr
+                %th Year
+                %th Att
+                %th Yds
+                %th TD
+                %th Avg
+                %th Longest
+
+
+            %tbody
+              - @player.season_rushing_stats.each do |stat|
+                %tr
+                  %td= stat.stat_coverage.season.season_key ||= "0"
+                  %td= stat.stat_repository.rushes_attempts ||= "0"
+                  %td= stat.stat_repository.rushes_yards ||= "0"
+                  %td= stat.stat_repository.rushes_touchdowns ||= "0"
+                  %td= stat.stat_repository.rushing_average_yards_per ||= "0"
+                  %td= stat.stat_repository.rushes_longest ||= "0"
+        .row-fluid
+          - if @player.season_defensive_stats
+            %h2
+              Defensive Stats
+          %table.research.display.table.table-bordered.tabled-condensed.datatable
+            %head
+              %tr
+                %th Year
+                %th Tckl
+                %th A. Tckl
+                %th Int
+                %th Int Yds
+                %th Int TDs
+                %th Sacks
+                %th Sacks Yds
+
+
+            %tbody
+              - @player.season_defensive_stats.each do |stat|
+                %tr
+                  %td= stat.stat_coverage.season.season_key ||= "0"
+                  %td= stat.stat_repository.tackles_solo ||= "0"
+                  %td= stat.stat_repository.tackles_assists ||= "0"
+                  %td= stat.stat_repository.interceptions_total ||= "0"
+                  %td= stat.stat_repository.interceptions_yards ||= "0"
+                  %td= stat.stat_repository.interceptions_touchdown ||= "0"
+                  %td= stat.stat_repository.sacks_total ||= "0"
+                  %td= stat.stat_repository.sacks_yards ||= "0"
   .span4
     - cache do
       .well

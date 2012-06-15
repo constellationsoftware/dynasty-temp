@@ -33,7 +33,7 @@ $ ->
         aoColumns: [
             sName:      'name'
             sWidth:     '120px'
-            sClass: 'left'
+            sClass: 'dt_left'
             mDataProp:  null
             aDataSort:  [ 2,1 ]
             fnRender:   (col) ->
@@ -44,7 +44,7 @@ $ ->
                 el = $(el)
                 content =
                     """
-                    <span class="left">
+                    <span class="left_aligned">
                     <!-- <button class="btn btn-mini">Add</button> -->
                     <!-- <button class="btn btn-mini">Trade</button> -->
                     <a href="/players/#{data.id}" rel="popover" data-original-title="#{data.name.first_name} #{data.name.last_name}" data-content="Some Content" class="player_popover">
@@ -66,16 +66,20 @@ $ ->
         ,
             sName:      'position'
             mDataProp:  'position.abbreviation'
+            sClass: 'dt_center'
+
         ,
             sName:      'team'
             mDataProp:  'real_team.display_name.abbreviation'
+            sClass: 'dt_center'
         ,
             sName:      'bye'
             mDataProp:  'contract.bye_week'
+            sClass: 'dt_center'
         ,
             sName:      'contract_amount'
             mDataProp:  'contract.amount'
-            sClass:     'right'
+            sClass:     'dt_right'
             bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
@@ -83,7 +87,7 @@ $ ->
         ,
             sName:      'contract_total_amount'
             mDataProp:  'contract.summary'
-            sClass:     'right'
+            sClass:     'dt_right'
             bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
@@ -91,34 +95,34 @@ $ ->
         ,
             sName:      'contract_end_year'
             mDataProp:  'contract.end_year'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'points'
             mDataProp:  'points.points'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'passing_points'
             mDataProp:  'points.passing_points'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'rushing_points'
             mDataProp:  'points.rushing_points'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'defensive_points'
             mDataProp:  'points.defensive_points'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'fumble_points'
             mDataProp:  'points.fumbles_points'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'scoring_points'
             mDataProp:  'points.scoring_points'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'dollars_per_point'
-            sClass:     'right'
+            sClass:     'dt_right'
             mDataProp:  'dollars_per_point'
             bUseRendered: false
             fnRender:   (col) ->
@@ -127,7 +131,7 @@ $ ->
         ,
             sName:      'games'
             mDataProp:  'points.games_played'
-            sClass:     'right'
+            sClass:     'dt_right'
         ,
             sName:      'id'
             bVisible:   false
@@ -144,7 +148,7 @@ $ ->
         sScrollY: '600px'
         asStripeClasses:[]
         oScroller:
-            serverWait: 250
+            serverWait: 125
             #rowHeight: 26
 
     columnIndexByName = (name) ->

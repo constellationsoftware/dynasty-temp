@@ -495,8 +495,24 @@ html {
 }
 
 .right_aligned {
-    text-aligned: right !important;
-    padding-left: 5px !important;
+    text-align: right !important;
+    padding-right: 5px !important;
+}
+
+.center_aligned {
+    text-align: center !important;
+}
+
+.dt_left {
+    text-align: left !important;
+}
+
+.dt_right {
+    text-align: right !important;
+}
+
+.dt_center {
+    text-align: center !important;
 }
 .dark-well {
     background: url('noise.png') repeat top left;
@@ -528,12 +544,9 @@ html {
 }
 
 #research tr {
-    .transition(.15s, ease-in-out);
     #gradient > .vertical(@white, @ghostWhite);
     &:hover {
         #gradient > .vertical(@white, @ghostBlue);
-        .scale(1.01);
-        padding-top: 10px;
         color: @white;
         a {
             color: @white !important;
@@ -541,14 +554,15 @@ html {
     }
 }
 
-#research thead {
-    font-size: 16px;
-    background-color: @ghostWhite;
+.dataTable {
+        font-size: 10px;
 }
 
-table.dataTable td {
-    padding: 5px 15px;
-    font-size: 16px;
+.research_row th {
+    font-size: 12px;
+}
+table.dataTable {
+    width: 100% !important;
 }
 
 // RESPONSIVE VIDEO (FROM ZURB)
@@ -703,4 +717,10 @@ h2 a.accordion-toggle {
         .scale(1.0625);
         .transition(all .15s linear);
     }
+}
+
+//Datatables Overrides
+.datatable td {
+    text-align: left !important;
+    float: left !important;
 }

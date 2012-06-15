@@ -46,11 +46,78 @@ class Player < ActiveRecord::Base
         :conditions => { :membership_type => 'teams', :phase_status => 'active' }
     has_one  :real_team, :through => :active_team_phase
 
+    has_many :stats,
+             :foreign_key => 'stat_holder_id',
+             :conditions => ['stat_holder_type = ?', 'persons']
+
+    has_many :passing_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballPassingStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_passing_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
+    has_many :rushing_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballRushingStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_rushing_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
+    has_many :defensive_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballDefensiveStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_defensive_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
+    has_many :fumbles_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballFumblesStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_fumbles_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
+    has_many :sacks_against_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballSacksAgainstStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_sacks_against_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
+    has_many :special_teams_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballSpecialTeamsStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_special_teams_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
+    has_many :scoring_stats,
+             :through => :stats,
+             :class_name => 'AmericanFootballScoringStat',
+             :source => :stat_repository,
+             :conditions => ['stat_repository_type = ?', 'american_football_scoring_stats'],
+             :order => "stat_repository.sub_season.id DESC"
+
     def all_leagues
 
     end
 
+    def subseason_stats
+        self.stats.where(:stat_coverage_type => "sub_seasons")
+    end
 
+    def season_passing_stats
+        self.subseason_stats.where(:stat_repository_type => "american_football_passing_stats")
+    end
+
+    def season_rushing_stats
+        self.subseason_stats.where(:stat_repository_type => "american_football_rushing_stats")
+    end
+
+    def season_defensive_stats
+        self.subseason_stats.where(:stat_repository_type => "american_football_defensive_stats")
+    end
 
     def in_league
 
