@@ -123,8 +123,8 @@ $ ->
             bSortable:  false
             fnRender:   (col) ->
                 data = col.aData
-                ppd = data.points.points / (data.contract.amount / 1000000)
-                $.formatNumber ppd, format: '#.#'
+                ppd =   0 + (data.contract.amount / data.points.points)
+                $.formatNumber ppd, format: '$ ### per pt.'
         ,
             sName:      'games'
             mDataProp:  'points.games_played'

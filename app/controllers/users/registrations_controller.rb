@@ -40,6 +40,7 @@ module Users
         protected
             def process_payment
                 # uncomment for testing
+                # Bypasses Payment Process entirely (for fast testing)
                 #@user.build_team :name => "#{@user.username.capitalize}'s Team"
                 #return @user.save!
 
