@@ -4,7 +4,7 @@ class LeaguesController < ApplicationController
     skip_before_filter :check_registered_league, :only => [ :join, :join_invite, :create ]
 
     def join
-        @league = League.where{ teams_count < Settings.league.capacity }.first
+        @league = League.where{ (teams_count < Settings.league.capacity) & (public == true) }.first
         @league ||= create_league
         join_league
         redirect_to edit_my_team_path

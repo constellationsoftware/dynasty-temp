@@ -1,9 +1,19 @@
 = stylesheet_link_tag 'forms'
 = javascript_include_tag 'register'
-= devise_error_messages!
-= semantic_form_for @user, :url => edit_user_registration_path, :html => { :id => 'register', :class => 'nice' } do |f|
-  .row.span12.centered
-    .panel
-      %h3 Edit Profile
-      = render :partial => '/users/shared/registration_form', :locals => { :form => f }
+= render :partial => 'shared/controls/registration_steps', :locals => { :step_classes => [ '', 'disabled', 'disabled' ] }
+.row-fluid
+  .span12.well.light-well
+    - @user.tier = params[:tier] if params.has_key? :tier
+    %h2= t('.title', :tier => @user.tier.capitalize)
+    = simple_form_for @user, :url => create_user_registration_path, :html => { :id => 'register', :class => [ 'form-horizontal', 'labels-left'] } do |f|
+      = render :partial => 'form', :locals => { :form => f }
+      = f.button :submit, 'Submit'
+    %small.red * denotes a required field
 
+    .row-fluid
+      .AuthorizeNetSeal
+        %script{:language => "javascript", :type => "text/javascript"}
+        :javascript
+          var ANS_customer_id="c6297c37-e55c-4830-9353-0c4298d8bdad";
+        %script{:language => "javascript", :src => "//verify.authorize.net/anetseal/seal.js", :type => "text/javascript"}
+        %a#AuthorizeNetText{:href => "http://www.authorize.net/", :target => "_blank"} Credit Card Merchant Services

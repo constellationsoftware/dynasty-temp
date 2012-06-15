@@ -1,7 +1,7 @@
 module Users
     class RegistrationsController < Devise::RegistrationsController
-        skip_before_filter :authenticate_user!, :only => [ :create ]
-        skip_before_filter :check_registered_league
+        skip_before_filter :authenticate_user!, :only => [ :create, :update ]
+        skip_before_filter :check_registered_league, :except => :edit
 
         def create
             build_resource
@@ -41,6 +41,7 @@ module Users
         end
 
         def edit
+            @user = current_user
             #5.times{ @user.event_subscriptions.build }
             #DynastyEvent.reflect_on_association(:event_subscriptions).options[:conditions] = "#{DynastyEventSubscription.table_name}.user_id = #{@user.id}"
             #@notification_settings = DynastyEvent.joins{[ event_subscriptions.outer, event_subscriptions.user.outer ]}.eager_load{[ event_subscriptions, event_subscriptions.user ]}

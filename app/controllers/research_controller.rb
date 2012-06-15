@@ -3,6 +3,8 @@ class ResearchController < ApplicationController
     respond_to :html, :json
     caches_page :index
     self.resource_class = Player
+
+    skip_before_filter :check_registered_league
     #include DatatableMarshaller, :only => :players
     before_filter :inject_player_params, :only => :players
     skip_before_filter :authenticate_user!
@@ -22,7 +24,7 @@ class ResearchController < ApplicationController
 
     def index
 
-        if user_signed_in? && current_user.team.league
+        if current_user && current_user.team && current_user.team.league
             @league = League.find(current_user.team.league_id)
             @league_players = @league.players.all
 

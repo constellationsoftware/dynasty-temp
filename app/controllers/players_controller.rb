@@ -4,6 +4,7 @@ require 'open-uri'
 
 class PlayersController < ApplicationController
     skip_before_filter :authenticate_user!
+    skip_before_filter :check_registered_league
 
     respond_to :html, :json
 

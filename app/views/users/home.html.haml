@@ -14,9 +14,10 @@
           %h2= team.name
           .row-fluid
             .span6
-              %h3
-                League:
-                = team.league.name
+              - if team.league.name
+                %h3
+                  League:
+                  = team.league.name
               %h3
                 Motto:
                 = team.motto
