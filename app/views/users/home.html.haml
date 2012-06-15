@@ -51,8 +51,6 @@
                   %a.btn.submit{ :href => '#' } Submit
                   %a.btn.cancel{ :href => '#', :data => { :dismiss => 'modal' } } Cancel
               %button.btn.btn-small.btn-danger{ :data => { :toggle => 'modal', :target => '#schedule-draft' } }= I18n.t "#{@draft.state === 'scheduled' ? 're' : ''}schedule_draft", :scope => :user_cp
-            - if team.league.teams.count < Settings.league.capacity
-              = link_to (I18n.t 'invite', :scope => :user_cp), new_user_invitation_path, :class => "btn btn-small"
 
 
 
