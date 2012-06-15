@@ -156,7 +156,7 @@ module Users
                     user.errors[:payment] << 'Something went wrong with creating the user profile'
                     return false
                 end
-    =begin
+=begin
                     # attempt to update the customer profile with all new data
                     profile[:customer_profile_id] = user.customer_profile_id
                     options = { :profile => profile }
@@ -176,7 +176,7 @@ module Users
                         user.errors[:payment] << 'Something went wrong with updating the user profile'
                         return false
                     end
-    =end
+=end
 
                 # NOW GET THE CUSTOMER PROFILE & CREATE THE TRANSACTION
                 profile_options = { :customer_profile_id => user.customer_profile_id }
