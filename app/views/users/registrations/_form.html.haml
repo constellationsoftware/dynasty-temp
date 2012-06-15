@@ -3,8 +3,13 @@
     %h3
       Basic Information
 
-    %input{ :type => 'hidden', :name => 'user[tier]', :value => params[:tier] }
-    = form.input :email, :as => :email, :required => true, :hint => "We use your email to communicate with you."
+    %input{ :type => 'hidden', :name => 'user[tier]', :value => params.has_key?('invitation_token') ? @user.tier : params[:tier] }
+    - if @user.email === ''
+      = form.input :email, :as => :email, :required => true
+    -else
+      .control-group
+        .control-label Email
+        .controls= @user.email
     = form.input :username, :required => true
     = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
     = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
@@ -12,15 +17,14 @@
     = form.input :last_name, :required => true
     = form.input :phone, :required => true, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32 }
   .span6
-    .well
-      %h3
-        Billing Address
-      %p
-        %i The address associated with your credit card.
+    %h3
+      Billing Address
+    %p
+      %i Please use the address associated with your credit card.
     - @user.build_address if @user.address.nil?
     = form.simple_fields_for :address, :name => 'Address' do |address|
       = address.input :street, :label => 'Address', :required => true
-      = address.input :street2, :label => 'Address 2', :placeholder => 'Apt. 123, Suite A, etc.'
+      = address.input :street2, :label => 'Address 2'
       = address.input :city, :required => true
       = address.input :state, :label => 'State/Province', :required => true
       = address.input :zip, :label => 'Zip/Postal Code', :required => true

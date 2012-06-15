@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
     has_many :events, :through => :event_subscriptions
     has_one :invitation, :class_name => 'User', :as => :invited_by
 
-    attr_accessible :roles, :email, :username, :login, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :tier, :address_attributes, :event_subscriptions_attributes, :address
+    attr_accessible :roles, :email, :username, :login, :password, :password_confirmation, :remember_me, :last_seen, :id, :current_sign_in_at, :current_sign_in_ip, :phone, :area_code, :notifications, :first_name, :last_name, :tier, :address_attributes, :event_subscriptions_attributes, :address, :invited_by
 
     accepts_nested_attributes_for :address
 
