@@ -1,5 +1,8 @@
 .row-fluid
   .span6
+    %h3
+      Basic Information
+
     %input{ :type => 'hidden', :name => 'user[tier]', :value => params[:tier] }
     = form.input :email, :as => :email, :required => true, :hint => "We use your email to communicate with you."
     = form.input :username, :required => true
@@ -9,6 +12,11 @@
     = form.input :last_name, :required => true
     = form.input :phone, :required => true, :input_html => { :value => (action_name === 'edit' ? number_to_phone(form.object.phone) : ''), :maxlength => 32 }
   .span6
+    .well
+      %h3
+        Billing Address
+      %p
+        %i The address associated with your credit card.
     - @user.build_address if @user.address.nil?
     = form.simple_fields_for :address, :name => 'Address' do |address|
       = address.input :street, :label => 'Address', :required => true
@@ -20,10 +28,12 @@
     /- unless action_name === 'new'
     /<input type="button" onclick="document.getElementById('formAuthorizeNetPage').submit();">Manage my payment and shipping information</button>
 - @user.credit_card = CreditCard.new
-%h2 Cardholder details
+%h2 Payment Details
 .row-fluid
   = simple_fields_for @user.credit_card do |cc|
     .span6
+      %h3
+        Credit Card Information
       = cc.input :first_name, :required => true
       = cc.input :last_name, :required => true
       = cc.input :card_num, :required => true, :label => "Credit Card #"

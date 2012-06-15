@@ -63,6 +63,7 @@ module Dynasty
         config.assets.paths << "#{Rails.root}/app/assets/videos"
 
 
+
         config.assets.paths << Rails.root.join('app', 'assets', 'videos')
         config.assets.paths << Rails.root.join('app', 'assets', 'images')
         config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
@@ -112,6 +113,8 @@ module Dynasty
              :enable_starttls_auto => true
         }
 =end
+        config.action_mailer.default_url_options = { :host => 'dynastyowner.net' }
+
         config.action_mailer.delivery_method = :smtp
         config.action_mailer.smtp_settings = {
             :address              => 'smtp.gmail.com',

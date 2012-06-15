@@ -25,7 +25,8 @@ en:
                 title:          "Accept invitation for %{invitor}'s %{tier} league"
         team:
             edit:
-                title:          'Edit Team Details'
+                title:          'Choose Team Details'
+
             show:
                 title:          'Team Details'
 
