@@ -1,19 +1,52 @@
 module Users
     class RegistrationsController < Devise::RegistrationsController
+        skip_before_filter :authenticate_user!, :only => [ :create ]
         skip_before_filter :check_registered_league
 
         def create
-            # strip params specific to the user's billing info
-            same_billing_address = !!(params.delete('same_billing_address') { false })
-            cc_params = params.delete 'credit_card'
             super
-            # uncomment for testing
-            #team = @user.build_team
-            #team.name = "#{@user.username.capitalize}'s Team"
-            #team.save!
-            #return @user
+            "user validity: #{@user.valid?.inspect}"
+            process_payment if @user.valid?
+        end
 
-            if @user.valid?
+        def update
+            super
+            "user validity: #{@user.valid?.inspect}"
+            process_payment if @user.valid?
+        end
+
+        def edit
+            #5.times{ @user.event_subscriptions.build }
+            #DynastyEvent.reflect_on_association(:event_subscriptions).options[:conditions] = "#{DynastyEventSubscription.table_name}.user_id = #{@user.id}"
+            #@notification_settings = DynastyEvent.joins{[ event_subscriptions.outer, event_subscriptions.user.outer ]}.eager_load{[ event_subscriptions, event_subscriptions.user ]}
+        end
+
+        def after_sign_up_path_for(resource)
+            # send out welcome email
+            Users::Mailer.welcome(resource).deliver
+            super
+        end
+=begin
+        def clean_select_multiple_params(hash = params)
+            puts hash.inspect
+            hash.each do |k, v|
+                case v
+                    when Array then v.reject!(&:blank?)
+                    when Hash then clean_select_multiple_params(v)
+                end
+            end
+        end
+=end
+        protected
+            def process_payment
+                # uncomment for testing
+                #@user.build_team :name => "#{@user.username.capitalize}'s Team"
+                #return @user.save!
+
+                # strip params specific to the user's billing info
+                same_billing_address = !!(params.delete('same_billing_address') { false })
+                cc_params = params.delete 'credit_card'
+
                 # Create Credit Card Object
                 credit_card ||= ActiveMerchant::Billing::CreditCard.new(
                       :number => cc_params['card_num'],
@@ -75,62 +108,36 @@ module Users
                 if create_profile_response.success?
                     # save the returned customer payment profile ID
                     @user.customer_profile_id = create_profile_response.authorization
-                    if @user.save!
-                        # NOW GET THE CUSTOMER PROFILE & CREATE THE TRANSACTION
-                        profile_options = { :customer_profile_id => @user.customer_profile_id }
-                        profile_response = GATEWAY.get_customer_profile(profile_options)
 
-                        # Get the customer payment profile id for transaction
-                        @customer_payment_profile_id = profile_response.params['profile']['payment_profiles']['customer_payment_profile_id']
-                        puts "customer_payment_profile_id: #{@customer_payment_profile_id}"
-                        puts ''
+                    # NOW GET THE CUSTOMER PROFILE & CREATE THE TRANSACTION
+                    profile_options = { :customer_profile_id => @user.customer_profile_id }
+                    profile_response = GATEWAY.get_customer_profile(profile_options)
 
-                        # build the transaction object
-                        # TODO: refactor this - get amount from params
-                        #:amount => (@user.tier == 'legend' ? 500 : 250)
-                        @transaction = {
-                              :type => :auth_capture,
-                              :amount => (@user.tier == 'legend' ? '0.02' : '0.01'),
-                              :customer_profile_id => @user.customer_profile_id,
-                              :customer_payment_profile_id => @customer_payment_profile_id
-                        }
+                    # Get the customer payment profile id for transaction
+                    @customer_payment_profile_id = profile_response.params['profile']['payment_profiles']['customer_payment_profile_id']
+                    puts "customer_payment_profile_id: #{@customer_payment_profile_id}"
+                    puts ''
 
-                        ## Perform the transaction
-                        @transaction_response = GATEWAY.create_customer_profile_transaction(:transaction => @transaction)
-                        puts 'transaction response:'
-                        pp @transaction_response
-                        puts ''
-                        if @transaction_response.success?
-                            team = @user.build_team
-                            team.name = "#{@user.username.capitalize}'s Team"
-                            team.save!
-                        end
+                    # build the transaction object
+                    # TODO: refactor this - get amount from params
+                    #:amount => (@user.tier == 'legend' ? 500 : 250)
+                    @transaction = {
+                        :type => :auth_capture,
+                        :amount => (@user.tier == 'legend' ? '0.02' : '0.01'),
+                        :customer_profile_id => @user.customer_profile_id,
+                        :customer_payment_profile_id => @customer_payment_profile_id
+                    }
+
+                    ## Perform the transaction
+                    @transaction_response = GATEWAY.create_customer_profile_transaction(:transaction => @transaction)
+                    puts 'transaction response:'
+                    pp @transaction_response
+                    puts ''
+                    if @transaction_response.success?
+                        @user.build_team :name => "#{@user.username.capitalize}'s Team"
+                        return @user.save!
                     end
                 end
             end
-        end
-
-        def edit
-            #5.times{ @user.event_subscriptions.build }
-            #DynastyEvent.reflect_on_association(:event_subscriptions).options[:conditions] = "#{DynastyEventSubscription.table_name}.user_id = #{@user.id}"
-            #@notification_settings = DynastyEvent.joins{[ event_subscriptions.outer, event_subscriptions.user.outer ]}.eager_load{[ event_subscriptions, event_subscriptions.user ]}
-        end
-
-        def after_sign_up_path_for(resource)
-            # send out welcome email
-            Users::Mailer.welcome(resource).deliver
-            super
-        end
-=begin
-        def clean_select_multiple_params(hash = params)
-            puts hash.inspect
-            hash.each do |k, v|
-                case v
-                    when Array then v.reject!(&:blank?)
-                    when Hash then clean_select_multiple_params(v)
-                end
-            end
-        end
-=end
     end
 end

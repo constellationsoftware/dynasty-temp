@@ -1,10 +1,22 @@
-= content_for :title, 'Set your password'
-.row.span4
-  = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :class => [ 'well', 'form-inline' ] } do |f|
-    = devise_error_messages!
-    = f.hidden_field :invitation_token, :autocomplete => :off
-    = f.input :first_name, :required => true
-    = f.input :last_name, :required => true
-    = f.input :password, :required => true
-    = f.input :password_confirmation, :label => 'Confirm password', :required => true
-    = f.button :submit, 'Submit'
+-#= content_for :title, 'Set your password'
+-#.row.span4
+-#  = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put, :class => [ 'well', 'form-inline' ] } do |f|
+-#    = devise_error_messages!
+-#    = f.hidden_field :invitation_token, :autocomplete => :off
+-#    = f.input :first_name, :required => true
+-#    = f.input :last_name, :required => true
+-#    = f.input :password, :required => true
+-#    = f.input :password_confirmation, :label => 'Confirm password', :required => true
+-#    = f.button :submit, 'Submit'
+-#
+= stylesheet_link_tag 'forms'
+= javascript_include_tag 'register'
+= render :partial => 'shared/registration_steps', :locals => { :step_classes => [ '', 'disabled', 'disabled' ] }
+.row-fluid
+  .span12.well.light-well
+    %h2= t('.title', :invitor => @user.invited_by.username, :tier => @user.invited_by.team.league.tier.capitalize)
+    = simple_form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :id => 'register', :class => [ 'form-horizontal', 'labels-left'] } do |f|
+      = f.hidden_field :invitation_token, :autocomplete => :off
+      = render :partial => 'users/registrations/form', :locals => { :form => f }
+      = f.button :submit, 'Submit'
+    %small.red * denotes a required field

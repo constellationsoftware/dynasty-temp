@@ -1,33 +1,37 @@
 class LeaguesController < ApplicationController
     respond_to :html, :json
 
-    skip_before_filter :check_registered_league, :only => [ :join, :create ]
+    skip_before_filter :check_registered_league, :only => [ :join, :join_invite, :create ]
 
     def join
         @league = League.where{ teams_count < Settings.league.capacity }.first
         @league ||= create_league
         join_league
-        redirect_to edit_team_path current_user.team
+        redirect_to edit_my_team_path
+    end
+
+    def join_invite
+        @league = current_user.invited_by.team.league
+        join_league
+        # send out confirmation email to invitor
+        redirect_to edit_my_team_path
     end
 
     def create
-        @league ||= create_league(false)
+        params[:league][:public] = 0
+        params[:league][:tier] = current_user.tier
+        @league = create_league
         join_league
-        @league.tier = current_user.tier
-        if @league.save!
-            # create draft and set date
-            draft = @league.build_draft
-            puts draft.inspect
-            raise
-
+        if @league
             # send out invite emails
             invite_emails = params.delete('league-invite').reject{ |email| email.nil? || email === '' }
             message = params.delete('message')
             invite_emails.each do |email|
-                User.invite! :email => email do |u|
+                user = User.invite! :email => email, :tier => current_user.tier do |u|
                     u.invitor = current_user
                     u.message = message
                 end
+                user.update_attribute :invited_by, current_user if user
             end
             redirect_to edit_my_team_path
         end
@@ -49,19 +53,14 @@ class LeaguesController < ApplicationController
     def update
         @league = resource
         unless @league.nil?
-            if params[:league].has_key? :draft_attributes
-                # delete main attribute since values are handled through JS
-                params[:league][:draft_attributes].delete :start_datetime
-            end
             @league.update_attributes! params[:league]
             redirect_to root_path
         end
     end
 
     protected
-        def create_league(public = true)
+        def create_league
             league = League.new params[:league]
-            league.public = public
             if league.save!
                 # league creator is assigned the manager role
                 current_user.add_role 'manager', league

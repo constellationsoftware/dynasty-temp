@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
 
     #has_many :teams
     has_one :team
-    has_many :leagues, :foreign_key => 'manager_id'
+    has_one :league, :through => :team
     has_one :address, :class_name => 'UserAddress', :dependent => :destroy
     has_many :event_subscriptions, :class_name => 'DynastyEventSubscription'
     has_many :events, :through => :event_subscriptions

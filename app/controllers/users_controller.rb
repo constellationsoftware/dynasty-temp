@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-    before_filter :authenticate_user!
-    before_filter :signed_in_user, only: [ :edit, :update ]
-    before_filter :correct_user,   only: [ :edit, :update ]
+    #before_filter :signed_in_user, only: [ :edit, :update ]
+    #before_filter :correct_user,   only: [ :edit, :update ]
     skip_before_filter :authenticate_user!, :only => [ :index, :test_mail ]
 
     helper :authorize_net
@@ -24,15 +23,10 @@ class UsersController < ApplicationController
 
     def register_league
         @user = current_user
-
-        # TODO: remove this once testing is done
-        if @user.team.nil?
-            @user.team = Team.new :name => "#{@user.username.capitalize}'s Team"
-            @user.save
-        end
-
         # stub out a league and draft in case the user wishes to create a private league
-        @league = @user.team.league.nil? ? @user.team.build_league(:name => "#{@user.username.capitalize}'s League") : @user.team.league
+        @user.team.league = @user.team.build_league :name => "#{@user.username.capitalize}'s League", :public => false
+        @draft_dates = draft_schedule_dates
+        @user.team.league.build_draft :start_datetime => @draft_dates.first if @user.team.league.draft.nil?
     end
 
     def draft_schedule_dates
@@ -62,35 +56,6 @@ class UsersController < ApplicationController
 
     def index
         @users = User.all
-    end
-
-    def payment_step_class(user)
-        cls = []
-        if user.team.league_id?
-            cls << 'btn-success'
-        else
-            cls << 'btn-default' if user.expired?
-        end
-        cls << 'disabled' unless user.team.league_id.nil?
-        cls
-    end
-
-    def league_step_class(user)
-        cls = []
-        if user.team.league_id?
-            cls << 'btn-success'
-        else
-            cls << 'btn-default' if user.expired?
-        end
-        cls << 'disabled' if user.team.league_id.nil?
-        cls
-    end
-
-    def team_step_class(user)
-        cls = []
-        cls << 'btn-default' if user.expired?
-        cls << 'disabled' if user.team.league_id.nil?
-        cls
     end
 
     private
