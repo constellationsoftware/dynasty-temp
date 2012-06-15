@@ -101,4 +101,13 @@ class PlayersController < ApplicationController
         @team = current_user.team
         @players = apply_scopes(resource_class)
     end
+
+    def update
+        team = Team.find current_user.team_id
+        puts team.inspect
+        team.update_attributes! params[:team]
+        puts team.inspect
+        raise
+        redirect_to :back
+    end
 end

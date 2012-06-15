@@ -9,9 +9,4 @@ class Users::TeamController < ApplicationController
     def edit
         @team = current_user.team
     end
-
-    def update
-
-        redirect_to root_path
-    end
 end

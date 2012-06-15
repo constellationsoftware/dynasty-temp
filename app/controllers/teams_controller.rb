@@ -32,9 +32,9 @@ class TeamsController < ApplicationController
 
 
     def update
-
-
-       redirect_to root_path
+        team = Team.find params[:id]
+        team.update_attributes! params[:team]
+        redirect_to root_path
     end
 
     def financials
