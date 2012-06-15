@@ -76,7 +76,7 @@ en:
 
     mailer:
       welcome:
-        subject: 'Welcome to Dynasty Owner, %{name}!'
+        subject: 'Invitation to Dynasty Owner!'
       invitation_accepted:
         subject: '%{name} has accepted the invitation to join your league!'
       confirmation_instructions:

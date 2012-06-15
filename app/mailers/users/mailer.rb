@@ -21,7 +21,7 @@ class Users::Mailer < ActionMailer::Base
     def invitation_accepted(user)
         @user = user
         mail(:to => @user.invited_by.email,
-             :subject => I18n.t(:subject, :scope => %w( devise mailer invitation_accepted ), :name => @user.invited_by.full_name),
+             :subject => I18n.t(:subject, :scope => %w( devise mailer invitation_accepted ), :name => @user.full_name),
              :template_path => 'users/mailer',
              :template_name => 'invite_accepted') do |format|
             format.html
