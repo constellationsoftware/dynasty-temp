@@ -19,7 +19,7 @@
             - if user_signed_in?
               - if current_user.team
                 %li
-                  %a#date.navbar-text= number_to_currency(current_user.team.balance)
+                  %a#date.navbar-text= number_to_currency(current_user.team.balance, options = {:precision => 0})
             %li.divider-vertical
             %li
               %a{:href => '/mockups/rules'} How To Play
@@ -51,13 +51,7 @@
 
                 %ul.dropdown-menu
                   %li
-                    %a{:href => edit_user_registration_path}
-                      Edit Profile
-                  %li
-                    %a{:href => '#'}
-                      Manage Account
-                  %li
-                    %a{:href => '/teams/'}
+                    %a{:href => edit_my_team_path}
                       Edit Team
                   %li.divider
                   %li
