@@ -1,10 +1,8 @@
-/ Modal Partial
 - unless user_signed_in?
   .modal#loginModal.dismissable.fade
     .modal-header
-      %button.close{:data => {:dismiss => "modal"}}x
-      %h3
-        Log In
+      = render :partial => 'shared/modals/modal_header'
+      %h3 Log In
     .modal-body
       = simple_form_for :user, :url => new_user_session_path, :html => { :class => 'login' } do |f|
         = render :partial => '/users/shared/login_form', :locals => { :form => f }
@@ -12,9 +10,3 @@
       = link_to 'Don\'t have an account? Create one!', new_user_registration_path
       |
       = link_to 'Forgot your password?', new_password_path('user')
-    .modal-footer
-      %a.btn{:href => "#"} Close
-
-/ Modal Partial End
-
-

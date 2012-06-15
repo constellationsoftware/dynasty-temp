@@ -1,0 +1,9 @@
+#signupModal.modal.dismissable.modal-signup.fade
+  .modal-header
+    = render :partial => 'shared/modals/modal_header'
+    %h1.simple
+      %button.close{ :data => { :dismiss => 'modal' } } ×
+      %span.dark_red SIGN UP
+      TO CREATE OR JOIN A LEAGUE!
+  .modal-body
+    = render :partial => "shared/league_comparison"

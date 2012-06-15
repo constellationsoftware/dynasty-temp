@@ -1,6 +1,6 @@
 = stylesheet_link_tag 'forms'
 = javascript_include_tag 'register'
-= render :partial => 'shared/registration_steps', :locals => { :step_classes => [ '', 'disabled', 'disabled' ] }
+= render :partial => 'shared/controls/registration_steps', :locals => { :step_classes => [ '', 'disabled', 'disabled' ] }
 .row-fluid
   .span12.well.light-well
     %h2= t('.title', :tier => params[:tier])

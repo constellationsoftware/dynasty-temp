@@ -31,7 +31,7 @@
 // Body
 %body
   = render :partial => "shared/chrome_frame"
-  = render :partial => "shared/login_modal"
+  = render :partial => "shared/modals/login_modal"
   // Sitewide Nav Bar
   = render :partial => "shared/nav_wrapper"
   // The Page Stack
@@ -46,17 +46,11 @@
         // Main Content
         = yield
 
-  -#-# Page Footer
+  -# Page Footer
   = render :partial => "shared/dynasty_footer"
-  -#-# Modals
+  -# Modals
   - unless user_signed_in?
-    #signupModal.modal.modal-signup.fade
-      .modal-header
-        %h1.simple
-          %button.close{ :data => { :dismiss => 'modal' } } ×
-          %span.dark_red SIGN UP
-          TO CREATE OR JOIN A LEAGUE!
-      .modal-body
-        = render :partial => "shared/league_comparison"
+    = render :partial => "shared/modals/signup_modal"
+
 
 

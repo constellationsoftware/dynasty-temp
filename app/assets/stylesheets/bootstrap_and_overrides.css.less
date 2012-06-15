@@ -86,14 +86,17 @@ body {
 
 }
 
-.disabled {
-    .opacity(25);
-    .transition(.25s, ease-in-out);
+.controls .disabled {
+    .opacity(50);
     &:hover {
         .opacity(50);
-        .scale(1.01);
     }
 }
+
+.ease {
+    .transition(.25s, ease-in-out);
+}
+
 
 //* Adjust column gutters
 @gridColumnWidth: 63px;
@@ -479,8 +482,9 @@ html {
 .well {
     .box-shadow(2px 2px 10px @grayDark);
     .box-shadow(10px 10px 50px @grayLight);
-    .transition(.25s, ease-in-out);
+    //.transition(.25s, ease-in-out);
     &:hover {
+        //
         .opacity(100); //.scale(1.01);
     }
 }
@@ -494,6 +498,12 @@ html {
 
     #gradient > .vertical(@gray, @grayDark);
 }
+
+.controls {
+    padding: 5px !important;
+
+}
+
 
 .light-well {
     background: url('noise.png') repeat top left;
@@ -664,5 +674,28 @@ h2 a.accordion-toggle {
         line-height: 36px;
         .box-shadow(0 0 55px @darkred);
         width: 100%;
+    }
+}
+
+// Modal Close buttons
+.close {
+    color: @white !important;
+    opacity: .75 !important;
+    .transition(all .15s linear);
+    &:hover {
+        opacity: 1.0 !important;
+        .scale(1.0625);
+        .transition(all .15s linear);
+    }
+}
+
+// Bubbly Buttons
+.bubble {
+    opacity: .75 !important;
+    .transition(all .15s linear);
+    &:hover {
+        opacity: 1.0 !important;
+        .scale(1.0625);
+        .transition(all .15s linear);
     }
 }
