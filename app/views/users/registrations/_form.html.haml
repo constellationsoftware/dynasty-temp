@@ -36,12 +36,10 @@
 .row-fluid
   = simple_fields_for @user.credit_card do |cc|
     .span6
-      %h3
-        Credit Card Information
-      = cc.input :first_name, :required => true
-      = cc.input :last_name, :required => true
-      = cc.input :card_num, :required => true, :label => "Credit Card #"
-      = cc.input :card_code, :required => true, :label => "CCV#", :input_html => {:size => 5}
+      = cc.input :first_name
+      = cc.input :last_name
+      = cc.input :card_num
+      = cc.input :card_code
       = cc.input :expiration_month, :collection => Date::MONTHNAMES.compact.inject({}){ |h, v| h[v] = h.length + 1; h }, :include_blank => false, :input_html => { :class => 'span5' }
       - year_collection = (0...10).inject({}){ |h, v| h[Date.today.year + v] = Date.today.year + v - 2000; h }
       = cc.input :expiration_year, :collection => year_collection, :include_blank => false, :required => true, :input_html => { :class => 'span3' }

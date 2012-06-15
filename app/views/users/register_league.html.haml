@@ -6,7 +6,7 @@
     %h2 Join or create a league
     %a.public.btn.btn-large.btn-primary{ :href => leagues_join_path }= t '.labels.buttons.join_public'
     - unless @user.invited_by.nil?
-      %a.join-private.btn.btn-large.btn-primary{ :href => leagues_join_invite_path }= t('.labels.buttons.join_private', :name => @user.invited_by.full_name.capitalize)
+      %a.join-private.btn.btn-large.btn-primary{ :href => leagues_join_invite_path }= t('.labels.buttons.join_private', :name => @user.invited_by.full_name)
     .create-private.btn.btn-large.btn-primary{ :data => { :toggle => 'modal', :target => '#league-type-modal' } }= t '.labels.buttons.create_private'
 
     #league-type-modal.modal.fade
