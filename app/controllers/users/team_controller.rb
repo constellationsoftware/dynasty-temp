@@ -11,6 +11,7 @@ class Users::TeamController < ApplicationController
     end
 
     def update
-        redirect_to root
+
+        redirect_to root_path
     end
 end

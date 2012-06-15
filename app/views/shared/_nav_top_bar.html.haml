@@ -48,10 +48,9 @@
                   %i.icon-user.icon-white
                   = t :signed_in, :attribute => current_user.first_name, :scope => :nav
 
-
                 %ul.dropdown-menu
                   %li
-                    %a{:href => "/teams/"}
+                    %a{:href => edit_my_team_path}
                       Edit Team
                   %li.divider
                   %li
