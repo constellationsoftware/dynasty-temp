@@ -32,8 +32,7 @@ class TeamsController < ApplicationController
 
 
     def update
-      @team = Team.find(params[:id])
-      @team.save
+
 
        redirect_to root_path
     end
