@@ -15,6 +15,9 @@
           .row-fluid
             .span6
               %h3
+                League:
+                = team.league.name
+              %h3
                 Motto:
                 = team.motto
               %h3
@@ -23,23 +26,13 @@
             .span6
               .thumbnail
                 = image_tag team.logo.url(:thumb)
-          %a.btn.btn-primary{:href => '/teams/'} Edit Team
-
+                .caption
+                  = team.name
           .row-fluid
-            .span1
-              -# todo Fix this weird issue with path
-              //%img{:src => current_user.gravatar_url }
-
-              //= link_to 'Edit Avatar', current_user.gravatar_profile
-            .span5
-              %p
-                Balance:
-                %strong
-                  = team.balance.format
-              %p
-                - if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.state == 'finished')
-                  /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
-                  = link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
+            %a.btn.btn-primary{:href => '/teams/'} Edit Team
+            -# if team.league.draft.nil? || (!team.league.draft.nil? && !team.league.draft.state == 'finished')
+            /= link_to 'Set AutoPick Order', auto_pick_path, :class => 'btn btn-primary'
+            /=# link_to 'Go to The Draft',  draft_path, :class => 'btn btn-primary' unless team.league.draft.nil?
         - if current_user.is_manager_of? team.league
 
           .well.light-well.disabled
@@ -80,7 +73,21 @@
 
 
       .span4
-        .well.light-well.disabled
+        .well.light-well
+          %h2
+            = current_user.full_name
+          .row-fluid
+            .thumbnail.span3
+              = image_tag current_user.gravatar_url
+              .caption
+                = link_to 'Edit', current_user.gravatar_profile
+            .span9
+              Email:
+              = current_user.email
+              Username:
+              = current_user.username
+
+        .well.light-well
           %h2 League Standings
           %table.table-striped.table-condensed.table-bordered
             %thead
