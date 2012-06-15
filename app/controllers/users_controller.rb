@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     #before_filter :signed_in_user, only: [ :edit, :update ]
     #before_filter :correct_user,   only: [ :edit, :update ]
     skip_before_filter :authenticate_user!, :only => [ :index, :test_mail ]
+    before_filter :can_register_league, :only => :register_league
 
     helper :authorize_net
     helper_method :payment_step_class, :league_step_class, :team_step_class, :draft_schedule_dates
@@ -59,6 +60,10 @@ class UsersController < ApplicationController
     end
 
     private
+        def can_register_league
+            redirect_to root_path unless current_user.team.league.nil?
+        end
+
         module SessionsHelper
             def redirect_back_or(default)
                 redirect_to(session[:return_to] || default)

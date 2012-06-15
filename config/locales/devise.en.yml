@@ -43,8 +43,27 @@ en:
       signed_up_but_locked: 'You have signed up successfully. However, we could not sign you in because your account is locked.'
       user:
         payment:
-          profile:
+          profile_create:
             error: 'There was an error while saving your billing information.'
+          profile_update:
+            error: 'There was an error while updating your billing information.'
+          profile_delete:
+            error: 'There was an error while updating your billing information.'
+          profile_fetch:
+            error: 'There was an error while retrieving your billing information.'
+          transaction:
+            error: 'There was an error processing your payment.'
+    invitations:
+      user:
+        payment:
+          profile_create:
+            error: 'There was an error while saving your billing information.'
+          profile_update:
+            error: 'There was an error while updating your billing information.'
+          profile_delete:
+            error: 'There was an error while updating your billing information.'
+          profile_fetch:
+            error: 'There was an error while retrieving your billing information.'
           transaction:
             error: 'There was an error processing your payment.'
     unlocks:
