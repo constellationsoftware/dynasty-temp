@@ -1,15 +1,14 @@
 .row-fluid
   .span6
-    %h3
-      Basic Information
+    %h3 Basic Information
 
-    %input{ :type => 'hidden', :name => 'user[tier]', :value => params.has_key?('invitation_token') ? @user.tier : params[:tier] }
-    - if @user.email === ''
-      = form.input :email, :as => :email, :required => true
-    -else
+    %input{ :type => 'hidden', :name => 'user[tier]', :value => @user.tier }
+    - if controller.class.name === 'Users::InvitationsController'
       .control-group
         .control-label Email
         .controls= @user.email
+    -else
+      = form.input :email, :as => :email, :required => true
     = form.input :username, :required => true
     = form.input :password, :required => true, :input_html => { :autocomplete => 'off' }
     = form.input :password_confirmation, :required => true, :label => 'Confirm password', :input_html => { :autocomplete => 'off' }
