@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     before_filter :set_current_clock
     before_filter :authenticate_user!, :except => [:register, :research ]
     before_filter :check_registered_league, :except => [ :register_league ]
+    before_filter :set_mailer_host
 
     respond_to :html
 
@@ -58,6 +59,10 @@ class ApplicationController < ActionController::Base
             scope = scope.send(filter_method, filter['value'])
         end
         scope
+    end
+
+    def set_mailer_host
+        ActionMailer::Base.default_url_options[:host] = request.host_with_port
     end
 
 =begin

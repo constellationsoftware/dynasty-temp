@@ -14,6 +14,7 @@ class LeaguesController < ApplicationController
         @league = current_user.invited_by.team.league
         join_league
         # send out confirmation email to invitor
+        Users::Mailer.invitation_accepted(current_user).deliver
         redirect_to edit_my_team_path
     end
 

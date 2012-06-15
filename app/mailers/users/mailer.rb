@@ -18,12 +18,23 @@ class Users::Mailer < ActionMailer::Base
         end
     end
 
+    def invitation_accepted(user)
+        @user = user
+        mail(:to => @user.invited_by.email,
+             :subject => I18n.t(:subject, :scope => %w( devise mailer invitation_accepted ), :name => @user.invited_by.full_name),
+             :template_path => 'users/mailer',
+             :template_name => 'invite_accepted') do |format|
+            format.html
+            format.text
+        end
+    end
+
     def invitation_instructions(user)
         @resource = user
         mail(:to => @resource.email,
              :subject => I18n.t(:subject, :scope => %w( devise mailer invitation_instructions )),
              :template_path => 'users/mailer',
-             :template_name => 'welcome') do |format|
+             :template_name => 'invitation_instructions') do |format|
             format.html
             format.text
         end
@@ -33,6 +44,15 @@ class Users::Mailer < ActionMailer::Base
         def welcome
             user = User.first
             Users::Mailer.welcome(user)
+        end
+
+        def invitation_accepted
+            user = User.new :first_name => 'Joe', :last_name => 'Blow', :email => 'jblow@example.com'
+            user.build_team :name => 'Test Team'
+            user.team.build_league :name => 'Test League'
+            invitee = User.first
+            invitee.invited_by = user
+            Users::Mailer.invitation_accepted(invitee)
         end
 
         def invitation
