@@ -3,7 +3,11 @@
     .accordion#faq-accordion
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseOne", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}SIGN UP AND CREATE/JOIN LEAGUE
+          %a.accordion-toggle{:href => "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#faq-accordion", 'data-skip-pjax' => true}
+            .row-fluid
+              .span11 SIGN UP AND CREATE/JOIN LEAGUE
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseOne.accordion-body.collapse.in
           %h3
             Can I have multiple dynasty owner teams?
@@ -24,8 +28,11 @@
 
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseTwo", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            THE DRAFT
+          %a.accordion-toggle{:href => "#collapseTwo", "data-toggle" => "collapse", "data-parent" => "#faq-accordion",' data-skip-pjax' => true}
+            .row-fluid
+              .span11 THE DRAFT
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseTwo.accordion-body
           %h3 What is the format of the draft?
           %p
@@ -44,8 +51,12 @@
             No you can’t.  If you try and draft a player who’s contract eclipses the amount of salary cap available you   will not be able to draft that player.     You can go over the salary cap but will have to pay the luxury tax   immediately after the draft and until you make roster moves to get under the cap.
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseThree", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            GAMEPLAY AND LEAGUE RULES
+          %a.accordion-toggle{:href => "#collapseThree", "data-toggle" => "collapse", "data-parent" => "#faq-accordion"}
+            .row-fluid
+              .span11
+                GAMEPLAY AND LEAGUE RULES
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseThree.accordion-body
           %h3
             What are the penalties for exceeding the salary cap?
@@ -78,8 +89,11 @@
 
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseFour", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            PAYOUTS AND LEAGUE PRIZES
+          %a.accordion-toggle{:href => "#collapseFour", "data-toggle" => "collapse", "data-parent" => "#faq-accordion",'data-skip-pjax' => true}
+            .row-fluid
+              .span11 PAYOUTS AND LEAGUE PRIZES
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseFour.accordion-body
           %h3
             What are the Payouts and Revenue Sharing?

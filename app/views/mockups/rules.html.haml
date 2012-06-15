@@ -5,9 +5,12 @@
     .accordion#faq-accordion
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseOne", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            I. Introduction
-
+          %a.accordion-toggle{:href => "#collapseOne", "data-toggle" => "collapse", "data-parent" => "#faq-accordion"}
+            .row-fluid
+              .span11
+                I. Introduction
+              .span1.right_aligned
+                %i.icon-zoom-in
 
         #collapseOne.accordion-body.collapse.in
           :markdown
@@ -19,8 +22,12 @@
 
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseTwo", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            II.  Getting Started
+          %a.accordion-toggle{:href => "#collapseTwo", "data-toggle" => "collapse", "data-parent" => "#faq-accordion"}
+            .row-fluid
+              .span11
+                II. Getting Started
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseTwo.accordion-body
           :markdown
             1.  Choose Your Competition Level – There are two different levels of competition within Dynasty Owner. The   game     is       the same. Levels will vary in Dynasty Dollar (DD) conversion, league revenue percentages,   and payouts.     They are as       follows:
@@ -72,8 +79,12 @@
             12. Team Activity – If a franchise’s bank account has a negative balance for  two consecutive weeks, then   Dynasty       Owner will take control of the franchise and may run the franchise in any manner that Dynasty   Owner sees fit. Upon       abandonment, Dynasty Owner reserves the right to sell the team in the Marketplace  in their sole discretion.
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseThree", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            III.  Coach’s Corner
+          %a.accordion-toggle{:href => "#collapseThree", "data-toggle" => "collapse", "data-parent" => "#faq-accordion"}
+            .row-fluid
+              .span11
+                III.  Coach’s Corner
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseThree.accordion-body
           :markdown
              1.  Salary Cap – Prior to the Annual Draft, Dynasty Owner will set a Salary Cap. For the 2012 Dynasty    Owner    season the       Salary Cap is set at $85,000,000.  There will be a Hard Cap equal to one   hundred   twenty percent    (120%) of the Salary       Cap -- $102,000,000. A franchise owner may not   complete a   transaction that would    result in the franchise exceeding the       Hard Cap. There will be  a Salary Floor   equal to eighty percent (80%)    of the Salary Cap -- $68,000,000. A franchise       owner  must maintain a   salary level of at least the Salary     Floor each week of the season. Franchise owners  may elect to         spend under the Salary Floor, but will still    be responsible for the full Salary  Floor amount.  Any deficit   below the       Salary Floor will be debited from     that franchise on a   dollar-for-dollar basis.
@@ -114,8 +125,13 @@
 
       .accordion-group
         %h2
-          %a.accordion-toggle{:href => "#collapseFour", "data-toggle" => "collapse", "data-parent" => "faq-accordion"}
-            IV. The Marketplace  (TBD)
+          %a.accordion-toggle{:href => "#collapseFour", "data-toggle" => "collapse", "data-parent" => "#faq-accordion"}
+
+            .row-fluid
+              .span11
+                IV. The Marketplace
+              .span1.right_aligned
+                %i.icon-zoom-in
         #collapseFour.accordion-body
           :markdown
             1.  Transaction Fee – All transactions in the Marketplace will include a ten percent (10%) transaction  fee,     payable by       the buyer to the Fed.
