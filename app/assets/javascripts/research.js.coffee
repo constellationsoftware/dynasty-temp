@@ -117,14 +117,13 @@ $ ->
             mDataProp:  'points.scoring_points'
             sClass:     'right'
         ,
-            sName:      'points_per_dollar'
+            sName:      'dollars_per_point'
             sClass:     'right'
-            mDataProp:  null
-            bSortable:  false
+            mDataProp:  'dollars_per_point'
+            bUseRendered: false
             fnRender:   (col) ->
                 data = col.aData
-                ppd =   0 + (data.contract.amount / data.points.points)
-                $.formatNumber ppd, format: '$ ### per pt.'
+                if data.dollars_per_point is 0 then '$0' else "$#{$.formatNumber data.dollars_per_point, format: '#,###'}"
         ,
             sName:      'games'
             mDataProp:  'points.games_played'
