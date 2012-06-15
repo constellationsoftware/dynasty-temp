@@ -8,11 +8,10 @@ class Users::InvitationsController < Devise::InvitationsController
 
     def update
         self.resource = resource_class.accept_invitation!(params[resource_name])
-        @user = resource
 
+        puts "resource validity: #{resource.valid?.inspect}"
         if resource.errors.empty?
-            "resource validity: #{resource.valid?.inspect}"
-            process_payment if resource.valid?
+            process_payment(resource) if resource.valid?
 
             set_flash_message :notice, :updated
             sign_in(resource_name, resource)
@@ -23,8 +22,9 @@ class Users::InvitationsController < Devise::InvitationsController
     end
 
     protected
-        def process_payment
+        def process_payment(user)
             # uncomment for testing
+            # Bypasses Payment Process entirely (for fast testing)
             #@user.build_team :name => "#{@user.username.capitalize}'s Team"
             #return @user.save!
 
@@ -50,14 +50,14 @@ class Users::InvitationsController < Devise::InvitationsController
 
             # Create Address
             address = {
-                  :first_name => @user.first_name,
-                  :last_name => @user.last_name,
-                  :country => @user.address.country,
-                  :phone => @user.phone,
-                  :address => "#{@user.address.street} #{@user.address.street2}",
-                  :city => @user.address.city,
-                  :state => @user.address.state,
-                  :zip => @user.address.zip
+                  :first_name => user.first_name,
+                  :last_name => user.last_name,
+                  :country => user.address.country,
+                  :phone => user.phone,
+                  :address => "#{user.address.street} #{user.address.street2}",
+                  :city => user.address.city,
+                  :state => user.address.state,
+                  :zip => user.address.zip
             }
             puts 'USER ADDRESS:'
             pp address
@@ -66,9 +66,9 @@ class Users::InvitationsController < Devise::InvitationsController
             # Create Payment Profile from form data
             # this uses the billing address and credit card data
             profile = {
-                :merchant_customer_id => @user.id, # Optional
-                :description => @user.full_name,
-                :email => @user.email,
+                :merchant_customer_id => user.id, # Optional
+                :description => user.full_name,
+                :email => user.email,
                 :payment_profiles => {
                     :bill_to => address,
                     :payment => payment
@@ -92,10 +92,10 @@ class Users::InvitationsController < Devise::InvitationsController
             #make sure this is not overwritten
             if create_profile_response.success?
                 # save the returned customer payment profile ID
-                @user.customer_profile_id = create_profile_response.authorization
+                user.customer_profile_id = create_profile_response.authorization
 
                 # NOW GET THE CUSTOMER PROFILE & CREATE THE TRANSACTION
-                profile_options = { :customer_profile_id => @user.customer_profile_id }
+                profile_options = { :customer_profile_id => user.customer_profile_id }
                 profile_response = GATEWAY.get_customer_profile(profile_options)
 
                 # Get the customer payment profile id for transaction
@@ -108,8 +108,8 @@ class Users::InvitationsController < Devise::InvitationsController
                 #:amount => (@user.tier == 'legend' ? 500 : 250)
                 @transaction = {
                     :type => :auth_capture,
-                    :amount => (@user.tier == 'legend' ? '0.02' : '0.01'),
-                    :customer_profile_id => @user.customer_profile_id,
+                    :amount => (user.tier == 'legend' ? '0.02' : '0.01'),
+                    :customer_profile_id => user.customer_profile_id,
                     :customer_payment_profile_id => @customer_payment_profile_id
                 }
 
@@ -119,9 +119,16 @@ class Users::InvitationsController < Devise::InvitationsController
                 pp @transaction_response
                 puts ''
                 if @transaction_response.success?
-                    @user.build_team :name => "#{@user.username.capitalize}'s Team"
-                    return @user.save!
+                    user.build_team :name => "#{user.username.capitalize}'s Team"
+                    return true
+                else
+                    user.errors[:payment] << 'Something went wrong with the transaction'
+                    set_flash_message :error, 'payment.transaction.error'
                 end
+            else
+                user.errors[:payment] << 'Something went wrong with creating the user profile'
+                set_flash_message :error, 'payment.profile.error'
             end
+            false
         end
 end

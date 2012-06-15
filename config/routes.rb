@@ -43,8 +43,10 @@ Dynasty::Application.routes.draw do
         delete  '/logout' => 'users/sessions#destroy', :as => :destroy_user_session
         get     '/logout' => 'users/sessions#destroy', :as => :destroy_user_session
 
+        get     '/register/all-pro' => 'users/registrations#new', :as => :all_pro_registration, :tier => 'all-pro'
+        get     '/register/legend' => 'users/registrations#new', :as => :legend_registration, :tier => 'legend'
         post    '/profile' => 'users/registrations#create', :as => :create_user_registration
-        get     '/register' => 'users/registrations#new', :as => :new_user_registration
+        #get     '/register' => 'users/registrations#new', :as => :new_user_registration
         get     '/profile' => 'users/registrations#edit', :as => :user_registration
         put     '/profile' => 'users/registrations#update', :as => :edit_user_registration
     end

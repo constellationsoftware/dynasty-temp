@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
     scope :with_role, lambda { |role| {:conditions => "roles_mask & #{2**ROLES.index(role.to_s)} > 0"} }
     scope :with_address, joins { address }.includes { address }
 
+    validates_format_of :username, :with => /^[\w]+$/
     validates_presence_of :first_name, :last_name, :username, :phone
     validates_uniqueness_of :email, :username
     validates_inclusion_of :tier, :in => [ 'all-pro', 'legend' ]

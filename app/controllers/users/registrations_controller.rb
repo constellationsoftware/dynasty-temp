@@ -4,15 +4,40 @@ module Users
         skip_before_filter :check_registered_league
 
         def create
-            super
-            "user validity: #{@user.valid?.inspect}"
-            process_payment if @user.valid?
+            build_resource
+
+            if resource.valid? && process_payment(resource) && resource.save
+                if resource.active_for_authentication?
+                    set_flash_message :notice, :signed_up if is_navigational_format?
+                    sign_in(resource_name, resource)
+                    respond_with resource, :location => after_sign_up_path_for(resource)
+                else
+                    set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_navigational_format?
+                    expire_session_data_after_sign_in!
+                    respond_with resource, :location => after_inactive_sign_up_path_for(resource)
+                end
+            else
+                clean_up_passwords resource
+                respond_with resource
+            end
         end
 
         def update
-            super
-            "user validity: #{@user.valid?.inspect}"
-            process_payment if @user.valid?
+            self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
+
+            if resource.valid? && process_payment(resource) && resource.update_with_password(resource_params)
+                if is_navigational_format?
+                    if resource.respond_to?(:pending_reconfirmation?) && resource.pending_reconfirmation?
+                        flash_key = :update_needs_confirmation
+                    end
+                    set_flash_message :notice, flash_key || :updated
+                end
+                sign_in resource_name, resource, :bypass => true
+                respond_with resource, :location => after_update_path_for(resource)
+            else
+                clean_up_passwords resource
+                respond_with resource
+            end
         end
 
         def edit
@@ -38,7 +63,7 @@ module Users
         end
 =end
         protected
-            def process_payment
+            def process_payment(user)
                 # uncomment for testing
                 # Bypasses Payment Process entirely (for fast testing)
                 #@user.build_team :name => "#{@user.username.capitalize}'s Team"
@@ -66,14 +91,14 @@ module Users
 
                 # Create Address
                 address = {
-                      :first_name => @user.first_name,
-                      :last_name => @user.last_name,
-                      :country => @user.address.country,
-                      :phone => @user.phone,
-                      :address => "#{@user.address.street} #{@user.address.street2}",
-                      :city => @user.address.city,
-                      :state => @user.address.state,
-                      :zip => @user.address.zip
+                      :first_name => user.first_name,
+                      :last_name => user.last_name,
+                      :country => user.address.country,
+                      :phone => user.phone,
+                      :address => "#{user.address.street} #{user.address.street2}",
+                      :city => user.address.city,
+                      :state => user.address.state,
+                      :zip => user.address.zip
                 }
                 puts 'USER ADDRESS:'
                 pp address
@@ -82,9 +107,9 @@ module Users
                 # Create Payment Profile from form data
                 # this uses the billing address and credit card data
                 profile = {
-                    :merchant_customer_id => @user.id, # Optional
-                    :description => @user.full_name,
-                    :email => @user.email,
+                    :merchant_customer_id => user.id, # Optional
+                    :description => user.full_name,
+                    :email => user.email,
                     :payment_profiles => {
                         :bill_to => address,
                         :payment => payment
@@ -108,10 +133,10 @@ module Users
                 #make sure this is not overwritten
                 if create_profile_response.success?
                     # save the returned customer payment profile ID
-                    @user.customer_profile_id = create_profile_response.authorization
+                    user.customer_profile_id = create_profile_response.authorization
 
                     # NOW GET THE CUSTOMER PROFILE & CREATE THE TRANSACTION
-                    profile_options = { :customer_profile_id => @user.customer_profile_id }
+                    profile_options = { :customer_profile_id => user.customer_profile_id }
                     profile_response = GATEWAY.get_customer_profile(profile_options)
 
                     # Get the customer payment profile id for transaction
@@ -124,8 +149,8 @@ module Users
                     #:amount => (@user.tier == 'legend' ? 500 : 250)
                     @transaction = {
                         :type => :auth_capture,
-                        :amount => (@user.tier == 'legend' ? '0.02' : '0.01'),
-                        :customer_profile_id => @user.customer_profile_id,
+                        :amount => (user.tier == 'legend' ? '0.02' : '0.01'),
+                        :customer_profile_id => user.customer_profile_id,
                         :customer_payment_profile_id => @customer_payment_profile_id
                     }
 
@@ -135,10 +160,17 @@ module Users
                     pp @transaction_response
                     puts ''
                     if @transaction_response.success?
-                        @user.build_team :name => "#{@user.username.capitalize}'s Team"
-                        return @user.save!
+                        user.build_team :name => "#{user.username.capitalize}'s Team"
+                        return true
+                    else
+                        user.errors[:payment] << 'Something went wrong with the transaction'
+                        set_flash_message :error, 'payment.transaction.error'
                     end
+                else
+                    user.errors[:payment] << 'Something went wrong with creating the user profile'
+                    set_flash_message :error, 'payment.profile.error'
                 end
+                false
             end
     end
 end

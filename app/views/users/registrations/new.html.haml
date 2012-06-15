@@ -3,7 +3,8 @@
 = render :partial => 'shared/controls/registration_steps', :locals => { :step_classes => [ '', 'disabled', 'disabled' ] }
 .row-fluid
   .span12.well.light-well
-    %h2= t('.title', :tier => params[:tier])
+    - @user.tier = params[:tier] if params.has_key? :tier
+    %h2= t('.title', :tier => @user.tier.capitalize)
     = simple_form_for @user, :url => create_user_registration_path, :html => { :id => 'register', :class => [ 'form-horizontal', 'labels-left'] } do |f|
       = render :partial => 'form', :locals => { :form => f }
       = f.button :submit, 'Submit'

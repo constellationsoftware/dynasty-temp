@@ -153,7 +153,12 @@ en:
                 inclusion: "Value for %{attribute} is outside the range of acceptable values"
             models:
                 user:
-                    taken: 'This email address is already registered'
+                    attributes:
+                        email:
+                            taken:      'This email address is already registered'
+                        username:
+                            taken:      'This username is already taken'
+                            invalid:    'Username must consist of only letters, numbers, and underscore characters'
                 league:
                     attributes:
                         name:
