@@ -135,8 +135,7 @@ module Dynasty
         config.action_controller.include_all_helpers = false
         #config.action_controller.asset_host = "http://assets.dynastyowner.local"
 
-        # Newrelic Garbace Collection Stats
-        GC::Profiler.enable
+
 
         config.generators do |g|
             g.test_framework      :rspec, :fixture => true
