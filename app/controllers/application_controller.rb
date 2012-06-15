@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     helper  :all
     before_filter :set_current_clock
     before_filter :authenticate_user!, :except => [:register, :research ]
-    before_filter :check_registered_league, :except => [ :register_league ]
+    #before_filter :check_registered_league, :except => [ :register_league ]
     before_filter :set_mailer_host
 
     respond_to :html
@@ -94,8 +94,8 @@ class ApplicationController < ActionController::Base
         # 2. Create/join a league
         # 3. Name your team
         def check_registered_league
-            return unless current_user
-            redirect_to '/register/league' if current_user.team.league_id.nil?
+            #return unless current_user
+            #redirect_to '/register/league' if current_user.team.league_id.nil?
         end
 
         def get_alert_style_by_type(type)
