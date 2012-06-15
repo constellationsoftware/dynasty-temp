@@ -2,16 +2,20 @@ class Users::InvitationsController < Devise::InvitationsController
     skip_before_filter :authenticate_user!, :only => [ :edit, :update ]
 
     def edit
-        @user = super
+        super
+        @user = resource
         @user
     end
 
     def update
         self.resource = resource_class.accept_invitation!(params[resource_name])
 
-        puts "resource validity: #{resource.valid?.inspect}"
+        Rails.logger.debug "resource validity: #{resource.valid?.inspect}"
         if resource.errors.empty?
-            process_payment(resource) if resource.valid?
+            unless resource.valid? && process_payment(resource)
+                respond_with_navigational(resource){ render :edit }
+                return
+            end
 
             set_flash_message :notice, :updated
             sign_in(resource_name, resource)
@@ -45,7 +49,7 @@ class Users::InvitationsController < Devise::InvitationsController
             # Wrap Credit Card in Payment
             payment = { :credit_card => credit_card }
             puts 'PAYMENT:'
-            pp payment
+            Rails.logger.debug payment
             puts ''
 
             # Create Address
@@ -78,14 +82,14 @@ class Users::InvitationsController < Devise::InvitationsController
             # Call the authorize.net API to create the profile
             options = { :profile => profile }
             puts 'OPTIONS:'
-            pp options
+            Rails.logger.debug options
             puts ''
 
             create_profile_response = GATEWAY.create_customer_profile(options)
             pp 'create customer profile response:'
             pp create_profile_response
-            puts 'response.authorization (customer payment profile id):'
-            pp create_profile_response.authorization
+            Rails.logger.debug 'response.authorization (customer payment profile id):'
+            Rails.logger.debug create_profile_response.authorization
             puts ''
 
             #save the customer profile id
@@ -116,7 +120,7 @@ class Users::InvitationsController < Devise::InvitationsController
                 ## Perform the transaction
                 @transaction_response = GATEWAY.create_customer_profile_transaction(:transaction => @transaction)
                 puts 'transaction response:'
-                pp @transaction_response
+                Rails.logger.debug @transaction_response
                 puts ''
                 if @transaction_response.success?
                     user.build_team :name => "#{user.username.capitalize}'s Team"
