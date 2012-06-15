@@ -34,7 +34,7 @@ class League < ActiveRecord::Base
     scope :with_teams, joins{ teams }.includes{ teams }
 
     accepts_nested_attributes_for :draft
-    attr_accessible :name, :public, :draft_attributes
+    attr_accessible :name, :public, :tier, :draft_attributes
 
     def is_public?; self.public === true end
     def is_private?; !(is_public?) end

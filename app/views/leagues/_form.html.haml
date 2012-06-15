@@ -1,12 +1,15 @@
 - if form.object.id.nil?
-  = form.input :name, :required => true, :input_html => { :class => 'input-text' }
+  = form.input :name, :required => true
 
-.control-group
-  %label.control-label.required{ :for => 'draft_date' }
-    %abbr{ :title => 'required' } *
-    Draft date
-  .controls
-    = select_tag :draft_date, options_for_select(draft_schedule_dates), :id => 'draft_date', :name => 'draft_date', :class => 'span8', :include_blank => false
+= form.simple_fields_for :draft do |draft_form|
+  = draft_form.input :start_datetime, :collection => @draft_dates, :include_blank => false, :input_html => { :class => 'span8' }
+
+-#.control-group
+-#  %label.control-label.required{ :for => 'draft_date' }
+-#    %abbr{ :title => 'required' } *
+-#    Draft date
+-#  .controls
+-#    = select_tag :draft_date, options_for_select(draft_schedule_dates), :id => 'draft_date', :name => 'draft_date', :class => 'span8', :include_blank => false
 
 .control-group
   .controls Invite friends to your league

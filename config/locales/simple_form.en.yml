@@ -21,3 +21,13 @@ en:
         # hints:
         #   username: 'User name to sign in.'
         #   password: 'No special characters, please.'
+
+        labels:
+            credit_card:
+                new:
+                    card_num:       'Card number'
+                    card_code:      'CCV'
+        hints:
+            credit_card:
+                new:
+

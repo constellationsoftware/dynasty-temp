@@ -14,11 +14,20 @@ en:
         registrations:
             new:
                 title:          'New User Registration for %{tier} league'
+        register_league:
+            labels:
+                buttons:
+                    join_public:    'Join Public League'
+                    join_private:   "Join %{name}'s League"
+                    create_private: 'Create Private League'
+        invitations:
+            edit:
+                title:          "Accept invitation for %{invitor}'s %{tier} league"
         team:
             edit:
-                title:              'Edit Team Details'
+                title:          'Edit Team Details'
             show:
-                title:              'Team Details'
+                title:          'Team Details'
 
     nav:
         signed_in:      "Hello, %{attribute}"
