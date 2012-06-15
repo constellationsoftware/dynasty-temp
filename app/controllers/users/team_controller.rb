@@ -11,6 +11,8 @@ class Users::TeamController < ApplicationController
     end
 
     def update
+        @team = Team.find(params[:id])
+        @team.save
         redirect_to root
     end
 end
