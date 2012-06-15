@@ -9,6 +9,26 @@ $.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
     return true if data[2].toLowerCase().indexOf(value) isnt -1 or data[1].toLowerCase().indexOf(value) isnt -1
 
 $ ->
+    $(".contract-amount").tooltip title: "Yearly Salary"
+
+    $(".name ").tooltip title: "The Player\'s Full Name"
+    $(".position Pos").tooltip title: "The Player\'s Position"
+    $(".team ").tooltip title: "The Player\'s Team"
+    $(".bye Bye").tooltip title: "The Player\'s Bye Week"
+    $(".contract-amount ").tooltip title: "The Player\'s Yearly Salary"
+    $(".contract-total-amount ").tooltip title: "The Player\'s Total Contract Amount"
+    $(".contract-end-year").tooltip title: "When the Player\'s Contract Ends"
+    $(".points FPTs").tooltip title: "Total Fantasy Points 2011-2012"
+    $(".passing-points").tooltip title: "Total Passing Points 2011-2012"
+    $(".rushing-points ").tooltip title: "Total Rushing Points 2011-2012"
+    $(".defensive-points ").tooltip title: "Total Defensive Points 2011-2012"
+    $(".fumble-points ").tooltip title: "Total Fumbles Points 2011-2012"
+    $(".scoring-points ").tooltip title: "Total Scoring Points 2011-2012"
+    $(".points-per-dollar ").tooltip title: "Dynasty Dollars per Point 2011-2012"
+    $(".games Games").tooltip title: "Games Played 2011-2012"
+    $(".id").tooltip title: ""
+    $(".player_popover").tooltip title: "Player"
+
     window.dataTable = $('#research').dataTable
         aoColumns: [
             sName:      'name'
@@ -27,7 +47,7 @@ $ ->
                     <span class="left">
                     <!-- <button class="btn btn-mini">Add</button> -->
                     <!-- <button class="btn btn-mini">Trade</button> -->
-                    <a href="/players/#{data.id}" rel="popover" data-original-title="#{data.name.first_name} #{data.name.last_name}" data-content="Some Content">
+                    <a href="/players/#{data.id}" rel="popover" data-original-title="#{data.name.first_name} #{data.name.last_name}" data-content="Some Content" class="player_popover">
                         #{el.text()}
                     </a>
 
@@ -38,6 +58,7 @@ $ ->
             sName:      'first_name'
             mDataProp:  'name.first_name'
             bVisible:   false
+
         ,
             sName:      'last_name'
             mDataProp:  'name.last_name'
