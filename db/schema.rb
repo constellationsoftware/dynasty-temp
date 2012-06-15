@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120613194136) do
+ActiveRecord::Schema.define(:version => 20120615051415) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -1171,13 +1171,17 @@ ActiveRecord::Schema.define(:version => 20120613194136) do
   add_index "dynasty_team_favorites", ["team_id", "player_id", "sort_order"], :name => "index_favorites_team_player_sort"
 
   create_table "dynasty_teams", :force => true do |t|
-    t.integer "league_id"
-    t.string  "name",          :limit => 50,                     :null => false
-    t.integer "user_id",                                         :null => false
-    t.binary  "uuid",          :limit => 255
-    t.integer "balance_cents", :limit => 8,   :default => 0,     :null => false
-    t.boolean "autopick",                     :default => false
-    t.string  "motto"
+    t.integer  "league_id"
+    t.string   "name",              :limit => 50,                     :null => false
+    t.integer  "user_id",                                             :null => false
+    t.binary   "uuid",              :limit => 255
+    t.integer  "balance_cents",     :limit => 8,   :default => 0,     :null => false
+    t.boolean  "autopick",                         :default => false
+    t.string   "motto"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
   end
 
   add_index "dynasty_teams", ["balance_cents"], :name => "index_dynasty_teams_on_balance_cents"

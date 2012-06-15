@@ -49,6 +49,7 @@ gem 'multi_json'
 gem 'yajl-ruby'
 gem 'oj'
 gem "paperclip", "~> 3.0"
+gem 'fog'
 
 
 # Templating & View Helpers

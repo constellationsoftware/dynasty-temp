@@ -2,7 +2,11 @@
 .row-fluid
   .span12.well.light-well
     %h2= t('.title')
-    = simple_form_for @team do |f|
-      = f.input :name
-      = f.input :motto
-      = f.button :submit, 'Submit'
+    = simple_form_for @team, :html => { :multipart => true }do |f|
+      .span6
+        = f.input :name, :label => "Choose Your Team Name"
+        = f.input :motto, :label => "Select a Motto"
+        Upload a Team Logo
+        %br
+        = f.file_field :logo
+        = f.button :submit, 'Confirm Team Details'

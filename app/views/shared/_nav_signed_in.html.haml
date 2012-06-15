@@ -1,8 +1,12 @@
 - if user_signed_in?
   .subnav.subnav-fixed
-    .container-fluid
-
-
+    .container
+      .span12
+      %ul.nav.nav-pills.pull-right
+        %li.divider-vertical
+        %li
+          %a{:href => "/"} Dashboard
+        %li.divider-vertical
       -# %ul.nav.nav-pills.pull-right
       -#   %li.divider-vertical
       -#   %li.dropdown

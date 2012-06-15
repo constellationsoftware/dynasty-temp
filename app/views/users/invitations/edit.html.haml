@@ -20,3 +20,7 @@
       = render :partial => 'users/registrations/form', :locals => { :form => f }
       = f.button :submit, 'Submit'
     %small.red * denotes a required field
+    .AuthorizeNetSeal
+      :javascript
+        var ANS_customer_id="c6297c37-e55c-4830-9353-0c4298d8bdad";
+      %script{:language => "javascript", :src => "//verify.authorize.net/anetseal/seal.js", :type => "text/javascrip"}

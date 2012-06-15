@@ -38,9 +38,11 @@ class Team < ActiveRecord::Base
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
     scope :with_picks, joins{ picks }.includes{ picks }
 
-    attr_accessible :name, :motto
+    attr_accessible :name, :motto, :logo
     validates_presence_of :name
     validates_uniqueness_of :name
+
+    has_attached_file :logo, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/paperclip/default.jpg"
 
     def payments
       Account.where(:payable_id => self.id)

@@ -8,3 +8,11 @@
       = render :partial => 'form', :locals => { :form => f }
       = f.button :submit, 'Submit'
     %small.red * denotes a required field
+
+    .row-fluid
+      .AuthorizeNetSeal
+        %script{:language => "javascript", :type => "text/javascript"}
+        :javascript
+          var ANS_customer_id="c6297c37-e55c-4830-9353-0c4298d8bdad";
+        %script{:language => "javascript", :src => "//verify.authorize.net/anetseal/seal.js", :type => "text/javascript"}
+        %a#AuthorizeNetText{:href => "http://www.authorize.net/", :target => "_blank"} Credit Card Merchant Services

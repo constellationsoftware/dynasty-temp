@@ -4,7 +4,7 @@
 
   - if team.league
     .row-fluid
-      .well.well-dark.span12
+      .well.dark-well.controls.span12
         %h1
           = team.name
           Dashboard
@@ -12,7 +12,17 @@
       .span8
         .well.light-well
           %h2= team.name
-          %h6= team.motto
+          .row-fluid
+            .span6
+              %h3
+                Motto:
+                = team.motto
+              %h3
+                Balance:
+                = number_to_currency(team.balance, options = {:precision => 0})
+            .span6
+              .thumbnail
+                = image_tag team.logo.url(:thumb)
           %a.btn.btn-primary{:href => '/teams/'} Edit Team
 
           .row-fluid
@@ -54,16 +64,16 @@
 
 
 
-        .well.light-well.disabled
-          %h2
-            Coaches Corner
-          %p
-            WIP
-        .well.light-well.disabled
-          %h2
-            Front Office
-          %p
-            WIP
+        //.well.light-well.disabled
+        //  %h2
+        //    Coaches Corner
+        //  %p
+        //    WIP
+        //.well.light-well.disabled
+        //  %h2
+        //    Front Office
+        //  %p
+        //    WIP
 
 
 

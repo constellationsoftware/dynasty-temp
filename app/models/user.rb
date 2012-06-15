@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
 
     # Include default devise modules. Others available are:
     #:token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-    devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :timeoutable, :trackable, :validatable, :lastseenable, :expirable, :authentication_keys => [:login]
+    devise :invitable, :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :lastseenable, :expirable, :authentication_keys => [:login]
 
     include Gravtastic
     has_gravatar :rating => 'R', :default => 'mm', :secure => false
