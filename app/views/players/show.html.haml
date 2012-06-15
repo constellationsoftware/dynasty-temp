@@ -2,210 +2,211 @@
 .row-fluid
   .well.dark-well
     %a.btn.btn-primary{:href => "/research/"} Back To Research
-.row-fluid.person
-  .well.light-well.span8
-    %h2= "#{@player.name.full_name}"
-    %table.table-condensed
-
-      %tbody
-        %tr
-          %th{:rowspan => "7", :valign => "top"}
-            - if FileTest.exists? ("/player_headshots/xt.fss.#{@player.person_key}.jpg")
-              .thumbnail
-                = image_tag "/player_headshots/xt.fss.#{@player.person_key}.jpg"
-            - else
-              .thumbnail
-                = image_tag "headshot.png"
-          %th.left_aligned{:colspan => "7"}
-            %h3.left_aligned
-              = @player.real_team.display_name.first_name
-              = @player.real_team.display_name.last_name
-            %p.left_aligned
-              = @player.position.abbreviation.upcase
-              (#{@player.phase.regular_position_depth})
-
-              2011-2012 Bye Week:
-              = @player.contract.bye_week
-        %tr
-          %td.left_aligned
-            Contract:
-          %td.left_aligned{:colspan => "5"}
-            = number_to_currency(@player.contract.summary)
-            over
-            = @player.contract.length
-            years, ending in
-            = @player.contract.end_year
-        %tr
-          %td.left_aligned
-            %strong Yearly Salary:
-          %td.left_aligned{:colspan => "5"}= number_to_currency(@player.contract.amount)
-        %tr
-          %td.left_aligned
-            %strong Free Agent:
-          %td.left_aligned{:colspan => "5"}= @player.contract.free_agent_year
-        %tr
-          %td.left_aligned
-            %strong Birth Date:
-          %td.left_aligned= @player.birth_date
-          %td.left_aligned
-            %strong Height:
-          %td.left_aligned= @player.phase.height
-          %td.left_aligned
-            %strong Weight:
-          %td.left_aligned= @player.phase.weight
-
-
-  .span4
-    - unless user_signed_in?
-      .well.light-well.demo
-        %h2
-          Inline Actions
-        %p
-          Visible when logged in / active.
-    - if user_signed_in?
-      .well.light-well
-        - if @league_players.include?(@player)
-          %h5
-          -if @player_team.team == @current_user.team
-            %h5
-              On Your Team
-          -else
-            .btn-group
-              %a.btn.dropdown-toggle{:data => {:toggle => 'dropdown'}}
-                = @player.position.name
-                for
-                = @player_team.team.name
-                %span.caret
-              %ul.dropdown-menu
-                %li
-                  %a{:href => "/trades/new?pid=#{@player_team.id}"}
-                    Offer A Trade
-        - else
-          .btn-group
-            - if @player.waivers.current.in_league(current_user.team).first
-
-              .btn-group
-                %a.btn.btn-primary
-                  On Waiver Wire
-                %a.btn.btn-primary{:href => "/front_office/waivers"}
-                  Make a Bid
-            - else
-              - if @open_slots.first
-                %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => @open_slots.first.andand.id)}
-                  = "Add #{@player.name.full_name}"
-
-              - else
-                %h5
-                  = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.pluralize}:"
-                %ul.nav.nav-list
-                  - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do |pt|
-                    %li
-                      .btn-group
-                        %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
-                          = pt.name
-                          %span.caret
-                        %ul.dropdown-menu
-                          = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
-  %br
-  %br
-
-
 .row-fluid
-  .span8.well.light-well
-    .row-fluid
-      %h2
-        This Season's Performance
-      %table.table.table-striped.table-bordered.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
-        %thead
-          %tr
-            %th
-              Event Date
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "The Opposing Team"}  OPP
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned"} PTS
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points Earned"} Pass
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points Earned"} Rush
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points Earned"} Def
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned"} Scoring
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Special Teams Fantasy Points Earned"} ST
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Sack Fantasy Points Lost"} Sck
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points Lost"} Fmbl
+  .span8
+    .row-fluid.person
+      .well.light-well
+        %h2= "#{@player.name.full_name}"
+        %table.table-condensed
 
-        %tbody
-        - @player.event_points.current.each do |pep|
-          %tr{:id => dom_id(pep)}
-            %th
-              = pep.event.start_date_time.strftime("%b-%e")
-            %th
-              = pep.event.away_team.abbreviation unless pep.event.away_team == @player.real_team
-              = pep.event.home_team.abbreviation unless pep.event.home_team == @player.real_team
-            %th= pep.points
-            %th= pep.passing_points
-            %th= pep.rushing_points
-            %th= pep.defensive_points
-            %th= pep.scoring_points
-            %th= pep.special_teams_points
-            %th= pep.sacks_against_points
-            %th= pep.fumbles_points
+          %tbody
+            %tr
+              %th{:rowspan => "7", :valign => "top"}
+                - if FileTest.exists? ("/player_headshots/xt.fss.#{@player.person_key}.jpg")
+                  .thumbnail
+                    = image_tag "/player_headshots/xt.fss.#{@player.person_key}.jpg"
+                - else
+                  .thumbnail
+                    = image_tag "headshot.png"
+              %th.left_aligned{:colspan => "7"}
+                %h3.left_aligned
+                  = @player.real_team.display_name.first_name
+                  = @player.real_team.display_name.last_name
+                %p.left_aligned
+                  = @player.position.abbreviation.upcase
+                  (#{@player.phase.regular_position_depth})
+
+                  2011-2012 Bye Week:
+                  = @player.contract.bye_week
+            %tr
+              %td.left_aligned
+                Contract:
+              %td.left_aligned{:colspan => "5"}
+                = number_to_currency(@player.contract.summary)
+                over
+                = @player.contract.length
+                years, ending in
+                = @player.contract.end_year
+            %tr
+              %td.left_aligned
+                %strong Yearly Salary:
+              %td.left_aligned{:colspan => "5"}= number_to_currency(@player.contract.amount)
+            %tr
+              %td.left_aligned
+                %strong Free Agent:
+              %td.left_aligned{:colspan => "5"}= @player.contract.free_agent_year
+            %tr
+              %td.left_aligned
+                %strong Birth Date:
+              %td.left_aligned= @player.birth_date
+              %td.left_aligned
+                %strong Height:
+              %td.left_aligned= @player.phase.height
+              %td.left_aligned
+                %strong Weight:
+              %td.left_aligned= @player.phase.weight
+
+
+    //  .span4
+    //    - unless user_signed_in?
+    //      .well.light-well.demo
+    //        %h2
+    //          Inline Actions
+    //        %p
+    //          Visible when logged in / active.
+    //    - if user_signed_in?
+    //      .well.light-well
+    //        - if @league_players.include?(@player)
+    //          %h5
+    //          -if @player_team.team == @current_user.team
+    //            %h5
+    //              On Your Team
+    //          -else
+    //            .btn-group
+    //              %a.btn.dropdown-toggle{:data => {:toggle => 'dropdown'}}
+    //                = @player.position.name
+    //                for
+    //                = @player_team.team.name
+    //                %span.caret
+    //              %ul.dropdown-menu
+    //                %li
+    //                  %a{:href => "/trades/new?pid=#{@player_team.id}"}
+    //                    Offer A Trade
+    //        - else
+    //          .btn-group
+    //            - if @player.waivers.current.in_league(current_user.team).first
+    //
+    //              .btn-group
+    //                %a.btn.btn-primary
+    //                  On Waiver Wire
+    //                %a.btn.btn-primary{:href => "/front_office/waivers"}
+    //                  Make a Bid
+    //            - else
+    //              - if @open_slots.first
+    //                %a.btn.btn-primary{:href => add_player_team_path(@player, :team_id => current_user.team.id, :lineup => //  @open_slots.first.andand.id)}
+    //                  = "Add #{@player.name.full_name}"
+    //
+    //              - else
+    //                %h5
+    //                  = "No open slots. To add #{@player.name.full_name} you must drop one of your #{@player.position.name.//  pluralize}:"
+    //                %ul.nav.nav-list
+    //                  - current_user.team.player_teams.where(:lineup_id => @player.position.lineups.pluck(:id)).each do //  |pt|
+    //                    %li
+    //                      .btn-group
+    //                        %a.btn.dropdown-toggle{'data-toggle' => 'dropdown'}
+    //                          = pt.name
+    //                          %span.caret
+    //                        %ul.dropdown-menu
+    //                          = link_to 'Drop', drop_player_team_path(pt.id), :confirm => (t 'front_office.player_row.//  confirmation', :name => pt.name), :class => 'delete' unless pt.nil?
+    //
+
 
     .row-fluid
-      %h2
-        Career Performance
-      %table.research.display.table.table-bordered.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
-        %thead
-          %tr
-            %th
-              Season
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned during season"} PTS
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points Earned during season"} Pass
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points Earned during season"} Rush
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points Earned during season"} Def
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned last during"} Scoring
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Special Teams Fantasy Points Earned during season"} ST
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Sack Fantasy Points Lost during season"} Sck
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points Lost during season"} Fmbl
-            %th
-              %a{:href => "#", :rel => "tooltip", "data-original-title" => "Games Played during season"} Games
-        %tbody
-        - @player.season_points.each do |psp|
-          %tr{:id => dom_id(psp)}
-            %td= psp.year
-            %td= psp.points
-            %td= psp.passing_points
-            %td= psp.rushing_points
-            %td= psp.defensive_points
-            %td= psp.scoring_points
-            %td= psp.special_teams_points
-            %td= psp.sacks_against_points
-            %td= psp.fumbles_points
-            %td= psp.games_played
+      .well.light-well
+        .row-fluid
+          %h2
+            This Season's Performance
+          %table.table.table-striped.table-bordered.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+            %thead
+              %tr
+                %th
+                  Event Date
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "The Opposing Team"}  OPP
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned"} PTS
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points Earned"} Pass
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points Earned"} Rush
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points Earned"} Def
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned"} Scoring
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Special Teams Fantasy Points Earned"} ST
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Sack Fantasy Points Lost"} Sck
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points Lost"} Fmbl
 
-    .row-fluid
-      %h2
-        Offensive Stats
-      %table.research.display.table.table-bordered.tabled-condensed
-    .row-fluid
-      %h2
-        Defensive Stats
-      %table.research.display.table.table-bordered.tabled-condensed
-  - cache do
-    .span4
+            %tbody
+            - @player.event_points.current.each do |pep|
+              %tr{:id => dom_id(pep)}
+                %th
+                  = pep.event.start_date_time.strftime("%b-%e")
+                %th
+                  = pep.event.away_team.abbreviation unless pep.event.away_team == @player.real_team
+                  = pep.event.home_team.abbreviation unless pep.event.home_team == @player.real_team
+                %th= pep.points
+                %th= pep.passing_points
+                %th= pep.rushing_points
+                %th= pep.defensive_points
+                %th= pep.scoring_points
+                %th= pep.special_teams_points
+                %th= pep.sacks_against_points
+                %th= pep.fumbles_points
+
+        .row-fluid
+          %h2
+            Career Performance
+          %table.research.display.table.table-bordered.table-condensed{:border => "0", :cellpadding => "0", :cellspacing => "0"}
+            %thead
+              %tr
+                %th
+                  Season
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned during season"} PTS
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Passing Fantasy Points Earned during season"} Pass
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Rushing Fantasy Points Earned during season"} Rush
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Defensive Fantasy Points Earned during season"} Def
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Total Fantasy Points Earned last during"} Scoring
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Special Teams Fantasy Points Earned during season"} ST
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Sack Fantasy Points Lost during season"} Sck
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Fumble Fantasy Points Lost during season"} Fmbl
+                %th
+                  %a{:href => "#", :rel => "tooltip", "data-original-title" => "Games Played during season"} Games
+            %tbody
+            - @player.season_points.each do |psp|
+              %tr{:id => dom_id(psp)}
+                %td= psp.year
+                %td= psp.points
+                %td= psp.passing_points
+                %td= psp.rushing_points
+                %td= psp.defensive_points
+                %td= psp.scoring_points
+                %td= psp.special_teams_points
+                %td= psp.sacks_against_points
+                %td= psp.fumbles_points
+                %td= psp.games_played
+
+        .row-fluid
+          %h2
+            Offensive Stats
+          %table.research.display.table.table-bordered.tabled-condensed
+        .row-fluid
+          %h2
+            Defensive Stats
+          %table.research.display.table.table-bordered.tabled-condensed
+  .span4
+    - cache do
       .well
         %h2
           Player News
