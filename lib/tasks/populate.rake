@@ -39,13 +39,19 @@ class Fakeout
         # create leagues
         @size.times { Fabricate @fabricator }
         League.all.each do |league|
-            GameScheduler.instance.schedule(league.teams) if league.teams.size === Settings.league.capacity
+            if league.teams.size === Settings.league.capacity
+                league.build_draft :start_datetime => Draft::schedule_dates.first.first
+                league.save
+                league.draft.schedule!
+                GameScheduler.instance.schedule(league.teams)
+            end
         end
 
         names = %W( nick ben andrew paul kyle )
         League.first.users.each_with_index do |user, i|
             unless names[i].nil?
                 user.email = "#{names[i]}@dynastyowner.com"
+                user.username = names[i]
                 user.save!
             end
         end

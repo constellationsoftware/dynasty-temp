@@ -32,8 +32,6 @@ class Team < ActiveRecord::Base
     has_many :accounts_payable, :as => :payable, :class_name => 'Account'
     #has_many :events, :through => :accounts
 
-    scope :online, where(:is_online => true)
-    scope :offline, where(:is_online => false)
     scope :with_players, joins{ players }.includes{ players }
     scope :with_games, joins{[ :home_games, :away_games ]}.includes{[ :home_games, :away_games ]}
     scope :with_picks, joins{ picks }.includes{ picks }

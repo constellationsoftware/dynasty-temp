@@ -30,6 +30,7 @@ class League < ActiveRecord::Base
     has_many :receipts, :as => :payable
 
     #validates :teams, :length => { :maximum => Settings.league.capacity }
+    validates_inclusion_of :tier, :in => [ 'all-pro', 'legend' ]
 
     scope :with_teams, joins{ teams }.includes{ teams }
 

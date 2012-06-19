@@ -5,4 +5,7 @@
     %title Dynasty Draft Demo v.1
     = csrf_meta_tag
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+    - if @team
+      :javascript
+        window.CHANNEL = '#{@team.uuid}'
     = yield

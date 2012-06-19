@@ -29,17 +29,18 @@ class ApplicationController < ActionController::Base
     # A "sorter" hash, as defined in Ext JS, consists of "property" and "direction" keys
     #
     has_scope :sorters do |controller, scope, value|
-        begin
-            sorters = JSON.parse(value)
-        rescue
-            raise "Sorter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'direction' keys, got #{value}."
-        end
-        sort_str = sorters.collect do |sorter|
-            property = sorter['property']
-            direction = sorter['direction'].downcase === 'desc' ? 'desc' : 'asc'
-            "#{property}.#{direction}"
-        end
-        scope.order{ instance_eval("[#{sort_str.join(',')}]") }
+        #begin
+        #    sorters = JSON.parse(value)
+        #rescue
+        #    raise "Sorter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'direction' keys, got #{value}."
+        #end
+        #sort_str = sorters.collect do |sorter|
+        #    property = sorter['property']
+        #    direction = sorter['direction'].downcase === 'desc' ? 'desc' : 'asc'
+        #    "#{property}.#{direction}"
+        #end
+        #scope.order{ instance_eval("[#{sort_str.join(',')}]") }
+        scope
     end
 
     # TODO: very quick, very dirty. Requires method or scope called "filter_by_[whatever]" on the main resource
@@ -49,15 +50,15 @@ class ApplicationController < ActionController::Base
     # Squeel has a compelling feature called "sifters" that allow you to essentially scope a scope anywhere along
     # the keypath, which DRYs things up a lot. Only problem is that we need to figure out a good flexible filtering API
     has_scope :filters do |controller, scope, value|
-        begin
-            filters = JSON.parse(value)
-        rescue
-            raise "Filter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'value' keys, got #{value}."
-        end
-        filters.each do |filter|
-            filter_method = "filter_by_#{filter['property']}"
-            scope = scope.send(filter_method, filter['value'])
-        end
+        #begin
+        #    filters = JSON.parse(value)
+        #rescue
+        #    raise "Filter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'value' keys, got #{value}."
+        #end
+        #filters.each do |filter|
+        #    filter_method = "filter_by_#{filter['property']}"
+        #    scope = scope.send(filter_method, filter['value'])
+        #end
         scope
     end
 

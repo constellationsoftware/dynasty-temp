@@ -97,7 +97,7 @@ Dynasty::Application.routes.draw do
         get :contact
     end
 
-    resource :picks, :only => :update
+    resources :picks
     resource :team, :module => :users, :controller => :team, :as => 'my_team', :only => [ :show, :edit ]
     match 'leagues/join' => 'leagues#join'
     match 'leagues/join_invite' => 'leagues#join_invite'
@@ -115,9 +115,9 @@ Dynasty::Application.routes.draw do
     end
 
     match 'lineups/:action/:from/with/:to', :via => :post, :controller => :lineups
-    #resources :lineups do
-    #    get :roster, :on => :collection
-    #end
+    resources :lineups do
+        get :roster, :on => :collection
+    end
 
     resource :clock, :controller => :clock, :only => [] do
         member do

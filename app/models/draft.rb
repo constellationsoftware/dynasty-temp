@@ -79,6 +79,19 @@ class Draft < ActiveRecord::Base
         (!p.nil? && (p.pick_order % Settings.league.capacity) === 0)
     end
 
+    def self.schedule_dates
+        season_start = Season.current.start_date
+        Time.zone = "Eastern Time (US & Canada)"
+        dates = [
+            season_start.beginning_of_week(:saturday),
+            season_start.beginning_of_week(:sunday)
+        ]
+        dates.collect do |d|
+            date = DateTime.civil_from_format('local', d.year, d.month, d.day, 12, 0, 0)
+            [ I18n.l(date, :format => :draft_date), date ]
+        end
+    end
+
     protected
         def on_start
             # send message that draft is starting
@@ -143,6 +156,7 @@ class Draft < ActiveRecord::Base
                 # TODO: figure out a good way to batch these. Maybe at the message pushing level?
                 player = Player.available(self.league_id).recommended(team.id).first
                 p.player_id = player.id
+                p.save!
             end
         end
 

@@ -1,6 +1,6 @@
 Fabricator :player_team do
     current     1
-    player!
-    team!
-    lineup!
+    player
+    team
+    lineup
 end

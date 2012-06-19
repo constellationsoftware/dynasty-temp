@@ -1,6 +1,6 @@
 json.id     team.id
 json.name   team.name
-json.is_online team.is_online
+json.is_online team.online?
 if current_scopes[:with_picks]
     json.picks team.picks do |json, pick|
         json.id         pick.id

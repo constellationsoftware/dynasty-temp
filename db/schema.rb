@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120615051415) do
+ActiveRecord::Schema.define(:version => 20120619163213) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -947,6 +947,7 @@ ActiveRecord::Schema.define(:version => 20120615051415) do
   end
 
   add_index "dynasty_games", ["date"], :name => "index_dynasty_games_on_date"
+  add_index "dynasty_games", ["home_team_id", "away_team_id", "date"], :name => "boner"
   add_index "dynasty_games", ["id", "league_id", "date"], :name => "index_dynasty_games_on_id_and_league_id_and_date"
   add_index "dynasty_games", ["league_id", "event_id", "event_type"], :name => "index_dynasty_games_on_league_id_and_event_id_and_event_type"
   add_index "dynasty_games", ["league_id", "home_team_id", "away_team_id"], :name => "index_dynasty_games_on_league_and_teams", :unique => true
@@ -1069,6 +1070,7 @@ ActiveRecord::Schema.define(:version => 20120615051415) do
   end
 
   add_index "dynasty_player_teams", ["player_id", "team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_player_and_team_and_lineup"
+  add_index "dynasty_player_teams", ["team_id", "lineup_id"], :name => "index_dynasty_player_teams_on_team_id_and_lineup_id", :unique => true
 
   create_table "dynasty_positions", :force => true do |t|
     t.string  "name",             :limit => 32
@@ -1156,7 +1158,7 @@ ActiveRecord::Schema.define(:version => 20120615051415) do
     t.string  "state",   :limit => 32
     t.string  "country", :limit => 64
     t.string  "street",  :limit => 128
-    t.integer "user_id",                :null => false
+    t.integer "user_id"
   end
 
   create_table "dynasty_users", :force => true do |t|
