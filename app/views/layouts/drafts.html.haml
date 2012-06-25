@@ -1,11 +1,14 @@
-!!!
+!!! 5
 %html
   %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
-    %title Dynasty Draft Demo v.1
+    %meta{ 'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8' }
+    %meta{ :name => 'viewport', :content => 'width=device-width, initial-scale=1.0, maximum-scale=1.0htm' }
+    %meta{ 'http-equiv' => 'X-UA-Compatible', :content => 'IE=Edge,chrome=1' }
+    /%meta{ :name => 'apple-mobile-web-app-capable', :content => 'yes' }
     = csrf_meta_tag
+    = favicon_link_tag
     %link{:href => "http://fonts.googleapis.com/css?family=Droid+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
-    - if @team
-      :javascript
-        window.CHANNEL = '#{@team.uuid}'
-    = yield
+
+    = stylesheet_link_tag 'draft'
+
+  = yield
