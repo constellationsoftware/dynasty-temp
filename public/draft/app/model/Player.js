@@ -11,11 +11,8 @@ Ext.define('DynastyDraft.model.Player', {
         { name: 'bye_week', allowBlank: true, type: 'int', mapping: 'contract.bye_week', defaultValue: 0 },
         { name: 'contract', allowBlank: false, type: 'int', mapping: 'contract.amount', defaultValue: 0 },
         { name: 'points', allowBlank: false, type: 'int', mapping: 'points.points', defaultValue: 0 },
-        { name: 'points_per_dollar', allowBlank: false, type: 'float', defaultValue: 0, convert: function(value, record) {
-            return record.get('points') / record.get('contract') * 1000000
-        } },
         { name: 'dollars_per_point', allowBlank: false, type: 'float', defaultValue: 0, convert: function(value, record) {
-            return record.get('contract') / record.get('points')
+            return record.get('points') > 0 ? record.get('contract') / record.get('points') : 0
         } },
         { name: 'defensive_points', allowBlank: false, type: 'int', mapping: 'points.defensive_points', defaultValue: 0 },
         { name: 'fumbles_points', allowBlank: false, type: 'int', mapping: 'points.fumbles_points', defaultValue: 0 },

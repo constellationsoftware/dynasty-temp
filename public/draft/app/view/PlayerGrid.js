@@ -75,15 +75,7 @@ Ext.define('DynastyDraft.view.PlayerGrid', {
         flex: 1,
         renderer: function(value) { return Ext.util.Format.currency(value, null, 2); }
     }, {
-        text: 'Points per dollar',
-        dataIndex: 'points_per_dollar',
-        align: 'right',
-        xtype: 'numbercolumn',
-        format: '0.0',
-        flex: 1,
-        sortable: false
-    }, {
-        text: 'Dollars per point',
+        text: 'DD/P',
         dataIndex: 'dollars_per_point',
         align: 'right',
         xtype: 'numbercolumn',

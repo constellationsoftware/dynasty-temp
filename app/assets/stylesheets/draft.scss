@@ -1,0 +1,127 @@
+@import 'compass';
+@import 'bootstrap';
+
+$bodyBackground: transparent;
+
+$white: #FFF;
+$gray: #EEE;
+$red: #BD1D2C;
+$darkRed: $red - #111;
+.dark_red { color: $darkRed; }
+$blue: #101940;
+$lightblue: #9DA6B4;
+
+$darkblue: $blue - #111;
+$darkred: $red - #555;
+
+$navlightBlue: #637CBC;
+$navdarkBlue: #131747;
+
+$brightBlue: rgba(60, 75, 122, 1);
+
+$ghostWhite: $white - #111;
+$ghostBlue: $white + #00F;
+
+$bgDark: rgba(0, 0, 0, .2);
+$bgLight: rgba(255, 255, 255, .25);
+
+$navbarHeight: 80px;
+$subnavHeight: 36px;
+.navbar {
+    z-index: 1020;
+
+    a {
+        font-weight: 400;
+        color: $white;
+        //.transition(.25s, ease-in-out);
+
+        &:hover {
+            text-shadow: 0 0 55px $white, 0 0 35px $white, 0 0 5px $white;
+        }
+
+        &:active {
+            background-color: $darkblue;
+            text-shadow: 0 0 75px $white, 0 0 50px $white, 0 0 5px $white;
+        }
+    }
+
+    .navbar-inner {
+        height: $navbarHeight;
+        line-height: $navbarHeight;
+        background-color: $darkblue;
+        @include background(linear-gradient(top, $navlightBlue, $navdarkBlue));
+    }
+}
+
+.logo {
+    position: fixed;
+    z-index: 10000;
+    display: block;
+    top: 0px;
+
+    float: left;
+    width: 150px;
+}
+
+.subnav {
+    width: 100%;
+    height: $subnavHeight;
+    z-index: 6;
+    @include background(linear-gradient(top, $white, $gray));
+    border: 1px solid #E5E5E5;
+}
+
+.subnav-fixed {
+    position: fixed;
+    right: 0;
+    /*important part*/
+    left: 0;
+    /*design stuff*/
+    border-color: #D5D5D5;
+
+    box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#navbar-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $navbarHeight + $subnavHeight;
+    line-height: $navbarHeight + $subnavHeight;
+    z-index: 1200;
+
+    .content {
+        position: relative;
+        padding: 0 20px;
+        overflow: hidden;
+
+        .inner {
+            overflow: hidden;
+            width: 2500px;
+        }
+    }
+}
+
+// PICK SCROLLER
+#timer, #picks {
+    float: left;
+}
+
+#timer {
+    width: 200px;
+    height: $navbarHeight + $subnavHeight;
+}
+
+#picks {
+    min-width: 200px;
+    height: $navbarHeight + $subnavHeight;
+    margin-left: 20px;
+}
+
+$pick-width: 76px;
+$pick-height: 76px;
+.pick {
+    width: $pick-width;
+    height: $pick-height;
+}
