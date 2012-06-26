@@ -339,7 +339,6 @@ GEM
     net-ssh (2.5.2)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    newrelic_rpm (3.4.0)
     nokogiri (1.5.4)
     oily_png (1.0.2)
       chunky_png (~> 1.2.1)
@@ -586,7 +585,6 @@ DEPENDENCIES
   money!
   multi_json
   mysql2
-  newrelic_rpm
   oily_png
   oj
   paper_trail

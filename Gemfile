@@ -100,8 +100,6 @@ gem 'ruby_parser'
 gem 'timecop'
 gem 'traceroute'
 gem 'rest-client'
-gem 'newrelic_rpm'
-
 
 group :development do
     # Debugging & Development
