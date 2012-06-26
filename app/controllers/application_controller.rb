@@ -24,22 +24,29 @@ class ApplicationController < ActionController::Base
         scope.select{ instance_eval("[#{columns.compact.join(',')}]") }
     end
 
+    def apply_scopes(klass)
+        scoped = super klass
+        scoped = apply_sorters(scoped, params[:sorters]) if params.has_key? 'sorters'
+        scoped = apply_filters(scoped, params[:filters]) if params.has_key? 'filters'
+        scoped
+    end
+
     ##
     # Accepts an array of "sorter" hashes.
     # A "sorter" hash, as defined in Ext JS, consists of "property" and "direction" keys
     #
-    has_scope :sorters do |controller, scope, value|
-        #begin
-        #    sorters = JSON.parse(value)
-        #rescue
-        #    raise "Sorter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'direction' keys, got #{value}."
-        #end
-        #sort_str = sorters.collect do |sorter|
-        #    property = sorter['property']
-        #    direction = sorter['direction'].downcase === 'desc' ? 'desc' : 'asc'
-        #    "#{property}.#{direction}"
-        #end
-        #scope.order{ instance_eval("[#{sort_str.join(',')}]") }
+    def apply_sorters(scope, value)
+        begin
+            sorters = JSON.parse(value)
+        rescue
+            raise "Sorter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'direction' keys, got #{value}."
+        end
+        sort_str = sorters.collect do |sorter|
+            property = sorter['property']
+            direction = sorter['direction'].downcase === 'desc' ? 'desc' : 'asc'
+            "#{property}.#{direction}"
+        end
+        scope = scope.order{ instance_eval("[#{sort_str.join(', ')}]") }
         scope
     end
 
@@ -49,45 +56,30 @@ class ApplicationController < ActionController::Base
     # the same thing twice.
     # Squeel has a compelling feature called "sifters" that allow you to essentially scope a scope anywhere along
     # the keypath, which DRYs things up a lot. Only problem is that we need to figure out a good flexible filtering API
-    has_scope :filters do |controller, scope, value|
-        #begin
-        #    filters = JSON.parse(value)
-        #rescue
-        #    raise "Filter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'value' keys, got #{value}."
-        #end
-        #filters.each do |filter|
-        #    filter_method = "filter_by_#{filter['property']}"
-        #    scope = scope.send(filter_method, filter['value'])
-        #end
+    def apply_filters(scope, filters)
+        begin
+            filters = JSON.parse(filters)
+        rescue
+            raise "Filter object could not be parsed. Expected a JSON-encoded array of objects with 'property' and 'value' keys, got #{filters}."
+        end
+
+        filters.each do |filter|
+            association_chain = filter['property'].split('.')
+            attribute = association_chain.pop
+            path = association_chain.join ','
+
+            if path === '' # filtering by top-level attribute
+                scope = scope.where{ sift "filter_by_#{attribute}".to_sym, filter['value'] }
+            else # filtering on a nested attribute
+                scope = scope.where{ instance_eval("{ #{path} => sift(:filter_by_#{attribute}, filter['value']) }") }
+            end
+        end
         scope
     end
 
     def set_mailer_host
         ActionMailer::Base.default_url_options[:host] = request.host_with_port
     end
-
-=begin
-    def sort_param_from_chain(value)
-        association_chain = value.split('.')
-        attribute = association_chain.pop
-        # follow the association chain to its end so we can get the table name
-        klass = association_chain.inject(self.class.resource_klass) do |klass, value|
-            association = klass.reflect_on_association(value.to_sym)
-            association.klass
-        end
-        { :klass => klass, :attribute => attribute }
-    end
-
-    def filter_resource(scope, property, value)
-        filter_param = sort_param_from_chain(property)
-        filter_method = "filter_by_#{filter_param[:attribute]}"
-        if resource_class.respond_to? filter_method
-            scope = scope.send(filter_method, value)
-        else
-            raise "Filter method for #{property} on #{resource_class.name.to_s.titleize.downcase.pluralize} does not exist."
-        end
-    end
-=end
 
     protected
         # The registration steps are as follows:

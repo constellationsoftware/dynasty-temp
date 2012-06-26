@@ -1,4 +1,3 @@
-#ENV['I18N_DEBUG'] = '1'
 Dynasty::Application.configure do
 
     # Rackup the livereload server

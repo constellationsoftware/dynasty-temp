@@ -1,5 +1,4 @@
 # add newer versions to this array if the method definition didn't change, otherwise do an if-cascade
-puts ENV['I18N_DEBUG'].inspect
 if ['0.6.0'].include?(I18n::VERSION)
     module I18n
         module Backend

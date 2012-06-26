@@ -20,6 +20,10 @@
 class DisplayName < ActiveRecord::Base
     belongs_to :entity, :polymorphic => true
 
+    sifter :filter_by_name do |value|
+        last_name.matches("#{value}%") | first_name.matches("#{value}%") | full_name.matches("#{value}%")
+    end
+
     def last_with_first_initial
       if self.first_name? && self.last_name?
         "#{first_name.first}. #{last_name}"
