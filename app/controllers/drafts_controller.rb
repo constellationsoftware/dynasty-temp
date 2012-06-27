@@ -7,8 +7,9 @@ class DraftsController < ApplicationController
 
     # starts the draft
     def start
-        @draft = resource
-        @draft.start!
+        draft = resource
+        draft.postpone! unless draft.state == 'scheduled' || draft.state == 'starting'
+        draft.start!
         render :nothing => true
     end
 

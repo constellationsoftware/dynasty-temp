@@ -19,6 +19,7 @@ Ext.define('DynastyDraft.view.Viewport', {
         {
             xtype: 'container',
             id: 'header_container',
+            //cls: 'navbar',
             region: 'north',
             layout: {
                 align: 'stretch',
@@ -38,10 +39,6 @@ Ext.define('DynastyDraft.view.Viewport', {
                 items: [{
                     xtype: 'picks',
                     width: 2500
-                }, {
-                    xtype: 'container',
-                    cls: 'gradient-mask',
-                    height: '100%'
                 }]
             }]
         },
@@ -54,11 +51,22 @@ Ext.define('DynastyDraft.view.Viewport', {
             layout: 'border',
             region: 'center',
             border: false,
+            bodyBorder: false,
+            frame: false,
             items: [{
                 xtype: 'tabpanel',
                 region: 'center',
+                id: 'navigation',
                 activeTab: 0,
-
+                listeners: {
+                    afterRender: function() {
+                        // insert a tab spacer
+                        this.getTabBar().insert(0, { xtype: 'tbfill' });
+                    }
+                },
+                border: false,
+                bodyBorder: false,
+                frame: false,
                 items: [{
                     xtype: 'panel',
                     title: 'Recommended Picks',

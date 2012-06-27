@@ -174,6 +174,7 @@ class Draft < ActiveRecord::Base
             JuggernautPublisher.new.alert league_channels, 'draft:finished', I18n.t('activerecord.models.draft.states.finished')
         end
 
+        # resets draft to "scheduled" status, resetting all picks and clearing teams' roster
         def on_reset
             if self.picks.update_all :player_id => nil, :picked_at => nil
                 self.league.teams.each do |team|

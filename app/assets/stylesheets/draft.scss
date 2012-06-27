@@ -25,7 +25,7 @@ $ghostBlue: $white + #00F;
 $bgDark: rgba(0, 0, 0, .2);
 $bgLight: rgba(255, 255, 255, .25);
 
-$navbarHeight: 80px;
+$navbarHeight: 120px;
 $subnavHeight: 36px;
 .navbar {
     z-index: 1020;
@@ -45,9 +45,7 @@ $subnavHeight: 36px;
         }
     }
 
-    .navbar-inner {
-        height: $navbarHeight;
-        line-height: $navbarHeight;
+    & > div {
         background-color: $darkblue;
         @include background(linear-gradient(top, $navlightBlue, $navdarkBlue));
     }
@@ -124,4 +122,9 @@ $pick-height: 76px;
 .pick {
     width: $pick-width;
     height: $pick-height;
+}
+
+body {
+    font-family: 'Droid Sans', sans-serif;
+    background: url('html_bg.jpg') top left fixed;
 }
