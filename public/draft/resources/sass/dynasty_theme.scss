@@ -91,12 +91,6 @@ $relative-image-path-for-uis: '../themes/images/'; // defaults to "../images/" w
 }
 
 
-
-.timer-display {
-    font-size: 69px;
-}
-
-
 /********************************************************************************
  * SHOUTBOX
  *******************************************************************************/
@@ -270,26 +264,30 @@ $recommended_pick_bio_min-height: 8em;
     }
 }
 
-div.pick {
+.pick {
     position: absolute;
     height: 120px;
     width: 120px;
     margin: 0;
-    padding: 5px;
+    padding: 2px;
 
-    div.team_image {
+    .badge { padding: 2px 7px 0px; }
+    .pick-order {
+        text-align: center;
+    }
+
+    .team_image {
         margin: 0 auto;
-        height: 80px;
-        width: 80px;
+        height: 60px;
+        width: 60px;
         border: 1px solid black;
         margin-bottom: 3px;
         background-image: image-url("waterboy-sm.png", false, false);
     }
 
     .info {
-        width: 100%;
         text-align: center;
-        p.round { font-weight: bold; }
+        padding: 0px 5px;
     }
 }
 
@@ -378,4 +376,8 @@ $navHeight: 36px;
         }
     }
 
+}
+
+.x-splitter {
+    @include background(linear-gradient(top, $white, $gray));
 }

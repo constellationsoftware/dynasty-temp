@@ -23,7 +23,7 @@ Ext.define('DynastyDraft.view.AdminControls', {
 	}, {
 	    itemId: 'pause',
 	    xtype: 'button',
-	    text: 'Stop Countdown',
+	    text: 'Pause Countdown',
 	    disabled: true,
 	    enableToggle: true,
 	}, {

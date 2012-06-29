@@ -34,7 +34,7 @@ Ext.application({
     controllers: [
         'Ext.ux.util.AlwaysOnTop',
         'PlayerGrid',
-        'Timer',
+        // 'Timer',
         'Roster',
         'AdminControls',
         'Picks',
@@ -44,10 +44,24 @@ Ext.application({
     ],
 
     launch: function() {
-        app = this;
+        window.app = this;
 
         Ext.getBody().removeCls('loading');
         if (DRAFT_STATE === 'finished') { this.showDraftFinishedDialog(); }
+
+        // Attach countdown timer to countdown_wrap container
+        countdown = new Countdown('#countdown-wrap');
+        duration = 180;
+        this.addListener(this.STATUS_PICKING, function() { this.start(duration) }, countdown);
+        this.addListener(this.STATUS_PICKED, countdown.clear, countdown);
+        this.addListener(this.STATUS_PAUSED, countdown.resume, countdown);
+        this.addListener(this.STATUS_RESUMED, countdown.pause, countdown);
+        this.addListener(this.STATUS_RESET, countdown.clear, countdown);
+        this.addListener(this.LIVE_PICK_MADE, function() { this.start(duration) }, countdown);
+        this.addListener(this.STATUS_STARTED, function() { this.start(duration) }, countdown);
+        this.addListener(this.PICK_UPDATE, countdown.clear, countdown);
+        countdown.bind('timeout', Ext.Function.bind(this.onTimeout, this));
+        window.countdown = countdown;
 
         Ext.tip.QuickTipManager.init();
         Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), {
@@ -61,7 +75,7 @@ Ext.application({
         JUG.bind('draft:finished', Ext.Function.bind(this.onDraftFinish, this));
         JUG.bind('draft:reset', Ext.Function.bind(this.onDraftReset, this));
 
-        this.getController('Timer').addListener('timeout', this.onTimeout, this);
+        // this.getController('Timer').addListener('timeout', this.onTimeout, this);
         this.getController('RecommendedPicks').addListener('playerpicked', this.onPick, this);
         this.getController('Picks').addListener('picksucceeded', this.onPickSucceeded, this);
     },

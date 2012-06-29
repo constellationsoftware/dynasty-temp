@@ -10913,27 +10913,27 @@ body .ux-notification-window {
   background: transparent;
 }
 
-/* line 95, ../sass/dynasty_theme.scss */
-.timer-display {
-  font-size: 69px;
-}
-
 /********************************************************************************
  * SHOUTBOX
  *******************************************************************************/
 /* line 2, ../sass/shoutbox.scss */
+#shoutbox-container {
+  background: white;
+}
+
+/* line 3, ../sass/shoutbox.scss */
 .shoutbox_message {
   color: #666;
   margin-bottom: 3px;
 }
-/* line 6, ../sass/shoutbox.scss */
+/* line 7, ../sass/shoutbox.scss */
 .shoutbox_message .user_id {
   font-weight: bold;
   color: blue;
   width: 120px;
   float: left;
 }
-/* line 13, ../sass/shoutbox.scss */
+/* line 14, ../sass/shoutbox.scss */
 .shoutbox_message.notice {
   font-style: italic;
   color: #BBB;
@@ -10943,7 +10943,7 @@ body .ux-notification-window {
 /********************************************************************************
  * WRAP
  *******************************************************************************/
-/* line 108, ../sass/dynasty_theme.scss */
+/* line 102, ../sass/dynasty_theme.scss */
 #wrap {
   margin: 50px;
 }
@@ -10951,13 +10951,13 @@ body .ux-notification-window {
 /********************************************************************************
  * GRID STUFF
  *******************************************************************************/
-/* line 115, ../sass/dynasty_theme.scss */
+/* line 109, ../sass/dynasty_theme.scss */
 .row-invalid {
   color: #cccccc;
 }
 
 /** RECOMMENDED PICK */
-/* line 126, ../sass/dynasty_theme.scss */
+/* line 120, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap {
   width: 100%;
   overflow: hidden;
@@ -10976,7 +10976,7 @@ body .ux-notification-window {
   background-image: -ms-linear-gradient(bottom, #ededed 0%, #ffffff 6%, #ededed 100%);
   background-image: linear-gradient(bottom, #ededed 0%, #ffffff 6%, #ededed 100%);
 }
-/* line 135, ../sass/dynasty_theme.scss */
+/* line 129, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick {
   position: relative;
   min-height: 8em;
@@ -10999,27 +10999,27 @@ body .ux-notification-window {
   -o-transition-timing-function: cubic-bezier(0, 0.42, 0.57, 0.88);
   transition-timing-function: cubic-bezier(0, 0.42, 0.57, 0.88);
 }
-/* line 143, ../sass/dynasty_theme.scss */
+/* line 137, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick:hover {
   background-color: rgba(255, 255, 82, 0.2);
 }
-/* line 145, ../sass/dynasty_theme.scss */
+/* line 139, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick dt, .recommended_pick_wrap .recommended_pick dd {
   display: inline;
   margin: 0;
   padding: 0;
   font-size: 1.5em;
 }
-/* line 151, ../sass/dynasty_theme.scss */
+/* line 145, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick dt {
   font-weight: bold;
   text-transform: uppercase;
 }
-/* line 155, ../sass/dynasty_theme.scss */
+/* line 149, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick dd {
   margin-right: 1em;
 }
-/* line 157, ../sass/dynasty_theme.scss */
+/* line 151, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .edit {
   position: absolute;
   top: 16;
@@ -11029,19 +11029,19 @@ body .ux-notification-window {
   margin-left: 19px;
   margin-top: 8px;
 }
-/* line 166, ../sass/dynasty_theme.scss */
+/* line 160, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .edit div {
   font-size: 16px;
   height: 100%;
 }
-/* line 169, ../sass/dynasty_theme.scss */
+/* line 163, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .bio {
   float: left;
   width: 10em;
   margin-left: -100%;
   text-align: center;
 }
-/* line 175, ../sass/dynasty_theme.scss */
+/* line 169, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .bio .photo {
   width: 100px;
   height: 123px;
@@ -11049,17 +11049,17 @@ body .ux-notification-window {
   background-color: white;
   background-image: url('../images/players/default.png');
 }
-/* line 184, ../sass/dynasty_theme.scss */
+/* line 178, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap {
   float: left;
   width: 100%;
   padding-left: 1em;
 }
-/* line 189, ../sass/dynasty_theme.scss */
+/* line 183, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content {
   margin-left: 10em;
 }
-/* line 192, ../sass/dynasty_theme.scss */
+/* line 186, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   float: left;
   width: 50%;
@@ -11069,22 +11069,22 @@ body .ux-notification-window {
   font-size: 2em;
   margin-bottom: 0.5em;
 }
-/* line 200, ../sass/dynasty_theme.scss */
+/* line 194, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .title .bye_week, .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary .bye_week {
   padding-left: 1em;
   font-size: 0.7em;
 }
-/* line 202, ../sass/dynasty_theme.scss */
+/* line 196, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .salary {
   text-align: right;
 }
-/* line 203, ../sass/dynasty_theme.scss */
+/* line 197, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats {
   clear: both;
   font-size: 1.2em;
   line-height: 1.4em;
 }
-/* line 208, ../sass/dynasty_theme.scss */
+/* line 202, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats ul.stat_columns {
   -webkit-column-count: 3;
   -moz-column-count: 3;
@@ -11095,39 +11095,39 @@ body .ux-notification-window {
   -o-column-gap: 10px;
   column-gap: 10px;
 }
-/* line 212, ../sass/dynasty_theme.scss */
+/* line 206, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats .label {
   min-width: 120px;
   font-weight: bold;
 }
-/* line 216, ../sass/dynasty_theme.scss */
+/* line 210, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points {
   float: right;
 }
-/* line 219, ../sass/dynasty_theme.scss */
+/* line 213, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points span.delta {
   color: #CCCCCC;
 }
-/* line 221, ../sass/dynasty_theme.scss */
+/* line 215, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points span.delta.pos {
   color: green;
 }
-/* line 222, ../sass/dynasty_theme.scss */
+/* line 216, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats span.points span.delta.neg {
   color: red;
 }
-/* line 225, ../sass/dynasty_theme.scss */
+/* line 219, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats .total span.points {
   float: none;
 }
-/* line 230, ../sass/dynasty_theme.scss */
+/* line 224, ../sass/dynasty_theme.scss */
 .recommended_pick_wrap .recommended_pick .footer {
   clear: both;
   width: 100%;
   text-align: center;
 }
 
-/* line 237, ../sass/dynasty_theme.scss */
+/* line 231, ../sass/dynasty_theme.scss */
 .selected {
   background-image: -webkit-gradient(linear, 50% 100%, 50% 0%, color-stop(0%, #cfe2f6), color-stop(6%, #b2d7ff), color-stop(100%, #cfe2f6));
   background-image: -webkit-linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
@@ -11137,34 +11137,34 @@ body .ux-notification-window {
   background-image: linear-gradient(bottom, #cfe2f6 0%, #b2d7ff 6%, #cfe2f6 100%);
 }
 
-/* line 239, ../sass/dynasty_theme.scss */
+/* line 233, ../sass/dynasty_theme.scss */
 .x-boundlist-floating {
   border-top-width: 1px;
 }
 
-/* line 241, ../sass/dynasty_theme.scss */
+/* line 235, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul {
   display: block;
   padding: 0px 3px;
 }
-/* line 245, ../sass/dynasty_theme.scss */
+/* line 239, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li {
   display: inline-block;
   text-align: left;
 }
-/* line 249, ../sass/dynasty_theme.scss */
+/* line 243, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.name {
   width: 55%;
 }
-/* line 250, ../sass/dynasty_theme.scss */
+/* line 244, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.position {
   width: 10%;
 }
-/* line 251, ../sass/dynasty_theme.scss */
+/* line 245, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.rating {
   width: 10%;
 }
-/* line 252, ../sass/dynasty_theme.scss */
+/* line 246, ../sass/dynasty_theme.scss */
 .playersearch-boundlist ul li.salary {
   width: 25%;
   text-align: right;
@@ -11173,71 +11173,75 @@ body .ux-notification-window {
 /********************************************************************************
  * PICK SCROLLER STUFF
  *******************************************************************************/
-/* line 263, ../sass/dynasty_theme.scss */
+/* line 257, ../sass/dynasty_theme.scss */
 #picks_scroller {
   color: white;
 }
-/* line 266, ../sass/dynasty_theme.scss */
+/* line 260, ../sass/dynasty_theme.scss */
 #picks_scroller ul {
   display: table-row;
   overflow: hidden;
   width: 2500px;
 }
 
-/* line 273, ../sass/dynasty_theme.scss */
-div.pick {
+/* line 267, ../sass/dynasty_theme.scss */
+.pick {
   position: absolute;
   height: 120px;
   width: 120px;
   margin: 0;
-  padding: 5px;
+  padding: 2px;
 }
-/* line 280, ../sass/dynasty_theme.scss */
-div.pick div.team_image {
+/* line 274, ../sass/dynasty_theme.scss */
+.pick .badge {
+  padding: 2px 7px 0px;
+}
+/* line 275, ../sass/dynasty_theme.scss */
+.pick .pick-order {
+  text-align: center;
+}
+/* line 279, ../sass/dynasty_theme.scss */
+.pick .team_image {
   margin: 0 auto;
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   border: 1px solid black;
   margin-bottom: 3px;
   background-image: url('../images/waterboy-sm.png');
 }
-/* line 289, ../sass/dynasty_theme.scss */
-div.pick .info {
-  width: 100%;
+/* line 288, ../sass/dynasty_theme.scss */
+.pick .info {
   text-align: center;
-}
-/* line 292, ../sass/dynasty_theme.scss */
-div.pick .info p.round {
-  font-weight: bold;
+  padding: 0px 5px;
 }
 
-/* line 296, ../sass/dynasty_theme.scss */
+/* line 294, ../sass/dynasty_theme.scss */
 #user-balance {
   font-size: 1.3em;
 }
-/* line 299, ../sass/dynasty_theme.scss */
+/* line 297, ../sass/dynasty_theme.scss */
 #user-balance li {
   display: inline;
   padding-right: .5em;
 }
-/* line 302, ../sass/dynasty_theme.scss */
+/* line 300, ../sass/dynasty_theme.scss */
 #user-balance li.amount {
   padding-right: 1.2em;
 }
-/* line 303, ../sass/dynasty_theme.scss */
+/* line 301, ../sass/dynasty_theme.scss */
 #user-balance li.deficit {
   color: red;
 }
-/* line 304, ../sass/dynasty_theme.scss */
+/* line 302, ../sass/dynasty_theme.scss */
 #user-balance li.label {
   font-weight: bold;
 }
-/* line 305, ../sass/dynasty_theme.scss */
+/* line 303, ../sass/dynasty_theme.scss */
 #user-balance li:last-child {
   padding-right: 0;
 }
 
-/* line 309, ../sass/dynasty_theme.scss */
+/* line 307, ../sass/dynasty_theme.scss */
 .loading {
   background-image: url('../images/loading.gif');
   background-repeat: no-repeat;
@@ -11245,7 +11249,7 @@ div.pick .info p.round {
   background-position: center center;
 }
 
-/* line 316, ../sass/dynasty_theme.scss */
+/* line 314, ../sass/dynasty_theme.scss */
 .notice, .alert {
   background: white;
 }
@@ -11253,7 +11257,7 @@ div.pick .info p.round {
 /********************************************************************************
  * NAVIGATION BAR
  *******************************************************************************/
-/* line 323, ../sass/dynasty_theme.scss */
+/* line 321, ../sass/dynasty_theme.scss */
 #navigation .x-tab-bar-default-top {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
   background: -webkit-linear-gradient(top, #ffffff, #eeeeee);
@@ -11267,18 +11271,18 @@ div.pick .info p.round {
   height: 36px;
   line-height: 36px;
 }
-/* line 333, ../sass/dynasty_theme.scss */
+/* line 331, ../sass/dynasty_theme.scss */
 #navigation .x-tab-bar-body-default-top {
   height: 36px;
   line-height: 36px;
   margin: 0;
   padding: 0;
 }
-/* line 340, ../sass/dynasty_theme.scss */
+/* line 338, ../sass/dynasty_theme.scss */
 #navigation .x-tab-bar-strip {
   display: none;
 }
-/* line 344, ../sass/dynasty_theme.scss */
+/* line 342, ../sass/dynasty_theme.scss */
 #navigation .x-tab-top, #navigation .x-tab-default-top {
   background: none;
   height: 36px;
@@ -11297,19 +11301,19 @@ div.pick .info p.round {
   border-left: 1px solid #f5f5f5;
   border-right: 1px solid #e5e5e5;
 }
-/* line 356, ../sass/dynasty_theme.scss */
+/* line 354, ../sass/dynasty_theme.scss */
 #navigation .x-tab-top em, #navigation .x-tab-default-top em {
   margin: 0;
   padding: 0;
 }
-/* line 360, ../sass/dynasty_theme.scss */
+/* line 358, ../sass/dynasty_theme.scss */
 #navigation .x-tab-top em button, #navigation .x-tab-default-top em button {
   height: 36px;
   line-height: 36px;
   font-size: 14px;
   font-weight: normal;
 }
-/* line 368, ../sass/dynasty_theme.scss */
+/* line 366, ../sass/dynasty_theme.scss */
 #navigation .x-tab-top.over, #navigation .x-tab-top.x-tab-active, #navigation .x-tab-default-top.over, #navigation .x-tab-default-top.x-tab-active {
   color: #777;
   background-color: #E9E9E9;
@@ -11319,7 +11323,17 @@ div.pick .info p.round {
   -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.05);
 }
-/* line 377, ../sass/dynasty_theme.scss */
+/* line 375, ../sass/dynasty_theme.scss */
 #navigation .x-tab-top.x-tab-active button, #navigation .x-tab-default-top.x-tab-active button {
-  color: #777;
+  color: #FFF;
+}
+
+/* line 381, ../sass/dynasty_theme.scss */
+.x-splitter {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+  background: -webkit-linear-gradient(top, #ffffff, #eeeeee);
+  background: -moz-linear-gradient(top, #ffffff, #eeeeee);
+  background: -o-linear-gradient(top, #ffffff, #eeeeee);
+  background: -ms-linear-gradient(top, #ffffff, #eeeeee);
+  background: linear-gradient(top, #ffffff, #eeeeee);
 }

@@ -110,6 +110,10 @@ Ext.define('DynastyDraft.controller.Picks', {
      * to current pick + X records where X is the number of teams in the draft.
      */
     onChangeCurrentPick: function(currentPick) {
+        // chang eround number in countdown display
+        console.log(currentPick);
+        $('#countdown-wrap .round').text('Round ' + currentPick.data.round);
+
         //console.log('filtering pick order');
         var store = this.getPickOrderStore(),
             pickCount = store.getCount();

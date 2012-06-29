@@ -25,6 +25,11 @@ $ghostBlue: $white + #00F;
 $bgDark: rgba(0, 0, 0, .2);
 $bgLight: rgba(255, 255, 255, .25);
 
+.dark-well {
+    @include background(linear-gradient(top, #555, #333));
+    @include border-radius(0);
+}
+
 $navbarHeight: 120px;
 $subnavHeight: 36px;
 .navbar {
@@ -127,4 +132,59 @@ $pick-height: 76px;
 body {
     font-family: 'Droid Sans', sans-serif;
     background: url('html_bg.jpg') top left fixed;
+}
+
+$background-color: #000;
+$countdown-image-height: 50px;
+$countdown-padding: 5px;
+$status-color: #ABABAB;
+.round {
+    height: 18px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 400;
+    color: $status-color;
+    text-transform: uppercase;
+    @include single-text-shadow;
+}
+#countdown-wrap {
+    padding: 0px 8px 8px;
+    width: 250px;
+    height: 100% !important;
+
+    .countdown-group-wrap {
+        text-align: center;
+        background-color: $background-color;
+        @include single-box-shadow;
+
+        .countdown-group {
+            margin: 0 auto;
+            text-align: center;
+            width: inherit;
+            display: inline-block;
+
+            .countdown {
+                padding: 8px;
+                height: $countdown-image-height + ($countdown-padding * 2);
+                border: none;
+                background-color: inherit;
+            }
+        }
+    }
+
+    .status-wrap {
+        text-align: center;
+        margin-top: 2px;
+
+        .status {
+            color: $status-color;
+            text-transform: uppercase;
+            @include single-text-shadow;
+        }
+
+        .message {
+            background-color: $background-color;
+            @include single-box-shadow;
+        }
+    }
 }

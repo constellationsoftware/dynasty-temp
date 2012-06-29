@@ -47,7 +47,7 @@ Ext.define('DynastyDraft.controller.AdminControls', {
             $.post('/draft/start');
             break;
         case 'pause':
-            if (button.getText() === 'Stop Countdown') {
+            if (button.getText() === 'Pause Countdown') {
                 this.application.fireEvent(this.application.STATUS_PAUSED);
             } else {
                 this.application.fireEvent(this.application.STATUS_RESUMED);
@@ -62,8 +62,8 @@ Ext.define('DynastyDraft.controller.AdminControls', {
     onPauseClicked: function(button) {
 		// toggles
         switch (button.getText()) {
-        case 'Stop Countdown': button.setText('Reset Countdown'); break;
-        case 'Reset Countdown': button.setText('Stop Countdown'); break;
+        case 'Pause Countdown': button.setText('Resume Countdown'); break;
+        case 'Resume Countdown': button.setText('Pause Countdown'); break;
         }
         this.onButtonClicked(button);
     }

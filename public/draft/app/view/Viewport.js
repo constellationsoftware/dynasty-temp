@@ -19,7 +19,6 @@ Ext.define('DynastyDraft.view.Viewport', {
         {
             xtype: 'container',
             id: 'header_container',
-            //cls: 'navbar',
             region: 'north',
             layout: {
                 align: 'stretch',
@@ -28,8 +27,11 @@ Ext.define('DynastyDraft.view.Viewport', {
             height: 120,
 
             items: [{
-                xtype: 'timer',
-                width: 200
+                xtype: 'panel',
+                border: false,
+                id: 'countdown-wrap',
+                cls: 'well dark-well',
+                width: 250
             }, {
                 xtype: 'panel',
                 border: false,
@@ -112,7 +114,7 @@ Ext.define('DynastyDraft.view.Viewport', {
                         xtype: 'tbfill'
                     }, {
                         xtype: 'button',
-                        text: 'Confirm Pick',
+                        text: 'Draft Player',
                         itemId: 'submit',
                         scale: 'large',
                         width: 100,
@@ -144,6 +146,7 @@ Ext.define('DynastyDraft.view.Viewport', {
                 }]
             }, {
                 xtype: 'shoutboxcontainer',
+                id: 'shoutbox-container',
                 region: 'south',
                 split: true,
                 height: '20%',
