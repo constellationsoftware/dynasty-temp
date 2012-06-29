@@ -111,7 +111,6 @@ Ext.define('DynastyDraft.controller.Picks', {
      */
     onChangeCurrentPick: function(currentPick) {
         // chang eround number in countdown display
-        console.log(currentPick);
         $('#countdown-wrap .round').text('Round ' + currentPick.data.round);
 
         //console.log('filtering pick order');

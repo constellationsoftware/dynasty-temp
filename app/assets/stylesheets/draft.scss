@@ -172,19 +172,8 @@ $status-color: #ABABAB;
         }
     }
 
-    .status-wrap {
+    .controls {
         text-align: center;
-        margin-top: 2px;
-
-        .status {
-            color: $status-color;
-            text-transform: uppercase;
-            @include single-text-shadow;
-        }
-
-        .message {
-            background-color: $background-color;
-            @include single-box-shadow;
-        }
+        padding: 4px;
     }
 }

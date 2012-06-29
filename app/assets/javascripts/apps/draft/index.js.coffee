@@ -5,3 +5,4 @@
 #= require hamlcoffee
 #= require lib/util
 #= require ./countdown
+#= require twitter/bootstrap

@@ -8,7 +8,6 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.Picks',
         'DynastyDraft.view.RecommendedPicks',
         'DynastyDraft.view.DraftBoard'
-        //'DynastyDraft.view.PlayerQueue',
     ],
 
     layout: 'border',
@@ -119,14 +118,6 @@ Ext.define('DynastyDraft.view.Viewport', {
                         scale: 'large',
                         width: 100,
                         disabled: true
-                    }, {
-                        xtype: 'button',
-                        text: (AUTOPICK ? 'Disable Autopick' : 'Enable Autopick'),
-                        itemId: 'autopick',
-                        scale: 'large',
-                        enableToggle: true,
-                        pressed: AUTOPICK,
-                        width: 100
                     }]
                 }, {
                     xtype: 'playergrid',
@@ -185,30 +176,5 @@ Ext.define('DynastyDraft.view.Viewport', {
                 )
             }]
         }
-
-
-        /**
-         * "TOOLBOX" CONTAINER
-         */
-        /*
-        {
-            xtype: 'container',
-            region: 'east',
-            width: 250,
-            flex: 1,
-            layout: {
-                align: 'stretch',
-                type: 'fit'
-            },
-            split: true,
-            
-            defaults: {
-                autoScroll: true,
-            },
-            items: [{
-                xtype: 'playerqueue',
-            }]
-        }
-        */
     ],
 });

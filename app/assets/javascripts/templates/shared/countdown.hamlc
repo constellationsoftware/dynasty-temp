@@ -3,3 +3,11 @@
 	.countdown-group
 		.countdown
 .controls
+	%button#autopick.btn{ data: { toggle: 'button', enable-text: 'Disable Autopick', disable-text: 'Enable Autopick' } } Enable Autopick
+	-##autopick-modal.modal
+	-#	.modal-header
+	-#		.message
+	-#		%button.close{ data: { dismiss: 'modal' } } ×
+	-#	.modal-footer
+	-#    %button.confirm Yes
+	-#		%button.close{ data: { dismiss: 'modal' } } No

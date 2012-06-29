@@ -34,7 +34,6 @@ Ext.application({
     controllers: [
         'Ext.ux.util.AlwaysOnTop',
         'PlayerGrid',
-        // 'Timer',
         'Roster',
         'AdminControls',
         'Picks',
