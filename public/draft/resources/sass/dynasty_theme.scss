@@ -203,7 +203,7 @@ $recommended_pick_bio_min-height: 8em;
                         @include column-count(3);
                         @include column-gap(10px);
                     }
-                    .label {
+                    .x-label {
                         min-width: 120px;
                         font-weight: bold;
                     }
@@ -379,5 +379,9 @@ $navHeight: 36px;
 }
 
 .x-splitter {
+    @include background(linear-gradient(top, $white, $gray));
+}
+
+#statusbar {
     @include background(linear-gradient(top, $white, $gray));
 }

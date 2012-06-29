@@ -11096,7 +11096,7 @@ body .ux-notification-window {
   column-gap: 10px;
 }
 /* line 206, ../sass/dynasty_theme.scss */
-.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats .label {
+.recommended_pick_wrap .recommended_pick .stats_wrap .stats_content .stats .x-label {
   min-width: 120px;
   font-weight: bold;
 }
@@ -11330,6 +11330,16 @@ body .ux-notification-window {
 
 /* line 381, ../sass/dynasty_theme.scss */
 .x-splitter {
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
+  background: -webkit-linear-gradient(top, #ffffff, #eeeeee);
+  background: -moz-linear-gradient(top, #ffffff, #eeeeee);
+  background: -o-linear-gradient(top, #ffffff, #eeeeee);
+  background: -ms-linear-gradient(top, #ffffff, #eeeeee);
+  background: linear-gradient(top, #ffffff, #eeeeee);
+}
+
+/* line 385, ../sass/dynasty_theme.scss */
+#statusbar {
   background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(100%, #eeeeee));
   background: -webkit-linear-gradient(top, #ffffff, #eeeeee);
   background: -moz-linear-gradient(top, #ffffff, #eeeeee);
