@@ -92,10 +92,9 @@ Ext.application({
         this.fireEvent(this.LIVE_PICK_MADE);
     },
 
-    onPick: function(player) { // when you make a pick
+    onPick: function(player) { // when the client makes a pick
         console.log('player picked succeeded', player);
         this.fireEvent(this.STATUS_PICKED, player.get('id'));
-        //Ext.ux.data.Socket.request('pick', { player_id: player.get('id') });
     },
 
     onTeamPicked: function(payload) { // when another team makes a pick

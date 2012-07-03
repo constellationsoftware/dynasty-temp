@@ -58,7 +58,7 @@ Ext.define('DynastyDraft.controller.Picks', {
     },
 
     /**
-     * After a player has been picked, update the current pick
+     * After a client has picked a player, update the current pick
      */
     onPlayerPicked: function(player_id) {
         var store = this.getPicksStore(),
