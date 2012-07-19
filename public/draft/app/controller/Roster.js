@@ -7,12 +7,13 @@ Ext.define('DynastyDraft.controller.Roster', {
     refs: [{
         ref: 'rosterGrid',
         selector: 'viewport roster'
+    }, {
+        ref: 'balanceView',
+        selector: 'viewport #user-balance'
     }],
 
     init: function() {
-        this.control({
-            'viewport roster': {}
-        });
+        this.getRosterStore().addListener('update', this.updateSalaryTotal, this);
         this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSucceeded, this);
     },
 
@@ -27,7 +28,24 @@ Ext.define('DynastyDraft.controller.Roster', {
             var slot = store.getAt(i);
             var player = Player.find(pick.player_id);
             slot.set('full_name', player.fullName());
+            slot.set('player_id', player.id);
             this.getRosterGrid().getView().refresh(true);
+        }
+    },
+
+    updateSalaryTotal: function(store, record, op) {
+        if (op === Ext.data.Model.EDIT) { // if acquiring a new pick
+            var total = 0;
+            store.each(function(record) {
+                player_id = record.get('player_id');
+                if (player_id) {
+                    player = Player.find(player_id);
+                    if (player) { total += parseInt(player.contract.amount); }
+                }
+            }, this);
+            var bv = this.getBalanceView();
+            bv.tpl.overwrite(bv.getEl(), { balance: window.USER_BALANCE, salary_total: total });
+            bv.hide().show();
         }
     }
 });

@@ -4,6 +4,7 @@ Ext.define('DynastyDraft.model.Roster', {
     fields: [
         { name: 'id', allowBlank: true, type: 'int', defaultValue: null },
         { name: 'string', allowBlank: false, type: 'int', mapping: 'string', defaultValue: '' },
+        { name: 'player_id', allowBlank: true, type: 'int', mapping: 'player.id' },
         { name: 'full_name', allowBlank: false, type: 'string', mapping: 'player.name.full_name' },
         { name: 'position', allowBlank: true, type: 'string', defaultValue: '' },
         { name: 'bye_week', allowBlank: true, type: 'int', mapping: 'player.contract.bye_week', defaultValue: 0 },

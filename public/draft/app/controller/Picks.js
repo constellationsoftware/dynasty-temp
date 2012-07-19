@@ -7,9 +7,6 @@ Ext.define('DynastyDraft.controller.Picks', {
     refs: [{
         ref: 'picksSlider',
         selector: 'viewport picks'
-    }, {
-        ref: 'balanceView',
-        selector: 'viewport #user-balance'
     }],
 
     init: function() {
@@ -76,15 +73,6 @@ Ext.define('DynastyDraft.controller.Picks', {
                     // get "extra" data from the operation directly
                     var pick = Ext.JSON.decode(operation.response.responseText);
                     this.fireEvent('picksucceeded', pick);
-
-                    var player = Player.find(pick.player_id);
-                    // add up balance thus far
-                    
-                    // var balance = response.balance;
-                    // // update the user balance data
-                    // var bv = this.getBalanceView();
-                    // bv.tpl.overwrite(bv.getEl(), balance);
-                    // bv.hide().show();
                 },
                 failure: function() {},
                 callback: function() {},
