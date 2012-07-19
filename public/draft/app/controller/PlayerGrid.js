@@ -30,8 +30,8 @@ Ext.define('DynastyDraft.controller.PlayerGrid', {
         this.application.addListener(this.application.STATUS_PICKED, this.onPickUpdate, this);
         this.application.addListener(this.application.PICK_UPDATE, this.onPickUpdate, this);
 
-        var store = this.getPlayersStore();
-        store.guaranteeRange(0, store.pageSize - 1);
+        //var store = this.getPlayersStore();
+        //store.guaranteeRange(0, store.pageSize - 1);
     },
 
     onSearchFieldChange: function(field, value) {

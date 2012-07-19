@@ -22,7 +22,7 @@ class JuggernautPublisher < AbstractController::Base
     # TODO: figure out why the JSON string coming back from a render doesn't have commas or array brackets. It's not parseable
     def record(channels, event, record, &block)
         payload = block ? yield(self, record) : render(record)
-        Juggernaut.publish channels, { :type => 'event', :event => event, :data => payload } unless channels.empty?
+        Juggernaut.publish channels, { :type => 'action', :class => record.class.name, :data => payload } unless channels.empty?
     end
 
     def publish

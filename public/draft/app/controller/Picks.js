@@ -55,6 +55,10 @@ Ext.define('DynastyDraft.controller.Picks', {
         view.bindStore(pickOrder);
         pickOrder.loadRawData(pickRecordsRaw);
         picksStore.loadRawData(pickRecordsRaw);
+
+        picksStore.addListener('datachanged', function() {
+            console.log(arguments);
+        });
     },
 
     /**
@@ -68,18 +72,19 @@ Ext.define('DynastyDraft.controller.Picks', {
             // suspend model events until the end of the update
             currentPick.set('player_id', player_id);
             currentPick.save({
-                success: function(record, operation) {
-                    this.fireEvent('picksucceeded');
-                    
+                success: function(record, operation) {                    
                     // get "extra" data from the operation directly
-                    var response = Ext.JSON.decode(operation.response.responseText);
-                    if (response && response.balance) {
-                        var balance = response.balance;
-                        // update the user balance data
-                        var bv = this.getBalanceView();
-                        bv.tpl.overwrite(bv.getEl(), balance);
-                        bv.hide().show();
-                    }
+                    var pick = Ext.JSON.decode(operation.response.responseText);
+                    this.fireEvent('picksucceeded', pick);
+
+                    var player = Player.find(pick.player_id);
+                    // add up balance thus far
+                    
+                    // var balance = response.balance;
+                    // // update the user balance data
+                    // var bv = this.getBalanceView();
+                    // bv.tpl.overwrite(bv.getEl(), balance);
+                    // bv.hide().show();
                 },
                 failure: function() {},
                 callback: function() {},
@@ -110,7 +115,7 @@ Ext.define('DynastyDraft.controller.Picks', {
      * to current pick + X records where X is the number of teams in the draft.
      */
     onChangeCurrentPick: function(currentPick) {
-        // chang eround number in countdown display
+        // change round number in countdown display
         $('#countdown-wrap .round').text('Round ' + currentPick.data.round);
 
         //console.log('filtering pick order');

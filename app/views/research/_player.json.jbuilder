@@ -29,3 +29,6 @@ json.points do |json|
     json.games_played       player.send 'points.games_played'
 end
 json.dollars_per_point      points === 0 ? 0 : (salary / points)
+if picked_player_ids
+    json.available          !(picked_player_ids.include?(player.id))
+end

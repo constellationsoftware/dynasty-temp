@@ -1,0 +1,6 @@
+.modal-header
+  %button.close{ data: { dismiss: 'modal' } }×
+  %h3 Are you sure you want to draft #{@player.fullName()}?
+.modal-footer
+  %button.btn.btn-danger.confirm Yes
+  %button.btn.deny{ data: { dismiss: 'modal' } } No

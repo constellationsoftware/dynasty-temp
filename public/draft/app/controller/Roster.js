@@ -5,7 +5,7 @@ Ext.define('DynastyDraft.controller.Roster', {
     views: [ 'Roster' ],
 
     refs: [{
-        ref: 'rosterView',
+        ref: 'rosterGrid',
         selector: 'viewport roster'
     }],
 
@@ -13,11 +13,21 @@ Ext.define('DynastyDraft.controller.Roster', {
         this.control({
             'viewport roster': {}
         });
-        this.getRosterStore().load();
-        this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSuccess, this);
+        this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSucceeded, this);
     },
 
-    onPickSuccess: function() {
-        this.getRosterStore().load();
+    onPickSucceeded: function(pick) {
+        var store = this.getRosterStore();
+        var i = store.findBy(function(record) {
+            var position = record.get('position'),
+                string = record.get('string');
+            return position == pick.lineup.position && string == pick.lineup.string
+        });
+        if (i !== -1) {
+            var slot = store.getAt(i);
+            var player = Player.find(pick.player_id);
+            slot.set('full_name', player.fullName());
+            this.getRosterGrid().getView().refresh(true);
+        }
     }
 });

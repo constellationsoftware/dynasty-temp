@@ -8,7 +8,9 @@ Ext.define('DynastyDraft.model.Pick', {
         { name: 'team_id', allowBlank: false, type: 'int' },
         { name: 'pick_order', allowBlank: false, type: 'int' },
         { name: 'picked_at', allowBlank: true, type: 'date', defaultValue: null },
-        { name: 'round', allowBlank: false, type: 'int', defaultValue: 0 }
+        { name: 'round', allowBlank: false, type: 'int', defaultValue: 0 },
+        { name: 'position', allowBlank: true, type: 'string', mapping: 'lineup.position' },
+        { name: 'string', allowBlank: true, type: 'int', mapping: 'lineup.string' }
     ],
 
     belongsTo: [

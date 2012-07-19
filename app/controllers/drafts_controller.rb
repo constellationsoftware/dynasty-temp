@@ -2,6 +2,13 @@ class DraftsController < ApplicationController
     before_filter :authenticate_user!, :set_team
 
     def show
+        @positions = Position.select{[ id, abbreviation ]}
+            .where{ abbreviation !~ '%flex%' }
+            .inject({}) { |h, val| h[val['abbreviation']] = val['abbreviation'].upcase; h }
+        @teams = SportsDb::Team.nfl.current.joins{ display_name }
+            .select{[ id, display_name.full_name, display_name.abbreviation ]}
+            .order{ display_name.full_name }
+            .inject({}) { |h, val| h[val['abbreviation']] = val['full_name']; h }
         @draft = resource
     end
 

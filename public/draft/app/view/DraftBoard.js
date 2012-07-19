@@ -7,7 +7,7 @@ Ext.define('DynastyDraft.view.DraftBoard', {
     alias: 'widget.draftboard',
     title: 'DraftBoard',
     store: 'DraftBoard',
-    columnLines: true,
+    columnLines: false,
 
     columns: [
         {
@@ -63,13 +63,6 @@ Ext.define('DynastyDraft.view.DraftBoard', {
             xtype: 'numbercolumn',
             align: 'right',
             format: '$0,000'
-        },
-        {
-            text: 'Points Per $1MM ',
-            dataIndex: 'points_per_dollar',
-            xtype: 'numbercolumn',
-            align: 'right',
-            format: '0'
         }
     ],
 
@@ -79,7 +72,7 @@ Ext.define('DynastyDraft.view.DraftBoard', {
             groupHeaderTpl: '{name} ({rows.length} Player{[values.rows.length > 1 ? "s" : ""]})',
             hideGroupedHeader: false,
             enableGroupingMenu: false,
-            startCollapsed: false,
+            startCollapsed: true,
             /*
              showEmptyGroups: true,
              emptyIndicatorField: 'empty',

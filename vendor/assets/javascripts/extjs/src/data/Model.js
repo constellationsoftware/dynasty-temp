@@ -1146,7 +1146,7 @@ Ext.define('Ext.data.Model', {
 
         callback = function(operation) {
             if (operation.wasSuccessful()) {
-                record = operation.getRecords()[0];
+                record = operation.records[0];
                 //we need to make sure we've set the updated data here. Ideally this will be redundant once the
                 //ModelCache is in place
                 me.set(record.data);

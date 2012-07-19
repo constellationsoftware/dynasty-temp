@@ -5,9 +5,10 @@
   window.SALARY_TOTAL = #{@team.salary_total}
   window.AUTOPICK = #{!!@team.autopick}
   window.CHANNEL = '#{@team.uuid}'
+  window.teams = #{raw @teams.to_json}
+  window.positions = #{raw @positions.to_json}
 = stylesheet_link_tag '/draft/resources/css/dynasty_theme'
 = stylesheet_link_tag 'draft'
 = stylesheet_link_tag 'jquery/countdown'
 = javascript_include_tag 'apps/draft'
-= javascript_include_tag '/draft/app'
 %body{ :class => 'loading' }

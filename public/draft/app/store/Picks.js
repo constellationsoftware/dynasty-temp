@@ -13,12 +13,12 @@ Ext.define('DynastyDraft.store.Picks', {
             var nextPick,
                 lastPick = this.__currentPick;
             // this condition should only be true on first load
-            if (this.__currentPick === null) {
+            //if (this.__currentPick === null) {
                 nextPick = this.findRecord('player_id', 0);
-            } else {
-                var next_order = this.__currentPick.get('pick_order') + 1;
-                nextPick = this.findRecord('pick_order', next_order, 0, null, null, true);
-            }
+            //} else {
+            //    var next_order = this.__currentPick.get('pick_order') + 1;
+            //    nextPick = this.findRecord('pick_order', next_order, 0, null, null, true);
+            //}
             this.__currentPick = (nextPick) ? nextPick : null;
             
             //console.log('current pick', this.__currentPick);

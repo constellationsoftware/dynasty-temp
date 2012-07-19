@@ -1,3 +1,3 @@
-json.players @players do |json, player|
-    json.partial! 'player', :player => player
+json.array! @players do |json, player|
+    json.partial! 'player', :player => player, :picked_player_ids => @picked_player_ids
 end

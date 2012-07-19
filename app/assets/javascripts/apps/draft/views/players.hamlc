@@ -1,0 +1,34 @@
+.row-fluid
+  .span12.filters
+    %select#filter-position.pull-left.span2{ 'data-column': 'position' }
+      %option{ value: '' } All positions
+    %select#filter-team.pull-left.span2{ 'data-column': 'team' }
+      %option{ value: '' } All teams
+    %select#filter-bye.pull-left.span2{ 'data-column': 'bye' }
+      %option{ value: '' } All bye weeks
+      - for n in [4..11]
+        %option{ value: n }= n
+    %input#filter-name.span3.pull-right{ type: 'text', placeholder: 'Filter by name' }
+.row-fluid
+  .span12
+    %table.display.all-players-data.table.table-condensed{ border: 0, cellpadding: 0, cellspacing: 0 }
+      %thead
+        %tr.research_row
+          %th.name.dt_left Player
+          %th.first-name
+          %th.last-name
+          %th.position.dt_center Pos
+          %th.team.dt_center Team
+          %th.bye.dt_center Bye
+          %th.contract-amount.dt_right Yearly
+          %th.contract-total-amount.dt_right Total
+          %th.contract-end-year.dt_right Ending
+          %th.points.dt_right FPTs
+          %th.passing-points.dt_right Pas
+          %th.rushing-points.dt_right Rsh
+          %th.defensive-points.dt_right Df
+          %th.fumble-points.dt_right Fum
+          %th.scoring-points.dt_right Td
+          %th.dollars_per_point.dt_right DD/P
+          %th.games.dt_right Games
+          %th.id

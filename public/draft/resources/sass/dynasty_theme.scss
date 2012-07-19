@@ -385,3 +385,7 @@ $navHeight: 36px;
 #statusbar {
     @include background(linear-gradient(top, $white, $gray));
 }
+
+.x-toolbar-default { border-color: #CCC; }
+
+.x-grid-dirty-cell { background-image: none; }

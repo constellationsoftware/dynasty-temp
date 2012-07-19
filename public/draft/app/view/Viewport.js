@@ -6,7 +6,6 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.PlayerGrid',
         'DynastyDraft.view.AdminControls',
         'DynastyDraft.view.Picks',
-        'DynastyDraft.view.RecommendedPicks',
         'DynastyDraft.view.DraftBoard'
     ],
 
@@ -69,59 +68,15 @@ Ext.define('DynastyDraft.view.Viewport', {
                 bodyBorder: false,
                 frame: false,
                 items: [{
-                    xtype: 'panel',
-                    title: 'Recommended Picks',
-                    id: 'recommendedpickwrap',
-                    layout: 'fit',
-                    autoScroll: true,
-                    items: [{
-                        xtype: 'recommendedpicks',
-                        padding: 10,
-                        loadMask: false, // we'll use the one on the parent
-                        maskOnDisable: false
-                    }],
-                    tbar: [{
-                        xtype: 'combo',
-                        itemId: 'filter',
-                        valueField: 'id',
-                        displayField: 'name',
-                        queryMode: 'local',
-                        fieldLabel: 'Filter',
-                        labelAlign: 'left',
-                        labelWidth: 40,
-                        editable: false,
-                        store: Ext.create('Ext.data.Store', {
-                            // store configs
-                            autoDestroy: true,
-                            // reader configs
-                            idIndex: 0,
-                            fields: ['id', 'name'],
-                            data: [
-                                { id: 'all', name: 'Show All' },
-                                { id: 'QB', name: 'Quarterbacks' },
-                                { id: 'WR', name: 'Wide Receivers' },
-                                { id: 'RB', name: 'Running Backs' },
-                                { id: 'TE', name: 'Tight Ends' },
-                                { id: 'K', name: 'Kickers' },
-                                { id: 'DL', name: 'Defensive Linemen' },
-                                { id: 'LB', name: 'Linebacker' },
-                                { id: 'DB', name: 'Defensive Back' }
-                            ]
-                        }),
-                        value: 'all'
-                    }, {
-                        xtype: 'tbfill'
-                    }, {
-                        xtype: 'button',
-                        text: 'Draft Player',
-                        itemId: 'submit',
-                        scale: 'large',
-                        width: 100,
-                        disabled: true
-                    }]
-                }, {
-                    xtype: 'playergrid',
-                    title: 'Full Player List'
+                    xtype: 'container',
+                    id: 'research',
+                    title: 'Players',
+                    listeners: {
+                        afterLayout: function() {
+                            dimensions = this.getSize();
+                            draftApp.playerGrid.render(dimensions.width, dimensions.height);
+                        },
+                    }
                 }, {
                     xtype: 'roster',
                     title: 'My Roster'

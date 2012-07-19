@@ -1,5 +1,6 @@
 @import 'compass';
 @import 'bootstrap';
+@import 'dataTables/jquery.dataTables.bootstrap';
 
 $bodyBackground: transparent;
 
@@ -175,5 +176,58 @@ $status-color: #ABABAB;
     .controls {
         text-align: center;
         padding: 4px;
+    }
+}
+
+#research {
+    background-color: $white;
+
+    .row { display: none; }
+
+    .dataTables_scrollHead {
+        height: 26px;
+        background-color: #ABABAB;
+    }
+
+    table {
+        tbody {
+            tr.selected { background-color: $navlightBlue; }
+            tr.selected { background-color: green; }
+            tr.inactive { color: #CCC; }
+        }
+    }
+
+    .filters {
+        .pull-right {
+            float: right;
+            margin-left: 10px;
+        }
+        .pull-left {
+            float: left;
+            margin-right: 10px;
+        }
+    }
+}
+
+#draft-button-wrap {
+    position: absolute;
+    z-index: 1038;
+    left: 8px;
+    top: $navbarHeight + 4;
+}
+
+.dt-left { text-align: left !important; }
+.dt-right { text-align: right !important; }
+.dt-center { text-align: center !important; }
+
+#draft-confirm {
+    h3 {
+        font-size: 18px;
+        line-height: 27px;
+        margin: 0;
+        font-family: inherit;
+        font-weight: bold;
+        color: inherit;
+        text-rendering: optimizelegibility;
     }
 }

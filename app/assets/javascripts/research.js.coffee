@@ -141,7 +141,7 @@ $ ->
         fnServerData: (source, data, callback) -> $.get source, data, callback, 'json'
         bProcesing: true
         #bServerSide: true
-        sAjaxDataProp: 'players'
+        sAjaxDataProp: ''
         sAjaxSource: 'research/players'
         sDom: "<'row'r>tS<'row'<'span12'i>>"
         #bDeferRender: true

@@ -11347,3 +11347,13 @@ body .ux-notification-window {
   background: -ms-linear-gradient(top, #ffffff, #eeeeee);
   background: linear-gradient(top, #ffffff, #eeeeee);
 }
+
+/* line 389, ../sass/dynasty_theme.scss */
+.x-toolbar-default {
+  border-color: #CCC;
+}
+
+/* line 391, ../sass/dynasty_theme.scss */
+.x-grid-dirty-cell {
+  background-image: none;
+}

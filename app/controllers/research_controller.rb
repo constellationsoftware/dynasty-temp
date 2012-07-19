@@ -1,11 +1,9 @@
-#require 'datatable_mashaller'
 class ResearchController < ApplicationController
     respond_to :html, :json
     caches_page :index
     self.resource_class = Player
 
     skip_before_filter :check_registered_league
-    #include DatatableMarshaller, :only => :players
     before_filter :inject_player_params, :only => :players
     skip_before_filter :authenticate_user!
 
@@ -14,8 +12,11 @@ class ResearchController < ApplicationController
     end
 
     def players
+        team = current_user.team
+        @picked_player_ids = team.league.players.collect(&:id)
         #page = (start.zero? ? 0 : (start / length).floor) + 1
-        players = apply_scopes(Player)#.order{[ name.last_name, name.first_name ]}#.paginate :page => page, :per_page => length
+        players = apply_scopes(Player) #.paginate :page => page, :per_page => length
+            .order{[ name.last_name, name.first_name ]}
         @total = players.count
         players = players.offset(params[:start]) if params.has_key? 'start'
         players = players.limit(params[:length]) if params.has_key? 'length'
@@ -94,6 +95,7 @@ class ResearchController < ApplicationController
 
     protected
         def inject_player_params
+            params[:research] = true
             params[:columns] =  %W(
                 id
                 name.first_name

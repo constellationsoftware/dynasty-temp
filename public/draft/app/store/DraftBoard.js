@@ -2,7 +2,7 @@ Ext.define('DynastyDraft.store.DraftBoard', {
     extend: 'Ext.data.Store',
 
     model: 'DynastyDraft.model.DraftedPlayers',
-    groupField: 'team_id',
+    groupField: 'team',
     remoteSort: false,
 
     proxy: {
