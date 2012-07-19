@@ -2,7 +2,7 @@
 $.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
     value = $('#filter-name').val()
     return true unless value?
-    return true if data[2].toLowerCase().indexOf(value) isnt -1 or data[1].toLowerCase().indexOf(value) isnt -1
+    return true if data[2].toLowerCase().indexOf(value) isnt -1 or data[1].toLowerCase().indexOf(value) isnt -1 or ("#{data[1].toLowerCase()} #{data[2].toLowerCase()}").indexOf(value) isnt -1
 
 
 window.Players = class Players extends Spine.Controller
