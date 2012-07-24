@@ -6,6 +6,7 @@ Ext.define('DynastyDraft.view.Viewport', {
         'DynastyDraft.view.PlayerGrid',
         'DynastyDraft.view.AdminControls',
         'DynastyDraft.view.Picks',
+        'DynastyDraft.view.RecommendedPicks',
         'DynastyDraft.view.DraftBoard'
     ],
 
@@ -77,6 +78,18 @@ Ext.define('DynastyDraft.view.Viewport', {
                             draftApp.playerGrid.render(dimensions.width, dimensions.height);
                         },
                     }
+                }, {
+                    xtype: 'panel',
+                    title: 'Recommended Picks',
+                    id: 'recommendedpickwrap',
+                    layout: 'fit',
+                    autoScroll: true,
+                    items: [{
+                        xtype: 'recommendedpicks',
+                        padding: 10,
+                        loadMask: false, // we'll use the one on the parent
+                        maskOnDisable: false
+                    }]
                 }, {
                     xtype: 'roster',
                     title: 'My Roster'

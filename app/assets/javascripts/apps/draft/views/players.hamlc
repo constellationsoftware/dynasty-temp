@@ -8,13 +8,15 @@
       %option{ value: '' } All bye weeks
       - for n in [4..11]
         %option{ value: n }= n
+    %button#filter-favorites.btn.pull-left{ data: { toggle: 'button', 'inactive-text': 'Show Watchlist Only', 'active-text': 'Show All Players' } } Show Watchlist Only
     %input#filter-name.span3.pull-right{ type: 'text', placeholder: 'Filter by name' }
 .row-fluid
   .span12
     %table.display.all-players-data.table.table-condensed{ border: 0, cellpadding: 0, cellspacing: 0 }
       %thead
         %tr.research_row
-          %th.name.dt_left Player
+          %th.favorite.dt-center Watch
+          %th.name.dt-left Player
           %th.first-name
           %th.last-name
           %th.position.dt_center Pos

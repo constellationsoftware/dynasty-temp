@@ -1,5 +1,3 @@
-
-
 json.players(@players) do |json, player|
   json.player_id             player.id
   json.player_name           player.fname

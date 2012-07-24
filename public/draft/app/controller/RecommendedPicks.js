@@ -30,8 +30,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 beforerender: this.onBeforeRender,
                 selectionchange: this.onSelectionChange,
                 itemclick: this.onItemClick,
-                itemdblclick: this.onSubmit,
-                itemkeydown: this.onItemKeyDown,
+                //itemdblclick: this.onSubmit,
+                //itemkeydown: this.onItemKeyDown,
                 itemmouseenter: this.onItemRollover,
                 itemmouseleave: this.onItemRollout,
                 itemupdate: this.onItemUpdate,
@@ -39,10 +39,6 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 enable: this.onEnable
             },
             'viewport #recommendedpickwrap': {},
-            '#recommendedpickwrap button#submit': { click: this.onSubmit },
-            '#recommendedpickwrap combo#filter': { change: this.onFilterChanged },
-            '#recommended-pick-edit-window': { submit: this.onItemEditSubmit },
-            '#recommended-pick-edit-window combo': { beforequery: this.onBeforeQuery },
         });
 
         this.addEvents('playerpicked');
@@ -98,15 +94,9 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     },
 
     onDisable: function(view) {
-        this.getSubmitButton().setDisabled(true);
-        this.getFilterCtl().setDisabled(true);
-        this.loadMask.show();
     },
 
     onEnable: function(view) {
-        this.getSubmitButton().setDisabled(false);
-        this.getFilterCtl().setDisabled(false);
-        this.statusFade();
     },
 
     onBeforeLoad: function(store, operation) {
@@ -305,24 +295,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     },
 
     setStatusMessage: function(msg) {
-        this.loadMask.msg = msg;
-        this.loadMask.msgEl.update(msg);
     },
 
     statusFade: function() {
-        this.loadMask.animate({
-            from: { opacity: 1 },
-            to: { opacity: 0 },
-            duration: 400,
-            delay: 600,
-            easing: 'easeOut',
-            listeners: {
-                afteranimate: function() {
-                    this.hide();
-                    this.getEl().setOpacity(1);
-                },
-                scope: this.loadMask
-            }
-        });
     }
 });

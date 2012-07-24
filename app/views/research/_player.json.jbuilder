@@ -32,3 +32,6 @@ json.dollars_per_point      points === 0 ? 0 : (salary / points)
 if picked_player_ids
     json.available          !(picked_player_ids.include?(player.id))
 end
+if favorites
+    json.favorite           favorites.has_key?(player.id.to_s) ? favorites[player.id.to_s] : !!(false)
+end

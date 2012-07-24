@@ -48,20 +48,16 @@ class DraftsController < ApplicationController
     end
 
     def send_message
-        clients = JuggernautClient.find_all_by_league_id(@league.id)
-        channels = clients.collect{ |client| "/observer/#{client.uuid}" }
-        if channels.size > 0
-            Juggernaut.publish(channels, {
-                :id => nil,
-                :type => :create,
-                :class => 'ShoutboxMessages',
-                :record => {
-                    :user => @team.name,
-                    :message => params[:message],
-                    :timestamp => DateTime::now
-                }
-            })
-        end
+        draft = resource
+        team = current_user.team
+        record = {
+            :user => team.name,
+            :team_id => team.id,
+            :message => params[:message],
+            :timestamp => DateTime::now
+        }
+        channels = draft.teams.collect(&:uuid)
+        Juggernaut.publish channels, { :type => 'event', :event => 'shoutbox:message', :data => record } unless channels.empty?
         render :nothing => true
     end
 

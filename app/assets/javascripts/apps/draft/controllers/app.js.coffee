@@ -48,6 +48,7 @@ window.DraftApp = class DraftApp extends Spine.Controller
                 'Picks'
                 'DraftBoard'
                 'ShoutBox'
+                'RecommendedPicks'
             ]
 
             refs: [

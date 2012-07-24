@@ -14,6 +14,10 @@ class ResearchController < ApplicationController
     def players
         team = current_user.team
         @picked_player_ids = team.league.players.collect(&:id)
+        @favorites = team.favorites.order{ sort_order }.inject({}) do |h, favorite|
+            h[favorite.player_id.to_s] = favorite.sort_order
+            h
+        end
         #page = (start.zero? ? 0 : (start / length).floor) + 1
         players = apply_scopes(Player) #.paginate :page => page, :per_page => length
             .order{[ name.last_name, name.first_name ]}

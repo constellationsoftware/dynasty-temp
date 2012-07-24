@@ -2,8 +2,16 @@
 $.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
     value = $('#filter-name').val()
     return true unless value?
-    return true if data[2].toLowerCase().indexOf(value) isnt -1 or data[1].toLowerCase().indexOf(value) isnt -1 or ("#{data[1].toLowerCase()} #{data[2].toLowerCase()}").indexOf(value) isnt -1
+    return true if data[3].toLowerCase().indexOf(value) isnt -1 or data[2].toLowerCase().indexOf(value) isnt -1 or ("#{data[2].toLowerCase()} #{data[3].toLowerCase()}").indexOf(value) isnt -1
 
+# filter by watchlist status
+$.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
+    rank = data[0]
+    el = $('#filter-favorites')
+    activated = el.hasClass('active')
+    if activated
+        return false if rank is false
+    true
 
 window.Players = class Players extends Spine.Controller
     playersLoaded: false
@@ -73,6 +81,19 @@ window.Players = class Players extends Spine.Controller
         el = $('#filter-team')
         el.append "<option value=\"#{key}\">#{val}</option>" for key, val of window.teams
 
+        callback = (e) ->
+            el = $(@)
+            if el.hasClass 'active'
+                el.removeClass 'active'
+                el.button 'inactive'
+            else
+                el.addClass 'active'
+                el.button 'active'
+            me.table.dataTable().fnDraw()
+            el.button 'toggle'
+        el = $('#filter-favorites')
+        el.on 'click', callback
+
         $('#research .filters select').on 'change', ->
             el = $(@)
 
@@ -100,11 +121,22 @@ window.Players = class Players extends Spine.Controller
         table = @el.find('table').first().dataTable
             aaData: players
             aoColumns: [
+                sName:          'favorite'
+                sWidth:         '50px'
+                sClass:         'dt-center'
+                mDataProp:      'favorite'
+                bUseRendered:   false
+                fnRender:   (col) ->
+                    data = col.aData
+                    return '' if data.favorite is false
+                    console.log data.favorite
+                    '<img src="/draft/resources/images/icons/silk/star.png" />'
+            ,
                 sName:      'name'
                 sWidth:     '120px'
                 sClass:     'dt-left'
                 mDataProp:  null
-                aDataSort:  [ 2,1 ]
+                aDataSort:  [ 3, 2 ]
                 fnRender:   (col) ->
                     data = col.aData
                     "#{data.name.first_name[0]}. #{data.name.last_name}"

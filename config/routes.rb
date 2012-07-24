@@ -112,6 +112,7 @@ Dynasty::Application.routes.draw do
         get :postpone
         post :postpone
         get :autopick
+        post :send_message
     end
 
     match 'lineups/:action/:from/with/:to', :via => :post, :controller => :lineups

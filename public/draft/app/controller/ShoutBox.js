@@ -31,13 +31,11 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
                 }
             }
         });
-        // save out store instance under a global variable
-        window.ShoutboxMessages = this.getMessagesStore();
+        JUG.bind('shoutbox:message', Ext.Function.bind(this.onMessageReceived, this));
         this.getMessagesStore().addListener('datachanged', this.onStoreUpdate, this);
     },
 
     onPick: function(data) {
-        console.log(data);
         var message = this.createMessage(data.user.email, "has picked " + data.player.full_name, true);
         var store = this.getMessagesStore();
         store.add(message);
