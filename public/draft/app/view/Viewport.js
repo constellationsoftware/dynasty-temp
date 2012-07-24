@@ -78,7 +78,8 @@ Ext.define('DynastyDraft.view.Viewport', {
                             draftApp.playerGrid.render(dimensions.width, dimensions.height);
                         },
                     }
-                }, {
+                },
+                Ext.create('DynastyDraft.view.RecommendedPicks', {
                     xtype: 'panel',
                     title: 'Recommended Picks',
                     id: 'recommendedpickwrap',
@@ -90,7 +91,7 @@ Ext.define('DynastyDraft.view.Viewport', {
                         loadMask: false, // we'll use the one on the parent
                         maskOnDisable: false
                     }]
-                }, {
+                }), {
                     xtype: 'roster',
                     title: 'My Roster'
                 }, {

@@ -1,9 +1,9 @@
 Ext.define('DynastyDraft.controller.RecommendedPicks', {
     extend: 'Ext.app.Controller',
 
-    requires: 'DynastyDraft.store.PlayerSearch',
+    requires: [ 'DynastyDraft.store.PlayerSearch', 'DynastyDraft.view.RecommendedPicks' ],
     stores: [ 'RecommendedPicks' ],
-    views: [ 'RecommendedPicks', 'NewPlayerDialog' ],
+    views: [ 'RecommendedPicks' ],
 
     refs: [{
         ref: 'dataViewContainer',
@@ -32,8 +32,8 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 itemclick: this.onItemClick,
                 //itemdblclick: this.onSubmit,
                 //itemkeydown: this.onItemKeyDown,
-                itemmouseenter: this.onItemRollover,
-                itemmouseleave: this.onItemRollout,
+                //itemmouseenter: this.onItemRollover,
+                //itemmouseleave: this.onItemRollout,
                 itemupdate: this.onItemUpdate,
                 disable: this.onDisable,
                 enable: this.onEnable
@@ -56,7 +56,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         this.application.addListener(this.application.STATUS_PICKING, function(data) {
             this.getRecommendedPicksStore().loadRawData(data);
             //this.getRecommendedPicksStore().load();
-            this.getDataView().setDisabled(false);
+            //this.getDataView().setDisabled(false);
         }, this);
 
         // When we begin waiting for the server to tell us to pick again,
@@ -80,12 +80,14 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
 
     onLaunch: function() {
         // create the load mask
-        this.loadMask = Ext.create('Ext.LoadMask', this.getDataViewContainer(), {
-            msg: 'Waiting for draft start...'
-        });
+        // this.loadMask = Ext.create('Ext.LoadMask', this.getDataViewContainer(), {
+        //     msg: 'Waiting for draft start...'
+        // });
 
         // disable the dataview so the mask will show up
-        this.getDataView().setDisabled(true);
+        // this.getDataView().setDisabled(true);
+        this.getDataView().doComponentLayout();
+        //this.getDataView().hide().show();
     },
 
     onBeforeRender: function(view) {
@@ -105,20 +107,20 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
     },
 
     onLoad: function(store, records) {
-        var view = this.getDataView();
-        view.select(0);
+        //var view = this.getDataView();
+        //view.select(0);
 
         // draw edit buttons for each item
-        view.getEl().select('.recommended_pick .edit', true).each(this.createEditButton);
+        //view.getEl().select('.recommended_pick .edit', true).each(this.createEditButton);
         /**
          * This is a hack to force a redraw, since autoScroll doesn't play nice with
          * a dataview that just had an item update (or something) when using a 'fit' layout.
          */
-        view.hide().show();
+        //view.hide().show();
 
         // update status message
-        this.setStatusMessage('Success!');
-        this.getDataView().setDisabled(false);
+        //this.setStatusMessage('Success!');
+        //this.getDataView().setDisabled(false);
     },
     onLoadFail: function() {},
 

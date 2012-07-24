@@ -129,7 +129,6 @@ window.Players = class Players extends Spine.Controller
                 fnRender:   (col) ->
                     data = col.aData
                     return '' if data.favorite is false
-                    console.log data.favorite
                     '<img src="/draft/resources/images/icons/silk/star.png" />'
             ,
                 sName:      'name'
