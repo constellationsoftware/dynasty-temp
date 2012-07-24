@@ -14,6 +14,7 @@ Ext.define('DynastyDraft.controller.ShoutBox', {
     channel: null,
 
     init: function() {
+        window.ShoutboxMessages = this.getMessagesStore();
         this.control({
             'textfield': {
                 specialkey: function(field, e) {

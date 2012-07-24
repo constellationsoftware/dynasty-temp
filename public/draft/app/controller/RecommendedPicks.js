@@ -64,13 +64,13 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
         this.application.addListener(this.application.STATUS_WAITING, function() {
             this.setStatusMessage(this.waitingStatusMsg);
             this.getRecommendedPicksStore().removeAll();
-            this.getDataView().setDisabled(true);
+            //this.getDataView().setDisabled(true);
         }, this);
         this.application.addListener(this.application.STATUS_PICK_SUCCESS, this.onPickSucceeded, this);
         this.application.addListener(this.application.STATUS_FINISHED, function() {
             var view = this.getDataView();
             if (view.isDisabled()) {
-                view.setDisabled(false);
+                //view.setDisabled(false);
             }
         }, this);
         this.application.addListener(this.application.STATUS_STARTING, function() {
@@ -206,7 +206,7 @@ Ext.define('DynastyDraft.controller.RecommendedPicks', {
                 if (buttonId === "yes" || force) {
                     me.fireEvent('playerpicked', record);
                     me.setStatusMessage('Sending pick to server...');
-                    me.getDataView().setDisabled(true);
+                    //me.getDataView().setDisabled(true);
                 }
             };
         
