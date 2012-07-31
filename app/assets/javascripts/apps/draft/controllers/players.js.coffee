@@ -2,6 +2,7 @@
 $.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
     value = $('#filter-name').val()
     return true unless value?
+    value = value.toLowerCase()
     return true if data[3].toLowerCase().indexOf(value) isnt -1 or data[2].toLowerCase().indexOf(value) isnt -1 or ("#{data[2].toLowerCase()} #{data[3].toLowerCase()}").indexOf(value) isnt -1
 
 # filter by watchlist status
@@ -11,6 +12,17 @@ $.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
     activated = el.hasClass('active')
     if activated
         return false if rank is false
+    true
+
+# filter by available
+$.fn.dataTableExt.afnFiltering.push (settings, data, i) ->
+    id = data[18]
+    player = Player.find id
+    if player?
+        el = $('#filter-available')
+        activated = el.hasClass('active')
+        if activated
+            return false if player.available is false
     true
 
 window.Players = class Players extends Spine.Controller
@@ -91,8 +103,7 @@ window.Players = class Players extends Spine.Controller
                 el.button 'active'
             me.table.dataTable().fnDraw()
             el.button 'toggle'
-        el = $('#filter-favorites')
-        el.on 'click', callback
+        $('#filter-favorites, #filter-available').on 'click', callback
 
         $('#research .filters select').on 'change', ->
             el = $(@)
@@ -109,6 +120,9 @@ window.Players = class Players extends Spine.Controller
             callback = ->
                 me.table.dataTable().fnDraw()
             el.data('timeout', setTimeout(callback, 500))
+        $('#filter-name-wrap button.close').on 'click dragOut', (e) ->
+            $('#filter-name').val ''
+            me.table.dataTable().fnDraw()
 
     createTable: (height) =>
         @el = $('#research')

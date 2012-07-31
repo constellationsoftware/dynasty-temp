@@ -72,7 +72,7 @@ Ext.define('DynastyDraft.controller.Picks', {
                 success: function(record, operation) {                    
                     // get "extra" data from the operation directly
                     var pick = Ext.JSON.decode(operation.response.responseText);
-                    this.fireEvent('picksucceeded', pick);
+                    //this.fireEvent('picksucceeded', pick);
                 },
                 failure: function() {},
                 callback: function() {},

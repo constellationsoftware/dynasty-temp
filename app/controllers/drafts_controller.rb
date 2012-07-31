@@ -42,8 +42,20 @@ class DraftsController < ApplicationController
     def autopick
         @team = current_user.team
         @team.toggle 'autopick'
+
         if @team.save!
             render :json => @team.autopick
+        end
+
+        # if the draft is running and it is our turn to pick, do the autopick now
+        draft = @team.league.draft
+        if @team.autopick && draft.started?
+            p = draft.next_pick
+            if p.team_id === @team.id
+                player = @team.autopick_player
+                p.player_id = player.id
+                p.save!
+            end
         end
     end
 
@@ -52,7 +64,7 @@ class DraftsController < ApplicationController
         team = current_user.team
         record = {
             :user => team.name,
-            :team_id => team.id,
+            :team_id => team.uuid,
             :message => params[:message],
             :timestamp => DateTime::now
         }

@@ -109,6 +109,7 @@ Dynasty::Application.routes.draw do
         post :start
         post :finish
         post :reset
+        get :reset
         get :postpone
         post :postpone
         get :autopick

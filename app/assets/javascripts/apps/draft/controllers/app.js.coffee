@@ -126,6 +126,11 @@ window.DraftApp = class DraftApp extends Spine.Controller
                     console.log 'player picked succeeded', player
                     @fireEvent @STATUS_PICKED, player_id
 
+            onPickSucceeded: (pick) ->
+                console.log "PICK SUCCEEDED!!!"
+                @fireEvent @STATUS_PICK_SUCCESS, pick
+                @fireEvent @STATUS_WAITING
+
             onTeamPicked: (payload) -> # when another team makes a pick
                 # show notification bubble for pick
                 msg = payload.team.name + " picked " + payload.player.name + "."
@@ -144,6 +149,13 @@ window.DraftApp = class DraftApp extends Spine.Controller
 
                 @fireEvent @PICK_UPDATE, payload.pick
                 Spine.trigger 'picked', payload.player.id
+
+                if payload.team.id is window.CHANNEL
+                    console.log "I MADE THAT PICK"
+                    picksController = @getController('Picks')
+                    #pick = picksController.getPicksStore().getById payload.pick.id
+                    #console.log pick
+                    picksController.fireEvent 'picksucceeded', payload.pick
 
             onDraftFinish: ->
                 @showDraftFinishedDialog()
@@ -164,11 +176,6 @@ window.DraftApp = class DraftApp extends Spine.Controller
                     fn: =>
                         clearTimeout t
                         window.location.reload()
-
-            onPickSucceeded: (pick) ->
-                console.log "PICK SUCCEEDED!!!"
-                @fireEvent @STATUS_PICK_SUCCESS, pick
-                @fireEvent @STATUS_WAITING
 
             onPlayerPickFailed: ->
                 console.log 'player pick failed'

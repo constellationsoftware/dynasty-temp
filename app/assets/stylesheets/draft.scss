@@ -198,6 +198,9 @@ $status-color: #ABABAB;
     }
 
     .filters {
+        height: 37px;
+        padding: 4px;
+
         .pull-right {
             float: right;
             margin-left: 10px;
@@ -229,5 +232,16 @@ $status-color: #ABABAB;
         font-weight: bold;
         color: inherit;
         text-rendering: optimizelegibility;
+    }
+}
+
+#filter-name-wrap {
+    button {
+        float: right;
+        width: 22px;
+        height: 28px;
+        line-height: 26px;
+        @include border-radius(0 3px 3px 0);
+        margin: -2px 0 0 -22px;
     }
 }

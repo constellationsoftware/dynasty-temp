@@ -22,7 +22,7 @@ Ext.define('DynastyDraft.controller.Roster', {
         var i = store.findBy(function(record) {
             var position = record.get('position'),
                 string = record.get('string');
-            return position == pick.lineup.position && string == pick.lineup.string
+            return position == pick.lineup.position && string == pick.lineup.string && !(record.get('player_id'))
         });
         if (i !== -1) {
             var slot = store.getAt(i);

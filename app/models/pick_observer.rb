@@ -7,7 +7,20 @@ class PickObserver < ActiveRecord::Observer
     def after_update(pick)
         # TODO: assign lineup ID more intelligently i.e. don't stick a player in a flex just because it's available. They might have wanted them on the bench
         # create PlayerTeam (lineup will be assigned procedurally for the moment)
-        PlayerTeam.create!({ :team_id => pick.team_id, :player_id => pick.player_id }, :without_protection => true)
+        player_team = PlayerTeam.create!({ :team_id => pick.team_id, :player_id => pick.player_id }, :without_protection => true)
+        pickData = pick.attributes
+        unless player_team.lineup.nil?
+            pickData[:lineup] = {
+                :position => player_team.lineup.position.abbreviation.upcase,
+                :string => player_team.lineup.string
+            }
+        end
+        payload = {
+            :player => { :id => pick.player_id, :name => pick.player.full_name },
+            :team => { :id => pick.team.uuid, :name => pick.team.name },
+            :pick => pickData
+        }
+        JuggernautPublisher.new.event pick.team.league.channels, 'draft:picked', payload# unless (self.online.count === 0 or force_finish)
 
         pick.draft.picked!
 =begin

@@ -13,7 +13,6 @@ class PicksController < ApplicationController
             	.includes{[ lineup, lineup.position ]}
             	.where{ (player_id == my{ @pick.player_id }) & (team_id == my{ @pick.team_id }) }
             	.first
-            puts @player_team.inspect
             @pick
         end
     end

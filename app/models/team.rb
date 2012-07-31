@@ -139,6 +139,25 @@ class Team < ActiveRecord::Base
         end
     end
 
+    # fetches a player for autopick, considering favorites
+    def autopick_player
+        # when autopicking, we use the next unfilled slot in the roster in lineup order
+        # if the user's favorites list contains a valid player for the lineup slot, it is picked
+        if self.favorites.count > 0
+            # get the next empty slot ID for autopicking
+            position_id = Lineup.with_positions.empty(self.id).order{ id }.first.id
+
+            favorite_ids = self.favorites.collect{ |f| f.player_id }
+            player = Player.available(self.league_id).recommended(self.id)
+                .where{ id >> (favorite_ids) }
+                .first
+        end
+
+        # TODO: figure out a good way to batch these. Maybe at the message pushing level?
+        player ||= Player.available(self.league_id).recommended(self.id).first
+        player
+    end
+
     # use uuid as a string
     def uuid
         uuid = self.read_attribute(:uuid)

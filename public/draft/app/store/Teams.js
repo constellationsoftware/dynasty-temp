@@ -13,7 +13,8 @@ Ext.define('DynastyDraft.store.Teams', {
         reader: 'json',
 
         extraParams: {
-            with_picks: true
+            with_picks: true,
+            obfuscate_id: true
         }
     }
 });

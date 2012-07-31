@@ -39,4 +39,8 @@ class League < ActiveRecord::Base
 
     def is_public?; self.public === true end
     def is_private?; !(is_public?) end
+
+    def channels
+        teams.collect(&:uuid)
+    end
 end

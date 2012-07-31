@@ -9,6 +9,7 @@
 #  current_pick_id :integer(2)
 #  status          :string(255)
 #
+require 'delayed_job'
 require 'draft_machine'
 class Draft < ActiveRecord::Base
     self.table_name = 'dynasty_drafts'
@@ -25,14 +26,14 @@ class Draft < ActiveRecord::Base
         event :schedule do
             transitions :from => :initialized, :to => :scheduled, :on_transition => [ :generate_picks, :charge_trophy_fee ]
         end
-        event :start, :success => lambda { |d| d.delay(:run_at => Proc.new { 3.seconds.from_now }).after_start } do
+        event :start, :success => lambda { |d| d.after_start } do
             transitions :from => [ :scheduled, :starting ], :to => :starting, :on_transition => :on_start
         end
-        event :pick, :success => lambda { |d| d.delay(:run_at => Proc.new { |d| d.end_of_round? ? 5.seconds.from_now : Time.now }).after_pick } do
+        event :pick, :success => lambda { |d| d.after_pick } do
             transitions :from => [ :starting, :waiting ], :to => :picking
         end
         event :picked, :success => lambda { |d| d.pick! } do
-            transitions :from => :picking, :to => :waiting, :on_transition => :notify_picked
+            transitions :from => :picking, :to => :waiting
         end
         event :finish, :timestamp => true, :success => :after_finish do
             transitions :from => :picking, :to => :finished
@@ -92,135 +93,121 @@ class Draft < ActiveRecord::Base
         end
     end
 
-    protected
-        def on_start
-            # send message that draft is starting
-            JuggernautPublisher.new.alert league_channels, 'draft:starting', I18n.t('activerecord.models.draft.states.starting')
-        end
-        def after_start; self.pick! end
+    def on_start
+        # send message that draft is starting
+        JuggernautPublisher.new.alert league.channels, 'draft:starting', I18n.t('activerecord.models.draft.states.starting')
+    end
+    def after_start; self.pick! end
 
-        def after_pick
-            return self.finish! unless self.next_pick
-            do_next_pick
-        end
+    def after_pick
+        return self.finish! unless self.next_pick
+        do_next_pick
+    end
 
-        def do_next_pick
-            p = self.next_pick
-            team = p.team
-            if team.online? && !(team.autopicking?)
-                # patches up things with the player suggestions until we drop Pusher for good
-                players = Player.available(self.league_id)
-                    .recommended(team.id)
-                    .includes{[ points, position ]}
-                    .with_name
-                    .with_contract
-                    .with_favorites(team.id)
-                    .order{ points.points.desc }
-                    .limit(5)
+    def do_next_pick
+        sleep Draft::DELAY_BETWEEN_PICKS
+        p = self.next_pick
+        team = p.team
+        if team.online? && !(team.autopicking?)
+            players = Player.available(self.league_id)
+                .recommended(team.id)
+                .includes{[ points, position ]}
+                .with_name
+                .with_contract
+                .with_favorites(team.id)
+                .order{ points.points.desc }
+                .limit(5)
 
-                payload = Jbuilder.encode do |json|
-                    json.(players) do |json, player|
-                        json.id                     player.id
-                        json.name do |json|
-                            json.first_name         player.name.first_name
-                            json.last_name          player.name.last_name
-                            json.full_name          player.name.full_name
-                        end
-                        json.contract do |json|
-                            json.amount             player.contract.amount
-                            json.bye_week           player.contract.bye_week
-                        end
-                        json.position do |json|
-                            json.abbreviation       player.position.abbreviation
-                        end
-                        json.points do |json|
-                            json.points             player.points.points
-                            json.defensive_points   player.points.defensive_points
-                            json.passing_points     player.points.passing_points
-                            json.rushing_points     player.points.rushing_points
-                            json.sacks_against_points player.points.sacks_against_points
-                            json.scoring_points     player.points.scoring_points
-                            json.special_teams_points player.points.special_teams_points
-                            json.games_played       player.points.games_played
-                            #json.consistency        player.points.consistency
-                        end
-                        json.favorites do |json|
-                            json.sort_order         player.favorites.first ? player.favorites.first.sort_order : nil
-                        end
+            payload = Jbuilder.encode do |json|
+                json.(players) do |json, player|
+                    json.id                     player.id
+                    json.name do |json|
+                        json.first_name         player.name.first_name
+                        json.last_name          player.name.last_name
+                        json.full_name          player.name.full_name
+                    end
+                    json.contract do |json|
+                        json.amount             player.contract.amount
+                        json.bye_week           player.contract.bye_week
+                    end
+                    json.position do |json|
+                        json.abbreviation       player.position.abbreviation
+                    end
+                    json.points do |json|
+                        json.points             player.points.points
+                        json.defensive_points   player.points.defensive_points
+                        json.passing_points     player.points.passing_points
+                        json.rushing_points     player.points.rushing_points
+                        json.sacks_against_points player.points.sacks_against_points
+                        json.scoring_points     player.points.scoring_points
+                        json.special_teams_points player.points.special_teams_points
+                        json.games_played       player.points.games_played
+                        #json.consistency        player.points.consistency
+                    end
+                    json.favorites do |json|
+                        json.sort_order         player.favorites.first ? player.favorites.first.sort_order : nil
                     end
                 end
+            end
 
-                JuggernautPublisher.new.event team.uuid, 'draft:on-deck', payload
-                JuggernautPublisher.new.event (league_channels - [team.uuid]), 'draft:picking', { :team => team.name }
-            else
-                # TODO: figure out a good way to batch these. Maybe at the message pushing level?
-                player = Player.available(self.league_id).recommended(team.id).first
-                p.player_id = player.id
-                p.save!
+            JuggernautPublisher.new.event team.uuid, 'draft:on-deck', payload
+            JuggernautPublisher.new.event (league.channels - [team.uuid]), 'draft:picking', { :team => team.name }
+        else
+            # TODO: figure out a good way to batch these. Maybe at the message pushing level?
+            player = team.autopick_player
+            p.player_id = player.id
+            p.save!
+        end
+    end
+    handle_asynchronously :do_next_pick#, :run_at => Proc.new { 1.seconds.from_now }
+
+    def after_finish
+        JuggernautPublisher.new.alert league.channels, 'draft:finished', I18n.t('activerecord.models.draft.states.finished')
+    end
+
+    # resets draft to "scheduled" status, resetting all picks and clearing teams' roster
+    def on_reset
+        if self.picks.update_all :player_id => nil, :picked_at => nil
+            self.league.teams.each do |team|
+                team.player_teams.destroy_all
             end
         end
+        JuggernautPublisher.new.alert league.channels, 'draft:reset', I18n.t('activerecord.models.draft.states.reset')
+    end
 
-        def notify_picked
-            p = self.current_pick
-            payload = {
-                :player => { :id => p.player_id, :name => p.player.full_name },
-                :team => { :id => p.team_id, :name => p.team.name },
-                :pick => p
-            }
-            JuggernautPublisher.new.event league_channels, 'draft:picked', payload# unless (self.online.count === 0 or force_finish)
-        end
+    def on_postpone
+        JuggernautPublisher.new.alert league.channels, 'draft:postpone', I18n.t('activerecord.models.draft.states.postponed')
+    end
 
-        def after_finish
-            JuggernautPublisher.new.alert league_channels, 'draft:finished', I18n.t('activerecord.models.draft.states.finished')
-        end
+    def on_force_finish
+        # do some stuff to force a finish
+    end
 
-        # resets draft to "scheduled" status, resetting all picks and clearing teams' roster
-        def on_reset
-            if self.picks.update_all :player_id => nil, :picked_at => nil
-                self.league.teams.each do |team|
-                    team.player_teams.destroy_all
-                end
-            end
-            JuggernautPublisher.new.alert league_channels, 'draft:reset', I18n.t('activerecord.models.draft.states.reset')
-        end
+    def generate_picks
+        # generate picks for draft
+        teams = self.league.teams.sort
+        teams_reverse = teams.reverse
 
-        def on_postpone
-            JuggernautPublisher.new.alert league_channels, 'draft:postpone', I18n.t('activerecord.models.draft.states.postponed')
-        end
-
-        def on_force_finish
-            # do some stuff to force a finish
-        end
-
-        def generate_picks
-            # generate picks for draft
-            teams = self.league.teams.sort
-            teams_reverse = teams.reverse
-
-            Lineup.count.times do |round|
-                t = round.even? ? teams : teams_reverse
-                t.each_with_index do |team, i|
-                    Pick.create({
-                        :draft_id => self.id,
-                        :team_id => team.id,
-                        :pick_order => (i + 1) + (teams.size * round),
-                        :round => round + 1
-                    }, :without_protection => true)
-                end
+        Lineup.count.times do |round|
+            t = round.even? ? teams : teams_reverse
+            t.each_with_index do |team, i|
+                Pick.create({
+                    :draft_id => self.id,
+                    :team_id => team.id,
+                    :pick_order => (i + 1) + (teams.size * round),
+                    :round => round + 1
+                }, :without_protection => true)
             end
         end
+    end
 
-        def charge_trophy_fee
-            # apply league trophy fee
-            trophy_event = Events::PayTrophyFee.create!
-            trophy_event.process(self.league)
-        end
+    def charge_trophy_fee
+        # apply league trophy fee
+        trophy_event = Events::PayTrophyFee.create!
+        trophy_event.process(self.league)
+    end
 
-        # pass truthy value to exclusive to exclude the team currently picking
-        def league_channels(exclusive = false)
-            # gather team keys
-            keys = self.teams.collect(&:uuid)
-            keys -= [ current_pick.team.uuid ] if exclusive
-            keys
-        end
+    def started?
+        !(self.state.nil?) && !(self.state === 'scheduled') && !(self.state === 'initialized')
+    end
 end
